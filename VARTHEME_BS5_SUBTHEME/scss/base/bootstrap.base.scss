@@ -38,5 +38,21 @@
 @import "../../node_modules/bootstrap/scss/_offcanvas";
 @import "../../node_modules/bootstrap/scss/_placeholders";
 
-@import "../../node_modules/bootstrap/scss/utilities";  // Bootstrap utilities.
 @import "../../node_modules/bootstrap/scss/helpers";    // Bootstrap helpers.
+
+$utilities: [];
+
+$utilities: map-merge(
+  $utilities,
+  (
+    "display": (
+      responsive: true,
+      print: true,
+      property: display,
+      class: d,
+      values: inline inline-block block grid table table-row table-cell flex inline-flex none
+    )
+  )
+);
+
+@import "../../node_modules/bootstrap/scss/utilities/api";  // Bootstrap utilities.
