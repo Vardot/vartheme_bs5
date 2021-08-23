@@ -1,0 +1,38 @@
+//
+// VARTHEME_BS5_SUBTHEME Variables ovarrides.
+// --------------------------------------------------
+
+
+// #############################################################################
+// Bootstrap library standard variables.
+// #############################################################################
+// All variables which are used in the default bootstrap library.
+// You can change them in VARTHEME_BS5_SUBTHEME for the bootstrap-variables.sass
+//
+@import "bootstrap-variables"; // Bootstrap custom variables ovarrides in VARTHEME_BS5_SUBTHEME.
+
+
+// #############################################################################
+// Barrio custom variables.
+// #############################################################################
+// All needed custom variables for Bootstrap Barrio theme.
+// You can change them in VARTHEME_BS5_SUBTHEME in the bootstrap-variables.sass
+//
+@import "barrio-variables"; // Barrio custom variables ovarrides in VARTHEME_BS5_SUBTHEME.
+
+
+// #############################################################################
+// Vartheme BS5 custom variables
+// #############################################################################
+// All needed custom Vartheme BS5 variables
+// You can change them in VARTHEME_BS5_SUBTHEME in the vartheme_bs5-variables.sass
+//
+@import "vartheme_bs5-variables"; // Vartheme BS5 custom variables ovarrides in VARTHEME_BS5_SUBTHEME.
+
+
+// #############################################################################
+// VARTHEME_BS5_SUBTHEME custom needed variables
+// #############################################################################
+// Add custom needed VARTHEME_BS5_SUBTHEME variables.
+// In the generated VARTHEME_BS5_SUBTHEME not in Vartheme BS5 base theme.
+//

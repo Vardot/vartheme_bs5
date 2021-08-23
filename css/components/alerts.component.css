@@ -1,0 +1,32 @@
+/* Insert Vartheme custom Mixins. */
+/**
+ * Place the custom mixin in the scss/mixins directory.
+ * Import the mixin in this file. So that it will be imported in all scss files.
+ **/
+.alert-sm {
+  padding: 0.3125rem 0.625rem;
+}
+
+.alert a {
+  font-weight: bold;
+}
+
+.alert-success a:hover,
+.alert-success a:focus {
+  color: #2b542c;
+}
+
+.alert-info a:hover,
+.alert-info a:focus {
+  color: #245269;
+}
+
+.alert-warning a:hover,
+.alert-warning a:focus {
+  color: #66512c;
+}
+
+.alert-danger a:hover,
+.alert-danger a:focus {
+  color: #843534;
+}

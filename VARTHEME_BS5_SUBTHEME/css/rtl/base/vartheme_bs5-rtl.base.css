@@ -1,0 +1,9 @@
+/* Insert VARTHEME_BS5_SUBTHEME custom Mixins. */
+/**
+ * Place the custom mixin in the "scss/mixins" directory.
+ * Import the mixin in this file. So that it will be imported in all scss files.
+ **/
+/* Insert your Bootstrap (RTL) overrides for Bootstrap RTL for the Vartheme BS5 theme. */
+body {
+  font-family: "Droid Arabic Kufi", sans-serif;
+}

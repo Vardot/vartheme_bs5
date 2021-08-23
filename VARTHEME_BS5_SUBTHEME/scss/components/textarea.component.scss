@@ -1,0 +1,15 @@
+// Textarea component style.
+// -----------------------------------------------------------------------------
+@import "../../node_modules/bootstrap/scss/functions";  // Bootstrap functions.
+@import "../../node_modules/bootstrap/scss/mixins";     // Bootstrap mixins.
+@import "../variables";                   // VARTHEME_BS5_SUBTHEME variables.
+@import "../mixins";                      // VARTHEME_BS5_SUBTHEME mixins.
+// -----------------------------------------------------------------------------
+
+// Resizable textarea.
+.form-textarea-wrapper textarea {
+  display: block;
+  margin: 0;
+  width: 100%;
+  box-sizing: border-box;
+}

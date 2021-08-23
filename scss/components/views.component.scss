@@ -1,0 +1,50 @@
+// Views component style.
+// -----------------------------------------------------------------------------
+@import "../../node_modules/bootstrap/scss/functions"; // Bootstrap functions.
+@import "../../node_modules/bootstrap/scss/mixins";    // Bootstrap mixins.
+@import "../variables";                                // Vartheme variables.
+@import "../mixins";                                   // Vartheme mixins.
+// -----------------------------------------------------------------------------
+
+.views-displays {
+
+  // Views Tabs styles.
+  .tabs {
+    .open>a {
+      border-radius: $border-radius-lg $border-radius-lg 0 0;
+      
+      &:hover,
+      &:focus {
+        color: $link-color;
+      }
+    }
+
+    // Tabs action list styles.
+    .action-list {
+      padding: 0;
+    }
+  }
+
+  .secondary .form-submit {
+    @include font-size($font-size-sm);
+  }
+}
+
+// Contextual filter options styles.
+.views-filterable-options .filterable-option:nth-of-type(even) .form-type-checkbox {
+  background-color: #F9F9F9;
+}
+
+// Views action dropbutton styles.
+.views-ui-display-tab-actions {
+  .dropbutton {
+    .form-submit {
+      color: $link-hover-color;
+
+      &:hover,
+      &:focus {
+        color: $link-color;
+      }
+    }
+  }
+}

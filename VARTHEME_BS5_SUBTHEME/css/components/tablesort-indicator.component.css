@@ -1,0 +1,19 @@
+/* Insert VARTHEME_BS5_SUBTHEME custom Mixins. */
+/**
+ * Place the custom mixin in the "scss/mixins" directory.
+ * Import the mixin in this file. So that it will be imported in all scss files.
+ **/
+.tablesort {
+  width: 14px;
+  height: 14px;
+  margin: 1px 0 0 5px;
+  vertical-align: top;
+}
+
+.tablesort--asc {
+  background-image: url(../../../../misc/icons/ffffff/twistie-down.svg);
+}
+
+.tablesort--desc {
+  background-image: url(../../../../misc/icons/ffffff/twistie-up.svg);
+}

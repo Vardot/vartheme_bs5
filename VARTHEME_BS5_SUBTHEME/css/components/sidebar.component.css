@@ -1,0 +1,39 @@
+/* Insert VARTHEME_BS5_SUBTHEME custom Mixins. */
+/**
+ * Place the custom mixin in the "scss/mixins" directory.
+ * Import the mixin in this file. So that it will be imported in all scss files.
+ **/
+.sidebar .block {
+  margin: 0 0 1rem;
+  padding: 1rem 1rem;
+  border-width: 1px;
+  border-style: solid;
+}
+
+.sidebar .block .content {
+  font-size: 1rem;
+  line-height: 1.25;
+}
+
+.sidebar h2 {
+  margin: 0 0 0.5rem;
+  padding-bottom: 0.3125rem;
+  border-bottom: 1px solid #dee2e6;
+  text-shadow: 0 1px 0 #fff;
+  font-size: 1.25rem;
+  line-height: 1.2;
+}
+
+.sidebar tbody {
+  border: none;
+}
+
+.sidebar tr.even,
+.sidebar tr.odd {
+  border-bottom: 1px solid #dee2e6;
+  background: none;
+}
+
+.sidebar nav ul.nav {
+  margin: -1rem;
+}

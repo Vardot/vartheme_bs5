@@ -1,0 +1,199 @@
+// Comments component style.
+// -----------------------------------------------------------------------------
+@import "../../node_modules/bootstrap/scss/functions"; // Bootstrap functions.
+@import "../../node_modules/bootstrap/scss/mixins";    // Bootstrap mixins.
+@import "../variables";                                // Vartheme variables.
+@import "../mixins";                                   // Vartheme mixins.
+// -----------------------------------------------------------------------------
+
+// This is required to win over specificity of #content h2
+#content .comment-wrapper {
+  h2 {
+    @include margin-bottom(1rem);
+
+    &.comment-form__title {
+      @include margin-bottom(1rem);
+    }
+  }
+}
+
+.field-node--comment {
+  @include font-size($font-size-sm);
+}
+
+.comment {
+  margin-bottom: $comment-spacer-y;
+  vertical-align: top;
+  display: table;
+}
+
+[dir="rtl"] .comment {
+  direction: rtl;
+}
+
+.comment__meta {
+  padding: 0 30px 0 0;
+  /* LTR */
+  @include font-size($font-size-base);
+}
+
+[dir="rtl"] .comment__meta {
+  @include padding(0 0 0 1.875rem);
+}
+
+.comment__attribution img {
+  border: 1px solid $border-color;
+}
+
+
+/* This is required to win over specificity of .field--type-image img */
+
+.comment .field--name-user-picture img {
+  margin: 0;
+}
+
+.comment__author .username {
+  white-space: nowrap;
+}
+
+.comment__author {
+  @include margin(0.25rem 0);
+  @include rfs(1.2, line-height);
+}
+
+.comment__time,
+.comment__permalink {
+  @include margin-bottom(0.25rem);
+  color: #68696b;
+  @include font-size($font-size-sm);
+  @include rfs(1.2, line-height);
+  padding: 0 0.5em 0 0;
+  /* LTR */
+}
+
+[dir="rtl"] .comment__time,
+.comment__permalink {
+  padding: 0 0 0 0.5em;
+}
+
+.comment__permalink {
+  @include font-size($font-size-sm);
+  @include rfs(1.2rem, line-height);
+}
+
+.comment__content:before {
+  content: '';
+  position: absolute;
+  right: 100%;
+  /* LTR */
+  top: $comment-spacer-y;
+  border-top: $comment-spacer-y solid transparent;
+  border-right: $comment-spacer-x solid $border-color;
+  /* LTR */
+  border-bottom: $comment-spacer-y solid transparent;
+}
+
+[dir="rtl"] .comment__content:before {
+  right: auto;
+  left: 100%;
+  border-right: none;
+  border-left: $comment-spacer-x solid $border-color;
+}
+
+.comment__content:after {
+  content: '';
+  position: absolute;
+  right: 100%;
+  /* LTR */
+  top: $comment-spacer-y;
+  border-top: $comment-spacer-y solid transparent;
+  border-right: $comment-spacer-x solid $white;
+  /* LTR */
+  border-bottom: $comment-spacer-y solid transparent;
+  @include margin-right(-0.0625em);
+  /* LTR */
+}
+
+[dir="rtl"] .comment__content:after {
+  right: auto;
+  left: 100%;
+  border-right: none;
+  border-left: $comment-spacer-x solid $white;
+  margin-right: 0;
+  @include margin-left(-0.0625rem);
+}
+
+.comment__content h3 {
+  margin-top: 0.94em;
+  margin-bottom: 0.45em;
+  @include font-size($font-size-lg);
+}
+
+.comment__content nav {
+  @include padding-top(0.0625rem);
+}
+
+.indented {
+  @include margin-left(2.5rem);
+  /* LTR */
+}
+
+[dir="rtl"] .indented {
+  @include margin-right(2.5rem);
+  margin-left: 0;
+}
+
+.comment .links {
+  padding: 0 0 0.25em 0;
+}
+
+.comment .links-inline span {
+  padding: 0 0.5em 0 0;
+  /* LTR */
+  @include font-size($font-size-base);
+}
+
+[dir="rtl"] .comment .links-inline span {
+  padding: 0 0 0 0.5em;
+}
+
+.comment--unpublished {
+  @include margin-right(0.3125rem);
+  /* LTR */
+  @include padding(0.3125rem 0.125 0.3125rem 0.3125rem);
+  /* LTR */
+  background: $accent-light;
+}
+
+[dir="rtl"] .comment--unpublished {
+  @include margin-left(0.3125rem);
+  margin-right: 0;
+  @include padding(0.3125rem 0.3125rem 0.3125rem 0.125);
+}
+
+// @todo: unpublished nodes have class .node--unpublished.
+// change this to .comment--unpublished.
+
+.unpublished .comment-text .comment-arrow {
+  border-left: 1px solid $accent-light;
+  border-right: 1px solid $accent-light;
+}
+
+.unpublished {
+  padding: $comment-spacer-y $comment-spacer-x 0;
+}
+
+.comment-footer {
+  display: table-row;
+}
+
+.comment--unpublished .comment__text:after,
+.node--unpublished .comment__text:after {
+  border-right-color: $accent-light;
+  /* LTR */
+}
+
+[dir="rtl"] .comment--unpublished .comment__content:after,
+[dir="rtl"] .node--unpublished .comment__content:after {
+  border-left-color: $accent-light;
+}

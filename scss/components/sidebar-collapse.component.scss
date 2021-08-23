@@ -1,0 +1,53 @@
+// Collapsed sidebar styles.
+// -----------------------------------------------------------------------------
+@import "../../node_modules/bootstrap/scss/functions"; // Bootstrap functions.
+@import "../../node_modules/bootstrap/scss/mixins";    // Bootstrap mixins.
+@import "../variables";                                // Vartheme variables.
+@import "../mixins";                                   // Vartheme mixins.
+// -----------------------------------------------------------------------------
+
+#sidebar_first {
+  height: 100%;
+  padding-right: 0;
+  @include padding-top(1.25rem);
+}
+
+// Collapsed sidebar styles.
+@media (max-width: 47.9em) {
+  .row-offcanvas {
+    position: relative;
+    -webkit-transition: all 0.25s ease-out;
+    -moz-transition: all 0.25s ease-out;
+    transition: all 0.25s ease-out;
+  }
+
+  .row-offcanvas-right {
+    .sidebar-offcanvas {
+      right: -41.6%;
+    }
+    
+    &.active {
+     right: 41.6%;
+    }
+  }
+
+  .row-offcanvas-left {
+    .sidebar-offcanvas {
+      left: -41.6%;
+    }
+
+    &.active {
+      left: 41.6%;
+    }
+  }
+
+  .sidebar-offcanvas {
+    position: absolute;
+    top: 0;
+    width: 41.6%;
+  }
+
+  #sidebar_first {
+    padding-top:0;
+  }
+}

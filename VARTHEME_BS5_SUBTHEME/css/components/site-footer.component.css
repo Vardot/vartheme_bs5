@@ -1,0 +1,25 @@
+/* Insert VARTHEME_BS5_SUBTHEME custom Mixins. */
+/**
+ * Place the custom mixin in the "scss/mixins" directory.
+ * Import the mixin in this file. So that it will be imported in all scss files.
+ **/
+.site-footer {
+  padding: 1rem 0;
+}
+
+.site-footer .layout-container {
+  padding: 0 1rem;
+}
+
+.site-footer__top .content {
+  margin-top: 0;
+}
+
+.site-footer__bottom .block {
+  margin: 0.5rem 0;
+}
+
+.site-footer__bottom .content {
+  margin-top: 0;
+  padding: 0.5rem 0;
+}

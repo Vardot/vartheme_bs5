@@ -1,0 +1,39 @@
+// Sidebar component style.
+// -----------------------------------------------------------------------------
+@import "../../node_modules/bootstrap/scss/functions"; // Bootstrap functions.
+@import "../../node_modules/bootstrap/scss/mixins";    // Bootstrap mixins.
+@import "../variables";                                // Vartheme variables.
+@import "../mixins";                                   // Vartheme mixins.
+// -----------------------------------------------------------------------------
+
+.sidebar {
+  .block {
+    border-style: solid;
+    border-width: $border-width;
+    @include padding($spacer $spacer);
+    @include margin(0 0 $spacer);
+    .content {
+      @include font-size($font-size-base);
+      @include rfs($line-height-sm, line-height);
+    }
+  }
+  h2 {
+    margin: 0 0 ($spacer * .5);
+    border-bottom: $border-width solid $border-color;
+    @include padding-bottom(0.3125rem);
+    text-shadow: 0 $border-width 0 $white;
+    @include font-size($font-size-lg);
+    @include rfs($headings-line-height, line-height);
+  }
+  tbody {
+    border: none;
+  }
+  tr.even,
+  tr.odd {
+    background: none;
+    border-bottom: $border-width solid $border-color;
+  }
+  nav ul.nav {
+    @include margin(0 -($spacer));
+  }
+}

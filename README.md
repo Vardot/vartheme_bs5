@@ -13,4 +13,4 @@ contrib theme.
  $ composer require 'drupal/vartheme_bs5:~1.0'
 ```
 
-## [Create a Vartheme BS4 sub theme ( Bootstrap 5 ) SASS for a project](https://github.com/Vardot/vartheme_bs5/tree/9.0.x/scripts)
+## [Create a Vartheme BS5 sub theme ( Bootstrap 5 ) SASS for a project](https://github.com/Vardot/vartheme_bs5/tree/1.0.x/scripts)

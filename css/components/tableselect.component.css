@@ -1,0 +1,18 @@
+/* Insert Vartheme custom Mixins. */
+/**
+ * Place the custom mixin in the scss/mixins directory.
+ * Import the mixin in this file. So that it will be imported in all scss files.
+ **/
+tr.selected td {
+  background: #ffc;
+}
+
+td.checkbox,
+th.checkbox {
+  text-align: center;
+}
+
+[dir="rtl"] td.checkbox,
+[dir="rtl"] th.checkbox {
+  text-align: center;
+}

@@ -1,0 +1,115 @@
+type: theme
+base theme: vartheme_bs5
+name: 'VARTHEME_BS5_SUBTHEME - Subtheme of Vartheme (Bootstrap 5 - SASS)'
+description: 'Based on Bootstrap 5 framework using SASS, and extending Vartheme (Bootstrap 5 - SASS).'
+project: vartheme_bs5
+core_version_requirement: ^9
+regions:
+  navigation: 'Navigation'
+  navigation_collapsible: 'Navigation Collapsible'
+  header: 'Top Bar'
+  highlighted: 'Highlighted'
+  help: 'Help'
+  content: 'Content'
+  sidebar_first: 'Primary'
+  sidebar_second: 'Secondary'
+  footer: 'Footer'
+  page_top: 'Page top'
+  page_bottom: 'Page bottom'
+libraries:
+  # Bootstrap styles and scripts libraries.
+  - VARTHEME_BS5_SUBTHEME/bootstrap-styles
+  - VARTHEME_BS5_SUBTHEME/bootstrap-scripts
+  # VARTHEME_BS5_SUBTHEME Global styles and scripts libraries.
+  - VARTHEME_BS5_SUBTHEME/global-styles
+  - VARTHEME_BS5_SUBTHEME/global-scripts
+  - VARTHEME_BS5_SUBTHEME/framework
+  # VARTHEME_BS5_SUBTHEME Varbase Media Hero Slider style.
+  - VARTHEME_BS5_SUBTHEME/heroslider
+  # Fonts: Uncomment the following if you want to use the roboto font.
+  #- VARTHEME_BS5_SUBTHEME/roboto
+libraries-override:
+  vartheme_bs5/framework: false
+  vartheme_bs5/bootstrap-styles: false
+  vartheme_bs5/bootstrap-scripts: false
+  vartheme_bs5/global-styles: false
+  vartheme_bs5/global-scripts: false
+  # Heroslider: Uncomment the following to disable the vartheme_bs5/heroslider
+  #             Libraray if it was enabled in vartheme_bs5 heroslider styling.
+  # vartheme_bs5/heroslider: false
+
+  vartheme_bs5/breadcrumb: VARTHEME_BS5_SUBTHEME/breadcrumb
+  vartheme_bs5/dropbutton: VARTHEME_BS5_SUBTHEME/dropbutton
+  vartheme_bs5/book-navigation: VARTHEME_BS5_SUBTHEME/book-navigation
+  vartheme_bs5/file: VARTHEME_BS5_SUBTHEME/file
+  vartheme_bs5/form: VARTHEME_BS5_SUBTHEME/form
+  vartheme_bs5/search-form: VARTHEME_BS5_SUBTHEME/search-form
+  vartheme_bs5/indented: VARTHEME_BS5_SUBTHEME/indented
+  vartheme_bs5/maintenance_page: VARTHEME_BS5_SUBTHEME/maintenance_page
+  vartheme_bs5/node: VARTHEME_BS5_SUBTHEME/node
+  vartheme_bs5/sidebar-collapse: VARTHEME_BS5_SUBTHEME/sidebar-collapse
+  vartheme_bs5/tabs: VARTHEME_BS5_SUBTHEME/tabs
+  vartheme_bs5/verticaltabs: VARTHEME_BS5_SUBTHEME/verticaltabs
+  vartheme_bs5/affix: VARTHEME_BS5_SUBTHEME/affix
+  vartheme_bs5/alerts: VARTHEME_BS5_SUBTHEME/alerts
+  vartheme_bs5/fontawesome: VARTHEME_BS5_SUBTHEME/fontawesome
+  vartheme_bs5/moderation-state: VARTHEME_BS5_SUBTHEME/moderation-state
+
+  # Varbase module compnents overrides in VARTHEME_BS5_SUBTHEME.
+  varbase_bootstrap_paragraphs/vbp-colors: VARTHEME_BS5_SUBTHEME/vbp-colors
+  betterlogin/betterlogin_css: VARTHEME_BS5_SUBTHEME/betterlogin
+  varbase_heroslider_media/general-styling: VARTHEME_BS5_SUBTHEME/heroslider
+
+  # Change the default social auth style and icons.
+  social_auth/auth-icons: VARTHEME_BS5_SUBTHEME/auth-icons
+
+  vartheme_bs5/drupal.node.preview: VARTHEME_BS5_SUBTHEME/drupal.node.preview
+  vartheme_bs5/comments: VARTHEME_BS5_SUBTHEME/comments
+  vartheme_bs5/navbar.admin: VARTHEME_BS5_SUBTHEME/navbar.admin
+
+ckeditor_stylesheets:
+  # Base
+  - css/base/bootstrap.base.css
+  - css/base/vartheme_bs5.base.css
+  - css/base/VARTHEME_BS5_SUBTHEME.base.css
+  # Components
+  - css/components/ajax.component.css
+  - css/components/alerts.component.css
+  - css/components/autocomplete.component.css
+  - css/components/bs-callouts.component.css
+  - css/components/contextual.component.css
+  - css/components/details.component.css
+  - css/components/feed-icon.component.css
+  - css/components/field.component.css
+  - css/components/file.component.css
+  - css/components/header.component.css
+  - css/components/help.component.css
+  - css/components/icons.component.css
+  - css/components/image-button.component.css
+  - css/components/item-list.component.css
+  - css/components/list-group.component.css
+  - css/components/navbar.component.css
+  - css/components/node.component.css
+  - css/components/page.component.css
+  - css/components/progress-bar.component.css
+  - css/components/shortcut.component.css
+  - css/components/sidebar.component.css
+  - css/components/site-footer.component.css
+  - css/components/skip-link.component.css
+  - css/components/table.component.css
+  - css/components/tabledrag.component.css
+  - css/components/tableselect.component.css
+  - css/components/tablesort.component.css
+  - css/components/tablesort-indicator.component.css
+  - css/components/textarea.component.css
+  - css/components/ui-dialog.component.css
+  - css/components/ui-widget.component.css
+  - css/components/user.component.css
+  - css/components/varicons.component.css
+  - css/components/vb-tags.component.css
+  - css/components/views.component.css
+  # Layout
+  - css/layout/edge2edge.layout.css
+  - css/layout/equal-height.layout.css
+  # Theme
+  - css/theme/content.theme.css

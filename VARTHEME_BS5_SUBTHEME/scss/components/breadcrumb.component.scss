@@ -1,0 +1,16 @@
+// Breadcrumbs component style.
+// -----------------------------------------------------------------------------
+@import "../../node_modules/bootstrap/scss/functions";  // Bootstrap functions.
+@import "../../node_modules/bootstrap/scss/mixins";     // Bootstrap mixins.
+@import "../variables";                   // VARTHEME_BS5_SUBTHEME variables.
+@import "../mixins";                      // VARTHEME_BS5_SUBTHEME mixins.
+// -----------------------------------------------------------------------------
+
+.breadcrumb {
+  @include font-size($font-size-sm); 
+}
+
+.region-breadcrumb {
+  @include padding(0 0.9375rem 0.25rem);
+  width: 100%;
+}

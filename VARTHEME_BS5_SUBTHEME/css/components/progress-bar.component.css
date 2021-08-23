@@ -1,0 +1,21 @@
+/* Insert VARTHEME_BS5_SUBTHEME custom Mixins. */
+/**
+ * Place the custom mixin in the "scss/mixins" directory.
+ * Import the mixin in this file. So that it will be imported in all scss files.
+ **/
+.progress-wrapper {
+  margin-bottom: 0.5rem;
+}
+
+.progress-wrapper:last-child .progress {
+  margin-bottom: 0.3125rem;
+}
+
+.progress-wrapper .message {
+  margin-bottom: 0.3125rem;
+  font-weight: 700;
+}
+
+.progress-wrapper .progress-bar {
+  min-width: 2em;
+}

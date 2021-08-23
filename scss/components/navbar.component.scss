@@ -1,0 +1,37 @@
+// Navbar component style.
+// -----------------------------------------------------------------------------
+@import "../../node_modules/bootstrap/scss/functions"; // Bootstrap functions.
+@import "../../node_modules/bootstrap/scss/mixins";    // Bootstrap mixins.
+@import "../variables";                                // Vartheme variables.
+@import "../mixins";                                   // Vartheme mixins.
+// -----------------------------------------------------------------------------
+
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+    .navbar-nav {
+      &.ml#{$infix}-auto {
+        .dropdown-menu {
+          left: auto;
+          right: 0;
+        }
+      }
+    }
+
+    [dir="rtl"] {
+      .navbar-nav {
+        &.ml#{$infix}-auto {
+          .dropdown-menu {
+            right: auto;
+            left: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+#navbar-main {
+  z-index: 1;
+}

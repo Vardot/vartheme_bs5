@@ -1,0 +1,31 @@
+/* Insert VARTHEME_BS5_SUBTHEME custom Mixins. */
+/**
+ * Place the custom mixin in the "scss/mixins" directory.
+ * Import the mixin in this file. So that it will be imported in all scss files.
+ **/
+.bg-edge2edge {
+  position: relative;
+  right: 50%;
+  left: 50%;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 100vw;
+  -ms-flex: 0 0 100vw;
+  flex: 0 0 100vw;
+  width: 100vw;
+  max-width: none;
+  margin-right: -50vw !important;
+  margin-left: -50vw !important;
+}
+
+.bg-edge2edge:before {
+  display: table;
+  content: " ";
+}
+
+.bg-edge2edge:after {
+  clear: both;
+}
+
+body {
+  overflow-x: hidden;
+}

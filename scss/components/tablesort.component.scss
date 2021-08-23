@@ -1,0 +1,15 @@
+// Table sort component style.
+// -----------------------------------------------------------------------------
+@import "../../node_modules/bootstrap/scss/functions"; // Bootstrap functions.
+@import "../../node_modules/bootstrap/scss/mixins";    // Bootstrap mixins.
+@import "../variables";                                // Vartheme variables.
+@import "../mixins";                                   // Vartheme mixins.
+// -----------------------------------------------------------------------------
+
+th.is-active img {
+  display: inline;
+}
+
+td.is-active {
+  background-color: $gray-300;
+}

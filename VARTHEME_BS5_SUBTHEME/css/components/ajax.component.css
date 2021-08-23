@@ -1,0 +1,35 @@
+/* Insert VARTHEME_BS5_SUBTHEME custom Mixins. */
+/**
+ * Place the custom mixin in the "scss/mixins" directory.
+ * Import the mixin in this file. So that it will be imported in all scss files.
+ **/
+.js-form-managed-file {
+  position: relative;
+}
+
+.js-form-managed-file input[type="file"] + .varicon {
+  position: absolute;
+  top: 50%;
+  right: 0.375rem;
+  -webkit-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.throbber-added {
+  position: relative;
+  padding-right: 50px;
+}
+
+.btn .ajax-throbber {
+  position: absolute;
+  top: 50%;
+  right: 0.875rem;
+  -webkit-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.btn .ajax-throbber::before {
+  background-image: url("../../images/icons/refresh-white.svg") !important;
+}

@@ -1,0 +1,8 @@
+.DS_Store
+node_modules
+/*/node_modules
+/css/mixins/
+js/bootstrap/index.js
+VARTHEME_BS5_SUBTHEME/js/bootstrap/index.js
+/VARTHEME_BS5_SUBTHEME/yarn.lock
+/VARTHEME_BS5_SUBTHEME/fonts/fontawesome-free

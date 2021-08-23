@@ -1,0 +1,73 @@
+/* Insert Vartheme custom Mixins. */
+/**
+ * Place the custom mixin in the scss/mixins directory.
+ * Import the mixin in this file. So that it will be imported in all scss files.
+ **/
+.navbar-nav.ml-auto .dropdown-menu {
+  right: 0;
+  left: auto;
+}
+
+[dir="rtl"] .navbar-nav.ml-auto .dropdown-menu {
+  right: auto;
+  left: 0;
+}
+
+@media (min-width: 576px) {
+  .navbar-nav.ml-sm-auto .dropdown-menu {
+    right: 0;
+    left: auto;
+  }
+  [dir="rtl"] .navbar-nav.ml-sm-auto .dropdown-menu {
+    right: auto;
+    left: 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .navbar-nav.ml-md-auto .dropdown-menu {
+    right: 0;
+    left: auto;
+  }
+  [dir="rtl"] .navbar-nav.ml-md-auto .dropdown-menu {
+    right: auto;
+    left: 0;
+  }
+}
+
+@media (min-width: 992px) {
+  .navbar-nav.ml-lg-auto .dropdown-menu {
+    right: 0;
+    left: auto;
+  }
+  [dir="rtl"] .navbar-nav.ml-lg-auto .dropdown-menu {
+    right: auto;
+    left: 0;
+  }
+}
+
+@media (min-width: 1200px) {
+  .navbar-nav.ml-xl-auto .dropdown-menu {
+    right: 0;
+    left: auto;
+  }
+  [dir="rtl"] .navbar-nav.ml-xl-auto .dropdown-menu {
+    right: auto;
+    left: 0;
+  }
+}
+
+@media (min-width: 1400px) {
+  .navbar-nav.ml-xxl-auto .dropdown-menu {
+    right: 0;
+    left: auto;
+  }
+  [dir="rtl"] .navbar-nav.ml-xxl-auto .dropdown-menu {
+    right: auto;
+    left: 0;
+  }
+}
+
+#navbar-main {
+  z-index: 1;
+}

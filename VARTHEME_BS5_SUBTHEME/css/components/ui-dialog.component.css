@@ -1,0 +1,14 @@
+/* Insert VARTHEME_BS5_SUBTHEME custom Mixins. */
+/**
+ * Place the custom mixin in the "scss/mixins" directory.
+ * Import the mixin in this file. So that it will be imported in all scss files.
+ **/
+.ui-dialog {
+  border-radius: 0;
+}
+
+.ui-dialog input,
+.ui-dialog select,
+.ui-dialog textarea {
+  font-size: 1rem;
+}

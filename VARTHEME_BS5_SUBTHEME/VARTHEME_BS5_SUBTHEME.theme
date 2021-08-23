@@ -1,0 +1,131 @@
+<?php
+
+/**
+ * @file
+ * Functions to support theming in the SASS Starterkit subtheme.
+ */
+
+use Drupal\node\NodeInterface;
+use Drupal\node\Entity\Node;
+
+/**
+ * Implements hook_theme_registry_alter().
+ */
+function VARTHEME_BS5_SUBTHEME_theme_registry_alter(&$theme_registry) {
+  // VARTHEME_BS5_SUBTHEME path.
+  $VARTHEME_BS5_SUBTHEME_path = Drupal::service('theme_handler')->getTheme('VARTHEME_BS5_SUBTHEME')->getPath();
+  $theme_registry['entity_embed_container']['path'] = $VARTHEME_BS5_SUBTHEME_path . '/templates/entity-embed';
+
+  $pages = [
+    'page__user__login' => 'page--user--login',
+    'page__user__register' => 'page--user--register',
+    'page__user__password' => 'page--user--password',
+    'page__user__reset' => 'page--user--reset',
+  ];
+
+  foreach ($pages as $key => $template) {
+    $theme_registry[$key]['path'] = $VARTHEME_BS5_SUBTHEME_path . '/templates/betterlogin';
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function VARTHEME_BS5_SUBTHEME_theme_suggestions_page_alter(array &$suggestions, array $variables) {
+  if ($node = \Drupal::routeMatch()->getParameter('node')) {
+    if (is_numeric($node)) {
+      $node = Node::load($node);
+    }
+    if ($node instanceof NodeInterface) {
+      array_splice($suggestions, 1, 0, 'page__' . $node->bundle());
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_html().
+ */
+function VARTHEME_BS5_SUBTHEME_preprocess_html(&$variables) {
+
+  // The path for VARTHEME_BS5_SUBTHEME theme in variables.
+  $variables['VARTHEME_BS5_SUBTHEME_path'] = \Drupal::request()->getBaseUrl() . '/' . drupal_get_path('theme', 'VARTHEME_BS5_SUBTHEME');
+
+  // Add information about the number of sidebars.
+  if (theme_get_setting('bootstrap_barrio_navbar_position')) {
+    $variables['navbar_position'] = theme_get_setting('bootstrap_barrio_navbar_position');
+  }
+}
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function VARTHEME_BS5_SUBTHEME_preprocess_page(&$variables) {
+  // Add the pring logo.
+  $variables['logo_print'] = \Drupal::request()->getBaseUrl() . '/' . drupal_get_path('theme', 'VARTHEME_BS5_SUBTHEME') . '/logo-print.png';
+
+  // Add the site name and slogan.
+  $variables['site_name'] = \Drupal::config('system.site')->get('name');
+  $variables['site_slogan'] = \Drupal::config('system.site')->get('slogan');
+}
+
+/**
+ * Prepares variables for views grid templates.
+ *
+ * Default template: views-bootstrap-grid.html.twig.
+ *
+ * @param array $vars
+ *   An associative array containing:
+ *   - view: A ViewExecutable object.
+ *   - rows: The raw row data.
+ */
+function VARTHEME_BS5_SUBTHEME_preprocess_views_bootstrap_grid(array &$vars) {
+
+  if (isset($vars['options']) && isset($vars['options']["col_xs"])) {
+    $vars['options']["col_xs"] = str_replace("xs-", "", $vars['options']["col_xs"]);
+  }
+
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function VARTHEME_BS5_SUBTHEME_form_alter(&$form, $form_state, $form_id) {
+
+  if ($form_id == 'content_moderation_entity_moderation_form') {
+    $form['#attributes']['class'][] = 'card card-body bg-light';
+  }
+
+  if ((preg_match('/^node_.*._layout_builder_form$/', $form_id)
+    && isset($form['moderation_state']))) {
+    $form['moderation_state']['#attributes']['class'][] = 'card card-body bg-light';
+    $form['#attached']['library'][] = 'VARTHEME_BS5_SUBTHEME/moderation-state';
+  }
+}
+
+/**
+ * Implements hook_preprocess_login_with().
+ */
+function VARTHEME_BS5_SUBTHEME_preprocess_login_with(&$variables) {
+  foreach($variables['social_networks'] as $social_network_index => $social_network) {
+    if (isset($social_network['img_path'])) {
+      $theme_path =   Drupal::service('theme_handler')->getTheme('VARTHEME_BS5_SUBTHEME')->getPath();
+
+      $replaced_path_for_icons = '';
+      if (strpos($social_network['img_path'], 'vartheme_bs5') === FALSE) {
+        $replaced_path_for_icons = str_replace('modules/contrib' , 'social_auth', $social_network['img_path']);
+      }
+      else {
+        $split_path = explode('vartheme_bs5', $social_network['img_path']);
+        if (isset($split_path[1])) {
+          $replaced_path_for_icons =  $theme_path . $split_path[1];
+        }
+      }
+
+      $social_network_img_path_in_vartheme = $replaced_path_for_icons;
+
+      if (file_exists(DRUPAL_ROOT . '/' . $social_network_img_path_in_vartheme)) {
+        $variables['social_networks'][$social_network_index]['img_path'] = $social_network_img_path_in_vartheme;
+      }
+    }
+  }
+}

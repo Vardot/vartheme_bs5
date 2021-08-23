@@ -1,0 +1,37 @@
+// Varbase bootstrap tags component style.
+// --------------------------------------------------
+// vb-tags: Styles a list of tags, which much looks like the pager with
+//          rounded borders.
+// -----------------------------------------------------------------------------
+@import "../../node_modules/bootstrap/scss/functions";  // Bootstrap functions.
+@import "../../node_modules/bootstrap/scss/mixins";     // Bootstrap mixins.
+@import "../variables";                   // VARTHEME_BS5_SUBTHEME variables.
+@import "../mixins";                      // VARTHEME_BS5_SUBTHEME mixins.
+// -----------------------------------------------------------------------------
+
+.vb-tags {
+  padding-left: 0;
+  list-style: none;
+  @include clearfix;
+  li {
+    display: inline;
+    > a,
+    > span {
+      display: inline-block;
+      @include padding(0.3125rem 0.875rem);
+      background-color: $pagination-bg;
+      border: $pagination-border-width solid $pagination-border-color;
+      border-radius: $border-radius;
+    }
+
+    > a:hover,
+    > a:focus {
+      text-decoration: none;
+      background-color: $pagination-hover-bg;
+    }
+  }
+}
+[dir="rtl"] .vb-tags {
+  padding-right: 0;
+  padding-left: initial;
+}

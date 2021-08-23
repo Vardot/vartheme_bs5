@@ -1,0 +1,10 @@
+/* Insert VARTHEME_BS5_SUBTHEME custom Mixins. */
+/**
+ * Place the custom mixin in the "scss/mixins" directory.
+ * Import the mixin in this file. So that it will be imported in all scss files.
+ **/
+.block-help {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border: 1px solid #dee2e6;
+}

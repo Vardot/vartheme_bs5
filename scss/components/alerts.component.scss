@@ -1,0 +1,51 @@
+// Alert component style.
+// -----------------------------------------------------------------------------
+@import "../../node_modules/bootstrap/scss/functions"; // Bootstrap functions.
+@import "../../node_modules/bootstrap/scss/mixins";    // Bootstrap mixins.
+@import "../variables";                                // Vartheme variables.
+@import "../mixins";                                   // Vartheme mixins.
+// -----------------------------------------------------------------------------
+
+.alert-sm {
+  @include padding(0.3125rem 0.625rem);
+}
+
+.alert a {
+  font-weight: bold;
+}
+
+.alert-success {
+  a {
+    &:hover,
+    &:focus {
+      color: #2b542c;
+    }
+  }
+}
+
+.alert-info {
+  a {
+    &:hover,
+    &:focus {
+      color: #245269;
+    }
+  }
+}
+
+.alert-warning {
+  a {
+    &:hover,
+    &:focus {
+      color: #66512c;
+    }
+  }
+}
+
+.alert-danger {
+  a {
+    &:hover,
+    &:focus {
+      color: #843534;
+    }
+  }
+}

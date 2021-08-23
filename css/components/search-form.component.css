@@ -1,0 +1,25 @@
+/* Insert Vartheme custom Mixins. */
+/**
+ * Place the custom mixin in the scss/mixins directory.
+ * Import the mixin in this file. So that it will be imported in all scss files.
+ **/
+input[type="search"] {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+header #search-block-form {
+  -webkit-flex-flow: row wrap;
+  -webkit-box-direction: normal;
+  -webkit-box-orient: horizontal;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap;
+  padding: 0.3125rem 0.9375rem;
+}
+
+#search-block-form {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}

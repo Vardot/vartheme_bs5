@@ -1,0 +1,82 @@
+/* Insert VARTHEME_BS5_SUBTHEME custom Mixins. */
+/**
+ * Place the custom mixin in the "scss/mixins" directory.
+ * Import the mixin in this file. So that it will be imported in all scss files.
+ **/
+.bs-callout {
+  margin: 1.25rem 0;
+  padding: 1.25rem;
+  border: 1px solid #e9ecef;
+  border-left-width: 5px;
+  border-radius: 0.1875rem;
+}
+
+.bs-callout:before {
+  display: table;
+  content: " ";
+}
+
+.bs-callout:after {
+  clear: both;
+}
+
+.bs-callout h4 {
+  margin-top: 0;
+  margin-bottom: 0.3125rem;
+}
+
+.bs-callout p:last-child {
+  margin-bottom: 0;
+}
+
+.bs-callout code {
+  border-radius: 0.1875rem;
+}
+
+.bs-callout + .bs-callout {
+  margin-top: -0.3125rem;
+}
+
+.bs-callout-danger {
+  border-left-color: #dc3545;
+}
+
+.bs-callout-danger h4 {
+  color: #dc3545;
+}
+
+.bs-callout-warning {
+  border-left-color: #ffc107;
+}
+
+.bs-callout-warning h4 {
+  color: #ffc107;
+}
+
+.bs-callout-info {
+  border-left-color: #0dcaf0;
+}
+
+.bs-callout-info h4 {
+  color: #0dcaf0;
+}
+
+[dir="rtl"] .bs-callout {
+  border-right-width: 5px;
+  border-left-width: 1px;
+}
+
+[dir="rtl"] .bs-callout-danger {
+  border-right-color: #dc3545;
+  border-left-color: #e9ecef;
+}
+
+[dir="rtl"] .bs-callout-warning {
+  border-right-color: #ffc107;
+  border-left-color: #e9ecef;
+}
+
+[dir="rtl"] .bs-callout-info {
+  border-right-color: #0dcaf0;
+  border-left-color: #e9ecef;
+}

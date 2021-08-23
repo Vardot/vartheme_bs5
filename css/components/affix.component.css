@@ -1,0 +1,12 @@
+/* Insert Vartheme custom Mixins. */
+/**
+ * Place the custom mixin in the scss/mixins directory.
+ * Import the mixin in this file. So that it will be imported in all scss files.
+ **/
+.affix {
+  position: fixed;
+  z-index: 1035;
+  top: 0;
+  left: 0;
+  width: 100%;
+}

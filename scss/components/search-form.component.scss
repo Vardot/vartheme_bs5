@@ -1,0 +1,20 @@
+// Search form(s) component style.
+// -----------------------------------------------------------------------------
+@import "../../node_modules/bootstrap/scss/functions"; // Bootstrap functions.
+@import "../../node_modules/bootstrap/scss/mixins";    // Bootstrap mixins.
+@import "../variables";                                // Vartheme variables.
+@import "../mixins";                                   // Vartheme mixins.
+// -----------------------------------------------------------------------------
+
+input[type="search"] {
+  box-sizing: border-box;
+}
+
+header #search-block-form {
+  @include padding(0.3125rem 0.9375rem);
+  flex-flow: row wrap;
+}
+
+#search-block-form {
+  display: flex;
+}

@@ -1,0 +1,18 @@
+// UI dialog modal windows component style.
+// -----------------------------------------------------------------------------
+@import "../../node_modules/bootstrap/scss/functions"; // Bootstrap functions.
+@import "../../node_modules/bootstrap/scss/mixins";    // Bootstrap mixins.
+@import "../variables";                                // Vartheme variables.
+@import "../mixins";                                   // Vartheme mixins.
+// -----------------------------------------------------------------------------
+ 
+.ui-dialog {
+  border-radius: 0;
+
+  input,
+  select,
+  textarea {
+    @include font-size($font-size-base);
+  }
+
+}

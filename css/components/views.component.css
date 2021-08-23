@@ -1,0 +1,34 @@
+/* Insert Vartheme custom Mixins. */
+/**
+ * Place the custom mixin in the scss/mixins directory.
+ * Import the mixin in this file. So that it will be imported in all scss files.
+ **/
+.views-displays .tabs .open > a {
+  border-radius: 0.3rem 0.3rem 0 0;
+}
+
+.views-displays .tabs .open > a:hover,
+.views-displays .tabs .open > a:focus {
+  color: #0d6efd;
+}
+
+.views-displays .tabs .action-list {
+  padding: 0;
+}
+
+.views-displays .secondary .form-submit {
+  font-size: 0.875rem;
+}
+
+.views-filterable-options .filterable-option:nth-of-type(even) .form-type-checkbox {
+  background-color: #f9f9f9;
+}
+
+.views-ui-display-tab-actions .dropbutton .form-submit {
+  color: #0a58ca;
+}
+
+.views-ui-display-tab-actions .dropbutton .form-submit:hover,
+.views-ui-display-tab-actions .dropbutton .form-submit:focus {
+  color: #0d6efd;
+}

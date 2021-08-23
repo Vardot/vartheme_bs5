@@ -1,0 +1,4 @@
+# Schema for the configuration files of the Vartheme BS5.
+vartheme_bs5.settings:
+  type: bootstrap_barrio.settings
+  label: 'Vartheme BS5 settings'
