@@ -1,8 +1,3 @@
-/* Insert VARTHEME_BS5_SUBTHEME custom Mixins. */
-/**
- * Place the custom mixin in the "scss/mixins" directory.
- * Import the mixin in this file. So that it will be imported in all scss files.
- **/
 .sticky-header thead th {
   vertical-align: bottom;
   border-bottom: 2px solid #dee2e6;

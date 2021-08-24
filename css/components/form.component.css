@@ -1,8 +1,3 @@
-/* Insert Vartheme custom Mixins. */
-/**
- * Place the custom mixin in the scss/mixins directory.
- * Import the mixin in this file. So that it will be imported in all scss files.
- **/
 .form-required::after {
   display: inline-block;
   width: calc(calc(1.5em + 0.75rem + 2px) / 6);
