@@ -15,7 +15,7 @@ const paths = {
     watch: 'scss/**/*/*.scss'
   },
   js: {
-    bootstrap_src: './node_modules/bootstrap/dist/js/bootstrap.min.js',
+    bootstrap_src: './node_modules/bootstrap/dist/js/*',
     bootstrap_dest: './js/bootstrap'
   },
   fontawesome: {

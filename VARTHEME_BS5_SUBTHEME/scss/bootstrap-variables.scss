@@ -345,12 +345,12 @@ $enable-transitions:          true !default;
 $enable-reduced-motion:       true !default;
 $enable-smooth-scroll:        true !default;
 $enable-grid-classes:         true !default;
-$enable-cssgrid:              ture !default;
+$enable-cssgrid:              false !default;
 $enable-button-pointers:      true !default;
 $enable-rfs:                  true !default;
 $enable-validation-icons:     true !default;
 $enable-negative-margins:     true !default;
-$enable-deprecation-messages: true !default;
+$enable-deprecation-messages: false !default;
 $enable-important-utilities:  true !default;
 
 // Prefix for :root CSS variables
