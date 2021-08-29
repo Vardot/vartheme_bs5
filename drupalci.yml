@@ -2,20 +2,15 @@ build:
   assessment:
     validate_codebase:
       container_composer:
-        - 'require oomphinc/composer-installers-extender:~1.0 || ~2.0'
-        - 'require cweagans/composer-patches:~1.0'
+        - "require oomphinc/composer-installers-extender:~1.0 || ~2.0"
+        - "require cweagans/composer-patches:~1.0"
       container_command:
         commands:
-          - 'cd ${SOURCE_DIR}'
-          - 'sudo -u www-data composer config extra.enable-patching true'
-          - 'sudo -u www-data composer config extra.composer-exit-on-patch-failure true'
-    validate_codebase:
-      phplint:
-      csslint:
-      eslint:
-      phpcs:
+          - "cd ${SOURCE_DIR}"
+          - "sudo -u www-data composer config extra.enable-patching true"
+          - "sudo -u www-data composer config extra.composer-exit-on-patch-failure true"
     testing:
       run_tests.functional:
-        types: 'PHPUnit-Functional'
-        testgroups: 'vartheme_bs5'
+        types: "PHPUnit-Functional"
+        testgroups: "vartheme_bs5"
         suppress-deprecations: true

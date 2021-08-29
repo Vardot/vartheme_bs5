@@ -20,15 +20,15 @@
     "theme:init": "gulp",
     "theme:build": "gulp compile",
     "theme:watch": "gulp watch",
-    "eslint": "node ./node_modules/eslint/bin/eslint.js --config=.eslintrc.json .",
-    "stylelint": "npx stylelint --config=.stylelintrc.json .",
     "phpcs": "phpcs --standard=./.phpcs.xml .",
-    "phpcbf": "phpcbf --standard=./.phpcs.xml ."
+    "phpcbf": "phpcbf --standard=./.phpcs.xml .",
+    "lint:yaml": "node ./node_modules/eslint/bin/eslint.js --config=.eslintrc.json --ext .yml .",
+    "lint:js": "node ./node_modules/eslint/bin/eslint.js --config=.eslintrc.json .",
+    "lint:css": "npx stylelint --config=.stylelintrc.json ."
   },
   "dependencies": {
     "@popperjs/core": "~2",
     "bootstrap": "~5",
-    "bootstrap-icons": "~1",
     "@fortawesome/fontawesome-free": "~5"
   },
   "devDependencies": {
@@ -51,6 +51,7 @@
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.10.0",
     "eslint-plugin-react-hooks": "^1.7.0",
+    "eslint-plugin-yml": "^0.10.0",
     "glob": "^7.1.2",
     "gulp": "^4.0.0",
     "gulp-autoprefixer": "^4.1.0",

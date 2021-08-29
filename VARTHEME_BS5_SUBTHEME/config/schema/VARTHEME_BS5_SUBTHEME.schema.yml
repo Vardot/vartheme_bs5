@@ -1,4 +1,4 @@
 # Schema for the configuration files of the VARTHEME_BS5_SUBTHEME.
 VARTHEME_BS5_SUBTHEME.settings:
   type: bootstrap_barrio.settings
-  label: 'VARTHEME_BS5_SUBTHEME settings'
+  label: "VARTHEME_BS5_SUBTHEME settings"

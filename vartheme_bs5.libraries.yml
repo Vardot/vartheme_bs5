@@ -64,7 +64,7 @@ bootstrap-styles-rtl:
 # Bootstrap scripts library.
 bootstrap-scripts:
   js:
-    js/bootstrap/bootstrap.min.js: {}
+    js/bootstrap/bootstrap.min.js: { minified: true }
   dependencies:
     - core/jquery
     - core/drupal
@@ -123,7 +123,6 @@ global-scripts:
 # ------------------------------------------------------------------------------
 # Vartheme BS5 Custom libraries.
 # ------------------------------------------------------------------------------
-
 
 # Vartheme BS5 Varbase Bootstrap Paragraphs colors theme.
 vbp-colors:

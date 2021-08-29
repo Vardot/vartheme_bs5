@@ -18,9 +18,6 @@ framework-rtl:
     - VARTHEME_BS5_SUBTHEME/bootstrap-styles-rtl
     - VARTHEME_BS5_SUBTHEME/global-styles-rtl
 
-
-
-
 # ------------------------------------------------------------------------------
 # Bootstrap Barrio libraries.
 # ------------------------------------------------------------------------------
@@ -67,7 +64,7 @@ bootstrap-styles-rtl:
 # Bootstrap scripts library.
 bootstrap-scripts:
   js:
-    js/bootstrap/bootstrap.min.js: {}
+    js/bootstrap/bootstrap.min.js: { minified: true }
   dependencies:
     - core/jquery
     - core/drupal
@@ -124,7 +121,6 @@ global-scripts:
     - core/jquery
     - core/drupal
     - core/drupal.ajax
-
 
 # VARTHEME_BS5_SUBTHEME Varbase Bootstrap Paragraphs colors theme.
 vbp-colors:
