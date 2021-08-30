@@ -1,0 +1,16 @@
+{
+  "options": {
+    "autoRename": false,
+    "autoRenameStrict": false,
+    "blacklist": {},
+    "clean": true,
+    "greedy": false,
+    "processUrls": true,
+    "stringMap": [],
+    "useCalc": true,
+    "aliases": {},
+    "processEnv": true
+  },
+  "plugins": [],
+  "map": false
+}

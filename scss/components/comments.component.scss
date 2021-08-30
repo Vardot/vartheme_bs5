@@ -1,9 +1,10 @@
 // Comments component style.
 // -----------------------------------------------------------------------------
-@import "../../node_modules/bootstrap/scss/functions"; // Bootstrap functions.
-@import "../../node_modules/bootstrap/scss/mixins";    // Bootstrap mixins.
-@import "../variables";                                // Vartheme variables.
-@import "../mixins";                                   // Vartheme mixins.
+@import "../../node_modules/bootstrap/scss/functions";  // Bootstrap functions.
+@import "../../node_modules/bootstrap/scss/mixins";     // Bootstrap mixins.
+@import "../variables";                                 // Vartheme variables.
+@import "../mixins";                                    // Vartheme mixins.
+@import "../../node_modules/bootstrap/scss/_utilities"; // Bootstrap utilities.
 // -----------------------------------------------------------------------------
 
 // This is required to win over specificity of #content h2

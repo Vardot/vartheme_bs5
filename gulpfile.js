@@ -4,7 +4,7 @@ let gulp = require('gulp'),
   csscomb = require('gulp-csscomb'),
   autoprefixer = require('autoprefixer'),
   filter = require('gulp-filter'),
-  rename = require('gulp-rename'),
+  rtlcss = require('gulp-rtlcss'),
   del = require('del'),
   browserSync = require('browser-sync').create();
 
@@ -38,13 +38,20 @@ function compile () {
   // Filter mixins and variables not to be compiled to CSS.
   const filterFiles = filter(['**', '!**/mixins/*.scss', '!mixins.scss', '!variables.scss']);
 
-  return gulp.src([paths.scss.src])
+  const ltr_status = gulp.src([paths.scss.src])
     .pipe(filterFiles)
     .pipe(sass(sassOptions).on('error', sass.logError))
     .pipe(postcss([autoprefixer()]))
     .pipe(csscomb())
     .pipe(gulp.dest(paths.scss.dest))
     .pipe(browserSync.stream());
+
+  const rtl_status = gulp.src('css/rtl/base/bootstrap-rtl.base.css')
+		.pipe(rtlcss())
+		.pipe(gulp.dest('css/rtl/base'));
+
+  return (ltr_status && rtl_status);
+
 }
 
 // Move the Bootstrap JavaScript files into our js/bootstrap folder.

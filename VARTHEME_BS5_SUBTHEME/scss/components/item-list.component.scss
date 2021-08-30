@@ -2,10 +2,10 @@
 // -----------------------------------------------------------------------------
 @import "../../node_modules/bootstrap/scss/functions";  // Bootstrap functions.
 @import "../../node_modules/bootstrap/scss/mixins";     // Bootstrap mixins.
-@import "../variables";                   // VARTHEME_BS5_SUBTHEME variables.
-@import "../mixins";                      // VARTHEME_BS5_SUBTHEME mixins.
+@import "../variables";                                 // VARTHEME_BS5_SUBTHEME variables.
+@import "../mixins";                                    // VARTHEME_BS5_SUBTHEME mixins.
+@import "../../node_modules/bootstrap/scss/_utilities"; // Bootstrap utilities.
 // -----------------------------------------------------------------------------
-
 .item-list ul {
   list-style: none;
   @include margin(0 0 $list-group-item-padding-y 0);

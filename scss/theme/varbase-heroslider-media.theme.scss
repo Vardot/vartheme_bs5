@@ -1,10 +1,12 @@
 // Varbase Hero Slider Media style.
 // -----------------------------------------------------------------------------
-@import "../../node_modules/bootstrap/scss/functions"; // Bootstrap functions.
-@import "../../node_modules/bootstrap/scss/mixins";    // Bootstrap mixins.
-@import "../variables";                                // Vartheme variables.
-@import "../mixins";                                   // Vartheme mixins.
+@import "../../node_modules/bootstrap/scss/functions";  // Bootstrap functions.
+@import "../../node_modules/bootstrap/scss/mixins";     // Bootstrap mixins.
+@import "../variables";                                 // Vartheme variables.
+@import "../mixins";                                    // Vartheme mixins.
+@import "../../node_modules/bootstrap/scss/_utilities"; // Bootstrap utilities.
 // -----------------------------------------------------------------------------
+
 .varbase-heroslider-media {
   position: relative;
   overflow: hidden;

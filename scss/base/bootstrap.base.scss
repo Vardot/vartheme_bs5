@@ -4,9 +4,8 @@
 @import "../../node_modules/bootstrap/scss/mixins";     // Bootstrap mixins.
 @import "../variables";                                 // Vartheme variables.
 @import "../mixins";                                    // Vartheme mixins.
+@import "../../node_modules/bootstrap/scss/_utilities"; // Bootstrap utilities.
 // -----------------------------------------------------------------------------
-
-@import "../../node_modules/bootstrap/scss/_utilities";  // Bootstrap utilities.
 
 @import "../../node_modules/bootstrap/scss/_root";
 @import "../../node_modules/bootstrap/scss/_reboot";
