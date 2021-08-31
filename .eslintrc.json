@@ -1,6 +1,7 @@
 {
   "extends": [
     "airbnb",
+    "plugin:react/recommended",
     "plugin:prettier/recommended",
     "plugin:yml/recommended"
   ],

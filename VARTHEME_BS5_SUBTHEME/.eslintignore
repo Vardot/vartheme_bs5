@@ -4,5 +4,3 @@
 **/node_modules
 js/bootstrap/*.js
 js/bootstrap_barrio/*.js
-js/misc/*.js
-js/popper/*.js

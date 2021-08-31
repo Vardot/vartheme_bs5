@@ -3295,16 +3295,14 @@ textarea.form-control.is-valid {
 
 .was-validated .input-group .form-control:valid,
 .input-group .form-control.is-valid,
-.was-validated
-.input-group .form-select:valid,
+.was-validated .input-group .form-select:valid,
 .input-group .form-select.is-valid {
   z-index: 1;
 }
 
 .was-validated .input-group .form-control:valid:focus,
 .input-group .form-control.is-valid:focus,
-.was-validated
-.input-group .form-select:valid:focus,
+.was-validated .input-group .form-select:valid:focus,
 .input-group .form-select.is-valid:focus {
   z-index: 3;
 }
@@ -3412,16 +3410,14 @@ textarea.form-control.is-invalid {
 
 .was-validated .input-group .form-control:invalid,
 .input-group .form-control.is-invalid,
-.was-validated
-.input-group .form-select:invalid,
+.was-validated .input-group .form-select:invalid,
 .input-group .form-select.is-invalid {
   z-index: 2;
 }
 
 .was-validated .input-group .form-control:invalid:focus,
 .input-group .form-control.is-invalid:focus,
-.was-validated
-.input-group .form-select:invalid:focus,
+.was-validated .input-group .form-select:invalid:focus,
 .input-group .form-select.is-invalid:focus {
   z-index: 3;
 }

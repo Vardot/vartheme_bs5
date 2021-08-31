@@ -12,9 +12,7 @@ const paths = {
   scss: {
     src: 'scss/**/*/*.scss',
     dest: 'css',
-    watch: 'scss/**/*/*.scss',
-    rtl_src: 'css/rtl/**/*/*.css',
-    rtl_dest: 'css/rtl',
+    watch: 'scss/**/*/*.scss'
   },
   js: {
     bootstrap_src: './node_modules/bootstrap/dist/js/*',
@@ -40,7 +38,8 @@ function compile () {
   // Filter mixins and variables not to be compiled to CSS.
   const filterFiles = filter(['**', '!**/mixins/*.scss', '!mixins.scss', '!variables.scss']);
 
-  const ltr_status = gulp.src([paths.scss.src])
+  // Compile all .scss to .css .
+  const css_status = gulp.src([paths.scss.src])
     .pipe(filterFiles)
     .pipe(sass(sassOptions).on('error', sass.logError))
     .pipe(postcss([autoprefixer()]))
@@ -48,11 +47,15 @@ function compile () {
     .pipe(gulp.dest(paths.scss.dest))
     .pipe(browserSync.stream());
 
-  const rtl_status = gulp.src([paths.scss.rtl_src])
-    .pipe(rtlcss())
-    .pipe(gulp.dest(paths.scss.rtl_dest));
+  // Re-Compile LTR CSS files.
+  // Change rtl files a wild card selection directory:
+  // RTL_SRC = "css/rtl/**/*/*.css"
+  // RTL_SRC = "css/rtl"
+  const rtl_css_status = gulp.src('css/rtl/base/bootstrap-rtl.base.css')
+		.pipe(rtlcss())
+		.pipe(gulp.dest('css/rtl/base'));
 
-  return (ltr_status && rtl_status);
+  return (css_status && rtl_css_status);
 
 }
 
