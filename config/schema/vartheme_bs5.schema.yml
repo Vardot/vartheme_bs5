@@ -253,77 +253,77 @@ vartheme_bs5.settings:
     # ----------------------------
 
     bootstrap_barrio_region_clean_navigation:
-      type: text
+      type: integer
       label: "Clean wrapper for Navigation region"
     bootstrap_barrio_region_class_navigation:
       type: text
       label: "Classes for Navigation region"
 
     bootstrap_barrio_region_clean_navigation_collapsible:
-      type: text
+      type: integer
       label: "Clean wrapper for Navigation Collapsible region"
     bootstrap_barrio_region_class_navigation_collapsible:
       type: text
       label: "Classes for Navigation Collapsible region"
 
     bootstrap_barrio_region_clean_header:
-      type: text
+      type: integer
       label: "Clean wrapper for Top Bar region"
     bootstrap_barrio_region_class_header:
       type: text
       label: "Classes for Top Bar region"
 
     bootstrap_barrio_region_clean_highlighted:
-      type: text
+      type: integer
       label: "Clean wrapper for Highlighted region"
     bootstrap_barrio_region_class_highlighted:
       type: text
       label: "Classes for Highlighted region"
 
     bootstrap_barrio_region_clean_help:
-      type: text
+      type: integer
       label: "Clean wrapper for Help region"
     bootstrap_barrio_region_class_help:
       type: text
       label: "Classes for Help region"
 
     bootstrap_barrio_region_clean_content:
-      type: text
+      type: integer
       label: "Clean wrapper for Content region"
     bootstrap_barrio_region_class_content:
       type: text
       label: "Classes for Content region"
 
     bootstrap_barrio_region_clean_sidebar_first:
-      type: text
+      type: integer
       label: "Clean wrapper for Primary region"
     bootstrap_barrio_region_class_sidebar_first:
       type: text
-      label: "Classes for Primary regionccc"
+      label: "Classes for Primary region"
 
     bootstrap_barrio_region_clean_sidebar_second:
-      type: text
+      type: integer
       label: "Clean wrapper for Secondary region"
     bootstrap_barrio_region_class_sidebar_second:
       type: text
       label: "Classes for Secondary region"
 
     bootstrap_barrio_region_clean_footer:
-      type: text
+      type: integer
       label: "Clean wrapper for Footer region"
     bootstrap_barrio_region_class_footer:
       type: text
       label: "Classes for Footer region"
 
     bootstrap_barrio_region_clean_page_top:
-      type: text
+      type: integer
       label: "Clean wrapper for Page top region"
     bootstrap_barrio_region_class_page_top:
       type: text
       label: "Classes for Page top region"
 
     bootstrap_barrio_region_clean_page_bottom:
-      type: text
+      type: integer
       label: "Clean wrapper for Page bottom region"
     bootstrap_barrio_region_class_page_bottom:
       type: text
