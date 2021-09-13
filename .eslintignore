@@ -2,6 +2,8 @@
 **/gulpfile.js
 **/bootstrap
 **/node_modules
+drupalci.yml
+**/drupalci.yml
 js/bootstrap/*.js
 js/bootstrap_barrio/*.js
 js/misc/*.js
