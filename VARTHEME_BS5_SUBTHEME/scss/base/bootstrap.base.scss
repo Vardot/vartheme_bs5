@@ -42,3 +42,8 @@
 @import "../../node_modules/bootstrap/scss/helpers";    // Bootstrap helpers.
 
 @import "../../node_modules/bootstrap/scss/utilities/api";  // Bootstrap utilities build.
+
+// Bootstrap Borders Utilities.
+// https://github.com/Vardot/bootstrap-borders-utilities
+// `yarn add bootstrap-borders-utilities` before compiling with `yarn theme:build`
+@import "../../node_modules/bootstrap-borders-utilities/utilities/scss/border-color-variants.scss";

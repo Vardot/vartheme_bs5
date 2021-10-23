@@ -28,7 +28,8 @@
   "dependencies": {
     "@popperjs/core": "~2",
     "bootstrap": "~5",
-    "@fortawesome/fontawesome-free": "~5"
+    "@fortawesome/fontawesome-free": "~5",
+    "bootstrap-borders-utilities": "~1"
   },
   "devDependencies": {
     "autoprefixer": "^9.6.1",

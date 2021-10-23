@@ -50,6 +50,12 @@ class VarthemeBs5Tests extends WebDriverTestBase {
   protected function setUp() {
     parent::setUp();
 
+    // Insall the Claro admin theme.
+    $this->container->get('theme_installer')->install(['claro']);
+
+    // Set the Claro theme as the default admin theme.
+    $this->config('system.theme')->set('admin', 'claro')->save();
+
     ConfigurableLanguage::createFromLangcode('ar')->save();
     Cache::invalidateTags(['rendered', 'locale']);
   }
