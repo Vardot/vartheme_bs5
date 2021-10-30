@@ -1,4 +1,4 @@
-// Varbase BS3 base from bootstrap library 
+// Varbase BS5 base from bootstrap library 
 // -----------------------------------------------------------------------------
 @import "../../node_modules/bootstrap/scss/functions";  // Bootstrap functions.
 @import "../../node_modules/bootstrap/scss/mixins";     // Bootstrap mixins.
@@ -634,4 +634,18 @@ pre {
  
 select::-ms-expand {
   display: none;
+}
+
+/* Temp fix for:
+ * Issue #3233533: Core .placeholder class conflicts with new Bootstrap .placeholder class
+ * https://www.drupal.org/project/drupal/issues/3233533
+ * 
+ * Issue #3228330 by super_romeo: Bootstrap conflicts with Drupal core "placeholder" class
+ * https://www.drupal.org/project/bootstrap_barrio/issues/3228330
+ */
+em.placeholder {
+  vertical-align: unset!important;
+  cursor: unset!important;
+  background-color: unset!important;
+  opacity: unset!important;
 }
