@@ -191,10 +191,10 @@
 
 {% if page.footer %}
   {% block footer %}
-    <div class="footer-wrapper">
-      <footer class="footer {{ container }}" role="contentinfo">
-        {{ page.footer }}
-      </footer>
-    </div>
+    <footer class="site-footer text-center text-lg-start bg-light mt-5" role="contentinfo">
+        <div class="{{ container }}">
+          {{ page.footer }}
+        </div>
+    </footer>
   {% endblock %}
 {% endif %}
