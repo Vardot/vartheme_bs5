@@ -17,12 +17,12 @@ regions:
   page_bottom: "Page bottom"
 libraries:
   # Bootstrap styles and scripts libraries.
-  - vartheme_bs5/bootstrap-styles
-  - vartheme_bs5/bootstrap-scripts
+  # - vartheme_bs5/bootstrap-styles
+  # - vartheme_bs5/bootstrap-scripts
   # Global styles and scripts libraries.
-  - vartheme_bs5/global-styles
-  - vartheme_bs5/global-scripts
-  - vartheme_bs5/framework
+  # - vartheme_bs5/global-styles
+  # - vartheme_bs5/global-scripts
+  # - vartheme_bs5/framework
   # Vartheme BS5 Varbase Media Hero Slider style.
   # Heroslider: Uncomment the following to use varbase heroslider styling.
   #- vartheme_bs5/heroslider

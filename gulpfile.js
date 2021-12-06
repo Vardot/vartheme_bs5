@@ -1,12 +1,12 @@
-let gulp = require('gulp'),
-  sass = require('gulp-sass'),
-  postcss = require('gulp-postcss'),
-  csscomb = require('gulp-csscomb'),
-  autoprefixer = require('autoprefixer'),
-  filter = require('gulp-filter'),
-  rtlcss = require('gulp-rtlcss'),
-  del = require('del'),
-  browserSync = require('browser-sync').create();
+var gulp = require('gulp');
+var sass = require('gulp-sass');
+var postcss = require('gulp-postcss');
+var csscomb = require('gulp-csscomb');
+var autoprefixer = require('autoprefixer');
+var filter = require('gulp-filter');
+var rtlcss = require('gulp-rtlcss');
+var rename = require('gulp-rename');
+var browserSync = require('browser-sync').create();
 
 const paths = {
   scss: {
@@ -51,9 +51,16 @@ function compile () {
   // Change rtl files to a wild card selection directory:
   // RTL_SRC = "css/rtl/**/*/*.css"
   // RTL_SRC = "css/rtl"
-  const rtl_css_status = gulp.src('css/rtl/base/bootstrap-rtl.base.css')
+  const rtl_css_status = gulp.src('css/base/bootstrap.base.css')
 		.pipe(rtlcss())
-		.pipe(gulp.dest('css/rtl/base'));
+    .pipe(rename({
+      dirname: ".",
+      basename: "bootstrap",
+      prefix: "",
+      suffix: "-rtl.base",
+      extname: ".css"
+    }))
+		.pipe(gulp.dest('./css/rtl/base'));
 
   return (css_status && rtl_css_status);
 

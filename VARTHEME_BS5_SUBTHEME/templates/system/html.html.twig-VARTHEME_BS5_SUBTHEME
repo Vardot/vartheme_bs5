@@ -61,6 +61,10 @@
     <head-placeholder token="{{ placeholder_token|raw }}">
     <title>{{ head_title|safe_join(' | ') }}</title>
     <css-placeholder token="{{ placeholder_token|raw }}">
+    {# Attache global styles LTR (Left to Right) if the html tag has dir=rtl #}
+    {%- if html_attributes['dir'] == 'ltr' -%}
+      {{ attach_library('VARTHEME_BS5_SUBTHEME/framework') }}
+    {%- endif -%}
     {# Attache global styles RTL (right to left) if the html tag has dir=rtl #}
     {%- if html_attributes['dir'] == 'rtl' -%}
       {{ attach_library('VARTHEME_BS5_SUBTHEME/framework-rtl') }}

@@ -18,22 +18,22 @@ regions:
   page_bottom: "Page bottom"
 libraries:
   # Bootstrap styles and scripts libraries.
-  - VARTHEME_BS5_SUBTHEME/bootstrap-styles
-  - VARTHEME_BS5_SUBTHEME/bootstrap-scripts
+  # - VARTHEME_BS5_SUBTHEME/bootstrap-styles
+  # - VARTHEME_BS5_SUBTHEME/bootstrap-scripts
   # VARTHEME_BS5_SUBTHEME Global styles and scripts libraries.
-  - VARTHEME_BS5_SUBTHEME/global-styles
-  - VARTHEME_BS5_SUBTHEME/global-scripts
-  - VARTHEME_BS5_SUBTHEME/framework
+  # - VARTHEME_BS5_SUBTHEME/global-styles
+  # - VARTHEME_BS5_SUBTHEME/global-scripts
+  # - VARTHEME_BS5_SUBTHEME/framework
   # VARTHEME_BS5_SUBTHEME Varbase Media Hero Slider style.
-  - VARTHEME_BS5_SUBTHEME/heroslider
+  # - VARTHEME_BS5_SUBTHEME/heroslider
   # Fonts: Uncomment the following if you want to use the roboto font.
   #- VARTHEME_BS5_SUBTHEME/roboto
 libraries-override:
-  vartheme_bs5/framework: false
-  vartheme_bs5/bootstrap-styles: false
-  vartheme_bs5/bootstrap-scripts: false
-  vartheme_bs5/global-styles: false
-  vartheme_bs5/global-scripts: false
+  # vartheme_bs5/framework: false
+  # vartheme_bs5/bootstrap-styles: false
+  # vartheme_bs5/bootstrap-scripts: false
+  # vartheme_bs5/global-styles: false
+  # vartheme_bs5/global-scripts: false
   # Heroslider: Uncomment the following to disable the vartheme_bs5/heroslider
   #             Libraray if it was enabled in vartheme_bs5 heroslider styling.
   # vartheme_bs5/heroslider: false

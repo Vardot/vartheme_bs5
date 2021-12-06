@@ -16,7 +16,9 @@ framework-rtl:
   dependencies:
     - core/jquery
     - vartheme_bs5/bootstrap-styles-rtl
+    - vartheme_bs5/bootstrap-scripts
     - vartheme_bs5/global-styles-rtl
+    - vartheme_bs5/global-scripts
 
 # ------------------------------------------------------------------------------
 # Bootstrap libraries with Barrio libraries.
@@ -60,6 +62,33 @@ bootstrap-styles-rtl:
   css:
     base:
       css/rtl/base/bootstrap-rtl.base.css: {}
+    component:
+      css/components/contextual.component.css: {}
+      css/components/details.component.css: {}
+      css/components/feed-icon.component.css: {}
+      css/components/field.component.css: {}
+      css/components/header.component.css: {}
+      css/components/help.component.css: {}
+      css/components/icons.component.css: {}
+      css/components/image-button.component.css: {}
+      css/components/item-list.component.css: {}
+      css/components/jumbotron.component.css: {}
+      css/components/list-group.component.css: {}
+      css/components/page.component.css: {}
+      css/components/shortcut.component.css: {}
+      css/components/sidebar.component.css: {}
+      css/components/site-footer.component.css: {}
+      css/components/skip-link.component.css: {}
+      css/components/table.component.css: {}
+      css/components/tabledrag.component.css: {}
+      css/components/tableselect.component.css: {}
+      css/components/tablesort-indicator.component.css: {}
+      css/components/tablesort.component.css: {}
+      css/components/textarea.component.css: {}
+      css/components/ui-dialog.component.css: {}
+      css/components/ui-widget.component.css: {}
+      css/components/user.component.css: { weight: -10 }
+      css/components/views.component.css: {}
 
 # Bootstrap scripts library.
 bootstrap-scripts:
@@ -99,6 +128,18 @@ global-styles-rtl:
   css:
     base:
       css/rtl/base/vartheme_bs5-rtl.base.css: {}
+    component:
+      css/components/ajax.component.css: {}
+      css/components/autocomplete.component.css: {}
+      css/components/bs-callouts.component.css: {}
+      css/components/navbar.component.css: {}
+      css/components/progress-bar.component.css: { weight: -10 }
+      css/components/varicons.component.css: {}
+      css/components/vb-tags.component.css: {}
+    layout:
+      css/layout/edge2edge.layout.css: {}
+      css/layout/equal-height.layout.css: {}
+      css/layout/print.layout.css: { media: print }
     theme:
       fonts/droid/arabic/kufi/css/droidarabickufi.css: {}
       css/rtl/theme/header-rtl.theme.css: {}
