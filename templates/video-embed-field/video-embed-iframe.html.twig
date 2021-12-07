@@ -6,7 +6,7 @@
 #}
 {%
   set classes = [
-    'embed-responsive-item',
+    'ratio',
   ]
 %}
 <iframe{{ attributes.addClass(classes) }}{% if url is not empty %} src="{{ url }}{% if query is not empty %}?{{ query | url_encode }}{% endif %}{% if fragment is not empty %}#{{ fragment }}{% endif %}"{% endif %}>&nbsp;</iframe>
