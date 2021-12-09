@@ -182,8 +182,6 @@ if [[ ! -d "$theme_path/$theme_name" ]]; then
   mv ${theme_path}/${theme_name}/templates/includes/preload.twig-VARTHEME_BS5_SUBTHEME ${theme_path}/${theme_name}/templates/includes/preload.twig
   mv ${theme_path}/${theme_name}/templates/media/media.html.twig-VARTHEME_BS5_SUBTHEME ${theme_path}/${theme_name}/templates/media/media.html.twig
   mv ${theme_path}/${theme_name}/templates/media/media--image.html.twig-VARTHEME_BS5_SUBTHEME ${theme_path}/${theme_name}/templates/media/media--image.html.twig
-  mv ${theme_path}/${theme_name}/templates/media/media-oembed-iframe.html.twig-VARTHEME_BS5_SUBTHEME ${theme_path}/${theme_name}/templates/media/media-oembed-iframe.html.twig
-  mv ${theme_path}/${theme_name}/templates/video-embed-field/video-embed-iframe.html.twig-VARTHEME_BS5_SUBTHEME ${theme_path}/${theme_name}/templates/video-embed-field/video-embed-iframe.html.twig
 
   # 10 Rename config files.
   mv ${theme_path}/${theme_name}/config/optional/block.block.VARTHEME_BS5_SUBTHEME_branding.yml ${theme_path}/${theme_name}/config/optional/block.block.${theme_name}_branding.yml

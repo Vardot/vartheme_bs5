@@ -36,7 +36,7 @@
 
       // Append a message for screen readers.
       if (message) {
-        $varicon.parent().append('<div class="sr-only message">' + message + '</div>');
+        $varicon.parent().append('<div class="visually-hidden message">' + message + '</div>');
       }
     }
     return $varicon;

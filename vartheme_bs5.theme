@@ -50,7 +50,7 @@ function vartheme_bs5_preprocess_page_title(&$variables) {
   // Hide page title for the front page and let screen readers only see it.
   if (\Drupal::service('path.matcher')->isFrontPage()) {
     $variables['title_attributes']['class'][] = 'page-title';
-    $variables['title_attributes']['class'][] = 'sr-only';
+    $variables['title_attributes']['class'][] = 'visually-hidden';
   }
 }
 
