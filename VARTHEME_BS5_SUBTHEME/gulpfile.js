@@ -51,7 +51,7 @@ function compile () {
   // Change rtl files to a wild card selection directory:
   // RTL_SRC = "css/rtl/**/*/*.css"
   // RTL_SRC = "css/rtl"
-  const rtl_css_status = gulp.src('css/base/bootstrap.base.css', {"allowEmpty": true})
+  const rtl_css_status = gulp.src('css/base/bootstrap.base.css')
 		.pipe(rtlcss())
     .pipe(rename({
       dirname: ".",
