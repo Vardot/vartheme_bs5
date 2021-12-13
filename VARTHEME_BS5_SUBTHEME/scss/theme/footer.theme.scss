@@ -16,7 +16,7 @@
       flex-flow: column;
       justify-content: center;
       align-items: center;
-      @include font-size(0.75rem);
+      @include font-size(0.65rem);
       @include padding($spacer $spacer 0 $spacer);
       @media screen and (min-width: map-get($grid-breakpoints, "lg")) {
         flex: 1 0 0;
