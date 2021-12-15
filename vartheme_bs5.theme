@@ -60,7 +60,7 @@ function vartheme_bs5_preprocess_page_title(&$variables) {
 function vartheme_bs5_preprocess_html(&$variables) {
 
   // The path for Vartheme BS5 theme in variables.
-  $variables['vartheme_bs5_path'] = \Drupal::request()->getBaseUrl() . '/' . drupal_get_path('theme', 'vartheme_bs5');
+  $variables['vartheme_bs5_path'] = \Drupal::request()->getBaseUrl() . '/' . \Drupal::service('extension.list.theme')->getPath('vartheme_bs5');
 
   // Add information about the number of sidebars.
   if (theme_get_setting('bootstrap_barrio_navbar_position')) {
@@ -73,7 +73,7 @@ function vartheme_bs5_preprocess_html(&$variables) {
  */
 function vartheme_bs5_preprocess_page(&$variables) {
   // Add the pring logo.
-  $variables['logo_print'] = \Drupal::request()->getBaseUrl() . '/' . drupal_get_path('theme', 'vartheme_bs5') . '/logo-print.png';
+  $variables['logo_print'] = \Drupal::request()->getBaseUrl() . '/' . \Drupal::service('extension.list.theme')->getPath('vartheme_bs5') . '/logo-print.png';
 
   // Add the site name and slogan.
   $variables['site_name'] = \Drupal::config('system.site')->get('name');
