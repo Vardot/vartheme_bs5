@@ -1,5 +1,5 @@
 var gulp = require('gulp');
-var sass = require('gulp-sass');
+var sass = require('gulp-sass')(require('sass'));
 var postcss = require('gulp-postcss');
 var csscomb = require('gulp-csscomb');
 var autoprefixer = require('autoprefixer');
@@ -30,10 +30,13 @@ const paths = {
 function compile () {
   var sassOptions = {
     outputStyle: 'expanded',
+    indented: true,
     indentType: 'space',
     indentWidth: 2,
-    linefeed: 'lf'
+    linefeed: 'lf',
+    sourceMap: false
   };
+
 
   // Filter mixins and variables not to be compiled to CSS.
   const filterFiles = filter(['**', '!**/mixins/*.scss', '!mixins.scss', '!variables.scss']);

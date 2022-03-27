@@ -9,18 +9,15 @@
   border-radius: 0.25rem;
   background: #fff;
   background-clip: padding-box;
-  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   font-family: var(--bs-font-sans-serif);
   font-size: 1rem;
 }
-
 @media (min-width: 1200px) {
   .ui-autocomplete {
     min-width: 10rem;
   }
 }
-
 .ui-autocomplete .ui-menu-item {
   display: block;
   clear: both;
@@ -36,12 +33,10 @@
   font-weight: normal;
   line-height: 1.5;
 }
-
 .ui-autocomplete .ui-menu-item.ui-state-hover {
   color: #1e2125;
   background: #e9ecef;
 }
-
 .ui-autocomplete .ui-menu-item.ui-state-active,
 .ui-autocomplete .ui-menu-item.ui-state-focus {
   color: #fff;

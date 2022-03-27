@@ -1,11 +1,9 @@
 .jumbotron {
   margin-bottom: 2rem;
   padding: 2rem 1rem;
-  color: null;
   border-radius: 0.3rem;
   background-color: #e9ecef;
 }
-
 @media (min-width: 576px) {
   .jumbotron {
     padding: 4rem 2rem;

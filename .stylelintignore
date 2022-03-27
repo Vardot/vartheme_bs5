@@ -20,3 +20,11 @@ config/**/*.yml
 *.ico
 *.json
 scripts/*
+*.md
+*.po
+*.xml
+*.js
+*.install
+*.theme
+*.lock
+package

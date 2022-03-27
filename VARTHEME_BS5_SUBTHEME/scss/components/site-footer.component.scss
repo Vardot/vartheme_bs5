@@ -1,5 +1,6 @@
 // Site Footer component style.
 // -----------------------------------------------------------------------------
+@use "sass:math";
 @import "../../node_modules/bootstrap/scss/functions";  // Bootstrap functions.
 @import "../../node_modules/bootstrap/scss/mixins";     // Bootstrap mixins.
 @import "../variables";                                 // VARTHEME_BS5_SUBTHEME variables.
@@ -25,11 +26,11 @@
 .site-footer__bottom {
 
   .block {
-    margin: ($spacer / 2) 0;
+    margin: math.div($spacer, 2) 0;
   }
 
   .content {
-    padding: ($spacer / 2) 0;
+    padding: math.div($spacer, 2) 0;
     margin-top: 0;
   }
 }

@@ -1,5 +1,6 @@
 // Varbase BS5 base from bootstrap library 
 // -----------------------------------------------------------------------------
+@use "sass:math";
 @import "../../node_modules/bootstrap/scss/functions";  // Bootstrap functions.
 @import "../../node_modules/bootstrap/scss/mixins";     // Bootstrap mixins.
 @import "../variables";                                 // VARTHEME_BS5_SUBTHEME variables.
@@ -342,8 +343,8 @@ table {
   margin-top: 0;
   margin-bottom: 0;
   padding-top: 7px;
-  padding-left:  ($grid-gutter-width / 2);
-  padding-right: ($grid-gutter-width / 2);
+  padding-left: math.div($grid-gutter-width, 2);
+  padding-right: math.div($grid-gutter-width, 2);
   text-align: right;
 }
 

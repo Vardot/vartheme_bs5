@@ -1,7 +1,7 @@
 //
 // Vartheme Variables ovarrides.
 // --------------------------------------------------
-
+@use "sass:math";
 
 // #############################################################################
 // Bootstrap library standard variables.
@@ -31,7 +31,7 @@
 // View Mode Inventory (VMI).
 // -----------------------------------------------------------------------------
 $grid-gutter-width: 30px;
-$view-modes-padding: floor(($grid-gutter-width / 2));
+$view-modes-padding: math.div($grid-gutter-width, 2);
 
 // Custom Varbase Hero slider media variables.
 // -----------------------------------------------------------------------------

@@ -1,49 +1,19 @@
 .site-footer section.region-footer > * {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-flow: column;
-  -webkit-box-direction: normal;
-  -webkit-box-orient: vertical;
-  -ms-flex-flow: column;
   flex-flow: column;
-  -ms-flex-pack: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-justify-content: center;
-  -webkit-box-pack: center;
   justify-content: center;
   padding: 1rem 1rem 0 1rem;
   font-size: 0.65rem;
 }
-
 @media screen and (min-width: 992px) {
   .site-footer section.region-footer > * {
-    -webkit-box-flex: 1;
-    -webkit-flex: 1 0 0;
-    -ms-flex: 1 0 0;
     flex: 1 0 0;
   }
 }
-
 .site-footer .menu--footer ul.nav {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-flex-flow: row;
-  -webkit-box-direction: normal;
-  -webkit-box-orient: horizontal;
-  -ms-flex-flow: row;
   flex-flow: row;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  -webkit-box-pack: center;
   justify-content: center;
 }
