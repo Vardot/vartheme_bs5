@@ -79,6 +79,12 @@
     max-height: 600px;
   }
 }
+@media screen and (max-width: 576px) {
+  .varbase-heroslider-media .node--type-varbase-heroslider-media {
+    min-height: 300px;
+    max-height: 300px;
+  }
+}
 .varbase-heroslider-media .node--type-varbase-heroslider-media .hero-slide-content-wrapper {
   position: absolute;
   z-index: 9;
@@ -92,7 +98,12 @@
   justify-content: center;
 }
 .varbase-heroslider-media .node--type-varbase-heroslider-media .hero-slide-content {
-  padding: 60px;
+  padding: calc(1.5rem + 3vw);
+}
+@media (min-width: 1200px) {
+  .varbase-heroslider-media .node--type-varbase-heroslider-media .hero-slide-content {
+    padding: 3.75rem;
+  }
 }
 .varbase-heroslider-media .node--type-varbase-heroslider-media .hero-slide-content .field--name-node-title h2,
 .varbase-heroslider-media .node--type-varbase-heroslider-media .hero-slide-content .field--name-node-title h3 {
@@ -170,6 +181,16 @@
 .varbase-heroslider-media .node--type-varbase-heroslider-media .hero-slide-content .field--name-field-link a:focus,
 .varbase-heroslider-media .node--type-varbase-heroslider-media .hero-slide-content .field--name-field-link a:active {
   opacity: 0.7;
+}
+@media screen and (max-width: 576px) {
+  .varbase-heroslider-media .node--type-varbase-heroslider-media .hero-slide-content {
+    padding: calc(1.5rem + 3vw) calc(1.625rem + 4.5vw);
+  }
+}
+@media screen and (max-width: 576px) and (min-width: 1200px) {
+  .varbase-heroslider-media .node--type-varbase-heroslider-media .hero-slide-content {
+    padding: 3.75rem 5rem;
+  }
 }
 .varbase-heroslider-media .node--type-varbase-heroslider-media .field--name-field-media-single {
   overflow: hidden;
