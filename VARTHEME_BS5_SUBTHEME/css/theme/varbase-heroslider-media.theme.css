@@ -184,12 +184,12 @@
 }
 @media screen and (max-width: 576px) {
   .varbase-heroslider-media .node--type-varbase-heroslider-media .hero-slide-content {
-    padding: calc(1.5rem + 3vw) calc(1.625rem + 4.5vw);
+    padding: calc(1.5rem + 3vw) calc(2.0625rem + 9.75vw);
   }
 }
 @media screen and (max-width: 576px) and (min-width: 1200px) {
   .varbase-heroslider-media .node--type-varbase-heroslider-media .hero-slide-content {
-    padding: 3.75rem 5rem;
+    padding: 3.75rem 9.375rem;
   }
 }
 .varbase-heroslider-media .node--type-varbase-heroslider-media .field--name-field-media-single {
