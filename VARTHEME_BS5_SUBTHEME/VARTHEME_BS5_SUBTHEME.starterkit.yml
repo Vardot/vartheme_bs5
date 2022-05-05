@@ -3,7 +3,7 @@ base theme: vartheme_bs5
 name: "VARTHEME_BS5_SUBTHEME - Subtheme of Vartheme (Bootstrap 5 - SASS)"
 description: "Based on Bootstrap 5 framework using SASS, and extending Vartheme (Bootstrap 5 - SASS)."
 project: vartheme_bs5
-core_version_requirement: ^9
+core_version_requirement: ^9 || ^10
 regions:
   navigation: "Navigation"
   navigation_collapsible: "Navigation Collapsible"
