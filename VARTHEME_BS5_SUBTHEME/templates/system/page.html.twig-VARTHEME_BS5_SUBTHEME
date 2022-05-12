@@ -191,7 +191,7 @@
 
 {% if page.footer %}
   {% block footer %}
-    <footer class="site-footer text-center text-lg-start bg-light mt-5" role="contentinfo">
+    <footer class="site-footer text-center text-lg-start bg-light mt-auto" role="contentinfo">
         <div class="{{ container }}">
           {{ page.footer }}
         </div>

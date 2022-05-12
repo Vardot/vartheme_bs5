@@ -1,4 +1,4 @@
-// Varbase BS5 base from bootstrap library 
+// Varbase BS5 base from bootstrap library
 // -----------------------------------------------------------------------------
 @use "sass:math";
 @import "../../node_modules/bootstrap/scss/functions";  // Bootstrap functions.
@@ -580,7 +580,7 @@ body.user-logged-in {
 
   .btn {
     .visible-admin,
-    .visible-logged-in, 
+    .visible-logged-in,
     .hidden-anonymous {
       display: inline-block !important;
     }
@@ -632,7 +632,7 @@ pre {
     flex-shrink: 0;
   }
 }
- 
+
 select::-ms-expand {
   display: none;
 }
@@ -640,7 +640,7 @@ select::-ms-expand {
 /* Temp fix for:
  * Issue #3233533: Core .placeholder class conflicts with new Bootstrap .placeholder class
  * https://www.drupal.org/project/drupal/issues/3233533
- * 
+ *
  * Issue #3228330 by super_romeo: Bootstrap conflicts with Drupal core "placeholder" class
  * https://www.drupal.org/project/bootstrap_barrio/issues/3228330
  */
@@ -649,4 +649,10 @@ em.placeholder {
   cursor: unset!important;
   background-color: unset!important;
   opacity: unset!important;
+}
+
+.dialog-off-canvas-main-canvas {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }

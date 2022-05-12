@@ -518,7 +518,7 @@ select::-ms-expand {
 /* Temp fix for:
  * Issue #3233533: Core .placeholder class conflicts with new Bootstrap .placeholder class
  * https://www.drupal.org/project/drupal/issues/3233533
- * 
+ *
  * Issue #3228330 by super_romeo: Bootstrap conflicts with Drupal core "placeholder" class
  * https://www.drupal.org/project/bootstrap_barrio/issues/3228330
  */
@@ -527,4 +527,10 @@ em.placeholder {
   vertical-align: unset !important;
   opacity: unset !important;
   background-color: unset !important;
+}
+
+.dialog-off-canvas-main-canvas {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
