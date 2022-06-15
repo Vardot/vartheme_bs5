@@ -21,8 +21,8 @@
     border-image: initial;
     border-radius: 2px;
     transition: box-shadow 0.2s ease 0s, color;
-    margin: 8px;
-    padding: 12px 24px 12px 12px;
+    @include margin(8px);
+    @include padding(12px 24px 12px 12px);
     box-shadow: 0px 1px 4px rgba(26, 25, 43, .24) !important;
   }
 
@@ -42,8 +42,14 @@
   }
 
   .auth-icon {
-    margin-right: 16px;
+    @include margin-right(16px);
     width: 16px;
     height: 16px;
+  }
+
+  @include media-breakpoint-down(sm) {
+    .social-network {
+      @include padding-right(12px);
+    }
   }
 }

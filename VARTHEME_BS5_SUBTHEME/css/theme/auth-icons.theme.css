@@ -6,8 +6,8 @@
 }
 .social-auth .social-network {
   width: 44%;
-  margin: 8px;
-  padding: 12px 24px 12px 12px;
+  margin: 0.5rem;
+  padding: 0.75rem calc(1.275rem + 0.3vw) 0.75rem 0.75rem;
   cursor: pointer;
   transition: box-shadow 0.2s ease 0s, color;
   border-width: initial;
@@ -15,6 +15,11 @@
   border-radius: 2px;
   border-image: initial;
   box-shadow: 0 1px 4px rgba(26, 25, 43, 0.24) !important;
+}
+@media (min-width: 1200px) {
+  .social-auth .social-network {
+    padding: 0.75rem 1.5rem 0.75rem 0.75rem;
+  }
 }
 .social-auth .auth-link {
   text-decoration: none;
@@ -32,5 +37,10 @@
 .social-auth .auth-icon {
   width: 16px;
   height: 16px;
-  margin-right: 16px;
+  margin-right: 1rem;
+}
+@media (max-width: 575.98px) {
+  .social-auth .social-network {
+    padding-right: 0.75rem;
+  }
 }
