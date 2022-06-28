@@ -1,8 +1,8 @@
 {
-	"name": "radix_subtheme",
+	"name": "vartheme_bs5",
 	"description": "My custom Radix subtheme",
 	"private": true,
-  "engines" : { 
+  "engines" : {
     "npm" : ">=6.0.0",
     "node" : ">=14.0.0"
   },

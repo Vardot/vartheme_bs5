@@ -11,9 +11,9 @@
  * You can directly use the component name as a library, f.x
  *  {{ attach_library('radix_subtheme/block') }}.
  */
-function radix_subtheme_library_info_build() {
+function vartheme_bs5_library_info_build() {
   $extensions = ['css', 'js'];
-  $directory = 'themes/custom/radix_subtheme/build/components';
+  $directory = 'themes/custom/vartheme_bs5/build/components';
   $extensions = array_map('preg_quote', $extensions);
   $extensions = implode('|', $extensions);
   if (!is_dir($directory)) {
