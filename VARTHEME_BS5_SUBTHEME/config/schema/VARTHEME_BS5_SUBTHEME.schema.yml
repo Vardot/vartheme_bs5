@@ -1,4 +1,0 @@
-# Schema for the configuration files of the VARTHEME_BS5_SUBTHEME.
-VARTHEME_BS5_SUBTHEME.settings:
-  type: vartheme_bs5.settings
-  label: "VARTHEME_BS5_SUBTHEME settings"
