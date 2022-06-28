@@ -1,0 +1,32 @@
+name: Radix Subtheme
+description: A theme based on Radix.
+screenshot: screenshot.png
+core_version_requirement: ^8.7.7 || ^9.0
+# version: VERSION
+engine: twig
+type: theme
+base theme: radix
+
+regions:
+  navbar_branding: Navbar branding
+  navbar_left:  Navbar left
+  navbar_right: Navbar right
+  header: Header
+  content: Content
+  page_bottom: Page bottom
+  footer: Footer
+
+libraries:
+  - radix_subtheme/style
+
+ckeditor_stylesheets:
+  - build/css/main.style.css
+
+components:
+  namespaces:
+    radix_subtheme: src/components
+
+# Information added by Drupal.org packaging script on 2022-06-06
+version: '5.0.0'
+project: 'radix'
+datestamp: 1654516982
