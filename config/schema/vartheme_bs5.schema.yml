@@ -1,4 +1,4 @@
-# Schema for the configuration files of the Radix Subtheme theme.
+# Schema for the configuration files of the Vartheme BS5 theme.
 
 vartheme_bs5.settings:
   type: theme_settings

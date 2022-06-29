@@ -1,5 +1,5 @@
 name: Vartheme BS5
-description: A theme based on Radix.
+description: "Base theme for Varbase standard websites. Based on Bootstrap 5 framework using SASS, and extending Radix theme."
 screenshot: screenshot.png
 core_version_requirement: ^8.7.7 || ^9.0
 # version: VERSION
