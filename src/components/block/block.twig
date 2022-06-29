@@ -8,7 +8,7 @@
  * - utility_classes: An array of utility classes.
  */
 #}
-{{ attach_library('radix_subtheme/block') }}
+{{ attach_library('vartheme_bs5/block') }}
 {% set classes = [
   'block',
   bundle ? 'block--' ~ bundle|clean_class,
@@ -16,21 +16,21 @@
 ]|merge(utility_classes ? utility_classes : []) %}
 
 {% if html_tag %}
-  <{{ html_tag }}{{ attributes|without('id').addClass(classes) }}>
-{% endif %}
+	<{{html_tag}}{{attributes|without('id').addClass(classes)}}>
+	{% endif %}
 
-  {{ title_prefix }}
-  {% if label %}
-    {% block label %}
-      <h2{{ title_attributes }}>{{ label }}</h2>
-    {% endblock %}
-  {% endif %}
-  {{ title_suffix }}
+	{{ title_prefix }}
+	{% if label %}
+		{% block label %}
+			<h2{{title_attributes}}>{{ label }}</h2>
+		{% endblock %}
+	{% endif %}
+	{{ title_suffix }}
 
-  {% block content %}
-    {{ content }}
-  {% endblock %}
+	{% block content %}
+		{{ content }}
+	{% endblock %}
 
-{% if html_tag %}
-  </{{ html_tag }}>
+	{% if html_tag %}
+	</{{html_tag}}>
 {% endif %}

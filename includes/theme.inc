@@ -9,7 +9,7 @@
  * Implements hook_library_info_build().
  * Automatically creates components libraries (Not visible in theme's libraries.yml file)
  * You can directly use the component name as a library, f.x
- *  {{ attach_library('radix_subtheme/block') }}.
+ *  {{ attach_library('vartheme_bs5/block') }}.
  */
 function vartheme_bs5_library_info_build() {
   $extensions = ['css', 'js'];

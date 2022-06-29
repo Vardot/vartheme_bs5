@@ -17,16 +17,11 @@ regions:
   footer: Footer
 
 libraries:
-  - radix_subtheme/style
+  - vartheme_bs5/style
 
 ckeditor_stylesheets:
   - build/css/main.style.css
 
 components:
   namespaces:
-    radix_subtheme: src/components
-
-# Information added by Drupal.org packaging script on 2022-06-06
-version: "5.0.0"
-project: "radix"
-datestamp: 1654516982
+    vartheme_bs5: src/components

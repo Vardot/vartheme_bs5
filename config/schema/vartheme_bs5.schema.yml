@@ -1,5 +1,5 @@
 # Schema for the configuration files of the Radix Subtheme theme.
 
-radix_subtheme.settings:
+vartheme_bs5.settings:
   type: theme_settings
-  label: 'Radix Subtheme settings'
+  label: "Vartheme BS5 settings"

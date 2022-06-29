@@ -8,7 +8,6 @@ style:
   dependencies:
     - core/drupal
     - core/jquery
-
 # We create component libraries automatically, no need to be listed here
 # as long as they keep the same name for the folder,JS and CSS file
 # you may extend the libraries if necessary
