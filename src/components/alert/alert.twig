@@ -1,0 +1,33 @@
+{#
+/**
+ * @file
+ * Template for Alert component.
+ *
+ * Available config:
+ * - type: primary | secondary | success | danger | warning | info | light | dark
+ * - heading: string,
+ * - dimissible: true | false
+ * - utility_classes: An array of utility classes.
+ */
+#}
+{% set dismissible = dismissible ?? true %}
+{% set classes = [
+  'alert',
+  type ? 'alert-' ~ type,
+  dismissible ? 'alert-dismissible',
+]|merge(utility_classes ? utility_classes : []) %}
+
+<div class="{{ classes|join(' ') }}" role="alert">
+  {% if heading %}
+    <h4 class="alert-heading">{{ heading }}</h4>
+  {% endif %}
+
+  {% block content %}
+    {{ content }}
+  {% endblock %}
+
+  {% if dismissible %}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+    </button>
+  {% endif %}
+</div>

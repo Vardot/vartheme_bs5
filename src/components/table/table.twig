@@ -1,0 +1,100 @@
+{#
+/**
+ * @file
+ * Template for a Table component.
+ *
+ * Available config:
+ * - utility_classes: An array of utility classes.
+ * - @see https://getbootstrap.com/docs/5.0/content/tables/
+ */
+#}
+
+{% block table %}
+  {% set classes = [
+    'table',
+  ]|merge(utility_classes ? utility_classes : []) %}
+
+  <table{{ attributes.addClass(classes) }}>
+    {% if caption %}
+      {% block caption %}
+        <caption>{{ caption }}</caption>
+      {% endblock %}
+    {% endif %}
+
+    {% block colgroup %}
+      {% for colgroup in colgroups %}
+        {% if colgroup.cols %}
+          <colgroup{{ colgroup.attributes }}>
+            {% for col in colgroup.cols %}
+              <col{{ col.attributes }} />
+            {% endfor %}
+          </colgroup>
+        {% else %}
+          <colgroup{{ colgroup.attributes }} />
+        {% endif %}
+      {% endfor %}
+    {% endblock %}
+
+    {% block header %}
+      {% if header %}
+          <thead>
+            <tr>
+              {% for cell in header %}
+                {%
+                  set cell_classes = [
+                  cell.active_table_sort ? 'is-active',
+                ]
+                %}
+                <{{ cell.tag }}{{ cell.attributes.addClass(cell_classes) }}>
+                {{- cell.content -}}
+              </{{ cell.tag }}>
+              {% endfor %}
+            </tr>
+          </thead>
+      {% endif %}
+    {% endblock %}
+
+    {% block body %}
+      {% if rows %}
+        <tbody>
+          {% for row in rows %}
+            {%
+              set row_classes = [
+              not no_striping ? cycle(['odd', 'even'], loop.index0),
+            ]
+            %}
+          <tr{{ row.attributes.addClass(row_classes) }}>
+            {% for cell in row.cells %}
+              <{{ cell.tag }}{{ cell.attributes }}>
+              {{- cell.content -}}
+              </{{ cell.tag }}>
+            {% endfor %}
+            </tr>
+          {% endfor %}
+          </tbody>
+        {% elseif empty %}
+          <tbody>
+          <tr class="odd">
+            <td colspan="{{ header_columns }}" class="empty message">{{ empty }}</td>
+          </tr>
+        </tbody>
+      {% endif %}
+    {% endblock %}
+
+    {% block footer %}
+      {% if footer %}
+        <tfoot>
+          {% for row in footer %}
+          <tr{{ row.attributes }}>
+            {% for cell in row.cells %}
+              <{{ cell.tag }}{{ cell.attributes }}>
+              {{- cell.content -}}
+              </{{ cell.tag }}>
+            {% endfor %}
+            </tr>
+          {% endfor %}
+        </tfoot>
+      {% endif %}
+    {% endblock %}
+  </table>
+{% endblock %}

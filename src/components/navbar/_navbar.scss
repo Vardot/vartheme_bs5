@@ -1,0 +1,23 @@
+.navbar {
+
+  .form-inline {
+
+    .form-actions {
+      display: none;
+    }
+  }
+}
+
+.toolbar-oriented .toolbar-bar {
+  z-index: 1200;
+}
+
+.toolbar-horizontal {
+
+  .toolbar-menu {
+
+    &.nav {
+      float: left;
+    }
+  }
+}

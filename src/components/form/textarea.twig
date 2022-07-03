@@ -1,0 +1,8 @@
+{#
+/**
+ * @file
+ * Template for a textarea form element.
+ */
+#}
+{% set textarea_classes = ['form-control']|merge(utility_classes ? utility_classes : []) %}
+<textarea{{ attributes.addClass(textarea_classes) }}>{{ value }}</textarea>
