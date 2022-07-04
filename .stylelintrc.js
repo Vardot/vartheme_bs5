@@ -8,5 +8,6 @@ module.exports = {
     'unit-no-unknown': true,
     'block-no-empty': true,
     'at-rule-no-unknown': null,
+    "rule-empty-line-before": null
   },
 };
