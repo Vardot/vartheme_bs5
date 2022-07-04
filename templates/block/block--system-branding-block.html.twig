@@ -4,12 +4,12 @@
  * Template for the branding block.
  */
 #}
-{% embed '@radix/block/block.twig' with {
+{% embed '@vartheme_bs5/block/block.twig' with {
   html_tag: 'div',
 } %}
 
-{% block content %}
-  {% include '@radix/navbar/navbar-brand.twig' with {
+	{% block content %}
+		{% include '@vartheme_bs5/navbar/navbar-brand.twig' with {
     text: site_name,
     image: site_logo,
     width: 30,
@@ -17,6 +17,6 @@
     path: path('<front>'),
     alt: elements.content.site_name['#markup'] ~ ' logo' ,
   } %}
-{% endblock %}
+	{% endblock %}
 
 {% endembed %}
