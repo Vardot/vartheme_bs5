@@ -65,6 +65,15 @@ glob.sync('src/components/**/*.scss').forEach((sourcePath) => {
 	mix.sass(sourcePath, destinationPath);
 });
 
+/**
+ * Compile theme SASS directory to build/css/theme
+ */
+glob.sync('src/scss/theme/*.scss').forEach((sourcePath) => {
+	mix.sass(sourcePath, 'css/theme');
+
+	// mix.sass(sourcePath, destinationPath);
+});
+
 /*
  |--------------------------------------------------------------------------
  | JS
