@@ -36,5 +36,5 @@
 {% macro image(src, width, height, alt) %}
   {% set height_attr = height != 'auto' ? 'height="' ~ height ~ '"'  %}
 
-  <img src="{{ src }}" width="{{ width|default(30) }}" {{ height_attr }} alt="{{ alt|default('') }}" class="me-2" />
+  <img src="{{ src }}" {{ height_attr }} alt="{{ alt|default('') }}" class="me-2 w-100" />
 {% endmacro %}
