@@ -20,7 +20,7 @@
 
     {% block left %}
       {% if page.navbar_left %}
-        <div class="mr-auto">
+        <div class="me-auto">
           {{ page.navbar_left }}
         </div>
       {% endif %}
@@ -28,7 +28,9 @@
 
     {% block right %}
       {% if page.navbar_right %}
-        {{ page.navbar_right }}
+	<div class="ms-auto">
+	  {{ page.navbar_right }}
+	</div>
       {% endif %}
     {% endblock %}
   {% endembed %}

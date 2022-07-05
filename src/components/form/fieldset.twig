@@ -52,6 +52,9 @@
   {% endif %}
 
   <div class="card-body fieldset-wrapper">
+    {% if description_display == 'before' and description.content %}
+      <small{{ description.attributes.addClass('description', 'form-text', 'text-muted') }}>{{ description.content }}</small>
+    {% endif %}
     {% if errors %}
       <div>
         {{ errors }}
@@ -64,7 +67,7 @@
     {% if suffix %}
       <span class="field-suffix">{{ suffix }}</span>
     {% endif %}
-    {% if description.content %}
+    {% if description_display in ['after', 'invisible'] and description.content %}
       <small{{ description.attributes.addClass('description', 'form-text', 'text-muted') }}>{{ description.content }}</small>
     {% endif %}
   </div>
