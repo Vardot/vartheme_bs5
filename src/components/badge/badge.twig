@@ -12,25 +12,29 @@
  * - url: if anchor add a url, html_tag will be set to a automatically.
  */
 #}
+
+{% set bg = 'bg-' ~ bg ?? 'bg-secondary' %}
+{% set color = 'text-' ~ color ?? 'text-secondary' %}
+
 {% set classes = [
   'badge',
-  bg ? 'bg-' ~ bg : 'bg-primary',
-  color ? 'text-' ~ color,
+	bg,
+	color
 ]|merge(utility_classes ? utility_classes : []) %}
 
 {% set html_tag = html_tag ?? 'span' %}
 
 {% if url %}
-  {% set html_tag = 'a' %}
-  {% set url = url|render %}
+	{% set html_tag = 'a' %}
+	{% set url = url|render %}
 {% endif %}
 
 {% if content %}
-  <{{ html_tag }} {{ url ? 'href=' ~ url }} class="{{ classes|join(' ') }}">
+	<{{html_tag}} {{ url ? 'href=' ~ url }} class="{{ classes|join(' ') }}">
 
-  {% block content %}
-    {{ content }}
-  {% endblock %}
+		{% block content %}
+			{{ content }}
+		{% endblock %}
 
-  </{{ html_tag }}>
+	</{{html_tag}}>
 {% endif %}
