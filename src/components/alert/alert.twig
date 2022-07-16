@@ -10,24 +10,24 @@
  * - utility_classes: An array of utility classes.
  */
 #}
+
 {% set dismissible = dismissible ?? true %}
-{% set classes = [
-  'alert',
-  type ? 'alert-' ~ type,
-  dismissible ? 'alert-dismissible',
-]|merge(utility_classes ? utility_classes : []) %}
+{% set type = type is defined ? 'alert-' ~ type : "" %}
 
-<div class="{{ classes|join(' ') }}" role="alert">
-  {% if heading %}
-    <h4 class="alert-heading">{{ heading }}</h4>
-  {% endif %}
+{% for variation in variations %}
+  <div class="alert alert-{{ variation }} alert-dismissible" role="alert">
+    {% if heading %}
+      <h4 class="alert-heading">{{ variation|capitalize }} heading</h4>
+    {% endif %}
 
-  {% block content %}
-    {{ content }}
-  {% endblock %}
+    {% block content %}
+      A simple {{ variation }} alert—check it out!
+    {% endblock %}
 
-  {% if dismissible %}
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-    </button>
-  {% endif %}
-</div>
+
+    {% if dismissible %}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+      </button>
+    {% endif %}
+  </div>
+{% endfor %}
