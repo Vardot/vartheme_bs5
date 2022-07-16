@@ -8,14 +8,13 @@
  * - utility_classes: An array of utility classes.
  */
 #}
-{% set classes = [
-  'block',
-  bundle ? 'block--' ~ bundle|clean_class,
-  id ? 'block--' ~ id|replace({"_": "-"})|clean_class,
-]|merge(utility_classes ? utility_classes : []) %}
+{% set bundle = bundle ? 'block--' ~ bundle|clean_class : "" %}
+{% set id = id ? 'block--' ~ id|replace({"_": "-"})|clean_class : "" %}
+{% set classes = ['block', bundle, id] %}
 
 {% if html_tag %}
-  <{{ html_tag }}{{ attributes|without('id').addClass(classes) }}>
+  <{{ html_tag }} class="{{ classes|join(' ') }}">
+  {{ id }}
 {% endif %}
 
   {{ title_prefix }}
