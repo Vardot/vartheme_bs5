@@ -4,7 +4,16 @@
  * Template for a comment.
  */
 #}
-<article{{ attributes.addClass('js-comment', 'mb-4', comment.status.value == 0 ? 'comment--unpublished') }}>
+
+{%
+  set classes = [
+    'js-comment',
+    'mb-4',
+    (comment.status.value == 0 ? 'comment--unpublished')
+  ]
+%}
+
+<article{{ attributes.addClass(classes) }}>
   {#
     Hide the "new" indicator by default, let a piece of JavaScript ask the
     server which comments are new for the user. Rendering the final "new"
@@ -14,7 +23,7 @@
 
   <div class="row">
     <div class="col-md-2">
-      {{ user_picture }}
+      <img src="{{ user_picture }}" width="100%" />
     </div>
 
     <div class="col-md-10">
