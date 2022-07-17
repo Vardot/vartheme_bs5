@@ -8,11 +8,11 @@
 
 {% set titleClasses = [
   'page-title',
-  displaySize ? 'display--' ~ displaySize
+  (displaySize ? 'display-' ~ displaySize)
 ]|merge(title_utility_classes ? title_utility_classes : []) %}
 
 {{ title_prefix }}
 {% if title %}
-  <{{titleTag}} {{ title_attributes.addClass(titleClasses) }}>{{ title }}</{{titleTag}}>
+	<{{titleTag}} {{ title_attributes.addClass(titleClasses) }}>{{ title }}</{{titleTag}}>
 {% endif %}
 {{ title_suffix }}
