@@ -3,12 +3,29 @@
  * @file
  * Template for a Card component.
  */
-#}
-<div class="card">
 
+ * Available config:
+ * - width: px | rem
+ * - img_src: source of the card image [internal in assets | external]
+ * - title: card title
+ * - body: card body text
+ * - link_url: link url [internal | external]
+ * - link_text: link text
+#}
+
+<div class="card" style="width:{{ width }}">
+  <img src="{{ img_src }}" class="card-img-top" alt="...">
   <div class="card-body">
+    {% block title %}
+      <h5 class="card-title">{{ title }}</h5>
+    {% endblock %}
+
     {% block body %}
-      {{ body }}
+      <p class="card-text">{{ body }}</p>
+    {% endblock %}
+
+    {% block link %}
+      <a href="{{ link_url }}" class="btn btn-primary">{{ link_text }}</a>
     {% endblock %}
   </div>
 </div>
