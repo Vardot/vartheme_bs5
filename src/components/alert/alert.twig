@@ -12,22 +12,23 @@
 #}
 
 {% set dismissible = dismissible ?? true %}
-{% set type = type is defined ? 'alert-' ~ type : "" %}
+{% set classes = [
+  'alert',
+  (type ? 'alert-' ~ type),
+  (dismissible ? 'alert-dismissible'),
+]|merge(utility_classes ? utility_classes : []) %}
 
-{% for variation in variations %}
-  <div class="alert alert-{{ variation }} alert-dismissible" role="alert">
-    {% if heading %}
-      <h4 class="alert-heading">{{ variation|capitalize }} heading</h4>
-    {% endif %}
+<div{{ attributes.addClass(classes) }} role="alert">
+  {% if heading %}
+    <h4 class="alert-heading">{{ heading }}</h4>
+  {% endif %}
 
-    {% block content %}
-      A simple {{ variation }} alert—check it out!
-    {% endblock %}
+  {% block content %}
+    {{ content }}
+  {% endblock %}
 
-
-    {% if dismissible %}
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-      </button>
-    {% endif %}
-  </div>
-{% endfor %}
+  {% if dismissible %}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+    </button>
+  {% endif %}
+</div>
