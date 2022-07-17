@@ -11,15 +11,27 @@
  * - attributes: Attributes array.
  */
 #}
+
 {% set button_classes = [
   'btn',
   (type ? 'btn-' ~ type),
 ]|merge(button_utility_classes) %}
 
-<button{{ attributes.addClass(button_classes) }}>
-  {% block button_content %}
-    {{ button_content }}
-  {% endblock %}
-</button>
+{% if variations|length > 0 %}
+	{% for variation in variations %}
+		<button class="btn btn-{{ variation }} d-block mb-2">
+			{% block button_content %}
+				{{ button_content }} {{ variation }}
+			{% endblock %}
+		</button>
+	{% endfor %}
+
+	{% else %}
+		<button {{ attributes.addClass(button_classes) }}>
+			{% block button_content %}
+				{{ button_content }}
+			{% endblock %}
+		</button>
+{% endif %}
 
 
