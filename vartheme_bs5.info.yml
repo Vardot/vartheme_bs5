@@ -19,6 +19,10 @@ regions:
 libraries:
   - vartheme_bs5/style
 
+libraries-override:
+  betterlogin/betterlogin_css: vartheme_bs5/betterlogin
+  social_auth/auth-icons: vartheme_bs5/auth-icons
+
 ckeditor_stylesheets:
   - build/css/main.style.css
 
