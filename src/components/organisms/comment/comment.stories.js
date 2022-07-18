@@ -1,7 +1,7 @@
 export default { 'title': 'Organisims/Comment' };
 
 import comment from './comment.twig';
-import img from "../../assets/images/placeholder-image.png";
+import img from "../../../assets/images/placeholder-image.png";
 import DrupalAttribute from 'drupal-attribute';
 
 export const Comment = () => (

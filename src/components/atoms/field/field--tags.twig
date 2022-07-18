@@ -24,7 +24,7 @@
     <div{{ attributes.addClass(classes, 'field__items') }}>
       {% for item in items %}
         <div{{ item.attributes.addClass('field__item') }}>
-          {% include '@radix/badge/badge.twig' with {
+          {% include '@vartheme_bs5/atoms/badge/badge.twig' with {
             bg: 'primary',
             color: 'white',
             content: item.content['#title'],
@@ -36,7 +36,7 @@
   {% else %}
     {% for item in items %}
       <div{{ attributes.addClass(classes, 'field__item') }}>
-        {% include '@radix/badge/badge.twig' with {
+        {% include '@vartheme_bs5/atoms/badge/badge.twig' with {
           bg: 'primary',
           color: 'white',
           content: item.content['#title'],
@@ -53,7 +53,7 @@
     {% endif %}
 
     {% for item in items %}
-      {% include '@radix/badge/badge.twig' with {
+      {% include '@vartheme_bs5/atoms/badge/badge.twig' with {
         bg: 'primary',
         color: 'white',
         content: item.content['#title'],

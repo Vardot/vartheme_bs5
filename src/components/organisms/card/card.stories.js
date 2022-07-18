@@ -1,7 +1,7 @@
 export default { 'title': 'Organisims/Card' };
 
 import card from './card.twig';
-import img  from "../../assets/images/placeholder-image.png";
+import img  from "../../../assets/images/placeholder-image.png";
 
 export const Card = () => (
   card({

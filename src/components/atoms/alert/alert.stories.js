@@ -1,4 +1,4 @@
-export default { title: 'Molecules/Alert' };
+export default { title: 'Atoms/Alert' };
 
 import alert from './alert.twig';
 import DrupalAttribute from 'drupal-attribute';
