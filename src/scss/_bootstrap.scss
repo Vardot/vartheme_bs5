@@ -53,3 +53,8 @@
 @import "base/helpers";
 @import "base/elements";
 @import "base/typography";
+
+// Bootstrap Borders Utilities.
+// https://github.com/Vardot/bootstrap-borders-utilities
+// `yarn add bootstrap-borders-utilities` before compiling with `yarn theme:build`
+@import "~bootstrap-borders-utilities/utilities/scss/border-color-variants.scss";
