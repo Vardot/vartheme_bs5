@@ -1,0 +1,13 @@
+@media print {
+  /* Hide link's href URL in print. */
+  a[href]:after {
+    content: none !important;
+  }
+
+  *, *:before, *:after {
+    background: transparent !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+}

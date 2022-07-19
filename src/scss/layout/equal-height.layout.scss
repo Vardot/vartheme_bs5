@@ -1,0 +1,126 @@
+// Vartheme Equal height layout for bootstrap rows.
+// -----------------------------------------------------------------------------
+@import "../../../node_modules/bootstrap/scss/functions";  // Bootstrap functions.
+@import "../../../node_modules/bootstrap/scss/mixins";     // Bootstrap mixins.
+@import "../base/variables";                                 // Vartheme variables.
+// @import "../mixins";                                    // Vartheme mixins.
+@import "../../../node_modules/bootstrap/scss/_utilities"; // Bootstrap utilities.
+// -----------------------------------------------------------------------------
+
+.equal-height {
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+
+    & > div[class*='col-'] {
+      display: flex;
+      flex-direction: column;
+
+      article.node {
+        height: 100%;
+        div.main-content {
+          height: 100%;
+          div.card {
+            height: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: map-get($grid-breakpoints, "sm")) {
+  .equal-height-sm {
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+
+      & > div[class*='col-'] {
+        display: flex;
+        flex-direction: column;
+
+        article.node {
+          height: 100%;
+          div.main-content {
+            height: 100%;
+            div.card {
+              height: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: map-get($grid-breakpoints, "md")) {
+  .equal-height-md {
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+
+      & > div[class*='col-'] {
+        display: flex;
+        flex-direction: column;
+
+        article.node {
+          height: 100%;
+          div.main-content {
+            height: 100%;
+            div.card {
+              height: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: map-get($grid-breakpoints, "lg")) {
+  .equal-height-lg {
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+
+      & > div[class*='col-'] {
+        display: flex;
+        flex-direction: column;
+
+        article.node {
+          height: 100%;
+          div.main-content {
+            height: 100%;
+            div.card {
+              height: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: map-get($grid-breakpoints, "xl")) {
+  .equal-height-xl {
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+
+      & > div[class*='col-'] {
+        display: flex;
+        flex-direction: column;
+
+        article.node {
+          height: 100%;
+          div.main-content {
+            height: 100%;
+            div.card {
+              height: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
