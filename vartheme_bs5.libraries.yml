@@ -3,6 +3,10 @@ style:
   css:
     theme:
       build/css/main.style.css: {}
+    layout:
+      build/css/layout/edge2edge.layout.css: {}
+      build/css/layout/equal-height.layout.css: {}
+      build/css/layout/print.layout.css: { media: print }
   js:
     build/js/main.script.js: {}
   dependencies:

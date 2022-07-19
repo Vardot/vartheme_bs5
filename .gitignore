@@ -1,7 +1,8 @@
-# Ignore SASS files
+# Ignore SASS files.
 /.sass-cache
 .DS_Store
 *.codekit
 .idea
 node_modules
-config/proxy.js
+# TEMP: only to ease development.
+yarn.lock  

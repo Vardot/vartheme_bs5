@@ -1,9 +1,10 @@
 # Vartheme BS5
 
+Base theme for Varbase standard websites. Based on Bootstrap 5 framework using SASS, and extending Radix theme.
 
 # Installation
 
-Radix Subtheme theme uses [Webpack](https://webpack.js.org) to compile and
+Uses [Webpack](https://webpack.js.org) to compile and
 bundle SASS and JS.
 
 #### Step 1
@@ -15,11 +16,14 @@ If you prefer to use [Yarn](https://yarnpkg.com) instead of npm, install Yarn by
 following the guide [here](https://yarnpkg.com/docs/install).
 
 #### Step 2
-Go to the root of Radix Subtheme theme and run the following commands: `npm
+Go to the root of the theme and run the following commands: `npm
 install` or `yarn install`.
 
 #### Step 3
-Update `proxy` in **config/proxy.js**.
+Update `proxy` in **proxy.browsersync.js** with the following options:
+* The domain name for the project. Example: `'http://exmaple.com'`
+* Virtual domain. Example: `'http://varbase.local'`
+* Localhost with path and docroot. Example: `'http://localhost/dev/PROJECT_NAME/docroot'`
 
 #### Step 4
 Run the following command to compile Sass and watch for changes: `npm run watch`
