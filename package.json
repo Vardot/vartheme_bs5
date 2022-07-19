@@ -1,10 +1,11 @@
 {
 	"name": "vartheme_bs5",
-	"description": "My custom Radix subtheme",
+	"description": "Base theme for Varbase standard websites. Based on Bootstrap 5 framework using SASS, and extending Radix theme.",
 	"private": true,
 	"engines": {
-		"npm": ">=6.0.0",
-		"node": ">=14.0.0"
+		"npm": ">= 6.0",
+    "yarn": ">= 1.6",
+    "node": ">= 16.0"
 	},
 	"scripts": {
 		"postinstall": "find node_modules/ -name '*.info' -type f -delete",
