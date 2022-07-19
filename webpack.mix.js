@@ -7,7 +7,7 @@
  | for your application. See https://github.com/JeffreyWay/laravel-mix.
  |
  */
-const proxy = require('./proxy.proxy.browsersync.js');
+const proxy = require('./proxy.browsersync.js');
 const mix = require('laravel-mix');
 const glob = require('glob');
 require('laravel-mix-stylelint');
