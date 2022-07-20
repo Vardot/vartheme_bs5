@@ -4,6 +4,11 @@ import button from './button.twig';
 import DrupalAttribute from 'drupal-attribute';
 import { DocsPage, DocsContainer } from '@storybook/addon-docs/blocks';
 
+/**
+ * Button component controls settings.
+ */
+const buttonSettings = require('./button.settings.json');
+
 export default {
   title : 'Atoms/Button',
   component: button,
@@ -18,34 +23,24 @@ export default {
     },
   },
   argTypes: {
-    backgroundColor: {
-      control: {
-        type: "select",
-        options: [
-          'primary',
-          'secondary',
-          'success',
-          'danger',
-          'warning',
-          'info',
-          'dark',
-          'light',
-          'link',
-          'outline-primary',
-          'outline-secondary',
-          'outline-success',
-          'outline-danger',
-          'outline-warning',
-          'outline-info',
-          'outline-dark',
-          'outline-light'
-        ],
-      }
+    label: {
+      label: { control: 'text' }
     },
+    backgroundColor: {
+      control: { type: "select" },
+      options: buttonSettings.button.backgroundColor
+    },
+    size: {
+      control: { type: 'radio' },
+      options: Object.keys(buttonSettings.button.size),
+    },
+    disabled: {
+      control: { type: 'boolean' }
+    }
   },
 };
 
-const Template = (args) => button({...args});
+// const Template = (args) => button({...args});
 // export const primary = Template.bind({});
 // primary.args = {
 //   primary: true,
@@ -59,6 +54,8 @@ export const Button = (args) => {
       button_utility_classes: [],
       type: args.backgroundColor ? args.backgroundColor : 'primary',
       button_content: args.label,
+      size: args.size ? buttonSettings.button.size[args.size] : '',
+      disabled: args.disabled ? "disabled" : "",
       props: {...args},
     })
   )
