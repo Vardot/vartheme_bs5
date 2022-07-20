@@ -35,16 +35,16 @@
     {% endblock %}
   {% endembed %}
 
+  {% if page.header %}
+    <header class="page__header mb-3">
+      <div class="container">
+        {{ page.header }}
+      </div>
+    </header>
+  {% endif %}
+
   <main>
     <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
-
-    {% if page.header %}
-      <header class="page__header mb-3">
-        <div class="container">
-          {{ page.header }}
-        </div>
-      </header>
-    {% endif %}
 
     {% if page.content %}
       <div class="page__content">
