@@ -2,6 +2,7 @@
 
 import button from './button.twig';
 import DrupalAttribute from 'drupal-attribute';
+import twigCode from '!!raw-loader!./button.twig';
 import { DocsPage, DocsContainer } from '@storybook/addon-docs/blocks';
 
 /**
@@ -17,8 +18,7 @@ export default {
       container: DocsContainer,
       page: DocsPage,
       source: {
-        code: button,
-        language: "twig",
+        code: twigCode,
       },
     },
   },
