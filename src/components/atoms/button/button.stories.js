@@ -63,4 +63,7 @@ export const Button = (args) => {
 
 Button.args = {
   label: 'Button',
+  backgroundColor: 'primary',
+  size: "Default",
+  disabled: false
 };
