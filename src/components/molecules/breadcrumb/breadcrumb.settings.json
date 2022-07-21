@@ -1,0 +1,18 @@
+{
+  "breadcrumb": {
+    "data": [
+      {
+        "text": "Home",
+        "url": "#"
+      },
+      {
+        "text": "Library",
+        "url": "#"
+      },
+      {
+        "text": "Data",
+        "url": "#"
+      }
+    ]
+  }
+}
