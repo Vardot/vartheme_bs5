@@ -3,7 +3,7 @@ import alert from './alert.twig';
 import DrupalAttribute from 'drupal-attribute';
 import { DocsPage, DocsContainer } from '@storybook/addon-docs/blocks';
 
-import code_twig from '!!raw-loader!./alert.twig';
+import codeTwig from '!!raw-loader!./alert.twig';
 
 /**
  * Alert component controls settings.
@@ -18,7 +18,7 @@ export default {
       container: DocsContainer,
       page: DocsPage,
       source: {
-        code: code_twig,
+        code: codeTwig,
       },
     },
   },

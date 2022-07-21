@@ -9,7 +9,7 @@
 #}
 {% if breadcrumb %}
   <nav aria-label="breadcrumb" class="{{ utility_classes|join(' ') }}">
-    <ol class="breadcrumb">
+    <ol class="breadcrumb bg-light py-2 px-3 my-2">
       {% for item in breadcrumb %}
         <li class="breadcrumb-item {{ not item.url ? 'active' }}">
           {% if item.url %}
