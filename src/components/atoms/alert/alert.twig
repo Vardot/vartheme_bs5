@@ -18,17 +18,20 @@
   (dismissible ? 'alert-dismissible'),
 ]|merge(utility_classes ? utility_classes : []) %}
 
-<div{{ attributes.addClass(classes) }} role="alert">
-  {% if heading %}
-    <h4 class="alert-heading">{{ heading }}</h4>
-  {% endif %}
+<div class="{{ classes|join(' ') }}" role="alert">
+	{% if heading %}
+		{% include '../heading/heading.twig' with {
+      tag: 'h4',
+      heading_content: heading,
+      utility_classes: ['alert-heading']
+    } %}
+	{% endif %}
 
-  {% block content %}
-    {{ content }}
-  {% endblock %}
+	{% block content %}
+		{{ content }}
+	{% endblock %}
 
-  {% if dismissible %}
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-    </button>
-  {% endif %}
+	{% if dismissible %}
+		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	{% endif %}
 </div>
