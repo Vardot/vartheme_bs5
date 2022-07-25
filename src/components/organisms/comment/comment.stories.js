@@ -1,4 +1,4 @@
-export default { 'title': 'Organisims/Comment' };
+export default { 'title': 'Organisms/Comment' };
 
 import comment from './comment.twig';
 import img from "../../../assets/images/placeholder-image.png";

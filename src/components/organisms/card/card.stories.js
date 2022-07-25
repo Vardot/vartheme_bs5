@@ -1,4 +1,4 @@
-export default { 'title': 'Organisims/Card' };
+export default { 'title': 'Organisms/Card' };
 
 import card from './card.twig';
 import img  from "../../../assets/images/placeholder-image.png";

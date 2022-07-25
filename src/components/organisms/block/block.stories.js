@@ -1,4 +1,4 @@
-export default { title: 'Organisims/Blocks' };
+export default { title: 'Organisms/Blocks' };
 
 import block from './block.twig';
 // import block_with_image from './block-with-image.twig';
