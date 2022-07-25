@@ -46,7 +46,7 @@
           {% if item.is_expanded and item.below %}
             {{ link(item.title, item.url, { 'class': nav_link_classes|merge(['dropdown-bs-toggle']), 'data-bs-toggle': 'dropdown' }) }}
             {% if item.below %}
-              {% include '@vartheme_bs5/molecules/dropdown/dropdown-menu.twig' with {
+              {% include '@molecules/dropdown/dropdown-menu.twig' with {
                 items: item.below
               } %}
             {% endif %}
