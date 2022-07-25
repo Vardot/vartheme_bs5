@@ -1,40 +1,47 @@
-
 import alert from './alert.twig';
 import DrupalAttribute from 'drupal-attribute';
+import codeTwig from '!!raw-loader!./alert.twig';
+import alertSettings from './alert.settings.json';
 import { DocsPage, DocsContainer } from '@storybook/addon-docs/blocks';
 
-import codeTwig from '!!raw-loader!./alert.twig';
-
-/**
- * Alert component controls settings.
- */
-const alertSettings = require('./alert.settings.json');
-
 export default {
-  title : 'Atoms/Alert',
+  title : alertSettings.title,
   component: alert,
+  height: 200,
   parameters: {
     docs: {
       container: DocsContainer,
       page: DocsPage,
-      source: {
-        code: codeTwig,
-      },
+      source: {code: codeTwig},
+      description: alertSettings.description,
+      iframeHeight: alertSettings.height
     },
   },
   argTypes: {
-    type: {
+    color: {
       control: { type: "select" },
-      options: alertSettings.alert.types
+      options: alertSettings.argTypes.color.types,
+      description: alertSettings.argTypes.color.description,
+      defaultValue: {summary: "primary"},
+      table: alertSettings.argTypes.color.table,
     },
     heading: {
-      heading: { control: 'text' }
+      heading: { control: 'text' },
+      description: alertSettings.argTypes.heading.description,
+      defaultValue: {summary: "string"},
+      table: alertSettings.argTypes.heading.table,
     },
     content: {
-      content: { control: 'text' }
+      content: { control: 'text' },
+      description: alertSettings.argTypes.content.description,
+      defaultValue: {summary: "string"},
+      table: alertSettings.argTypes.content.table,
     },
     dismissible: {
-      control: { type: 'boolean' }
+      control: { type: 'boolean' },
+      description: alertSettings.argTypes.dismissible.description,
+      defaultValue: {summary: true},
+      table: alertSettings.argTypes.dismissible.table,
     }
   }
 };
@@ -44,7 +51,7 @@ export const Alert = (args) => {
     alert({
       attributes: new DrupalAttribute(),
       utility_classes: [],
-      type: args.type ? args.type : 'primary',
+      type: args.color ? args.color : 'primary',
       heading: args.heading,
       content: args.content,
       dismissible: args.dismissible,
@@ -54,8 +61,9 @@ export const Alert = (args) => {
 }
 
 Alert.args = {
-  type: 'primary',
+  color: 'primary',
   heading: 'Lorem Ipsum',
   content: 'A simple alert check it out!',
   dismissible: true
 };
+
