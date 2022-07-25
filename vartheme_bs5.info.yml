@@ -28,3 +28,8 @@ ckeditor_stylesheets:
 components:
   namespaces:
     vartheme_bs5: src/components
+    atoms: src/components/atoms
+    molecules: src/components/molecules
+    organisms: src/components/organisms
+    templates: src/components/templates
+    pages: src/components/pages
