@@ -14,7 +14,7 @@
 		"watch-poll": "mix watch -- --watch-options-poll=1000",
 		"hot": "mix watch --hot",
 		"production": "mix --production",
-		"storybook": "start-storybook"
+		"storybook": "start-storybook --port 3000"
 	},
 	"devDependencies": {
 		"browser-sync": "~2",
