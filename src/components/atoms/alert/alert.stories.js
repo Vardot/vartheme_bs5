@@ -1,47 +1,47 @@
 import alert from './alert.twig';
 import DrupalAttribute from 'drupal-attribute';
 import codeTwig from '!!raw-loader!./alert.twig';
-import alertSettings from './alert.settings.json';
+import config from "./alert.config.yml";
 import { DocsPage, DocsContainer } from '@storybook/addon-docs/blocks';
 
 export default {
-  title : alertSettings.title,
+  title : config.title,
   component: alert,
-  height: 200,
   parameters: {
+    options: { showPanel: false },
     docs: {
       container: DocsContainer,
       page: DocsPage,
       source: {code: codeTwig},
-      description: alertSettings.description,
-      iframeHeight: alertSettings.height
+      description: config.description,
+      iframeHeight: config.height
     },
   },
   argTypes: {
     color: {
       control: { type: "select" },
-      options: alertSettings.argTypes.color.types,
-      description: alertSettings.argTypes.color.description,
-      defaultValue: {summary: "primary"},
-      table: alertSettings.argTypes.color.table,
+      options: config.color.options,
+      description: config.color.description,
+      defaultValue: {summary: config.color.default},
+      table: config.color.table,
     },
     heading: {
       heading: { control: 'text' },
-      description: alertSettings.argTypes.heading.description,
-      defaultValue: {summary: "string"},
-      table: alertSettings.argTypes.heading.table,
+      description: config.heading.description,
+      defaultValue: {summary: config.heading.default},
+      table: config.heading.table,
     },
     content: {
       content: { control: 'text' },
-      description: alertSettings.argTypes.content.description,
-      defaultValue: {summary: "string"},
-      table: alertSettings.argTypes.content.table,
+      description: config.content.description,
+      defaultValue: {summary: config.content.default},
+      table: config.content.table,
     },
     dismissible: {
       control: { type: 'boolean' },
-      description: alertSettings.argTypes.dismissible.description,
-      defaultValue: {summary: true},
-      table: alertSettings.argTypes.dismissible.table,
+      description: config.dismissible.description,
+      defaultValue: {summary: config.dismissible.default},
+      table: config.dismissible.table,
     }
   }
 };
