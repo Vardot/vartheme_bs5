@@ -31,6 +31,12 @@ module.exports = ({ config }) => {
     include: path.resolve(__dirname, '../'),
   });
 
+  // YAML
+  config.module.rules.push({
+    test: /\.ya?ml$/,
+    loader: 'js-yaml-loader',
+  });
+
   // Row text loader.
   config.module.rules.push({
     test: /\.txt$/i,
