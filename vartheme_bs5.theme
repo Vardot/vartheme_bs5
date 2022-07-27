@@ -21,7 +21,6 @@ function vartheme_bs5_preprocess_html(&$variables) {
 
   // The path for Vartheme BS5 theme in variables.
   $variables['vartheme_bs5_path'] = \Drupal::request()->getBaseUrl() . '/' . \Drupal::service('extension.list.theme')->getPath('vartheme_bs5');
-
 }
 
 /**
@@ -62,12 +61,11 @@ function vartheme_bs5_theme_registry_alter(&$theme_registry) {
     'page__user__password' => 'page--user--password',
     'page__user__reset' => 'page--user--reset',
   ];
-  
+
   // Change the location for the Better Login pages.
   foreach ($pages as $key => $template) {
     $theme_registry[$key]['path'] = $vartheme_bs5_path . '/templates/betterlogin';
   }
-
 }
 
 /**
@@ -102,5 +100,15 @@ function vartheme_bs5_preprocess_login_with(&$variables) {
         $variables['social_networks'][$social_network_index]['img_path'] = $social_network_img_path_in_vartheme;
       }
     }
+  }
+}
+
+/**
+ * Implements hook_preprocess_region().
+ */
+function vartheme_bs5_preprocess_region(&$variables) {
+  $isFront = \Drupal::service('path.matcher')->isFrontPage();
+  if ($isFront && $variables["region"] === "header") {
+    $variables["is_front"] = $isFront;
   }
 }
