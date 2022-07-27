@@ -1,0 +1,45 @@
+{#
+/**
+ * @file
+ * Template for Navbar brand component.
+ *
+ * Available config:
+ * - text: the text to use for the brand.
+ * - path: the path for the link. Leave blank for no link.
+ * - image_path: the path for the logo image.
+ * - image:
+ *   - src: The source of the image
+ *   - width: The width of the image
+ *   - height: The height of the image
+ *   - alt: The alternative text of the image
+ * - utility_classes: An array of utility classes.
+ */
+#}
+
+{# Import navbar_brand itself #}
+{% import _self as navbar_brand %}
+
+{# Declare a function called image that return an image tag with all its attributes #}
+{% macro image(src, width, height, alt) %}
+  <img src="{{ src }}" height="{{ height }}" width="{{ width }}" alt="{{ alt|default('') }}" class="me-2" />
+{% endmacro %}
+
+{% set utility_classes = utility_classes|join(' ') %}
+
+{% if path %}
+  <a href="{{ path }}" class="navbar-brand d-flex align-items-center {{ utility_classes }}" aria-label="{{ text }}">
+    {% if image_path %}
+      {# Call image function that declared above #}
+      {{ navbar_brand.image(image_path, width, height, alt) }}
+    {% endif %}
+    {{ text }}
+  </a>
+{% else %}
+  <span class="navbar-brand h1 mb-0 {{ utility_classes }}" aria-label="{{ text }}">
+    {% if image_path %}
+      {# Call image function that declared above #}
+      {{ navbar_brand.image(image_path, width, height, alt) }}
+    {% endif %}
+    {{ text }}
+  </span>
+{% endif %}
