@@ -4,23 +4,35 @@
  * Template for a button component.
  *
  * Available config:
- * - type: primary | secondary | success | danger | warning | info | light | dark
+ * - color: primary | secondary | success | danger | warning | info | dark | light | link
  * - outline: true | false
- * - tag: button, a, input
- * - value: string
+ * - content: string
+ * - size: btn-sm | btn-md
  * - attributes: Attributes array.
+ * - utility_classes: An array of utility classes.
  */
 #}
 
-{% set button_classes = [
+{% set button_color = '' %}
+
+{% if outline == true %}
+  {% set button_color = 'btn-outline-' ~ color %}
+{% else %}
+  {% set button_color = 'btn-' ~ color %}
+{% endif %}
+
+{% set size = size ? size : '' %}
+{% set disabled = disabled ? 'disabled' : '' %}
+
+{% set classes = [
   'btn',
-  (type ? 'btn-' ~ type),
+  button_color,
   size,
   disabled,
-]|merge(button_utility_classes) %}
+]|merge(utility_classes) %}
 
-<button{{ attributes.addClass(button_classes) }}>
-  {% block button_content %}
-    {{ button_content }}
+<button {{ attributes.addClass(classes) }}>
+  {% block content %}
+    {{ content }}
   {% endblock %}
 </button>

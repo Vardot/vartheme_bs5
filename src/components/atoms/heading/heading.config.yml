@@ -1,0 +1,22 @@
+title: "Atoms/Heading"
+description:
+  component: "All HTML headings, `<h1>` through `<h6>`, are available."
+## Content settings.
+content:
+  description: string
+  default: 'Button'
+  table:
+    category: fields
+## HTML header settings
+tag:
+  description: HTML header tag
+  table:
+    category: settings
+  default: h1
+  options:
+    H1: h1
+    H2: h2
+    H3: h3
+    H4: h4
+    H5: h5
+    H6: h6

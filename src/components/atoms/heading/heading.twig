@@ -1,6 +1,19 @@
+{#
+/**
+ * @file
+ * Template for a heading component.
+ *
+ * Available config:
+ * - tag : h1 | h2 | h3 | h4 | h5 | h6
+ * - content: string
+ * - attributes: Attributes array.
+ * - utility_classes: An array of utility classes.
+ */
+#}
+
 {% set tag = tag ?? 'h1' %}
 {% set utility_classes =  utility_classes ?? [] %}
 
 {% if tag %}
-  <{{ tag }} {{ attributes.addClass(utility_classes|join(' ')) }}>{{ heading_content }}</{{ tag }}>
+  <{{ tag }} {{ attributes.addClass(utility_classes|join(' ')) }}>{{ content }}</{{ tag }}>
 {% endif %}

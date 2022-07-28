@@ -1,38 +1,42 @@
+import config from "./badge.config.yml";
 import badge from './badge.twig';
 import twigCode from '!!raw-loader!./badge.twig';
-import badgeSettings from "./badge.settings.json";
 import { DocsPage, DocsContainer } from '@storybook/addon-docs/blocks';
 
 export default {
-  title: 'Atoms/Badge',
+  title : config.title,
   component: badge,
   parameters: {
+    options: { showPanel: false },
     docs: {
       container: DocsContainer,
       page: DocsPage,
-      source: {
-        code: twigCode,
-      },
+      source: {code: twigCode},
+      description: config.description,
+      iframeHeight: config.height
     },
   },
   argTypes: {
-    label: {
-      label: { control: 'text' }
-    },
-    backgroundColor: {
+    color: {
       control: { type: "select" },
-      options: badgeSettings.badge.backgroundColor
-    }
+      options: config.color.options,
+      description: config.color.description,
+      defaultValue: {summary: config.color.default},
+      table: config.color.table,
+    },
+    content: {
+      content: { control: 'text' }
+    },
   }
 };
 
 export const Badge = (args) => (
   badge({
-    html_tag: "span",
-    color: "white",
-    bg: args.backgroundColor ? args.backgroundColor : 'secondary',
-    content: args.label,
+    attributes: new DrupalAttribute(),
     utility_classes: [],
+    tag: "span",
+    background_color: args.color ? args.color : 'text-bg-secondary',
+    content: args.content,
     url: "",
     props: {...args},
   })
@@ -40,5 +44,5 @@ export const Badge = (args) => (
 
 Badge.args = {
   label: "Badge",
-  backgroundColor: "secondary"
+  color: "text-bg-secondary"
 };
