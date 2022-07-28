@@ -1,0 +1,38 @@
+title: "Molecules/Alert"
+description:
+  component: "Provide contextual feedback messages for typical user actions with the handful of available and flexible alert messages."
+## Canvas height.
+height: 150
+## Alert type settings.
+type:
+  description: Bootstrap class
+  table:
+    category: settings
+  default: alert-primary
+  options:
+    'Primary': 'alert-primary'
+    'Secondary': 'alert-secondary'
+    'Success': 'alert-success'
+    'Info': 'alert-info'
+    'Warning': 'alert-warning'
+    'Danger': 'alert-danger'
+    'Light': 'alert-light'
+    'Dark': 'alert-dark'
+## Dismissable button settings
+dismissible:
+  description: boolean
+  table:
+    category: settings
+  default: true
+## Alert Heading tag settings.
+heading:
+  description: string
+  table:
+    category: fields
+  default: string
+## Alert Content settings.
+content:
+  description: string
+  table:
+    category: fields
+  default: string

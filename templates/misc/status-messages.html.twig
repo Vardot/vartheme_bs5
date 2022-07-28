@@ -5,15 +5,19 @@
  */
 #}
 {% set types = {
-  status: 'success',
-  warning: 'warning',
-  error: 'danger',
-  info: 'info',
+  status: 'alert-success',
+  warning: 'alert-warning',
+  error: 'alert-danger',
+  info: 'alert-info',
+  primary: 'alert-primary',
+  secondary: 'alert-secondary',
+  light: 'alert-light',
+  dark: 'alert-dark'
 } %}
 
 {% for type, messages in message_list %}
 	<div role="region" aria-label="{{ status_headings[type] }}" {{ attributes|without('role', 'aria-label') }}>
-		{% embed '@atoms/alert/alert.twig' with {
+		{% embed '@molecules/alert/alert.twig' with {
       type: types[type],
     } %}
 			{% block content %}

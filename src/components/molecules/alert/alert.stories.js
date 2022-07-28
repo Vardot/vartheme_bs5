@@ -1,29 +1,34 @@
-import alert from './alert.twig';
-import DrupalAttribute from 'drupal-attribute';
-import codeTwig from '!!raw-loader!./alert.twig';
 import config from "./alert.config.yml";
+import alert from './alert.twig';
+import twigCode from '!!raw-loader!./alert.twig';
+import DrupalAttribute from 'drupal-attribute';
 import { DocsPage, DocsContainer } from '@storybook/addon-docs/blocks';
 
 export default {
   title : config.title,
   component: alert,
   parameters: {
-    options: { showPanel: false },
     docs: {
       container: DocsContainer,
       page: DocsPage,
-      source: {code: codeTwig},
+      source: {code: twigCode},
       description: config.description,
       iframeHeight: config.height
     },
   },
   argTypes: {
-    color: {
+    type: {
       control: { type: "select" },
-      options: config.color.options,
-      description: config.color.description,
-      defaultValue: {summary: config.color.default},
-      table: config.color.table,
+      options: config.type.options,
+      description: config.type.description,
+      defaultValue: {summary: config.type.default},
+      table: config.type.table,
+    },
+    dismissible: {
+      control: { type: 'boolean' },
+      description: config.dismissible.description,
+      defaultValue: {summary: config.dismissible.default},
+      table: config.dismissible.table,
     },
     heading: {
       heading: { control: 'text' },
@@ -36,12 +41,6 @@ export default {
       description: config.content.description,
       defaultValue: {summary: config.content.default},
       table: config.content.table,
-    },
-    dismissible: {
-      control: { type: 'boolean' },
-      description: config.dismissible.description,
-      defaultValue: {summary: config.dismissible.default},
-      table: config.dismissible.table,
     }
   }
 };
@@ -51,19 +50,18 @@ export const Alert = (args) => {
     alert({
       attributes: new DrupalAttribute(),
       utility_classes: [],
-      type: args.color ? args.color : 'primary',
+      type: args.type,
+      dismissible: args.dismissible,
       heading: args.heading,
       content: args.content,
-      dismissible: args.dismissible,
       props: {...args},
     })
   )
 }
 
 Alert.args = {
-  color: 'primary',
+  type: 'alert-primary',
+  dismissible: true,
   heading: 'Lorem Ipsum',
-  content: 'A simple alert check it out!',
-  dismissible: true
+  content: 'A simple alert check it out!'
 };
-
