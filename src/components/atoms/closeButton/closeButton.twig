@@ -1,0 +1,23 @@
+{#
+/**
+ * @file
+ * Template for a button component.
+ *
+ * Available config:
+ * - size: btn-sm | btn-md | btn-lg
+ * - attributes: Attributes array.
+ * - utility_classes: An array of utility classes.
+ */
+#}
+
+
+{% set size = size ? size : '' %}
+{% set disabled = disabled ? 'disabled' : '' %}
+
+{% set classes = [
+  'btn',
+  'btn-close',
+  size,
+]|merge(utility_classes) %}
+
+<button type="button" {{ attributes.addClass(classes) }} aria-label="Close"></button>
