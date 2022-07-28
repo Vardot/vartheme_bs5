@@ -9,9 +9,9 @@
 } %}
 
 	{% block content %}
-		{% include '@organisms/navbar/navbar-brand.twig' with {
+		{% include '@molecules/navbar-brand/navbar-brand.twig' with {
     text: site_name,
-    image: site_logo,
+    image_path: site_logo,
     height: 'auto',
     path: path('<front>'),
     alt: elements.content.site_name['#markup'] ~ ' logo' ,

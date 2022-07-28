@@ -2,7 +2,10 @@
 /**
  * @file
  * Template for the main page.
+ * Available config:
+ *  - is_front: true | false -> to determine if page is front or not
  */
+
 #}
 <div class="page">
   {% embed '@organisms/navbar/navbar.twig' with {
@@ -36,7 +39,7 @@
   {% endembed %}
 
   {% if page.header %}
-    <header class="page__header mb-3">
+    <header class="page__header {{ is_front ? '' : 'pb-3' }}">
       <div class="container">
         {{ page.header }}
       </div>

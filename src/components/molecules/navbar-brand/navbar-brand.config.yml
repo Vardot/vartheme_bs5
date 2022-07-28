@@ -1,0 +1,21 @@
+title: 'Molecules/NavbarBrand'
+description:
+  component: "Navbar Branding is a logo image and it's a part of Navbar"
+## Navbar Brand text
+text:
+  value: ''
+  description: 'Brand text'
+  default: 'string'
+## The path that Navbar Brand will go to if it's clicked.
+path:
+  value: '/'
+  description: 'Brand link path'
+  default: 'string'
+width:
+  value: 'auto'
+  description: 'Brand Width (auto | number)'
+  default: 'auto'
+height:
+  value: 'auto'
+  description: 'Brand height (auto | number)'
+  default: 'auto'
