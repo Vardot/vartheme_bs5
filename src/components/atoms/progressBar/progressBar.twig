@@ -1,0 +1,34 @@
+{#
+/**
+ * @file
+ * Template for a Progress Bar component.
+ *
+
+ * Available config:
+ * - color: [bg-primary | bg-secondary | bg-success | bg-info | bg-warning | bg-danger |
+            bg-light' | bg-dark | bg-black | bg-white | bg-body | bg-transparent |
+            bg-opacity-10 | bg-opacity-25 | bg-opacity-50 | bg-opacity-75 |
+            bg-opacity-100 | bg-gradient] Use background utility classes to change the
+            appearance of individual progress bars.
+ * - striped: [true | false] Add .progress-bar-striped to any .progress-bar to
+              apply a stripe via CSS gradient over the background color.
+ * - animated: [true | false] The striped gradient can also be animated.
+               Add .progress-bar-animated to .progress-bar to animate
+               the stripes right to left via CSS3 animations.
+ * - label: The label of the working task.
+ * - percent: [1 to 100] The percentage of the progress.
+ * - message: A string containing information to be displayed.
+ */
+#}
+
+{% set color = color ? color : '' %}
+{% set striped = striped ? ' progress-bar-striped' : '' %}
+{% set animated = animated ? ' progress-bar-animated' : '' %}
+
+{% if label %}
+  <label class="progress-bar-label">{{ label }}</label>
+{% endif %}
+<div class="progress" data-drupal-progress>
+  <div class="progress-bar {{ color }}{{ striped }}{{ animated }}" role="progressbar" aria-valuenow="{{ percent }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ percent }}%">{{ percent }}%</div>
+</div>
+<small class="form-text text-muted progress-bar-message">{{ message }}</small>

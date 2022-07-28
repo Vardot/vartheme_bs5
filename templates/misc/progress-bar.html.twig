@@ -1,0 +1,32 @@
+{#
+/**
+ * @file
+ * Theme override for a progress bar.
+ *
+ * Note that the core Batch API uses this only for non-JavaScript batch jobs.
+ *
+ * Available variables:
+ * - color: [bg-primary | bg-secondary | bg-success | bg-info | bg-warning | bg-danger |
+            bg-light' | bg-dark | bg-black | bg-white | bg-body | bg-transparent |
+            bg-opacity-10 | bg-opacity-25 | bg-opacity-50 | bg-opacity-75 |
+            bg-opacity-100 | bg-gradient] Use background utility classes to change the
+            appearance of individual progress bars.
+ * - striped: [true | false] Add .progress-bar-striped to any .progress-bar to
+              apply a stripe via CSS gradient over the background color.
+ * - animated: [true | false] The striped gradient can also be animated.
+               Add .progress-bar-animated to .progress-bar to animate
+               the stripes right to left via CSS3 animations.
+ * - label: The label of the working task.
+ * - percent: [1 to 100] The percentage of the progress.
+ * - message: A string containing information to be displayed.
+ */
+#}
+
+{% include '@atoms/progressBar/progressBar.twig' with {
+  color: '',
+  striped: true,
+  animated: true,
+  label: label,
+  percent: percent,
+  message: message
+} %}

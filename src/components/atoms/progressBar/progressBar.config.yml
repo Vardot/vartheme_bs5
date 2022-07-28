@@ -1,0 +1,60 @@
+title: "Atoms/ProgressBar"
+description:
+  component: "Documentation and examples for using Bootstrap custom progress bars featuring support for stacked bars, animated backgrounds, and text labels."
+## Canvas height
+height: 150
+## Color settings
+color:
+  description: 'Use background utility classes to change the appearance of individual progress bars.'
+  table:
+    category: settings
+  default: ''
+  options:
+    'Primary': 'bg-primary'
+    'Secondary': 'bg-secondary'
+    'Success': 'bg-success'
+    'Info': 'bg-info'
+    'Warning': 'bg-warning'
+    'Danger': 'bg-danger'
+    'Light': 'bg-light'
+    'Dark': 'bg-dark'
+    'Black': 'bg-black'
+    'White': 'bg-white'
+    'Body': 'bg-body'
+    'Transparent': 'bg-transparent'
+    'Opacity 10%': 'bg-opacity-10'
+    'Opacity 25%': 'bg-opacity-25'
+    'Opacity 50%': 'bg-opacity-50'
+    'Opacity 75%': 'bg-opacity-75'
+    'Opacity 100%': 'bg-opacity-100'
+    'Gradient': 'bg-gradient'
+## Striped progress bar settings
+striped:
+  description: 'Add `.progress-bar-striped` to any `.progress-bar` to apply a stripe via CSS gradient over the background color.'
+  default: false
+  table:
+    category: settings
+## Animated stripes settings
+animated:
+  description: 'The striped gradient can also be animated. Add `.progress-bar-animated` to `.progress-bar` to animate the stripes right to left via CSS3 animations.'
+  default: false
+  table:
+    category: settings
+## Label settings.
+label:
+  description: 'Add labels to your progress bars by placing text within the `.progress-bar`.'
+  default: 'Progress Bar label'
+  table:
+    category: fields
+## Percent settings.
+percent:
+  description: 'The percentage of the progress.'
+  default: 74
+  table:
+    category: fields
+## Message settings.
+message:
+  description: 'A string containing information to be displayed.'
+  default: 'Progress Bar message'
+  table:
+    category: fields
