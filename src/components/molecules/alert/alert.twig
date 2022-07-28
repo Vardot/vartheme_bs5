@@ -15,7 +15,7 @@
 {% set classes = [
   'alert',
   (type ?? 'alert-primary'),
-  (dismissible ?? 'alert-dismissible'),
+  (dismissible ? 'alert-dismissible' : ''),
 ]|merge(utility_classes ? utility_classes : []) %}
 
 <div{{attributes.addClass(classes)}} role="alert">
