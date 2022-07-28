@@ -1,5 +1,5 @@
 import navbar from './navbar.twig';
-import codeTwig from '!!raw-loader!./navbar.twig';
+import twigCode from '!!raw-loader!./navbar.twig';
 import DrupalAttribute from 'drupal-attribute';
 import { DocsPage, DocsContainer } from '@storybook/addon-docs/blocks';
 
@@ -16,7 +16,7 @@ export default {
       container: DocsContainer,
       page: DocsPage,
       source: {
-        code: codeTwig,
+        code: twigCode,
       },
     },
   },

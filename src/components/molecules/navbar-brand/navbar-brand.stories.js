@@ -1,5 +1,5 @@
 import navbar_brand from './navbar-brand.twig';
-import codeTwig from '!!raw-loader!./navbar-brand.twig';
+import twigCode from '!!raw-loader!./navbar-brand.twig';
 import config from "./navbar-brand.config.yml";
 import { DocsPage, DocsContainer } from '@storybook/addon-docs/blocks';
 import logo from "../../../assets/images/logo.svg";
@@ -12,7 +12,7 @@ export default {
       container: DocsContainer,
       page: DocsPage,
       source: {
-        code: codeTwig,
+        code: twigCode,
       },
       description: config.description,
     },
