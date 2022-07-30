@@ -10,26 +10,12 @@
  * @see template_preprocess_input()
   * for checkboxes and radio buttons.
   * - utility_classes: An array of utility classes.
-  * - disabled: to make input enabled | disabled.
-  * - readonly: to make input not writable (readonly)
-  * - placeholder: adding placeholder text to the input field
+  * - form_control: A class 'form-control' related to input type.
  */
 #}
 
-{% set size = size ?? '' %}
-{% set disabled = disabled ?? '' %}
-{% set placeholder = placeholder ?? '' %}
-{% set classes = [
-  'form-control',
-  size,
-] %}
+{% set form_control = form_control ? ['form-control'] : [] %}
+{% set utility_classes = utility_classes ? utility_classes : [] %}
+{% set classes = []|merge(form_control)|merge(utility_classes) %}
 
-{% if placeholder %}
-  <input
-    {{ attributes.addClass(classes).setAttribute('placeholder', placeholder) }}
-    {{ disabled }}
-    />{{ children }}
-{% else %}
-    <input
-    {{ attributes.addClass(classes) }} {{ disabled }} />{{ children }}
-{% endif %}
+<input{{ attributes.addClass(classes) }} />{{ children }}

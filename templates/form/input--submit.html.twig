@@ -10,8 +10,8 @@
  * @see template_preprocess_input()
  */
 #}
-{% include '@organisms/form/input.twig' with {
+{% include '@organisms/form/input/input.twig' with {
   attributes: attributes.removeClass('button'),
-  remove_form_control: true,
+  form_control: false,
   utility_classes: ['btn', 'btn-primary']
 } %}
