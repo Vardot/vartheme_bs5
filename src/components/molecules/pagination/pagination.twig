@@ -5,7 +5,7 @@
  *
  * Available config:
  * - utility_classes: An array of utility classes.
- * - size: sm, md, lg
+ * - size: sm, lg
  * - alignment: left | right | center | vertical.
  */
  */
@@ -65,7 +65,7 @@
       {% if items.current and (items.previous or items.next) %}
         <li class="page-item disabled">
           <span class="page-link">
-            {% trans %}Page {{ items.current }}{% endtrans %}
+            {{ 'Page' ~ items.current |t }}
           </span>
         </li>
       {% endif %}

@@ -19,6 +19,7 @@ module.exports = ({ config }) => {
               pages: path.resolve(__dirname, '../', 'src/components/pages'),
             },
           },
+          autoescape: true,
         },
       },
     ],
