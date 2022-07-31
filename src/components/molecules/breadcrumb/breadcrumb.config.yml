@@ -1,0 +1,13 @@
+title: 'Molecules/Breadcrumb'
+description:
+  component: 'Indicate the current location within a navigational hierarchy that automatically adds separators via CSS.'
+## Canvas height
+height: 150
+## Breadcrumb demo data.
+data:
+- text: Home
+  url: "#"
+- text: Library
+  url: "#"
+- text: Data
+  url: "#"
