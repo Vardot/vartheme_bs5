@@ -3,12 +3,6 @@ description:
   component: "A generic close button for dismissing content like modals and alerts."
 ## Canvas height
 height: 150
-## Outline button settings
-outline:
-  description: boolean
-  default: false
-  table:
-    category: settings
 ## Size settings
 size:
   description: Bootstrap class
