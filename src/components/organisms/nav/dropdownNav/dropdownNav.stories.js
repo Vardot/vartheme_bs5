@@ -1,6 +1,6 @@
-import config from './nav.config.yml';
-import nav from './nav.twig';
-import twigCode from '!!raw-loader!./nav.twig';
+import config from './dropdownNav.config.yml';
+import nav from '../nav.twig';
+import twigCode from '!!raw-loader!../nav.twig';
 import DrupalAttribute from 'drupal-attribute';
 import { DocsPage, DocsContainer } from '@storybook/addon-docs/blocks';
 
@@ -28,7 +28,7 @@ export default {
   },
 };
 
-export const Nav = (args) => {
+export const DropdownNav = (args) => {
   return (
     nav({
       attributes: new DrupalAttribute(),
@@ -39,6 +39,6 @@ export const Nav = (args) => {
   )
 }
 
-Nav.args = {
+DropdownNav.args = {
   alignment: ''
 };
