@@ -1,0 +1,80 @@
+title: "Molecules/Pagination"
+description:
+  component: "Documentation and examples for showing pagination to indicate a series of related content exists across multiple pages."
+## Canvas height
+height: 150
+## Size settings
+size:
+  description: 'Fancy larger or smaller pagination? Add `.pagination-lg` or `.pagination-sm` for additional sizes.'
+  table:
+    category: settings
+  default: ''
+  options:
+    Default: ''
+    Small: sm
+    Large: lg
+## Alignment settings
+alignment:
+  description: 'Change the alignment of pagination components with flexbox utilities. For example, with `.justify-content-center`'
+  table:
+    category: settings
+  default: ''
+  options:
+    Default: ''
+    Left: left
+    Right: right
+    Center: center
+    Vertical: vertical
+## Pagination demo data.
+data:
+  items:
+    first:
+    -
+      text: '« First'
+      href: '#'
+      attributes:
+      -
+        title: 'First'
+        href: '#'
+    previous:
+    - 
+      text: '‹ Previous'
+      href: '#'
+      attributes:
+      -
+        title: 'Previous'
+        href: '#'
+    pages:
+    -
+      text: '1'
+      href: '#'
+    -
+      text: '2'
+      href: '#'
+    -
+      text: '3'
+      href: '#'
+    -
+      text: '4'
+      href: '#'
+    -
+      text: '5'
+      href: '#'
+    next:
+    - 
+      text: 'Next ›'
+      href: '#'
+      attributes:
+      -
+        title: 'Next'
+        href: '#'
+    last:
+    - 
+      text: 'Last »'
+      href: '#'
+      attributes:
+      -
+        title: 'Last'
+        href: '#'
+  ellipses:
+    previous: true
