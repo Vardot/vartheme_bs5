@@ -28,13 +28,16 @@
 {% set nav_classes = [ 'nav', style, alignment, fill]|merge(utility_classes ? utility_classes : []) %}
 
 {% if items %}
-  <ul{{ attributes.addClass(nav_classes) }}>
+  <ul class="{{ nav_classes|join(' ') }}">
     {% block items %}
       {% for item in items %}
+        {% set in_active_trail = item.in_active_trail ? 'active' : '' %}
+        {% set is_expanded = item.is_expanded ? item.is_expanded : false %}
+        {% set below = item.below ? item.below : false %}
         {% set nav_item_classes = [
           'nav-item',
-          item.in_active_trail ? 'active',
-          item.is_expanded and item.below ? 'dropdown'
+          in_active_trail,
+          is_expanded and below ? 'dropdown' : ''
         ] %}
         {% set nav_link_classes = ['nav-link'] %}
         {% if item.url.options.attributes.class is iterable %}
@@ -42,7 +45,7 @@
         {% elseif item.url.options.attributes.class %}
           {% set nav_link_classes = nav_link_classes|merge([item.url.options.attributes.class]) %}
         {% endif %}
-        <li{{ item.attributes.addClass(nav_item_classes) }}>
+        <li{{ attributes.addClass(nav_item_classes) }}>
           {% if item.is_expanded and item.below %}
             {{ link(item.title, item.url, { 'class': nav_link_classes|merge(['dropdown-bs-toggle']), 'data-bs-toggle': 'dropdown' }) }}
             {% if item.below %}
