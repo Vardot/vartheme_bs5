@@ -59,12 +59,11 @@
   </main>
 
   {% if page.footer %}
-    <footer class="page__footer">
-      <div class="container">
-        <div class="d-flex justify-content-md-between align-items-md-center">
-          {{ page.footer }}
-        </div>
-      </div>
-    </footer>
+
+    {% embed "@organisms/footer/footer.twig" with {
+      content: page.footer
+    } %}
+
+    {% endembed %}
   {% endif %}
 </div>
