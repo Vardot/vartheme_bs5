@@ -4,6 +4,7 @@
  * Template for Navbar component.
  *
  * Available config:
+ * - attributes: Drupal attributes.
  * - container: fixed | fluid.
  * - placement: default | fixed-top | fixed-bottom | sticky-top
  * - color: light | dark
@@ -21,8 +22,16 @@
 {% set placement = placement ?? '' %}
 {% set color = color ?? 'light' %}
 {% set navbar_expand = navbar_expand ?? 'lg' %}
+{% set classes = [
+  'navbar',
+  'navbar-expand-' ~ navbar_expand,
+  'justify-content-between',
+  'navbar-' ~ color,
+  'bg-' ~ color,
+  placement
+]|merge(utility_classes) %}
 
-<nav class="navbar navbar-expand-{{ navbar_expand }} justify-content-between navbar-{{ color }} {{ placement }} {{ utility_classes|join(' ') }}">
+<nav{{attributes.addClass(classes)}}>
   {% if container %}
     <div class="{{ container }}">
   {% endif %}

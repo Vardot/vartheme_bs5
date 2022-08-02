@@ -33,8 +33,8 @@
       {% for item in items %}
         {% set nav_item_classes = [
           'nav-item',
-          item.in_active_trail ? 'active',
-          item.is_expanded and item.below ? 'dropdown'
+          item.in_active_trail ? 'active' : '',
+          item.is_expanded and item.below ? 'dropdown' : ''
         ] %}
         {% set nav_link_classes = ['nav-link'] %}
         {% if item.url.options.attributes.class is iterable %}
@@ -42,11 +42,11 @@
         {% elseif item.url.options.attributes.class %}
           {% set nav_link_classes = nav_link_classes|merge([item.url.options.attributes.class]) %}
         {% endif %}
-        <li{{ item.attributes.addClass(nav_item_classes) }}>
+        <li class="{{ nav_item_classes|join(' ') }}">
           {% if item.is_expanded and item.below %}
-            {{ link(item.title, item.url, { 'class': nav_link_classes|merge(['dropdown-bs-toggle']), 'data-bs-toggle': 'dropdown' }) }}
+            <a href="{{ item.url }}" class="{{ nav_link_classes|merge(['dropdown-toggle'])|join(' ') }}" data-bs-toggle="dropdown">{{ item.title }}</a>
             {% if item.below %}
-              {% include '@molecules/dropdown/dropdown-menu.twig' with {
+              {% include '@vartheme_bs5/molecules/dropdown/dropdown-menu.twig' with {
                 items: item.below
               } %}
             {% endif %}
@@ -58,4 +58,3 @@
     {% endblock %}
   </ul>
 {% endif %}
-

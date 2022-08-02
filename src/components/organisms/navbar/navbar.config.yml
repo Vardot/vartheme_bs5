@@ -1,0 +1,44 @@
+title: 'Organisms/Navbar'
+description:
+  component: 'Navbar component description'
+## Canvas height
+height: 150
+## Container settings
+container:
+  description: Bootstrap class
+  table:
+    category: settings
+  default: 'fixed'
+  options:
+    'Fixed': 'fixed'
+    'Fluid': 'fluid'
+## Placement settings
+color:
+  description: Bootstrap class
+  table:
+    category: settings
+  default: 'light'
+  options:
+    'Light': 'light'
+    'Dark': 'dark'
+placement:
+  description: Bootstrap class
+  table:
+    category: settings
+  default: 'sticky-top'
+  options:
+    'Default': 'default'
+    'Fixed top': 'fixed-top'
+    'Fixed bottom': 'fixed-bottom'
+    'Sticky top': 'sticky-top'
+## Expand settings
+navbar_expand:
+  description: Bootstrap class
+  table:
+    category: settings
+  default: 'lg'
+  options:
+    'sm': 'sm'
+    'md': 'md'
+    'lg': 'lg'
+    'xl': 'xl'
