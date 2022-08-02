@@ -1,0 +1,59 @@
+{#
+/**
+ * @file
+ * Template for a Hero Slider components.
+ *
+ * Available config:
+ * - id : hero slider id
+ * - controls: true | false
+ * - indicators: true | false
+ * - attributes: Attributes array.
+ * - utility_classes: An array of utility classes.
+ */
+#}
+
+{% set classes = [
+  'carousel',
+  'slide',
+]|merge(utility_classes) %}
+
+<div id="{{ id }}" {{ attributes.addClass(classes) }} data-bs-ride="true">
+
+  {% if indicators == true %}
+  <div class="carousel-indicators">
+    {% for key, item in items %}
+      <button type="button" data-bs-target="#{{ id }}" data-bs-slide-to="{{ key }}" class="{{ (key == 0) ? 'active' }}" aria-label="{{ item.indicator_label }}" aria-current="{{ (key == 0) ? 'true' }}"></button>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  {% if items %}
+    <div class="carousel-inner">
+      {% for key, item in items %}
+        <div class="carousel-item {{ (key == 0) ? 'active' }}">
+          {% if item.caption %}
+            {{ item.slide }}
+          {% endif %}
+
+          {% if item.caption %}
+            <div class="carousel-caption d-none d-md-block">
+              {{ item.caption }}
+              {{ item.text }}
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  {% if controls == true %}
+    <button class="carousel-control-prev" type="button" data-bs-target="#{{ id }}" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">{{ 'Previous'|t }}</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#{{ id }}" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">{{ 'Next'|t }}</span>
+    </button>
+  {% endif %}
+</div>
