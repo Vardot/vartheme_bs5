@@ -1,21 +1,18 @@
+{#
+/**
+ * @file
+ * Template for a Footer component.
+ *
+#}
 
-{% set container = 'container' %}
-{% set row = container ? 'row' : '' %}
-
-<footer class="page-footer bg-light border-top py-3 mt-auto w-100 ">
-  {% if container %}
-    <div class="container">
-      <div class="{{ row }}">
-        <div class="col-12">
-  {% endif %}
-
-  <div class="footer-top d-flex justify-content-md-between align-items-md-center">
-    {{ content }}
-  </div>
-
-  {% if container %}
+<footer class="page-footer bg-light py-3 mt-auto w-100 ">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="footer-top d-flex justify-content-md-between align-items-md-center">
+          {{ content }}
         </div>
       </div>
     </div>
-  {% endif %}
+  </div>
 </footer>
