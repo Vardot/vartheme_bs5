@@ -12,8 +12,8 @@
 {% set id = id ? 'block--' ~ id|replace({"_": "-"})|clean_class : "" %}
 {% set classes = ['block', bundle, id] %}
 
-{% if html_tag %}
-  <{{ html_tag }} class="{{ classes|join(' ') }}">
+{% if tag %}
+  <{{ tag }} class="{{ classes|join(' ') }}">
 {% endif %}
 
   {{ title_prefix }}
@@ -28,6 +28,6 @@
     {{ content }}
   {% endblock %}
 
-{% if html_tag %}
-  </{{ html_tag }}>
+{% if tag %}
+  </{{ tag }}>
 {% endif %}

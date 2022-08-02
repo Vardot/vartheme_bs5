@@ -1,0 +1,47 @@
+title: "Organisms/Blocks"
+description:
+  component: "Block component description"
+## Canvas height
+height: 150
+## ID settings
+id:
+  description: 'id'
+  table:
+    category: 'settings'
+  default: ''
+## Bundle settings
+bundle:
+  description: 'bundle'
+  table:
+    category: 'settings'
+  default: ''
+## HTML tag settings
+tag:
+  description: 'html tag'
+  table:
+    category: 'fields'
+  default: 'div'
+## Title prefix settings
+title_prefix:
+  description: 'string'
+  table:
+    category: 'fields'
+  default: ''
+## Title suffix settings
+title_suffix:
+  description: 'string'
+  table:
+    category: 'fields'
+  default: ''
+## Label settings
+label:
+  description: 'string'
+  table:
+    category: 'fields'
+  default: ''
+## Content settings
+content:
+  description: 'string'
+  table:
+    category: 'fields'
+  default: ''
