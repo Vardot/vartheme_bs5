@@ -1,0 +1,53 @@
+title: "Atoms/Spinner"
+description:
+  component: "Indicate the loading state of a component or page with Bootstrap spinners, built entirely with HTML, CSS, and no JavaScript."
+## Canvas height
+height: 150
+## HTML Tag settings
+tag:
+  description: 'Select div or span'
+  table:
+    category: settings
+  default: 'div'
+  options:
+    'div': 'div'
+    'span': 'span'
+## Type settings
+type:
+  description: 'Use the border spinners for a lightweight loading indicator. If you do not fancy a border spinner, switch to the grow spinner. While it does not technically spin, it does repeatedly grow!'
+  table:
+    category: settings
+  default: spinner-border
+  options:
+    'Border spinner': 'spinner-border'
+    'Growing spinner': 'spinner-grow'
+## Color settings
+color:
+  description: 'Once again, this spinner is built with currentColor, so you can easily change its appearance with text color utilities. Here it is in blue, along with the supported variants.'
+  table:
+    category: settings
+  default: text-primary
+  options:
+    'Primary': 'text-primary'
+    'Secondary': 'text-secondary'
+    'Success': 'text-success'
+    'Danger': 'text-danger'
+    'Warning': 'text-warning'
+    'Info': 'text-info'
+    'Dark': 'text-dark'
+    'Light': 'text-light'
+## Size settings
+size:
+  description: 'Add `.spinner-border-sm` and `.spinner-grow-sm` to make a smaller spinner that can quickly be used within other components.'
+  table:
+    category: settings
+  default: ''
+  options:
+    Default: ''
+    Small: sm
+## Content settings.
+content:
+  description: string
+  default: 'Loading...'
+  table:
+    category: fields
