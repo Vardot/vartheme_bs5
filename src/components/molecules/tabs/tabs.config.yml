@@ -1,0 +1,32 @@
+title: "Molecules/Tabs"
+description:
+  component: "Tabs component description"
+## Canvas height.
+height: 150
+## Shape of Tabs
+shape:
+  description: 'class'
+  table:
+    category: 'settings'
+  default: ''
+  options:
+    'Default': 'tabs'
+    'Pills': 'pills'
+## Tabs items settings:
+tabs:
+  tab1:
+    title: 'Tab 1'
+    id: 'tab-1-id'
+    target: 'tab-1-target'
+    body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi rhoncus sollicitudin fermentum. Sed lobortis, felis non bibendum tristique, orci nisl porttitor libero, eget feugiat nulla eros ac felis. Praesent ac lobortis risus, sed luctus turpis. Curabitur sed ex ex. Praesent vitae tempus nunc. Donec facilisis diam vitae ipsum sodales, a efficitur sapien maximus. Vivamus pulvinar mauris sed lorem vulputate, in dignissim odio laoreet. Sed et libero eu magna blandit venenatis eu sit amet risus. Morbi non elit dui. Donec est risus, molestie ut urna id, luctus venenatis elit. Phasellus cursus nulla felis, ac maximus lacus semper a.'
+    is_active: true
+  tab2:
+    title: 'Tab 2'
+    id: 'tab-2-id'
+    target: 'tab-2-target'
+    body: 'Maecenas bibendum nulla odio, vel vulputate sem fermentum vel. Vestibulum non sodales diam, at cursus tortor. Quisque nulla tellus, molestie non velit eget, blandit sagittis mauris. Nam eleifend nunc nec tristique porttitor. Sed cursus ex justo, eu viverra lacus fermentum vel. Sed dictum urna eu ex consectetur sagittis. Nullam bibendum turpis sit amet mauris tristique sodales. Mauris fringilla pretium tincidunt. Vivamus condimentum, orci eu pellentesque luctus, justo eros varius metus, id consequat augue velit eget odio. Nam risus turpis, rhoncus at aliquet at, lobortis a nunc. Etiam vel lectus ut sem dapibus tristique ac at lorem. Praesent ornare euismod est.'
+  tab3:
+    title: 'Tab 3'
+    id: 'tab-3-id'
+    target: 'tab-3-target'
+    body: 'Sed cursus metus a libero commodo, vitae lacinia arcu aliquam. Nulla facilisi. Vivamus blandit massa turpis, id venenatis risus laoreet eget. Sed et condimentum diam. Duis tristique viverra pulvinar. Nunc congue lectus in porttitor auctor. Proin rutrum eu velit eu semper. Duis turpis quam, fermentum sit amet turpis ultrices, bibendum viverra leo. In nulla quam, commodo non mi ac, viverra euismod mauris. Mauris ut pharetra velit. Ut aliquet volutpat tortor eget tristique. Donec nec tempus erat, a vestibulum velit. Fusce ante tellus, euismod at risus maximus, dignissim placerat mauris. Aenean dapibus nulla odio, non fermentum sapien lobortis eu. Aenean et mi vitae nunc bibendum semper in sed leo. In in sem condimentum, rutrum quam tincidunt, ultrices velit.'

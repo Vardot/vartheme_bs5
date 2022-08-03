@@ -1,0 +1,46 @@
+{#
+/**
+ * @file
+ * Template for the Tabs component.
+ *
+ * Available config:
+ * - tabs_id: Tabs container id.
+ * - items: Tabs items.
+ * - item:
+ *    - title: Tab item title
+ *    - body: Tab item body
+ *    - id: Tab item unique ID.
+ *    - target: Tab item unique related target (item body element).
+ *    - is_active: to check which item is active by default
+ * - shape: The shape of tabs (tabs | pills).
+ * - tabs_block_classes: A list of classes for tab container.
+ * - tab_pane_classes: A list of classes for tab body.
+ */
+#}
+
+{% set tabs_block_classes = ['nav', 'nav-' ~ shape ] %}
+
+{% if items %}
+  <ul {{ attributes.addClass(tabs_block_classes) }} id="{{ tabs_id }}" role="tablist">
+      {% for item in items %}
+        {% set tab_button_classes = [
+          'nav-link',
+          item.is_active ? 'active' : ''
+        ] %}
+        <li class="nav-item" role="presentation">
+          <button class="{{ tab_button_classes|join(' ') }}" id="{{ item.id }}" data-bs-toggle="tab" data-bs-target="{{ '#' ~ item.target }}" type="button" role="tab" aria-controls="{{ item.target }}" aria-selected="true">{{ item.title }}</button>
+        </li>
+      {% endfor %}
+  </ul>
+  <div class="tab-content mt-3" id="nav-tabContent">
+    {% for item in items %}
+      {% set tab_pane_classes = [
+        'tab-pane',
+        'fade',
+        item.is_active ? 'show' : '',
+        item.is_active ? 'active' : '',
+      ] %}
+      <div class="{{ tab_pane_classes|join(' ') }}" id="{{ item.target }}" role="tabpanel" aria-labelledby="{{ item.id }}" tabindex="{{ loop.index }}">{{ item.body }}</div>
+    {% endfor %}
+  </div>
+{% endif %}
