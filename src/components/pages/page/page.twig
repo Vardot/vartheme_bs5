@@ -5,9 +5,8 @@
  * Available config:
  *  - is_front: true | false -> to determine if page is front or not
  */
-
 #}
-<div class="page">
+<div class="page d-flex flex-column">
   {% embed '@organisms/navbar/navbar.twig' with {
     placement: 'sticky-top',
     container: 'fixed',
@@ -31,9 +30,9 @@
 
     {% block right %}
       {% if page.navbar_right %}
-	<div class="ms-auto">
-	  {{ page.navbar_right }}
-	</div>
+        <div class="ms-auto">
+          {{ page.navbar_right }}
+        </div>
       {% endif %}
     {% endblock %}
   {% endembed %}
