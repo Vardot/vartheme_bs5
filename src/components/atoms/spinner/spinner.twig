@@ -1,0 +1,26 @@
+{#
+/**
+ * @file
+ * Template for a Spinner component.
+ *
+ * Available config:
+ * - tag: div | span
+ * - type: spinner-border | spinner-grow
+ * - color: text-primary | text-secondary | text-success | text-danger | text-warning | text-info | text-dark | text-light
+ * - size: sm
+ * - attributes: Attributes array.
+ * - utility_classes: An array of utility classes.
+ */
+#}
+
+{% set classes = [
+  type ? type : 'spinner-border',
+  color ? color : '',
+  size ? type ~ '-' ~ size : '',
+]|merge(utility_classes ? utility_classes : []) %}
+
+<{{ tag }} {{ attributes.addClass(classes) }} role="status">
+  {% if content %}
+    <span class="visually-hidden">{{ content }}</span>
+  {% endif %}
+</{{ tag }}>
