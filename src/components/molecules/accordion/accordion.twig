@@ -1,0 +1,28 @@
+{#
+/**
+ * @file
+ * Template for the Accordion component.
+ *
+ * Available config:
+ * - accordion_id: An ID of the whole accordion block
+ * - heading_id: An ID of accordion header
+ * - collapse_id: An ID of collapse div part
+ * - heading: Accordion item heading field text
+ * - body: Accordion item body field text
+ */
+#}
+
+<div class="accordion" id="{{ accordion_id }}">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="{{ heading_id }}">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="{{ '#' ~ collapse_id }}" aria-expanded="true" aria-controls="collapseOne">
+        {{ heading }}
+      </button>
+    </h2>
+    <div id="{{ collapse_id }}" class="accordion-collapse collapse show" aria-labelledby="{{ heading_id }}" data-bs-parent="{{ '#' ~ accordion_id }}">
+      <div class="accordion-body">
+        <p>{{ body }}</p>
+      </div>
+    </div>
+  </div>
+</div>

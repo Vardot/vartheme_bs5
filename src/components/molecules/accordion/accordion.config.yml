@@ -1,0 +1,17 @@
+title: "Molecules/Accordion"
+description:
+  component: "Build vertically collapsing accordions in combination with our Collapse JavaScript plugin."
+## Canvas height.
+height: 150
+## Accordion Title settings.
+heading:
+  description: 'string'
+  table:
+    category: 'fields'
+  default: 'string'
+## Accordion body settings.
+body:
+  description: 'string'
+  table:
+    category: 'fields'
+  default: 'string'
