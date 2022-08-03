@@ -8,4 +8,4 @@ import twigDrupal from 'twig-drupal-filters';
 
 twigDrupal(Twig);
 
-configure(require.context('../src/components', true, /\.stories\.js$/), module);
+configure(require.context('../src/components', true, /\.stories|.story\.js$/), module);
