@@ -1,0 +1,62 @@
+{#
+/**
+ * @file
+ * Template for the main page.
+ * Available config:
+ *  - is_front: true | false -> to determine if page is front or not
+ */
+#}
+<div class="page d-flex flex-column">
+  {% embed '@organisms/navbar/navbar.twig' with {
+    placement: 'sticky-top',
+    container: 'fixed',
+    color: 'light',
+    utility_classes: ['bg-light'],
+  } %}
+
+    {% block branding %}
+      {% if page.navbar_branding %}
+        {{ page.navbar_branding }}
+      {% endif %}
+    {% endblock %}
+
+    {% block left %}
+      {% if page.navbar_left %}
+        <div class="me-auto">
+          {{ page.navbar_left }}
+        </div>
+      {% endif %}
+    {% endblock %}
+
+    {% block right %}
+      {% if page.navbar_right %}
+        <div class="ms-auto">
+          {{ page.navbar_right }}
+        </div>
+      {% endif %}
+    {% endblock %}
+  {% endembed %}
+
+  <main>
+    <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
+
+    {% if page.content %}
+      <div class="row  justify-content-center">
+        <div id="auth-box" class="col-10 col-sm-6">
+          <div id="middle-part">
+            {{ page.content }}
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  </main>
+
+  {% if page.footer %}
+
+    {% embed "@organisms/footer/footer.twig" with {
+      content: page.footer
+    } %}
+
+    {% endembed %}
+  {% endif %}
+</div>

@@ -1,0 +1,87 @@
+{#
+/**
+ * @file
+ * Template for the main page.
+ * Available config:
+ *  - is_front: true | false -> to determine if page is front or not
+ */
+#}
+<div class="page d-flex flex-column">
+  {% embed '@organisms/navbar/navbar.twig' with {
+    placement: 'sticky-top',
+    container: 'fixed',
+    color: 'light',
+    utility_classes: ['bg-light'],
+  } %}
+
+    {% block branding %}
+      {% if page.navbar_branding %}
+        {{ page.navbar_branding }}
+      {% endif %}
+    {% endblock %}
+
+    {% block left %}
+      {% if page.navbar_left %}
+        <div class="me-auto">
+          {{ page.navbar_left }}
+        </div>
+      {% endif %}
+    {% endblock %}
+
+    {% block right %}
+      {% if page.navbar_right %}
+        <div class="ms-auto">
+          {{ page.navbar_right }}
+        </div>
+      {% endif %}
+    {% endblock %}
+  {% endembed %}
+
+  <main>
+    <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
+
+    <div role="main" class="main-container {{ container }}">
+      <div class="row justify-content-center">
+        <div id="auth-box" class="login col-10 col-lg-4 col-xl-3"> 
+          <div id="top-part">
+
+          </div>
+          <div id="middle-part">
+            {{ page.header|without('vartheme_bs5_local_tasks', 'vartheme_bs5_breadcrumbs', 'vartheme_bs5_local_actions', 'vartheme_bs5_page_title') }}
+            {% if (varbase.we_do_have_enabled_social_auth_modules.value) and (page.content.vartheme_bs5_socialauthlogin) %}
+              <h2 class="block-title"><span> {{ "Login with"|t }} </span></h2>
+              {{ page.content.vartheme_bs5_socialauthlogin }}
+              <h2 class="block-title"><span> {{ "or"|t }} </span></h2>
+              {{ page.content|without('vartheme_bs5_socialauthlogin') }}
+            {% else %}
+              <h2 class="block-title"><span> {{ title }} </span></h2>
+              {{ page.content }}
+            {% endif %}
+          </div>
+          <div id="bottom-part">
+            <div class="password-link">
+              <a href="{{ path('user.pass') }}"><i class="fas fa-sign-in-alt" aria-hidden="true"></i> {{ 'Forgot your password?'|t }}</a>
+            </div>
+          {% if not logged_in and not user_settings_register_admin_only %}
+            <div class="register-link">
+              <a href="{{ path('user.register') }}"><i class="fas fa-user" aria-hidden="true"></i> {{ 'Register a new account'|t }}</a>
+            </div>
+          {% endif %}
+            <div class="back-link">
+              <a href="{{ url('<front>') }}"><i class="fas fa-home" aria-hidden="true"></i> {{ 'Back to'|t }}  {{ site_name }}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  {% if page.footer %}
+
+    {% embed "@organisms/footer/footer.twig" with {
+      content: page.footer
+    } %}
+
+    {% endembed %}
+  {% endif %}
+</div>
