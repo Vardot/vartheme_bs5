@@ -1,0 +1,11 @@
+<div class="cta-block py-2 px-3 {{ cta_width }} {{ 'bg-' ~ bg_color }} {{ 'text-' ~ cta_color }} {{ 'rounded-' ~ border_radius }}">
+  <{{ title_tag }} class="cta-heading mb-2">{{ heading }}</{{ title_tag }}>
+  <div class="cta-body mb-2">{{ content }}</div>
+  {% embed "@atoms/button/button.twig" with {
+    attributes: attributes,
+    content: button_content,
+    color: button_color,
+    utility_classes: ['mb-2']
+  } %}
+  {% endembed %}
+</div>
