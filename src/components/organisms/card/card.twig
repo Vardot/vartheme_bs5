@@ -14,15 +14,20 @@
 #}
 
 <div class="card" style="width:{{ width }}">
-  <img src="{{ img_src }}" class="card-img-top" alt="...">
-  <div class="card-body">
-    {% block title %}
-      <h5 class="card-title">{{ title }}</h5>
-    {% endblock %}
+  {% if image %}
+    <img src="{{ img_src }}" class="card-img-top" alt="...">
+  {% endif %}
 
-    {% block body %}
+  <div class="card-body">
+    {% if card_title %}
+      <h5 class="card-title">{{ card_title }}</h5>
+    {% endif %}
+
+    {% if body %}
       <p class="card-text">{{ body }}</p>
-    {% endblock %}
+    {% endif %}
+
+
 
     {% block link %}
       <a href="{{ link_url }}" class="btn btn-primary">{{ link_text }}</a>

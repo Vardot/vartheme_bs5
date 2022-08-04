@@ -1,0 +1,23 @@
+title: "Organisms/Card"
+description:
+  component: "Card component description"
+## Canvas height.
+height: 250
+## Image settings
+image:
+  description: boolean
+  default: true
+  table:
+    category: settings
+## Title settings
+card_title:
+  description: string
+  default: 'string'
+  table:
+    category: fields
+## Body settings
+card_body:
+  description: string
+  default: 'string'
+  table:
+    category: fields
