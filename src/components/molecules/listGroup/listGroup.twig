@@ -1,0 +1,34 @@
+{#
+/**
+ * @file
+ * Template for a List Group component.
+ *
+ * Available config:
+ * - items: List group items
+ * - tag: List group html tag: ul | ol
+ * - flush: List group settings: true | false
+ * - horizontal: List group settings: true | false
+ * - list_classes: Set of classes for a list container
+ * - item_classes: Set of classes for a list items.
+ */
+#}
+
+{% set list_classes = [
+  'list-group',
+  (tag == 'ol') ? 'list-group-numbered' : '',
+  (flush) ? 'list-group-flush' : '',
+  (horizontal) ? 'list-group-horizontal' : '',
+] %}
+
+{% if items %}
+  <{{ tag }} class="{{ list_classes|join(' ') }}">
+    {% for item in items %}
+      {% set item_classes = [
+        'list-group-item',
+        'list-group-item-' ~ items_bg_color,
+        item.is_active ? 'active' : ''
+      ] %}
+      <li class="{{ item_classes|join(' ') }}">{{ item.text }}</li>
+    {% endfor %}
+  </{{ tag }}>
+{% endif %}
