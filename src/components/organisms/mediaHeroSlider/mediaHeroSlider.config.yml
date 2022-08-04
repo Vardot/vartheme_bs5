@@ -1,0 +1,270 @@
+title: "Organisms/MediaHeroSlider"
+description:
+  component: "A slideshow component for cycling through elements—images or slides of text—like a carousel."
+accessibility:
+  description: 'Enables tabbing and arrow key navigation. Unless autoplay: true, sets browser focus to current slide (or first of current slide set, if multiple slidesToShow) after slide change. For full a11y compliance enable focusOnChange in addition to this.'
+  default: true
+  table:
+    category: settings
+adaptiveHeight:
+  description: 'Adapts slider height to the current slide'
+  default: false
+  table:
+    category: settings
+appendArrows:
+  description: 'Change where the navigation arrows are attached (Selector, htmlString, Array, Element, jQuery object)'
+  default: '$(element)'
+  table:
+    category: settings
+appendDots:
+  description: 'Change where the navigation dots are attached (Selector, htmlString, Array, Element, jQuery object)'
+  default: '$(element)'
+  table:
+    category: settings
+arrows:
+  description: 'Enable Next/Prev arrows'
+  default: true
+  table:
+    category: settings
+asNavFor:
+  description: 'Enables syncing of multiple sliders'
+  default: ''
+  table:
+    category: settings
+autoplay:
+  description: 'Enables auto play of slides'
+  default: true
+  table:
+    category: settings
+autoplaySpeed:
+  description: 'Auto play change interval'
+  default: 5000
+  table:
+    category: settings
+centerMode:
+  description: 'Enables centered view with partial prev/next slides. Use with odd numbered slidesToShow counts.'
+  default: false
+  table:
+    category: settings
+centerPadding:
+  description: 'Side padding when in center mode. (px or %)'
+  default: '50px'
+  table:
+    category: settings
+cssEase:
+  description: 'CSS3 easing'
+  default: 'ease'
+  table:
+    category: settings
+customPaging:
+  description: 'Custom paging templates. See source for use example.'
+  default: ''
+  table:
+    category: settings
+dots:
+  description: 'Current slide indicator dots'
+  default: false
+  table:
+    category: settings
+dotsClass:
+  description: 'Class for slide indicator dots container'
+  default: 'slick-dots'
+  table:
+    category: settings
+draggable:
+  description: 'Enables desktop dragging'
+  default: false
+  table:
+    category: settings
+easing:
+  description: 'animate() fallback easing'
+  default: 'linear'
+  table:
+    category: settings
+edgeFriction:
+  description: 'Resistance when swiping edges of non-infinite carousels'
+  default: 0.35
+  table:
+    category: settings
+fade:
+  description: 'Enables fade'
+  default: true
+  table:
+    category: settings
+focusOnSelect:
+  description: 'Enable focus on selected element (click)'
+  default: false
+  table:
+    category: settings
+focusOnChange:
+  description: 'Puts focus on slide after change'
+  default: false
+  table:
+    category: settings
+infinite:
+  description: 'Infinite looping'
+  default: true
+  table:
+    category: settings
+initialSlide:
+  description: 'Slide to start on'
+  default: 0
+  table:
+    category: settings
+lazyLoad:
+  description: 'Accepts `ondemand` or `progressive` for lazy load technique. `ondemand` will load the image as soon as you slide to it, `progressive` loads one image after the other when the page loads.'
+  default: 'ondemand'
+  table:
+    category: settings
+  options:
+    "On demand": "ondemand"
+    "Progressive": "progressive"
+mobileFirst:
+  description: 'Responsive settings use mobile first calculation'
+  default: true
+  table:
+    category: settings
+nextArrow:
+  description: 'Allows you to select a node or customize the HTML for the "Next" arrow.'
+  default: '<button type="button" data-role="none" class="slick-next" aria-label="Next" tabindex="0" role="button">Next</button>'
+  table:
+    category: settings
+pauseOnDotsHover:
+  description: 'Pauses autoplay when a dot is hovered'
+  default: false
+  table:
+    category: settings
+pauseOnFocus:
+  description: 'Pauses autoplay when slider is focussed'
+  default: true
+  table:
+    category: settings
+pauseOnHover:
+  description: 'Pauses autoplay on hover'
+  default: true
+  table:
+    category: settings
+prevArrow:
+  description: 'Allows you to select a node or customize the HTML for the "Previous" arrow.'
+  default: '<button type="button" data-role="none" class="slick-prev" aria-label="Previous" tabindex="0" role="button">Previous</button>'
+  table:
+    category: settings
+respondTo:
+  description: Width that responsive object responds to. Can be 'window', 'slider' or 'min' (the smaller of the two).
+  default: 'window'
+  table:
+    category: settings
+responsive:
+  description: 'Array of objects containing breakpoints and settings objects (see example). Enables settings at given breakpoint. Set settings to "unslick" instead of an object to disable slick at a given breakpoint.'
+  default: null
+  table:
+    category: settings
+rows:
+  description: 'Setting this to more than 1 initializes grid mode. Use slidesPerRow to set how many slides should be in each row.'
+  default: 1
+  table:
+    category: settings
+rtl:
+  description: 'Change the direction to become right-to-left'
+  default: false
+  table:
+    category: settings
+slide:
+  description: 'Slide element query'
+  default: ''
+  table:
+    category: settings
+slidesPerRow:
+  description: 'With grid mode initialized via the rows option, this sets how many slides are in each grid row.'
+  default: 1
+  table:
+    category: settings
+slidesToScroll:
+  description: '# of slides to scroll at a time'
+  default: 1
+  table:
+    category: settings
+slidesToShow:
+  description: '# of slides to show at a time'
+  default: 1
+  table:
+    category: settings
+speed:
+  description: 'Transition speed'
+  default: 500
+  table:
+    category: settings
+swipe:
+  description: 'Enables touch swipe'
+  default: true
+  table:
+    category: settings
+swipeToSlide:
+  description: 'Swipe to slide irrespective of slidesToScroll'
+  default: true
+  table:
+    category: settings
+touchMove:
+  description: 'Enables slide moving with touch'
+  default: true
+  table:
+    category: settings
+touchThreshold:
+  description: 'To advance slides, the user must swipe a length of (1/touchThreshold) * the width of the slider.'
+  default: 5
+  table:
+    category: settings
+useCSS:
+  description: 'Enable/Disable CSS Transitions'
+  default: true
+  table:
+    category: settings
+useTransform:
+  description: 'Enable/Disable CSS Transforms'
+  default: true
+  table:
+    category: settings
+variableWidth:
+  description: 'Disables automatic slide width calculation'
+  default: false
+  table:
+    category: settings
+vertical:
+  description: 'Vertical slide direction'
+  default: false
+  table:
+    category: settings
+verticalSwiping:
+  description: 'Changes swipe direction to vertical'
+  default: false
+  table:
+    category: settings
+waitForAnimate:
+  description: 'Ignores requests to advance the slide while animating'
+  default: true
+  table:
+    category: settings
+zIndex:
+  description: 'Set the zIndex values for slides, useful for IE9 and lower'
+  default: 1000
+  table:
+    category: settings
+## Pagination demo data.
+data:
+  id : 'hero-slider-example'
+  items:
+  - 
+    indicator_label: 'Slide 1'
+    slide: '<svg class="view-empty bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="1400" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: First slide" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="41%" y="50%" fill="#555" style="font-size: 3.5rem">First slide</text></svg>'
+    caption: '<h5>First slide label</h5>'
+    text: '<p>Some representative placeholder content for the first slide.</p>'
+  - 
+    indicator_label: 'Slide 2'
+    slide: '<svg class="view-empty bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="1400" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Second slide" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#666"></rect><text x="41%" y="50%" fill="#444" style="font-size: 3.5rem">Second slide</text></svg>'
+    caption: '<h5>Second slide label</h5>'
+    text: '<p>Some representative placeholder content for the second slide.</p>'
+  - 
+    indicator_label: 'Third 3'
+    slide: '<svg class="view-empty bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="1400" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Third slide" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#555"></rect><text x="41%" y="50%" fill="#333" style="font-size: 3.5rem">Third slide</text></svg>'
+    caption: '<h5>Third slide label</h5>'
+    text: '<p>Some representative placeholder content for the third slide.</p>'
