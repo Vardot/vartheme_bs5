@@ -4,7 +4,7 @@ description:
 ## Canvas height
 height: 150
 ## Show button settings:
-show_button:
+button_label:
   description: string
   default: 'string'
   table:

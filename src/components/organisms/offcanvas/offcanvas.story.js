@@ -18,11 +18,11 @@ export default {
     },
   },
   argTypes: {
-    show_button: {
+    button_label: {
       content: { control: 'text' },
-      description: config.show_button.description,
-      defaultValue: {summary: config.show_button.default},
-      table: config.show_button.table,
+      description: config.button_label.description,
+      defaultValue: {summary: config.button_label.default},
+      table: config.button_label.table,
     },
     offcanvas_title: {
       content: { control: 'text' },
@@ -42,8 +42,10 @@ export default {
 export const Offcanvas = (args) => {
   return (
     offcanvas({
-      attributes: new DrupalAttribute(),
-      show_button: args.show_button ? args.show_button : '',
+      main_button_attributes: new DrupalAttribute(),
+      close_button_attributes: new DrupalAttribute(),
+      dropdown_button_attributes: new DrupalAttribute(),
+      button_label: args.show_button ? args.show_button : '',
       dropdown: config.dropdown,
       offcanvas_title: args.offcanvas_title ? args.offcanvas_title : '',
       offcanvas_body: args.offcanvas_body ? args.offcanvas_body : '',
@@ -56,5 +58,5 @@ export const Offcanvas = (args) => {
 Offcanvas.args = {
   offcanvas_title: 'Offcanvas',
   offcanvas_body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed imperdiet ex vitae eros malesuada pharetra. Praesent magna nibh, molestie ac suscipit non, convallis quis risus. Phasellus eu elit pharetra, mollis metus et, aliquet purus. In ultricies nisi orci, eu dignissim ex dignissim vitae. Nam sagittis nibh purus, quis feugiat enim tincidunt eget. Phasellus quis ante sapien. Curabitur eget varius metus.',
-  show_button: 'Click'
+  button_label: 'Click'
 };
