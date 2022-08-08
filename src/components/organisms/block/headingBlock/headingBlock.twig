@@ -1,0 +1,18 @@
+{%
+  set classes = [
+    'block',
+    'heading-block'
+  ]
+%}
+
+{% if heading_size %}
+  {% set heading_tag = heading_size['#items'].getString() %}
+{% endif %}
+
+<div{{ attributes.addClass(classes) }}>
+  {{ title_prefix }}
+  {% if label %}
+    <{{ heading_tag }}>{{ label }}</{{ heading_tag }}>
+  {% endif %}
+  {{ title_suffix }}
+</div>

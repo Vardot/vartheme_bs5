@@ -1,0 +1,24 @@
+title: "Organisms/Blocks"
+description:
+  component: "Heading block component description."
+## Canvas height
+height: 150
+## Heading tag settings
+heading_tag:
+  description: 'HTML tag'
+  table:
+    category: 'settings'
+  default: 'h2'
+  options:
+    'H1': 'h1'
+    'H2': 'h2'
+    'H3': 'h3'
+    'H4': 'h4'
+    'H5': 'h5'
+    'H6': 'h6'
+## Heading settings.
+label:
+  description: string
+  default: 'string'
+  table:
+    category: fields
