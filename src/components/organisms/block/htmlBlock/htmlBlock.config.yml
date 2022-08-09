@@ -1,0 +1,17 @@
+title: "Organisms/Blocks"
+description:
+  component: "HTML code block component description."
+## Canvas height
+height: 250
+## Label settings.
+label:
+  description: string
+  default: 'string'
+  table:
+    category: fields
+## Body settings.
+body:
+  description: string
+  default: string
+  table:
+    category: fields
