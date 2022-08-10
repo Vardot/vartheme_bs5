@@ -20,18 +20,26 @@ export default {
     },
   },
   argTypes: {
+    allow_title: {
+      control: { type: 'boolean' },
+      description: config.allow_title.description,
+      defaultValue: {summary: config.allow_title.default},
+      table: config.allow_title.table,
+    },
     title_tag: {
       control: { type: 'select' },
       options: config.title_tag.options,
       description: config.title_tag.description,
       defaultValue: {summary: config.title_tag.default},
       table: config.title_tag.table,
+      if: { arg: 'allow_title' }
     },
     block_title: {
       content: { control: 'text' },
       description: config.block_title.description,
       defaultValue: {summary: config.block_title.default},
       table: config.block_title.table,
+      if: { arg: 'allow_title' }
     },
     link: {
       control: { type: 'boolean' },
@@ -84,6 +92,7 @@ export const ImageBlock = (args, imageArgs) => {
 }
 
 ImageBlock.args = {
+  allow_title: true,
   title_tag: 'h2',
   block_title: 'Image block title',
   link: false,

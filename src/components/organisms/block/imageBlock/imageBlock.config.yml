@@ -3,6 +3,12 @@ description:
   component: 'Image block component description.'
 ## Canvas height
 height: 150
+## Allow title settings
+allow_title:
+  description: 'boolean'
+  default: false
+  table:
+    category: 'settings'
 ## Image block title tag settings
 title_tag:
   description: 'string'
