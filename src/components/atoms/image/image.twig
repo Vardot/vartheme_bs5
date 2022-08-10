@@ -9,11 +9,12 @@
  * - responsive: true|false
  */
 #}
+
+{% set responsive = responsive ? 'img-fluid' : 'img-thumbnail' %}
+{% set align = align ?? '' %}
 {% set classes = [
-  responsive ? 'img-fluid' : 'img-thumbnail',
-  align == 'left' ? 'float-start',
-  align == 'right' ? 'float-end',
-  align == 'center' ? 'mx-auto d-block',
+  responsive,
+  align
 ]|merge(utility_classes ? utility_classes : []) %}
 
-<img{{ attributes.addClass(classes) }} />
+<img{{ attributes.setAttribute('src', src).addClass(classes) }} />
