@@ -1,5 +1,4 @@
-import { checkDocumentIsReady } from '../../../../helpers';
-import { removeElementOnClick } from '../../../../helpers';
+import { checkDocumentIsReady, removeElementOnClick } from '../../../../helpers';
 
 checkDocumentIsReady(() => {
   removeElementOnClick('thumb_wrapper', 'thumb_wrapper');
