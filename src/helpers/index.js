@@ -1,3 +1,3 @@
 export * from './checkDocumentIsReady';
-export * from './remoteVideoStringParser';
+export * from './remoteYoutubeVideoStringParser';
 export * from './removeElementOnClick';

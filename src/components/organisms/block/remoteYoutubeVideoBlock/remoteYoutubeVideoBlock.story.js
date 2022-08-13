@@ -3,7 +3,7 @@ import remoteYoutubeVideoBlock from './remoteYoutubeVideoBlock.twig';
 import twigCode from '!!raw-loader!./remoteYoutubeVideoBlock.twig';
 import DrupalAttribute from 'drupal-attribute';
 import { DocsPage, DocsContainer } from '@storybook/addon-docs/blocks';
-import { remoteVideoStringParser } from '../../../../helpers';
+import { remoteYoutubeVideoStringParser } from '../../../../helpers';
 import thumb from '../../../../assets/images/placeholder-image.png';
 import './remoteYoutubeVideoBlock.js';
 import './remoteYoutubeVideoBlock.css';
@@ -82,11 +82,10 @@ export const RemoteYoutubeVideoBlock = (args) => {
       title_attributes: new DrupalAttribute(),
       title_tag: args.title_tag ? args.title_tag : 'h2',
       title: args.block_title ? args.block_title : '',
-      iframe_src: remoteVideoStringParser(args.video_src),
+      iframe_src: remoteYoutubeVideoStringParser(args.video_src),
       media_width: args.media_width || '600',
       media_height: args.media_height || '400',
       thumb_src: thumb,
-      // play_image: playImg,
       ...args
     })
   )
