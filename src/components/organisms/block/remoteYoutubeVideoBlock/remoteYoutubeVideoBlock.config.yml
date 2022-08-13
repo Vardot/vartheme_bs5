@@ -1,0 +1,54 @@
+title: "Organisms/Blocks/RemoteYoutubeVideoBlock"
+description:
+  component: "Remote video block component description."
+## Canvas height
+height: 150
+## Allow title settings
+allow_title:
+  description: 'boolean'
+  default: false
+  table:
+    category: 'settings'
+## Image block title tag settings
+title_tag:
+  description: 'string'
+  default: 'h2'
+  table:
+    category: 'settings'
+  options:
+    'H1': 'h1'
+    'H2': 'h2'
+    'H3': 'h3'
+    'H4': 'h4'
+    'H5': 'h5'
+    'H6': 'h6'
+## Image block title settings
+block_title:
+  description: 'string'
+  default: 'string'
+  table:
+    category: 'fields'
+## Allow thumbnail settings
+allow_thumb:
+  description: 'boolean'
+  default: false
+  table:
+    category: 'settings'
+## Video source settings
+video_src:
+  description: 'string'
+  default: ''
+  table:
+    category: 'settings'
+## Video source settings
+media_width:
+  description: 'string'
+  default: ''
+  table:
+    category: 'settings'
+## Video source settings
+media_height:
+  description: 'string'
+  default: ''
+  table:
+    category: 'settings'

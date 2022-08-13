@@ -1,0 +1,37 @@
+{% set classes = [
+  'block',
+  'varbase-remote-youtube-video-block'
+] %}
+
+<div {{ attributes.addClass(classes) }}>
+  {% if title %}
+    {% include "@atoms/heading/heading.twig" with {
+      attributes: title_attributes,
+      tag: title_tag,
+      content: title,
+      utility_classes: []
+    } %}
+  {% endif %}
+
+
+  <div class="remote-video-media-wrapper">
+    <div class="iframe-wrapper">
+      <iframe
+        width="{{ media_width }}"
+        height="{{ media_height }}"
+        src="{{ iframe_src }}"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
+
+    {% if allow_thumb %}
+      <div id="thumb_wrapper" class="thumb-wrapper">
+        <img id="img" src="{{ thumb_src }}" width="{{ media_width }}" height="{{ media_height }}" />
+      </div>
+    {% endif %}
+  </div>
+
+</div>
