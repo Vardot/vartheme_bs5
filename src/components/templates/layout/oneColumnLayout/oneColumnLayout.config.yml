@@ -1,0 +1,23 @@
+title: "Layouts/One Column Layout"
+description:
+  component: "One column layout component."
+## Canvas height
+height: 350
+## row settings
+row:
+  description: boolean
+  default: false
+  table:
+    category: fields
+## Column settings
+container:
+  description: boolean
+  default: false
+  table:
+    category: fields
+## Content settings.
+content:
+  description: string
+  default: 'string'
+  table:
+    category: fields
