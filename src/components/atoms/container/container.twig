@@ -1,0 +1,7 @@
+{% if container %}
+  <div class="{{ utility_classes|join(' ') }}">
+    {% block children %}
+      {{ children }}
+    {% endblock %}
+  </div>
+{% endif %}
