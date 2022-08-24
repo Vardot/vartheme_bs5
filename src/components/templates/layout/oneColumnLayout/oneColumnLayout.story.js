@@ -68,5 +68,5 @@ OneColumnLayout.args = {
   row: true,
   container: true,
   columnSize: 'col-12',
-  columnContent: 'Column one content',
+  columnContent: 'Column content',
 };
