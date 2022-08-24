@@ -1,0 +1,53 @@
+title: "Templates/Two Columns Layout"
+description:
+  component: "Two column layout component."
+## Canvas height
+height: 350
+## row settings
+row:
+  description: boolean
+  default: false
+  table:
+    category: fields
+## Column settings
+container:
+  description: boolean
+  default: false
+  table:
+    category: fields
+## Column 1 content settings.
+column_1_content:
+  description: string
+  default: 'string'
+  table:
+    category: fields
+## Column 2 content settings.
+column_2_content:
+  description: string
+  default: 'string'
+  table:
+    category: fields
+## Column 1 size
+column_1:
+  description: Bootstrap column class
+  table:
+    category: settings
+  default: 'col-6'
+  options:
+    '25%': 'col-3'
+    '33%': 'col-4'
+    '50%': 'col-6'
+    '67%': 'col-8'
+    '75%': 'col-9'
+## Column 2 size
+column_2:
+  description: Bootstrap column class
+  table:
+    category: settings
+  default: 'col-6'
+  options:
+    '25%': 'col-3'
+    '33%': 'col-4'
+    '50%': 'col-6'
+    '67%': 'col-8'
+    '75%': 'col-9'
