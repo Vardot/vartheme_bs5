@@ -1,0 +1,34 @@
+{% set container_classes = container ? container_classes|merge([container]) : [''] %}
+{% set row_classes = row ? row_classes|merge([row]) : [''] %}
+
+
+{# Embed container component #}
+{% embed "@atoms/container/container.twig" with {
+  container: true,
+  utility_classes: container_classes
+} %}
+  {% block children %}
+
+    {# Embed row component #}
+    {% embed "@atoms/row/row.twig" with {
+      utility_classes: row_classes
+    } %}
+      {% block children %}
+
+        {% for col in columns %}
+          {# Embed column component #}
+          {% embed "@atoms/column/column.twig" with {
+            attributes: col.attributes.addClass(col.size)
+          } %}
+
+            {% block content %}
+              {{col.content}}
+            {% endblock %}
+
+          {% endembed %}
+        {% endfor %}
+
+      {% endblock %}
+    {% endembed %}
+  {% endblock %}
+{% endembed %}
