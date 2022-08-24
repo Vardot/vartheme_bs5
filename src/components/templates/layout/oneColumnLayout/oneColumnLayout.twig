@@ -15,16 +15,18 @@
     } %}
       {% block children %}
 
-        {# Embed column component #}
-        {% embed "@atoms/column/column.twig" with {
-          attributes: col_attributes.addClass('col-12')
-        } %}
+        {% for col in columns %}
+          {# Embed column component #}
+          {% embed "@atoms/column/column.twig" with {
+            attributes: col.attributes.addClass(col.size)
+          } %}
 
-          {% block content %}
-            {{content}}
-          {% endblock %}
+            {% block content %}
+              {{col.content}}
+            {% endblock %}
 
-        {% endembed %}
+          {% endembed %}
+        {% endfor %}
 
       {% endblock %}
     {% endembed %}

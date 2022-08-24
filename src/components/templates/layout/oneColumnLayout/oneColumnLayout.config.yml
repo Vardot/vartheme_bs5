@@ -1,8 +1,8 @@
-title: "Layouts/One Column Layout"
+title: "Templates/One Column Layout"
 description:
   component: "One column layout component."
 ## Canvas height
-height: 350
+height: 150
 ## row settings
 row:
   description: boolean
@@ -15,8 +15,21 @@ container:
   default: false
   table:
     category: fields
+## Column size
+column_size:
+  description: Bootstrap column class
+  table:
+    category: settings
+  default: 'col-12'
+  options:
+    '25%': 'col-3'
+    '33%': 'col-4'
+    '50%': 'col-6'
+    '67%': 'col-8'
+    '75%': 'col-9'
+    '100%': 'col-12'
 ## Content settings.
-content:
+column_content:
   description: string
   default: 'string'
   table:

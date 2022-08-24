@@ -31,12 +31,19 @@ export default {
       defaultValue: {summary: config.container.default},
       table: config.container.table,
     },
-    content: {
+    columnContent: {
       content: { control: 'text' },
-      description: config.content.description,
-      defaultValue: {summary: config.content.default},
-      table: config.content.table,
-    }
+      description: config.column_content.description,
+      defaultValue: {summary: config.column_content.default},
+      table: config.column_content.table,
+    },
+    columnSize: {
+      control: { type: "select" },
+      options: config.column_size.options,
+      description: config.column_size.description,
+      defaultValue: {summary: config.column_size.default},
+      table: config.column_size.table,
+    },
   },
 };
 
@@ -50,6 +57,9 @@ export const OneColumnLayout = (args) => {
       content: args.content,
       container_classes: [],
       row_classes: [],
+      columns: {
+        col1: {attributes: new DrupalAttribute(), size: `varbase-col ${args.columnSize}`, content: args.columnContent}
+      },
     })
   )
 }
@@ -57,5 +67,6 @@ export const OneColumnLayout = (args) => {
 OneColumnLayout.args = {
   row: true,
   container: true,
-  content: 'One column layout',
+  columnSize: 'col-12',
+  columnContent: 'Column one content',
 };
