@@ -4,24 +4,27 @@
  */
 
 export const getColumnsSizeClasses = (sizes) => {
-  const sizesArr = sizes.split('_');
+  const sizesArr = sizes.split("_");
   const classes = [];
   sizesArr.map((size) => {
     switch (size) {
-      case '25':
-        classes.push('col-3');
+      case "16":
+        classes.push("col-2");
         break;
-      case '33':
-        classes.push('col-4');
+      case "25":
+        classes.push("col-3");
         break;
-      case '50':
-        classes.push('col-6');
+      case "33":
+        classes.push("col-4");
         break;
-      case '67':
-        classes.push('col-8');
+      case "50":
+        classes.push("col-6");
         break;
-      case '75':
-        classes.push('col-9');
+      case "67":
+        classes.push("col-8");
+        break;
+      case "75":
+        classes.push("col-9");
         break;
       default:
         break;
@@ -29,4 +32,4 @@ export const getColumnsSizeClasses = (sizes) => {
   });
 
   return classes;
-}
+};
