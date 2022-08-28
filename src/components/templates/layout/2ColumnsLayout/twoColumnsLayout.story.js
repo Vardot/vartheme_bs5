@@ -68,7 +68,7 @@ export default {
   },
 };
 
-export const TwoColumnsLayout = (args) => {
+export const _2ColumnsLayout = (args) => {
   const desktopColumnsClasses = getColumnsSizeClasses(args.desktopColumnsSize, "lg");
   const tabletColumnsClasses = getColumnsSizeClasses(args.tabletColumnsSize, "md");
   const mobileColumnsClasses = getColumnsSizeClasses(args.mobileColumnsSize, "sm");
@@ -96,7 +96,7 @@ export const TwoColumnsLayout = (args) => {
   });
 };
 
-TwoColumnsLayout.args = {
+_2ColumnsLayout.args = {
   row: true,
   container: true,
   columnOneContent: "Column one content",
