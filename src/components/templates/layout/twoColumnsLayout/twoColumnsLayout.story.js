@@ -44,18 +44,35 @@ export default {
       defaultValue: { summary: config.column_2_content.default },
       table: config.column_2_content.table,
     },
-    columnsSize: {
+    DesktopColumnsSize: {
       control: { type: "select" },
-      options: config.columns_size.options,
-      description: config.columns_size.description,
-      defaultValue: { summary: config.columns_size.default },
-      table: config.columns_size.table,
+      options: config.desktop_columns_size.options,
+      description: config.desktop_columns_size.description,
+      defaultValue: { summary: config.desktop_columns_size.default },
+      table: config.desktop_columns_size.table,
+    },
+    TabletColumnsSize: {
+      control: { type: "select" },
+      options: config.tablet_columns_size.options,
+      description: config.tablet_columns_size.description,
+      defaultValue: { summary: config.tablet_columns_size.default },
+      table: config.tablet_columns_size.table,
+    },
+    MobileColumnsSize: {
+      control: { type: "select" },
+      options: config.mobile_columns_size.options,
+      description: config.mobile_columns_size.description,
+      defaultValue: { summary: config.mobile_columns_size.default },
+      table: config.mobile_columns_size.table,
     },
   },
 };
 
 export const TwoColumnsLayout = (args) => {
-  const sizeClasses = getColumnsSizeClasses(args.columnsSize);
+  const desktopColumnsClasses = getColumnsSizeClasses(args.DesktopColumnsSize, "lg");
+  const tabletColumnsClasses = getColumnsSizeClasses(args.TabletColumnsSize, "md");
+  const mobileColumnsClasses = getColumnsSizeClasses(args.MobileColumnsSize, "sm");
+
   return twoColumnsLayout({
     attributes: new DrupalAttribute(),
     col_attributes: new DrupalAttribute(),
@@ -67,12 +84,12 @@ export const TwoColumnsLayout = (args) => {
     columns: {
       col1: {
         attributes: new DrupalAttribute(),
-        size: `varbase-col ${sizeClasses[0]}`,
+        size: `varbase-col ${desktopColumnsClasses[0]} ${tabletColumnsClasses[0]} ${mobileColumnsClasses[0]}`,
         content: args.columnOneContent,
       },
       col2: {
         attributes: new DrupalAttribute(),
-        size: `varbase-col ${sizeClasses[1]}`,
+        size: `varbase-col ${desktopColumnsClasses[1]} ${tabletColumnsClasses[1]} ${mobileColumnsClasses[1]}`,
         content: args.columnTwoContent,
       },
     },
@@ -84,5 +101,7 @@ TwoColumnsLayout.args = {
   container: true,
   columnOneContent: "Column one content",
   columnTwoContent: "Column one content",
-  columnsSize: "50_50",
+  DesktopColumnsSize: "50_50",
+  TabletColumnsSize: "50_50",
+  MobileColumnsSize: "100_100",
 };

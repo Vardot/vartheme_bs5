@@ -27,7 +27,7 @@ column_2_content:
   default: "string"
   table:
     category: fields
-columns_size:
+desktop_columns_size:
   description: "Bootstrap grid classes"
   table:
     category: "settings"
@@ -38,27 +38,22 @@ columns_size:
     "50% - 50%": "50_50"
     "67% - 33%": "67_33"
     "75% - 25%": "75_25"
-# ## Column 1 size
-# column_1:
-#   description: Bootstrap column class
-#   table:
-#     category: settings
-#   default: 'col-6'
-#   options:
-#     '25%': 'col-3'
-#     '33%': 'col-4'
-#     '50%': 'col-6'
-#     '67%': 'col-8'
-#     '75%': 'col-9'
-# ## Column 2 size
-# column_2:
-#   description: Bootstrap column class
-#   table:
-#     category: settings
-#   default: 'col-6'
-#   options:
-#     '25%': 'col-3'
-#     '33%': 'col-4'
-#     '50%': 'col-6'
-#     '67%': 'col-8'
-#     '75%': 'col-9'
+tablet_columns_size:
+  description: "Bootstrap grid classes"
+  table:
+    category: "settings"
+  default: "col-6"
+  options:
+    "25% - 75%": "25_75"
+    "33% - 67%": "33_67"
+    "50% - 50%": "50_50"
+    "67% - 33%": "67_33"
+    "75% - 25%": "75_25"
+    "100% - 100%": "100_100"
+mobile_columns_size:
+  description: "Bootstrap grid classes"
+  table:
+    category: "settings"
+  default: "col-12"
+  options:
+    "100% - 100%": "100_100"
