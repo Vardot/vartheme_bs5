@@ -1,18 +1,18 @@
 title: "Templates/1 Column Layout"
 description:
-  component: "One column layout component."
+  component: "1 column layout component."
 ## Canvas height
 height: 150
 ## row settings
 row:
   description: boolean
-  default: false
+  default: true
   table:
     category: fields
 ## Column settings
 container:
   description: boolean
-  default: false
+  default: true
   table:
     category: fields
 ## Column size
