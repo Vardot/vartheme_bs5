@@ -1,4 +1,4 @@
-title: "Templates/Four Columns Layout"
+title: "Templates/4 Columns Layout"
 description:
   component: "three column layout component."
 ## Canvas height
@@ -39,12 +39,29 @@ column_4_content:
   default: "string"
   table:
     category: fields
-## Columns size settings.
-columns_size:
+## Desktop (lg) columns size settings.
+desktop_columns_size:
+  description: "Bootstrap grid classes"
+  table:
+    category: "settings"
+  default: "col-3"
+  options:
+    "25% - 25% - 25% - 25%": "25_25_25_25"
+    "50% - 50% - 50% - 50%": "50_50_50_50"
+## Tablet (md) columns size settings.
+tablet_columns_size:
   description: "Bootstrap grid classes"
   table:
     category: "settings"
   default: "col-6"
   options:
-    "25% - 25% - 25% - 25%": "25_25_25_25"
     "50% - 50% - 50% - 50%": "50_50_50_50"
+    "100% - 100% - 100% - 100%": "100_100_100_100"
+## Mobile (sm) columns size settings.
+mobile_columns_size:
+  description: "Bootstrap grid classes"
+  table:
+    category: "settings"
+  default: "col-12"
+  options:
+    "100% - 100% - 100% - 100%": "100_100_100_100"

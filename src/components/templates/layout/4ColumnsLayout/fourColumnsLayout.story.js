@@ -56,18 +56,57 @@ export default {
       defaultValue: { summary: config.column_4_content.default },
       table: config.column_4_content.table,
     },
-    columnsSize: {
+    desktopColumnsSize: {
       control: { type: "select" },
-      options: config.columns_size.options,
-      description: config.columns_size.description,
-      defaultValue: { summary: config.columns_size.default },
-      table: config.columns_size.table,
+      options: config.desktop_columns_size.options,
+      description: config.desktop_columns_size.description,
+      defaultValue: { summary: config.desktop_columns_size.default },
+      table: config.desktop_columns_size.table,
     },
+    tabletColumnsSize: {
+      control: { type: "select" },
+      options: config.tablet_columns_size.options,
+      description: config.tablet_columns_size.description,
+      defaultValue: { summary: config.tablet_columns_size.default },
+      table: config.tablet_columns_size.table,
+    },
+    mobileColumnsSize: {
+      control: { type: "select" },
+      options: config.mobile_columns_size.options,
+      description: config.mobile_columns_size.description,
+      defaultValue: { summary: config.mobile_columns_size.default },
+      table: config.mobile_columns_size.table,
+    }
   },
 };
 
-export const FourColumnsLayout = (args) => {
-  const sizeClasses = getColumnsSizeClasses(args.columnsSize);
+export const _4ColumnsLayout = (args) => {
+  const desktopColumnsClasses = getColumnsSizeClasses(args.desktopColumnsSize, "lg");
+  const tabletColumnsClasses = getColumnsSizeClasses(args.tabletColumnsSize, "md");
+  const mobileColumnsClasses = getColumnsSizeClasses(args.mobileColumnsSize, "sm");
+
+  const columnsData = [
+    {
+      attributes: new DrupalAttribute(),
+      size: `varbase-col ${desktopColumnsClasses[0]} ${tabletColumnsClasses[0]} ${mobileColumnsClasses[0]}`,
+      content: args.columnOneContent,
+    },
+    {
+      attributes: new DrupalAttribute(),
+      size: `varbase-col ${desktopColumnsClasses[1]} ${tabletColumnsClasses[1]} ${mobileColumnsClasses[1]}`,
+      content: args.columnTwoContent,
+    },
+    {
+      attributes: new DrupalAttribute(),
+      size: `varbase-col ${desktopColumnsClasses[2]} ${tabletColumnsClasses[2]} ${mobileColumnsClasses[2]}`,
+      content: args.columnThreeContent,
+    },
+    {
+      attributes: new DrupalAttribute(),
+      size: `varbase-col ${desktopColumnsClasses[3]} ${tabletColumnsClasses[3]} ${mobileColumnsClasses[3]}`,
+      content: args.columnFourContent,
+    },
+  ]
 
   return fourColumnsLayout({
     attributes: new DrupalAttribute(),
@@ -77,37 +116,18 @@ export const FourColumnsLayout = (args) => {
     content: args.content,
     container_classes: [],
     row_classes: [],
-    columns: {
-      col1: {
-        attributes: new DrupalAttribute(),
-        size: `varbase-col ${sizeClasses[0]}`,
-        content: args.columnOneContent,
-      },
-      col2: {
-        attributes: new DrupalAttribute(),
-        size: `varbase-col ${sizeClasses[1]}`,
-        content: args.columnTwoContent,
-      },
-      col3: {
-        attributes: new DrupalAttribute(),
-        size: `varbase-col ${sizeClasses[2]}`,
-        content: args.columnThreeContent,
-      },
-      col4: {
-        attributes: new DrupalAttribute(),
-        size: `varbase-col ${sizeClasses[3]}`,
-        content: args.columnFourContent,
-      },
-    },
+    columns: columnsData
   });
 };
 
-FourColumnsLayout.args = {
+_4ColumnsLayout.args = {
   row: true,
   container: true,
   columnOneContent: "Column one content",
   columnTwoContent: "Column two content",
   columnThreeContent: "Column three content",
   columnFourContent: "Column four content",
-  columnsSize: "25_25_25_25",
+  desktopColumnsSize: "25_25_25_25",
+  tabletColumnsSize: "50_50_50_50",
+  mobileColumnsSize: "100_100_100_100",
 };
