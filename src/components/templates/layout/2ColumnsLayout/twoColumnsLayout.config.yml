@@ -1,8 +1,8 @@
 title: "Templates/2 Columns Layout"
 description:
-  component: "Two column layout component."
+  component: "2 columns layout component."
 ## Canvas height
-height: 350
+height: 200
 ## row settings
 row:
   description: boolean
