@@ -74,7 +74,7 @@ export default {
   },
 };
 
-export const ThreeColumnsLayout = (args) => {
+export const _3ColumnsLayout = (args) => {
   const desktopColumnsClasses = getColumnsSizeClasses(args.desktopColumnsSize, "lg");
   const tabletColumnsClasses = getColumnsSizeClasses(args.tabletColumnsSize, "md");
   const mobileColumnsClasses = getColumnsSizeClasses(args.mobileColumnsSize, "sm");
@@ -107,7 +107,7 @@ export const ThreeColumnsLayout = (args) => {
   });
 };
 
-ThreeColumnsLayout.args = {
+_3ColumnsLayout.args = {
   row: true,
   container: true,
   columnOneContent: "Column one content",
