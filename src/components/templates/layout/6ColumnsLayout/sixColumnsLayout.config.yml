@@ -1,4 +1,4 @@
-title: "Templates/Six Columns Layout"
+title: "Templates/6 Columns Layout"
 description:
   component: "Six column layout component."
 ## Canvas height
@@ -52,12 +52,31 @@ column_6_content:
   table:
     category: fields
 ## Columns size settings.
-columns_size:
+desktop_columns_size:
   description: "Bootstrap grid classes"
   table:
     category: "settings"
-  default: "col-6"
+  default: "col-2"
   options:
     "16.66% - 16.66% - 16.66% - 16.66% - 16.66% - 16.66%": "16_16_16_16_16_16"
     "33% - 33% - 33% - 33% - 33% - 33%": "33_33_33_33_33_33"
     "50% - 50% - 50% - 50% - 50% - 50%": "50_50_50_50_50_50"
+## Tablet (md) columns size settings.
+tablet_columns_size:
+  description: "Bootstrap grid classes"
+  table:
+    category: "settings"
+  default: "col-4"
+  options:
+    "33% - 33% - 33% - 33% - 33% - 33%": "33_33_33_33_33_33"
+    "50% - 50% - 50% - 50% - 50% - 50%": "50_50_50_50_50_50"
+    "100% - 100% - 100% - 100% - 100% - 100%": "100_100_100_100_100_100"
+## Mobile (sm) columns size settings.
+mobile_columns_size:
+  description: "Bootstrap grid classes"
+  table:
+    category: "settings"
+  default: "col-12"
+  options:
+    "50% - 50% - 50% - 50% - 50% - 50%": "50_50_50_50_50_50"
+    "100% - 100% - 100% - 100% - 100% - 100%": "100_100_100_100_100_100"

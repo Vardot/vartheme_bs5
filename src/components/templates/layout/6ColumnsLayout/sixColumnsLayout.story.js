@@ -68,18 +68,67 @@ export default {
       defaultValue: { summary: config.column_6_content.default },
       table: config.column_6_content.table,
     },
-    columnsSize: {
+    desktopColumnsSize: {
       control: { type: "select" },
-      options: config.columns_size.options,
-      description: config.columns_size.description,
-      defaultValue: { summary: config.columns_size.default },
-      table: config.columns_size.table,
+      options: config.desktop_columns_size.options,
+      description: config.desktop_columns_size.description,
+      defaultValue: { summary: config.desktop_columns_size.default },
+      table: config.desktop_columns_size.table,
     },
+    tabletColumnsSize: {
+      control: { type: "select" },
+      options: config.tablet_columns_size.options,
+      description: config.tablet_columns_size.description,
+      defaultValue: { summary: config.tablet_columns_size.default },
+      table: config.tablet_columns_size.table,
+    },
+    mobileColumnsSize: {
+      control: { type: "select" },
+      options: config.mobile_columns_size.options,
+      description: config.mobile_columns_size.description,
+      defaultValue: { summary: config.mobile_columns_size.default },
+      table: config.mobile_columns_size.table,
+    }
   },
 };
 
-export const SixColumnsLayout = (args) => {
-  const sizeClasses = getColumnsSizeClasses(args.columnsSize);
+export const _6ColumnsLayout = (args) => {
+  const desktopColumnsClasses = getColumnsSizeClasses(args.desktopColumnsSize, "lg");
+  const tabletColumnsClasses = getColumnsSizeClasses(args.tabletColumnsSize, "md");
+  const mobileColumnsClasses = getColumnsSizeClasses(args.mobileColumnsSize, "sm");
+
+  const columnsData = [
+    {
+      attributes: new DrupalAttribute(),
+      size: `varbase-col ${desktopColumnsClasses[0]} ${tabletColumnsClasses[0]} ${mobileColumnsClasses[0]}`,
+      content: args.columnOneContent,
+    },
+    {
+      attributes: new DrupalAttribute(),
+      size: `varbase-col ${desktopColumnsClasses[1]} ${tabletColumnsClasses[1]} ${mobileColumnsClasses[1]}`,
+      content: args.columnTwoContent,
+    },
+    {
+      attributes: new DrupalAttribute(),
+      size: `varbase-col ${desktopColumnsClasses[2]} ${tabletColumnsClasses[2]} ${mobileColumnsClasses[2]}`,
+      content: args.columnThreeContent,
+    },
+    {
+      attributes: new DrupalAttribute(),
+      size: `varbase-col ${desktopColumnsClasses[3]} ${tabletColumnsClasses[3]} ${mobileColumnsClasses[3]}`,
+      content: args.columnFourContent,
+    },
+    {
+      attributes: new DrupalAttribute(),
+      size: `varbase-col ${desktopColumnsClasses[4]} ${tabletColumnsClasses[4]} ${mobileColumnsClasses[4]}`,
+      content: args.columnFiveContent,
+    },
+    {
+      attributes: new DrupalAttribute(),
+      size: `varbase-col ${desktopColumnsClasses[5]} ${tabletColumnsClasses[5]} ${mobileColumnsClasses[5]}`,
+      content: args.columnSixContent,
+    },
+  ]
 
   return sixColumnsLayout({
     attributes: new DrupalAttribute(),
@@ -89,42 +138,11 @@ export const SixColumnsLayout = (args) => {
     content: args.content,
     container_classes: [],
     row_classes: [],
-    columns: {
-      col1: {
-        attributes: new DrupalAttribute(),
-        size: `varbase-col ${sizeClasses[0]}`,
-        content: args.columnOneContent,
-      },
-      col2: {
-        attributes: new DrupalAttribute(),
-        size: `varbase-col ${sizeClasses[1]}`,
-        content: args.columnTwoContent,
-      },
-      col3: {
-        attributes: new DrupalAttribute(),
-        size: `varbase-col ${sizeClasses[2]}`,
-        content: args.columnThreeContent,
-      },
-      col4: {
-        attributes: new DrupalAttribute(),
-        size: `varbase-col ${sizeClasses[3]}`,
-        content: args.columnFourContent,
-      },
-      col5: {
-        attributes: new DrupalAttribute(),
-        size: `varbase-col ${sizeClasses[4]}`,
-        content: args.columnFiveContent,
-      },
-      col6: {
-        attributes: new DrupalAttribute(),
-        size: `varbase-col ${sizeClasses[5]}`,
-        content: args.columnSixContent,
-      },
-    },
+    columns: columnsData
   });
 };
 
-SixColumnsLayout.args = {
+_6ColumnsLayout.args = {
   row: true,
   container: true,
   columnOneContent: "Column one content",
@@ -133,5 +151,7 @@ SixColumnsLayout.args = {
   columnFourContent: "Column four content",
   columnFiveContent: "Column five content",
   columnSixContent: "Column six content",
-  columnsSize: "16_16_16_16_16_16",
+  desktopColumnsSize: "16_16_16_16_16_16",
+  tabletColumnsSize: "50_50_50_50_50_50",
+  mobileColumnsSize: "100_100_100_100_100_100",
 };
