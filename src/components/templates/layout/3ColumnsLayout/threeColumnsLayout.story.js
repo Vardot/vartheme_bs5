@@ -116,6 +116,6 @@ _3ColumnsLayout.args = {
   columnTwoContent: "Column two content",
   columnThreeContent: "Column three content",
   desktopColumnsSize: "33_33_33",
-  tabletColumnsSize: "100_100_100",
+  tabletColumnsSize: "33_33_33",
   mobileColumnsSize: "100_100_100",
 };
