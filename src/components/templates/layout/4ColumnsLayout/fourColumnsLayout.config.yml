@@ -1,8 +1,8 @@
 title: "Templates/4 Columns Layout"
 description:
-  component: "three column layout component."
+  component: "4 columns layout component description."
 ## Canvas height
-height: 350
+height: 200
 ## row settings
 row:
   description: boolean
@@ -53,8 +53,9 @@ tablet_columns_size:
   description: "Bootstrap grid classes"
   table:
     category: "settings"
-  default: "col-6"
+  default: "col-3"
   options:
+    "25% - 25% - 25% - 25%": "25_25_25_25"
     "50% - 50% - 50% - 50%": "50_50_50_50"
     "100% - 100% - 100% - 100%": "100_100_100_100"
 ## Mobile (sm) columns size settings.

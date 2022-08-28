@@ -123,11 +123,11 @@ export const _4ColumnsLayout = (args) => {
 _4ColumnsLayout.args = {
   row: true,
   container: true,
-  columnOneContent: "Column one content",
-  columnTwoContent: "Column two content",
-  columnThreeContent: "Column three content",
-  columnFourContent: "Column four content",
+  columnOneContent: "Column 1 content",
+  columnTwoContent: "Column 2 content",
+  columnThreeContent: "Column 3 content",
+  columnFourContent: "Column 4 content",
   desktopColumnsSize: "25_25_25_25",
-  tabletColumnsSize: "50_50_50_50",
+  tabletColumnsSize: "25_25_25_25",
   mobileColumnsSize: "100_100_100_100",
 };
