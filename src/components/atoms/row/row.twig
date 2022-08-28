@@ -2,9 +2,12 @@
   * Row component.
   * Available config:
     - children: The content that will be inside row.
+    - utility_classes: An array of classes.
 #}
 
-<div class="row">
+{% set classes = []|merge(utility_classes) %}
+
+<div class="{{ classes|join(' ') }}">
   {% block children %}
     {{ children }}
   {% endblock %}
