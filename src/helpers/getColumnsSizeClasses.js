@@ -26,6 +26,9 @@ export const getColumnsSizeClasses = (sizes) => {
       case "75":
         classes.push("col-9");
         break;
+      case "100":
+        classes.push(`col-${screenSize}-12`);
+        break;
       default:
         break;
     }
