@@ -48,6 +48,14 @@ export default {
 };
 
 export const _1ColumnLayout = (args) => {
+  const columnsData = [
+    {
+      attributes: new DrupalAttribute(),
+      size: `varbase-col ${args.columnSize}`,
+      content: args.columnContent
+    }
+  ]
+
   return (
     oneColumnLayout({
       attributes: new DrupalAttribute(),
@@ -57,9 +65,7 @@ export const _1ColumnLayout = (args) => {
       content: args.content,
       container_classes: [],
       row_classes: [],
-      columns: {
-        col1: {attributes: new DrupalAttribute(), size: `varbase-col ${args.columnSize}`, content: args.columnContent}
-      },
+      columns: columnsData
     })
   )
 }
