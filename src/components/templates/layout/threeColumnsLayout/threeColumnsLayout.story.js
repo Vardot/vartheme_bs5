@@ -50,18 +50,34 @@ export default {
       defaultValue: { summary: config.column_3_content.default },
       table: config.column_3_content.table,
     },
-    columnsSize: {
+    desktopColumnsSize: {
       control: { type: "select" },
-      options: config.columns_size.options,
-      description: config.columns_size.description,
-      defaultValue: { summary: config.columns_size.default },
-      table: config.columns_size.table,
+      options: config.desktop_columns_size.options,
+      description: config.desktop_columns_size.description,
+      defaultValue: { summary: config.desktop_columns_size.default },
+      table: config.desktop_columns_size.table,
     },
+    tabletColumnsSize: {
+      control: { type: "select" },
+      options: config.tablet_columns_size.options,
+      description: config.tablet_columns_size.description,
+      defaultValue: { summary: config.tablet_columns_size.default },
+      table: config.tablet_columns_size.table,
+    },
+    mobileColumnsSize: {
+      control: { type: "select" },
+      options: config.mobile_columns_size.options,
+      description: config.mobile_columns_size.description,
+      defaultValue: { summary: config.mobile_columns_size.default },
+      table: config.mobile_columns_size.table,
+    }
   },
 };
 
 export const ThreeColumnsLayout = (args) => {
-  const sizeClasses = getColumnsSizeClasses(args.columnsSize);
+  const desktopColumnsClasses = getColumnsSizeClasses(args.desktopColumnsSize, "lg");
+  const tabletColumnsClasses = getColumnsSizeClasses(args.tabletColumnsSize, "md");
+  const mobileColumnsClasses = getColumnsSizeClasses(args.mobileColumnsSize, "sm");
 
   return threeColumnsLayout({
     attributes: new DrupalAttribute(),
@@ -74,17 +90,17 @@ export const ThreeColumnsLayout = (args) => {
     columns: {
       col1: {
         attributes: new DrupalAttribute(),
-        size: `varbase-col ${sizeClasses[0]}`,
+        size: `varbase-col ${desktopColumnsClasses[0]} ${tabletColumnsClasses[0]} ${mobileColumnsClasses[0]}`,
         content: args.columnOneContent,
       },
       col2: {
         attributes: new DrupalAttribute(),
-        size: `varbase-col ${sizeClasses[1]}`,
+        size: `varbase-col ${desktopColumnsClasses[1]} ${tabletColumnsClasses[1]} ${mobileColumnsClasses[1]}`,
         content: args.columnTwoContent,
       },
       col3: {
         attributes: new DrupalAttribute(),
-        size: `varbase-col ${sizeClasses[2]}`,
+        size: `varbase-col ${desktopColumnsClasses[2]} ${tabletColumnsClasses[2]} ${mobileColumnsClasses[2]}`,
         content: args.columnThreeContent,
       },
     },
@@ -97,5 +113,7 @@ ThreeColumnsLayout.args = {
   columnOneContent: "Column one content",
   columnTwoContent: "Column two content",
   columnThreeContent: "Column three content",
-  columnsSize: "33_33_33",
+  desktopColumnsSize: "33_33_33",
+  tabletColumnsSize: "100_100_100",
+  mobileColumnsSize: "100_100_100",
 };

@@ -33,8 +33,8 @@ column_3_content:
   default: "string"
   table:
     category: fields
-## Columns size settings.
-columns_size:
+## Desktop (lg) columns size settings.
+desktop_columns_size:
   description: "Bootstrap grid classes"
   table:
     category: "settings"
@@ -44,3 +44,20 @@ columns_size:
     "50% - 25% - 25%": "50_25_25"
     "25% - 50% - 25%": "25_50_25"
     "25% - 25% - 50%": "25_25_50"
+## Tablet (md) columns size settings.
+tablet_columns_size:
+  description: "Bootstrap grid classes"
+  table:
+    category: "settings"
+  default: "col-12"
+  options:
+    "33% - 33% - 33%": "33_33_33"
+    "100% - 100% - 100%": "100_100_100"
+## Mobile (sm) columns size settings.
+mobile_columns_size:
+  description: "Bootstrap grid classes"
+  table:
+    category: "settings"
+  default: "col-12"
+  options:
+    "100% - 100% - 100%": "100_100_100"
