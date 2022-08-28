@@ -73,6 +73,19 @@ export const _2ColumnsLayout = (args) => {
   const tabletColumnsClasses = getColumnsSizeClasses(args.tabletColumnsSize, "md");
   const mobileColumnsClasses = getColumnsSizeClasses(args.mobileColumnsSize, "sm");
 
+  const columnsData = [
+    {
+      attributes: new DrupalAttribute(),
+      size: `varbase-col ${desktopColumnsClasses[0]} ${tabletColumnsClasses[0]} ${mobileColumnsClasses[0]}`,
+      content: args.columnOneContent,
+    },
+    {
+      attributes: new DrupalAttribute(),
+      size: `varbase-col ${desktopColumnsClasses[1]} ${tabletColumnsClasses[1]} ${mobileColumnsClasses[1]}`,
+      content: args.columnTwoContent,
+    }
+  ]
+
   return twoColumnsLayout({
     attributes: new DrupalAttribute(),
     col_attributes: new DrupalAttribute(),
@@ -81,18 +94,7 @@ export const _2ColumnsLayout = (args) => {
     content: args.content,
     container_classes: [],
     row_classes: [],
-    columns: {
-      col1: {
-        attributes: new DrupalAttribute(),
-        size: `varbase-col ${desktopColumnsClasses[0]} ${tabletColumnsClasses[0]} ${mobileColumnsClasses[0]}`,
-        content: args.columnOneContent,
-      },
-      col2: {
-        attributes: new DrupalAttribute(),
-        size: `varbase-col ${desktopColumnsClasses[1]} ${tabletColumnsClasses[1]} ${mobileColumnsClasses[1]}`,
-        content: args.columnTwoContent,
-      },
-    },
+    columns: columnsData
   });
 };
 
