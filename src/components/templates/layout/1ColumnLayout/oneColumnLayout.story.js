@@ -47,7 +47,7 @@ export default {
   },
 };
 
-export const OneColumnLayout = (args) => {
+export const _1ColumnLayout = (args) => {
   return (
     oneColumnLayout({
       attributes: new DrupalAttribute(),
@@ -64,7 +64,7 @@ export const OneColumnLayout = (args) => {
   )
 }
 
-OneColumnLayout.args = {
+_1ColumnLayout.args = {
   row: true,
   container: true,
   columnSize: 'col-12',
