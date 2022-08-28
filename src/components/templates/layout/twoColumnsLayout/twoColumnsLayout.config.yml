@@ -27,6 +27,7 @@ column_2_content:
   default: "string"
   table:
     category: fields
+## Desktop (lg) columns size settings.
 desktop_columns_size:
   description: "Bootstrap grid classes"
   table:
@@ -38,6 +39,7 @@ desktop_columns_size:
     "50% - 50%": "50_50"
     "67% - 33%": "67_33"
     "75% - 25%": "75_25"
+## Tablet (md) columns size settings.
 tablet_columns_size:
   description: "Bootstrap grid classes"
   table:
@@ -50,6 +52,7 @@ tablet_columns_size:
     "67% - 33%": "67_33"
     "75% - 25%": "75_25"
     "100% - 100%": "100_100"
+## Mobile (sm) columns size settings.
 mobile_columns_size:
   description: "Bootstrap grid classes"
   table:
