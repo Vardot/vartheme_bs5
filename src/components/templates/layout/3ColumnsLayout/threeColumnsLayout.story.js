@@ -70,14 +70,23 @@ export default {
       description: config.mobile_columns_size.description,
       defaultValue: { summary: config.mobile_columns_size.default },
       table: config.mobile_columns_size.table,
-    }
+    },
   },
 };
 
 export const _3ColumnsLayout = (args) => {
-  const desktopColumnsClasses = getColumnsSizeClasses(args.desktopColumnsSize, "lg");
-  const tabletColumnsClasses = getColumnsSizeClasses(args.tabletColumnsSize, "md");
-  const mobileColumnsClasses = getColumnsSizeClasses(args.mobileColumnsSize, "sm");
+  const desktopColumnsClasses = getColumnsSizeClasses(
+    args.desktopColumnsSize,
+    "lg"
+  );
+  const tabletColumnsClasses = getColumnsSizeClasses(
+    args.tabletColumnsSize,
+    "md"
+  );
+  const mobileColumnsClasses = getColumnsSizeClasses(
+    args.mobileColumnsSize,
+    "sm"
+  );
 
   const columnsData = [
     {
@@ -94,19 +103,19 @@ export const _3ColumnsLayout = (args) => {
       attributes: new DrupalAttribute(),
       size: `varbase-col ${desktopColumnsClasses[2]} ${tabletColumnsClasses[2]} ${mobileColumnsClasses[2]}`,
       content: args.columnThreeContent,
-    }
-  ]
+    },
+  ];
 
   return threeColumnsLayout({
     attributes: new DrupalAttribute(),
     container_attributes: new DrupalAttribute(),
     row_attributes: new DrupalAttribute(),
     col_attributes: new DrupalAttribute(),
-    row: args.row && "row",
-    container: args.container && "container",
+    row: args.row,
+    container: args.container,
     container_classes: [],
     row_classes: [],
-    columns: columnsData
+    columns: columnsData,
   });
 };
 
