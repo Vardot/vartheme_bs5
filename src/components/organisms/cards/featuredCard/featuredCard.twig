@@ -1,0 +1,97 @@
+{#
+/**
+ * @file
+ * Template for a Featured card component.
+ *
+ * Available config:
+ * - attributes: Drupal attributes.
+ * - tag: The HTML tag to use for the heading (title). Defaults to h2.
+ * - content: The body content of the card.
+ * - cardClasses: An array of classes for main wrapper of the card.
+ * - cardBodyClasses: An array of classes for card body wrapper.
+ * - imageClasses: An array of classes for card image.
+ * - headingClasses: An array of classes for card heading.
+ * - textClasses: An array of classes for card text.
+ * - linkClasses: An array of classes for card link button.
+ * - utility_classes: An array of aditional classes for main wrapper of the card.
+ */
+#}
+
+{% set rowFlex = reverse ? 'flex-row-reverse' : 'flex-row' %}
+{% set imageRounded = reverse ?  'rounded-end' : 'rounded-start' %}
+
+{% set cardClasses = ['card']|merge(utility_classes) %}
+{% set rowClasses = ['g-0', rowFlex] %}
+{% set cardBodyClasses = ['card-body', 'col-md-6', 'col-sm-12'] %}
+{% set imageClasses = ['img-fluid', imageRounded] %}
+{% set headingClasses = ['card-title'] %}
+{% set textClasses = ['card-text'] %}
+{% set linkClasses = ['btn', 'btn-primary'] %}
+
+{# Featured card main wrapper [start] #}
+{% embed "@atoms/wrapper/wrapper.twig" with {
+  attributes: attributes,
+  utility_classes: cardClasses
+} %}
+
+  {% block content %}
+
+      {% embed "@atoms/row/row.twig" with {
+        attributes: row_attributes,
+        withRow: true,
+        utility_classes: rowClasses
+      } %}
+        {% block content %}
+          {% if withImage %}
+            {% embed "@atoms/wrapper/wrapper.twig" with {
+              attributes: image_wrapper_attributes,
+              utility_classes: ['col-md-6', 'col-sm-12']
+            } %}
+              {% block content %}
+                <img src="{{ image }}" class="{{ imageClasses|join(' ') }}" alt="{{ imageAltText }}">
+              {% endblock %}
+            {% endembed %}
+          {% endif %}
+
+          {# Card body wrapper [start] #}
+          {% embed "@atoms/wrapper/wrapper.twig" with {
+            attributes: card_body_attributes,
+            utility_classes: cardBodyClasses
+          } %}
+
+            {% block content %}
+              {# Heading component #}
+              {% include "@atoms/heading/heading.twig" with {
+                tag: headingTag,
+                attributes: heading_attributes,
+                utility_classes: headingClasses,
+                content: headingContent
+              } %}
+
+              {# Text component #}
+              {% include "@atoms/text/text.twig" with {
+                attributes: text_attributes,
+                utility_classes: textClasses,
+                content: content,
+              } %}
+
+              {% if withLink %}
+                {# Link component #}
+                {% include "@atoms/link/link.twig" with {
+                  attributes: link_attributes,
+                  href: linkHref,
+                  content: linkText,
+                  utility_classes: linkClasses
+                } %}
+              {% endif %}
+
+            {% endblock %}
+          {# Card body wrapper [end] #}
+          {% endembed %}
+
+        {% endblock %}
+      {% endembed %}
+
+  {% endblock %}
+{# Featured card main wrapper [end] #}
+{% endembed %}

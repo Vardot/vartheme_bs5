@@ -1,0 +1,66 @@
+title: "Organisms/Cards/Featured Card"
+description:
+  component: "Featured card component description."
+## Canvas height
+height: 250
+## Image alt text settings
+image_alt_text:
+  description: "string"
+  default: "string"
+  table:
+    category: "settings"
+## Heading html tag settings
+heading_tag:
+  description: "html tag"
+  table:
+    category: "settings"
+  default: "h2"
+  options:
+    "H1": "h1"
+    "H2": "h2"
+    "H3": "h3"
+    "H4": "h4"
+    "H5": "h5"
+    "H6": "h6"
+## Heading string settings
+heading:
+  description: "string"
+  default: "string"
+  table:
+    category: "fields"
+## Content string settings
+content:
+  description: "string"
+  default: "string"
+  table:
+    category: "fields"
+## Link text settings
+link_text:
+  description: "string"
+  default: "string"
+  table:
+    category: "fields"
+## Link href settings
+link_href:
+  description: "string"
+  default: "string"
+  table:
+    category: "settings"
+## Reverse columns settings
+reverse:
+  description: boolean
+  default: false
+  table:
+    category: settings
+## Card with image or not settings
+with_image:
+  description: boolean
+  default: false
+  table:
+    category: settings
+## Card with link or not settings
+with_link:
+  description: boolean
+  default: false
+  table:
+    category: settings
