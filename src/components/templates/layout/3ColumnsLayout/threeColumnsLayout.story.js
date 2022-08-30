@@ -99,10 +99,11 @@ export const _3ColumnsLayout = (args) => {
 
   return threeColumnsLayout({
     attributes: new DrupalAttribute(),
+    container_attributes: new DrupalAttribute(),
+    row_attributes: new DrupalAttribute(),
     col_attributes: new DrupalAttribute(),
     row: args.row && "row",
     container: args.container && "container",
-    content: args.content,
     container_classes: [],
     row_classes: [],
     columns: columnsData
