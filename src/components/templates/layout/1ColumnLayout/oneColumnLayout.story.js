@@ -59,6 +59,7 @@ export const _1ColumnLayout = (args) => {
   return (
     oneColumnLayout({
       attributes: new DrupalAttribute(),
+      container_attributes: new DrupalAttribute(),
       row_attributes: new DrupalAttribute(),
       col_attributes: new DrupalAttribute(),
       row: args.row,

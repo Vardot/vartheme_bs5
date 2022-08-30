@@ -16,6 +16,7 @@
 
 {# Embed container component #}
 {% embed "@atoms/container/container.twig" with {
+  attributes: container_attributes,
   withContainer: container,
   utility_classes: container_classes
 } %}
