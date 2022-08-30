@@ -110,10 +110,11 @@ export const _4ColumnsLayout = (args) => {
 
   return fourColumnsLayout({
     attributes: new DrupalAttribute(),
+    container_attributes: new DrupalAttribute(),
+    row_attributes: new DrupalAttribute(),
     col_attributes: new DrupalAttribute(),
-    row: args.row && "row",
-    container: args.container && "container",
-    content: args.content,
+    row: args.row,
+    container: args.container,
     container_classes: [],
     row_classes: [],
     columns: columnsData
