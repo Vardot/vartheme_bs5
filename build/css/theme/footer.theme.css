@@ -1,8 +1,8 @@
 .site-footer section.region-footer > * {
   display: flex;
   flex-flow: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   font-size: 0.65rem;
   padding: 1rem 1rem 0 1rem;
 }
@@ -14,6 +14,6 @@
 .site-footer .menu--footer ul.nav {
   display: flex;
   flex-flow: row;
-  justify-content: center;
   flex-wrap: wrap;
+  justify-content: center;
 }

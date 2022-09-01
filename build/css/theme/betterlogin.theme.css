@@ -7,8 +7,8 @@
   }
 }
 #auth-box #the-logo {
-  text-align: center;
   margin: 0;
+  text-align: center;
   padding: 0 0 calc(1.3rem + 0.6vw);
 }
 @media (min-width: 1200px) {
@@ -27,10 +27,10 @@
   }
 }
 #auth-box #middle-part {
+  overflow: hidden;
   border-radius: 3px;
   background: #fff;
   padding: 0.9375rem;
-  overflow: hidden;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
 #auth-box .back-link {
@@ -45,9 +45,9 @@
   max-width: 100%;
 }
 #auth-box .block-title {
+  height: 1px;
   text-align: center;
   background: #eee;
-  height: 1px;
   margin: calc(1.325rem + 0.9vw) 0;
 }
 @media (min-width: 1200px) {
@@ -56,11 +56,11 @@
   }
 }
 #auth-box .block-title span {
+  position: relative;
   text-transform: uppercase;
+  background: #fff;
   font-size: 1rem;
   padding: 0 0.75rem;
-  background: #fff;
-  position: relative;
   top: calc(-1.275rem - 0.3vw);
 }
 @media (min-width: 1200px) {

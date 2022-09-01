@@ -2,21 +2,21 @@
 // -----------------------------------------------------------------------------
 
 .bg-edge2edge {
-  width: 100vw;
   position: relative;
-  left: 50%;
   right: 50%;
-  margin-left: -50vw !important;
-  margin-right: -50vw !important;
+  left: 50%;
   flex: 0 0 100vw;
+  width: 100vw;
   max-width: none;
-  
-  &:before {
-    content: " ";
+  margin-right: -50vw !important;
+  margin-left: -50vw !important;
+
+  &::before {
     display: table;
+    content: " ";
   }
 
-  &:after {
+  &::after {
     clear: both;
   }
 }
