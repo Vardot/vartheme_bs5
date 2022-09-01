@@ -1,10 +1,16 @@
-// 1. Include the initial file, should be included within the components as well
-// -----------------------------------------------------------------------------
-@import "init";
+// 1. Include bootstrap initial files.
+// -----------------------------------
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/maps";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/utilities";
+@import "~bootstrap/scss/helpers";
+@import "~bootstrap/scss/utilities/api";
+@import "~bootstrap/scss/vendor/_rfs.scss";
 
 // 2. Include remainder of required Bootstrap stylesheets
 // ------------------------------------------------------------------------------
-@import "~bootstrap/scss/utilities";
 
 // 3. Include any optional Bootstrap components as you like, remove unneeded ones
 // ------------------------------------------------------------------------------
@@ -41,18 +47,16 @@
 @import "~bootstrap/scss/offcanvas";
 
 // Helpers
-@import "~bootstrap/scss/helpers";
 
 // Utilities
-@import "~bootstrap/scss/utilities/api";
 
 // 4. Additional customizations.
 // ------------------------------------------------------------------------------
-@import "base/mixins";
-@import "base/functions";
-@import "base/helpers";
-@import "base/elements";
-@import "base/typography";
+// @import "base/mixins";
+// @import "base/functions";
+// @import "base/helpers";
+// @import "base/elements";
+// @import "base/typography";
 
 // Bootstrap Borders Utilities.
 // https://github.com/Vardot/bootstrap-borders-utilities
