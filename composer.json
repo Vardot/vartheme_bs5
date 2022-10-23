@@ -32,7 +32,7 @@
     "cweagans/composer-patches": "~1.0",
     "drupal/core": "~9.0 || ~10.0",
     "drupal/radix": "5.0.x-dev",
-    "drupal/components": "~2.0",
+    "drupal/components": "~3.0",
     "drupal/ui_patterns": "~1.0"
   },
   "extra": {
