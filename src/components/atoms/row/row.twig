@@ -1,0 +1,21 @@
+{#
+  * Row component.
+  * Available config:
+  * - attributes: Drupal attributes.
+  * - withRow: Boolean variable to add row class or not.
+  * - content: The content block that will be inside row.
+  * - utility_classes: An array of classes.
+  * - classes: The main array of classes for row component.
+#}
+
+{% set classes = []|merge(utility_classes) %}
+
+{% if withRow %}
+  {% set classes = classes|merge(['row']) %}
+{% endif %}
+
+<div {{ attributes.addClass(classes) }}>
+  {% block content %}
+    {{ content }}
+  {% endblock %}
+</div>

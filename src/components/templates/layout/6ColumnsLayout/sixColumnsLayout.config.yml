@@ -1,0 +1,82 @@
+title: "Templates/6 Columns Layout"
+description:
+  component: "6 columns layout component."
+## Canvas height
+height: 200
+## row settings
+row:
+  description: boolean
+  default: false
+  table:
+    category: fields
+## Column settings
+container:
+  description: boolean
+  default: false
+  table:
+    category: fields
+## Column 1 content settings.
+column_1_content:
+  description: string
+  default: "string"
+  table:
+    category: fields
+## Column 2 content settings.
+column_2_content:
+  description: string
+  default: "string"
+  table:
+    category: fields
+## Column 3 content settings.
+column_3_content:
+  description: string
+  default: "string"
+  table:
+    category: fields
+## Column 4 content settings.
+column_4_content:
+  description: string
+  default: "string"
+  table:
+    category: fields
+## Column 5 content settings.
+column_5_content:
+  description: string
+  default: "string"
+  table:
+    category: fields
+## Column 6 content settings.
+column_6_content:
+  description: string
+  default: "string"
+  table:
+    category: fields
+## Columns size settings.
+desktop_columns_size:
+  description: "Bootstrap grid classes"
+  table:
+    category: "settings"
+  default: "col-2"
+  options:
+    "16.66% - 16.66% - 16.66% - 16.66% - 16.66% - 16.66%": "16_16_16_16_16_16"
+    "33% - 33% - 33% - 33% - 33% - 33%": "33_33_33_33_33_33"
+    "50% - 50% - 50% - 50% - 50% - 50%": "50_50_50_50_50_50"
+## Tablet (md) columns size settings.
+tablet_columns_size:
+  description: "Bootstrap grid classes"
+  table:
+    category: "settings"
+  default: "col-4"
+  options:
+    "33% - 33% - 33% - 33% - 33% - 33%": "33_33_33_33_33_33"
+    "50% - 50% - 50% - 50% - 50% - 50%": "50_50_50_50_50_50"
+    "100% - 100% - 100% - 100% - 100% - 100%": "100_100_100_100_100_100"
+## Mobile (sm) columns size settings.
+mobile_columns_size:
+  description: "Bootstrap grid classes"
+  table:
+    category: "settings"
+  default: "col-12"
+  options:
+    "50% - 50% - 50% - 50% - 50% - 50%": "50_50_50_50_50_50"
+    "100% - 100% - 100% - 100% - 100% - 100%": "100_100_100_100_100_100"

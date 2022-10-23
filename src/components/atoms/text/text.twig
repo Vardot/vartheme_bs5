@@ -1,0 +1,3 @@
+{% set classes = []|merge(utility_classes) %}
+
+<p{{ attributes.addClass(classes) }}>{{ content }}</p>

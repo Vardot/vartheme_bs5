@@ -4,8 +4,8 @@
     content: none !important;
   }
   *, *:before, *:after {
-    background: transparent !important;
     color: #000 !important;
+    background: transparent !important;
     box-shadow: none !important;
     text-shadow: none !important;
   }

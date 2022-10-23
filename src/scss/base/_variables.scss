@@ -1,3 +1,11 @@
+// use sass:math.
+@use "sass:math";
+
+// Vartheme Variables ovarrides.
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+
 // Variables
 //
 // Variables should follow the `$component-state-property-size` formula for
@@ -14,9 +22,7 @@
 // $body-color: $gray-100;
 
 //
-// Vartheme Variables ovarrides.
 // --------------------------------------------------
-@use "sass:math";
 
 // Colors
 $primary-shade: #a8cf45;

@@ -1,0 +1,36 @@
+title: "Templates/1 Column Layout"
+description:
+  component: "1 column layout component."
+## Canvas height
+height: 150
+## row settings
+row:
+  description: boolean
+  default: true
+  table:
+    category: fields
+## Column settings
+container:
+  description: boolean
+  default: true
+  table:
+    category: fields
+## Column size
+column_size:
+  description: Bootstrap column class
+  table:
+    category: settings
+  default: 'col-12'
+  options:
+    '25%': 'col-3'
+    '33%': 'col-4'
+    '50%': 'col-6'
+    '67%': 'col-8'
+    '75%': 'col-9'
+    '100%': 'col-12'
+## Content settings.
+column_content:
+  description: string
+  default: 'string'
+  table:
+    category: fields

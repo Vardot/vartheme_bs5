@@ -1,0 +1,68 @@
+title: "Templates/4 Columns Layout"
+description:
+  component: "4 columns layout component description."
+## Canvas height
+height: 200
+## row settings
+row:
+  description: boolean
+  default: false
+  table:
+    category: fields
+## Column settings
+container:
+  description: boolean
+  default: false
+  table:
+    category: fields
+## Column 1 content settings.
+column_1_content:
+  description: string
+  default: "string"
+  table:
+    category: fields
+## Column 2 content settings.
+column_2_content:
+  description: string
+  default: "string"
+  table:
+    category: fields
+## Column 3 content settings.
+column_3_content:
+  description: string
+  default: "string"
+  table:
+    category: fields
+## Column 3 content settings.
+column_4_content:
+  description: string
+  default: "string"
+  table:
+    category: fields
+## Desktop (lg) columns size settings.
+desktop_columns_size:
+  description: "Bootstrap grid classes"
+  table:
+    category: "settings"
+  default: "col-3"
+  options:
+    "25% - 25% - 25% - 25%": "25_25_25_25"
+    "50% - 50% - 50% - 50%": "50_50_50_50"
+## Tablet (md) columns size settings.
+tablet_columns_size:
+  description: "Bootstrap grid classes"
+  table:
+    category: "settings"
+  default: "col-3"
+  options:
+    "25% - 25% - 25% - 25%": "25_25_25_25"
+    "50% - 50% - 50% - 50%": "50_50_50_50"
+    "100% - 100% - 100% - 100%": "100_100_100_100"
+## Mobile (sm) columns size settings.
+mobile_columns_size:
+  description: "Bootstrap grid classes"
+  table:
+    category: "settings"
+  default: "col-12"
+  options:
+    "100% - 100% - 100% - 100%": "100_100_100_100"

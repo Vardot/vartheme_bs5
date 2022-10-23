@@ -1,0 +1,21 @@
+{#
+  * Container component.
+  * Available config:
+  * - attributes: Drupal attributes.
+  * - withContainer: Boolean variable to add container class or not.
+  * - content: The content block that will be inside Container component.
+  * - utility_classes: An array of classes.
+  * - classes: The main array of classes for Container component.
+#}
+
+{% set classes = []|merge(utility_classes) %}
+
+{% if withContainer %}
+  {% set classes = classes|merge(['container']) %}
+{% endif %}
+
+<div {{ attributes.addClass(classes) }}>
+  {% block children %}
+    {{ children }}
+  {% endblock %}
+</div>

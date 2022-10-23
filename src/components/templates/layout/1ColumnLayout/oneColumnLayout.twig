@@ -1,0 +1,49 @@
+{#
+  * One column layout component.
+  * Available config:
+  * - attributes: Drupal attributes for One column layout component.
+  * - row_attributes: Drupal attributes for row component.
+  * - col_attributes: Drupal attributes for column component.
+  * - row: Boolean variable passed to row component to add row class or not.
+  * - container: Boolean variable passed to container component to add container class or not.
+  * - container_classes: An array of additional classes passed to container component.
+  * - row_classes: An array of additional classes passed to row component.
+  * - columns: An array of columns objects, contains:
+  *    - attributes: Drupal attributes.
+  *    - size: Bootstrab grid classes for columns, like: col-md-12, col-sm-6, etc... .
+  *    - content: Column content.
+#}
+
+{# Embed container component #}
+{% embed "@atoms/container/container.twig" with {
+  attributes: container_attributes,
+  withContainer: container,
+  utility_classes: container_classes
+} %}
+  {% block children %}
+
+    {# Embed row component #}
+    {% embed "@atoms/row/row.twig" with {
+      attributes: row_attributes,
+      withRow: row,
+      utility_classes: row_classes
+    } %}
+      {% block content %}
+
+        {% for col in columns %}
+          {# Embed column component #}
+          {% embed "@atoms/column/column.twig" with {
+            attributes: col.attributes.addClass(col.size)
+          } %}
+
+            {% block content %}
+              {{col.content}}
+            {% endblock %}
+
+          {% endembed %}
+        {% endfor %}
+
+      {% endblock %}
+    {% endembed %}
+  {% endblock %}
+{% endembed %}
