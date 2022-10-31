@@ -1,9 +1,9 @@
-name: 'Vartheme BS5'
-description: 'Base theme for Varbase standard websites. Based on Bootstrap 5 framework using SASS, and extending Radix theme.'
+name: "Vartheme BS5"
+description: "Base theme for Varbase standard websites. Based on Bootstrap 5 framework using SASS."
 core_version_requirement: ^9 || ^10
 engine: twig
 type: theme
-base theme: radix
+base theme: false
 screenshot: screenshot.png
 
 regions:

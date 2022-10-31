@@ -1,6 +1,6 @@
 {
   "name": "drupal/vartheme_bs5",
-  "description": "A SASS base theme for Varbase standard websites. Based on Radix (Bootstrap 5) theme.",
+  "description": "Base theme for Varbase standard websites. Based on Bootstrap 5 framework using SASS.",
   "type": "drupal-theme",
   "homepage": "https://www.drupal.org/project/vartheme_bs5",
   "license": "GPL-2.0-or-later",
@@ -31,7 +31,6 @@
     "oomphinc/composer-installers-extender": "~2.0",
     "cweagans/composer-patches": "~1.0",
     "drupal/core": "~9.0 || ~10.0",
-    "drupal/radix": "5.0.x-dev",
     "drupal/components": "~3.0",
     "drupal/ui_patterns": "~1.0"
   },

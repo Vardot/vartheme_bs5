@@ -1,6 +1,6 @@
 {
   "name": "vartheme_bs5",
-  "description": "Base theme for Varbase standard websites. Based on Bootstrap 5 framework using SASS, and extending Radix theme.",
+  "description": "Base theme for Varbase standard websites. Based on Bootstrap 5 framework using SASS.",
   "private": true,
   "engines": {
     "npm": ">= 6.0",
