@@ -5,14 +5,20 @@
  *
 #}
 
-<footer class="page-footer bg-light py-3 mt-auto w-100 small">
+{% set classes = [
+  'bg-light',
+  'mt-auto',
+  'w-100'
+]|merge(utility_classes ?? []) %}
+
+<div class="{{ classes|join(' ') }}">
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <div class="footer-top d-flex justify-content-md-between align-items-md-center">
+        <div class="d-flex justify-content-md-between align-items-md-center">
           {{ content }}
         </div>
       </div>
     </div>
   </div>
-</footer>
+</div>
