@@ -7,13 +7,17 @@ base theme: false
 screenshot: screenshot.png
 
 regions:
+  top_bar: Top bar
   navbar_branding: Navbar branding
-  navbar_left: Navbar left
-  navbar_right: Navbar right
-  header: Header
+  navigation: Navigation (Desktop and Collapse)
+  highlighted: Highlighted
+  content_above: Content above
+  primary_sidebar: Primary sidebar
   content: Content
-  page_bottom: Page bottom
-  footer: Footer
+  secondary_sidebar: Secondary sidebar
+  content_below: Content below
+  footer_top: Footer top
+  footer_bottom: Footer bottom
 
 libraries:
   - vartheme_bs5/style

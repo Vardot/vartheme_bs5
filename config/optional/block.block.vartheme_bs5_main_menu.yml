@@ -9,7 +9,7 @@ dependencies:
     - vartheme_bs5
 id: vartheme_bs5_main_menu
 theme: vartheme_bs5
-region: navbar_right
+region: navigation
 weight: -5
 provider: null
 plugin: "system_menu_block:main"

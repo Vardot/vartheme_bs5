@@ -7,7 +7,7 @@ dependencies:
     - vartheme_bs5
 id: vartheme_bs5_help
 theme: vartheme_bs5
-region: header
+region: content_above
 weight: -5
 provider: null
 plugin: help_block

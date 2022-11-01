@@ -7,7 +7,7 @@ dependencies:
     - vartheme_bs5
 id: vartheme_bs5_messages
 theme: vartheme_bs5
-region: header
+region: content_above
 weight: -2
 provider: null
 plugin: system_messages_block

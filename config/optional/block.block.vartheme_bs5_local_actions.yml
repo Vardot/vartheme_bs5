@@ -5,7 +5,7 @@ dependencies:
     - vartheme_bs5
 id: vartheme_bs5_local_actions
 theme: vartheme_bs5
-region: header
+region: content_above
 weight: -3
 provider: null
 plugin: local_actions_block

@@ -7,9 +7,9 @@ dependencies:
     - system
   theme:
     - vartheme_bs5
-id: vartheme_bs5_footer
+id: vartheme_bs5_footer_top
 theme: vartheme_bs5
-region: footer
+region: footer_top
 weight: -5
 provider: null
 plugin: "system_menu_block:footer"
