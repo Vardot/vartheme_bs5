@@ -42,12 +42,12 @@
 
     <div role="main" class="main-container {{ container }}">
       <div class="row justify-content-center">
-        <div id="auth-box" class="login col-10 col-lg-4 col-xl-3"> 
+        <div id="auth-box" class="login col-10 col-lg-4 col-xl-3">
           <div id="top-part">
 
           </div>
           <div id="middle-part">
-            {{ page.header|without('vartheme_bs5_local_tasks', 'vartheme_bs5_breadcrumbs', 'vartheme_bs5_local_actions', 'vartheme_bs5_page_title') }}
+            {{ page.content_above|without('vartheme_bs5_local_tasks', 'vartheme_bs5_breadcrumbs', 'vartheme_bs5_local_actions', 'vartheme_bs5_page_title') }}
             {% if (varbase.we_do_have_enabled_social_auth_modules.value) and (page.content.vartheme_bs5_socialauthlogin) %}
               <h2 class="block-title"><span> {{ "Login with"|t }} </span></h2>
               {{ page.content.vartheme_bs5_socialauthlogin }}
@@ -76,12 +76,19 @@
     </div>
   </main>
 
-  {% if page.footer %}
+  <footer class="footer">
+    {% if page.footer_top %}
+      {% include "@organisms/footer/footer.twig" with {
+        content: page.footer_top,
+        utility_classes: ['footer-top']
+      } %}
+    {% endif %}
 
-    {% embed "@organisms/footer/footer.twig" with {
-      content: page.footer
-    } %}
-
-    {% endembed %}
-  {% endif %}
+    {% if page.footer_bottom %}
+      {% include "@organisms/footer/footer.twig" with {
+        content: page.footer_bottom,
+        utility_classes: ['footer-bottom']
+      } %}
+    {% endif %}
+  </footer>
 </div>
