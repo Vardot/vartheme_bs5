@@ -1,47 +1,48 @@
-const path = require('path');
-const isDev = (process.env.NODE_ENV !== 'production');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin');
-const autoprefixer = require('autoprefixer');
-const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
-const postcssRTLCSS = require('postcss-rtlcss');
+const path = require("path");
+const isDev = process.env.NODE_ENV !== "production";
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const SVGSpritemapPlugin = require("svg-spritemap-webpack-plugin");
+const autoprefixer = require("autoprefixer");
+const RemoveEmptyScriptsPlugin = require("webpack-remove-empty-scripts");
+const postcssRTLCSS = require("postcss-rtlcss");
 
 module.exports = {
   entry: {
     // ################################################
     // Javascript
     // ################################################
-    'main': ['./js/main.script.js'],
-    'bootstrap': ['./js/bootstrap.js'],
+    main: ["./js/script.js"],
+    bootstrap: ["./js/bootstrap.js"],
     // ################################################
     // SCSS
     // ################################################
     // Base
-    'base/style': ['./styles/base/style.scss']
+    "base/style": ["./styles/base/style.scss"],
   },
   output: {
-    filename: 'js/[name].js',
-    chunkFilename: 'js/async/[name].chunk.js',
-    path: path.resolve(__dirname, 'dist'),
+    filename: "js/[name].js",
+    chunkFilename: "js/async/[name].chunk.js",
+    path: path.resolve(__dirname, "dist"),
     pathinfo: true,
-    publicPath: '../../',
+    publicPath: "../../",
   },
   module: {
     rules: [
       {
         test: /\.(png|jpe?g|gif|svg)$/,
         exclude: /sprite\.svg$/,
-        type: 'javascript/auto',
-        use: [{
-            loader: 'file-loader',
+        type: "javascript/auto",
+        use: [
+          {
+            loader: "file-loader",
             options: {
-              name: '[path][name].[ext]', //?[contenthash]
+              name: "[path][name].[ext]", //?[contenthash]
               publicPath: (url, resourcePath, context) => {
                 const relativePath = path.relative(context, resourcePath);
 
                 // Settings
-                if (resourcePath.includes('media/settings')) {
+                if (resourcePath.includes("media/settings")) {
                   return `../../${relativePath}`;
                 }
 
@@ -50,7 +51,7 @@ module.exports = {
             },
           },
           {
-            loader: 'img-loader',
+            loader: "img-loader",
             options: {
               enabled: !isDev,
             },
@@ -61,7 +62,7 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
+          loader: "babel-loader",
         },
       },
       {
@@ -70,17 +71,17 @@ module.exports = {
           {
             loader: MiniCssExtractPlugin.loader,
             options: {
-              name: '[name].[ext]?[hash]',
-            }
+              name: "[name].[ext]?[hash]",
+            },
           },
           {
-            loader: 'css-loader',
+            loader: "css-loader",
             options: {
               sourceMap: isDev,
               importLoaders: 2,
               url: (url) => {
                 // Don't handle sprite svg
-                if (url.includes('sprite.svg')) {
+                if (url.includes("sprite.svg")) {
                   return false;
                 }
 
@@ -89,28 +90,31 @@ module.exports = {
             },
           },
           {
-            loader: 'postcss-loader',
+            loader: "postcss-loader",
             options: {
               sourceMap: isDev,
               postcssOptions: {
                 plugins: [
                   autoprefixer(),
                   postcssRTLCSS(),
-                  ['postcss-perfectionist', {
-                    format: 'expanded',
-                    indentSize: 2,
-                    trimLeadingZero: true,
-                    zeroLengthNoUnit: false,
-                    maxAtRuleLength: false,
-                    maxSelectorLength: false,
-                    maxValueLength: false,
-                  }]
+                  [
+                    "postcss-perfectionist",
+                    {
+                      format: "expanded",
+                      indentSize: 2,
+                      trimLeadingZero: true,
+                      zeroLengthNoUnit: false,
+                      maxAtRuleLength: false,
+                      maxSelectorLength: false,
+                      maxValueLength: false,
+                    },
+                  ],
                 ],
               },
             },
           },
           {
-            loader: 'sass-loader',
+            loader: "sass-loader",
             options: {
               sourceMap: isDev,
               // Global SCSS imports:
@@ -124,59 +128,59 @@ module.exports = {
       },
       {
         test: /\.(woff(2))(\?v=\d+\.\d+\.\d+)?$/,
-        type: 'javascript/auto',
-        use: [{
-          loader: 'file-loader',
-          options: {
-            name: '[path][name].[ext]?[hash]',
-            publicPath: (url, resourcePath, context) => {
-              const relativePath = path.relative(context, resourcePath);
+        type: "javascript/auto",
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "[path][name].[ext]?[hash]",
+              publicPath: (url, resourcePath, context) => {
+                const relativePath = path.relative(context, resourcePath);
 
-              // Settings
-              if (resourcePath.includes('media/font')) {
-                return `../../${relativePath}`;
-              }
+                // Settings
+                if (resourcePath.includes("media/font")) {
+                  return `../../${relativePath}`;
+                }
 
-              return `../${relativePath}`;
+                return `../${relativePath}`;
+              },
             },
-          }
-        }],
+          },
+        ],
       },
     ],
   },
   resolve: {
     alias: {
-      media: path.join(__dirname, 'media'),
-      settings: path.join(__dirname, 'media/settings'),
-      font: path.join(__dirname, 'media/font'),
+      media: path.join(__dirname, "media"),
+      settings: path.join(__dirname, "media/settings"),
+      font: path.join(__dirname, "media/font"),
     },
-    modules: [
-      path.join(__dirname, 'node_modules'),
-    ],
-    extensions: ['.js', '.json'],
+    modules: [path.join(__dirname, "node_modules")],
+    extensions: [".js", ".json"],
   },
   plugins: [
     new RemoveEmptyScriptsPlugin(),
     new CleanWebpackPlugin({
-      cleanStaleWebpackAssets: false
+      cleanStaleWebpackAssets: false,
     }),
     new MiniCssExtractPlugin({
       filename: "css/[name].css",
     }),
-    new SVGSpritemapPlugin(path.resolve(__dirname, 'media/icons/**/*.svg'), {
+    new SVGSpritemapPlugin(path.resolve(__dirname, "media/icons/**/*.svg"), {
       output: {
-        filename: 'media/sprite.svg',
+        filename: "media/sprite.svg",
         svg: {
-          sizes: false
+          sizes: false,
         },
         svgo: {
           plugins: [
             {
-              name: 'removeAttrs',
+              name: "removeAttrs",
               params: {
-                attrs: '(use|symbol|svg):fill'
-              }
-            }
+                attrs: "(use|symbol|svg):fill",
+              },
+            },
           ],
         },
       },
@@ -187,19 +191,27 @@ module.exports = {
           title: false,
           symbol: true,
           use: true,
-          view: '-view'
-        }
+          view: "-view",
+        },
       },
       styles: {
-        filename: path.resolve(__dirname, 'styles/helpers/_svg-sprite.scss'),
+        filename: path.resolve(__dirname, "styles/helpers/_svg-sprite.scss"),
         keepAttributes: true,
         // Fragment now works with Firefox 84+ and 91esr+
-        format: 'fragment',
-      }
+        format: "fragment",
+      },
     }),
   ],
   watchOptions: {
     aggregateTimeout: 300,
-    ignored: ['**/*.woff', '**/*.json', '**/*.woff2', '**/*.jpg', '**/*.png', '**/*.svg', 'node_modules'],
-  }
+    ignored: [
+      "**/*.woff",
+      "**/*.json",
+      "**/*.woff2",
+      "**/*.jpg",
+      "**/*.png",
+      "**/*.svg",
+      "node_modules",
+    ],
+  },
 };
