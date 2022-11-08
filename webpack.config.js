@@ -18,8 +18,7 @@ module.exports = {
     // SCSS
     // ################################################
     // Base
-    'base/vartheme_bs5': ['./styles/base/vartheme_bs5.scss'],
-    'bootstrap/bootstrap': ['./styles/bootstrap/bootstrap.scss'],
+    'base/style': ['./styles/base/style.scss']
   },
   output: {
     filename: 'js/[name].js',
