@@ -20,7 +20,7 @@ regions:
   footer_bottom: Footer bottom
 
 libraries:
-  - vartheme_bs5/style
+  - vartheme_bs5/framework
 
 libraries-override:
   betterlogin/betterlogin_css: vartheme_bs5/betterlogin
