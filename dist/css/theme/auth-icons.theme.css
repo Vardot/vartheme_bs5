@@ -1,0 +1,74 @@
+.social-auth {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.social-auth .social-network {
+  width: 44%;
+  cursor: pointer;
+  transition: box-shadow .2s ease 0s, color;
+  border-width: initial;
+  border-color: initial;
+  border-radius: 2px;
+  -o-border-image: initial;
+     border-image: initial;
+  box-shadow: 0 1px 4px rgba(26, 25, 43, .24) !important;
+  margin: .5rem;
+}
+
+[dir="ltr"] .social-auth .social-network {
+  padding: .75rem calc(1.275rem + .3vw) .75rem .75rem;
+}
+
+[dir="rtl"] .social-auth .social-network {
+  padding: .75rem .75rem .75rem calc(1.275rem + .3vw);
+}
+
+@media (min-width: 1200px) {
+  [dir="ltr"] .social-auth .social-network {
+    padding: .75rem 1.5rem .75rem .75rem;
+  }
+
+  [dir="rtl"] .social-auth .social-network {
+    padding: .75rem .75rem .75rem 1.5rem;
+  }
+}
+
+.social-auth .auth-link {
+  text-decoration: none;
+  color: #4a495e;
+  font-family: Roboto, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+.social-auth .auth-link:hover, .social-auth .auth-link:active, .social-auth .auth-link:focus {
+  color: #145cc6;
+}
+
+.social-auth .auth-icon {
+  width: 16px;
+  height: 16px;
+}
+
+[dir="ltr"] .social-auth .auth-icon {
+  margin-right: 1rem;
+}
+
+[dir="rtl"] .social-auth .auth-icon {
+  margin-left: 1rem;
+}
+
+@media (max-width: 575.98px) {
+  [dir="ltr"] .social-auth .social-network {
+    padding-right: .75rem;
+  }
+
+  [dir="rtl"] .social-auth .social-network {
+    padding-left: .75rem;
+  }
+}
+

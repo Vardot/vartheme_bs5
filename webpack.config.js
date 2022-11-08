@@ -1,4 +1,5 @@
 const path = require("path");
+const glob = require("glob");
 const isDev = process.env.NODE_ENV !== "production";
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -18,7 +19,23 @@ module.exports = {
     // SCSS
     // ################################################
     // Base
-    "base/style": ["./styles/base/style.scss"],
+    "base/bootstrap.base": ["./styles/base/_bootstrap.scss"],
+    "base/style.base": ["./styles/base/style.scss"],
+    "layout/edge2edge.layout": ["./styles/layout/edge2edge.layout.scss"],
+    "layout/equal-height.layout": ["./styles/layout/equal-height.layout.scss"],
+    "layout/print.layout": ["./styles/layout/print.layout.scss"],
+    "theme/auth-icons.theme": ["./styles/theme/auth-icons.theme.scss"],
+    "theme/betterlogin.theme": ["./styles/theme/betterlogin.theme.scss"],
+    "theme/content.theme": ["./styles/theme/content.theme.scss"],
+    "theme/footer.theme": ["./styles/theme/footer.theme.scss"],
+    "theme/header.theme": ["./styles/theme/header.theme.scss"],
+    "theme/maintenance-page.theme": [
+      "./styles/theme/maintenance-page.theme.scss",
+    ],
+    "theme/varbase-heroslider-media.theme": [
+      "./styles/theme/varbase-heroslider-media.theme.scss",
+    ],
+    "theme/vbp-colors.theme": ["./styles/theme/vbp-colors.theme.scss"],
   },
   output: {
     filename: "js/[name].js",
