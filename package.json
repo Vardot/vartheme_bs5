@@ -88,11 +88,12 @@
     "css-loader": "~6",
     "drupal-attribute": "~1",
     "js-yaml-loader": "~1",
+    "postcss": "^8.1.0",
     "storybook-source-code-addon": "~1",
     "style-loader": "~3",
+    "terser-webpack-plugin": "^5.3.6",
     "twig": "~1",
     "twig-drupal-filters": "~3",
-    "twig-loader": "https://github.com/fourkitchens/twig-loader",
-    "postcss": "^8.1.0"
+    "twig-loader": "https://github.com/fourkitchens/twig-loader"
   }
 }
