@@ -69,7 +69,6 @@
     "webpack-remove-empty-scripts": "^0.7.1"
   },
   "dependencies": {
-    "@babel/core": "~7",
     "@fortawesome/fontawesome-free": "~5",
     "@popperjs/core": "~2",
     "@storybook/addon-a11y": "~6",
@@ -84,19 +83,16 @@
     "@storybook/addon-viewport": "~6",
     "@storybook/html": "~6",
     "@storybook/react": "~6",
-    "babel-loader": "~8",
     "bootstrap": "~5",
     "bootstrap-borders-utilities": "~1",
     "css-loader": "~6",
     "drupal-attribute": "~1",
     "js-yaml-loader": "~1",
-    "raw-loader": "~4",
     "storybook-source-code-addon": "~1",
     "style-loader": "~3",
     "twig": "~1",
     "twig-drupal-filters": "~3",
     "twig-loader": "https://github.com/fourkitchens/twig-loader",
-    "postcss": "^8.1.0",
-    "sass": "^1.44.0"
+    "postcss": "^8.1.0"
   }
 }
