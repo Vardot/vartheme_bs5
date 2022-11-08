@@ -8,7 +8,7 @@ framework:
       dist/css/layout/equal-height.layout.css: {}
       dist/css/layout/print.layout.css: { media: print }
   js:
-    dist/js/main.script.js: {}
+    dist/js/script.js: {}
   dependencies:
     - core/drupal
     - core/jquery
