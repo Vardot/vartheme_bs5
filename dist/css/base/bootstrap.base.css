@@ -8195,6 +8195,18 @@ textarea.form-control-lg {
   --bs-aspect-ratio: 100%;
 }
 
+.ratio-2x1 {
+  --bs-aspect-ratio: 50%;
+}
+
+.ratio-3x1 {
+  --bs-aspect-ratio: 33.3333333333%;
+}
+
+.ratio-4x1 {
+  --bs-aspect-ratio: 25%;
+}
+
 .ratio-4x3 {
   --bs-aspect-ratio: 75%;
 }
