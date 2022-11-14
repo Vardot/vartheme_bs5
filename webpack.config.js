@@ -19,7 +19,7 @@ module.exports = {
     // SCSS
     // ################################################
     // Base
-    "base/bootstrap.base": ["./styles/base/_bootstrap.scss"],
+    "base/bootstrap.base": ["./styles/base/bootstrap.scss"],
     "base/style.base": ["./styles/base/style.scss"],
     "layout/edge2edge.layout": ["./styles/layout/edge2edge.layout.scss"],
     "layout/equal-height.layout": ["./styles/layout/equal-height.layout.scss"],
