@@ -10,7 +10,8 @@
   "scripts": {
     "start": "yarn dev",
     "dev": "webpack --progress --config  webpack.config.dev.js --watch",
-    "build": "webpack --progress --config webpack.config.build.js"
+    "build": "webpack --progress --config webpack.config.build.js",
+    "storybook": "start-storybook --port 3000"
   },
   "license": "MIT",
   "keywords": [
