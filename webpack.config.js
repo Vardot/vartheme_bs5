@@ -21,9 +21,11 @@ module.exports = {
     // Base
     "base/bootstrap.base": ["./styles/base/bootstrap.scss"],
     "base/style.base": ["./styles/base/style.scss"],
+    // Layout
     "layout/edge2edge.layout": ["./styles/layout/edge2edge.layout.scss"],
     "layout/equal-height.layout": ["./styles/layout/equal-height.layout.scss"],
     "layout/print.layout": ["./styles/layout/print.layout.scss"],
+    // Theme
     "theme/auth-icons.theme": ["./styles/theme/auth-icons.theme.scss"],
     "theme/betterlogin.theme": ["./styles/theme/betterlogin.theme.scss"],
     "theme/content.theme": ["./styles/theme/content.theme.scss"],
@@ -36,6 +38,15 @@ module.exports = {
       "./styles/theme/varbase-heroslider-media.theme.scss",
     ],
     "theme/vbp-colors.theme": ["./styles/theme/vbp-colors.theme.scss"],
+    // ##########################################################################
+    // Components
+    // ##########################################################################
+    "components/organisms/cards/featuredCard/featured-card": [
+      "./src/components/organisms/cards/featuredCard/featured-card.scss",
+    ],
+    "components/organisms/cards/featuredCard/featured-card-rtl": [
+      "./src/components/organisms/cards/featuredCard/featured-card-rtl.scss",
+    ],
   },
   output: {
     filename: "js/[name].js",
