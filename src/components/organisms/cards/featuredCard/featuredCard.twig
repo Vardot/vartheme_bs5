@@ -20,7 +20,7 @@
 {% set rowFlex = reverse ? 'flex-row-reverse' : 'flex-row' %}
 {% set imageRounded = reverse ?  'rounded-end' : 'rounded-start' %}
 
-{% set cardClasses = ['card']|merge(utility_classes) %}
+{% set cardClasses = ['card']|merge(utility_classes ?? []) %}
 {% set rowClasses = ['g-0', rowFlex] %}
 {% set cardBodyClasses = ['card-body', 'col-md-6', 'col-sm-12'] %}
 {% set imageClasses = ['img-fluid', imageRounded] %}
