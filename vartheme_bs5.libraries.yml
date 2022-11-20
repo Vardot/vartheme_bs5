@@ -2,7 +2,7 @@ framework:
   version: VERSION
   css:
     theme:
-      dist/css/main.style.css: {}
+      dist/css/base/style.base.css: {}
     layout:
       dist/css/layout/edge2edge.layout.css: {}
       dist/css/layout/equal-height.layout.css: {}

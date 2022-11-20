@@ -27,7 +27,7 @@ libraries-override:
   social_auth/auth-icons: vartheme_bs5/auth-icons
 
 ckeditor_stylesheets:
-  - build/css/main.style.css
+  - dist/css/base/style.base.css
 
 components:
   namespaces:
