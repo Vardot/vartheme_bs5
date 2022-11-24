@@ -4,94 +4,61 @@
  * Template for a Featured card component.
  *
  * Available config:
- * - attributes: Drupal attributes.
- * - tag: The HTML tag to use for the heading (title). Defaults to h2.
- * - content: The body content of the card.
- * - cardClasses: An array of classes for main wrapper of the card.
- * - cardBodyClasses: An array of classes for card body wrapper.
- * - imageClasses: An array of classes for card image.
- * - headingClasses: An array of classes for card heading.
- * - textClasses: An array of classes for card text.
- * - linkClasses: An array of classes for card link button.
- * - utility_classes: An array of aditional classes for main wrapper of the card.
+ * - card_attributes: Drupal attributes for featured card wrapper.
+ * - row_attributes: Drupal attributes for row.
+ * - left_column_attributes: Drupal attributes for left column.
+ * - right_column_attributes: Drupal attributes for right column.
+ * - columns_sm_size: The bootstrap columns size in sm view.
+ * - columns_md_size: The bootstrap columns size in md view.
+ * - columns_lg_size: The bootstrap columns size in lg view.
+ * - columns_xl_size: The bootstrap columns size in xl view.
+ * - columns_xxl_size: The bootstrap columns size in xxl view.
+ * - featured_card_classes: An array of classes for featured card wrapper.
+ * - row_classes: An array of classes for row.
+ * - left_column_classes: An array of classes for left column.
+ * - right_column_classes: An array of classes for right column.
+ * - image_position: left|right to determine if the row is reversed or not.
+ * - utility_classes: An array of aditional classes for featured card wrapper.
  */
 #}
 
-{% set rowFlex = reverse ? 'flex-row-reverse' : 'flex-row' %}
-{% set imageRounded = reverse ?  'rounded-end' : 'rounded-start' %}
+{% set featured_card_classes = [
+  'card',
+  'varbase-featured-card'
+]|merge(utility_classes ?? []) %}
 
-{% set cardClasses = ['card']|merge(utility_classes ?? []) %}
-{% set rowClasses = ['g-0', rowFlex] %}
-{% set cardBodyClasses = ['card-body', 'col-md-6', 'col-sm-12'] %}
-{% set imageClasses = ['img-fluid', imageRounded] %}
-{% set headingClasses = ['card-title'] %}
-{% set textClasses = ['card-text'] %}
-{% set linkClasses = ['btn', 'btn-primary'] %}
+{% set row_classes = [
+  'row',
+  image_position == 'right' ? 'flex-row-reverse' : ''
+] %}
 
-{# Featured card main wrapper [start] #}
-{% embed "@atoms/wrapper/wrapper.twig" with {
-  attributes: attributes,
-  utility_classes: cardClasses
-} %}
+{% set left_column_classes = [
+  'left-column',
+  columns_sm_size ? 'col-sm-' ~ columns_sm_size|split("_")[0] : '',
+  columns_md_size ? 'col-md-' ~ columns_md_size|split("_")[0] : '',
+  columns_lg_size ? 'col-lg-' ~ columns_lg_size|split("_")[0] : '',
+  columns_xl_size ? 'col-xl-' ~ columns_xl_size|split("_")[0] : '',
+  columns_xxl_size ? 'col-xxl-' ~ columns_xxl_size|split("_")[0] : ''
+] %}
 
-  {% block content %}
+{% set right_column_classes = [
+  'right-column',
+  columns_sm_size ? 'col-sm-' ~ columns_sm_size|split("_")[1] : '',
+  columns_md_size ? 'col-md-' ~ columns_md_size|split("_")[1] : '',
+  columns_lg_size ? 'col-lg-' ~ columns_lg_size|split("_")[1] : '',
+  columns_xl_size ? 'col-xl-' ~ columns_xl_size|split("_")[1] : '',
+  columns_xxl_size ? 'col-xxl-' ~ columns_xxl_size|split("_")[0] : ''
+] %}
 
-      {% embed "@atoms/row/row.twig" with {
-        attributes: row_attributes,
-        withRow: true,
-        utility_classes: rowClasses
-      } %}
-        {% block content %}
-          {% if withImage %}
-            {% embed "@atoms/wrapper/wrapper.twig" with {
-              attributes: image_wrapper_attributes,
-              utility_classes: ['col-md-6', 'col-sm-12']
-            } %}
-              {% block content %}
-                <img src="{{ image }}" class="{{ imageClasses|join(' ') }}" alt="{{ imageAltText }}">
-              {% endblock %}
-            {% endembed %}
-          {% endif %}
-
-          {# Card body wrapper [start] #}
-          {% embed "@atoms/wrapper/wrapper.twig" with {
-            attributes: card_body_attributes,
-            utility_classes: cardBodyClasses
-          } %}
-
-            {% block content %}
-              {# Heading component #}
-              {% include "@atoms/heading/heading.twig" with {
-                tag: headingTag,
-                attributes: heading_attributes,
-                utility_classes: headingClasses,
-                content: headingContent
-              } %}
-
-              {# Text component #}
-              {% include "@atoms/text/text.twig" with {
-                attributes: text_attributes,
-                utility_classes: textClasses,
-                content: content,
-              } %}
-
-              {% if withLink %}
-                {# Link component #}
-                {% include "@atoms/link/link.twig" with {
-                  attributes: link_attributes,
-                  href: linkHref,
-                  content: linkText,
-                  utility_classes: linkClasses
-                } %}
-              {% endif %}
-
-            {% endblock %}
-          {# Card body wrapper [end] #}
-          {% endembed %}
-
-        {% endblock %}
-      {% endembed %}
-
-  {% endblock %}
-{# Featured card main wrapper [end] #}
-{% endembed %}
+<div {{ card_attributes.addClass(featured_card_classes) }}>
+  <div {{ row_attributes.addClass(row_classes) }}>
+    <div {{ left_column_attributes.addClass(left_column_classes) }}>
+      {{ image }}
+      </div>
+    <div {{ right_column_attributes.addClass(right_column_classes) }}>
+      <div class="card-body">
+        {{ content }}
+      </div>
+    </div>
+  </div>
+</div>

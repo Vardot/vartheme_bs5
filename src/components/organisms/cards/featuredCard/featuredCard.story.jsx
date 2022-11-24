@@ -20,11 +20,40 @@ export default {
     },
   },
   argTypes: {
-    imageAltText: {
-      content: { control: "text" },
-      description: config.image_alt_text.description,
-      defaultValue: { summary: config.image_alt_text.default },
-      table: config.image_alt_text.table,
+    columnsSmSize: {
+      control: { type: "select" },
+      options: config.columns_sm_size.options,
+      description: config.columns_sm_size.description,
+      defaultValue: { summary: config.columns_sm_size.default },
+      table: config.columns_sm_size.table,
+    },
+    columnsMdSize: {
+      control: { type: "select" },
+      options: config.columns_md_size.options,
+      description: config.columns_md_size.description,
+      defaultValue: { summary: config.columns_md_size.default },
+      table: config.columns_md_size.table,
+    },
+    columnsLgSize: {
+      control: { type: "select" },
+      options: config.columns_lg_size.options,
+      description: config.columns_lg_size.description,
+      defaultValue: { summary: config.columns_lg_size.default },
+      table: config.columns_lg_size.table,
+    },
+    columnsXlSize: {
+      control: { type: "select" },
+      options: config.columns_xl_size.options,
+      description: config.columns_xl_size.description,
+      defaultValue: { summary: config.columns_xl_size.default },
+      table: config.columns_xl_size.table,
+    },
+    columnsXxlSize: {
+      control: { type: "select" },
+      options: config.columns_xxl_size.options,
+      description: config.columns_xxl_size.description,
+      defaultValue: { summary: config.columns_xxl_size.default },
+      table: config.columns_xxl_size.table,
     },
     headingTag: {
       control: { type: "select" },
@@ -33,83 +62,71 @@ export default {
       defaultValue: { summary: config.heading_tag.default },
       table: config.heading_tag.table,
     },
-    headingContent: {
-      content: { control: "text" },
+    imagePosition: {
+      control: { type: "select" },
+      options: config.image_position.options,
+      description: config.image_position.description,
+      defaultValue: { summary: config.image_position.default },
+      table: config.image_position.table,
+    },
+    heading: {
+      content: { control: 'text' },
       description: config.heading.description,
-      defaultValue: { summary: config.heading.default },
+      defaultValue: {summary: config.heading.default},
       table: config.heading.table,
     },
-    content: {
-      content: { control: "text" },
-      description: config.content.description,
-      defaultValue: { summary: config.content.default },
-      table: config.content.table,
+    body: {
+      content: { control: 'text' },
+      description: config.body.description,
+      defaultValue: {summary: config.body.default},
+      table: config.body.table,
     },
     linkText: {
-      content: { control: "text" },
-      description: config.link_text.description,
-      defaultValue: { summary: config.link_text.default },
-      table: config.link_text.table,
-    },
-    linkHref: {
-      content: { control: "text" },
-      description: config.link_href.description,
-      defaultValue: { summary: config.link_href.default },
-      table: config.link_href.table,
-    },
-    reverse: {
-      content: { control: "boolean" },
-      description: config.reverse.description,
-      defaultValue: { summary: config.reverse.default },
-      table: config.reverse.table,
-    },
-    withImage: {
-      content: { control: "boolean" },
-      description: config.with_image.description,
-      defaultValue: { summary: config.with_image.default },
-      table: config.with_image.table,
-    },
-    withLink: {
-      content: { control: "boolean" },
-      description: config.with_link.description,
-      defaultValue: { summary: config.with_link.default },
-      table: config.with_link.table,
+      content: { control: 'text' },
+      description: config.link.description,
+      defaultValue: {summary: config.link.default},
+      table: config.link.table,
     },
   },
 };
 
 export const FeaturedCard = (args) => {
+
+  const image = `<img src=${img} />`;
+  const content = `
+    <${args.headingTag}>${args.heading}</${args.headingTag}>
+    <p>${args.body}</p>
+    <a href="https://www.vardot.com" class="btn btn-primary" target="_blank">${args.linkText}</a>
+  `;
+
   return featuredCard({
-    attributes: new DrupalAttribute(),
+    card_attributes: new DrupalAttribute(),
     row_attributes: new DrupalAttribute(),
-    image_wrapper_attributes: new DrupalAttribute(),
-    card_body_attributes: new DrupalAttribute(),
-    heading_attributes: new DrupalAttribute(),
-    text_attributes: new DrupalAttribute(),
-    link_attributes: new DrupalAttribute(),
-    image: img,
+    left_column_attributes: new DrupalAttribute(),
+    right_column_attributes: new DrupalAttribute(),
     headingTag: args.headingTag,
-    heading: args.heading,
-    content: args.content,
-    linkText: args.linkText,
-    linkHref: args.linkHref,
-    reverse: args.reverse,
-    withImage: args.withImage,
-    withLink: args.withLink,
+    columns_sm_size: args.columnsSmSize,
+    columns_md_size: args.columnsMdSize,
+    columns_lg_size: args.columnsLgSize,
+    columns_xl_size: args.columnsXlSize,
+    columns_xxl_size: args.columnsXxlSize,
+    image_position: args.imagePosition,
+    image: image,
+    content: content,
     utility_classes: [],
     ...args,
   });
 };
 
 FeaturedCard.args = {
-  imageAltText: "alternative text",
+  columnsSmSize: "12_12",
+  columnsMdSize: "6_6",
+  columnsLgSize: "",
+  columnsXlSize: "",
+  columnsXxlSize: "",
   headingTag: "h4",
-  headingContent: "Short placeholder heading",
-  content:
-    "This is placeholder text. Some quick example text to build on the card title and make up the bulk of the card's content.",
-  linkText: "Go somewhere",
-  linkHref: "#",
-  reverse: false,
-  withImage: true,
-  withLink: true,
+  imagePosition: 'left',
+  heading: "Card title",
+  body: "Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Cras ultricies ligula sed magna dictum porta. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Proin eget tortor risus. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Vivamus suscipit tortor eget felis porttitor volutpat.",
+  linkText: "Read more"
 };

@@ -3,12 +3,71 @@ description:
   component: "Featured card component description."
 ## Canvas height
 height: 250
-## Image alt text settings
-image_alt_text:
-  description: "string"
-  default: "string"
+## Columns (sm) size
+columns_sm_size:
+  description: "columns (sm) size"
   table:
     category: "settings"
+  default: "12_12"
+  options:
+    # The numbers in keys are representation of bootstrap classes (Ex: 3-9 = col-3 col-9)
+    '16% - 83%': '2_10'
+    '25% - 75%': '3_9'
+    '33% - 66%': '4_8'
+    '50% - 50%': '6_6'
+    '100% - 100%': '12_12'
+## Columns (md) size
+columns_md_size:
+  description: "columns (md) size"
+  table:
+    category: "settings"
+  default: "6_6"
+  options:
+    # The numbers in keys are representation of bootstrap classes (Ex: 3-9 = col-3 col-9)
+    '16% - 83%': '2_10'
+    '25% - 75%': '3_9'
+    '33% - 66%': '4_8'
+    '50% - 50%': '6_6'
+    '100% - 100%': '12_12'
+## Columns (lg) size
+columns_lg_size:
+  description: "columns (lg) size"
+  table:
+    category: "settings"
+  default: ""
+  options:
+    # The numbers in keys are representation of bootstrap classes (Ex: 3-9 = col-3 col-9)
+    '16% - 83%': '2_10'
+    '25% - 75%': '3_9'
+    '33% - 66%': '4_8'
+    '50% - 50%': '6_6'
+    '100% - 100%': '12_12'
+## Columns (xl) size
+columns_xl_size:
+  description: "columns (xl) size"
+  table:
+    category: "settings"
+  default: ""
+  options:
+    # The numbers in keys are representation of bootstrap classes (Ex: 3-9 = col-3 col-9)
+    '16% - 83%': '2_10'
+    '25% - 75%': '3_9'
+    '33% - 66%': '4_8'
+    '50% - 50%': '6_6'
+    '100% - 100%': '12_12'
+## Columns (xl) size
+columns_xxl_size:
+  description: "columns (xxl) size"
+  table:
+    category: "settings"
+  default: ""
+  options:
+    # The numbers in keys are representation of bootstrap classes (Ex: 3-9 = col-3 col-9)
+    '16% - 83%': '2_10'
+    '25% - 75%': '3_9'
+    '33% - 66%': '4_8'
+    '50% - 50%': '6_6'
+    '100% - 100%': '12_12'
 ## Heading html tag settings
 heading_tag:
   description: "html tag"
@@ -22,45 +81,30 @@ heading_tag:
     "H4": "h4"
     "H5": "h5"
     "H6": "h6"
+## Heading html tag settings
+image_position:
+  description: "image position"
+  table:
+    category: "settings"
+  default: "left"
+  options:
+    "Left": "left"
+    "Right": "right"
 ## Heading string settings
 heading:
   description: "string"
   default: "string"
   table:
     category: "fields"
-## Content string settings
-content:
+## Body string settings
+body:
   description: "string"
   default: "string"
   table:
     category: "fields"
-## Link text settings
-link_text:
+## Link string settings
+link:
   description: "string"
   default: "string"
   table:
     category: "fields"
-## Link href settings
-link_href:
-  description: "string"
-  default: "string"
-  table:
-    category: "settings"
-## Reverse columns settings
-reverse:
-  description: boolean
-  default: false
-  table:
-    category: settings
-## Card with image or not settings
-with_image:
-  description: boolean
-  default: false
-  table:
-    category: settings
-## Card with link or not settings
-with_link:
-  description: boolean
-  default: false
-  table:
-    category: settings

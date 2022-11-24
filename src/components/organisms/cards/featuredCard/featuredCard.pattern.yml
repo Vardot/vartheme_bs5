@@ -1,0 +1,104 @@
+featuredCard:
+  use: '@organisms/cards/featuredCard/featuredCard.twig'
+  label: 'Featured Card'
+  description: Featured card component description.
+  # Featured card pattern fields
+  fields:
+    image:
+      type: image
+      label: Image
+      description: Image description.
+      preview: 'Card Image'
+    content:
+      type: 'textfield'
+      label: 'Content'
+      description: 'Content description.'
+      preview: 'Card Content'
+  # Featured card pattern settings
+  settings:
+    additional_attributes:
+      type: 'group'
+      label: 'Additional attributes'
+      group_type: 'details'
+    card_attributes:
+      type: 'attributes'
+      label: 'Featured card attributes'
+      group: 'additional_attributes'
+    row_attributes:
+      type: 'attributes'
+      label: 'Row attributes'
+      group: 'additional_attributes'
+    left_column_attributes:
+      type: 'attributes'
+      label: 'Left column attributes'
+      group: 'additional_attributes'
+    right_column_attributes:
+      type: 'attributes'
+      label: 'Right column attributes'
+      group: 'additional_attributes'
+    # Small (bootstrap sm) sizes
+    columns_sm_size:
+      type: 'select'
+      label: 'Columns (sm) size'
+      options:
+        # The numbers in keys are representation of bootstrap classes (Ex: 3-9 = col-3 col-9)
+        '2_10': '16% - 83%'
+        '3_9': '25% - 75%'
+        '4_8': '33% - 66%'
+        '6_6': '50% - 50%'
+        '12_12': '100% - 100%'
+      default_value: '6_6'
+    # Medium (bootstrap md) sizes
+    columns_md_size:
+      type: 'select'
+      label: 'Columns (md) size'
+      options:
+        # The numbers in keys are representation of bootstrap classes (Ex: 3-9 = col-3 col-9)
+        '2_10': '16% - 83%'
+        '3_9': '25% - 75%'
+        '4_8': '33% - 66%'
+        '6_6': '50% - 50%'
+        '12_12': '100% - 100%'
+      default_value: ''
+    # Large (bootstrap lg) sizes
+    columns_lg_size:
+      type: 'select'
+      label: 'Columns (lg) size'
+      options:
+        # The numbers in keys are representation of bootstrap classes (Ex: 3-9 = col-3 col-9)
+        '2_10': '16% - 83%'
+        '3_9': '25% - 75%'
+        '4_8': '33% - 66%'
+        '6_6': '50% - 50%'
+        '12_12': '100% - 100%'
+      default_value: ''
+    # X-Large (bootstrap xl) sizes
+    columns_xl_size:
+      type: 'select'
+      label: 'Columns (xl) size'
+      options:
+        # The numbers in keys are representation of bootstrap classes (Ex: 3-9 = col-3 col-9)
+        '2_10': '16% - 83%'
+        '3_9': '25% - 75%'
+        '4_8': '33% - 66%'
+        '6_6': '50% - 50%'
+        '12_12': '100% - 100%'
+    # X-Large (bootstrap xl) sizes
+    columns_xxl_size:
+      type: 'select'
+      label: 'Columns (xxl) size'
+      options:
+        # The numbers in keys are representation of bootstrap classes (Ex: 3-9 = col-3 col-9)
+        '2_10': '16% - 83%'
+        '3_9': '25% - 75%'
+        '4_8': '33% - 66%'
+        '6_6': '50% - 50%'
+        '12_12': '100% - 100%'
+      default_value: ''
+    image_position:
+      type: 'select'
+      label: 'Image position'
+      options:
+        left: 'Left'
+        right: 'Right'
+      default_value: 'left'
