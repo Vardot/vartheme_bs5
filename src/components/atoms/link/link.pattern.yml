@@ -1,0 +1,30 @@
+link:
+  use: '@atoms/link/link.twig'
+  label: 'Link'
+  description: 'Link component description.'
+  # Link pattern fields
+  fields:
+    link:
+      type: 'text'
+      label: 'Link'
+      description: 'Link description.'
+      preview: 'Visit Vardot'
+    url:
+      type: 'link'
+      label: 'Link URL'
+      description: 'Title description.'
+      preview: 'https://www.vardot.com'
+    options:
+      type: 'text'
+      label: 'Link options'
+      description: 'Options description.'
+      preview: 'Options'
+    title:
+      type: 'text'
+      label: 'Link title'
+      description: 'Title description.'
+      preview: 'Visit Vardot'
+  settings:
+    attributes:
+      type: 'attributes'
+      label: 'Additional attributes'
