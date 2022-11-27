@@ -30,3 +30,16 @@ auth-icons:
   css:
     theme:
       dist/css/theme/auth-icons.theme.css: {}
+
+# ---------------------------------------------------------
+# Components
+# ---------------------------------------------------------
+featured-card-ltr:
+  css:
+    theme:
+      dist/css/components/organisms/cards/featuredCard/featured-card.css: {}
+
+featured-card-rtl:
+  css:
+    theme:
+      dist/css/components/organisms/cards/featuredCard/featured-card-rtl.css: {}

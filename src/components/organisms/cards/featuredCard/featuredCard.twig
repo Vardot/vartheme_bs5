@@ -18,9 +18,16 @@
  * - left_column_classes: An array of classes for left column.
  * - right_column_classes: An array of classes for right column.
  * - image_position: left|right to determine if the row is reversed or not.
+ * - lang_dir: A global variable to check the language direction LTR|RTL.
  * - utility_classes: An array of aditional classes for featured card wrapper.
  */
 #}
+
+{% if lang_dir == "ltr" %}
+  {{ attach_library('vartheme_bs5/featured-card-ltr') }}
+{% else %}
+  {{ attach_library('vartheme_bs5/featured-card-rtl') }}
+{% endif %}
 
 {% set featured_card_classes = [
   'card',

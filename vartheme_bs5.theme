@@ -7,6 +7,7 @@
 
 use Drupal\node\NodeInterface;
 use Drupal\node\Entity\Node;
+use Drupal\Core\Language\Language;
 
 // Include all files from the includes directory.
 $includes_path = dirname(__FILE__) . '/includes/*.inc';
@@ -111,4 +112,13 @@ function vartheme_bs5_preprocess_region(&$variables) {
   if ($isFront && $variables["region"] === "header") {
     $variables["is_front"] = $isFront;
   }
+}
+
+/**
+ * Implements hook_preprocess().
+ */
+function vartheme_bs5_preprocess(&$variables, $hook, $info) {
+  $language = new Language();
+  $language_direction = $language->getDirection();
+  $variables['lang_dir'] = $language_direction;
 }

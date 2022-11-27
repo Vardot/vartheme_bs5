@@ -113,7 +113,7 @@ export const FeaturedCard = (args) => {
     image_position: args.imagePosition,
     image: image,
     content: content,
-    utility_classes: [],
+    utility_classes: ["w-50"],
     ...args,
   });
 };
