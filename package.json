@@ -9,8 +9,9 @@
   },
   "scripts": {
     "start": "yarn dev",
-    "dev": "webpack --progress --config  webpack.config.dev.js --watch",
+    "theme:init": "webpack --progress --config  webpack.config.init.js",
     "build": "webpack --progress --config webpack.config.build.js",
+    "dev": "webpack --progress --config  webpack.config.dev.js --watch",
     "storybook": "start-storybook --port 3000"
   },
   "license": "MIT",
@@ -87,6 +88,7 @@
     "@storybook/react": "~6",
     "bootstrap": "~5",
     "bootstrap-borders-utilities": "~1",
+    "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^5.0.0",
     "drupal-attribute": "~1",
     "js-yaml-loader": "~1",
