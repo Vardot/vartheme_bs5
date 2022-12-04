@@ -13,6 +13,11 @@ use Drupal\Core\Language\Language;
 function vartheme_bs5_preprocess_html(&$variables) {
   // The path for Vartheme BS5 theme in variables.
   $variables['vartheme_bs5_path'] = \Drupal::request()->getBaseUrl() . '/' . \Drupal::service('extension.list.theme')->getPath('vartheme_bs5');
+
+  // Add class for logged in users
+  if (\Drupal::currentUser()->isAuthenticated()) {
+    $variables['attributes']['class'][] = 'user-logged-in';
+  }
 }
 
 /**
