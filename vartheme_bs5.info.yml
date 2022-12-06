@@ -3,8 +3,10 @@ description: "Base theme for Varbase standard websites. Based on Bootstrap 5 fra
 core_version_requirement: ^9 || ^10
 
 # These dependencies will not allow the installation of Vartheme BS5 at all if varbase_components is not activated.
-dependencies:
-  - varbase_components:varbase_components
+# As the Gin admin theme had issue with installation in profiles.
+# A bit harsh, so we'll continue to just rely on the composer requirement for now.
+# dependencies:
+#   - varbase_components:varbase_components
 
 engine: twig
 type: theme
