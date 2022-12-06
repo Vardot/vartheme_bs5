@@ -3,15 +3,12 @@ description:
   component: "Footer component description"
 ## Canvas height
 height: 150
-## Container settings
-container:
-  description: 'id'
+# Text settings
+text:
+  description: "string"
+  default: "string"
   table:
-    category: 'settings'
-  default: 'container'
-  options:
-    'Container': 'container'
-    'Fluid': 'container-fluid'
+    category: "fields"
 ## Nav Items
 items:
   item1:
@@ -21,8 +18,5 @@ items:
     title: 'Link'
     url: '/'
   item3:
-    title: 'Link'
-    url: '/'
-  item4:
     title: 'Link'
     url: '/'

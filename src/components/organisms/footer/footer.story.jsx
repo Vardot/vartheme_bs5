@@ -1,6 +1,6 @@
 import config from './footer.config.yml';
 import footer from './footer.twig';
-import block from '../block/block.twig';
+import nav from '../nav/nav.twig';
 import twigCode from '!!raw-loader!./footer.twig';
 import DrupalAttribute from 'drupal-attribute';
 import { DocsPage, DocsContainer } from '@storybook/addon-docs/blocks';
@@ -18,19 +18,36 @@ export default {
       iframeHeight: config.height
     },
   },
+  argTypes: {
+    text: {
+      content: { control: 'text' },
+      description: config.text.description,
+      defaultValue: {summary: config.text.default},
+      table: config.text.table,
+    }
+  },
 };
 
-export const Footer = (args) => (
-  footer({
-    content: block({
-      title_attributes: new DrupalAttribute(),
-      label: args.label ? args.label : '',
-      content: args.content ? args.content : '',
-    })
+export const Footer = (args) => {
+  const footerNav = nav({
+    attributes: new DrupalAttribute(),
+    items: config.items,
+    utility_classes: []
+  });
+
+  const footerContent = `
+    <div class="d-flex justify-content-between align-items-center w-100 small">
+      <div>${args.text}</div>
+      ${footerNav}
+    </div>
+  `;
+
+  return footer({
+    content: footerContent,
+    utility_classes: ["small"]
   })
-);
+};
 
 Footer.args = {
-  label: "Footer block title",
-  content: "©Copyright, all rights reserved."
+  text: `Powered by <a href="https://www.vardot.com">Vardot</a>. Enjoy the free software, or get a quote for enterprise support and fully functional websites.`,
 }
