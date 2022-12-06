@@ -7,6 +7,12 @@
  */
 #}
 
+{% if lang_dir == "ltr" %}
+  {{ attach_library('vartheme_bs5/page-ltr') }}
+{% else %}
+  {{ attach_library('vartheme_bs5/page-rtl') }}
+{% endif %}
+
 <div class="page d-flex flex-column">
   {% if page.top_bar %}
     <div class="navbar-top w-100">
@@ -88,7 +94,7 @@
     {% endif %}
   </main>
 
-  <footer class="footer">
+  <footer class="footer w-100 mt-auto bg-light">
     {% if page.footer_top %}
       {% include "@organisms/footer/footer.twig" with {
         content: page.footer_top,

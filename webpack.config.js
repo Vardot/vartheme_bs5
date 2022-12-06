@@ -46,6 +46,12 @@ module.exports = {
     "components/organisms/cards/featuredCard/featured-card-rtl": [
       "./src/components/organisms/cards/featuredCard/featured-card-rtl.scss",
     ],
+    "components/pages/page/page": [
+      "./src/components/pages/page/page.scss",
+    ],
+    "components/pages/page/page-rtl": [
+      "./src/components/pages/page/page-rtl.scss",
+    ],
   },
   output: {
     filename: "js/[name].js",

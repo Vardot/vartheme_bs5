@@ -76,3 +76,13 @@ featured-card-rtl:
   css:
     theme:
       dist/css/components/organisms/cards/featuredCard/featured-card-rtl.css: {}
+
+page-ltr:
+  css:
+    theme:
+      dist/css/components/pages/page/page.css: {}
+
+page-rtl:
+  css:
+    theme:
+      dist/css/components/pages/page/page-rtl.css: {}

@@ -9,7 +9,7 @@ import twigCode from '!!raw-loader!./page.twig';
 import DrupalAttribute from 'drupal-attribute';
 import { DocsPage, DocsContainer } from '@storybook/addon-docs/blocks';
 import logo from '../../../assets/images/logo.svg';
-import './page.css';
+import "../../../../dist/css/components/pages/page/page.css";
 
 export default {
   title : config.title,
