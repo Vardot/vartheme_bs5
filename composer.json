@@ -43,11 +43,6 @@
     "patchLevel": {
       "drupal/core": "-p2"
     },
-    "patches": {
-      "drupal/components": {
-        "Issue #3107993: Fix Template is not defined error on node edit / admin pages":
-        "https://www.drupal.org/files/issues/2021-06-24/DRUP86-template_not_defined.patch"
-      }
-    }
+    "patches": { }
   }
 }
