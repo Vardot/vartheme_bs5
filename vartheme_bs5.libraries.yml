@@ -77,6 +77,16 @@ featured-card-rtl:
     theme:
       dist/css/components/organisms/cards/featuredCard/featured-card-rtl.css: {}
 
+impressed-card-ltr:
+  css:
+    theme:
+      dist/css/components/organisms/cards/impressedCard/impressed-card.css: {}
+
+impressed-card-rtl:
+  css:
+    theme:
+      dist/css/components/organisms/cards/impressedCard/impressed-card-rtl.css: {}
+
 page-ltr:
   css:
     theme:

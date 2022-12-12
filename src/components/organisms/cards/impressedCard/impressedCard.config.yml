@@ -1,0 +1,45 @@
+title: "Organisms/Cards/Impressed Card"
+description:
+  component: "Impressed card component description."
+## Canvas height
+height: 250
+## Heading html tag settings
+heading_tag:
+  description: "html tag"
+  table:
+    category: "settings"
+  default: "h2"
+  options:
+    "H1": "h1"
+    "H2": "h2"
+    "H3": "h3"
+    "H4": "h4"
+    "H5": "h5"
+    "H6": "h6"
+## Heading html tag settings
+image_position:
+  description: "image position"
+  table:
+    category: "settings"
+  default: "top"
+  options:
+    "Top": "top"
+    "Bottom": "bottom"
+## Heading string settings
+heading:
+  description: "string"
+  default: "string"
+  table:
+    category: "fields"
+## Body string settings
+body:
+  description: "string"
+  default: "string"
+  table:
+    category: "fields"
+## Link string settings
+link:
+  description: "string"
+  default: "string"
+  table:
+    category: "fields"

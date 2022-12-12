@@ -1,0 +1,34 @@
+impressedCard:
+  use: '@organisms/cards/impressedCard/impressedCard.twig'
+  label: 'Impressed Card'
+  description: Impressed card component description.
+  # Impressed card pattern fields
+  fields:
+    image:
+      type: 'image'
+      label: 'Image'
+      description: 'Image description.'
+      preview: 'Card image'
+    content:
+      type: 'textfield'
+      label: 'Content'
+      description: 'Content description.'
+      preview: 'Card Content'
+  # Impressed card pattern settings
+  settings:
+    card_attributes:
+      type: 'attributes'
+      label: 'Impressed card attributes'
+    content_attributes:
+      type: 'attributes'
+      label: 'Content attributes'
+    card_classes:
+      type: 'textfield'
+      label: 'Impressed card classes'
+    image_position:
+      type: 'select'
+      label: 'Image position'
+      options:
+        top: 'Top'
+        bottom: 'Bottom'
+      default_value: 'top'

@@ -1,0 +1,22 @@
+{# Attach component css and js for LTR #}
+{% if lang_dir == "ltr" %}
+  {{ attach_library('vartheme_bs5/impressed-card-ltr') }}
+{% else %}
+  {{ attach_library('vartheme_bs5/impressed-card-rtl') }}
+{% endif %}
+
+{% set classes = [
+  'card',
+  'varbase-impressed-card',
+  image_position == 'bottom' ? 'flex-column-reverse' : '',
+  card_classes
+]|merge(utility_classes ?? []) %}
+
+{% set content_classes = ['card-body', card_body_classes] %}
+
+<div {{ attributes.addClass(classes) }}>
+  {{ image }}
+  <div {{ content_attributes.addClass(content_classes) }}>
+    {{ content }}
+  </div>
+</div>
