@@ -26,7 +26,6 @@ module.exports = {
     "layout/print.layout": ["./styles/layout/print.layout.scss"],
     // Theme
     "theme/auth-icons.theme": ["./styles/theme/auth-icons.theme.scss"],
-    "theme/betterlogin.theme": ["./styles/theme/betterlogin.theme.scss"],
     "theme/content.theme": ["./styles/theme/content.theme.scss"],
     "theme/footer.theme": ["./styles/theme/footer.theme.scss"],
     "theme/header.theme": ["./styles/theme/header.theme.scss"],

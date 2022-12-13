@@ -44,28 +44,6 @@ function vartheme_bs5_preprocess_page_title(&$variables) {
 }
 
 /**
- * Implements hook_theme_registry_alter().
- */
-function vartheme_bs5_theme_registry_alter(&$theme_registry) {
-
-  // Varbase Bootstrap 5 path.
-  $vartheme_bs5_path = Drupal::service('theme_handler')->getTheme('vartheme_bs5')->getPath();
-
-  // Better Login pages.
-  $pages = [
-    'page__user__login' => 'page--user--login',
-    'page__user__register' => 'page--user--register',
-    'page__user__password' => 'page--user--password',
-    'page__user__reset' => 'page--user--reset',
-  ];
-
-  // Change the location for the Better Login pages.
-  foreach ($pages as $key => $template) {
-    $theme_registry[$key]['path'] = $vartheme_bs5_path . '/templates/betterlogin';
-  }
-}
-
-/**
  * Implements hook_form_alter().
  */
 function vartheme_bs5_form_alter(&$form, $form_state, $form_id) {
