@@ -1,0 +1,14 @@
+@import "../../../../../node_modules/bootstrap/scss/functions";
+@import "../../../../../styles/base/bootstrap-variables";
+@import "../../../../../node_modules/bootstrap/scss/variables";
+@import "../../../../../styles/base/variables";
+@import "../../../../../node_modules/bootstrap/scss/mixins";
+@import "../../../../../styles/base/mixins";
+
+.card-img-overlay {
+  background: rgba($black, 0.5);
+
+  a {
+    color: $white;
+  }
+}

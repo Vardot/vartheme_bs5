@@ -81,6 +81,16 @@ impressed-card-rtl:
     theme:
       dist/css/components/organisms/cards/impressedCard/impressed-card-rtl.css: {}
 
+overlay-card-ltr:
+  css:
+    theme:
+      dist/css/components/organisms/cards/overlayCard/overlay-card.css: {}
+
+overlay-card-rtl:
+  css:
+    theme:
+      dist/css/components/organisms/cards/overlayCard/overlay-card-rtl.css: {}
+
 page-ltr:
   css:
     theme:

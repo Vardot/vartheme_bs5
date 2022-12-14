@@ -51,6 +51,12 @@ module.exports = {
     "components/organisms/cards/impressedCard/impressed-card-rtl": [
       "./src/components/organisms/cards/impressedCard/impressed-card-rtl.scss",
     ],
+    "components/organisms/cards/overlayCard/overlay-card": [
+      "./src/components/organisms/cards/overlayCard/overlay-card.scss",
+    ],
+    "components/organisms/cards/overlayCard/overlay-card-rtl": [
+      "./src/components/organisms/cards/overlayCard/overlay-card-rtl.scss",
+    ],
     "components/pages/page/page": [
       "./src/components/pages/page/page.scss",
     ],

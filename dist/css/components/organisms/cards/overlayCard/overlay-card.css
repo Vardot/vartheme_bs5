@@ -1,0 +1,8 @@
+.card-img-overlay {
+  background: rgba(0, 0, 0, .5);
+}
+
+.card-img-overlay a {
+  color: #fff;
+}
+
