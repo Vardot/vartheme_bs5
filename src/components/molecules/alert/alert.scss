@@ -1,134 +1,72 @@
 @import "../../../../node_modules/bootstrap/scss/functions";
+@import "../../../../styles/base/bootstrap-variables";
+@import "../../../../node_modules/bootstrap/scss/variables";
+@import "../../../../styles/base/variables";
 @import "../../../../node_modules/bootstrap/scss/mixins";
+@import "../../../../styles/base/mixins";
 
-.alert {
-  position: relative;
-  padding: 1rem 1rem;
-  margin-bottom: 1rem;
-  border: 1px solid transparent;
-  border-radius: 0.25rem;
+// Use the default Bootstrap coloring for alerts.
+// Even tho they will changed in projects.
+// Better to keep alerts with:
 
-  &.alert-primary {
-    color: #084298;
-    background-color: #cfe2ff;
-    border-color: #b6d4fe;
+// - Primary alert : keep theme default
+// - Secondary alert : keep theme default
+// - Success alert : Green
+// - Danger alert : Red
+// - Warning alert : Yellow
+// - Info alert : Cyan
+// - Light alert : keep theme default
+// - Dark alert : keep theme default
 
-    a {
-      &:hover,
-      &:focus {
-        color: #084298;
-      }
-    }
-  }
+// scss-docs-start gray-color-variables
+$white:    #fff;
+$gray-100: #f8f9fa;
+$gray-200: #e9ecef;
+$gray-300: #dee2e6;
+$gray-400: #ced4da;
+$gray-500: #adb5bd;
+$gray-600: #6c757d;
+$gray-700: #495057;
+$gray-800: #343a40;
+$gray-900: #212529;
+$black:    #000;
+// scss-docs-end gray-color-variables
 
-  &.alert-secondary {
-    color: #41464b;
-    background-color: #e2e3e5;
-    border-color: #d3d6d8;
+// scss-docs-start color-variables
+$blue:    #0d6efd;
+$indigo:  #6610f2;
+$purple:  #6f42c1;
+$pink:    #d63384;
+$red:     #dc3545;
+$orange:  #fd7e14;
+$yellow:  #ffc107;
+$green:   #198754;
+$teal:    #20c997;
+$cyan:    #0dcaf0;
+// scss-docs-end color-variables
 
-    a {
-      &:hover,
-      &:focus {
-        color: #41464b;
-      }
-    }
-  }
+// scss-docs-start theme-color-variables
+$primary:       $blue !default;
+$secondary:     $gray-600 !default;
+$success:       $green;
+$info:          $cyan;
+$warning:       $yellow;
+$danger:        $red;
+$light:         $gray-100 !default;
+$dark:          $gray-900 !default;
+// scss-docs-end theme-color-variables
 
-  &.alert-success {
-    color: #0f5132;
-    background-color: #d1e7dd;
-    border-color: #badbcc;
+// scss-docs-start theme-colors-map
+$theme-colors: (
+  "primary":    $primary,
+  "secondary":  $secondary,
+  "success":    $success,
+  "info":       $info,
+  "warning":    $warning,
+  "danger":     $danger,
+  "light":      $light,
+  "dark":       $dark
+);
+// scss-docs-end theme-colors-map
 
-    a {
-      &:hover,
-      &:focus {
-        color: #2b542c;
-      }
-    }
-  }
-
-  &.alert-danger {
-    color: #842029;
-    background-color: #f8d7da;
-    border-color: #f5c2c7;
-
-    a {
-      &:hover,
-      &:focus {
-        color: #842029;
-      }
-    }
-  }
-
-  &.alert-warning {
-    color: #664d03;
-    background-color: #fff3cd;
-    border-color: #ffecb5;
-
-    a {
-      &:hover,
-      &:focus {
-        color: #664d03;
-      }
-    }
-  }
-
-  &.alert-info {
-    color: #055160;
-    background-color: #cff4fc;
-    border-color: #b6effb;
-
-    a {
-      &:hover,
-      &:focus {
-        color: #055160;
-      }
-    }
-  }
-
-  &.alert-light {
-    color: #636464;
-    background-color: #fefefe;
-    border-color: #fdfdfe;
-
-    a {
-      &:hover,
-      &:focus {
-        color: #636464;
-      }
-    }
-  }
-
-  &.alert-dark {
-    color: #141619;
-    background-color: #d3d3d4;
-    border-color: #bcbebf;
-
-    a {
-      &:hover,
-      &:focus {
-        color: #141619;
-      }
-    }
-  }
-
-  &.alert-dismissible {
-    @include padding-right(3rem);
-
-    .btn-close {
-      position: absolute;
-      top: 0;
-      right: 0;
-      z-index: 2;
-      padding: 1.25rem 1rem;
-    }
-  }
-}
-
-.alert-sm {
-  @include padding(0.3125rem 0.625rem);
-}
-
-.alert a {
-  font-weight: bold;
-}
+@import "../../../../node_modules/bootstrap/scss/alert";

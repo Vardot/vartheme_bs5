@@ -4,5 +4,3 @@
 *.codekit
 .idea
 node_modules
-# TEMP: only to ease development.
-yarn.lock  
