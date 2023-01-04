@@ -8,11 +8,10 @@
     "node": ">= 16.0"
   },
   "scripts": {
-    "start": "yarn dev",
     "theme:init": "webpack --progress --config  webpack.config.init.js",
-    "build": "webpack --progress --config webpack.config.build.js",
-    "dev": "webpack --progress --config  webpack.config.dev.js --watch",
-    "storybook": "start-storybook --port 3000"
+    "theme:build": "webpack --progress --config webpack.config.build.js",
+    "theme:watch": "webpack --progress --config  webpack.config.dev.js --watch",
+    "storybook": "npx kill-port --port 3000; start-storybook --port 3000"
   },
   "license": "MIT",
   "keywords": [
@@ -69,7 +68,8 @@
     "webpack-dev-server": "3.0.0",
     "webpack-merge": "^5.7.3",
     "webpack-notifier": "^1.13.0",
-    "webpack-remove-empty-scripts": "^0.7.1"
+    "webpack-remove-empty-scripts": "^0.7.1",
+    "kill-port": "~2.0"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "~5",
