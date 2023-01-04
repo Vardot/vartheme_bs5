@@ -24,8 +24,6 @@
   (dismissible ? 'alert-dismissible' : ''),
 ]|merge(utility_classes ? utility_classes : []) %}
 
-<div class="tttts">{{ lang_dir }}</div>
-
 <div{{attributes.addClass(classes)}} role="alert">
 	{% if heading %}
 		<h4 class="alert-heading">{{ heading }}</h4>
