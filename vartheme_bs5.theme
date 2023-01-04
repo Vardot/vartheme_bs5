@@ -5,7 +5,7 @@
  * Theme functions to support Vartheme BS5 theme.
  */
 
-use Drupal\Core\Language\Language;
+use Drupal\Core\Language\LanguageInterface;
 
 /**
  * Implements hook_preprocess_html().
@@ -92,7 +92,7 @@ function vartheme_bs5_preprocess_region(&$variables) {
  * Implements hook_preprocess().
  */
 function vartheme_bs5_preprocess(&$variables, $hook, $info) {
-  $language = new Language();
+  $language = \Drupal::languageManager()->getCurrentLanguage(LanguageInterface::TYPE_CONTENT);
   $language_direction = $language->getDirection();
   $variables['lang_dir'] = $language_direction;
 }

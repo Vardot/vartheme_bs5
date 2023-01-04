@@ -100,3 +100,17 @@ page-rtl:
   css:
     theme:
       dist/css/components/pages/page/page-rtl.css: {}
+
+alert-ltr:
+  css:
+    theme:
+      dist/css/components/molecules/alert/alert.css: {}
+  js:
+    js/bootstrap/alert.js: {}
+
+alert-rtl:
+  css:
+    theme:
+      dist/css/components/molecules/alert/alert-rtl.css: {}
+  js:
+    js/bootstrap/alert.js: {}

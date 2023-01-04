@@ -63,6 +63,12 @@ module.exports = {
     "components/pages/page/page-rtl": [
       "./src/components/pages/page/page-rtl.scss",
     ],
+    "components/molecules/alert/alert": [
+      "./src/components/molecules/alert/alert.scss",
+    ],
+    "components/molecules/alert/alert-rtl": [
+      "./src/components/molecules/alert/alert-rtl.scss",
+    ],
   },
   output: {
     filename: "js/[name].js",

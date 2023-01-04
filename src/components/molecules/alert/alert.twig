@@ -11,12 +11,20 @@
  */
 #}
 
+{% if lang_dir == "ltr" %}
+  {{ attach_library('vartheme_bs5/alert-ltr') }}
+{% else %}
+  {{ attach_library('vartheme_bs5/alert-rtl') }}
+{% endif %}
+
 {% set dismissible = dismissible ?? true %}
 {% set classes = [
   'alert',
   (type ?? 'alert-primary'),
   (dismissible ? 'alert-dismissible' : ''),
 ]|merge(utility_classes ? utility_classes : []) %}
+
+<div class="tttts">{{ lang_dir }}</div>
 
 <div{{attributes.addClass(classes)}} role="alert">
 	{% if heading %}
