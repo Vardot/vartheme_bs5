@@ -33,7 +33,20 @@ libraries-override:
   social_auth/auth-icons: vartheme_bs5/auth-icons
 
 ckeditor_stylesheets:
+  - dist/css/base/bootstrap.base.css
   - dist/css/base/style.base.css
+  - dist/css/layout/edge2edge.layout.css
+  - dist/css/layout/equal-height.layout.css
+  - dist/css/components/pages/page/page.css
+  - dist/css/components/molecules/alert/alert.css
+
+ckeditor5-stylesheets:
+  - dist/css/base/bootstrap.base.css
+  - dist/css/base/style.base.css
+  - dist/css/layout/edge2edge.layout.css
+  - dist/css/layout/equal-height.layout.css
+  - dist/css/components/pages/page/page.css
+  - dist/css/components/molecules/alert/alert.css
 
 components:
   namespaces:
