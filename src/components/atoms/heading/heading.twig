@@ -11,9 +11,9 @@
  */
 #}
 
-{% set tag = tag ?? 'h1' %}
+{% set html_tag = tag ?? 'h1' %}
 {% set utility_classes =  utility_classes ?? [] %}
 
-{% if tag %}
-  <{{ tag }} {{ attributes.addClass(utility_classes|join(' ')) }}>{{ content }}</{{ tag }}>
+{% if html_tag %}
+  <{{ html_tag }} {{ attributes.addClass(utility_classes|join(' ')) }}>{{ content }}</{{ html_tag }}>
 {% endif %}

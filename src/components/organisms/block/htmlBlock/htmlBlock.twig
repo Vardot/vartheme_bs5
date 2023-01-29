@@ -18,7 +18,7 @@
   id
 ] %}
 
-<{{ tag }} {{ attributes.addClass(classes) }}>
+<{{ html_tag }} {{ attributes.addClass(classes) }}>
 
   {% if title_prefix %}
     {{ title_prefix }}
@@ -43,4 +43,4 @@
     {{ body }}
   {% endblock %}
 
-</{{ tag }}>
+</{{ html_tag }}>

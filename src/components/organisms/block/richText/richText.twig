@@ -9,7 +9,7 @@
   border_radius ? 'rounded-' ~ border_radius : ''
 ] %}
 
-<{{ tag }} {{ attributes.addClass(classes) }}>
+<{{ html_tag }} {{ attributes.addClass(classes) }}>
   {% if heading %}
     {% include "@atoms/heading/heading.twig" with {
       attributes: heading_attributes,
@@ -20,4 +20,4 @@
   {% endif %}
 
   <div class="rich-body mb-2">{{ content }}</div>
-</{{ tag }}>
+</{{ html_tag }}>
