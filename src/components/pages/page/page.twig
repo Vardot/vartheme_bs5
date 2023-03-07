@@ -7,11 +7,7 @@
  */
 #}
 
-{% if lang_dir == "ltr" %}
-  {{ attach_library('vartheme_bs5/page-ltr') }}
-{% else %}
-  {{ attach_library('vartheme_bs5/page-rtl') }}
-{% endif %}
+{{ attach_library('vartheme_bs5/page-' ~ lang_dir) }}
 
 <div class="page d-flex flex-column">
   {% if page.top_bar %}
@@ -48,7 +44,7 @@
     {% endblock %}
   {% endembed %}
 
-  <main>
+  <main class="mb-3">
     <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
 
     {% if page.content_above %}
