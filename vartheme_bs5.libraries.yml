@@ -53,6 +53,12 @@ bootstrap-scripts:
     # js/bootstrap/tab.js: {}
     # js/bootstrap/tooltip.js: {}
 
+# Vartheme BS5 better login theme.
+betterlogin:
+  css:
+    theme:
+      dist/css/theme/betterlogin.theme.css: {}
+
 auth-icons:
   css:
     theme:

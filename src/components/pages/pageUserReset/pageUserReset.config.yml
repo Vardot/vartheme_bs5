@@ -1,0 +1,48 @@
+title: "Pages/PageUserReset"
+description:
+  component: "Page User Reset component description."
+## Canvas height
+height: 500
+## Demo data.
+data:
+  page_content: |
+    <h2 class="title">Reset your password</h2>
+    <div data-drupal-messages-fallback="" class="hidden"></div>
+    <form class="user-pass antibot form" data-drupal-selector="user-pass" data-action="/user/password" action="/user/password" method="post" id="user-pass" accept-charset="UTF-8">
+        <noscript>
+          <div class="antibot-no-js antibot-message antibot-message-warning">You must have JavaScript enabled to use this form.</div>
+        </noscript>
+        <div class="js-form-item form-item js-form-type-email form-item-name js-form-item-name form-group">
+          <label class="form-label js-form-required form-required" for="edit-name">Email</label>
+          <input autocorrect="off" autocapitalize="off" spellcheck="false" autofocus="autofocus" data-drupal-selector="edit-name" type="email" id="edit-name" name="name" value="" size="60" maxlength="254" class="form-email required form-control" required="required" aria-required="true">
+        </div>
+        <p>Password reset instructions will be sent to your registered email address.</p>
+        <input autocomplete="off" data-drupal-selector="form-jarwcgejpfsdnfkfslx5ejjhhwvaxyrykkh9lbuzstu" type="hidden" name="form_build_id" value="form-JARwcgEJpfSDNFkfsLX5EJJhHwVaXYRYKkh9LBUZstU" class="form-control">
+        <input data-drupal-selector="edit-user-pass" type="hidden" name="form_id" value="user_pass" class="form-control">
+        <input data-drupal-selector="edit-antibot-key" type="hidden" name="antibot_key" value="L5srhhNy6AYNyLuLE0OoHRdZSlBu1unIGFTlXvXYR9Y" class="form-control">
+        <input data-drupal-selector="edit-honeypot-time" type="hidden" name="honeypot_time" value="QvcItPdPV87J4mW0ZoR_ktuD1KwGw07bDEJUtLKu-LQ" class="form-control">
+        <div data-drupal-selector="edit-actions" class="form-actions js-form-wrapper form-wrapper" id="edit-actions">
+          <input data-drupal-selector="edit-submit" type="submit" id="edit-submit" name="op" value="Submit" class="js-form-submit form-submit btn btn-primary">
+        </div>
+        <div class="url-textfield js-form-wrapper form-wrapper" style="display: none !important;">
+          <div class="js-form-item form-item js-form-type-textfield form-item-url js-form-item-url form-group">
+              <label class="form-label" for="edit-url">Leave this field blank</label>
+              <input autocomplete="off" data-drupal-selector="edit-url" type="text" id="edit-url" name="url" value="" size="20" maxlength="128" class="form-textfield form-control">
+          </div>
+        </div>
+    </form>
+  footer_content: |
+    <div class="footer-top d-flex justify-content-md-between align-items-md-center">
+      <div>Powered by <a href="https://www.vardot.com/?utm_source=varbase&amp;utm_campaign=varbase%20default%20links">Vardot</a>. Enjoy the free software, or <a href="https://www.vardot.com/form/get-support-varbase?utm_source=varbase&amp;utm_campaign=varbase%20default%20links">get a quote</a> for enterprise support and fully functional websites.</div>
+      <ul class="nav">
+          <li class="nav-item  ">
+            <a href="https://www.drupal.org/project/issues/varbase" class="nav-link" target="_blank" rel="noopener">Community Support</a>
+          </li>
+          <li class="nav-item  ">
+            <a href="https://docs.varbase.vardot.com/?utm_source=varbase&amp;utm_campaign=varbase%20default%20links" class="nav-link">Documentation</a>
+          </li>
+          <li class="nav-item  ">
+            <a href="https://www.vardot.com/form/get-support-varbase?utm_source=varbase&amp;utm_campaign=varbase%20default%20links" class="nav-link">Get Professional Support</a>
+          </li>
+      </ul>
+    </div>
