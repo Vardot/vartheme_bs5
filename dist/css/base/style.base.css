@@ -13,3 +13,7 @@ em.placeholder {
   background-color: unset !important;
 }
 
+.form-group {
+  margin-bottom: 1rem;
+}
+

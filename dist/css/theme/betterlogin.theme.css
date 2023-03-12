@@ -8,18 +8,6 @@
   }
 }
 
-#auth-box #the-logo {
-  margin: 0;
-  text-align: center;
-  padding: 0 0 calc(1.3rem + .6vw);
-}
-
-@media (min-width: 1200px) {
-  #auth-box #the-logo {
-    padding: 0 0 1.75rem;
-  }
-}
-
 #auth-box .title {
   margin: 0;
   padding: 0 0 .9375rem;
@@ -80,22 +68,6 @@
   #auth-box .block-title span {
     top: -1.5rem;
   }
-}
-
-[dir="ltr"] #auth-box .user-login-form {
-  text-align: left;
-}
-
-[dir="rtl"] #auth-box .user-login-form {
-  text-align: right;
-}
-
-#auth-box .user-login-form .form-checkbox {
-  margin-top: .5rem;
-}
-
-#auth-box .user-login-form .option {
-  font-size: 1rem;
 }
 
 #auth-box .form-actions {
