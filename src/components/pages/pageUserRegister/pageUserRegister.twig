@@ -23,27 +23,28 @@
     </div>
   {% endif %}
 
-  {% embed '@organisms/navbar/navbar.twig' with {
-    placement: '',
-    container: 'fixed',
-    color: 'light',
-    utility_classes: ['bg-light'],
-  } %}
+  {% if page.navbar_branding or page.navigation %}
+    {% embed '@organisms/navbar/navbar.twig' with {
+      placement: '',
+      container: 'fixed',
+      color: 'light',
+      utility_classes: ['bg-light'],
+    } %}
+      {% block branding %}
+        {% if page.navbar_branding %}
+          {{ page.navbar_branding }}
+        {% endif %}
+      {% endblock %}
 
-    {% block branding %}
-      {% if page.navbar_branding %}
-        {{ page.navbar_branding }}
-      {% endif %}
-    {% endblock %}
-
-    {% block navigation %}
-      {% if page.navigation %}
-        <div class="ms-auto">
-          {{ page.navigation }}
-        </div>
-      {% endif %}
-    {% endblock %}
-  {% endembed %}
+      {% block navigation %}
+        {% if page.navigation %}
+          <div class="ms-auto">
+            {{ page.navigation }}
+          </div>
+        {% endif %}
+      {% endblock %}
+    {% endembed %}
+  {% endif %}
 
   <main class="mb-3">
     <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
@@ -82,19 +83,22 @@
     </div>
   </main>
 
-  <footer class="footer small w-100 bg-light mt-auto py-3">
-    {% if page.footer_top %}
-      {% include "@organisms/footer/footer.twig" with {
-        content: page.footer_top,
-        utility_classes: ['footer-top']
-      } %}
-    {% endif %}
+  {% if page.footer_top or page.footer_bottom %}
+    <footer class="footer small w-100 bg-light mt-auto py-3">
+      {% if page.footer_top %}
+        {% include "@organisms/footer/footer.twig" with {
+          content: page.footer_top,
+          utility_classes: ['footer-top']
+        } %}
+      {% endif %}
 
-    {% if page.footer_bottom %}
-      {% include "@organisms/footer/footer.twig" with {
-        content: page.footer_bottom,
-        utility_classes: ['footer-bottom']
-      } %}
-    {% endif %}
-  </footer>
+      {% if page.footer_bottom %}
+        {% include "@organisms/footer/footer.twig" with {
+          content: page.footer_bottom,
+          utility_classes: ['footer-bottom']
+        } %}
+      {% endif %}
+    </footer>
+  {% endif %}
+
 </div>
