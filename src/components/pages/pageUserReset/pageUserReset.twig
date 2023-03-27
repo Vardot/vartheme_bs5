@@ -49,11 +49,11 @@
   <main class="mb-3">
     <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
 
-    <div role="main" class="main-container {{ container }}">
+    <div role="main" class="main-container container">
       <div class="row justify-content-center">
-        <div id="auth-box" class="reset-password col-10 col-sm-7 col-lg-5 col-xl-4 col-xxl-3">
+        <div id="auth-box" class="reset-password col-10 col-sm-7 col-lg-5 col-xl-4">
           <div id="top-part">
-            <h1 class="page-title px-3">{{ 'Reset password'|t }}</h1>
+            <h1 class="page-title">{{ 'Reset password'|t }}</h1>
           </div>
           <div id="middle-part">
             {% if logged_in %}

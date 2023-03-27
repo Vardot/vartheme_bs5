@@ -50,13 +50,15 @@
     <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
 
     {% if page.content %}
-      <div class="row justify-content-center">
-        <div id="auth-box" class="user-edit col-10 col-sm-6">
-          <div id="top-part">
-            <h1 class="page-title px-4">{{ 'Edit account'|t }}</h1>
-          </div>
-          <div id="middle-part">
-            {{ page.content }}
+      <div class="container">
+        <div class="row justify-content-center">
+          <div id="auth-box" class="user-edit col-10 col-sm-6">
+            <div id="top-part">
+              <h1 class="page-title">{{ 'Edit account'|t }}</h1>
+            </div>
+            <div id="middle-part">
+              {{ page.content }}
+            </div>
           </div>
         </div>
       </div>
