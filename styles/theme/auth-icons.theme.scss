@@ -16,25 +16,26 @@
   justify-content: center;
 
   .social-network {
-    width: 44%;
+    width: 45%;
+    @include margin(0.25rem);
+    @include padding(0.5rem);
     cursor: pointer;
-    transition: box-shadow 0.2s ease 0s, color;
-    border-width: initial;
-    border-color: initial;
-    border-radius: 2px;
-    border-image: initial;
-    box-shadow: 0 1px 4px rgba(26, 25, 43, .24) !important;
-    @include margin(8px);
-    @include padding(12px 24px 12px 12px);
+    transition: box-shadow 0.2s ease 0s,color;
+    border-width: 0;
+
+    &:hover,
+    &:focus,
+    &:active {
+      box-shadow: 0 1px 4px rgba(26, 25, 43, .24) !important;
+    }
   }
 
   .auth-link {
-    text-decoration: none;
-    color: #4A495E;
-    font-family: Roboto, sans-serif;
-    font-size: 15px;
-    font-weight: 600;
-    line-height: 20px;
+    display: flex;
+    font-family: Roboto,sans-serif;
+    @include rfs(1.125rem, font-size);
+    font-weight: 625;
+    line-height: var(--bs-body-line-height);
 
     &:hover,
     &:active,
@@ -44,14 +45,16 @@
   }
 
   .auth-icon {
-    @include margin-right(16px);
-    width: 16px;
-    height: 16px;
+    @include margin-right(0.75rem);
+    margin-left: 0;
+    width: 1.5rem;
+    max-width: 100%;
+    max-height: 40px;
   }
 
   @include media-breakpoint-down(sm) {
     .social-network {
-      @include padding-right(12px);
+      @include padding-right(0.75rem);
     }
   }
 }

@@ -19,12 +19,17 @@
     @include font-size(2rem);
   }
 
+  #top-part {
+    .page-title {
+      width: max-content;
+    }
+  }
+
   #middle-part {
     overflow: hidden;
     border-radius: 3px;
     background: $body-bg;
     @include padding(0.9375rem);
-    box-shadow: $box-shadow;
   }
 
   .back-link {
@@ -43,27 +48,36 @@
     }
   }
 
-  .block-title {
-    height: 1px;
-    text-align: center;
-    background: #eee;
-    @include margin(2rem 0);
+}
 
-    span {
-      position: relative;
-      text-transform: uppercase;
-      background: #fff;
-      @include font-size(1rem);
-      @include padding(0 0.75rem);
-      @include rfs(-1.5rem, top);
-    }
+.separator {
+  @include rfs(2rem 0, margin);
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  width: calc((4 * var(3rem)) + (3 * var(3rem)));
+
+  .separator-start,
+  .separator-end {
+    height: calc(1em / 16);
+    background-color: var(--bs-gray-200);
+    width: 100%;
   }
 
-  .form-actions {
-    text-align: center;
+  .separator-text {
+    @include rfs(0 3rem, margin);
+    font-style: normal;
+    font-weight: 600;
+    font-size: 0.9rem;
+    line-height: 1rem;
+    color: var(--bs-gray-400);
   }
+}
 
-  .block-social-auth-login {
-    text-align: center;
-  }
+.social-auth-login-hint {
+  @include rfs(1rem 2rem, margin);
+}
+
+.account-auth-login-hint {
+  @include rfs(1rem 0, margin);
 }

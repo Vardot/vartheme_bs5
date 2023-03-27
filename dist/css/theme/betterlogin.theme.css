@@ -20,12 +20,16 @@
   }
 }
 
+#auth-box #top-part .page-title {
+  width: -moz-max-content;
+  width: max-content;
+}
+
 #auth-box #middle-part {
   overflow: hidden;
   border-radius: 3px;
   background: #fff;
   padding: .9375rem;
-  box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
 }
 
 #auth-box .back-link {
@@ -42,39 +46,52 @@
   max-width: 100%;
 }
 
-#auth-box .block-title {
-  height: 1px;
-  text-align: center;
-  background: #eee;
+.separator {
   margin: calc(1.325rem + .9vw) 0;
+  display: flex;
+  align-items: center;
+  width: calc(4 * var(3rem) + 3 * var(3rem));
 }
 
 @media (min-width: 1200px) {
-  #auth-box .block-title {
+  .separator {
     margin: 2rem 0;
   }
 }
 
-#auth-box .block-title span {
-  position: relative;
-  text-transform: uppercase;
-  background: #fff;
-  font-size: 1rem;
-  padding: 0 .75rem;
-  top: calc(-1.275rem - .3vw);
+.separator .separator-start,
+.separator .separator-end {
+  height: .0625em;
+  background-color: var(--bs-gray-200);
+  width: 100%;
+}
+
+.separator .separator-text {
+  margin: 0 calc(1.425rem + 2.1vw);
+  font-style: normal;
+  font-weight: 600;
+  font-size: .9rem;
+  line-height: 1rem;
+  color: var(--bs-gray-400);
 }
 
 @media (min-width: 1200px) {
-  #auth-box .block-title span {
-    top: -1.5rem;
+  .separator .separator-text {
+    margin: 0 3rem;
   }
 }
 
-#auth-box .form-actions {
-  text-align: center;
+.social-auth-login-hint {
+  margin: 1rem calc(1.325rem + .9vw);
 }
 
-#auth-box .block-social-auth-login {
-  text-align: center;
+@media (min-width: 1200px) {
+  .social-auth-login-hint {
+    margin: 1rem 2rem;
+  }
+}
+
+.account-auth-login-hint {
+  margin: 1rem 0;
 }
 

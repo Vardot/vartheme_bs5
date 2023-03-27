@@ -53,17 +53,22 @@
       <div class="row justify-content-center">
         <div id="auth-box" class="login col-10 col-sm-7 col-lg-5 col-xl-4 col-xxl-3">
           <div id="top-part">
-
+            <h1 class="page-title px-5">{{ 'Log in'|t }}</h1>
           </div>
           <div id="middle-part">
             {{ page.content_above|without('vartheme_bs5_local_tasks', 'vartheme_bs5_breadcrumbs', 'vartheme_bs5_local_actions', 'vartheme_bs5_page_title') }}
             {% if (varbase.we_do_have_enabled_social_auth_modules.value) and (page.content.vartheme_bs5_socialauthlogin) %}
-              <h2 class="block-title"><span> {{ "Login with"|t }} </span></h2>
+              <div class="social-auth-login-hint">{{ 'Log in with your linked account'|t }}</div>
               {{ page.content.vartheme_bs5_socialauthlogin }}
-              <h2 class="block-title"><span> {{ "or"|t }} </span></h2>
+              <div class="separator">
+                <div class="separator-start"></div>
+                  <span class="separator-text">{{ 'or'|t }}</span>
+                <div class="separator-end"></div>
+              </div>
+              <div class="account-auth-login-hint">{{ 'Log in using your email or user name'|t }}</div>
               {{ page.content|without('vartheme_bs5_socialauthlogin') }}
             {% else %}
-              <h2 class="block-title"><span> {{ title }} </span></h2>
+              <div class="account-auth-login-hint">{{ 'Log in using your email or user name'|t }}</div>
               {{ page.content }}
             {% endif %}
           </div>
