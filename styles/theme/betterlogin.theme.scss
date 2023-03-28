@@ -16,6 +16,7 @@
   #top-part {
     .page-title {
       width: max-content;
+      margin: auto -0.25rem;
     }
   }
 
@@ -42,7 +43,7 @@
 }
 
 .separator {
-  @include rfs(2rem 0, margin);
+  @include margin(2rem 0);
   display: flex;
   -webkit-box-align: center;
   align-items: center;
@@ -56,7 +57,7 @@
   }
 
   .separator-text {
-    @include rfs(0 3rem, margin);
+    @include margin(0 3rem);
     font-style: normal;
     font-weight: 600;
     font-size: 0.9rem;
@@ -66,9 +67,9 @@
 }
 
 .social-auth-login-hint {
-  @include rfs(1rem 2rem, margin);
+  @include margin(1rem 0);
 }
 
 .account-auth-login-hint {
-  @include rfs(1rem 0, margin);
+  @include margin(1rem 0);
 }

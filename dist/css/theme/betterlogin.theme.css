@@ -11,6 +11,7 @@
 #auth-box #top-part .page-title {
   width: -moz-max-content;
   width: max-content;
+  margin: auto -0.25rem;
 }
 
 #auth-box #middle-part {
@@ -73,13 +74,7 @@
 }
 
 .social-auth-login-hint {
-  margin: 1rem calc(1.325rem + .9vw);
-}
-
-@media (min-width: 1200px) {
-  .social-auth-login-hint {
-    margin: 1rem 2rem;
-  }
+  margin: 1rem 0;
 }
 
 .account-auth-login-hint {

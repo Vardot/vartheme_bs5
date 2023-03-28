@@ -3,6 +3,13 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+  margin: 0 calc(-1.325rem - .9vw);
+}
+
+@media (min-width: 1200px) {
+  .social-auth {
+    margin: 0 -2rem;
+  }
 }
 
 .social-auth .social-network {

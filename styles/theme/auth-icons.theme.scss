@@ -14,6 +14,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+  @include margin(0 -2rem);
 
   .social-network {
     width: 45%;
