@@ -25,5 +25,21 @@
 
 // Have a margin between field groups in forms.
 .form-group {
-  @include rfs(1rem, margin-bottom)
+  @include margin-bottom(1rem);
+}
+
+// Have a style form required fieldset, HTML input elements for fields.
+.form-required {
+
+  &::after {
+    content: '';
+    vertical-align: super;
+    display: inline-block;
+    background-image: url(../../images/required.svg);
+    background-repeat: no-repeat;
+    background-size: calc(#{$input-height} * .16666666666) calc(#{$input-height} * .16666666666);
+    width: calc(#{$input-height} * .16666666666);
+    height: calc(#{$input-height} * .16666666666);
+    margin: 0 0.3em;
+  }
 }

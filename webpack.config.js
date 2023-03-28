@@ -97,7 +97,7 @@ module.exports = {
                   return `../../${relativePath}`;
                 }
 
-                return `../${relativePath}`;
+                return `../../${relativePath}`;
               },
             },
           },
@@ -193,7 +193,7 @@ module.exports = {
                   return `../../${relativePath}`;
                 }
 
-                return `../${relativePath}`;
+                return `../../${relativePath}`;
               },
             },
           },
