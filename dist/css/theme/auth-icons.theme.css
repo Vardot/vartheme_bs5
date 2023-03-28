@@ -31,6 +31,7 @@
   font-size: 1.125rem;
   font-weight: 625;
   line-height: var(--bs-body-line-height);
+  text-decoration: none;
 }
 
 .social-auth .auth-link:hover, .social-auth .auth-link:active, .social-auth .auth-link:focus {

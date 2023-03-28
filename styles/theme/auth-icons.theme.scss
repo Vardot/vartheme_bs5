@@ -37,6 +37,7 @@
     @include rfs(1.125rem, font-size);
     font-weight: 625;
     line-height: var(--bs-body-line-height);
+    text-decoration: none;
 
     &:hover,
     &:active,
