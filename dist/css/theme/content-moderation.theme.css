@@ -1,0 +1,288 @@
+#edit-moderation-state-wrapper #edit-moderation-state-0,
+#content-moderation-entity-moderation-form #edit-moderation-state-0 {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+#edit-moderation-state-wrapper #edit-moderation-state-0 .container-inline,
+#content-moderation-entity-moderation-form #edit-moderation-state-0 .container-inline {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+[dir="ltr"] #edit-moderation-state-wrapper #edit-moderation-state-0 .container-inline,
+[dir="ltr"] #content-moderation-entity-moderation-form #edit-moderation-state-0 .container-inline {
+  margin-right: calc(1.625rem + 4.5vw);
+}
+
+[dir="rtl"] #edit-moderation-state-wrapper #edit-moderation-state-0 .container-inline,
+[dir="rtl"] #content-moderation-entity-moderation-form #edit-moderation-state-0 .container-inline {
+  margin-left: calc(1.625rem + 4.5vw);
+}
+
+@media (min-width: 1200px) {
+  [dir="ltr"] #edit-moderation-state-wrapper #edit-moderation-state-0 .container-inline,
+  [dir="ltr"] #content-moderation-entity-moderation-form #edit-moderation-state-0 .container-inline {
+    margin-right: 5rem;
+  }
+
+  [dir="rtl"] #edit-moderation-state-wrapper #edit-moderation-state-0 .container-inline,
+  [dir="rtl"] #content-moderation-entity-moderation-form #edit-moderation-state-0 .container-inline {
+    margin-left: 5rem;
+  }
+}
+
+#edit-moderation-state-wrapper #edit-moderation-state-0 label,
+#content-moderation-entity-moderation-form #edit-moderation-state-0 label {
+  font-weight: bold;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+[dir="ltr"] #edit-moderation-state-wrapper #edit-moderation-state-0 label,
+[dir="ltr"] #content-moderation-entity-moderation-form #edit-moderation-state-0 label {
+  float: left;
+  margin: 0 .5rem 0 0;
+}
+
+[dir="rtl"] #edit-moderation-state-wrapper #edit-moderation-state-0 label,
+[dir="rtl"] #content-moderation-entity-moderation-form #edit-moderation-state-0 label {
+  float: right;
+  margin: 0 0 0 .5rem;
+}
+
+#edit-moderation-state-wrapper .entity-moderation-form,
+#content-moderation-entity-moderation-form .entity-moderation-form {
+  list-style: none;
+  -webkit-margin-before: 0;
+          margin-block-start: 0;
+  -webkit-margin-after: 0;
+          margin-block-end: 0;
+  -webkit-margin-start: 0;
+          margin-inline-start: 0;
+  -webkit-margin-end: 0;
+          margin-inline-end: 0;
+  -webkit-padding-start: 0;
+          padding-inline-start: 0;
+}
+
+#edit-moderation-state-wrapper .entity-moderation-form__item,
+#content-moderation-entity-moderation-form .entity-moderation-form__item {
+  margin-top: 1rem;
+}
+
+#edit-moderation-state-wrapper .entity-moderation-form__item:first-child,
+#content-moderation-entity-moderation-form .entity-moderation-form__item:first-child {
+  margin-top: 0;
+}
+
+#edit-moderation-state-wrapper .entity-moderation-form__item label,
+#content-moderation-entity-moderation-form .entity-moderation-form__item label {
+  font-weight: bold;
+}
+
+[dir="ltr"] #edit-moderation-state-wrapper .entity-moderation-form__item label,
+[dir="ltr"] #content-moderation-entity-moderation-form .entity-moderation-form__item label {
+  margin: 0 .5rem .5rem 0;
+}
+
+[dir="rtl"] #edit-moderation-state-wrapper .entity-moderation-form__item label,
+[dir="rtl"] #content-moderation-entity-moderation-form .entity-moderation-form__item label {
+  margin: 0 0 .5rem .5rem;
+}
+
+@media (max-width: 960px) {
+  #edit-moderation-state-wrapper .entity-moderation-form__item button,
+  #edit-moderation-state-wrapper .entity-moderation-form__item input#edit-submit,
+  #content-moderation-entity-moderation-form .entity-moderation-form__item button,
+  #content-moderation-entity-moderation-form .entity-moderation-form__item input#edit-submit {
+    width: 100%;
+  }
+}
+
+@media (min-width: 992px) {
+  #edit-moderation-state-wrapper #edit-moderation-state-0,
+  #content-moderation-entity-moderation-form #edit-moderation-state-0 {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    padding-top: 1rem;
+  }
+
+  #edit-moderation-state-wrapper .form-item-moderation-state-0-current label,
+  #content-moderation-entity-moderation-form .form-item-moderation-state-0-current label {
+    margin-top: .5rem;
+  }
+
+  [dir="ltr"] #edit-moderation-state-wrapper .form-item-moderation-state-0-current label,
+  [dir="ltr"] #content-moderation-entity-moderation-form .form-item-moderation-state-0-current label {
+    float: left;
+  }
+
+  [dir="rtl"] #edit-moderation-state-wrapper .form-item-moderation-state-0-current label,
+  [dir="rtl"] #content-moderation-entity-moderation-form .form-item-moderation-state-0-current label {
+    float: right;
+  }
+
+  #edit-moderation-state-wrapper .form-control,
+  #content-moderation-entity-moderation-form .form-control {
+    max-width: 20em;
+    width: -moz-fit-content;
+    width: fit-content;
+    margin-top: -0.3rem;
+  }
+
+  #edit-moderation-state-wrapper .entity-moderation-form,
+  #content-moderation-entity-moderation-form .entity-moderation-form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+
+  #edit-moderation-state-wrapper .entity-moderation-form__item,
+  #content-moderation-entity-moderation-form .entity-moderation-form__item {
+    display: table;
+  }
+
+  [dir="ltr"] #edit-moderation-state-wrapper .entity-moderation-form__item,
+  [dir="ltr"] #content-moderation-entity-moderation-form .entity-moderation-form__item {
+    margin-right: 2em;
+  }
+
+  [dir="rtl"] #edit-moderation-state-wrapper .entity-moderation-form__item,
+  [dir="rtl"] #content-moderation-entity-moderation-form .entity-moderation-form__item {
+    margin-left: 2em;
+  }
+
+  #edit-moderation-state-wrapper .entity-moderation-form__item:first-child,
+  #content-moderation-entity-moderation-form .entity-moderation-form__item:first-child {
+    margin-top: 1rem;
+    width: 10rem;
+  }
+
+  #edit-moderation-state-wrapper .entity-moderation-form__item .form-item-revision-log,
+  #content-moderation-entity-moderation-form .entity-moderation-form__item .form-item-revision-log {
+    width: 15rem;
+  }
+
+  #edit-moderation-state-wrapper .entity-moderation-form__item input#edit-submit,
+  #content-moderation-entity-moderation-form .entity-moderation-form__item input#edit-submit {
+    margin: calc(1.295rem + .54vw) calc(1.325rem + .9vw) 0;
+  }
+}
+
+@media (min-width: 992px) and (min-width: 1200px) {
+  #edit-moderation-state-wrapper .entity-moderation-form__item input#edit-submit,
+  #content-moderation-entity-moderation-form .entity-moderation-form__item input#edit-submit {
+    margin: 1.7rem 2rem 0;
+  }
+}
+
+@media (min-width: 992px) {
+  [dir="ltr"] [dir=rtl] #edit-moderation-state-wrapper,
+  [dir="ltr"] [dir=rtl] #content-moderation-entity-moderation-form {
+    margin-right: 0;
+    margin-left: calc(1.625rem + 4.5vw);
+  }
+
+  [dir="rtl"] [dir=rtl] #edit-moderation-state-wrapper,
+  [dir="rtl"] [dir=rtl] #content-moderation-entity-moderation-form {
+    margin-left: 0;
+    margin-right: calc(1.625rem + 4.5vw);
+  }
+}
+
+@media (min-width: 992px) and (min-width: 1200px) {
+  [dir="ltr"] [dir=rtl] #edit-moderation-state-wrapper,
+  [dir="ltr"] [dir=rtl] #content-moderation-entity-moderation-form {
+    margin-left: 5rem;
+  }
+
+  [dir="rtl"] [dir=rtl] #edit-moderation-state-wrapper,
+  [dir="rtl"] [dir=rtl] #content-moderation-entity-moderation-form {
+    margin-right: 5rem;
+  }
+}
+
+@media (min-width: 992px) {
+  [dir="ltr"] [dir=rtl] #edit-moderation-state-wrapper label,
+  [dir="ltr"] [dir=rtl] #content-moderation-entity-moderation-form label {
+    float: right;
+    margin: 0 0 0 .5rem;
+  }
+
+  [dir="rtl"] [dir=rtl] #edit-moderation-state-wrapper label,
+  [dir="rtl"] [dir=rtl] #content-moderation-entity-moderation-form label {
+    float: left;
+    margin: 0 .5rem 0 0;
+  }
+}
+
+@media (min-width: 992px) {
+  [dir=rtl] #edit-moderation-state-wrapper .form-item-moderation-state-0-current label,
+  [dir=rtl] #content-moderation-entity-moderation-form .form-item-moderation-state-0-current label {
+    margin-top: .5rem;
+  }
+
+  [dir="ltr"] [dir=rtl] #edit-moderation-state-wrapper .form-item-moderation-state-0-current label,
+  [dir="ltr"] [dir=rtl] #content-moderation-entity-moderation-form .form-item-moderation-state-0-current label {
+    float: right;
+  }
+
+  [dir="rtl"] [dir=rtl] #edit-moderation-state-wrapper .form-item-moderation-state-0-current label,
+  [dir="rtl"] [dir=rtl] #content-moderation-entity-moderation-form .form-item-moderation-state-0-current label {
+    float: left;
+  }
+}
+
+@media (min-width: 992px) {
+  [dir="ltr"] [dir=rtl] #edit-moderation-state-wrapper .form-control,
+  [dir="ltr"] [dir=rtl] #content-moderation-entity-moderation-form .form-control {
+    float: right;
+  }
+
+  [dir="rtl"] [dir=rtl] #edit-moderation-state-wrapper .form-control,
+  [dir="rtl"] [dir=rtl] #content-moderation-entity-moderation-form .form-control {
+    float: left;
+  }
+}
+
+@media (min-width: 992px) {
+  [dir="ltr"] [dir=rtl] #edit-moderation-state-wrapper .entity-moderation-form__item,
+  [dir="ltr"] [dir=rtl] #content-moderation-entity-moderation-form .entity-moderation-form__item {
+    margin-right: 0;
+    margin-left: 1rem;
+  }
+
+  [dir="rtl"] [dir=rtl] #edit-moderation-state-wrapper .entity-moderation-form__item,
+  [dir="rtl"] [dir=rtl] #content-moderation-entity-moderation-form .entity-moderation-form__item {
+    margin-left: 0;
+    margin-right: 1rem;
+  }
+
+  [dir="ltr"] [dir=rtl] #edit-moderation-state-wrapper .entity-moderation-form__item:last-child,
+  [dir="ltr"] [dir=rtl] #content-moderation-entity-moderation-form .entity-moderation-form__item:last-child {
+    margin-right: auto;
+    margin-left: 0;
+  }
+
+  [dir="rtl"] [dir=rtl] #edit-moderation-state-wrapper .entity-moderation-form__item:last-child,
+  [dir="rtl"] [dir=rtl] #content-moderation-entity-moderation-form .entity-moderation-form__item:last-child {
+    margin-left: auto;
+    margin-right: 0;
+  }
+}
+
+@media (min-width: 1200px) {
+  #edit-moderation-state-wrapper .entity-moderation-form__item .form-item-revision-log,
+  #content-moderation-entity-moderation-form .entity-moderation-form__item .form-item-revision-log {
+    width: 17rem;
+  }
+}
+
+#edit-preview-toggle {
+  margin-top: 1rem;
+}
+

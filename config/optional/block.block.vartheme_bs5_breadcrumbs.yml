@@ -8,12 +8,12 @@ dependencies:
 id: vartheme_bs5_breadcrumbs
 theme: vartheme_bs5
 region: content_above
-weight: -4
+weight: -5
 provider: null
 plugin: system_breadcrumb_block
 settings:
   id: system_breadcrumb_block
   label: Breadcrumbs
+  label_display: '0'
   provider: system
-  label_display: "0"
-visibility: {}
+visibility: {  }

@@ -64,6 +64,12 @@ auth-icons:
     theme:
       dist/css/theme/auth-icons.theme.css: {}
 
+# Vartheme BS5 content moderation status theme.
+content_moderation:
+  css:
+    theme:
+      dist/css/theme/content-moderation.theme.css: {}
+
 # ---------------------------------------------------------
 # Components
 # ---------------------------------------------------------

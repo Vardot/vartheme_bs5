@@ -12,12 +12,13 @@ theme: vartheme_bs5
 region: navigation
 weight: -5
 provider: null
-plugin: "system_menu_block:main"
+plugin: 'system_menu_block:main'
 settings:
-  id: "system_menu_block:main"
-  label: "Main navigation"
+  id: 'system_menu_block:main'
+  label: 'Main navigation'
+  label_display: '0'
   provider: system
-  label_display: "0"
   level: 1
   depth: 2
-visibility: {}
+  expand_all_items: false
+visibility: {  }

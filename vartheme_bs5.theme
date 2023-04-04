@@ -37,13 +37,14 @@ function vartheme_bs5_form_alter(&$form, $form_state, $form_id) {
 
   // Have a default style for moderation entity form.
   if ($form_id == 'content_moderation_entity_moderation_form') {
-    $form['#attributes']['class'][] = 'card card-body bg-light';
+    $form['#attributes']['class'][] = 'card card-body bg-light mb-3';
   }
 
   // Have a default style for the moderation status in the layout editing node pages.
   if ((preg_match('/^node_.*._layout_builder_form$/', $form_id)
     && isset($form['moderation_state']))) {
-    $form['moderation_state']['#attributes']['class'][] = 'card card-body bg-light';
+    $form['moderation_state']['#attributes']['class'][] = 'card card-body bg-light mb-3';
+    $form['#attached']['library'][] = 'vartheme_bs5/content_moderation';
   }
 }
 

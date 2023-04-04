@@ -30,9 +30,8 @@ module.exports = {
     "theme/content.theme": ["./styles/theme/content.theme.scss"],
     "theme/footer.theme": ["./styles/theme/footer.theme.scss"],
     "theme/header.theme": ["./styles/theme/header.theme.scss"],
-    "theme/maintenance-page.theme": [
-      "./styles/theme/maintenance-page.theme.scss",
-    ],
+    "theme/maintenance-page.theme": ["./styles/theme/maintenance-page.theme.scss"],
+    "theme/content-moderation.theme": ["./styles/theme/content-moderation.theme.scss"],
     "theme/varbase-heroslider-media.theme": [
       "./styles/theme/varbase-heroslider-media.theme.scss",
     ],

@@ -1,0 +1,168 @@
+// Vartheme BS5 content moderation status theme.
+// -----------------------------------------------------------------------------
+@import "../../node_modules/bootstrap/scss/functions";               // Bootstrap functions.
+@import "../../node_modules/bootstrap/scss/variables";               // Bootstrap variables.
+@import "../../node_modules/bootstrap/scss/maps";                    // Bootstrap maps.
+@import "../../node_modules/bootstrap/scss/mixins";                  // Bootstrap mixins.
+@import "../base/variables";                                            // Vartheme variables.
+@import "../base/mixins";                                               // Vartheme mixins.
+@import "../../node_modules/bootstrap/scss/utilities";               // Bootstrap utilities.
+// -----------------------------------------------------------------------------
+
+#edit-moderation-state-wrapper,
+#content-moderation-entity-moderation-form {
+  #edit-moderation-state-0 {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+
+    .container-inline {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+      @include margin-right(5rem);
+    }
+    
+    label {
+      font-weight: bold;
+      float: left;
+      width: fit-content;
+      @include margin(0 .5rem 0 0); 
+    }
+  }
+
+  .entity-moderation-form {
+    list-style: none;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    padding-inline-start: 0;
+  }
+
+  .entity-moderation-form__item {
+    @include margin-top(1rem);
+ 
+    &:first-child {
+      margin-top: 0;
+    }
+
+    label {
+      font-weight: bold;
+      @include margin(0 .5rem .5rem 0); 
+    }
+
+  }
+}
+
+@media (max-width: map-get($container-max-widths, "lg")) {
+  #edit-moderation-state-wrapper,
+  #content-moderation-entity-moderation-form {
+    .entity-moderation-form__item {
+      button,
+      input#edit-submit {
+        width: 100%;
+      } 
+    }
+  }
+}
+
+@media (min-width: map-get($grid-breakpoints, "lg")) { 
+  #edit-moderation-state-wrapper,
+  #content-moderation-entity-moderation-form {
+
+      #edit-moderation-state-0 {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        @include padding-top(1rem);
+      }
+    
+      .form-item-moderation-state-0-current {
+        label {
+          float: left;
+          @include margin-top(0.5rem);
+        }
+      }
+
+      .form-control {
+        max-width: 20em;
+        width: fit-content;
+        margin-top: -0.3rem;
+      }
+
+      .entity-moderation-form {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+      }
+  
+      .entity-moderation-form__item {
+        display: table;
+        margin-right: 2em;
+  
+        &:first-child {
+          @include margin-top(1rem);
+          width: 10rem;
+        }
+  
+        .form-item-revision-log {
+          width: 15rem;
+        }
+
+        input#edit-submit {
+          @include margin(1.7rem 2rem 0);
+        }
+
+      }
+
+  }
+
+  [dir="rtl"] #edit-moderation-state-wrapper,
+  [dir="rtl"] #content-moderation-entity-moderation-form {
+
+      margin-right: 0;
+      @include margin-left(5rem);
+
+      label {
+        float: right;
+        @include margin(0 0 0 0.5rem);
+      }
+
+      .form-item-moderation-state-0-current {
+        label {
+          float: right;
+          @include margin-top(0.5rem);
+        }
+      }
+
+      .form-control {
+        float: right;
+      }
+
+    .entity-moderation-form__item {
+      margin-right: 0;
+      margin-left: 1rem;
+
+      &:last-child {
+        margin-right: auto;
+        margin-left: 0;
+      }
+    }
+  }
+}
+
+@media (min-width: map-get($grid-breakpoints, "xl")) { 
+  #edit-moderation-state-wrapper,
+  #content-moderation-entity-moderation-form {
+    .entity-moderation-form__item {
+      .form-item-revision-log {
+        width: 17rem;
+      }
+    }
+  }
+}
+
+#edit-preview-toggle {
+  @include margin-top(1rem);
+}
