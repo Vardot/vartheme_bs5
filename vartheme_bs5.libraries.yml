@@ -1,5 +1,4 @@
 framework:
-  version: VERSION
   css:
     theme:
       dist/css/base/style.base.css: {}
@@ -69,60 +68,3 @@ content_moderation:
   css:
     theme:
       dist/css/theme/content-moderation.theme.css: {}
-
-# ---------------------------------------------------------
-# Components
-# ---------------------------------------------------------
-featured-card-ltr:
-  css:
-    theme:
-      dist/css/components/organisms/cards/featuredCard/featured-card.css: {}
-
-featured-card-rtl:
-  css:
-    theme:
-      dist/css/components/organisms/cards/featuredCard/featured-card-rtl.css: {}
-
-impressed-card-ltr:
-  css:
-    theme:
-      dist/css/components/organisms/cards/impressedCard/impressed-card.css: {}
-
-impressed-card-rtl:
-  css:
-    theme:
-      dist/css/components/organisms/cards/impressedCard/impressed-card-rtl.css: {}
-
-overlay-card-ltr:
-  css:
-    theme:
-      dist/css/components/organisms/cards/overlayCard/overlay-card.css: {}
-
-overlay-card-rtl:
-  css:
-    theme:
-      dist/css/components/organisms/cards/overlayCard/overlay-card-rtl.css: {}
-
-page-ltr:
-  css:
-    theme:
-      dist/css/components/pages/page/page.css: {}
-
-page-rtl:
-  css:
-    theme:
-      dist/css/components/pages/page/page-rtl.css: {}
-
-alert-ltr:
-  css:
-    theme:
-      dist/css/components/molecules/alert/alert.css: {}
-  js:
-    js/bootstrap/alert.js: {}
-
-alert-rtl:
-  css:
-    theme:
-      dist/css/components/molecules/alert/alert-rtl.css: {}
-  js:
-    js/bootstrap/alert.js: {}

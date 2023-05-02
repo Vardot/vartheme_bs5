@@ -30,8 +30,8 @@
     "composer/installers": "~2.0",
     "oomphinc/composer-installers-extender": "~2.0",
     "cweagans/composer-patches": "~1.0",
-    "drupal/core": "~9.0 || ~10.0",
-    "drupal/varbase_components": "1.0.x-dev"
+    "drupal/core": "^10.1",
+    "drupal/varbase_components": "2.0.x-dev"
   },
   "extra": {
     "installer-types": [
