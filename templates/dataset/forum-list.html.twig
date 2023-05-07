@@ -30,7 +30,7 @@
  * @see template_preprocess_forum_list()
  */
 #}
-{% extends '@organisms/table/table.twig' %}
+{% extends 'varbase_components:table' %}
   {% block table %}
     <table id="forum-{{ forum_id }}" class="table">
       {% block header %}

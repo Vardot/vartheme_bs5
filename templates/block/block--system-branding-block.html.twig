@@ -4,12 +4,12 @@
  * Template for the branding block.
  */
 #}
-{% embed '@organisms/block/block.twig' with {
+{% embed 'varbase_components:block' with {
   html_tag: 'div',
 } %}
 
 	{% block content %}
-		{% include '@molecules/navbar-brand/navbar-brand.twig' with {
+		{% include 'varbase_components:navbar-brand' with {
     text: site_name,
     image_path: site_logo,
     height: 'auto',

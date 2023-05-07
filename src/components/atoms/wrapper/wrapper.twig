@@ -1,7 +1,0 @@
-{% set classes = []|merge(utility_classes) %}
-
-<div {{ attributes.addClass(classes) }}>
-  {% block content %}
-    {{ content }}
-  {% endblock %}
-</div>

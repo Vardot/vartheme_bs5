@@ -4,7 +4,7 @@
  * Template for a Figure.
  */
 #}
-{% include '@molecules/figure/figure.twig' with {
+{% include 'varbase_components:figure' with {
   image: node,
   caption: caption,
   utility_classes: classes|split(' '),

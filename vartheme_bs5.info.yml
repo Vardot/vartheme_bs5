@@ -43,3 +43,5 @@ ckeditor_stylesheets:
 
 ckeditor5-stylesheets: false
 
+enforce_prop_schemas: false
+

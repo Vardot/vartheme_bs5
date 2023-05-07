@@ -17,7 +17,7 @@
 
 {% for type, messages in message_list %}
 	<div role="region" aria-label="{{ status_headings[type] }}" {{ attributes|without('role', 'aria-label') }}>
-		{% embed '@molecules/alert/alert.twig' with {
+		{% embed 'varbase_components:alert' with {
       type: types[type],
     } %}
 			{% block content %}

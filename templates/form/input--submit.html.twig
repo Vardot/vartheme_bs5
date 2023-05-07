@@ -10,7 +10,7 @@
  * @see template_preprocess_input()
  */
 #}
-{% include '@organisms/form/input/input.twig' with {
+{% include 'varbase_components:input' with {
   attributes: attributes.removeClass('button'),
   form_control: false,
   utility_classes: ['btn', 'btn-primary']
