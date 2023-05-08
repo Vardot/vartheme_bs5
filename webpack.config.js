@@ -33,42 +33,12 @@ module.exports = {
     "theme/maintenance-page.theme": ["./styles/theme/maintenance-page.theme.scss"],
     "theme/content-moderation.theme": ["./styles/theme/content-moderation.theme.scss"],
     "theme/varbase-heroslider-media.theme": [
-      "./styles/theme/varbase-heroslider-media.theme.scss",
+    "./styles/theme/varbase-heroslider-media.theme.scss",
     ],
     "theme/vbp-colors.theme": ["./styles/theme/vbp-colors.theme.scss"],
     // ##########################################################################
     // Components
     // ##########################################################################
-    "components/organisms/cards/featuredCard/featured-card": [
-      "./src/components/organisms/cards/featuredCard/featured-card.scss",
-    ],
-    "components/organisms/cards/featuredCard/featured-card-rtl": [
-      "./src/components/organisms/cards/featuredCard/featured-card-rtl.scss",
-    ],
-    "components/organisms/cards/impressedCard/impressed-card": [
-      "./src/components/organisms/cards/impressedCard/impressed-card.scss",
-    ],
-    "components/organisms/cards/impressedCard/impressed-card-rtl": [
-      "./src/components/organisms/cards/impressedCard/impressed-card-rtl.scss",
-    ],
-    "components/organisms/cards/overlayCard/overlay-card": [
-      "./src/components/organisms/cards/overlayCard/overlay-card.scss",
-    ],
-    "components/organisms/cards/overlayCard/overlay-card-rtl": [
-      "./src/components/organisms/cards/overlayCard/overlay-card-rtl.scss",
-    ],
-    "components/pages/page/page": [
-      "./src/components/pages/page/page.scss",
-    ],
-    "components/pages/page/page-rtl": [
-      "./src/components/pages/page/page-rtl.scss",
-    ],
-    "components/molecules/alert/alert": [
-      "./src/components/molecules/alert/alert.scss",
-    ],
-    "components/molecules/alert/alert-rtl": [
-      "./src/components/molecules/alert/alert-rtl.scss",
-    ],
   },
   output: {
     filename: "js/[name].js",

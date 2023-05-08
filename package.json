@@ -10,8 +10,7 @@
   "scripts": {
     "theme:init": "webpack --progress --config  webpack.config.init.js",
     "theme:build": "webpack --progress --config webpack.config.build.js",
-    "theme:watch": "webpack --progress --config  webpack.config.dev.js --watch",
-    "storybook": "npx kill-port --port 3000; start-storybook --port 3000"
+    "theme:watch": "webpack --progress --config  webpack.config.dev.js --watch"
   },
   "license": "MIT",
   "keywords": [
@@ -74,30 +73,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "~5",
     "@popperjs/core": "~2",
-    "@storybook/addon-a11y": "~6",
-    "@storybook/addon-actions": "~6",
-    "@storybook/addon-backgrounds": "~6",
-    "@storybook/addon-controls": "~6",
-    "@storybook/addon-docs": "~6",
-    "@storybook/addon-interactions": "~6",
-    "@storybook/addon-links": "~6",
-    "@storybook/addon-postcss": "~2",
-    "@storybook/addon-storysource": "~6",
-    "@storybook/addon-viewport": "~6",
-    "@storybook/html": "~6",
-    "@storybook/react": "~6",
     "bootstrap": "~5",
-    "bootstrap-borders-utilities": "~1",
-    "copy-webpack-plugin": "^11.0.0",
-    "css-loader": "^5.0.0",
-    "drupal-attribute": "~1",
-    "js-yaml-loader": "~1",
-    "postcss": "^8.1.10",
-    "storybook-source-code-addon": "~1",
-    "style-loader": "~3",
-    "terser-webpack-plugin": "^5.3.6",
-    "twig": "~1",
-    "twig-drupal-filters": "~3",
-    "twig-loader": "https://github.com/fourkitchens/twig-loader"
+    "bootstrap-borders-utilities": "~1"
   }
 }
