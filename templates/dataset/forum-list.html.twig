@@ -58,20 +58,25 @@
                 depth this forum resides at. This will allow us to use CSS
                 left-margin for indenting.
               #}
-              {% for i in 1..forum.depth if forum.depth > 0 %}<div class="indented">{% endfor %}
+              {% if forum.depth > 0 %}{% for i in 1..forum.depth %}<div class="indented">{% endfor %}{% endif %}
                 <div class="forum__icon forum-status-{{ forum.icon_class }}" title="{{ forum.icon_title }}">
                   <span class="visually-hidden">{{ forum.icon_title }}</span>
                 </div>
                 <div class="d-flex align-items-center">
                   <h4 class="forum__name me-2 mb-0"><a href="{{ forum.link }}">{{ forum.label }}</a></h4>
                   {% if forum.new_topics == true %}
-                    <a href="{{ forum.new_url }}" class="badge badge-primary">{{ forum.new_text }}</a>
+                    {% include 'varbase_components:badge' with {
+                      html_tag: 'a',
+                      color: 'text-bg-primary',
+                      url: forum.new_url,
+                      content: forum.new_text
+                    } %}
                   {% endif %}
                 </div>
                 {% if forum.description.value %}
                   <div class="forum__description text-muted mt-2">{{ forum.description.value }}</div>
                 {% endif %}
-                {% for i in 1..forum.depth if forum.depth > 0 %}</div>{% endfor %}
+                {% if forum.depth > 0 %}{% for i in 1..forum.depth %}</div>{% endfor %}{% endif %}
             </td>
             {% if forum.is_container == false %}
               <td class="forum__topics">
