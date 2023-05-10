@@ -11,7 +11,6 @@ framework:
   dependencies:
     - core/drupal
     - core/jquery
-    - core/popperjs
     - vartheme_bs5/bootstrap-styles
     - vartheme_bs5/bootstrap-scripts
 
@@ -23,6 +22,7 @@ bootstrap-styles:
 
 bootstrap-scripts:
   js:
+    js/popperjs/popper.js: {}
     js/bootstrap/bootstrap.min.js: {}
     #
     # Plugins can be included individually (using Bootstrap’s individual

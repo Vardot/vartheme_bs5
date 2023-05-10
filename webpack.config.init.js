@@ -19,6 +19,11 @@ module.exports = merge(webpackConfig, {
           to: path.resolve(__dirname, "js/bootstrap"),
           context: "node_modules/bootstrap/js/dist/",
         },
+        {
+          from: path.resolve(__dirname, "node_modules/@popperjs/core/dist/umd/popper.js"),
+          to: path.resolve(__dirname, "js/popperjs"),
+          context: "node_modules/@popperjs/core/dist/",
+        }
       ],
     }),
   ],

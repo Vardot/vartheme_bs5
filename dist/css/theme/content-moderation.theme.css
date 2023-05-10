@@ -218,9 +218,7 @@
     float: left;
     margin: 0 .5rem 0 0;
   }
-}
 
-@media (min-width: 992px) {
   [dir=rtl] #edit-moderation-state-wrapper .form-item-moderation-state-0-current label,
   [dir=rtl] #content-moderation-entity-moderation-form .form-item-moderation-state-0-current label {
     margin-top: .5rem;
@@ -235,9 +233,7 @@
   [dir="rtl"] [dir=rtl] #content-moderation-entity-moderation-form .form-item-moderation-state-0-current label {
     float: left;
   }
-}
 
-@media (min-width: 992px) {
   [dir="ltr"] [dir=rtl] #edit-moderation-state-wrapper .form-control,
   [dir="ltr"] [dir=rtl] #content-moderation-entity-moderation-form .form-control {
     float: right;
@@ -247,9 +243,7 @@
   [dir="rtl"] [dir=rtl] #content-moderation-entity-moderation-form .form-control {
     float: left;
   }
-}
 
-@media (min-width: 992px) {
   [dir="ltr"] [dir=rtl] #edit-moderation-state-wrapper .entity-moderation-form__item,
   [dir="ltr"] [dir=rtl] #content-moderation-entity-moderation-form .entity-moderation-form__item {
     margin-right: 0;

@@ -68,12 +68,19 @@
     "webpack-merge": "^5.7.3",
     "webpack-notifier": "^1.13.0",
     "webpack-remove-empty-scripts": "^0.7.1",
-    "kill-port": "~2.0"
+    "kill-port": "~2.0",
+    "copy-webpack-plugin": "^11.0.0",
+    "css-loader": "^5.0.0",
+    "drupal-attribute": "~1",
+    "js-yaml-loader": "~1",
+    "postcss": "^8.1.10",
+    "style-loader": "~3",
+    "terser-webpack-plugin": "^5.3.6"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "~5",
-    "@popperjs/core": "~2",
     "bootstrap": "~5",
-    "bootstrap-borders-utilities": "~1"
+    "bootstrap-borders-utilities": "~1",
+    "@fortawesome/fontawesome-free": "~5",
+    "@popperjs/core": "~2"
   }
 }
