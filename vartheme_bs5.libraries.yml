@@ -1,16 +1,5 @@
 framework:
-  css:
-    theme:
-      dist/css/base/style.base.css: {}
-    layout:
-      dist/css/layout/edge2edge.layout.css: {}
-      dist/css/layout/equal-height.layout.css: {}
-      dist/css/layout/print.layout.css: { media: print }
-  js:
-    dist/js/script.js: {}
   dependencies:
-    - core/drupal
-    - core/jquery
     - vartheme_bs5/bootstrap-styles
     - vartheme_bs5/bootstrap-scripts
 
@@ -18,9 +7,17 @@ framework:
 bootstrap-styles:
   css:
     theme:
-      dist/css/base/bootstrap.base.css: {}
+      css/base/bootstrap.base.css: {}
+      css/base/style.base.css: {}
+    layout:
+      css/layout/edge2edge.layout.css: {}
+      css/layout/equal-height.layout.css: {}
+      css/layout/print.layout.css: { media: print }
 
 bootstrap-scripts:
+  dependencies:
+    - core/drupal
+    - core/jquery
   js:
     js/popperjs/popper.js: {}
     js/bootstrap/bootstrap.min.js: {}

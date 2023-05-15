@@ -1,9 +1,22 @@
 # Vartheme BS5
 
-Base theme for Varbase standard websites. Based on Bootstrap 5 framework using SASS.
+A base theme for Varbase standard websites.
+
+A new generation of theming (base theme) based on **Bootstrap 5**, **Single Directory Components (SDC)** with **Drupal** `~10.1.0`, and **UI Patterns** `2.0.x-dev`.
+
+Having **[Varbase Components](https://www.drupal.org/project/varbase_components)** to provides component management system for Varbase and **Vartheme BS5**.
 
 # Installation
+Require the theme in a Drupal ^10.1.0
+```
+composer require 'drupal/vartheme_bs5:3.0.x-dev'
+```
+The Vartheme BS5 requires to enable the **Varbase Component** befor installing the theme
+```
+drush pm:enable varbase_components
+```
 
+## Compile custom styling
 Uses [Webpack](https://webpack.js.org) to compile and
 bundle SASS and JS.
 
@@ -21,14 +34,21 @@ following the guide [here](https://yarnpkg.com/docs/install).
 Go to the root of the theme and run the following commands: `npm install` or `yarn install`.
 
 #### Step 3
+Initialize the theme with latest Bootstrap 5 version
 
-Update `proxy` in **proxy.browsersync.js** with the following options:
-
-- The domain name for the project. Example: `'http://exmaple.com'`
-- Virtual domain. Example: `'http://varbase.local'`
-- Localhost with path and docroot. Example: `'http://localhost/dev/PROJECT_NAME/docroot'`
+```
+yarn theme:init
+```
 
 #### Step 4
 
-Run the following command to compile Sass and watch for changes: `npm run watch`
-or `yarn watch`.
+Run the following command to compile Sass
+
+```
+yarn theme:build
+```
+
+Run the following to build components for custom components
+```
+yarn components:build
+```

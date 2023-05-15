@@ -11,28 +11,17 @@ const CopyPlugin = require("copy-webpack-plugin");
 module.exports = {
   entry: {
     // ################################################
-    // SCSS
+    // CSS
     // ################################################
-    // Base
-    "base/bootstrap.base": ["./scss/base/bootstrap.base.scss"],
-    "base/style.base": ["./scss/base/style.base.scss"],
-    // Layout
-    "layout/edge2edge.layout": ["./scss/layout/edge2edge.layout.scss"],
-    "layout/equal-height.layout": ["./scss/layout/equal-height.layout.scss"],
-    "layout/print.layout": ["./scss/layout/print.layout.scss"],
-    // Theme
-    "theme/auth-icons.theme": ["./scss/theme/auth-icons.theme.scss"],
-    "theme/betterlogin.theme": ["./scss/theme/betterlogin.theme.scss"],
-    "theme/content.theme": ["./scss/theme/content.theme.scss"],
-    "theme/footer.theme": ["./scss/theme/footer.theme.scss"],
-    "theme/header.theme": ["./scss/theme/header.theme.scss"],
-    "theme/maintenance-page.theme": ["./scss/theme/maintenance-page.theme.scss"],
-    "theme/content-moderation.theme": ["./scss/theme/content-moderation.theme.scss"],
-    "theme/varbase-heroslider-media.theme": ["./scss/theme/varbase-heroslider-media.theme.scss"],
-    "theme/vbp-colors.theme": ["./scss/theme/vbp-colors.theme.scss"],
+    // Components
+    // 'molecules/alert/alert': ['./components/molecules/alert/alert.scss'],
+    // 'molecules/tabs/tabs': ['./components/molecules/tabs/tabs.scss'],
+    // 'molecules/field-tags/field-tags': ['./components/molecules/field-tags/field-tags.scss'],
+    // 'organisms/navbar/navbar': ['./components/organisms/navbar/navbar.scss'],
+    // 'pages/page/page': ['./components/pages/page/page.scss']
   },
   output: {
-    path: path.resolve(__dirname, 'css'),
+    path: path.resolve(__dirname, 'components'),
     pathinfo: true,
     publicPath: '../../',
   },
@@ -165,6 +154,14 @@ module.exports = {
     extensions: ['.js', '.json'],
   },
   plugins: [
+    new CopyPlugin({
+      patterns: [
+        { from: "./components", to: "./" }
+      ],
+      options: {
+        concurrency: 100,
+      },
+    }),
     new RemoveEmptyScriptsPlugin(),
     new CleanWebpackPlugin({
       cleanStaleWebpackAssets: false

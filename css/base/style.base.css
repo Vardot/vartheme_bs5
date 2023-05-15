@@ -21,7 +21,7 @@ em.placeholder {
   content: "";
   vertical-align: super;
   display: inline-block;
-  background-image: url(../../images/required.svg);
+  background-image: url(../images/required.svg);
   background-repeat: no-repeat;
   background-size: calc(calc(1.5em + .75rem + 2px) * .16666666666) calc(calc(1.5em + .75rem + 2px) * .16666666666);
   width: calc(calc(1.5em + .75rem + 2px) * .16666666666);
