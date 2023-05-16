@@ -28,8 +28,6 @@ module.exports = {
     "theme/header.theme": ["./scss/theme/header.theme.scss"],
     "theme/maintenance-page.theme": ["./scss/theme/maintenance-page.theme.scss"],
     "theme/content-moderation.theme": ["./scss/theme/content-moderation.theme.scss"],
-    "theme/varbase-heroslider-media.theme": ["./scss/theme/varbase-heroslider-media.theme.scss"],
-    "theme/vbp-colors.theme": ["./scss/theme/vbp-colors.theme.scss"],
   },
   output: {
     path: path.resolve(__dirname, 'css'),

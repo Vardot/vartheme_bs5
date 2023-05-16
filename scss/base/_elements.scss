@@ -43,3 +43,24 @@
     margin: 0 0.3em;
   }
 }
+
+.ajax-progress {
+  background-color: transparent !important;
+  border: 0 !important;
+}
+
+.ajax-progress-throbber {
+  .throbber {
+    background-color: transparent !important;
+    border: 0 !important;
+  }
+
+  .message {
+    background-color: transparent !important;
+    border: 0 !important;
+  }
+}
+
+.ajax-progress-fullscreen {
+  background-color: transparent !important;
+}
