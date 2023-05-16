@@ -34,14 +34,11 @@ libraries-override:
   content_moderation/content_moderation: vartheme_bs5/content_moderation
 
 ckeditor_stylesheets:
-  - dist/css/base/bootstrap.base.css
-  - dist/css/base/style.base.css
-  - dist/css/layout/edge2edge.layout.css
-  - dist/css/layout/equal-height.layout.css
-  - dist/css/components/pages/page/page.css
-  - dist/css/components/molecules/alert/alert.css
+  - css/base/bootstrap.base.css
+  - css/base/style.base.css
+  - css/layout/edge2edge.layout.css
+  - css/layout/equal-height.layout.css
+  - css/layout/print.layout.css
 
 ckeditor5-stylesheets: false
-
 enforce_prop_schemas: false
-
