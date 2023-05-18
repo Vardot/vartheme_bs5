@@ -30,7 +30,6 @@ libraries:
   - vartheme_bs5/framework
 
 libraries-override:
-  social_auth/auth-icons: vartheme_bs5/auth-icons
   content_moderation/content_moderation: vartheme_bs5/content_moderation
 
 ckeditor_stylesheets:

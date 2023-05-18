@@ -8,40 +8,8 @@
 #}
 
 <div class="page d-flex flex-column">
-  {% if page.top_bar %}
-    <div class="navbar-top w-100">
-      <div class="container">
-        <div class="row">
-          <div class="col-12">
-            {{ page.top_bar }}
-          </div>
-        </div>
-      </div>
-    </div>
-  {% endif %}
 
-  {% if page.navbar_branding or page.navigation %}
-    {% embed 'varbase_components:navbar' with {
-      placement: '',
-      container: 'fixed',
-      color: 'light',
-      utility_classes: ['bg-light'],
-    } %}
-      {% block branding %}
-        {% if page.navbar_branding %}
-          {{ page.navbar_branding }}
-        {% endif %}
-      {% endblock %}
-
-      {% block navigation %}
-        {% if page.navigation %}
-          <div class="ms-auto">
-            {{ page.navigation }}
-          </div>
-        {% endif %}
-      {% endblock %}
-    {% endembed %}
-  {% endif %}
+  {% include "varbase_components:page-header" %}
 
   <main class="mb-3">
     <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
@@ -89,22 +57,6 @@
     {% endif %}
   </main>
 
-  {% if page.footer_top or page.footer_bottom %}
-    <footer class="footer small w-100 bg-light mt-auto py-3">
-      {% if page.footer_top %}
-        {% include "varbase_components:footer" with {
-          content: page.footer_top,
-          utility_classes: ['footer-top']
-        } %}
-      {% endif %}
-
-      {% if page.footer_bottom %}
-        {% include "varbase_components:footer" with {
-          content: page.footer_bottom,
-          utility_classes: ['footer-bottom']
-        } %}
-      {% endif %}
-    </footer>
-  {% endif %}
+  {% include "varbase_components:page-footer" %}
 
 </div>

@@ -56,10 +56,6 @@ global-styles:
       css/layout/edge2edge.layout.css: {}
       css/layout/equal-height.layout.css: {}
       css/layout/print.layout.css: { media: print }
-    theme:
-      css/theme/header.theme.css: {}
-      css/theme/content.theme.css: {}
-      css/theme/footer.theme.css: {}
 
 # Vartheme BS5 global scripts library.
 global-scripts:
@@ -69,18 +65,6 @@ global-scripts:
     - core/jquery
     - core/drupal
     - core/drupal.ajax
-
-# Vartheme BS5 better login theme.
-betterlogin:
-  css:
-    theme:
-      dist/css/theme/betterlogin.theme.css: {}
-
-# Vartheme BS5 Social Auth icon theme.
-auth-icons:
-  css:
-    theme:
-      dist/css/theme/auth-icons.theme.css: {}
 
 # Vartheme BS5 content moderation status theme.
 content_moderation:

@@ -20,13 +20,8 @@ module.exports = {
     "layout/edge2edge.layout": ["./scss/layout/edge2edge.layout.scss"],
     "layout/equal-height.layout": ["./scss/layout/equal-height.layout.scss"],
     "layout/print.layout": ["./scss/layout/print.layout.scss"],
+    // Components are in the webpack.config.components.js file.
     // Theme
-    "theme/auth-icons.theme": ["./scss/theme/auth-icons.theme.scss"],
-    "theme/betterlogin.theme": ["./scss/theme/betterlogin.theme.scss"],
-    "theme/content.theme": ["./scss/theme/content.theme.scss"],
-    "theme/footer.theme": ["./scss/theme/footer.theme.scss"],
-    "theme/header.theme": ["./scss/theme/header.theme.scss"],
-    "theme/maintenance-page.theme": ["./scss/theme/maintenance-page.theme.scss"],
     "theme/content-moderation.theme": ["./scss/theme/content-moderation.theme.scss"],
   },
   output: {

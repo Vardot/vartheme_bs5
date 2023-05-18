@@ -5,4 +5,11 @@
  */
 #}
 
-{% include 'varbase_compoents:page-user-login' %}
+{% include 'varbase_components:page-user-login' with {
+  without_blocks: [
+    'vartheme_bs5_local_tasks',
+    'vartheme_bs5_breadcrumbs',
+    'vartheme_bs5_local_actions',
+    'vartheme_bs5_page_title'
+  ]
+} %}
