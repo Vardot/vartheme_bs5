@@ -1,0 +1,15 @@
+// Global Varbase Components defaults.
+// -----------------------------------------------------------
+
+// Custom default path for the location of the node_modules
+// Custom default path for the location of custom SCSS source files
+// from within "./components/{component_type}/{component_name}".
+
+@import "../scss/bootstrap-variables";                 // Override Bootstrap 5 variables.
+@import "../scss/vartheme-variables";                  // Vartheme custom variables.
+@import "../scss/vartheme-mixins";                     // Vartheme custom mixins.
+@import "../node_modules/bootstrap/scss/functions";    // Bootstrap functions.
+@import "../node_modules/bootstrap/scss/variables";    // Bootstrap variables.
+@import "../node_modules/bootstrap/scss/maps";         // Bootstrap maps.
+@import "../node_modules/bootstrap/scss/mixins";       // Bootstrap mixins.
+@import "../node_modules/bootstrap/scss/utilities";    // Bootstrap utilities.
