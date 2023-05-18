@@ -11,8 +11,8 @@
     "init": "webpack --progress --config  webpack.config.init.js",
     "theme:build": "webpack --progress --config webpack.config.build.js",
     "components:build": "webpack --progress --config webpack.config.components.js",
-    "theme:full-build": "webpack --progress --config webpack.config.build.js ; yarn components:build",
-    "theme:watch": "webpack --progress --config  webpack.config.dev.js --watch"
+    "theme:full-build": "yarn theme:build ; yarn components:build",
+    "theme:watch": "webpack --progress --config webpack.config.dev.js --watch"
   },
   "license": "MIT",
   "keywords": [
