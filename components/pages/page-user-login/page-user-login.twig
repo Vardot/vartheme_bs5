@@ -1,0 +1,111 @@
+{#
+/**
+ * @file
+ * Template for the main page.
+ * Available config:
+ *  - is_front: true | false -> to determine if page is front or not
+ */
+#}
+
+{{ attach_library('vartheme_bs5/page-' ~ lang_dir) }}
+{{ attach_library('vartheme_bs5/betterlogin') }}
+
+<div class="page d-flex flex-column">
+  {% if page.top_bar %}
+    <div class="navbar-top w-100">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            {{ page.top_bar }}
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+  {% if page.navbar_branding or page.navigation %}
+    {% embed 'varbase_components:navbar' with {
+      placement: '',
+      container: 'fixed',
+      color: 'light',
+      utility_classes: ['bg-light'],
+    } %}
+      {% block branding %}
+        {% if page.navbar_branding %}
+          {{ page.navbar_branding }}
+        {% endif %}
+      {% endblock %}
+
+      {% block navigation %}
+        {% if page.navigation %}
+          <div class="ms-auto">
+            {{ page.navigation }}
+          </div>
+        {% endif %}
+      {% endblock %}
+    {% endembed %}
+  {% endif %}
+
+  <main class="mb-3">
+    <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
+
+    <div role="main" class="main-container container">
+      <div class="row justify-content-center">
+        <div id="auth-box" class="login col-10 col-sm-8 col-lg-5 col-xl-4">
+          <div id="top-part">
+            <h1 class="page-title">{{ 'Log in'|t }}</h1>
+          </div>
+          <div id="middle-part">
+            {{ page.content_above|without('vartheme_bs5_local_tasks', 'vartheme_bs5_breadcrumbs', 'vartheme_bs5_local_actions', 'vartheme_bs5_page_title') }}
+            {% if (varbase.we_do_have_enabled_social_auth_modules.value) and (page.content.vartheme_bs5_socialauthlogin) %}
+              <div class="social-auth-login-hint">{{ 'Log in with your linked account'|t }}</div>
+              {{ page.content.vartheme_bs5_socialauthlogin }}
+              <div class="separator">
+                <div class="separator-start"></div>
+                  <span class="separator-text">{{ 'or'|t }}</span>
+                <div class="separator-end"></div>
+              </div>
+              <div class="account-auth-login-hint">{{ 'Log in using your email or user name'|t }}</div>
+              {{ page.content|without('vartheme_bs5_socialauthlogin') }}
+            {% else %}
+              <div class="account-auth-login-hint">{{ 'Log in using your email or user name'|t }}</div>
+              {{ page.content }}
+            {% endif %}
+          </div>
+          <div id="bottom-part">
+            <div class="password-link">
+              <a href="{{ path('user.pass') }}"><i class="fas fa-sign-in-alt" aria-hidden="true"></i> {{ 'Forgot your password?'|t }}</a>
+            </div>
+          {% if not logged_in and not user_settings_register_admin_only %}
+            <div class="register-link">
+              <a href="{{ path('user.register') }}"><i class="fas fa-user" aria-hidden="true"></i> {{ 'Register a new account'|t }}</a>
+            </div>
+          {% endif %}
+            <div class="back-link">
+              <a href="{{ url('<front>') }}"><i class="fas fa-home" aria-hidden="true"></i> {{ 'Back to'|t }}  {{ site_name }}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  {% if page.footer_top or page.footer_bottom %}
+    <footer class="footer small w-100 bg-light mt-auto py-3">
+      {% if page.footer_top %}
+        {% include "varbase_components:footer" with {
+          content: page.footer_top,
+          utility_classes: ['footer-top']
+        } %}
+      {% endif %}
+
+      {% if page.footer_bottom %}
+        {% include "varbase_components:footer" with {
+          content: page.footer_bottom,
+          utility_classes: ['footer-bottom']
+        } %}
+      {% endif %}
+    </footer>
+  {% endif %}
+
+</div>

@@ -1,4 +1,4 @@
-# Layout
+# Base
 
-Macro arrangement of a web page, including any grid systems.
+CSS reset/normalize plus HTML element styling.
 https://www.drupal.org/docs/develop/standards/css/css-file-organization-for-drupal-9

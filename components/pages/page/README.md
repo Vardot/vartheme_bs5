@@ -1,0 +1,3 @@
+# Page
+
+The page component.

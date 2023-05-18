@@ -1,5 +1,11 @@
 # Components
 
+
+**Single Directory Components (SDC)** components folder.
+
+Using the default components from [Varbase Components](https://www.drupal.org/project/varbase_components).
+
+
 Copy any Component from the Varbase Components module to replace.
 
 ### Example:

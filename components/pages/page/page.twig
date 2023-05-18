@@ -1,0 +1,110 @@
+{#
+/**
+ * @file
+ * Template for the main page.
+ * Available config:
+ *  - is_front: true | false -> to determine if page is front or not
+ */
+#}
+
+<div class="page d-flex flex-column">
+  {% if page.top_bar %}
+    <div class="navbar-top w-100">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            {{ page.top_bar }}
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+  {% if page.navbar_branding or page.navigation %}
+    {% embed 'varbase_components:navbar' with {
+      placement: '',
+      container: 'fixed',
+      color: 'light',
+      utility_classes: ['bg-light'],
+    } %}
+      {% block branding %}
+        {% if page.navbar_branding %}
+          {{ page.navbar_branding }}
+        {% endif %}
+      {% endblock %}
+
+      {% block navigation %}
+        {% if page.navigation %}
+          <div class="ms-auto">
+            {{ page.navigation }}
+          </div>
+        {% endif %}
+      {% endblock %}
+    {% endembed %}
+  {% endif %}
+
+  <main class="mb-3">
+    <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
+
+    {% if page.content_above %}
+      <div class="content-above">
+        <div class="container">
+          {{ page.content_above }}
+        </div>
+      </div>
+    {% endif %}
+
+    {% if page.content or page.primary_sidebar or page.secondary_sidebar%}
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="page-content">
+              {% if page.primary_sidebar %}
+                <div class="primary-sidebar">
+                  {{ page.primary_sidebar }}
+                </div>
+              {% endif %}
+
+              <div class="inner-content">
+                {{ page.content }}
+              </div>
+
+              {% if page.secondary_sidebar %}
+                <div class="secondary-sidebar">
+                  {{ page.secondary_sidebar }}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+
+    {% if page.content_below %}
+      <div class="content-below">
+        <div class="container">
+          {{ page.content_below }}
+        </div>
+      </div>
+    {% endif %}
+  </main>
+
+  {% if page.footer_top or page.footer_bottom %}
+    <footer class="footer small w-100 bg-light mt-auto py-3">
+      {% if page.footer_top %}
+        {% include "varbase_components:footer" with {
+          content: page.footer_top,
+          utility_classes: ['footer-top']
+        } %}
+      {% endif %}
+
+      {% if page.footer_bottom %}
+        {% include "varbase_components:footer" with {
+          content: page.footer_bottom,
+          utility_classes: ['footer-bottom']
+        } %}
+      {% endif %}
+    </footer>
+  {% endif %}
+
+</div>

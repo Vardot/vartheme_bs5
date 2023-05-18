@@ -18,7 +18,7 @@ module.exports = {
     // 'molecules/tabs/tabs': ['./components/molecules/tabs/tabs.scss'],
     // 'molecules/field-tags/field-tags': ['./components/molecules/field-tags/field-tags.scss'],
     // 'organisms/navbar/navbar': ['./components/organisms/navbar/navbar.scss'],
-    // 'pages/page/page': ['./components/pages/page/page.scss']
+    'pages/page/page': ['./components/pages/page/page.scss']
   },
   output: {
     path: path.resolve(__dirname, 'components'),

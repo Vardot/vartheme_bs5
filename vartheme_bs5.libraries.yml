@@ -2,22 +2,16 @@ framework:
   dependencies:
     - vartheme_bs5/bootstrap-styles
     - vartheme_bs5/bootstrap-scripts
+    - vartheme_bs5/global-styles
+    - vartheme_bs5/global-scripts
 
-# Bootstrap 5
+# Bootstrap 5 global styles library.
 bootstrap-styles:
   css:
     base:
       css/base/bootstrap.base.css: {}
-      css/base/style.base.css: {}
-    layout:
-      css/layout/edge2edge.layout.css: {}
-      css/layout/equal-height.layout.css: {}
-      css/layout/print.layout.css: { media: print }
-    theme:
-      css/theme/header.theme.css: {}
-      css/theme/content.theme.css: {}
-      css/theme/footer.theme.css: {}
 
+# Bootstrap 5 global scripts library.
 bootstrap-scripts:
   dependencies:
     - core/drupal
@@ -53,12 +47,36 @@ bootstrap-scripts:
     # js/bootstrap/tab.js: {}
     # js/bootstrap/tooltip.js: {}
 
+# Vartheme BS5 global styles library.
+global-styles:
+  css:
+    base:
+      css/base/vartheme.base.css: {}
+    layout:
+      css/layout/edge2edge.layout.css: {}
+      css/layout/equal-height.layout.css: {}
+      css/layout/print.layout.css: { media: print }
+    theme:
+      css/theme/header.theme.css: {}
+      css/theme/content.theme.css: {}
+      css/theme/footer.theme.css: {}
+
+# Vartheme BS5 global scripts library.
+global-scripts:
+  js:
+    js/scripts.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupal.ajax
+
 # Vartheme BS5 better login theme.
 betterlogin:
   css:
     theme:
       dist/css/theme/betterlogin.theme.css: {}
 
+# Vartheme BS5 Social Auth icon theme.
 auth-icons:
   css:
     theme:

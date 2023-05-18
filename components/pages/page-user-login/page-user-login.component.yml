@@ -1,0 +1,24 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
+name: Page User Login
+replaces: varbase_components:page-user-login
+status: experimental
+description: The user login page component.
+props:
+  type: object
+  properties:
+    branding:
+      type: array
+      title: Branding
+    navigation:
+      type: array
+      title: navigation
+    attributes:
+      type: Drupal\Core\Template\Attribute
+      name: Attributes
+slots:
+  branding:
+    title: Branding
+    description: Site branding.
+  navigation:
+    title: Navigation
+    description: site navigation.
