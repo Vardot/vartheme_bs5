@@ -1,0 +1,10 @@
+/* Justify content center. */
+
+[dir="ltr"] [dir=rtl] .justify-content-center.nav-pills > li + li {
+  margin-left: inherit;
+}
+
+[dir="rtl"] [dir=rtl] .justify-content-center.nav-pills > li + li {
+  margin-right: inherit;
+}
+

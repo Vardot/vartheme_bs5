@@ -4,6 +4,7 @@ framework:
     - vartheme_bs5/bootstrap-scripts
     - vartheme_bs5/global-styles
     - vartheme_bs5/global-scripts
+    - vartheme_bs5/fontawesome
 
 # Bootstrap 5 global styles library.
 bootstrap-styles:
@@ -66,8 +67,36 @@ global-scripts:
     - core/drupal
     - core/drupal.ajax
 
+framework-rtl:
+  dependencies:
+    - vartheme_bs5/bootstrap-styles-rtl
+    - vartheme_bs5/bootstrap-scripts
+    - vartheme_bs5/global-styles-rtl
+    - vartheme_bs5/global-scripts
+    - vartheme_bs5/fontawesome
+
+# Bootstrap 5 global RTL styles library.
+bootstrap-styles-rtl:
+  css:
+    base:
+      css/rtl/base/bootstrap-rtl.base.css: {}
+
+# Vartheme BS5 global RTL styles library.
+global-styles-rtl:
+  css:
+    base:
+      css/rtl/base/vartheme-rtl.base.css: {}
+    theme:
+      fonts/droid/arabic/kufi/css/droidarabickufi.css: {}
+
 # Vartheme BS5 content moderation status theme.
 content_moderation:
   css:
     theme:
-      dist/css/theme/content-moderation.theme.css: {}
+      css/theme/content-moderation.theme.css: {}
+
+# Font Awesome free icons.
+fontawesome:
+  css:
+    theme:
+      fonts/fontawesome-free/css/all.min.css: { minified: true }

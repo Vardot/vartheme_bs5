@@ -19,6 +19,7 @@
  * - db_offline: A flag indicating if the database is offline.
  * - placeholder_token: The token for generating head, css, js and js-bottom
  *   placeholders.
+ * - vartheme_bs5_path: Returns the path to an Vartheme BS5 theme.
  *
  * @see template_preprocess_html()
  *
@@ -41,7 +42,12 @@
     <head-placeholder token="{{ placeholder_token }}">
     <title>{{ head_title|safe_join(' | ') }}</title>
     <css-placeholder token="{{ placeholder_token }}">
+    {# Attache global styles RTL (right to left) if the html tag has dir=rtl #}
+    {%- if html_attributes['dir'] == 'rtl' -%}
+      {{ attach_library('vartheme_bs5/framework-rtl') }}
+    {%- endif -%}
     <js-placeholder token="{{ placeholder_token }}">
+    {%- include '@vartheme_bs5/includes/preload.twig' with { vartheme_bs5_path: vartheme_bs5_path, html_dir: html_attributes['dir'] } only -%}
   </head>
   <body{{ attributes.addClass(body_classes) }}>
     <a href="#main-content" class="visually-hidden focusable skip-link">

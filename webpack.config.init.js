@@ -23,6 +23,16 @@ module.exports = merge(webpackConfig, {
           from: path.resolve(__dirname, "node_modules/@popperjs/core/dist/umd/popper.js"),
           to: path.resolve(__dirname, "js/popperjs"),
           context: "node_modules/@popperjs/core/dist/",
+        },
+        {
+          from: path.resolve(__dirname, "node_modules/@fortawesome/fontawesome-free/css/all.min.css"),
+          to: path.resolve(__dirname, "fonts/fontawesome-free/css"),
+          context: "node_modules/@fortawesome/fontawesome-free/css",
+        },
+        {
+          from: path.resolve(__dirname, "node_modules/@fortawesome/fontawesome-free/webfonts/*"),
+          to: path.resolve(__dirname, "fonts/fontawesome-free/webfonts"),
+          context: "node_modules/@fortawesome/fontawesome-free/webfonts",
         }
       ],
     }),

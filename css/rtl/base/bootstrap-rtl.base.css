@@ -1,0 +1,4 @@
+[dir=rtl]:root, [dir=rtl][data-bs-theme=light] {
+  --bs-font-sans-serif: "Droid Arabic Kufi", sans-serif;
+}
+

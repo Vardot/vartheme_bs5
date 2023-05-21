@@ -8,7 +8,7 @@
     "node": ">= 16.0"
   },
   "scripts": {
-    "init": "webpack --progress --config  webpack.config.init.js",
+    "theme:init": "webpack --progress --config  webpack.config.init.js",
     "theme:build": "webpack --progress --config webpack.config.build.js",
     "components:build": "webpack --progress --config webpack.config.components.js",
     "theme:full-build": "yarn theme:build ; yarn components:build",

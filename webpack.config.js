@@ -16,6 +16,8 @@ module.exports = {
     // Base
     "base/bootstrap.base": ["./scss/base/bootstrap.base.scss"],
     "base/vartheme.base": ["./scss/base/vartheme.base.scss"],
+    "rtl/base/bootstrap-rtl.base": ["./scss/rtl/base/bootstrap-rtl.base.scss"],
+    "rtl/base/vartheme-rtl.base": ["./scss/rtl/base/vartheme-rtl.base.scss"],
     // Layout
     "layout/edge2edge.layout": ["./scss/layout/edge2edge.layout.scss"],
     "layout/equal-height.layout": ["./scss/layout/equal-height.layout.scss"],
