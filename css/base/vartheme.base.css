@@ -1,7 +1,7 @@
 /* Temp fix for:
  * Issue #3233533: Core .placeholder class conflicts with new Bootstrap .placeholder class
  * https://www.drupal.org/project/drupal/issues/3233533
- * 
+ *
  * Issue #3246827: Fix em.placeholder style from Bootstrap 5 base styling with the Drupal core placeholder
  * https://www.drupal.org/project/vartheme_bs5/issues/3246827
  */
@@ -21,7 +21,7 @@ em.placeholder {
   content: "";
   vertical-align: super;
   display: inline-block;
-  background-image: url(../images/required.svg);
+  background-image: url(../../images/required.svg);
   background-repeat: no-repeat;
   background-size: calc(calc(1.5em + .75rem + 2px) * .16666666666) calc(calc(1.5em + .75rem + 2px) * .16666666666);
   width: calc(calc(1.5em + .75rem + 2px) * .16666666666);
@@ -65,4 +65,3 @@ body.user-logged-in .btn .visible-logged-in,
 body.user-logged-in .btn .hidden-anonymous {
   display: inline-block !important;
 }
-

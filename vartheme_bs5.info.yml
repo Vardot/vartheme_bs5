@@ -34,7 +34,7 @@ libraries-override:
 
 ckeditor_stylesheets:
   - css/base/bootstrap.base.css
-  - css/base/style.base.css
+  - css/base/vartheme.base.css
   - css/layout/edge2edge.layout.css
   - css/layout/equal-height.layout.css
   - css/layout/print.layout.css
