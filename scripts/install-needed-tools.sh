@@ -1,7 +1,7 @@
 #!/bin/usr/env bash
 
 ################################################################################
-## Insall Needed Tools for theme development
+## Install Needed Tools for theme development
 ################################################################################
 ##
 ## Quick tip on how to use this script command file.
