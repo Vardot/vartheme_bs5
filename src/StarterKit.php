@@ -7,7 +7,7 @@ use Drupal\Core\Theme\StarterKitInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
 
-final class VarthemeStarterKit implements StarterKitInterface {
+final class StarterKit implements StarterKitInterface {
 
   /**
    * List of classes defined in Vartheme BS5.
@@ -16,7 +16,7 @@ final class VarthemeStarterKit implements StarterKitInterface {
    * @var array
    */
   private static $classes = [
-    'VarthemeStarterKit',
+    'StarterKit',
   ];
 
   /**
@@ -25,35 +25,17 @@ final class VarthemeStarterKit implements StarterKitInterface {
    * @var array
    */
   private static $deletable = [
+    '/composer.json',
+    '/yarn.lock',
+    '/.git',
+    '/.gitlab',
+    '/scripts',
     '/tests',
-    '/src/VarthemeStarterKit.php',
+    '/src/StarterKit.php',
     '/README.md',
+    '/README.txt',
+    '/starterkit.md',
   ];
-
-  /**
-   * Array of scripts to keep from Vartheme BS5 package.json.
-   *
-   * @var array
-   */
-  private static $scripts_to_keep = [
-    'theme:init',
-    'theme:build',
-    'theme:full-build',
-    'theme:watch',
-    'components:build',
-    'phpcs',
-    'phpcbf',
-    'lint:js',
-    'lint:css',
-    'lint:yaml'
-  ];
-
-  /**
-   * Array of dependencies as pattern strings to keep from package.json.
-   *
-   * @var array
-   */
-  private static $deps_to_keep = [];
 
   /**
    * Array of files to avoid renaming.
@@ -174,31 +156,14 @@ final class VarthemeStarterKit implements StarterKitInterface {
   private static function getBuildFiles(string $dir, string $machine_name): void {
     // Copy & simplify package.json.
     $finder = new Finder();
-    $finder->in(__DIR__ . '/../../../')->depth('== 0')->files()->name('package.json');
+    $finder->in($dir)->depth('== 0')->files()->name('package.json');
     if (count($finder) === 1) {
       foreach ($finder as $file) {
         $package_json = json_decode($file->getContents());
 
         $package_json->name = $machine_name;
         unset($package_json->description);
-
-        foreach ($package_json->scripts as $key => $value) {
-          if (!in_array($key, self::$scripts_to_keep)) {
-            unset($package_json->scripts->$key);
-          }
-        }
-
-        foreach ($package_json->devDependencies as $dep => $version) {
-          $keep = FALSE;
-          foreach (self::$deps_to_keep as $dep_pattern) {
-            if (preg_match($dep_pattern, $dep)) {
-              $keep = TRUE;
-            }
-          }
-          if (!$keep) {
-            unset($package_json->devDependencies->$dep);
-          }
-        }
+        unset($package_json->keywords);
 
         file_put_contents($dir . '/package.json', str_replace('    ', '  ', json_encode($package_json, JSON_PRETTY_PRINT)));
       }
@@ -228,6 +193,12 @@ final class VarthemeStarterKit implements StarterKitInterface {
     self::findAndReplace($working_dir, 'vartheme_bs5', $machine_name);
     self::findAndReplace($working_dir, 'Vartheme BS5', $theme_name);
     self::findAndReplace($working_dir, 'starterkit.md', 'README.md', TRUE);
+
+    self::findAndReplace($working_dir, 'vartheme_bs5_path', $machine_name . '_path');
+
+    self::findAndReplace($working_dir, 'vartheme', $machine_name);
+    self::findAndReplace($working_dir, 'Vartheme', $theme_name);
+
 
     self::getBuildFiles($working_dir, $machine_name);
   }
