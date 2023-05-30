@@ -1,6 +1,6 @@
 {
   "name": "drupal/vartheme_bs5",
-  "description": "Base theme for Varbase standard websites. Based on Bootstrap 5 framework using SASS.",
+  "description": "Starterkit theme for Varbase standard websites. Based on Bootstrap 5 framework using SASS.",
   "type": "drupal-theme",
   "homepage": "https://www.drupal.org/project/vartheme_bs5",
   "license": "GPL-2.0-or-later",
