@@ -31,7 +31,7 @@ following the guide [here](https://yarnpkg.com/docs/install).
 
 #### Step 2
 
-Go to the root of the theme and run the following commands: `npm install` or `yarn install`.
+Go to the root of the theme and run the following commands: `yarn install`.
 
 #### Step 3
 Initialize the theme with latest Bootstrap 5 version
