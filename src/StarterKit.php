@@ -11,7 +11,9 @@ final class StarterKit implements StarterKitInterface {
 
   /**
    * List of classes defined in Vartheme BS5.
-   *   Used to differentiate capitalized machine name from theme name used in comments and string content.
+   *
+   * Used to differentiate capitalized machine name from theme name
+   * used in comments and string content.
    *
    * @var array
    */
@@ -169,8 +171,6 @@ final class StarterKit implements StarterKitInterface {
       }
     }
 
-    $fs = new Filesystem();
-
   }
 
   /**
@@ -198,7 +198,6 @@ final class StarterKit implements StarterKitInterface {
 
     self::findAndReplace($working_dir, 'vartheme', $machine_name);
     self::findAndReplace($working_dir, 'Vartheme', $theme_name);
-
 
     self::getBuildFiles($working_dir, $machine_name);
   }
