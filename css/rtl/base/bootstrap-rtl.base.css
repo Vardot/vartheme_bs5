@@ -1,4 +1,10 @@
-[dir=rtl]:root,
- [dir=rtl][data-bs-theme=light] {
+/*!
+ * Bootstrap  v5.3.0 (https://getbootstrap.com/)
+ * Copyright 2011-2023 The Bootstrap Authors
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+ */
+
+[dir=rtl]:root, [dir=rtl][data-bs-theme=light] {
   --bs-font-sans-serif: "Droid Arabic Kufi", sans-serif;
 }
+

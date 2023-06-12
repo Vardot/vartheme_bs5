@@ -1,3 +1,5 @@
+@import "../defaults";   // Global defaults.
+
 @media print {
   /* Hide link's href URL in print. */
   a[href]:after {
