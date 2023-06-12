@@ -20,7 +20,6 @@ replaces: 'varbase_components:alert'
 The updated `alert.component.yml` should look like this:
 
 ```
-$schema: https://git.drupalcode.org/project/sdc/-/raw/1.x/src/metadata.schema.json
 name: Alert
 replaces: 'varbase_components:alert'
 ```

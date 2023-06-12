@@ -1,6 +1,6 @@
-name: Page
+name: Page User Edit
 status: experimental
-description: The page component.
+description: The user edit page component.
 props:
   type: object
   properties:

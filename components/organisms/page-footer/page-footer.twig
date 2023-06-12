@@ -1,0 +1,40 @@
+{#
+/**
+ * @file
+ * Template for a Page Footer component.
+ *
+#}
+
+{% if page.footer_top or page.footer_bottom %}
+  <footer class="footer small w-100 bg-light mt-auto py-3">
+    {% if page.footer_top %}
+      <div class="w-100 footer-top">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <div class="d-flex justify-content-md-between align-items-md-center">
+                 {{ page.footer_top}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+
+    {% if page.footer_bottom %}
+      <div class="w-100 footer-bottom">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <div class="d-flex justify-content-md-between align-items-md-center">
+                {{ page.footer_bottom }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+
+  </footer>
+{% endif %}
+

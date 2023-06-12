@@ -1,6 +1,6 @@
-name: Page
+name: Page User Reset
 status: experimental
-description: The page component.
+description: The user reset Page component.
 props:
   type: object
   properties:

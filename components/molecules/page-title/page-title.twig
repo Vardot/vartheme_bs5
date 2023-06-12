@@ -1,0 +1,39 @@
+{#
+/**
+ * @file
+ * Varbase Components implementation for a page title.
+ *
+ * Available properties:
+ * - display: When you need a heading to stand out, consider using a display
+ *   heading—a larger, slightly more opinionated heading style.
+ *   optional values are:
+ *   ( display-1, display-2, display-3, display-4, display-5, display-6)
+ * - utility_classes: An array of utility classes. Use this property to add
+ *   extra Bootstrap utility classes or your custom class over to this to this component.
+ * Available variables:        
+ * - title_attributes: HTML attributes for the page title element.
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the main title tag that appears in the template.
+ * - title: The page title, for use in the actual content.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the main title tag that appears in the template.
+ */
+#}
+{%
+  set classes = [
+    'title',
+    'page-title',
+  ]|merge(utility_classes ? utility_classes : [])
+%}
+
+{{ title_prefix }}
+{% if title|render|striptags|trim %}
+  {% include 'varbase_components:heading' with {
+      html_tag: 'h1',
+      content: title,
+      attributes: title_attributes,
+      utility_classes: classes
+    } only
+  %}
+{% endif %}
+{{ title_suffix }}

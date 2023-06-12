@@ -1,0 +1,39 @@
+{#
+/**
+ * @file
+ * Template for the main page.
+ * Available config:
+ *  - is_front: true | false -> to determine if page is front or not
+ */
+#}
+
+<div class="page d-flex flex-column">
+
+  {% include "vartheme_bs5:page-header" %}
+
+  <main class="mb-3">
+    <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
+
+    {% if page.content %}
+      <div class="container">
+        <div class="row justify-content-center">
+          <div id="auth-box" class="user-edit col-10 col-sm-6">
+            <div id="top-part">
+              {% include 'varbase_components:heading' with {
+                  html_tag: 'h1',
+                  content: 'Edit account'|t
+                } only
+              %}
+            </div>
+            <div id="middle-part">
+              {{ page.content }}
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  </main>
+
+  {% include "varbase_components:page-footer" %}
+
+</div>

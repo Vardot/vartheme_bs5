@@ -1,0 +1,64 @@
+{#
+/**
+ * @file
+ * Template for the main page.
+ * Available config:
+ *  - is_front: true | false -> to determine if page is front or not
+ */
+#}
+
+<div class="page d-flex flex-column">
+
+  {% include "vartheme_bs5:page-header" %}
+
+  <main class="mb-3">
+    <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
+
+    <div role="main" class="main-container container">
+      <div class="row justify-content-center">
+        <div id="auth-box" class="login col-10 col-sm-8 col-lg-5 col-xl-4">
+          <div id="top-part">
+            {% include 'varbase_components:heading' with {
+                html_tag: 'h1',
+                content: 'Log in'|t
+              } only
+            %}
+          </div>
+          <div id="middle-part">
+            {% include 'varbase_components:page-better-login' with { without_blocks: without_blocks } %}
+            {% if (varbase.we_do_have_enabled_social_auth_modules.value) and (page.content.vartheme_bs5_socialauthlogin) %}
+              <div class="social-auth-login-hint">{{ 'Log in with your linked account'|t }}</div>
+              {{ page.content.vartheme_bs5_socialauthlogin }}
+              <div class="separator">
+                <div class="separator-start"></div>
+                  <span class="separator-text">{{ 'or'|t }}</span>
+                <div class="separator-end"></div>
+              </div>
+              <div class="account-auth-login-hint">{{ 'Log in using your email or user name'|t }}</div>
+              {{ page.content|without('vartheme_bs5_socialauthlogin') }}
+            {% else %}
+              <div class="account-auth-login-hint">{{ 'Log in using your email or user name'|t }}</div>
+              {{ page.content }}
+            {% endif %}
+          </div>
+          <div id="bottom-part">
+            <div class="password-link">
+              <a href="{{ path('user.pass') }}"><i class="fas fa-sign-in-alt" aria-hidden="true"></i> {{ 'Forgot your password?'|t }}</a>
+            </div>
+          {% if not logged_in and not user_settings_register_admin_only %}
+            <div class="register-link">
+              <a href="{{ path('user.register') }}"><i class="fas fa-user" aria-hidden="true"></i> {{ 'Register a new account'|t }}</a>
+            </div>
+          {% endif %}
+            <div class="back-link">
+              <a href="{{ url('<front>') }}"><i class="fas fa-home" aria-hidden="true"></i> {{ 'Back to'|t }}  {{ site_name }}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  {% include "vartheme_bs5:page-footer" %}
+
+</div>

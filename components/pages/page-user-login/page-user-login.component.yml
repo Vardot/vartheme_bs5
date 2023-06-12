@@ -1,6 +1,6 @@
-name: Page
+name: Page User Login
 status: experimental
-description: The page component.
+description: The user login page component.
 props:
   type: object
   properties:

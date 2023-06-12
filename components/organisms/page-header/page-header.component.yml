@@ -1,6 +1,7 @@
-name: Page
+
+name: Page Header 
 status: experimental
-description: The page component.
+description: Page Header
 props:
   type: object
   properties:
@@ -8,10 +9,8 @@ props:
       type: Drupal\Core\Template\Attribute
 slots:
   branding:
-    type: array
     title: Branding
     description: Site branding.
   navigation:
-    type: array
-    title: navigation
+    title: Content
     description: site navigation.

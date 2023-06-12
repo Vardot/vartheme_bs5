@@ -1,0 +1,9 @@
+
+name: Footer 
+status: experimental
+description: Block
+props:
+  type: object
+  properties:
+    attributes:
+      type: Drupal\Core\Template\Attribute

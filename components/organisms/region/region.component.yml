@@ -1,0 +1,11 @@
+name: Region
+status: experimental
+description: Region
+props:
+  type: object
+  properties:
+    attributes:
+      type: Drupal\Core\Template\Attribute
+    content:
+      type: string
+      title: Content

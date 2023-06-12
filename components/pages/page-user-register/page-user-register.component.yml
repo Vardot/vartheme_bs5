@@ -1,6 +1,6 @@
-name: Page
+name: Page User Register
 status: experimental
-description: The page component.
+description: The user register page component.
 props:
   type: object
   properties:

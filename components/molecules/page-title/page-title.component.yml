@@ -1,0 +1,29 @@
+name: Page title
+status: experimental
+description: The Title component is responsible for rendering the page's main heading using the h1 HTML tag.
+props:
+  type: object
+  properties:
+    display:
+      type: string
+      title: Display Heading
+      description: When you need a heading to stand out, consider using a display heading—a larger, slightly more opinionated heading style.
+      default: ''
+      enum:
+        - ''
+        - display-1
+        - display-2
+        - display-3
+        - display-4
+        - display-5
+        - display-6
+    utility_classes:
+      type: array
+      title: Utility Classes 
+      description: An array of utility classes. Use this property to add extra Bootstrap utility classes or your custom class over to this to this component.
+    title_attributes:
+      type: Drupal\Core\Template\Attribute
+    title_prefix:
+      type: array
+    title_suffix:
+      type: array
