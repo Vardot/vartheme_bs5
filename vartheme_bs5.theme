@@ -17,6 +17,29 @@ function vartheme_bs5_preprocess_page(&$variables) {
   // Add the site name and slogan.
   $variables['site_name'] = \Drupal::config('system.site')->get('name');
   $variables['site_slogan'] = \Drupal::config('system.site')->get('slogan');
+
+  $vartheme_bs5_contained_regions = [
+    'container_top_bar',
+    // 'container_navbar_branding',
+    // 'container_navigation',
+    // 'container_highlighted',
+    'container_content_above',
+    // 'container_primary_sidebar',
+    'container_content',
+    // 'container_secondary_sidebar',
+    'container_content_below',
+    'container_footer_top',
+    'container_footer_bottom',
+  ];
+
+  foreach ($vartheme_bs5_contained_regions as $contained_region) {
+    $theme_settings_for_contained_region = theme_get_setting($contained_region);
+    if (isset($theme_settings_for_contained_region)
+      && $theme_settings_for_contained_region !== '') {
+      $variables[$contained_region] = $theme_settings_for_contained_region;
+    }
+  }
+
 }
 
 /**

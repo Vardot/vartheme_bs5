@@ -1,5 +1,55 @@
-# Schema for the configuration files of the Vartheme BS5 theme.
-
+# Schema for the configuration files of the Vartheme BS5.
 vartheme_bs5.settings:
   type: theme_settings
   label: "Vartheme BS5 settings"
+  mapping:
+    # Containers for selected regions.
+    # ----------------------------
+    container_top_bar:
+      type: text
+      label: "Container for Top bar region"
+    # container_navbar_branding:
+    #   type: text
+    #   label: "Container for Navbar branding region"
+    # container_navigation:
+    #   type: text
+    #   label: "Container for Navigation (Desktop and Collapse) region"
+    # container_highlighted:
+    #   type: text
+    #   label: "Container for Highlighted region"
+    container_content_above:
+      type: text
+      label: "Container for content above region"
+    # container_primary_sidebar:
+    #   type: text
+    #   label: "Container for Primary sidebar region"
+    container_content:
+      type: text
+      label: "Container for content region"
+    # container_secondary_sidebar:
+    #   type: text
+    #   label: "Container for Secondary sidebar region"
+    container_content_below:
+      type: text
+      label: "Container for content above region"
+    container_footer_top:
+      type: text
+      label: "Container for Footer top region"
+    container_footer_bottom:
+      type: text
+      label: "Container for Footer bottom region"
+
+    # Email Logo.
+    # ----------------------------
+    email_logo_default:
+      type: integer
+      label: "Use the logo supplied by the theme"
+    email_logo_path:
+      type: text
+      label: "Path to custom logo"
+    email_logo_upload:
+      type: sequence
+      label: "Upload logo image"
+      sequence:
+        type: integer
+        label: "fids"

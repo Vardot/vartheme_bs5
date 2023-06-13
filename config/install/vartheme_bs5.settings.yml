@@ -1,0 +1,23 @@
+container_top_bar: container
+# container_navbar_branding: container
+# container_navigation: container
+# container_highlighted: container
+container_content_above: container
+# container_primary_sidebar: container
+container_content: container
+# container_secondary_sidebar: container
+container_content_below: container
+container_footer_top: container
+container_footer_bottom: container
+features:
+  node_user_picture: true
+  comment_user_picture: true
+  comment_user_verification: true
+  favicon: true
+logo:
+  use_default: true
+favicon:
+  use_default: true
+email_logo_default: 0
+email_logo_path: ""
+email_logo_upload: {}

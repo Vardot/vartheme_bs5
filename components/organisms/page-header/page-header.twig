@@ -7,13 +7,17 @@
 
 {% if page.top_bar %}
   <div class="navbar-top w-100">
-    <div class="container">
+    {% if container_top_bar %}
+    <div class="{{ container_top_bar }}">
+    {% endif %}
       <div class="row">
         <div class="col-12">
           {{ page.top_bar }}
         </div>
       </div>
+    {% if container_top_bar %}
     </div>
+    {% endif %}
   </div>
 {% endif %}
 

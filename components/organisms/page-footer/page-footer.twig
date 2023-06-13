@@ -9,7 +9,9 @@
   <footer class="footer small w-100 bg-light mt-auto py-3">
     {% if page.footer_top %}
       <div class="w-100 footer-top">
-        <div class="container">
+        {% if container_footer_top %}
+        <div class="{{ container_footer_top }}">
+        {% endif %}
           <div class="row">
             <div class="col-12">
               <div class="d-flex justify-content-md-between align-items-md-center">
@@ -17,13 +19,17 @@
               </div>
             </div>
           </div>
+        {% if container_footer_top %}
         </div>
+        {% endif %}
       </div>
     {% endif %}
 
     {% if page.footer_bottom %}
       <div class="w-100 footer-bottom">
-        <div class="container">
+        {% if container_footer_bottom %}
+        <div class="{{ container_footer_bottom }}">
+        {% endif %}
           <div class="row">
             <div class="col-12">
               <div class="d-flex justify-content-md-between align-items-md-center">
@@ -31,7 +37,9 @@
               </div>
             </div>
           </div>
+        {% if container_footer_bottom %}
         </div>
+        {% endif %}
       </div>
     {% endif %}
 

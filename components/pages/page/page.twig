@@ -61,14 +61,20 @@
 
     {% if page.content_above %}
       <div class="content-above">
-        <div class="container">
+        {% if container_content_above %}
+        <div class="{{ container_content_above }}">
+        {% endif %}
           {{ page.content_above }}
+        {% if container_content_above %}
         </div>
+        {% endif %}
       </div>
     {% endif %}
 
     {% if page.content or page.primary_sidebar or page.secondary_sidebar %}
-      <div class="container">
+      {% if container_content %}
+      <div class="{{ container_content }}">
+      {% endif %}
         <div class="row">
           <div class="col-12">
             <div class="page-content">
@@ -90,14 +96,20 @@
             </div>
           </div>
         </div>
+      {% if container_content %}
       </div>
+      {% endif %}
     {% endif %}
 
     {% if page.content_below %}
       <div class="content-below">
-        <div class="container">
+        {% if container_content_below %}
+        <div class="{{ container_content_below }}">
+        {% endif %}
           {{ page.content_below }}
+        {% if container_content_below %}
         </div>
+        {% endif %}
       </div>
     {% endif %}
   </main>
