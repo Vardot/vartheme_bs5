@@ -1,6 +1,6 @@
 name: "Vartheme BS5"
 description: "Starterkit theme for Varbase standard websites. Based on Bootstrap 5 framework using SASS."
-core_version_requirement: ^10.1
+core_version_requirement: ~10.1.0
 
 # These dependencies will not allow the installation of Vartheme BS5 at all if varbase_components is not activated.
 # As the Gin admin theme had issue with installation in profiles.
