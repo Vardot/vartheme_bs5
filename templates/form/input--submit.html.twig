@@ -10,8 +10,6 @@
  * @see template_preprocess_input()
  */
 #}
-{% include 'varbase_components:input' with {
-  attributes: attributes.removeClass('button'),
-  form_control: false,
+{% include 'varbase_components:input-submit' with {
   utility_classes: ['btn', 'btn-primary']
 } %}
