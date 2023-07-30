@@ -1,5 +1,5 @@
 /*!
- * Bootstrap  v5.3.0 (https://getbootstrap.com/)
+ * Bootstrap  v5.3.1 (https://getbootstrap.com/)
  * Copyright 2011-2023 The Bootstrap Authors
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
@@ -7,7 +7,7 @@
 /* Temp fix for:
  * Issue #3233533: Core .placeholder class conflicts with new Bootstrap .placeholder class
  * https://www.drupal.org/project/drupal/issues/3233533
- * 
+ *
  * Issue #3246827: Fix em.placeholder style from Bootstrap 5 base styling with the Drupal core placeholder
  * https://www.drupal.org/i/3246827
  */
@@ -71,4 +71,3 @@ body.user-logged-in .btn .visible-logged-in,
 body.user-logged-in .btn .hidden-anonymous {
   display: inline-block !important;
 }
-

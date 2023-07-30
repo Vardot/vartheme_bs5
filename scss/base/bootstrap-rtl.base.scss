@@ -1,4 +1,4 @@
-@import "../../defaults";   // Global defaults.
+@import "../defaults";   // Global defaults.
 
 // Bootstrap 5 Base Global styling.
 // -----------------------------------------------------------------------------
@@ -8,7 +8,8 @@
   // right-to-left (RTL) layouts in Bootstrap 5,
   // themes can make the following adjustment.
   &:root,
-  &[data-bs-theme=light] {
+  &[data-bs-theme=light],
+  &[data-bs-theme=dark] {
     --bs-font-sans-serif: "Droid Arabic Kufi", sans-serif;
   }
 }

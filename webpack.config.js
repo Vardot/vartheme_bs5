@@ -5,6 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const autoprefixer = require('autoprefixer');
 const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
 const postcssRTLCSS = require('postcss-rtlcss');
+const { Mode } = require('postcss-rtlcss/options');
 
 module.exports = {
   mode: 'production',
@@ -15,8 +16,8 @@ module.exports = {
     // Base
     "base/bootstrap.base": ["./scss/base/bootstrap.base.scss"],
     "base/vartheme.base": ["./scss/base/vartheme.base.scss"],
-    "rtl/base/bootstrap-rtl.base": ["./scss/rtl/base/bootstrap-rtl.base.scss"],
-    "rtl/base/vartheme-rtl.base": ["./scss/rtl/base/vartheme-rtl.base.scss"],
+    "base/bootstrap-rtl.base": ["./scss/base/bootstrap-rtl.base.scss"],
+    "base/vartheme-rtl.base": ["./scss/base/vartheme-rtl.base.scss"],
     // Layout
     "layout/edge2edge.layout": ["./scss/layout/edge2edge.layout.scss"],
     "layout/equal-height.layout": ["./scss/layout/equal-height.layout.scss"],
@@ -82,7 +83,10 @@ module.exports = {
               postcssOptions: {
                 plugins: [
                   autoprefixer(),
-                  postcssRTLCSS(),
+                  postcssRTLCSS({
+                    mode: Mode.override, // Use 'combined' mode for RTL flipping
+                    ignorePrefixedRules: true,
+                  }),
                   ['postcss-perfectionist', {
                     format: 'expanded',
                     indentSize: 2,

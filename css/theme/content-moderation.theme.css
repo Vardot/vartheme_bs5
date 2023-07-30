@@ -1,5 +1,5 @@
 /*!
- * Bootstrap  v5.3.0 (https://getbootstrap.com/)
+ * Bootstrap  v5.3.1 (https://getbootstrap.com/)
  * Copyright 2011-2023 The Bootstrap Authors
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
@@ -16,26 +16,28 @@
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-}
 
-[dir="ltr"] #edit-moderation-state-wrapper #edit-moderation-state-0 .container-inline,
-[dir="ltr"] #content-moderation-entity-moderation-form #edit-moderation-state-0 .container-inline {
   margin-right: calc(1.625rem + 4.5vw);
 }
 
 [dir="rtl"] #edit-moderation-state-wrapper #edit-moderation-state-0 .container-inline,
 [dir="rtl"] #content-moderation-entity-moderation-form #edit-moderation-state-0 .container-inline {
+  margin-right: 0;
+
   margin-left: calc(1.625rem + 4.5vw);
 }
 
 @media (min-width: 1200px) {
-  [dir="ltr"] #edit-moderation-state-wrapper #edit-moderation-state-0 .container-inline,
-  [dir="ltr"] #content-moderation-entity-moderation-form #edit-moderation-state-0 .container-inline {
+  #edit-moderation-state-wrapper #edit-moderation-state-0 .container-inline,
+  #content-moderation-entity-moderation-form #edit-moderation-state-0 .container-inline {
+
     margin-right: 5rem;
   }
 
   [dir="rtl"] #edit-moderation-state-wrapper #edit-moderation-state-0 .container-inline,
   [dir="rtl"] #content-moderation-entity-moderation-form #edit-moderation-state-0 .container-inline {
+    margin-right: 0;
+
     margin-left: 5rem;
   }
 }
@@ -43,19 +45,19 @@
 #edit-moderation-state-wrapper #edit-moderation-state-0 label,
 #content-moderation-entity-moderation-form #edit-moderation-state-0 label {
   font-weight: bold;
+
+  float: left;
   width: -moz-fit-content;
   width: fit-content;
-}
 
-[dir="ltr"] #edit-moderation-state-wrapper #edit-moderation-state-0 label,
-[dir="ltr"] #content-moderation-entity-moderation-form #edit-moderation-state-0 label {
-  float: left;
   margin: 0 .5rem 0 0;
 }
 
 [dir="rtl"] #edit-moderation-state-wrapper #edit-moderation-state-0 label,
 [dir="rtl"] #content-moderation-entity-moderation-form #edit-moderation-state-0 label {
+
   float: right;
+
   margin: 0 0 0 .5rem;
 }
 
@@ -82,15 +84,13 @@
 #edit-moderation-state-wrapper .entity-moderation-form__item label,
 #content-moderation-entity-moderation-form .entity-moderation-form__item label {
   font-weight: bold;
-}
 
-[dir="ltr"] #edit-moderation-state-wrapper .entity-moderation-form__item label,
-[dir="ltr"] #content-moderation-entity-moderation-form .entity-moderation-form__item label {
   margin: 0 .5rem .5rem 0;
 }
 
 [dir="rtl"] #edit-moderation-state-wrapper .entity-moderation-form__item label,
 [dir="rtl"] #content-moderation-entity-moderation-form .entity-moderation-form__item label {
+
   margin: 0 0 .5rem .5rem;
 }
 
@@ -114,16 +114,14 @@
 
   #edit-moderation-state-wrapper .form-item-moderation-state-0-current label,
   #content-moderation-entity-moderation-form .form-item-moderation-state-0-current label {
-    margin-top: .5rem;
-  }
 
-  [dir="ltr"] #edit-moderation-state-wrapper .form-item-moderation-state-0-current label,
-  [dir="ltr"] #content-moderation-entity-moderation-form .form-item-moderation-state-0-current label {
     float: left;
+    margin-top: .5rem;
   }
 
   [dir="rtl"] #edit-moderation-state-wrapper .form-item-moderation-state-0-current label,
   [dir="rtl"] #content-moderation-entity-moderation-form .form-item-moderation-state-0-current label {
+
     float: right;
   }
 
@@ -145,15 +143,14 @@
   #edit-moderation-state-wrapper .entity-moderation-form__item,
   #content-moderation-entity-moderation-form .entity-moderation-form__item {
     display: table;
-  }
 
-  [dir="ltr"] #edit-moderation-state-wrapper .entity-moderation-form__item,
-  [dir="ltr"] #content-moderation-entity-moderation-form .entity-moderation-form__item {
     margin-right: 2em;
   }
 
   [dir="rtl"] #edit-moderation-state-wrapper .entity-moderation-form__item,
   [dir="rtl"] #content-moderation-entity-moderation-form .entity-moderation-form__item {
+    margin-right: 0;
+
     margin-left: 2em;
   }
 
@@ -182,90 +179,109 @@
 }
 
 @media (min-width: 992px) {
-  [dir="ltr"] [dir=rtl] #edit-moderation-state-wrapper,
-  [dir="ltr"] [dir=rtl] #content-moderation-entity-moderation-form {
+  [dir=rtl] #edit-moderation-state-wrapper,
+  [dir=rtl] #content-moderation-entity-moderation-form {
+
     margin-right: 0;
+
     margin-left: calc(1.625rem + 4.5vw);
   }
 
   [dir="rtl"] [dir=rtl] #edit-moderation-state-wrapper,
   [dir="rtl"] [dir=rtl] #content-moderation-entity-moderation-form {
+
     margin-left: 0;
+
     margin-right: calc(1.625rem + 4.5vw);
   }
 }
 
 @media (min-width: 992px) and (min-width: 1200px) {
-  [dir="ltr"] [dir=rtl] #edit-moderation-state-wrapper,
-  [dir="ltr"] [dir=rtl] #content-moderation-entity-moderation-form {
+  [dir=rtl] #edit-moderation-state-wrapper,
+  [dir=rtl] #content-moderation-entity-moderation-form {
+
     margin-left: 5rem;
   }
 
   [dir="rtl"] [dir=rtl] #edit-moderation-state-wrapper,
   [dir="rtl"] [dir=rtl] #content-moderation-entity-moderation-form {
+    margin-left: 0;
+
     margin-right: 5rem;
   }
 }
 
 @media (min-width: 992px) {
-  [dir="ltr"] [dir=rtl] #edit-moderation-state-wrapper label,
-  [dir="ltr"] [dir=rtl] #content-moderation-entity-moderation-form label {
+  [dir=rtl] #edit-moderation-state-wrapper label,
+  [dir=rtl] #content-moderation-entity-moderation-form label {
+
     float: right;
+
     margin: 0 0 0 .5rem;
   }
 
   [dir="rtl"] [dir=rtl] #edit-moderation-state-wrapper label,
   [dir="rtl"] [dir=rtl] #content-moderation-entity-moderation-form label {
+
     float: left;
+
     margin: 0 .5rem 0 0;
   }
 
   [dir=rtl] #edit-moderation-state-wrapper .form-item-moderation-state-0-current label,
   [dir=rtl] #content-moderation-entity-moderation-form .form-item-moderation-state-0-current label {
-    margin-top: .5rem;
-  }
 
-  [dir="ltr"] [dir=rtl] #edit-moderation-state-wrapper .form-item-moderation-state-0-current label,
-  [dir="ltr"] [dir=rtl] #content-moderation-entity-moderation-form .form-item-moderation-state-0-current label {
     float: right;
+    margin-top: .5rem;
   }
 
   [dir="rtl"] [dir=rtl] #edit-moderation-state-wrapper .form-item-moderation-state-0-current label,
   [dir="rtl"] [dir=rtl] #content-moderation-entity-moderation-form .form-item-moderation-state-0-current label {
+
     float: left;
   }
 
-  [dir="ltr"] [dir=rtl] #edit-moderation-state-wrapper .form-control,
-  [dir="ltr"] [dir=rtl] #content-moderation-entity-moderation-form .form-control {
+  [dir=rtl] #edit-moderation-state-wrapper .form-control,
+  [dir=rtl] #content-moderation-entity-moderation-form .form-control {
+
     float: right;
   }
 
   [dir="rtl"] [dir=rtl] #edit-moderation-state-wrapper .form-control,
   [dir="rtl"] [dir=rtl] #content-moderation-entity-moderation-form .form-control {
+
     float: left;
   }
 
-  [dir="ltr"] [dir=rtl] #edit-moderation-state-wrapper .entity-moderation-form__item,
-  [dir="ltr"] [dir=rtl] #content-moderation-entity-moderation-form .entity-moderation-form__item {
+  [dir=rtl] #edit-moderation-state-wrapper .entity-moderation-form__item,
+  [dir=rtl] #content-moderation-entity-moderation-form .entity-moderation-form__item {
+
     margin-right: 0;
+
     margin-left: 1rem;
   }
 
   [dir="rtl"] [dir=rtl] #edit-moderation-state-wrapper .entity-moderation-form__item,
   [dir="rtl"] [dir=rtl] #content-moderation-entity-moderation-form .entity-moderation-form__item {
+
     margin-left: 0;
+
     margin-right: 1rem;
   }
 
-  [dir="ltr"] [dir=rtl] #edit-moderation-state-wrapper .entity-moderation-form__item:last-child,
-  [dir="ltr"] [dir=rtl] #content-moderation-entity-moderation-form .entity-moderation-form__item:last-child {
+  [dir=rtl] #edit-moderation-state-wrapper .entity-moderation-form__item:last-child,
+  [dir=rtl] #content-moderation-entity-moderation-form .entity-moderation-form__item:last-child {
+
     margin-right: auto;
+
     margin-left: 0;
   }
 
   [dir="rtl"] [dir=rtl] #edit-moderation-state-wrapper .entity-moderation-form__item:last-child,
   [dir="rtl"] [dir=rtl] #content-moderation-entity-moderation-form .entity-moderation-form__item:last-child {
+
     margin-left: auto;
+
     margin-right: 0;
   }
 }
@@ -280,4 +296,3 @@
 #edit-preview-toggle {
   margin-top: 1rem;
 }
-

@@ -79,13 +79,13 @@ framework-rtl:
 bootstrap-styles-rtl:
   css:
     base:
-      css/rtl/base/bootstrap-rtl.base.css: {}
+      css/base/bootstrap-rtl.base.css: {}
 
 # Vartheme BS5 global RTL styles library.
 global-styles-rtl:
   css:
     base:
-      css/rtl/base/vartheme-rtl.base.css: {}
+      css/base/vartheme-rtl.base.css: {}
     theme:
       fonts/droid/arabic/kufi/css/droidarabickufi.css: {}
 
