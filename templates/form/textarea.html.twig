@@ -18,4 +18,10 @@
  * @see template_preprocess_textarea()
  */
 #}
-{% include 'varbase_components:textarea' %}
+{% include 'varbase_components:textarea' with {
+    wrapper_attributes: wrapper_attributes,
+    attributes: attributes,
+    required: required|default(false),
+    value: value|default('')
+  }
+%}
