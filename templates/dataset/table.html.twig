@@ -39,5 +39,14 @@
  * @see template_preprocess_table()
  */
 #}
-{% include 'varbase_components:table' 
+{% include 'varbase_components:table' with {   
+    caption: caption|default(''),
+    colgroups: colgroups|default([]),
+    header: header|default([]),
+    sticky: sticky|default([]),
+    rows: rows|default([]),
+    footer: footer|default([]),
+    empty: empty|default(''),
+    no_striping: no_striping|default(false)
+  }
 %}
