@@ -1,0 +1,26 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a dynamic responsive image
+ *
+ * Available variables:
+ * - url: An optional URL the image can be linked to.
+ * - width: The original width of the image.
+ * - height: The original height of the image.
+ * - alt: The alt text for the image.
+ * - item_attributes: attributes for the wrapper
+ * - data: json encoded drimage data object
+ *
+ * @see template_preprocess_drimage_formatter()
+ *
+ * @ingroup themeable
+ */
+#}
+{% include 'varbase_components:dynamic-responsive-image' with {
+    url: url|default(''),
+    width: width,
+    height: height,
+    item_attributes: item_attributes|default([]),
+    data: data|default([])
+  } only
+%}
