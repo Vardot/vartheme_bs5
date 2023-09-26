@@ -1,12 +1,12 @@
 {#
 /**
  * @file
- * Template for a rich text block.
+ * Template for the inline Varbase Rich Text block content.
  */
 #}
 {% include 'varbase_components:block-rich-text' with {
+  title_tag: 'h3',
   html_tag: 'div',
   heading: label,
   content: content
 } %}
-

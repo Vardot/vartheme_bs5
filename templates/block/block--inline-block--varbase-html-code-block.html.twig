@@ -1,5 +1,11 @@
+{#
+/**
+ * @file
+ * Template for the inline Varbase HTML code block.
+ */
+#}
 {% include "varbase_components:block-html" with {
-  bundle: bundle,
+  title_tag: 'h3',
   label: label,
-  body: content
+  content: content
 } %}
