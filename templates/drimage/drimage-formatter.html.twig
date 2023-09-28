@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Default theme implementation to display a dynamic responsive image
+ * Vartheme BS5 theme implementation to display a dynamic responsive image
  *
  * Available variables:
  * - url: An optional URL the image can be linked to.
@@ -20,6 +20,7 @@
     url: url|default(''),
     width: width,
     height: height,
+    alt: alt|default(''),
     item_attributes: item_attributes|default([]),
     data: data|default([])
   } only
