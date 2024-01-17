@@ -52,6 +52,16 @@
 * Needs to add the font files in the right location for local fonts.
 #}
 
+{# Preload assets only for LTR languages. #}
+{% if html_dir == 'ltr' %}
+  {# Preload Font Inter #}
+  <link rel="preload" href="{{ vartheme_bs5_path }}/fonts/inter/webfonts/inter.eot" as="font" type="font/eot" crossorigin="anonymous">
+  <link rel="preload" href="{{ vartheme_bs5_path }}/fonts/inter/webfonts/inter.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+  <link rel="preload" href="{{ vartheme_bs5_path }}/fonts/inter/webfonts/inter.woff" as="font" type="font/woff" crossorigin="anonymous">
+  <link rel="preload" href="{{ vartheme_bs5_path }}/fonts/inter/webfonts/inter.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+{%- endif -%}
+
+
 {# Preload assets only for RTL languages. #}
 {% if html_dir == 'rtl' %}
   {# Preload Font Droid Arabic Kufi Regular #}

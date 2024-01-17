@@ -1,9 +1,13 @@
-// Override bootstrap ~5.3.0 variables
+// Override bootstrap ~5.3.0 variables with Varbase 10 Branding
 // ----------------------------------------------------------------
-
 // See more about override Bootstrap ~5.3.0 variables here:
 // https://getbootstrap.com/docs/5.3/customize/sass
-// https://github.com/twbs/bootstrap/blob/v5.3.1/scss/_variables.scss
+// https://github.com/twbs/bootstrap/blob/v5.3.2/scss/_variables.scss
+
+@import "../node_modules/bootstrap/scss/functions";      // Bootstrap functions.
+@import "../node_modules/bootstrap/scss/mixins";         // Bootstrap mixins.
+
+$prefix: bs-;
 
 // Override aspect ratios array to add more ratios.
 $aspect-ratios: (
@@ -15,3 +19,28 @@ $aspect-ratios: (
   "16x9": calc(9 / 16 * 100%),
   "21x9": calc(9 / 21 * 100%),
 );
+
+// Override the default primary font family to Inter - Regular, Italic Bold for sans serif.
+$font-family-sans-serif: Inter, sans-serif;
+
+// Override the secondary color to use indigo-600.
+$indigo: #6610f2;
+$indigo-600: shade-color($indigo, 20%);
+$secondary: $indigo-600;
+
+// Override border radius for all breakpoints.
+$border-radius: .125rem;
+$border-radius-sm: .125rem;
+$border-radius-lg: .125rem;
+
+// Override border radius for Cards with no radius.
+$card-border-radius: 0;
+
+// Override border radius for buttons with no radius.
+$btn-border-radius: 0;
+$btn-border-radius-sm: 0;
+$btn-border-radius-lg: 0;
+
+// Override the color and decoration of links.
+$link-hover-color: #084298;
+$link-hover-decoration: none;
