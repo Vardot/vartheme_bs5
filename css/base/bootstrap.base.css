@@ -226,32 +226,32 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
 }
 
 h1, .h1 {
-  font-size: calc(1.375rem + 1.5vw);
+  font-size: calc(1.45rem + 2.4vw);
 }
 
 @media (min-width: 1200px) {
   h1, .h1 {
-    font-size: 2.5rem;
+    font-size: 3.25rem;
   }
 }
 
 h2, .h2 {
-  font-size: calc(1.325rem + .9vw);
+  font-size: calc(1.375rem + 1.5vw);
 }
 
 @media (min-width: 1200px) {
   h2, .h2 {
-    font-size: 2rem;
+    font-size: 2.5rem;
   }
 }
 
 h3, .h3 {
-  font-size: calc(1.3rem + .6vw);
+  font-size: calc(1.3125rem + .75vw);
 }
 
 @media (min-width: 1200px) {
   h3, .h3 {
-    font-size: 1.75rem;
+    font-size: 1.875rem;
   }
 }
 
@@ -2914,7 +2914,7 @@ progress {
 .col-form-label-sm {
   padding-top: calc(.25rem + var(--bs-border-width));
   padding-bottom: calc(.25rem + var(--bs-border-width));
-  font-size: .875rem;
+  font-size: 1rem;
 }
 
 .form-text {
@@ -3032,7 +3032,7 @@ progress {
 .form-control-sm {
   min-height: calc(1.5em + .5rem + calc(var(--bs-border-width) * 2));
   padding: .25rem .5rem;
-  font-size: .875rem;
+  font-size: 1rem;
   border-radius: var(--bs-border-radius-sm);
 }
 
@@ -3163,7 +3163,7 @@ textarea.form-control-lg {
   padding-bottom: .25rem;
   
   padding-left: .5rem;
-  font-size: .875rem;
+  font-size: 1rem;
   border-radius: var(--bs-border-radius-sm);
 }
 
@@ -3724,7 +3724,7 @@ textarea.form-control-lg {
 .input-group-sm > .input-group-text,
 .input-group-sm > .btn {
   padding: .25rem .5rem;
-  font-size: .875rem;
+  font-size: 1rem;
   border-radius: var(--bs-border-radius-sm);
 }
 
@@ -3840,7 +3840,7 @@ textarea.form-control-lg {
   max-width: 100%;
   padding: .25rem .5rem;
   margin-top: .1rem;
-  font-size: .875rem;
+  font-size: 1rem;
   color: #fff;
   background-color: var(--bs-success);
   border-radius: var(--bs-border-radius);
@@ -3973,7 +3973,7 @@ textarea.form-control-lg {
   max-width: 100%;
   padding: .25rem .5rem;
   margin-top: .1rem;
-  font-size: .875rem;
+  font-size: 1rem;
   color: #fff;
   background-color: var(--bs-danger);
   border-radius: var(--bs-border-radius);
@@ -4485,7 +4485,7 @@ textarea.form-control-lg {
 .btn-sm, .btn-group-sm > .btn {
   --bs-btn-padding-y: .25rem;
   --bs-btn-padding-x: .5rem;
-  --bs-btn-font-size: .875rem;
+  --bs-btn-font-size: 1rem;
   --bs-btn-border-radius: 0;
 }
 
@@ -5080,7 +5080,7 @@ textarea.form-control-lg {
   display: block;
   padding: var(--bs-dropdown-header-padding-y) var(--bs-dropdown-header-padding-x);
   margin-bottom: 0;
-  font-size: .875rem;
+  font-size: 1rem;
   color: var(--bs-dropdown-header-color);
   white-space: nowrap;
 }
@@ -6561,7 +6561,7 @@ textarea.form-control-lg {
 .pagination-sm {
   --bs-pagination-padding-x: .5rem;
   --bs-pagination-padding-y: .25rem;
-  --bs-pagination-font-size: .875rem;
+  --bs-pagination-font-size: 1rem;
   --bs-pagination-border-radius: var(--bs-border-radius-sm);
 }
 
@@ -7783,7 +7783,7 @@ textarea.form-control-lg {
   --bs-tooltip-padding-x: .5rem;
   --bs-tooltip-padding-y: .25rem;
   --bs-tooltip-margin:  ;
-  --bs-tooltip-font-size: .875rem;
+  --bs-tooltip-font-size: 1rem;
   --bs-tooltip-color: var(--bs-body-bg);
   --bs-tooltip-bg: var(--bs-emphasis-color);
   --bs-tooltip-border-radius: var(--bs-border-radius);
@@ -7885,7 +7885,7 @@ textarea.form-control-lg {
 .popover {
   --bs-popover-zindex: 1070;
   --bs-popover-max-width: 276px;
-  --bs-popover-font-size: .875rem;
+  --bs-popover-font-size: 1rem;
   --bs-popover-bg: var(--bs-body-bg);
   --bs-popover-border-width: var(--bs-border-width);
   --bs-popover-border-color: var(--bs-border-color-translucent);
@@ -11016,15 +11016,15 @@ textarea.form-control-lg {
 }
 
 .fs-1 {
-  font-size: calc(1.375rem + 1.5vw) !important;
+  font-size: calc(1.45rem + 2.4vw) !important;
 }
 
 .fs-2 {
-  font-size: calc(1.325rem + .9vw) !important;
+  font-size: calc(1.375rem + 1.5vw) !important;
 }
 
 .fs-3 {
-  font-size: calc(1.3rem + .6vw) !important;
+  font-size: calc(1.3125rem + .75vw) !important;
 }
 
 .fs-4 {
@@ -16694,15 +16694,15 @@ textarea.form-control-lg {
 
 @media (min-width: 1200px) {
   .fs-1 {
-    font-size: 2.5rem !important;
+    font-size: 3.25rem !important;
   }
 
   .fs-2 {
-    font-size: 2rem !important;
+    font-size: 2.5rem !important;
   }
 
   .fs-3 {
-    font-size: 1.75rem !important;
+    font-size: 1.875rem !important;
   }
 
   .fs-4 {
