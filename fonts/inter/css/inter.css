@@ -1,12 +1,14 @@
+/*
+ * Inter https://fonts.google.com/specimen/Inter
+ */
 @font-face {
-    font-family: 'Inter';
+  font-family: 'Inter';
     src: url('../webfonts/inter.eot');
     src: url('../webfonts/inter.eot?#iefix') format('embedded-opentype'),
-            url('../webfonts/inter.woff2') format('woff2'),
-            url('../webfonts/inter.woff') format('woff'),
-            url('../webfonts/inter.ttf') format('truetype'),
-            url('../webfonts/inter.svg#interregular') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
+      url('../webfonts/inter.woff2') format('woff2'),
+      url('../webfonts/inter.woff') format('woff'),
+      url('../webfonts/inter.ttf') format('truetype'),
+      url('../webfonts/inter.svg#interregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
 }
