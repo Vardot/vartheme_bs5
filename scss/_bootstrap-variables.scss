@@ -37,6 +37,17 @@ $h4-font-size: $font-size-base * 1.5;
 $h5-font-size: $font-size-base * 1.25;
 $h6-font-size: $font-size-base;
 
+// Override the default headings.
+$headings-font-style: normal;
+$headings-font-weight: 700;
+$headings-line-height: 140%;
+
+// Override the default display headings.
+$display-font-weight: 500;
+
+// Override the default lead styling.
+$lead-font-weight: 500;
+
 // Override the secondary color to use indigo-600.
 $indigo: #6610f2;
 $indigo-600: shade-color($indigo, 20%);
