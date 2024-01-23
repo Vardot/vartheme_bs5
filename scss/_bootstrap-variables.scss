@@ -25,17 +25,20 @@ $font-family-sans-serif: Inter, sans-serif;
 
 // Override the default font size.
 $font-size-root: null;
-$font-size-base: 1rem; // Assumes the browser default, typically `16px`
-$font-size-sm: $font-size-base;
-$font-size-lg: $font-size-base * 1.25;
+$font-size-base: 1.125rem; // Assumes the browser default, typically `16px`
+$font-size-sm: 0.875rem;
+$font-size-lg: 1.125rem;
+
+// Override the default quote font size.
+$blockquote-font-size: 1rem;
 
 // Override the default headings font sizes.
-$h1-font-size: $font-size-base * 3.25;
-$h2-font-size: $font-size-base * 2.5;
-$h3-font-size: $font-size-base * 1.875;
-$h4-font-size: $font-size-base * 1.5;
-$h5-font-size: $font-size-base * 1.25;
-$h6-font-size: $font-size-base;
+$h1-font-size: 3.25;
+$h2-font-size: 2.5rem;
+$h3-font-size: 1.875rem;
+$h4-font-size: 1.5rem;
+$h5-font-size: 1.25rem;
+$h6-font-size: 1rem;
 
 // Override the default headings.
 $headings-font-style: normal;
