@@ -33,6 +33,21 @@ module.exports = merge(webpackConfig, {
           from: path.resolve(__dirname, "node_modules/@fortawesome/fontawesome-free/webfonts/*"),
           to: path.resolve(__dirname, "fonts/fontawesome-free/webfonts"),
           context: "node_modules/@fortawesome/fontawesome-free/webfonts",
+        },
+        {
+          from: path.resolve(__dirname, "node_modules/bootstrap-icons/font/*"),
+          to: path.resolve(__dirname, "fonts/bootstrap-icons/font/"),
+          context: "node_modules/bootstrap-icons/font",
+        },
+        {
+          from: path.resolve(__dirname, "node_modules/bootstrap-icons/font/fonts/*"),
+          to: path.resolve(__dirname, "fonts/bootstrap-icons/font/fonts"),
+          context: "node_modules/bootstrap-icons/font/fonts",
+        },
+        {
+          from: path.resolve(__dirname, "node_modules/bootstrap-icons/icons/*"),
+          to: path.resolve(__dirname, "images/icons"),
+          context: "node_modules/bootstrap-icons/icons",
         }
       ],
     }),

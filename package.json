@@ -31,6 +31,7 @@
   ],
   "dependencies": {
     "bootstrap": "~5",
+    "bootstrap-icons": "~1",
     "bootstrap-borders-utilities": "~1",
     "bootstrap-ratio-utilities": "~1",
     "@fortawesome/fontawesome-free": "~5",

@@ -1219,6 +1219,11 @@ bootstrap-borders-utilities@~1:
   resolved "https://registry.yarnpkg.com/bootstrap-borders-utilities/-/bootstrap-borders-utilities-1.0.2.tgz#d86a0bfe5a452db7ca15253008e335e5a09f1e0f"
   integrity sha512-2de521S3U0ry/C2/UCcqlt0MepKTOskO4oMK0+xD5ww1wHngeZlVSxgmCMkC1iaYcHKH1+blApehT3bysAmbTQ==
 
+bootstrap-icons@~1:
+  version "1.11.3"
+  resolved "https://registry.yarnpkg.com/bootstrap-icons/-/bootstrap-icons-1.11.3.tgz#03f9cb754ec005c52f9ee616e2e84a82cab3084b"
+  integrity sha512-+3lpHrCw/it2/7lBL15VR0HEumaBss0+f/Lb6ZvHISn1mlK83jjFpooTLsMWbIjJMDjDjOExMsTxnXSIT4k4ww==
+
 bootstrap-ratio-utilities@~1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/bootstrap-ratio-utilities/-/bootstrap-ratio-utilities-1.0.2.tgz#1a00fb325e28c90bd3cedff896d5ee24bfb57225"

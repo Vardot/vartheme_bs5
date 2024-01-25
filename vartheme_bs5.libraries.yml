@@ -4,6 +4,7 @@ framework:
     - vartheme_bs5/bootstrap-scripts
     - vartheme_bs5/global-styles
     - vartheme_bs5/global-scripts
+    - vartheme_bs5/bootstrap-icons
     - vartheme_bs5/fontawesome
 
 # Bootstrap 5 global styles library.
@@ -75,6 +76,7 @@ framework-rtl:
     - vartheme_bs5/bootstrap-scripts
     - vartheme_bs5/global-styles-rtl
     - vartheme_bs5/global-scripts
+    - vartheme_bs5/bootstrap-icons
     - vartheme_bs5/fontawesome
 
 # Bootstrap 5 global RTL styles library.
@@ -102,3 +104,9 @@ fontawesome:
   css:
     theme:
       fonts/fontawesome-free/css/all.min.css: { minified: true }
+
+# Bootstrap free icons.
+bootstrap-icons:
+  css:
+    theme:
+      fonts/bootstrap-icons/font/bootstrap-icons.min.css: { minified: true }

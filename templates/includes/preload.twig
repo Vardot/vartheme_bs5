@@ -23,6 +23,10 @@
 
 {# Preload assets for all languages and all sections in the website. #}
 
+{# Preload Bootstrap Icons #}
+<link rel="preload" href="{{ vartheme_bs5_path }}/fonts/bootstrap-icons/font/fonts/bootstrap-icons.woff" as="font" type="font/woff" crossorigin="anonymous">
+<link rel="preload" href="{{ vartheme_bs5_path }}/fonts/bootstrap-icons/font/fonts/bootstrap-icons.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
 {# Preload Font Awesome free Regular webfonts #}
 <link rel="preload" href="{{ vartheme_bs5_path }}/fonts/fontawesome-free/webfonts/fa-regular-400.eot" as="font" crossorigin="anonymous">
 <link rel="preload" href="{{ vartheme_bs5_path }}/fonts/fontawesome-free/webfonts/fa-regular-400.svg" as="font" crossorigin="anonymous">
@@ -41,16 +45,6 @@
 <link rel="preload" href="{{ vartheme_bs5_path }}/fonts/fontawesome-free/webfonts/fa-brands-400.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 <link rel="preload" href="{{ vartheme_bs5_path }}/fonts/fontawesome-free/webfonts/fa-brands-400.woff" as="font" type="font/woff" crossorigin="anonymous">
 <link rel="preload" href="{{ vartheme_bs5_path }}/fonts/fontawesome-free/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
-
-{# Example: Preload assets only for LTR languages.
-* By adding more restraction or selection for what/when/where to use for preload.
-*  --------------------------------------------------------------------------
-{% if html_dir == 'ltr' %}
-  <link rel="preload" href="/{{ vartheme_bs5_path }}/fonts/lora/lora-v14-latin-regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
-{%- endif -%}
-*  --------------------------------------------------------------------------
-* Needs to add the font files in the right location for local fonts.
-#}
 
 {# Preload assets only for LTR languages. #}
 {% if html_dir == 'ltr' %}
@@ -77,3 +71,14 @@
   <link rel="preload" href="{{ vartheme_bs5_path }}/fonts/droid/arabic/kufi/webfonts/v6/DroidKufi-Regular.woff" as="font" type="font/woff" crossorigin="anonymous">
   <link rel="preload" href="{{ vartheme_bs5_path }}/fonts/droid/arabic/kufi/webfonts/v6/DroidKufi-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
 {% endif %}
+
+{# Example: Preload assets only for LTR languages.
+* By adding more restraction or selection for what/when/where to use for preload.
+* Selected preload could work for a selected language. 
+*  --------------------------------------------------------------------------
+{% if html_dir == 'ltr' %}
+  <link rel="preload" href="/{{ vartheme_bs5_path }}/fonts/lora/lora-v14-latin-regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+{%- endif -%}
+*  --------------------------------------------------------------------------
+* Needs to add the font files in the right location for local fonts.
+#}
