@@ -30,14 +30,14 @@
     "frontend"
   ],
   "dependencies": {
+    "bootstrap": "~5",
+    "bootstrap-borders-utilities": "~1",
+    "bootstrap-ratio-utilities": "~1",
     "@fortawesome/fontawesome-free": "~5",
     "@popperjs/core": "~2",
     "autoprefixer": "^10.4.0",
     "babel-eslint": "10.0.1",
     "babel-loader": "^8.2.2",
-    "bootstrap": "~5.3.0",
-    "bootstrap-borders-utilities": "~1",
-    "bootstrap-ratio-utilities": "~1",
     "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "~11.0.0",
     "core-js": "^3.9.1",
