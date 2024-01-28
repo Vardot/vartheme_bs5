@@ -72,3 +72,9 @@ $btn-border-radius-lg: 0;
 // Override the color and decoration of links.
 $link-hover-color: #084298;
 $link-hover-decoration: none;
+
+// Override the Breadcrumbs.
+$breadcrumb-font-size: 1rem;
+$breadcrumb-padding-x:              0.0625rem;
+$breadcrumb-divider:                quote(">");
+$breadcrumb-divider-flipped:        quote("<");;
