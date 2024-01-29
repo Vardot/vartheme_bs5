@@ -14,6 +14,9 @@ function vartheme_bs5_preprocess_page(&$variables) {
   // Add the print logo.
   $variables['logo_print'] = \Drupal::request()->getBaseUrl() . '/' . \Drupal::service('extension.list.theme')->getPath('vartheme_bs5') . '/logo-print.png';
 
+  // Add the white logo.
+  $variables['logo_white'] = \Drupal::request()->getBaseUrl() . '/' . \Drupal::service('extension.list.theme')->getPath('vartheme_bs5') . '/logo-white.svg';
+
   // Add the site name and slogan.
   $variables['site_name'] = \Drupal::config('system.site')->get('name');
   $variables['site_slogan'] = \Drupal::config('system.site')->get('slogan');
