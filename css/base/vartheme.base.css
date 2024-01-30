@@ -93,6 +93,12 @@ a {
 
 .breadcrumb-item + .breadcrumb-item::before {
   font-family: "bootstrap-icons";
-  font-size: 1rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  content: "\f285";
+}
+
+[dir=rtl].breadcrumb-item + .breadcrumb-item::before {
+  content: "\f284";
 }
 

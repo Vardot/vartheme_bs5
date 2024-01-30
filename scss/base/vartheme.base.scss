@@ -106,5 +106,10 @@ a {
 // Change the breadcrumb divider to use bootstrap-icons
 .breadcrumb-item + .breadcrumb-item::before {
   font-family: 'bootstrap-icons';
-  font-size: 1rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  content: '\F285';
+}
+[dir="rtl"].breadcrumb-item + .breadcrumb-item::before {
+  content: '\F284';
 }
