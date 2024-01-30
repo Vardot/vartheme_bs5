@@ -104,16 +104,14 @@ a {
 }
 
 // Change the color for text in the breadcrumb
-[data-bs-theme="light"] {
-  .breadcrumb {
-    .breadcrumb-item {
-      color: var(--bs-dark);
-    }
-  }
-
-  .breadcrumb-item + .breadcrumb-item::before {
+.breadcrumb {
+  .breadcrumb-item {
     color: var(--bs-dark);
   }
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+  color: var(--bs-dark);
 }
 
 [data-bs-theme="dark"] {

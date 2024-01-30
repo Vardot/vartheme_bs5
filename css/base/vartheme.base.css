@@ -91,11 +91,11 @@ a {
   text-underline-offset: .25em;
 }
 
-[data-bs-theme=light] .breadcrumb .breadcrumb-item {
+.breadcrumb .breadcrumb-item {
   color: var(--bs-dark);
 }
 
-[data-bs-theme=light] .breadcrumb-item + .breadcrumb-item::before {
+.breadcrumb-item + .breadcrumb-item::before {
   color: var(--bs-dark);
 }
 
