@@ -91,8 +91,20 @@ a {
   text-underline-offset: .25em;
 }
 
-.breadcrumb .breadcrumb-item {
+[data-bs-theme=light] .breadcrumb .breadcrumb-item {
   color: var(--bs-dark);
+}
+
+[data-bs-theme=light] .breadcrumb-item + .breadcrumb-item::before {
+  color: var(--bs-dark);
+}
+
+[data-bs-theme=dark] .breadcrumb .breadcrumb-item {
+  color: var(--bs-light);
+}
+
+[data-bs-theme=dark] .breadcrumb-item + .breadcrumb-item::before {
+  color: var(--bs-light);
 }
 
 .breadcrumb-item + .breadcrumb-item::before {
@@ -100,10 +112,9 @@ a {
   font-size: 1.1rem;
   font-weight: 500;
   content: "\f285";
-  color: var(--bs-dark);
 }
 
-[dir=rtl].breadcrumb-item + .breadcrumb-item::before {
+[dir=rtl] .breadcrumb-item + .breadcrumb-item::before {
   content: "\f284";
 }
 

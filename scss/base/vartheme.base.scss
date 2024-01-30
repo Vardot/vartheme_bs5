@@ -104,9 +104,27 @@ a {
 }
 
 // Change the color for text in the breadcrumb
-.breadcrumb {
-  .breadcrumb-item {
+[data-bs-theme="light"] {
+  .breadcrumb {
+    .breadcrumb-item {
+      color: var(--bs-dark);
+    }
+  }
+
+  .breadcrumb-item + .breadcrumb-item::before {
     color: var(--bs-dark);
+  }
+}
+
+[data-bs-theme="dark"] {
+  .breadcrumb {
+    .breadcrumb-item {
+      color: var(--bs-light);
+    }
+  }
+
+  .breadcrumb-item + .breadcrumb-item::before {
+    color: var(--bs-light);
   }
 }
 
@@ -116,8 +134,7 @@ a {
   font-size: 1.1rem;
   font-weight: 500;
   content: '\F285';
-  color: var(--bs-dark);
 }
-[dir="rtl"].breadcrumb-item + .breadcrumb-item::before {
+[dir="rtl"] .breadcrumb-item + .breadcrumb-item::before {
   content: '\F284';
 }
