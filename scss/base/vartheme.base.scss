@@ -103,12 +103,20 @@ a {
   text-underline-offset: 0.25em;
 }
 
+// Change the color for text in the breadcrumb
+.breadcrumb {
+  .breadcrumb-item {
+    color: var(--bs-dark);
+  }
+}
+
 // Change the breadcrumb divider to use bootstrap-icons
 .breadcrumb-item + .breadcrumb-item::before {
   font-family: 'bootstrap-icons';
   font-size: 1.1rem;
   font-weight: 500;
   content: '\F285';
+  color: var(--bs-dark);
 }
 [dir="rtl"].breadcrumb-item + .breadcrumb-item::before {
   content: '\F284';
