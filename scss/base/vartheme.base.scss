@@ -136,3 +136,49 @@ a {
 [dir="rtl"] .breadcrumb-item + .breadcrumb-item::before {
   content: '\F284';
 }
+
+// Change the default style for the pagination.
+.pagination {
+  font-size: 1.25rem;
+  font-weight: 700;
+
+  .pager__item--previous,
+  .pager__item--next {
+    a {
+      color: var(--bs-dark);
+
+      &:hover {
+        color: var(--bs-link-hover-color);
+      }
+    }
+  }
+
+  .pager__item--ellipsis {
+    a,
+    .page-link {
+      color: var(--bs-link-color);
+      &:hover {
+        color: var(--bs-link-hover-color);
+      }
+    }
+  }
+
+
+}
+
+[data-bs-theme="dark"] {
+  .pagination { 
+    .pager__item--previous,
+    .pager__item--next {
+      a {
+        color: var(--bs-light);
+      }
+    }
+  }
+}
+
+.pagination-lg {
+  li.page-item.pager__item > .page-link {
+    padding: 1.125rem;
+  }
+}

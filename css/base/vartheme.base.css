@@ -118,3 +118,37 @@ a {
   content: "\f284";
 }
 
+.pagination {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.pagination .pager__item--previous a,
+.pagination .pager__item--next a {
+  color: var(--bs-dark);
+}
+
+.pagination .pager__item--previous a:hover,
+.pagination .pager__item--next a:hover {
+  color: var(--bs-link-hover-color);
+}
+
+.pagination .pager__item--ellipsis a,
+.pagination .pager__item--ellipsis .page-link {
+  color: var(--bs-link-color);
+}
+
+.pagination .pager__item--ellipsis a:hover,
+.pagination .pager__item--ellipsis .page-link:hover {
+  color: var(--bs-link-hover-color);
+}
+
+[data-bs-theme=dark] .pagination .pager__item--previous a,
+[data-bs-theme=dark] .pagination .pager__item--next a {
+  color: var(--bs-light);
+}
+
+.pagination-lg li.page-item.pager__item > .page-link {
+  padding: 1.125rem;
+}
+
