@@ -6422,7 +6422,7 @@ textarea.form-control-lg {
   padding-right: var(--bs-breadcrumb-item-padding-x);
   color: var(--bs-breadcrumb-divider-color);
   
-  content: var(--bs-breadcrumb-divider, ">");
+  content: var(--bs-breadcrumb-divider, "\f285");
 }
 
 [dir="rtl"] .breadcrumb-item + .breadcrumb-item::before {
@@ -6432,7 +6432,7 @@ textarea.form-control-lg {
   
   padding-left: var(--bs-breadcrumb-item-padding-x);
   
-  content: var(--bs-breadcrumb-divider, "<");
+  content: var(--bs-breadcrumb-divider, "\f284");
 }
 
 .breadcrumb-item.active {

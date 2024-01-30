@@ -102,3 +102,9 @@ h6,
 a {
   text-underline-offset: 0.25em;
 }
+
+// Change the breadcrumb divider to use bootstrap-icons
+.breadcrumb-item + .breadcrumb-item::before {
+  font-family: 'bootstrap-icons';
+  font-size: 1rem;
+}
