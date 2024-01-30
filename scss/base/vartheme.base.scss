@@ -177,8 +177,15 @@ a {
   }
 }
 
+.pagination-sm {
+  .page-link {
+    font-size: 0.875rem;
+  }
+}
+
 .pagination-lg {
-  li.page-item.pager__item > .page-link {
+  .page-link {
+    font-size: 1.25rem;
     padding: 1.125rem;
   }
 }

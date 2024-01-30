@@ -148,7 +148,12 @@ a {
   color: var(--bs-light);
 }
 
-.pagination-lg li.page-item.pager__item > .page-link {
+.pagination-sm .page-link {
+  font-size: .875rem;
+}
+
+.pagination-lg .page-link {
+  font-size: 1.25rem;
   padding: 1.125rem;
 }
 
