@@ -98,16 +98,7 @@ h6,
   text-transform: capitalize;
 }
 
-
 // Change Underline offset for inline links.
 a {
   text-underline-offset: 0.25em;
-
-  &:active,
-  &:focus {
-    outline: 2px solid $blue-700;
-    left: -0.25rem;
-    top: -0.25rem;
-    opacity: 0.4;
-  }
 }

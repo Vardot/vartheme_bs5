@@ -91,8 +91,3 @@ a {
   text-underline-offset: .25em;
 }
 
-a:active, a:focus {
-  outline: 2px solid #084298;
-  opacity: .4;
-}
-
