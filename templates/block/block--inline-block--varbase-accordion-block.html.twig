@@ -1,0 +1,28 @@
+{#
+/**
+ * @file
+ * Template for the inline Varbase Accordion block content.
+ */
+#}
+
+{% set accordion_items = [] %}
+{% for accordion_item_paragraph in content['field_accordion_items']['#items'] %}
+
+  {% set accordion_item_header = accordion_item_paragraph.entity.field_title.value %}
+  {% set accordion_item_body = {
+    '#type':   'processed_text',
+    '#text':    accordion_item_paragraph.entity.field_body.value,
+    '#format':  accordion_item_paragraph.entity.field_body.format,
+  } %}
+
+  {% set accordion_item = {'header': accordion_item_header, 'body': accordion_item_body } %}
+  {% set accordion_items = accordion_items|merge([accordion_item]) %}
+
+{% endfor %}
+
+{% include "varbase_components:accordion" with {
+  title_tag: 'h3',
+  title: label,
+  header_tag: 'h4',
+  items: accordion_items,
+} %}
