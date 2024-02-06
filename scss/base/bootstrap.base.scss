@@ -19,17 +19,17 @@
 @import "../../node_modules/bootstrap/scss/nav";
 @import "../../node_modules/bootstrap/scss/navbar";
 @import "../../node_modules/bootstrap/scss/card";
+@import "../../node_modules/bootstrap/scss/badge";
 
 // The Accordion library was overridden and attached with the `varbase_components:accordion-item` component.
 // Which attached to the `varbase_components:accordion` component, when used with accordion items.
 // @import "../../node_modules/bootstrap/scss/accordion"; // Commented the import, but kept for reference.
 
-@import "../../node_modules/bootstrap/scss/breadcrumb";
+// The Breadcrumb library was overridden and attached with the `varbase_components:breadcrumb` component.
+// @import "../../node_modules/bootstrap/scss/breadcrumb"; // Commented the import, but kept for reference.
 
 // The Pagination library was overridden and attached with the `varbase_components:pagination` component.
 // @import "../../node_modules/bootstrap/scss/pagination"; // Commented the import, but kept for reference.
-
-@import "../../node_modules/bootstrap/scss/badge";
 
 // The Alert library was overridden and attached with the `varbase_components:alert` component.
 // @import "../../node_modules/bootstrap/scss/alert"; // Commented the import, but kept for reference.
