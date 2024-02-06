@@ -15,9 +15,11 @@ module.exports = {
     // SCSS
     // ################################################
     // Components
-    // 'molecules/alert/alert': ['./components/molecules/alert/alert.scss'],
+    // 'atoms/accordion-item/accordion-item': ['./components/atoms/accordion-item/accordion-item.scss'],
+    // 'atoms/alert/alert': ['./components/atoms/alert/alert.scss'],
+    // 'atoms/taxonomy/taxonomy': ['./components/atoms/taxonomy/taxonomy.scss'],
     // 'molecules/tabs/tabs': ['./components/molecules/tabs/tabs.scss'],
-    // 'molecules/field-tags/field-tags': ['./components/molecules/field-tags/field-tags.scss'],
+    // 'organisms/nav/nav': ['./components/organisms/nav/nav.scss'],
     // 'organisms/navbar/navbar': ['./components/organisms/navbar/navbar.scss'],
     // 'organisms/page-header/page-header': ['./components/organisms/page-header/page-header.scss'],
     // 'organisms/page-footer/page-footer': ['./components/organisms/page-footer/page-footer.scss'],
@@ -28,6 +30,9 @@ module.exports = {
     // 'organisms/card-overlay/card-overlay': ['./components/organisms/card-overlay/card-overlay.scss'],
     // 'organisms/card-hero/card-hero': ['./components/organisms/card-hero/card-hero.scss'],
     // 'organisms/card-text/card-text': ['./components/organisms/card-text/card-text.scss'],
+    // 'organisms/media-hero-slide/media-hero-slide': ['./components/organisms/media-hero-slide/media-hero-slide.scss'],
+    // 'organisms/media-hero-slider/media-hero-slider': ['./components/organisms/media-hero-slider/media-hero-slider.scss'],
+    // 'organisms/media-header/media-header': ['./components/organisms/media-header/media-header.scss'],
     // 'pages/page/page': ['./components/pages/page/page.scss']
   },
   output: {

@@ -189,36 +189,3 @@ a {
     padding: 1.125rem;
   }
 }
-
-// Change the default style for the accordion.
-.accordion {
-  .accordion-item {
-    margin-top: 1.25rem;
-
-    &:first {
-      margin-top: 0;
-    }
-
-    &:not(:first-of-type) {
-      border-top: $accordion-border-width solid $accordion-border-color;
-    }
-  }
-
-  .accordion-button {
-    font-weight: 700;
-    background-color: $accordion-bg;
-    box-shadow: none;
-
-    .collapsed {
-      background-color: $accordion-bg;
-    }
-
-    &:hover,
-    &:focus,
-    &:active {
-      background-color: var(--bs-accordion-active-bg);
-      box-shadow: var(--bs-accordion-btn-focus-box-shadow);
-    }
-  }
-}
-

@@ -19,14 +19,17 @@
 @import "../../node_modules/bootstrap/scss/nav";
 @import "../../node_modules/bootstrap/scss/navbar";
 @import "../../node_modules/bootstrap/scss/card";
-@import "../../node_modules/bootstrap/scss/accordion";
+
+// The Accordion library was overridden and attached with the `varbase_components:accordion-item` component.
+// Which attached to the `varbase_components:accordion` component, when used with accordion items.
+// @import "../../node_modules/bootstrap/scss/accordion"; // Commented the import, but kept for reference.
+
 @import "../../node_modules/bootstrap/scss/breadcrumb";
 @import "../../node_modules/bootstrap/scss/pagination";
 @import "../../node_modules/bootstrap/scss/badge";
 
-// For Alert library, it's overridden and attached with Alert component.
-// See more in "vartheme_bs5.libraries.yml" and "src/components/molecules/alert" files.
-// @import "../../node_modules/bootstrap/scss/alert";
+// The Alert library was overridden and attached with the `varbase_components:alert` component.
+// @import "../../node_modules/bootstrap/scss/alert"; // Commented the import, but kept for reference.
 
 @import "../../node_modules/bootstrap/scss/progress";
 @import "../../node_modules/bootstrap/scss/list-group";

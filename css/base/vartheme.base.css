@@ -157,30 +157,3 @@ a {
   padding: 1.125rem;
 }
 
-.accordion .accordion-item {
-  margin-top: 1.25rem;
-}
-
-.accordion .accordion-item:first {
-  margin-top: 0;
-}
-
-.accordion .accordion-item:not(:first-of-type) {
-  border-top: 1px solid var(--bs-primary);
-}
-
-.accordion .accordion-button {
-  font-weight: 700;
-  background-color: var(--bs-body-bg);
-  box-shadow: none;
-}
-
-.accordion .accordion-button .collapsed {
-  background-color: var(--bs-body-bg);
-}
-
-.accordion .accordion-button:hover, .accordion .accordion-button:focus, .accordion .accordion-button:active {
-  background-color: var(--bs-accordion-active-bg);
-  box-shadow: var(--bs-accordion-btn-focus-box-shadow);
-}
-
