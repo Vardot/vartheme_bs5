@@ -25,7 +25,10 @@
 // @import "../../node_modules/bootstrap/scss/accordion"; // Commented the import, but kept for reference.
 
 @import "../../node_modules/bootstrap/scss/breadcrumb";
-@import "../../node_modules/bootstrap/scss/pagination";
+
+// The Pagination library was overridden and attached with the `varbase_components:pagination` component.
+// @import "../../node_modules/bootstrap/scss/pagination"; // Commented the import, but kept for reference.
+
 @import "../../node_modules/bootstrap/scss/badge";
 
 // The Alert library was overridden and attached with the `varbase_components:alert` component.
