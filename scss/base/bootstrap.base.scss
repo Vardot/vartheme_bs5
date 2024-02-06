@@ -34,7 +34,9 @@
 // The Alert library was overridden and attached with the `varbase_components:alert` component.
 // @import "../../node_modules/bootstrap/scss/alert"; // Commented the import, but kept for reference.
 
-@import "../../node_modules/bootstrap/scss/progress";
+// The Progress library was overridden and attached with the `varbase_components:progress-bar` component.
+// @import "../../node_modules/bootstrap/scss/progress"; // Commented the import, but kept for reference.
+
 @import "../../node_modules/bootstrap/scss/list-group";
 @import "../../node_modules/bootstrap/scss/close";
 @import "../../node_modules/bootstrap/scss/toasts";
