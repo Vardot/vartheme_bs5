@@ -94,23 +94,29 @@ $pagination-active-color: var(--bs-dark-text-emphasis);
 
 
 // Override the default accordion.
-// scss-docs-start accordion-variables
-$accordion-padding-y:                     0.9375rem;
-$accordion-padding-x:                     0.9375rem;
-$accordion-border-width:                  1px;
-$accordion-border-color:                  var(--bs-primary);
-$accordion-border-radius:                 0.125rem;
-$accordion-inner-border-radius:           subtract($accordion-border-radius, $accordion-border-width) !default;
+$accordion-padding-y: 0.9375rem;
+$accordion-padding-x: 0.9375rem;
+$accordion-border-width: 1px;
+$accordion-border-color: var(--bs-primary);
+$accordion-border-radius: 0.125rem;
+$accordion-inner-border-radius: subtract($accordion-border-radius, $accordion-border-width) !default;
 
-$accordion-body-padding-y:                $accordion-padding-y;
-$accordion-body-padding-x:                $accordion-padding-x;
+$accordion-body-padding-y: $accordion-padding-y;
+$accordion-body-padding-x: $accordion-padding-x;
 
-$accordion-button-padding-y:              $accordion-padding-y;
-$accordion-button-padding-x:              $accordion-padding-x;
-$accordion-button-active-bg:              var(--#{$prefix}primary-bg-subtle) !default;
-$accordion-button-active-color:           var(--#{$prefix}primary-text-emphasis) !default;
+$accordion-button-padding-y: $accordion-padding-y;
+$accordion-button-padding-x: $accordion-padding-x;
+$accordion-button-active-bg: var(--#{$prefix}primary-bg-subtle) !default;
+$accordion-button-active-color: var(--#{$prefix}primary-text-emphasis) !default;
 
-$accordion-button-focus-border-color:     var(--bs-primary);
-$accordion-button-focus-box-shadow:       var(--bs-primary);
+$accordion-button-focus-border-color: var(--bs-primary);
+$accordion-button-focus-box-shadow: var(--bs-primary);
 
-$accordion-icon-width:                    0.9375rem;
+$accordion-icon-width: 0.9375rem;
+
+
+// Override the default alert.
+$alert-border-width: 0;
+$alert-border-radius: 0.125rem;
+$alert-padding-y: 0.9375rem;
+$alert-padding-x: 0.9375rem;
