@@ -14,8 +14,9 @@
     '#text':    accordion_item_paragraph.entity.field_body.value,
     '#format':  accordion_item_paragraph.entity.field_body.format,
   } %}
+  {% set accordion_item_expanded = (accordion_item_paragraph.entity.field_expanded and accordion_item_paragraph.entity.field_expanded.value == true) ? true : false %}
 
-  {% set accordion_item = {'header': accordion_item_header, 'body': accordion_item_body } %}
+  {% set accordion_item = {'header': accordion_item_header, 'body': accordion_item_body, 'expanded': accordion_item_expanded } %}
   {% set accordion_items = accordion_items|merge([accordion_item]) %}
 
 {% endfor %}
@@ -25,4 +26,5 @@
   title: label,
   header_tag: 'h4',
   items: accordion_items,
+  toggle_all: (content['field_toggle_all'] and content['field_toggle_all'][0] == true) ? true : false,
 } %}
