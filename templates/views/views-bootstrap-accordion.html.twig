@@ -1,21 +1,21 @@
 {% set views_accordion_items = [] %}
 
-{% set expanded_index = 0 %}
-{% if (options.collapse.first is defined and options.collapse.first > 0) %}
-  {% set expanded_index = 1 %}
-{% endif %}
-
-{% if (options.collapse.last is defined and options.collapse.last > 0) %}
-  {% set len = rows|length %}
-  {% set expanded_index = len %}
-{% endif %}
-
+{% set i = 0 %}
+{% set len = rows|length %}
 {% for row in rows %}
+  {% set i = i + 1 %}
 
   {% set accordion_item_header = row.title %}
   {% set accordion_item_body = row.content %}
 
-  {% set accordion_item = {'header': accordion_item_header, 'body': accordion_item_body } %}
+  {% set accordion_item_expanded = (
+      (i == 1 and options.collapse.first is defined and options.collapse.first > 0)
+      or (i == len and options.collapse.last is defined and options.collapse.last > 0)
+      or (i != 1 and i != len and options.collapse.middle is defined and options.collapse.middle > 0)
+      ) ? true : false
+  %}
+
+  {% set accordion_item = {'header': accordion_item_header, 'body': accordion_item_body, 'expanded': accordion_item_expanded } %}
   {% set views_accordion_items = views_accordion_items|merge([accordion_item]) %}
 
 {% endfor %}
@@ -26,7 +26,6 @@
     items: views_accordion_items,
     header_tag: 'h4',
     flush: false,
-    expanded_item_index: expanded_index,
     utility_classes: classes,
     toggle_all: true,
   }
