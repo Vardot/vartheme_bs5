@@ -54,7 +54,7 @@
 
 {% endfor %}
 
-{% set accordion_toggle_all = (content['field_toggle_all'] and content['field_toggle_all'][0] == true) ? true : false %}
+{% set accordion_toggle_all = (content['field_toggle_all'] and content['field_toggle_all']['#items'].value == 1) ? true : false %}
 
 {% include "varbase_components:block-accordion" with {
   title_tag: 'h2',
