@@ -5941,7 +5941,7 @@ textarea.form-control-lg {
 .card {
   --bs-card-spacer-y: 1rem;
   --bs-card-spacer-x: 1rem;
-  --bs-card-title-spacer-y: .5rem;
+  --bs-card-title-spacer-y: .94rem;
   --bs-card-title-color:  ;
   --bs-card-subtitle-color:  ;
   --bs-card-border-width: var(--bs-border-width);
