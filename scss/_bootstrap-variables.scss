@@ -61,8 +61,9 @@ $border-radius: .125rem;
 $border-radius-sm: .125rem;
 $border-radius-lg: .125rem;
 
-// Override border radius for Cards with no radius.
-$card-border-radius: 0;
+// Override default bootstrap breadcrumb variables.
+$breadcrumb-divider: quote("\F285");
+$breadcrumb-divider-flipped: quote("\F285");
 
 // Override border radius for buttons with no radius.
 $btn-border-radius: 0;
@@ -75,3 +76,4 @@ $link-hover-decoration: none;
 
 // Override the default card variables.
 $card-title-spacer-y: 0.94rem;
+$card-border-radius: 0;

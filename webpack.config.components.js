@@ -24,7 +24,7 @@ module.exports = {
     // 'molecules/tabs/tabs': ['./components/molecules/tabs/tabs.scss'],
     // 'organisms/nav/nav': ['./components/organisms/nav/nav.scss'],
     // 'organisms/navbar/navbar': ['./components/organisms/navbar/navbar.scss'],
-    // 'organisms/page-header/page-header': ['./components/organisms/page-header/page-header.scss'],
+    // // 'organisms/page-header/page-header': ['./components/organisms/page-header/page-header.scss'],
     // 'organisms/page-footer/page-footer': ['./components/organisms/page-footer/page-footer.scss'],
     // 'organisms/page-better-login/page-better-login': ['./components/organisms/page-better-login/page-better-login.scss'],
     // 'organisms/social-auth/social-auth': ['./components/organisms/social-auth/social-auth.scss'],
@@ -47,8 +47,7 @@ module.exports = {
     rules: [
       {
         test: /\.(png|jpe?g|gif|svg)$/,
-        exclude: /sprite\.svg$/,
-        type: 'javascript/auto',
+        type: 'asset/resource',
         use: [{
             loader: 'file-loader',
             options: {
@@ -72,13 +71,6 @@ module.exports = {
             },
           },
         ],
-      },
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-        },
       },
       {
         test: /\.(css|scss)$/,
@@ -141,27 +133,8 @@ module.exports = {
           },
         ],
       },
-      {
-        test: /\.(woff(2))(\?v=\d+\.\d+\.\d+)?$/,
-        type: 'javascript/auto',
-        use: [{
-          loader: 'file-loader',
-          options: {
-            name: '[path][name].[ext]?[hash]',
-            publicPath: (url, resourcePath, context) => {
-              const relativePath = path.relative(context, resourcePath);
-
-              // Settings
-              if (resourcePath.includes('media/font')) {
-                return `../../${relativePath}`;
-              }
-
-              return `../${relativePath}`;
-            },
-          }
-        }],
-      },
     ],
+    noParse: [ path.resolve(__dirname, 'components/atoms/accordion/accordion.js')],
   },
   resolve: {
     modules: [
@@ -186,6 +159,6 @@ module.exports = {
   ],
   watchOptions: {
     aggregateTimeout: 300,
-    ignored: ['**/*.woff', '**/*.json', '**/*.woff2', '**/*.jpg', '**/*.png', '**/*.svg', 'node_modules'],
+    ignored: ['components/**/**/*.js', '**/*.woff', '**/*.json', '**/*.woff2', '**/*.jpg', '**/*.png', '**/*.svg', 'node_modules'],
   }
 };
