@@ -16,38 +16,148 @@ bootstrap-styles:
 # Bootstrap 5 global scripts library.
 bootstrap-scripts:
   dependencies:
-    - core/drupal
-    - core/jquery
+    - varbase_components/popper-script
+    - varbase_components/bs-base-component-script
+    # - varbase_components/bs-alert-script
+    # - varbase_components/bs-button-script
+    # - varbase_components/bs-carousel-script
+    # - varbase_components/bs-collapse-script
+    # - varbase_components/bs-dropdown-script
+    - varbase_components/bs-modal-script
+    - varbase_components/bs-offcanvas-script
+    - varbase_components/bs-popover-script
+    - varbase_components/bs-scrollspy-script
+    - varbase_components/bs-tab-script
+    - varbase_components/bs-toast-script
+    - varbase_components/bs-tooltip-script
+    - content_moderation/content_moderation
+
+# Popperjs core.
+popper-script:
   js:
     js/popperjs/popper.js: {}
-    js/bootstrap/bootstrap.min.js: {}
-    #
-    # Plugins can be included individually (using Bootstrap’s individual
-    # js/dist/*.js), or all at once using bootstrap.js or the minified
-    # bootstrap.min.js (don’t include both).
-    # ------------------------------------------------------------------------------
-    # Alerts for dismissing
-    # Buttons for toggling states and checkbox/radio functionality
-    # Carousel for all slide behaviors, controls, and indicators
-    # Collapse for toggling visibility of content
-    # Dropdowns for displaying and positioning (also requires Popper.js)
-    # Modals for displaying, positioning, and scroll behavior
-    # Navbar for extending our Collapse plugin to implement responsive behavior
-    # Tooltips and popovers for displaying and positioning (also requires Popper.js)
-    # Scrollspy for scroll behavior and navigation updates
-    # -------------------------------------------------------------------------------
-    # js/bootstrap/alert.js: {}
-    # js/bootstrap/base-component.js: {}
-    # js/bootstrap/button.js: {}
-    # js/bootstrap/carousel.js: {}
-    # js/bootstrap/collapse.js: {}
-    # js/bootstrap/dropdown.js: {}
-    # js/bootstrap/modal.js: {}
-    # js/bootstrap/offcanvas.js: {}
-    # js/bootstrap/popover.js: {}
-    # js/bootstrap/scrollspy.js: {}
-    # js/bootstrap/tab.js: {}
-    # js/bootstrap/tooltip.js: {}
+
+# Bootstrap Base component script.
+bs-base-component-script:
+  dependencies:
+    - core/drupal
+    - core/drupal.ajax
+  js:
+    js/bootstrap/dom/data.js: {}
+    js/bootstrap/dom/event-handler.js: {}
+    js/bootstrap/util/config.js: {}
+    js/bootstrap/util/index.js: {}
+    js/bootstrap/base-component.js: {}
+
+# Bootstrap alert script.
+bs-alert-script:
+  dependencies:
+    - varbase_components/bs-base-component-script
+  js:
+    js/bootstrap/util/component-functions.js: {}
+    js/bootstrap/alert.js: {}
+
+# Bootstrap button script.
+bs-button-script:
+  dependencies:
+    - varbase_components/bs-base-component-script
+  js:
+    js/bootstrap/button.js: {}
+
+# Bootstrap carousel script.
+bs-carousel-script:
+  dependencies:
+    - varbase_components/bs-base-component-script
+  js:
+    js/bootstrap/dom/manipulator.js: {}
+    js/bootstrap/dom/selector-engine.js: {}
+    js/bootstrap/util/swipe.js: {}
+    js/bootstrap/carousel.js: {}
+
+# Bootstrap collapse script.
+bs-collapse-script:
+  dependencies:
+    - varbase_components/bs-base-component-script
+  js:
+    js/bootstrap/dom/selector-engine.js: {}
+    js/bootstrap/collapse.js: {}
+
+# Bootstrap dropdown script.
+bs-dropdown-script:
+  dependencies:
+    - varbase_components/popper-script
+    - varbase_components/bs-base-component-script
+  js:
+    js/bootstrap/dom/manipulator.js: {}
+    js/bootstrap/dom/selector-engine.js: {}
+    js/bootstrap/dropdown.js: {}
+
+# Bootstrap modal script.
+bs-modal-script:
+  dependencies:
+    - varbase_components/bs-base-component-script
+  js:
+    js/bootstrap/dom/selector-engine.js: {}
+    js/bootstrap/util/backdrop.js: {}
+    js/bootstrap/util/component-functions.js: {}
+    js/bootstrap/util/focustrap.js: {}
+    js/bootstrap/util/scrollbar.js: {}
+    js/bootstrap/modal.js: {}
+
+# Bootstrap offcanvas script.
+bs-offcanvas-script:
+  dependencies:
+    - varbase_components/bs-base-component-script
+  js:
+    js/bootstrap/dom/selector-engine.js: {}
+    js/bootstrap/util/backdrop.js: {}
+    js/bootstrap/util/component-functions.js: {}
+    js/bootstrap/util/focustrap.js: {}
+    js/bootstrap/util/scrollbar.js: {}
+    js/bootstrap/offcanvas.js: {}
+
+# Bootstrap popover script.
+bs-popover-script:
+  dependencies:
+    - varbase_components/bs-base-component-script
+    - varbase_components/bs-tooltip-script
+  js:
+    js/bootstrap/popover.js: {}
+
+# Bootstrap scrollspy script.
+bs-scrollspy-script:
+  dependencies:
+    - varbase_components/bs-base-component-script
+  js:
+    js/bootstrap/dom/selector-engine.js: {}
+    js/bootstrap/scrollspy.js: {}
+
+# Bootstrap tab script.
+bs-tab-script:
+  dependencies:
+    - varbase_components/bs-base-component-script
+  js:
+    js/bootstrap/dom/selector-engine.js: {}
+    js/bootstrap/tab.js: {}
+
+# Bootstrap toast script.
+bs-toast-script:
+  dependencies:
+    - varbase_components/bs-base-component-script
+  js:
+    js/bootstrap/util/component-functions.js: {}
+    js/bootstrap/toast.js: {}
+
+# Bootstrap tooltip script.
+bs-tooltip-script:
+  dependencies:
+    - varbase_components/popper-script
+    - varbase_components/bs-base-component-script
+  js:
+    js/bootstrap/dom/manipulator.js: {}
+    js/bootstrap/util/sanitizer.js: {}
+    js/bootstrap/util/template-factory.js: {}
+    js/bootstrap/tooltip.js: {}
 
 # Vartheme BS5 global styles library.
 global-styles:

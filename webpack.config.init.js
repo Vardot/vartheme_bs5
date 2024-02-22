@@ -10,9 +10,9 @@ module.exports = merge(webpackConfig, {
     new CopyPlugin({
       patterns: [
         {
-          from: path.resolve(__dirname, "node_modules/bootstrap/dist/js/bootstrap.min.js"),
-          to: path.resolve(__dirname, "js/bootstrap"),
-          context: "node_modules/bootstrap/dist/js/",
+          from: path.resolve(__dirname, "node_modules/@popperjs/core/dist/umd/popper.js"),
+          to: path.resolve(__dirname, "js/popperjs"),
+          context: "node_modules/@popperjs/core/dist/",
         },
         {
           from: path.resolve(__dirname, "node_modules/bootstrap/js/dist/*.js"),
@@ -20,9 +20,14 @@ module.exports = merge(webpackConfig, {
           context: "node_modules/bootstrap/js/dist/",
         },
         {
-          from: path.resolve(__dirname, "node_modules/@popperjs/core/dist/umd/popper.js"),
-          to: path.resolve(__dirname, "js/popperjs"),
-          context: "node_modules/@popperjs/core/dist/",
+          from: path.resolve(__dirname, "node_modules/bootstrap/js/dist/dom/*.js"),
+          to: path.resolve(__dirname, "js/bootstrap/dom"),
+          context: "node_modules/bootstrap/js/dist/dom",
+        },
+        {
+          from: path.resolve(__dirname, "node_modules/bootstrap/js/dist/util/*.js"),
+          to: path.resolve(__dirname, "js/bootstrap/util"),
+          context: "node_modules/bootstrap/js/dist/util",
         },
         {
           from: path.resolve(__dirname, "node_modules/@fortawesome/fontawesome-free/css/all.min.css"),

@@ -32,14 +32,22 @@ libraries:
   - vartheme_bs5/framework
 
 libraries-override:
+  varbase_components/popper-script: vartheme_bs5/popperjs-script
+  varbase_components/bs-base-component-script: vartheme_bs5/bs-base-component-script
+  varbase_components/bs-alert-script: vartheme_bs5/bs-alert-script
+  varbase_components/bs-button-script: vartheme_bs5/bs-button-script
+  varbase_components/bs-carousel-script: vartheme_bs5/bs-carousel-script
+  varbase_components/bs-collapse-script: vartheme_bs5/bs-collapse-script
+  varbase_components/bs-dropdown-script: vartheme_bs5/bs-dropdown-script
+  varbase_components/bs-modal-script: vartheme_bs5/bs-modal-script
+  varbase_components/bs-offcanvas-script: vartheme_bs5/bs-offcanvas-script
+  varbase_components/bs-popover-script: vartheme_bs5/bs-popover-script
+  varbase_components/bs-scrollspy-script: vartheme_bs5/bs-scrollspy-script
+  varbase_components/bs-tab-script: vartheme_bs5/bs-tab-script
+  varbase_components/bs-toast-script: vartheme_bs5/bs-toast-script
+  varbase_components/bs-tooltip-script: vartheme_bs5/bs-tooltip-script
   content_moderation/content_moderation: vartheme_bs5/content_moderation
 
-ckeditor_stylesheets:
-  - css/base/bootstrap.base.css
-  - css/base/vartheme.base.css
-  - css/layout/edge2edge.layout.css
-  - css/layout/equal-height.layout.css
-  - css/layout/print.layout.css
-
+ckeditor_stylesheets: false
 ckeditor5-stylesheets: false
 enforce_prop_schemas: false
