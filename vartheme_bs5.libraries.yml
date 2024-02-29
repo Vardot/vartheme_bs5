@@ -39,8 +39,11 @@ popper-script:
 # Bootstrap Base component script.
 bs-base-component-script:
   dependencies:
+    - core/drupalSettings
     - core/drupal
     - core/drupal.ajax
+    - core/jquery
+    - core/once
     - varbase_components/popper-script
   js:
     js/bootstrap/util/index.js: {}
@@ -159,9 +162,11 @@ global-scripts:
   js:
     js/scripts.js: {}
   dependencies:
-    - core/jquery
+    - core/drupalSettings
     - core/drupal
     - core/drupal.ajax
+    - core/jquery
+    - core/once
 
 framework-rtl:
   dependencies:
