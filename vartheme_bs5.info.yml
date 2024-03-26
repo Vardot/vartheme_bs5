@@ -115,3 +115,5 @@ ckeditor_stylesheets:
   - css/layout/equal-height.layout.css
   # Theme
   - css/theme/content.theme.css
+
+ckeditor5-stylesheets: false
