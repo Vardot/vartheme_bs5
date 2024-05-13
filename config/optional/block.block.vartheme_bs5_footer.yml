@@ -7,10 +7,13 @@ dependencies:
     - system
   theme:
     - vartheme_bs5
+third_party_settings:
+  block_class:
+    classes: 'w-auto ms-auto ps-0 p-e-0'
 id: vartheme_bs5_footer
 theme: vartheme_bs5
-region: footer_top
-weight: -5
+region: footer_bottom
+weight: -6
 provider: null
 plugin: 'system_menu_block:footer'
 settings:
