@@ -9,7 +9,7 @@ dependencies:
     - vartheme_bs5
 third_party_settings:
   block_class:
-    classes: ms-lg-auto
+    classes: 'sitemap-menu ms-lg-auto'
 id: vartheme_bs5_footer_sitemap
 theme: vartheme_bs5
 region: footer_top
@@ -18,7 +18,7 @@ provider: null
 plugin: 'menu_block:main'
 settings:
   id: 'menu_block:main'
-  label: 'Main navigation'
+  label: 'Footer sitemap menu'
   label_display: '0'
   provider: menu_block
   follow: false
