@@ -4,7 +4,9 @@
 // -----------------------------------------------------------------------------
 
 // Layout & components
-@import "../../node_modules/bootstrap/scss/root";
+// The Root library was overridden and attached with the `varbase_components:root` component.
+// @import "../../node_modules/bootstrap/scss/root"; // Commented the import, but kept for reference.
+
 @import "../../node_modules/bootstrap/scss/reboot";
 @import "../../node_modules/bootstrap/scss/type";
 @import "../../node_modules/bootstrap/scss/images";

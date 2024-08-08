@@ -1,5 +1,6 @@
 framework:
   dependencies:
+    - core/components.vartheme_bs5--root
     - vartheme_bs5/bootstrap-styles
     - vartheme_bs5/bootstrap-scripts
     - vartheme_bs5/global-styles
