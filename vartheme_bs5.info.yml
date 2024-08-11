@@ -47,6 +47,7 @@ libraries-override:
   varbase_components/bs-tab-script: vartheme_bs5/bs-tab-script
   varbase_components/bs-toast-script: vartheme_bs5/bs-toast-script
   varbase_components/bs-tooltip-script: vartheme_bs5/bs-tooltip-script
+  varbase_components/root: vartheme_bs5/root
 
 ckeditor_stylesheets: false
 ckeditor5-stylesheets: false
