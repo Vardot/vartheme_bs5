@@ -1,0 +1,16 @@
+ignore:
+  - '/vartheme_bs5.starterkit.yml'
+  - '/composer.json'
+  - '/yarn.lock'
+  - '/.git'
+  - '/.gitlab'
+  - '/scripts'
+  - '/tests'
+  - '/src/StarterKit.php'
+  - '/README.md'
+  - '/README.txt'
+no_edit:
+  - 'starterkit.md'
+no_rename: []
+info:
+  version: 1.0.0

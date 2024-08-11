@@ -22,24 +22,6 @@ final class StarterKit implements StarterKitInterface {
   ];
 
   /**
-   * List of files & directories that shouldn't be copied over.
-   *
-   * @var array
-   */
-  private static $deletable = [
-    '/composer.json',
-    '/yarn.lock',
-    '/.git',
-    '/.gitlab',
-    '/scripts',
-    '/tests',
-    '/src/StarterKit.php',
-    '/README.md',
-    '/README.txt',
-    '/starterkit.md',
-  ];
-
-  /**
    * Array of files to avoid renaming.
    *
    * @var array files
@@ -134,20 +116,6 @@ final class StarterKit implements StarterKitInterface {
   }
 
   /**
-   * Removes $deletable files & directories from the working directory prior to copying into final destination.
-   *
-   * @param string $working_dir
-   *   The working directory of the template being generated.
-   */
-  private static function removeDeletableFiles(string $working_dir): void {
-    $fs = new Filesystem();
-
-    foreach (self::$deletable as $item) {
-      $fs->remove($working_dir . $item);
-    }
-  }
-
-  /**
    * Copies bundler files from core.
    *
    * @param string $dir
@@ -179,8 +147,6 @@ final class StarterKit implements StarterKitInterface {
   public static function postProcess(string $working_dir, string $machine_name, string $theme_name): void {
 
     self::updateThemeInfo($working_dir, $machine_name, $theme_name);
-
-    self::removeDeletableFiles($working_dir);
 
     // Replace "Vartheme BS5" in class names before doing bulk find/replace.
     $old_pattern = 'Vartheme BS5';
