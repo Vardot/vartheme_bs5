@@ -1,0 +1,14 @@
+@import "../defaults";   // Global defaults.
+
+// CKEditor 5 integration with Bootstrap 5 styling.
+// -----------------------------------------------------------------------------
+
+.ck-content {
+  @import "../../node_modules/bootstrap/scss/reboot";
+  @import "../../node_modules/bootstrap/scss/type";
+  @import "../../node_modules/bootstrap/scss/images";
+  @import "../../node_modules/bootstrap/scss/tables";
+  // @import "../../node_modules/bootstrap/scss/buttons";
+  // @import "../../node_modules/bootstrap/scss/badge";
+  @import "../../node_modules/bootstrap/scss/list-group";
+}

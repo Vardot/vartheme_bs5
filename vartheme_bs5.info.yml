@@ -50,5 +50,6 @@ libraries-override:
   varbase_components/root: vartheme_bs5/root
 
 ckeditor_stylesheets: false
-ckeditor5-stylesheets: false
+ckeditor5-stylesheets:
+  - css/base/ckeditor5.bootstrap.base.css
 enforce_prop_schemas: false
