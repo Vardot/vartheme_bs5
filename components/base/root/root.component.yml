@@ -1,7 +1,7 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: Root 
 status: experimental
-description: Consists of the color palette, typography, shadows, and spacing. Creating a strong design token will have a big impact on both your design system and your products.
+description: Provides a list of Root CSS3 variables for Bootstrap 5
 props:
   type: object
   properties: {}
