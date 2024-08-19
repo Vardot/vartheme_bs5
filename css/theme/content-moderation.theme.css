@@ -47,7 +47,6 @@
   font-weight: bold;
   
   float: left;
-  width: -moz-fit-content;
   width: fit-content;
   
   margin: 0 .5rem 0 0;
@@ -128,7 +127,6 @@
   #edit-moderation-state-wrapper .form-control,
   #content-moderation-entity-moderation-form .form-control {
     max-width: 20em;
-    width: -moz-fit-content;
     width: fit-content;
     margin-top: -0.3rem;
   }
