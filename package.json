@@ -8,11 +8,12 @@
     "node": ">= 18.0"
   },
   "scripts": {
-    "theme:init": "webpack --progress --config  webpack.config.init.js",
+    "theme:init": "webpack --progress --config  webpack.config.init.js ; node bootstrap.fixer.js",
     "theme:build": "webpack --progress --config webpack.config.build.js",
     "theme:full-build": "yarn theme:build ; yarn components:build",
     "theme:watch": "webpack --progress --config webpack.config.dev.js --watch",
     "components:build": "webpack --progress --config webpack.config.components.js",
+    "bootstrap:fixer": "node bootstrap.fixer.js",
     "phpcs": "phpcs --standard=./.phpcs.xml .",
     "phpcbf": "phpcbf --standard=./.phpcs.xml .",
     "lint:js": "node ./node_modules/eslint/bin/eslint.js .",
