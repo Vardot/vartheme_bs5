@@ -6,7 +6,7 @@ framework:
     - vartheme_bs5/global-styles
     - vartheme_bs5/global-scripts
     - vartheme_bs5/bootstrap-icons
-    - vartheme_bs5/fontawesome
+    # - vartheme_bs5/fontawesome  ## Uncomment to use the fontawesome library.
 
 # Bootstrap 5 global styles library.
 bootstrap-styles:
@@ -176,7 +176,7 @@ framework-rtl:
     - vartheme_bs5/global-styles-rtl
     - vartheme_bs5/global-scripts
     - vartheme_bs5/bootstrap-icons
-    - vartheme_bs5/fontawesome
+    # - vartheme_bs5/fontawesome ## Uncomment to use the fontawesome library.
 
 # Bootstrap 5 global RTL styles library.
 bootstrap-styles-rtl:
