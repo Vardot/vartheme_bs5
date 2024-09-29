@@ -9,7 +9,7 @@ const { Mode } = require('postcss-rtlcss/options');
 const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
-  mode: 'production',
+  mode: 'development',
   entry: {
     // ################################################
     // SCSS
@@ -130,13 +130,13 @@ module.exports = {
               additionalData: `
                 @use "sass:color";
                 @use "sass:math";
+                @use "sass:string";
               `,
             },
           },
         ],
       },
     ],
-    noParse: [ path.resolve(__dirname, 'components/atoms/accordion/accordion.js')],
   },
   resolve: {
     modules: [
