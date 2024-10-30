@@ -25,6 +25,6 @@
   "require": {
     "drupal/core": "~10.3.0 || ~11.0.0",
     "vardot/varbase-patches": "~9 || ~10 || ~11",
-    "drupal/varbase_components": "~2"
+    "drupal/varbase_components": "~3 || 3.0.x-dev"
   }
 }
