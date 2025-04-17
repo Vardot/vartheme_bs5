@@ -23,8 +23,8 @@
     }
   },
   "require": {
-    "drupal/core": "~10.4.0 || ~11.4.0",
+    "drupal/core": "~10.4.0 || ~11.1.0",
     "vardot/varbase-patches": "~10.0.0",
-    "drupal/varbase_components": "~2"
+    "drupal/varbase_components": "~2.0.0"
   }
 }
