@@ -62,7 +62,7 @@ function vartheme_bs5_preprocess_page_title(&$variables) {
 function vartheme_bs5_preprocess_html(&$variables) {
 
   // The path for Vartheme BS5 theme in variables.
-  $variables['vartheme_bs5_path'] = \Drupal::request()->getBaseUrl() . '/' . \Drupal::service('extension.list.theme')->getPath('vartheme_bs5');
+  $variables['vartheme_bs5_path'] = \Drupal::request()->getSchemeAndHttpHost() . \Drupal::request()->getBaseUrl() . '/' . \Drupal::service('extension.list.theme')->getPath('vartheme_bs5');
 
 }
 
