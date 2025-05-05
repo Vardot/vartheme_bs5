@@ -13,7 +13,443 @@
   "name": "Colors"
 } %}
 
-<h2>Colors</h2>
+<style>
+  .color-grid {
+    display: grid;
+    grid-template-columns: 100px repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .color-grid-header {
+    display: grid;
+    grid-template-columns: 100px repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  .color-grid-header span {
+    font-size: 0.875rem;
+    font-weight: bold;
+    color: var(--bs-secondary-color);
+  }
+  .color-name {
+    display: flex;
+    align-items: center;
+    font-size: 0.875rem;
+  }
+  .color-swatch {
+    height: 50px;
+    border-radius: var(--bs-border-radius);
+    display: flex;
+    color: var(--bs-white);
+    font-size: 0.75rem;
+    font-weight: bold;
+    box-shadow: var(--bs-box-shadow-sm);
+    align-items: center;
+    justify-content: start;
+    padding-inline: 0.5rem 0.5rem;
+  }
+  .swatch-border {
+    border: 1px solid var(--bs-border-color);
+  }
+
+</style>
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1>Colors</h1>
+    </div>
+  </div>
+
+
+  <div class="row mt-5 pt-5">
+    <div class="col pt-5 border-top border-light-subtle">
+      <h2>Brand Colors</h2>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col">
+      <div class="color-grid-header">
+        <span></span>
+        <span>Default</span>
+        <span>Emphasis</span>
+        <span>Subtle</span>
+        <span>Border</span>
+      </div>
+
+      <div class="color-grid">
+        <div class="color-name">Primary</div>
+        <div class="color-swatch" style="background-color: var(--bs-primary);"></div>
+        <div class="color-swatch" style="background-color: var(--bs-primary-text-emphasis); color: var(--bs-body-color);"></div>
+        <div class="color-swatch" style="background-color: var(--bs-primary-bg-subtle); color: var(--bs-body-color);"></div>
+        <div class="color-swatch swatch-border" style="background-color: transparent; border-color: var(--bs-primary-border-subtle); color: var(--bs-body-color);"></div>
+      </div>
+
+      <div class="color-grid">
+        <div class="color-name">Secondary</div>
+        <div class="color-swatch" style="background-color: var(--bs-secondary);"></div>
+        <div class="color-swatch" style="background-color: var(--bs-secondary-text-emphasis); color: var(--bs-body-color);"></div>
+        <div class="color-swatch" style="background-color: var(--bs-secondary-bg-subtle); color: var(--bs-body-color);"></div>
+        <div class="color-swatch swatch-border" style="background-color: transparent; border-color: var(--bs-secondary-border-subtle); color: var(--bs-body-color);"></div>
+      </div>
+
+      <div class="color-grid">
+        <div class="color-name">Tertiary</div>
+        <div class="color-swatch" style="background-color: var(--bs-gray-600);"></div>
+        <div class="color-swatch" style="background-color: var(--bs-gray-600-text-emphasis); color: var(--bs-body-color);"></div>
+        <div class="color-swatch" style="background-color: var(--bs-gray-600-bg-subtle); color: var(--bs-body-color);"></div>
+        <div class="color-swatch swatch-border" style="background-color: transparent; border-color: var(--bs-gray-600-border-subtle); color: var(--bs-body-color);"></div>
+      </div>
+
+      <div class="color-grid">
+        <div class="color-name">Dark</div>
+        <div class="color-swatch" style="background-color: var(--bs-dark);"></div>
+        <div class="color-swatch" style="background-color: var(--bs-dark-text-emphasis); color: var(--bs-body-color);"></div>
+        <div class="color-swatch" style="background-color: var(--bs-dark-bg-subtle); color: var(--bs-body-color);"></div>
+        <div class="color-swatch swatch-border" style="background-color: transparent; border-color: var(--bs-dark-border-subtle); color: var(--bs-body-color);"></div>
+      </div>
+
+      <div class="color-grid">
+        <div class="color-name">Light</div>
+        <div class="color-swatch" style="background-color: var(--bs-light);"></div>
+        <div class="color-swatch" style="background-color: var(--bs-light-text-emphasis); color: var(--bs-body-color);"></div>
+        <div class="color-swatch" style="background-color: var(--bs-light-bg-subtle); color: var(--bs-body-color);"></div>
+        <div class="color-swatch swatch-border" style="background-color: transparent; border-color: var(--bs-light-border-subtle); color: var(--bs-body-color);"></div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class="row mt-5 pt-5">
+    <div class="col pt-5 border-top border-light-subtle">
+      <h2>Alert Colors</h2>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col">
+      <div class="color-grid-header">
+        <span></span>
+        <span>Default</span>
+        <span>Emphasis</span>
+        <span>Subtle</span>
+        <span>Border</span>
+      </div>
+
+      <div class="color-grid">
+        <div class="color-name">Success</div>
+        <div class="color-swatch" style="background-color: var(--bs-success);"></div>
+        <div class="color-swatch" style="background-color: var(--bs-success-text-emphasis); color: var(--bs-body-color);"></div>
+        <div class="color-swatch" style="background-color: var(--bs-success-bg-subtle); color: var(--bs-body-color);"></div>
+        <div class="color-swatch swatch-border" style="background-color: transparent; border-color: var(--bs-success-border-subtle); color: var(--bs-body-color);"></div>
+      </div>
+
+      <div class="color-grid">
+        <div class="color-name">Error</div>
+        <div class="color-swatch" style="background-color: var(--bs-danger);"></div>
+        <div class="color-swatch" style="background-color: var(--bs-danger-text-emphasis); color: var(--bs-body-color);"></div>
+        <div class="color-swatch" style="background-color: var(--bs-danger-bg-subtle); color: var(--bs-body-color);"></div>
+        <div class="color-swatch swatch-border" style="background-color: transparent; border-color: var(--bs-danger-border-subtle); color: var(--bs-body-color);"></div>
+      </div>
+
+      <div class="color-grid">
+        <div class="color-name">Warning</div>
+        <div class="color-swatch" style="background-color: var(--bs-warning);"></div>
+        <div class="color-swatch" style="background-color: var(--bs-warning-text-emphasis); color: var(--bs-body-color);"></div>
+        <div class="color-swatch" style="background-color: var(--bs-warning-bg-subtle); color: var(--bs-body-color);"></div>
+        <div class="color-swatch swatch-border" style="background-color: transparent; border-color: var(--bs-warning-border-subtle); color: var(--bs-body-color);"></div>
+      </div>
+
+      <div class="color-grid">
+        <div class="color-name">Info</div>
+        <div class="color-swatch" style="background-color: var(--bs-info);"></div>
+        <div class="color-swatch" style="background-color: var(--bs-info-text-emphasis); color: var(--bs-body-color);"></div>
+        <div class="color-swatch" style="background-color: var(--bs-info-bg-subtle); color: var(--bs-body-color);"></div>
+        <div class="color-swatch swatch-border" style="background-color: transparent; border-color: var(--bs-info-border-subtle); color: var(--bs-body-color);"></div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row mt-5 pt-5">
+    <div class="col pt-5 border-top border-light-subtle">
+      <h2>Text Variables</h2>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col">
+      <div class="p-0 fs-4">
+        <div class="row g-2 mb-2">
+          <div class="col-sm-2 d-flex align-items-start border-bottom border-light-subtle">
+            <span>default</span>
+          </div>
+          <div class="col-sm-2 d-flex align-items-start border-bottom border-light-subtle">
+            <span class="text-body ps-3 pe-3">Text</span>
+          </div>
+          <div class="col-sm-2"></div>
+          <div class="col-sm-2 d-flex align-items-start border-bottom border-light-subtle">
+            <span>subtle</span>
+          </div>
+          <div class="col-sm-2 d-flex align-items-start border-bottom border-light-subtle">
+            <span class="text-secondary ps-3 pe-3">Text</span>
+          </div>
+        </div>
+
+        <div class="row g-2 mb-2">
+          <div class="col-sm-2 d-flex align-items-start border-bottom border-light-subtle">
+            <span>light</span>
+          </div>
+          <div class="col-sm-2 d-flex align-items-start border-bottom border-light-subtle">
+            <span class="bg-dark text-light ps-3 pe-3">Text</span>
+          </div>
+          <div class="col-sm-2"></div>
+          <div class="col-sm-2 d-flex align-items-start border-bottom border-light-subtle">
+            <span>white</span>
+          </div>
+          <div class="col-sm-2 d-flex align-items-start border-bottom border-light-subtle">
+            <span class="bg-dark text-white ps-3 pe-3">Text</span>
+          </div>
+        </div>
+
+        <div class="row g-2 mb-2">
+          <div class="col-sm-2 d-flex align-items-start border-bottom border-light-subtle">
+            <span>primary</span>
+          </div>
+          <div class="col-sm-2 d-flex align-items-start border-bottom border-light-subtle">
+            <span class="text-primary ps-3 pe-3">Text</span>
+          </div>
+          <div class="col-sm-2"></div>
+          <div class="col-sm-2 d-flex align-items-start border-bottom border-light-subtle">
+            <span>secondary</span>
+          </div>
+          <div class="col-sm-2 d-flex align-items-start border-bottom border-light-subtle">
+            <span class="text-indigo ps-3 pe-3">Text</span>
+          </div>
+        </div>
+
+        <div class="row g-2 mb-2">
+          <div class="col-sm-2 d-flex align-items-start border-bottom border-light-subtle">
+            <span>success</span>
+          </div>
+          <div class="col-sm-2 d-flex align-items-start border-bottom border-light-subtle">
+            <span class="text-success ps-3 pe-3">Text</span>
+          </div>
+          <div class="col-sm-2"></div>
+          <div class="col-sm-2 d-flex align-items-start border-bottom border-light-subtle">
+            <span>danger</span>
+          </div>
+          <div class="col-sm-2 d-flex align-items-start border-bottom border-light-subtle">
+            <span class="text-danger ps-3 pe-3">Text</span>
+          </div>
+        </div>
+
+        <div class="row g-2 mb-2">
+          <div class="col-sm-2 d-flex align-items-start border-bottom border-light-subtle">
+            <span>warning</span>
+          </div>
+          <div class="col-sm-2 d-flex align-items-start border-bottom border-light-subtle">
+            <span class="text-warning ps-3 pe-3">Text</span>
+          </div>
+          <div class="col-sm-2"></div>
+          <div class="col-sm-2 d-flex align-items-start border-bottom border-light-subtle">
+            <span>info</span>
+          </div>
+          <div class="col-sm-2 d-flex align-items-start border-bottom border-light-subtle">
+            <span class="text-info ps-3 pe-3">Text</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-5 pt-5">
+        <div class="col pt-5 border-top border-light-subtle">
+          <h2>Other</h2>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col">
+          <div class="row row-cols-2 row-cols-md-3 g-4">
+            <div class="col">
+              <div class="d-flex flex-column">
+                <span>bs-blue</span>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-blue) 20%, black); color: var(--bs-white);">900</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-blue) 40%, black); color: var(--bs-white);">800</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-blue) 60%, black); color: var(--bs-white);">700</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-blue) 80%, black); color: var(--bs-white);">600</div>
+                <div class="color-swatch mb-1" style="background-color: var(--bs-blue); color: var(--bs-white);">500</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-blue) 80%, white); color: var(--bs-black);">400</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-blue) 60%, white); color: var(--bs-black);">300</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-blue) 40%, white); color: var(--bs-black);">200</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-blue) 30%, white); color: var(--bs-black);">100</div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="d-flex flex-column">
+                <span>bs-indigo</span>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-indigo) 20%, black); color: var(--bs-white);">900</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-indigo) 40%, black); color: var(--bs-white);">800</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-indigo) 60%, black); color: var(--bs-white);">700</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-indigo) 80%, black); color: var(--bs-white);">600</div>
+                <div class="color-swatch mb-1" style="background-color: var(--bs-indigo); color: var(--bs-white);">500</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-indigo) 80%, white); color: var(--bs-black);">400</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-indigo) 60%, white); color: var(--bs-black);">300</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-indigo) 40%, white); color: var(--bs-black);">200</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-indigo) 30%, white); color: var(--bs-black);">100</div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="d-flex flex-column">
+                <span>bs-purple</span>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-purple) 20%, black); color: var(--bs-white);">900</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-purple) 40%, black); color: var(--bs-white);">800</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-purple) 60%, black); color: var(--bs-white);">700</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-purple) 80%, black); color: var(--bs-white);">600</div>
+                <div class="color-swatch mb-1" style="background-color: var(--bs-purple); color: var(--bs-white);">500</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-purple) 80%, white); color: var(--bs-black);">400</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-purple) 60%, white); color: var(--bs-black);">300</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-purple) 40%, white); color: var(--bs-black);">200</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-purple) 30%, white); color: var(--bs-black);">100</div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="d-flex flex-column">
+                <span>bs-pink</span>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-pink) 20%, black); color: var(--bs-white);">900</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-pink) 40%, black); color: var(--bs-white);">800</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-pink) 60%, black); color: var(--bs-white);">700</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-pink) 80%, black); color: var(--bs-white);">600</div>
+                <div class="color-swatch mb-1" style="background-color: var(--bs-pink); color: var(--bs-white);">500</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-pink) 80%, white); color: var(--bs-black);">400</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-pink) 60%, white); color: var(--bs-black);">300</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-pink) 40%, white); color: var(--bs-black);">200</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-pink) 30%, white); color: var(--bs-black);">100</div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="d-flex flex-column">
+                <span>bs-red</span>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-red) 20%, black); color: var(--bs-white);">900</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-red) 40%, black); color: var(--bs-white);">800</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-red) 60%, black); color: var(--bs-white);">700</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-red) 80%, black); color: var(--bs-white);">600</div>
+                <div class="color-swatch mb-1" style="background-color: var(--bs-red); color: var(--bs-white);">500</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-red) 80%, white); color: var(--bs-black);">400</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-red) 60%, white); color: var(--bs-black);">300</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-red) 40%, white); color: var(--bs-black);">200</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-red) 30%, white); color: var(--bs-black);">100</div>
+              </div>
+            </div>
+
+
+            <div class="col">
+              <div class="d-flex flex-column">
+                <span>bs-orange</span>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-orange) 20%, black); color: var(--bs-white);">900</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-orange) 40%, black); color: var(--bs-white);">800</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-orange) 60%, black); color: var(--bs-white);">700</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-orange) 80%, black); color: var(--bs-white);">600</div>
+                <div class="color-swatch mb-1" style="background-color: var(--bs-orange); color: var(--bs-white);">500</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-orange) 80%, white); color: var(--bs-black);">400</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-orange) 60%, white); color: var(--bs-black);">300</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-orange) 40%, white); color: var(--bs-black);">200</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-orange) 30%, white); color: var(--bs-black);">100</div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="d-flex flex-column">
+                <span>bs-yellow</span>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-yellow) 20%, black); color: var(--bs-white);">900</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-yellow) 40%, black); color: var(--bs-white);">800</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-yellow) 60%, black); color: var(--bs-white);">700</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-yellow) 80%, black); color: var(--bs-white);">600</div>
+                <div class="color-swatch mb-1" style="background-color: var(--bs-yellow); color: var(--bs-white);">500</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-yellow) 80%, white); color: var(--bs-black);">400</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-yellow) 60%, white); color: var(--bs-black);">300</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-yellow) 40%, white); color: var(--bs-black);">200</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-yellow) 30%, white); color: var(--bs-black);">100</div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="d-flex flex-column">
+                <span>bs-green</span>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-green) 20%, black); color: var(--bs-white);">900</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-green) 40%, black); color: var(--bs-white);">800</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-green) 60%, black); color: var(--bs-white);">700</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-green) 80%, black); color: var(--bs-white);">600</div>
+                <div class="color-swatch mb-1" style="background-color: var(--bs-green); color: var(--bs-white);">500</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-green) 80%, white); color: var(--bs-black);">400</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-green) 60%, white); color: var(--bs-black);">300</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-green) 40%, white); color: var(--bs-black);">200</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-green) 30%, white); color: var(--bs-black);">100</div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="d-flex flex-column">
+                <span>bs-teal</span>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-teal) 20%, black); color: var(--bs-white);">900</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-teal) 40%, black); color: var(--bs-white);">800</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-teal) 60%, black); color: var(--bs-white);">700</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-teal) 80%, black); color: var(--bs-white);">600</div>
+                <div class="color-swatch mb-1" style="background-color: var(--bs-teal); color: var(--bs-white);">500</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-teal) 80%, white); color: var(--bs-black);">400</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-teal) 60%, white); color: var(--bs-black);">300</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-teal) 40%, white); color: var(--bs-black);">200</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-teal) 30%, white); color: var(--bs-black);">100</div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="d-flex flex-column">
+                <span>bs-cyan</span>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-cyan) 20%, black); color: var(--bs-white);">900</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-cyan) 40%, black); color: var(--bs-white);">800</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-cyan) 60%, black); color: var(--bs-white);">700</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-cyan) 80%, black); color: var(--bs-white);">600</div>
+                <div class="color-swatch mb-1" style="background-color: var(--bs-cyan); color: var(--bs-white);">500</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-cyan) 80%, white); color: var(--bs-black);">400</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-cyan) 60%, white); color: var(--bs-black);">300</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-cyan) 40%, white); color: var(--bs-black);">200</div>
+                <div class="color-swatch mb-1" style="background-color: color-mix(in srgb, var(--bs-cyan) 30%, white); color: var(--bs-black);">100</div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="d-flex flex-column">
+                <span>bs-gray</span>
+                <div class="color-swatch mb-1" style="background-color: var(--bs-gray-900); color: var(--bs-white);">900</div>
+                <div class="color-swatch mb-1" style="background-color: var(--bs-gray-800); color: var(--bs-white);">800</div>
+                <div class="color-swatch mb-1" style="background-color: var(--bs-gray-700); color: var(--bs-white);">700</div>
+                <div class="color-swatch mb-1" style="background-color: var(--bs-gray-600); color: var(--bs-white);">600</div>
+                <div class="color-swatch mb-1" style="background-color: var(--bs-gray-500); color: var(--bs-white);">500</div>
+                <div class="color-swatch mb-1" style="background-color: var(--bs-gray-400); color: var(--bs-black);">400</div>
+                <div class="color-swatch mb-1" style="background-color: var(--bs-gray-300); color: var(--bs-black);">300</div>
+                <div class="color-swatch mb-1" style="background-color: var(--bs-gray-200); color: var(--bs-black);">200</div>
+                <div class="color-swatch mb-1" style="background-color: var(--bs-gray-100); color: var(--bs-black);">100</div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="d-flex flex-column">
+                <span>bs-black</span>
+                <div class="color-swatch" style="background-color: var(--bs-black);">black</div>
+              </div>
+              <div class="d-flex flex-column mt-3">
+                <span>bs-white</span>
+                <div class="color-swatch swatch-border" style="background-color: var(--bs-white); color: var(--bs-body-color);">white</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 {% endstory %}
 
