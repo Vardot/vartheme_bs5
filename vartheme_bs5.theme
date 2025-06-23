@@ -89,16 +89,22 @@ function vartheme_bs5_form_alter(&$form, $form_state, $form_id) {
  */
 function vartheme_bs5_preprocess_login_with(&$variables) {
 
-  if (\Drupal::moduleHandler()->moduleExists('social_auth')) {
-    foreach ($variables['social_networks'] as $social_network_index => $social_network) {
-      if (isset($social_network['img_path'])) {
+  // Check if the Social Auth module exists and social networks are set.
+  if (!\Drupal::moduleHandler()->moduleExists('social_auth') || empty($variables['networks'])) {
+    return;
+  }
+
+  if (is_array($variables['networks']) && $variables['networks'] > 0) {
+    foreach ($variables['networks'] as $id => $network) {
+      $network_definition = $network->getPluginDefinition();
+      if (isset($network_definition['img_path'])) {
         $theme_path = \Drupal::service('extension.list.theme')->getPath('vartheme_bs5');
+        $network_img_path_in_vartheme = $theme_path . '/images/social_auth/' . $network_definition['provider'] . '/' . $network_definition['img_path'];
 
-        $replaced_path_for_icons = str_replace('modules/contrib', 'social_auth', $social_network['img_path']);
-        $social_network_img_path_in_vartheme = $theme_path . '/images/' . $replaced_path_for_icons;
-
-        if (file_exists(DRUPAL_ROOT . '/' . $social_network_img_path_in_vartheme)) {
-          $variables['social_networks'][$social_network_index]['img_path'] = $social_network_img_path_in_vartheme;
+        if (file_exists(DRUPAL_ROOT . '/' . $network_img_path_in_vartheme)) {
+          $variables['custom_networks'][$id] = [
+            'img_path' => $network_img_path_in_vartheme,
+          ];
         }
       }
     }
