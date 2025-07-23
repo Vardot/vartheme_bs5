@@ -1,0 +1,73 @@
+{/* pagination.mdx */}
+
+import { Canvas, Title, Subtitle, ArgTypes, Source, Meta, Description, Primary, Story, Stories, Controls } from '@storybook/blocks';
+import * as comStories from './pagination.stories.json';
+import templateSource from './pagination.twig?raw';
+
+<Meta of={comStories} name="Docs"/>
+
+<Title />
+<Subtitle />
+<Description />
+
+
+> ## Bootstrap Documentation on 
+> * [Pagination](https://getbootstrap.com/docs/5.3/components/pagination)
+
+
+<Primary />
+
+## Properties
+<Controls />
+
+## Attributes:        
+* `attributes`: HTML attributes for the pagination element.
+
+
+## Slots:
+* N/A
+
+<Stories of={comStories} />
+
+### Examples
+
+
+**Example #1:** Use for displaying a pager.
+```
+{% include 'vartheme_bs5:pagination' with {
+  items: items,
+  alignment: 'center',
+  pagination_utility_classes: ['mt-3']
+} %}
+```
+
+**Example #2:** Use for large pager.
+```
+{% include 'vartheme_bs5:pagination' with {
+  items: items,
+  size: 'lg',
+  alignment: 'center',
+  pagination_utility_classes: ['mt-3']
+} %}
+```
+
+**Example #3:** Use for small pager.
+```
+{% include 'vartheme_bs5:pagination' with {
+  items: items,
+  size: 'sm',
+  alignment: 'center',
+  pagination_utility_classes: ['mt-3']
+} %}
+```
+
+**Example #4:** Use in views mini-pager
+```
+{% include 'vartheme_bs5:pagination' with {
+  pagination_utility_classes: ['mt-2']
+} %}
+```
+
+## Source code
+[//]: # (Twig Template source code)
+<Source code={templateSource} />

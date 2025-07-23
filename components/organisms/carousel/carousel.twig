@@ -1,0 +1,108 @@
+{#
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for Bootstrap carousel component.
+ *
+ * Available properties:
+ * - id: Set a unique id on the carousel for optional controls, especially if you’re using multiple carousels on a single page.
+ * - slide_component: A component name to render a slide. Default `vartheme_bs5:card-hero`
+ * - items: An array of slider items, Each item has (media, content) for the `slide_component` default `vartheme_bs5:card-hero`
+ *    - media: The media slot for the slide_component
+ *    - content: The content slot for the slide_component
+ * - controls: Add the previous/next controls.
+ * - indicators: Add indicators to the carousel, alongside the previous/next controls.
+ * - carousel_utility_classes: An array of utility classes. Use to add extra Bootstrap utility classes or custom CSS classes over to the carousel element.
+ * - carousel_indicators_utility_classes: An array of utility classes. Use to add extra Bootstrap utility classes or custom CSS classes over to the indicators element.
+ *
+ * Available attributes:
+ * - attributes: HTML attributes to apply to the carousel main wrapper tag.
+ * - indicators_attributes: HTML attributes to apply to the indicators wrapper tag.
+ *
+ * Available slots:
+ * - N/A
+ *
+ */
+#}
+{% set slide_component = slide_component ?? 'vartheme_bs5:card-hero' %}
+{% set carousel_utility_classes = carousel_utility_classes ?? [] %}
+{% set carousel_indicators_utility_classes = carousel_indicators_utility_classes ?? [] %}
+
+{%
+  set carousel_classes = [
+    'carousel',
+    'slide',
+  ]|merge(carousel_utility_classes)
+%}
+
+{% if not attributes %}
+  {% set attributes = create_attribute() %}
+{% endif %}
+
+{% set attributes = attributes.addClass(carousel_classes) %}
+{% set attributes = attributes.setAttribute('id', id) %}
+{% set attributes = attributes.setAttribute('data-bs-ride', 'true') %}
+
+<div{{ attributes }}>
+  {% if items %}
+
+    {# Add indicators for the carousel #}
+    {% if indicators %}
+      {% if not indicators_attributes %}
+        {% set indicators_attributes = create_attribute() %}
+      {% endif %}
+
+      {%
+        set indicators_classes = [
+          'carousel-indicators'
+        ]|merge(carousel_indicators_utility_classes)
+      %}
+
+      {% set indicators_attributes = indicators_attributes.addClass(indicators_classes) %}
+
+      <div{{ indicators_attributes}}>
+        {% for key, item in items %}
+          <button type="button" data-bs-target="#{{ id }}" data-bs-slide-to="{{ key }}" class="{{ (key == 0) ? 'active' }}" aria-label="{{ item.indicator_label }}" aria-current="{{ (key == 0) ? 'true' }}"></button>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {# Add carousel itmes #}
+    <div class="carousel-inner">
+      {% for key, item in items %}
+        <div class="carousel-item {{ (key == 0) ? 'active' }}">
+          {% if item.media or item.content %}
+            {% if item.media %}
+              {% set media_slot = [{'#markup': item.media}]|render %}
+            {% else %}
+              {% set media_slot = '' %}
+            {% endif %}
+
+            {% if item.content %}
+              {% set content_slot = [{'#markup': item.content}]|render %}
+            {% else %}
+              {% set content_slot = '' %}
+            {% endif %}
+
+            {% include slide_component with {
+              card_border: false,
+              media: media_slot,
+              content: content_slot
+            } only %}
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+
+    {# Add controls for the carousel #}
+    {% if controls %}
+      <button class="carousel-control-prev" type="button" data-bs-target="#{{ id }}" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">{{ 'Previous'|t }}</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#{{ id }}" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">{{ 'Next'|t }}</span>
+      </button>
+    {% endif %}
+  {% endif %}
+</div>

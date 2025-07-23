@@ -1,0 +1,96 @@
+.varbase-overlay-card .overlay-card-content {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.25rem;
+  z-index: 3;
+  display: flex;
+  align-self: flex-end;
+  color: #fff;
+  background: linear-gradient(to bottom, transparent 65%, #000 105%) repeat scroll 0 0;
+  background: -o-linear-gradient(to bottom, transparent 65%, #000 105%) repeat scroll 0 0;
+}
+
+[dir="ltr"] .varbase-overlay-card .overlay-card-content {
+  background: -moz-linear-gradient(to bottom, transparent 65%, #000 105%) repeat scroll 0 0;
+}
+
+[dir="rtl"] .varbase-overlay-card .overlay-card-content {
+  background: -moz-linear-gradient(to bottom, transparent 65%, #000 105%) repeat scroll 100% 0;
+}
+
+.varbase-overlay-card .overlay-card-content:hover, .varbase-overlay-card .overlay-card-content:focus, .varbase-overlay-card .overlay-card-content:active {
+  opacity: .9;
+}
+
+.varbase-overlay-card .overlay-card-content > .field {
+  display: flex;
+  align-self: flex-end;
+}
+
+.varbase-overlay-card.anchor-all {
+  position: relative;
+}
+
+.varbase-overlay-card.anchor-all .card-title {
+  position: static;
+  margin: 0;
+  padding: 0;
+  color: #fff;
+}
+
+.varbase-overlay-card.anchor-all .card-title a {
+  color: #fff;
+  text-decoration: none;
+  position: static;
+}
+
+.varbase-overlay-card.anchor-all .card-title a::before {
+  position: absolute;
+  content: "";
+  display: block;
+  overflow: hidden;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 2;
+}
+
+.varbase-overlay-card.anchor-all a.card-link,
+.varbase-overlay-card.anchor-all div.card-link > a {
+  position: static;
+}
+
+.varbase-overlay-card.anchor-all a.card-link::before,
+.varbase-overlay-card.anchor-all div.card-link > a::before {
+  position: absolute;
+  content: "";
+  display: block;
+  overflow: hidden;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 3;
+}
+
+.varbase-overlay-card.anchor-all a {
+  z-index: 4;
+  position: relative;
+}
+
+.varbase-overlay-card.xlarge .overlay-card-content {
+  padding: 2.5rem;
+}
+
+.varbase-overlay-card.large .overlay-card-content {
+  padding: 2.5rem;
+}
+
+.varbase-overlay-card.medium .overlay-card-content {
+  padding: 1.875rem;
+}
+

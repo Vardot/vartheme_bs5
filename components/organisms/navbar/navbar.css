@@ -1,0 +1,97 @@
+.navbar {
+  height: 5.25rem;
+  background: var(--bs-white);
+}
+
+.navbar .form-inline .form-actions {
+  display: none;
+}
+
+.navbar .navbar-nav .nav-item a.nav-link {
+  position: relative;
+  font-weight: bold;
+  color: var(--bs-gray-900);
+}
+
+.navbar .navbar-nav .nav-item a.nav-link:hover, .navbar .navbar-nav .nav-item a.nav-link:focus, .navbar .navbar-nav .nav-item a.nav-link:active {
+  color: var(--bs-primary) !important;
+}
+
+.navbar .navbar-nav .nav-item a.nav-link:hover:after, .navbar .navbar-nav .nav-item a.nav-link:focus:after, .navbar .navbar-nav .nav-item a.nav-link:active:after {
+  content: "";
+  position: absolute;
+  transition: left .3s;
+  left: 15% !important;
+  right: 15% !important;
+  height: 1px;
+  bottom: 0;
+  background-color: var(--bs-primary);
+}
+
+[dir="ltr"] .navbar .navbar-nav .nav-item a.nav-link:hover:after, [dir="ltr"] .navbar .navbar-nav .nav-item a.nav-link:focus:after, [dir="ltr"] .navbar .navbar-nav .nav-item a.nav-link:active:after {
+  transition: right .3s;
+}
+
+[dir="rtl"] .navbar .navbar-nav .nav-item a.nav-link:hover:after, [dir="rtl"] .navbar .navbar-nav .nav-item a.nav-link:focus:after, [dir="rtl"] .navbar .navbar-nav .nav-item a.nav-link:active:after {
+  transition: left .3s;
+}
+
+.navbar .navbar-nav .nav-item a.nav-link.is-active:after {
+  content: "";
+  position: absolute;
+  left: 30%;
+  right: 30%;
+  height: 1px;
+  bottom: 0;
+  background-color: var(--bs-primary);
+}
+
+[data-bs-theme=dark] .navbar {
+  background: rgb(7.8, 66, 151.8);
+}
+
+[data-bs-theme=dark] .navbar .navbar-nav .nav-item a.nav-link {
+  position: relative;
+  color: var(--bs-white);
+}
+
+[data-bs-theme=dark] .navbar .navbar-nav .nav-item a.nav-link:hover, [data-bs-theme=dark] .navbar .navbar-nav .nav-item a.nav-link:focus, [data-bs-theme=dark] .navbar .navbar-nav .nav-item a.nav-link:active {
+  color: var(--bs-white) !important;
+}
+
+[data-bs-theme=dark] .navbar .navbar-nav .nav-item a.nav-link:hover:after, [data-bs-theme=dark] .navbar .navbar-nav .nav-item a.nav-link:focus:after, [data-bs-theme=dark] .navbar .navbar-nav .nav-item a.nav-link:active:after {
+  content: "";
+  left: 15% !important;
+  right: 15% !important;
+  position: absolute;
+  height: 1px;
+  bottom: 0;
+  background-color: var(--bs-white);
+}
+
+[data-bs-theme=dark] .navbar .navbar-nav .nav-item a.nav-link.is-active {
+  border-bottom: 1px var(--bs-white);
+}
+
+[data-bs-theme=dark] .navbar .navbar-nav .nav-item a.nav-link.is-active:after {
+  content: "";
+  position: absolute;
+  left: 30%;
+  right: 30%;
+  height: 1px;
+  bottom: 0;
+  background-color: var(--bs-white);
+}
+
+.toolbar-oriented .toolbar-bar {
+  z-index: 1200;
+}
+
+[dir="ltr"] .toolbar-horizontal .toolbar-menu.nav {
+  float: left;
+}
+
+[dir="rtl"] .toolbar-horizontal .toolbar-menu.nav {
+  float: right;
+}
+

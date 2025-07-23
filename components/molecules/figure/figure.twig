@@ -1,0 +1,22 @@
+{#
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for the Figure component.
+ *
+ * Available config:
+ * - figure_utility_classes: An array of utility classes.
+ * - align: left|right|center
+ * - responsive: true|false
+ */
+#}
+{% set classes = [
+  'figure',
+]|merge(figure_utility_classes ? figure_utility_classes : []) %}
+
+<figure{{ attributes.addClass(classes) }}>
+  {{ image }}
+
+  {% if caption %}
+    <figcaption class="figure-caption">{{ caption }}</figcaption>
+  {% endif %}
+</figure>

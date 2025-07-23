@@ -1,0 +1,145 @@
+.vmh-container {
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #0d6efd;
+  margin-bottom: calc(1.375rem + 1.5vw);
+  max-height: 300px;
+}
+
+@media (min-width: 1200px) {
+  .vmh-container {
+    margin-bottom: 2.5rem;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .vmh-container {
+    max-height: 300px;
+  }
+}
+
+.vmh-container .vmh-background {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.vmh-container .vmh-background:empty {
+  min-height: 300px;
+}
+
+@media screen and (min-width: 992px) {
+  .vmh-container .vmh-background:empty {
+    min-height: 300px;
+  }
+}
+
+.vmh-container .vmh-background > img,
+.vmh-container .vmh-background > picture,
+.vmh-container .vmh-background > video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  z-index: 1;
+}
+
+.vmh-container .vmh-background > iframe {
+  width: 100vw;
+  min-height: 34vw;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  z-index: 1;
+}
+
+.vmh-container .vmh-background .varbase-video-player {
+  width: 100vw;
+  height: 100%;
+}
+
+.vmh-container .vmh-content-wrapper {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: flex; /* Safari 6.1+ */
+  flex: 1;
+     flex-flow: wrap;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.vmh-container .vmh-content {
+  padding: calc(1.5rem + 3vw) 1rem;
+}
+
+@media (min-width: 1200px) {
+  .vmh-container .vmh-content {
+    padding: 3.75rem 1rem;
+  }
+}
+
+.vmh-container .vmh-page-title {
+  text-align: center;
+  color: #fff;
+  font-weight: bolder;
+  padding-left: .9375rem;
+  padding-right: .9375rem;
+  font-size: calc(1.3125rem + .75vw);
+}
+
+@media (min-width: 1200px) {
+  .vmh-container .vmh-page-title {
+    font-size: 1.875rem;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .vmh-container .vmh-page-title {
+    font-size: calc(1.4875rem + 2.85vw);
+  }
+}
+
+@media screen and (min-width: 992px) and (min-width: 1200px) {
+  .vmh-container .vmh-page-title {
+    font-size: 3.625rem;
+  }
+}
+
+.vmh-container .vmh-breadcrumb .breadcrumb {
+  margin: 0;
+  text-align: center;
+  text-transform: uppercase;
+  background: none !important;
+  background-color: transparent !important;
+  color: #fff;
+  font-size: .75rem;
+}
+
+.vmh-container .vmh-breadcrumb .breadcrumb a,
+.vmh-container .vmh-breadcrumb .breadcrumb .breadcrumb-item + .breadcrumb-item::before {
+  color: #fff;
+}
+
+@media screen and (min-width: 992px) {
+  .vmh-container .vmh-breadcrumb .breadcrumb {
+    font-size: .875rem;
+  }
+}
+
+.vmh-container .vmh-breadcrumb .breadcrumb .active {
+  display: none;
+}
+

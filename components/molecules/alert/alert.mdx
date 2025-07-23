@@ -1,0 +1,38 @@
+{/* alert.mdx */}
+
+import { Canvas, Title, Subtitle, ArgTypes, Source, Meta, Description, Primary, Story, Stories, Controls } from '@storybook/blocks';
+import * as comStories from './alert.stories.json';
+import templateSource from './alert.twig?raw';
+
+<Meta of={comStories} name="Docs"/>
+
+<Title />
+<Subtitle />
+<Description />
+
+
+> ### [Bootstrap documentation on Alerts](https://getbootstrap.com/docs/5.3/components/alerts)
+> * [Color](https://getbootstrap.com/docs/5.3/components/alerts/#examples)
+> * [Link color](https://getbootstrap.com/docs/5.3/components/alerts/#link-color)
+> * [Icons](https://getbootstrap.com/docs/5.3/components/alerts/#icons)
+> * [Dismissing](https://getbootstrap.com/docs/5.3/components/alerts/#dismissing)
+
+<Primary />
+
+## Properties
+<Controls />
+
+### Attributes:
+ * `attributes`: HTML attributes for the alert element.
+ * `dismissible_attributes`: HTML attributes for the alert dismiss close button element.
+
+### Slots:
+* `content`: The content of the alert.
+* `heading`: Alerts can also contain primary alert heading.
+
+<Stories of={comStories} />
+
+
+## Source code
+[//]: # (Twig Template source code)
+<Source code={templateSource} />

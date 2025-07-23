@@ -1,0 +1,71 @@
+@import "../../defaults";   // Global component defaults.
+
+.varbase-text-card {
+
+  &.anchor-all {
+    position: relative;
+
+    .text-card-content {
+      position: static;
+    }
+
+    .card-title {
+      position: static;
+
+      a {
+        position: static;
+
+        &::before {
+          position: absolute;
+          content: '';
+          display: block;
+          overflow: hidden;
+          top: 0;
+          bottom: 0;
+          right: 0;
+          left: 0;        
+          z-index: 1;
+        }
+      }
+    }
+
+    a.card-link,
+    div.card-link > a {
+      position: static;
+
+      &::before {
+        position: absolute;
+        content: '';
+        display: block;
+        overflow: hidden;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        z-index: 2;
+      }
+    }
+
+    a {
+      z-index: 3;
+      position: relative;
+    }
+  }
+
+  &.border-0 {
+    .text-card-content {
+      margin-left: 0;
+      margin-right: 0;
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+
+  &.bordered {
+    .text-card-content {
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+}

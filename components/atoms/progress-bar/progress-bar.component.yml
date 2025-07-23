@@ -1,0 +1,78 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Progress bar
+status: experimental
+description: Documentation and examples for using Bootstrap custom progress bars featuring support for stacked bars, animated backgrounds, and text labels.
+props:
+  type: object
+  properties:
+    color:
+      type: string
+      title: Progress Bar Color
+      description: Use background utility classes to change the appearance of individual progress bars.
+      default: ''
+      enum:
+        - ''
+        - bg-primary
+        - bg-secondary
+        - bg-success
+        - bg-info
+        - bg-warning
+        - bg-danger
+        - bg-light
+        - bg-dark
+    striped:
+      type: boolean
+      title: Striped
+      description: Add `.progress-bar-striped` to any `.progress-bar` to apply a stripe via CSS gradient over the background color.
+      default: false
+    animated:
+      type: boolean
+      title: Striped
+      description: The striped gradient can also be animated. Add `.progress-bar-animated` to `.progress-bar` to animate the stripes right to left via CSS3 animations.
+      default: false
+    label:
+      type: string
+      title: Label
+      description: Add labels to your progress bars by placing text within the `.progress-bar`.
+    percent:
+      type: number
+      title: Percent
+      description: The percentage of the progress between 1 to 100.
+      min: 0
+      max: 100
+    message:
+      type: string
+      title: Message
+      description: A string containing information to be displayed.
+    progress_bar_utility_classes:
+      type: array
+      title: Utility Classes
+      default: []
+      items:
+        type: 'string'
+      description: An array of utility classes that can be used to add extra Bootstrap utility classes or custom classes to this component.
+    wrapper_attributes:
+      type: object
+      title: Wrapper Attributes
+      description: HTML attributes for the Progress Bar wrapper element.
+      $ref: 'ui-patterns://attributes'
+    indicator_attributes:
+      type: object
+      title: Indicator Attributes
+      description: HTML attributes for the Progress Bar indicator element.
+      $ref: 'ui-patterns://attributes'
+    label_attributes:
+      type: object
+      title: label Attributes
+      description: HTML attributes for the Progress Bar label element.
+      $ref: 'ui-patterns://attributes'
+    message_attributes:
+      type: object
+      title: message Attributes
+      description: HTML attributes for the Progress Bar message element.
+      $ref: 'ui-patterns://attributes'
+libraryOverrides:
+  dependencies:
+    - core/drupal.progress
+    - vartheme_bs5/bs-base-component-script
+    - vartheme_bs5/bs-button-script

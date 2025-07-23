@@ -17,19 +17,19 @@ bootstrap-styles:
 # Bootstrap 5 global scripts library.
 bootstrap-scripts:
   dependencies:
-    - varbase_components/bs-base-component-script
-    # - varbase_components/bs-alert-script
-    # - varbase_components/bs-button-script
-    # - varbase_components/bs-carousel-script
-    # - varbase_components/bs-collapse-script
-    # - varbase_components/bs-dropdown-script
-    - varbase_components/bs-modal-script
-    - varbase_components/bs-offcanvas-script
-    - varbase_components/bs-popover-script
-    - varbase_components/bs-scrollspy-script
-    - varbase_components/bs-tab-script
-    - varbase_components/bs-toast-script
-    - varbase_components/bs-tooltip-script
+    - vartheme_bs5/bs-base-component-script
+    # - vartheme_bs5/bs-alert-script
+    # - vartheme_bs5/bs-button-script
+    # - vartheme_bs5/bs-carousel-script
+    # - vartheme_bs5/bs-collapse-script
+    # - vartheme_bs5/bs-dropdown-script
+    - vartheme_bs5/bs-modal-script
+    - vartheme_bs5/bs-offcanvas-script
+    - vartheme_bs5/bs-popover-script
+    - vartheme_bs5/bs-scrollspy-script
+    - vartheme_bs5/bs-tab-script
+    - vartheme_bs5/bs-toast-script
+    - vartheme_bs5/bs-tooltip-script
     - content_moderation/content_moderation
 
 # Popperjs core.
@@ -45,7 +45,7 @@ bs-base-component-script:
     - core/drupal.ajax
     - core/jquery
     - core/once
-    - varbase_components/popper-script
+    - vartheme_bs5/popper-script
   js:
     js/bootstrap/util/index.js: {}
     js/bootstrap/dom/data.js: {}
@@ -65,84 +65,84 @@ bs-base-component-script:
 # Bootstrap alert script.
 bs-alert-script:
   dependencies:
-    - varbase_components/bs-base-component-script
+    - vartheme_bs5/bs-base-component-script
   js:
     js/bootstrap/alert.js: {}
 
 # Bootstrap button script.
 bs-button-script:
   dependencies:
-    - varbase_components/bs-base-component-script
+    - vartheme_bs5/bs-base-component-script
   js:
     js/bootstrap/button.js: {}
 
 # Bootstrap carousel script.
 bs-carousel-script:
   dependencies:
-    - varbase_components/bs-base-component-script
+    - vartheme_bs5/bs-base-component-script
   js:
     js/bootstrap/carousel.js: {}
 
 # Bootstrap collapse script.
 bs-collapse-script:
   dependencies:
-    - varbase_components/bs-base-component-script
+    - vartheme_bs5/bs-base-component-script
   js:
     js/bootstrap/collapse.js: {}
 
 # Bootstrap dropdown script.
 bs-dropdown-script:
   dependencies:
-    - varbase_components/bs-base-component-script
+    - vartheme_bs5/bs-base-component-script
   js:
     js/bootstrap/dropdown.js: {}
 
 # Bootstrap modal script.
 bs-modal-script:
   dependencies:
-    - varbase_components/bs-base-component-script
+    - vartheme_bs5/bs-base-component-script
   js:
     js/bootstrap/modal.js: {}
 
 # Bootstrap offcanvas script.
 bs-offcanvas-script:
   dependencies:
-    - varbase_components/bs-base-component-script
+    - vartheme_bs5/bs-base-component-script
   js:
     js/bootstrap/offcanvas.js: {}
 
 # Bootstrap popover script.
 bs-popover-script:
   dependencies:
-    - varbase_components/bs-tooltip-script
+    - vartheme_bs5/bs-tooltip-script
   js:
     js/bootstrap/popover.js: {}
 
 # Bootstrap scrollspy script.
 bs-scrollspy-script:
   dependencies:
-    - varbase_components/bs-base-component-script
+    - vartheme_bs5/bs-base-component-script
   js:
     js/bootstrap/scrollspy.js: {}
 
 # Bootstrap tab script.
 bs-tab-script:
   dependencies:
-    - varbase_components/bs-base-component-script
+    - vartheme_bs5/bs-base-component-script
   js:
     js/bootstrap/tab.js: {}
 
 # Bootstrap toast script.
 bs-toast-script:
   dependencies:
-    - varbase_components/bs-base-component-script
+    - vartheme_bs5/bs-base-component-script
   js:
     js/bootstrap/toast.js: {}
 
 # Bootstrap tooltip script.
 bs-tooltip-script:
   dependencies:
-    - varbase_components/bs-base-component-script
+    - vartheme_bs5/bs-base-component-script
   js:
     js/bootstrap/tooltip.js: {}
 
@@ -209,3 +209,14 @@ bootstrap-icons:
   css:
     theme:
       fonts/bootstrap-icons/font/bootstrap-icons.min.css: { minified: true }
+
+# Ckeditor 5 styles.
+ckeditor5-root:
+  dependencies:
+    - core/components.vartheme_bs5--root
+
+# Ckeditor 5 styles.
+ckeditor5-styles:
+  dependencies:
+    - core/components.vartheme_bs5--alert
+    - core/components.vartheme_bs5--callout

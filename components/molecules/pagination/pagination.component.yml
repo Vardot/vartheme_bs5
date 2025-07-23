@@ -1,0 +1,54 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Pagination
+status: experimental
+description: Show pagination to indicate a series of related content exists across multiple pages.
+props:
+  type: object
+  properties:
+    size:
+      type: string
+      title: Size
+      description: Fancy larger or smaller pagination? Add .pagination-lg or .pagination-sm for additional sizes.
+      enum:
+        - ''
+        - sm
+        - lg
+    alignment:
+      type: string
+      title: Alignment
+      description: Change the alignment of pagination components with flex box utilities. For example, with .justify-content-center
+      enum:
+        - ''
+        - start
+        - end
+        - center
+        - vertical
+    heading_id:
+      type: string
+      title: Pagination heading ID.
+      default: ''
+    items:
+      type: array
+      title: List of pager items.
+      description: The list is keyed by the following elements (first, previous, next, last, pages) which they have href, attributes, text)
+      default: []
+    current:
+      type: number
+      title: Current page
+      description: The page number of the current page.
+    ellipses:
+      type: array
+      title: Ellipses
+      description: If there are more pages than the quantity allows, then an ellipsis before or after the listed pages may be present. (previous, next)
+    pagination_utility_classes:
+      type: array
+      title: Utility Classes
+      default: []
+      items:
+        type: 'string'
+      description: An array of utility classes. Use to add extra Bootstrap utility classes or custom CSS classes over to this to this component.
+    attributes:
+      type: object
+      title: Title Attributes
+      description: HTML attributes for the pagination element.
+      $ref: 'ui-patterns://attributes'

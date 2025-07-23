@@ -1,0 +1,101 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: 'Overlay Card'
+status: experimental
+description: 'Overlay card component for a media and a content over the media with sizes.'
+group: Cards
+props:
+  type: object
+  properties:
+    style_size:
+      type: string
+      title: 'Card style size'
+      description: 'Card style size. (xsmall|small|medium|large|xlarge).'
+      default: ''
+      enum:
+        - ''
+        - xsmall
+        - small
+        - medium
+        - large
+        - xlarge
+    card_border:
+      type: boolean
+      title: 'Card Border'
+      description: 'Add a default border to the card.'
+      default: true
+    padded:
+      type: boolean
+      title: 'Padded'
+      description: 'Add a default padding to the card.'
+      default: false
+    equal_height:
+      type: boolean
+      title: 'Equal height'
+      default: true
+    anchor_all:
+      type: boolean
+      title: 'Anchor All'
+      default: false
+    horizontal_alignment:
+      type: string
+      title: 'Horizontal alignment'
+      description: 'Horizontal alignment of the content.'
+      default: ''
+      enum:
+        - ''
+        - start
+        - center
+        - end
+    vertical_alignment:
+      type: string
+      title: 'Vertical alignment'
+      description: 'Vertical alignment of the content.'
+      default: ''
+      enum:
+        - ''
+        - start
+        - center
+        - end
+    card_overlay_utility_classes:
+      type: array
+      title: 'Utility Classes'
+      default: []
+      items:
+        type: 'string'
+      description: 'Use to add extra Bootstrap utility classes for the main Card wrapper. E.g. `mb-3 shadow-lg` ( Do not add `card`).' 
+    card_overlay_media_utility_classes:
+      type: array
+      title: 'Media Utility Classes'
+      default: []
+      items:
+        type: 'string'
+      description: 'Use to add extra Bootstrap utility classes for the Card Media region wrapper. E.g. `bg-secondary mb-3` ( Do not add `card-img`).'
+    card_overlay_content_utility_classes:
+      type: array
+      title: 'Content Utility Classes'
+      default: []
+      items:
+        type: 'string'
+      description: 'Use to add extra Bootstrap utility classes for the Card Content region wrapper. E.g. `w-75 mb-3 overflow-y-hidden`  ( Do not add `card-body`).'
+    card_attributes:
+      type: object
+      title: 'Card Attributes'
+      description: 'HTML attributes for the card element.'
+      $ref: 'ui-patterns://attributes'
+    media_attributes:
+      type: object
+      title: 'Media Attributes'
+      description: 'HTML attributes for the media element.'
+      $ref: 'ui-patterns://attributes'
+    content_attributes:
+      type: object
+      title: 'Content Attributes'
+      description: 'HTML attributes for the content element.'
+      $ref: 'ui-patterns://attributes'
+slots:
+  media:
+    title: 'Card Media'
+    description: 'The media image/video slot for the card.'
+  content:
+    title: 'Card Content'
+    description: 'The content slot for the card.'

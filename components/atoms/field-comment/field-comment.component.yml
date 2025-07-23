@@ -1,0 +1,18 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Field Comment
+status: experimental
+description: Field comment
+props:
+  type: object
+  properties:
+    attributes:
+      type: object
+      title: Attributes
+      description: HTML attributes for the containing element.
+      $ref: 'ui-patterns://attributes'
+    title_prefix:
+      type: array
+      title: title prefix
+    title_suffix:
+      type: array
+      title: title suffix

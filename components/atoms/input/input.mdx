@@ -1,0 +1,53 @@
+{/* input.mdx */}
+
+import { Canvas, Title, Subtitle, ArgTypes, Source, Meta, Description, Primary, Story, Stories, Controls } from '@storybook/blocks';
+import * as comStories from './input.stories.json';
+import templateSource from './input.twig?raw';
+
+<Meta of={comStories} name="Docs"/>
+
+<Title />
+<Subtitle />
+<Description />
+
+> ### [Bootstrap Documentation on Form Input Controls](https://getbootstrap.com/docs/5.3/forms/form-control)
+> * [Form controls](https://getbootstrap.com/docs/5.3/forms/form-control/#example)
+> * [Sizing](https://getbootstrap.com/docs/5.3/forms/form-control/#sizing)
+> * [Form text](https://getbootstrap.com/docs/5.3/forms/form-control/#form-text)
+
+<Primary />
+
+## Properties
+<Controls />
+
+<Stories of={comStories} />
+
+## Attributes:
+* `attributes`: Drupal attributes for Image.
+
+## Slots:
+* N/A
+
+## Examples:
+
+### Example #1 : Input type of checkbox form element.
+```
+{% include "vartheme_bs5:input" with {
+  type: 'checkbox',
+  bs_form_control: false,
+  bs_size: '',
+  input_utility_classes: ['form-check-input'],
+  attributes: attributes
+} %}
+```
+
+### Example #2 : Input type of Input submit form element.
+```
+{% include "vartheme_bs5:input" with {
+  type: 'submit'
+} %}
+```
+
+## Source code
+[//]: # (Twig Template source code)
+<Source code={templateSource} />

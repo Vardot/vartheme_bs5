@@ -1,0 +1,67 @@
+{#
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for the Breadcrumb component.
+ *
+ * Available properties:
+ * - breadcrumb: Breadcrumb trail items.
+ * - divider: Dividers are automatically added in CSS through ::before and content. They can be changed by modifying a local CSS custom property --bs-breadcrumb-divider, or through the $breadcrumb-divider Sass variable — and $breadcrumb-divider-flipped for its RTL counterpart, if needed. 
+ * - breadcrumb_utility_classes: An array of utility classes. Use to add extra Bootstrap utility classes or custom CSS classes over to this component.
+ *
+ * Available attributes:
+ * - attributes: HTML attributes for the breadcrumb nav element.
+ * - items_attributes: HTML attributes for the Breadcrumb trail items element.
+ *
+ * Available slots:
+ * - N/A
+ *
+ */
+#}
+{% set divider = divider ?? '' %}
+{% set breadcrumb_utility_classes = breadcrumb_utility_classes ? breadcrumb_utility_classes : [] %}
+{% set classes = []|merge(breadcrumb_utility_classes) %}
+
+{% if not attributes %}
+  {% set attributes = create_attribute() %}
+{% endif %}
+
+{% set attributes = attributes.addClass(classes) %}
+{% set attributes = attributes.setAttribute('role', 'navigation' ) %}
+{% set attributes = attributes.setAttribute('aria-label', 'breadcrumb' ) %}
+
+{% if divider is not empty and divider != '' %}
+  {% set attributes = attributes.setAttribute('style', "--bs-breadcrumb-divider: '" ~ divider ~ "';" ) %}
+{% endif %}
+
+{%
+  set items_classes = [
+    'breadcrumb',
+    'py-2',
+    'my-2',
+  ]
+%}
+{% if not items_attributes %}
+  {% set items_attributes = create_attribute() %}
+{% endif %}
+{% set items_attributes = items_attributes.addClass(items_classes) %}
+
+{% if breadcrumb %}{% apply spaceless %}
+  <nav{{ attributes }}>
+    <ol{{ items_attributes }}>
+      {% for item in breadcrumb %}
+        {% if item.url %}
+          <li class="breadcrumb-item">
+            {% include 'vartheme_bs5:link' with {
+              url: item.url,
+              content: item.text
+            } only %}
+          </li>
+        {% else %}
+          <li class="breadcrumb-item active" aria-current="page">
+            {{ item.text }}
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ol>
+  </nav>
+{% endapply %}{% endif %}

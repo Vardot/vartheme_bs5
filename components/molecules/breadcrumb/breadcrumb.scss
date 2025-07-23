@@ -1,0 +1,46 @@
+
+@import "../../defaults";   // Global component defaults.
+
+// Override default bootstrap breadcrumb variables.
+$breadcrumb-font-size: 1rem;
+$breadcrumb-padding-x: 0.0625rem;
+
+@import "../../../node_modules/bootstrap/scss/breadcrumb";
+
+// Change default bootstrap breadcrumb style.
+
+// Change the color for text in the breadcrumb.
+.breadcrumb {
+  .breadcrumb-item {
+    color: var(--bs-dark);
+  }
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+  color: var(--bs-dark);
+}
+
+@if $enable-dark-mode {
+  @include color-mode(dark) {
+    .breadcrumb {
+      .breadcrumb-item {
+        color: var(--bs-light);
+      }
+    }
+
+    .breadcrumb-item + .breadcrumb-item::before {
+      color: var(--bs-light);
+    }
+  }
+}
+
+// Change the breadcrumb divider to use bootstrap-icons.
+.breadcrumb-item + .breadcrumb-item::before {
+  font-family: 'bootstrap-icons';
+  font-size: 1.1rem;
+  font-weight: 500;
+  content: quote("\F285");
+}
+[dir="rtl"] .breadcrumb-item + .breadcrumb-item::before {
+  content: quote("\F285");
+}

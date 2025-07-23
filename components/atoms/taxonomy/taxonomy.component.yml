@@ -1,0 +1,10 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Taxonomy
+status: experimental
+description: Taxonomy terms as taxonomy tags.
+slots:
+  content:
+    type: string
+    title: Content
+    description: The content text or text with a link for the taxonomy term.
+    default: ""

@@ -1,0 +1,33 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Node
+status: experimental
+description: Node
+props:
+  type: object
+  properties:
+    title_attributes:
+      type: object
+      title: Title attributes
+      description: 'HTML attributes for the node title element.'
+      $ref: 'ui-patterns://attributes'
+    attributes:
+      type: object
+      title: Attributes
+      description: 'HTML attributes for the node.'
+      $ref: 'ui-patterns://attributes'
+    content_attributes:
+      type: object
+      title: Content attributes
+      description: 'HTML attributes for the content element.'
+      $ref: 'ui-patterns://attributes'
+    title_prefix:
+      type: array
+      title: title prefix
+    title_suffix:
+      type: array
+      title: title suffix
+slots:
+  content:
+    type: array
+    title: content
+    description: The contents of node.

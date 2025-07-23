@@ -1,0 +1,34 @@
+.block-inline-blockvarbase-cta-block .field-name-body {
+  margin: 1.25rem auto 0;
+}
+
+@media (min-width: 1200px) {
+  .block-inline-blockvarbase-cta-block .field-name-body {
+    max-width: 39rem;
+  }
+}
+
+.block-inline-blockvarbase-cta-block .field--name-field-buttons {
+  text-align: center !important;
+}
+
+.block-inline-blockvarbase-cta-block .field--name-field-buttons .btn {
+  margin-top: 1.875rem;
+  margin-left: 3.125rem;
+  margin-right: 3.125rem;
+}
+
+@media (max-width: 767.98px) {
+  .block-inline-blockvarbase-cta-block .field--name-field-buttons .btn {
+    margin-left: 1.5625rem;
+    margin-right: 1.5625rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .block-inline-blockvarbase-cta-block .field--name-field-buttons .btn {
+    margin-left: .8125rem;
+    margin-right: .8125rem;
+  }
+}
+

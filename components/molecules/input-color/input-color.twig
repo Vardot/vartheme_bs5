@@ -1,0 +1,30 @@
+{#
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for the 'input' #type form element.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the input element.
+ * - children: Optional additional rendered elements.
+ *
+ * @see template_preprocess_input()
+  * for checkboxes and radio buttons.
+  * - input_color_utility_classes: An array of utility classes.
+  * - bs_form_control: A class 'form-control' related to input type.
+ */
+#}
+
+{% set bs_form_control = bs_form_control ? ['form-control'] : [] %}
+{% set input_color_utility_classes = input_color_utility_classes ? input_color_utility_classes : [] %}
+{% set type = type ?? 'text' %}
+{% set size = size ?? '' %}
+{% set placeholder = placeholder ?? '' %}
+{% set classes = []|merge(bs_form_control)|merge(input_color_utility_classes)|merge([size]) %}
+
+{# To render drupal Input component #}
+{% if attributes %}
+  <input{{ attributes.addClass(classes) }} />{{ children }}
+{# To render Storybook Input component #}
+{% else %}
+  <input type="{{ type }}" class="{{ classes|join(' ') }}" placeholder="{{ placeholder }}" />
+{% endif %}

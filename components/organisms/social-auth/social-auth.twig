@@ -1,0 +1,21 @@
+{% set module = 'social-auth' %}
+
+<div class="social-auth">
+  {% for id, network in networks %}
+    {% set img_path = custom_networks[id].img_path ?? network.getProviderLogoPath %}
+
+    <div class="social-network {{ id }}">
+      {% if destination %}
+        {% set options = {'query': {'destination': destination}} %}
+      {% else %}
+        {% set options = {} %}
+      {% endif %}
+      <a class="{{ module }} auth-link" href="{{ network.getRedirectUrl(options).toString }}">
+        <img class="{{ module }} auth-icon"
+          src="{{ base_path }}{{ img_path }}"
+          alt="{{ 'Authenticate through @social_network_name' | t({'@social_network_name': network.getSocialNetwork}) }}">
+        <span class="auth-name">{{ '@social_network_name' | t({'@social_network_name': network.getSocialNetwork}) }}</span>
+      </a>
+    </div>
+  {% endfor %}
+</div>

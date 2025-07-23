@@ -2,14 +2,14 @@
 
 A base theme for Varbase standard websites.
 
-A new generation of theming (base theme) based on **Bootstrap 5**, **Single Directory Components (SDC)** with **Drupal** `~10.1.0`, and **UI Patterns** `2.0.x-dev`.
+A new generation of theming (base theme) based on **Bootstrap 5**, **Single Directory Components (SDC)** with **Drupal** `~10.1.0`, and **UI Patterns** `~2.0`.
 
-Having **[Varbase Components](https://www.drupal.org/project/varbase_components)** to provides component management system for Varbase and **Vartheme BS5**.
+Having **[Varbase Components](https://www.drupal.org/project/varbase_components)** to provides general components management system for Varbase and **Vartheme BS5**.
 
 # Installation
 Require the theme in a Drupal ^10.1.0
 ```
-composer require 'drupal/vartheme_bs5:3.0.x-dev'
+composer require 'drupal/vartheme_bs5:~4.0.0'
 ```
 The Vartheme BS5 requires to enable the **Varbase Component** befor installing the theme
 ```

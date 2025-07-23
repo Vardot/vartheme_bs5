@@ -1,0 +1,41 @@
+{#
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for the HTMl list with Bootstrap list helpers and utility classes
+ *
+ * Available properties:
+ * - items: An array of items to display in the list.
+ * - type: List type as ordered or unordered list(ul/ol)
+ * - list_utility_classes: Use to add extra Bootstrap utility classes or custom classes to the list component.
+ * - list_item_utility_classes: Use to add extra Bootstrap utility classes or custom classes to list items.
+ *
+ * Available attributes:
+ * - attributes: HTML attributes to apply to the list.
+ *
+ * Available slots:
+ * - N/A
+ */
+#}
+{% apply spaceless %}
+{% if items is iterable %}
+  {% set type = type ?? 'ul' %}
+  {% set list_utility_classes = list_utility_classes ? list_utility_classes : [] %}
+  {% set list_item_utility_classes = list_item_utility_classes ? list_item_utility_classes : [] %}
+
+  {% if not attributes %}
+    {% set attributes = create_attribute() %}
+  {% endif %}
+  {% set attributes = attributes.addClass(list_utility_classes) %}
+
+  {% if not list_item_attributes %}
+    {% set list_item_attributes = create_attribute() %}
+  {% endif %}
+  {% set list_item_attributes = list_item_attributes.addClass(list_item_utility_classes) %}
+
+  <{{ type }}{{ attributes }}>
+    {% for item in items %}
+      <li{{ list_item_attributes }}>{{ item }}</li>
+    {% endfor %}
+  </{{ type }}>
+{% endif %}
+{% endapply %}

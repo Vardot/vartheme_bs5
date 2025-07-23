@@ -1,0 +1,45 @@
+{#
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for the Page Header component.
+ *
+#}
+
+{% if page.top_bar %}
+  <div class="navbar-top w-100">
+    {% if container_top_bar %}
+    <div class="{{ container_top_bar }}">
+    {% endif %}
+      <div class="row">
+        <div class="col-12">
+          {{ page.top_bar }}
+        </div>
+      </div>
+    {% if container_top_bar %}
+    </div>
+    {% endif %}
+  </div>
+{% endif %}
+
+{% if page.navbar_branding or page.navigation %}
+  {% embed 'vartheme_bs5:navbar' with {
+    container: container_top_bar,
+    color_mode: 'light',
+    color: 'white'
+  } %}
+
+    {% block branding %}
+      {% if page.navbar_branding %}
+        {{ page.navbar_branding }}
+      {% endif %}
+    {% endblock %}
+
+    {% block navigation %}
+      {% if page.navigation %}
+        <div class="ms-auto">
+          {{ page.navigation }}
+        </div>
+      {% endif %}
+    {% endblock %}
+  {% endembed %}
+{% endif %}

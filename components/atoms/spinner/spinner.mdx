@@ -1,0 +1,78 @@
+{/* Spinner.mdx */}
+
+import { Canvas, Title, Subtitle, ArgTypes, Source, Meta, Description, Primary, Story, Stories, Controls } from '@storybook/blocks';
+import * as comStories from './spinner.stories.json';
+import templateSource from './spinner.twig?raw';
+
+<Meta of={comStories} name="Docs"/>
+
+<Title />
+<Subtitle />
+<Description />
+
+
+> ### [Bootstrap Documentation on Spinners](https://getbootstrap.com/docs/5.3/components/spinners/)
+> * [Border spinner](https://getbootstrap.com/docs/5.3/components/spinners/#border-spinner)
+> * [Growing spinner](https://getbootstrap.com/docs/5.3/components/spinners/#growing-spinner)
+> * [Colors](https://getbootstrap.com/docs/5.3/components/spinners/#colors)
+> * [Size](https://getbootstrap.com/docs/5.3/components/spinners/#size)
+> * [Hidden Status](https://getbootstrap.com/docs/5.3/components/spinners/#buttons)
+
+
+<Primary />
+
+## Properties
+<Controls />
+
+<Stories of={comStories} />
+
+## Attributes:
+* `attributes`: HTML attributes for the Spinner element.
+* `spinner_status_attributes`: HTML attributes for the Spinner status element.
+
+## Slots:
+* `content`: Spinner content.
+
+### Examples
+**Example #1:** Secondary Spinner
+```
+  {% include 'vartheme_bs5:spinner' with {
+    color: 'secondary',
+    content: 'Loading ...'|t,
+  } %}
+```
+
+**Example #2:** Grow Spinner
+```
+  {% include 'vartheme_bs5:spinner' with {
+    type: 'grow',
+    content: 'Please, waite ...'|t,
+    color: 'info',
+  } %}
+```
+
+**Example #3:** Small saving border spinner with status
+```
+{% include 'vartheme_bs5:spinner' with {
+    color: 'primary',
+    type: 'border',
+    content: 'Saving ...',
+    size: 'sm',
+    hidden_status: false
+  } %}
+```
+
+**Example #4:** Small saving grow spinner with status
+```
+  {% include 'vartheme_bs5:spinner' with {
+    color: 'primary',
+    type: 'grow',
+    content: 'Saving ...'|t,
+    size: 'sm',
+    hidden_status: false
+  } %}
+```
+
+## Source code
+[//]: # (Twig Template source code)
+<Source code={templateSource} />

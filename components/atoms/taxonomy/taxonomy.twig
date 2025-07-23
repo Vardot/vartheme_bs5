@@ -1,0 +1,16 @@
+{#
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for taxonomy tags.
+ *
+ * Available slots:
+ * - content: The content text or text with a link for the taxonomy term.
+ *
+ */
+#}
+
+{% if content['#type'] == 'link' or content['#type'] == 'text' %}
+  {{ content|render }}
+{% else %}
+  <span class="vb-tag" >{{ content|raw }}</span>
+{% endif %}

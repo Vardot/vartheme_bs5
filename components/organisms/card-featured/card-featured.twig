@@ -1,0 +1,159 @@
+{#
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for the Featured card component.
+ *
+ * Available properties:
+ * - style_size: Card style size. (xsmall|small|medium|large|xlarge).
+ * - card_border: Add a default border for the card. (true|false).
+ * - padded: Add a default padding to the card. (true|false).
+ * - equal_height: Equal height (true|false)
+ * - anchor_all: Anchor All (true|false)
+ * - media_position: Choose the location of the media from (start|end).
+ * - content_vertical_alignment: Vertical alignment of the content.
+ * - gutters_between: Gutters Between - (large|small-start|small-end|no) to manage the guttering between the start and end columns.
+ * - columns_xs_size: All Breakpoints - Size of two columns for all devices.
+ *                    Starting from Extra small and up.
+ * - columns_sm_size: Small Breakpoint size (sm) - Size of two columns for Small devices
+ *                    (landscape phones, 576px and up)
+ * - columns_md_size: Medium Breakpoint size (md) - Size of two columns for Medium devices
+ *                    (tablets, 768px and up)
+ * - columns_lg_size: Large Breakpoint size (lg) - Size of two columns for Large devices
+ *                    (desktops, 992px and up)
+ * - columns_xl_size: Extra Large Breakpoint size (xl) - Size of two columns for X-Large devices
+ *                    (large desktops, 1200px and up)
+ * - columns_xxl_size: Extra Extra Large Breakpoint size (xxl) - Size of two columns for XX-Large devices
+ *                     (larger desktops, 1400px and up)
+ * - card_featured_utility_classes: Use to add extra Bootstrap utility classes for the main Card wrapper.
+ *                    E.g. `mb-3 shadow-lg` ( Do not add `card`).
+ * - card_featured_media_utility_classes: Use to add extra Bootstrap utility classes for the Card Media region wrapper.
+ *                          E.g. `bg-secondary mb-3` ( Do not add `card-img`).
+ * - card_featured_content_utility_classes: Use to add extra Bootstrap utility classes for the Card Content region wrapper.
+ *                            E.g. `w-75 mb-3 overflow-y-hidden`  ( Do not add `card-body`).
+ *
+ * Available attributes:
+ * - card_attributes: HTML attributes for the card element.
+ * - media_attributes: HTML attributes for the media element.
+ * - content_attributes: HTML attributes for the content element.
+ * - row_attributes: HTML attributes for the row element.
+ * - start_column_attributes: HTML attributes for the start column element.
+ * - end_column_attributes: HTML attributes for the end column element.
+ *
+ * Available slots:
+ * - media: Card Media slot region.
+ * - content: Card Content slot region.
+ */
+#}
+{% set style_size = style_size ? [style_size]: [] %}
+{% set card_border = card_border ? ['bordered'] : ['border-0'] %}
+{% set padded = padded ? ['p-4'] : [''] %}
+{% set equal_height = equal_height ? ['h-100'] : [] %}
+{% set anchor_all = anchor_all ? ['anchor-all'] : [] %}
+{% set media_position = media_position ?? 'start' %}
+{% set media_position_classes = media_position == 'end' ? ['flex-row-reverse'] : [] %}
+{% set content_vertical_alignment = content_vertical_alignment ? ['align-self-' ~ content_vertical_alignment] : [] %}
+{% set card_featured_utility_classes = card_featured_utility_classes ? card_featured_utility_classes : [] %}
+{% set card_featured_media_utility_classes = card_featured_media_utility_classes ? card_featured_media_utility_classes : [] %}
+{% set card_featured_content_utility_classes = card_featured_content_utility_classes ? card_featured_content_utility_classes : [] %}
+
+{# Mapping for the start column with selected column sizes on each brackpoint #}
+{% set start_column_xs_size = columns_xs_size ? ['col-' ~ columns_xs_size|split("_")[0]|trim('0', 'left')] : [] %}
+{% set start_column_sm_size = columns_sm_size ? ['col-sm-' ~ columns_sm_size|split("_")[0]|trim('0', 'left')] : [] %}
+{% set start_column_md_size = columns_md_size ? ['col-md-' ~ columns_md_size|split("_")[0]|trim('0', 'left')] : [] %}
+{% set start_column_lg_size = columns_lg_size ? ['col-lg-' ~ columns_lg_size|split("_")[0]|trim('0', 'left')] : [] %}
+{% set start_column_xl_size = columns_xl_size ? ['col-xl-' ~ columns_xl_size|split("_")[0]|trim('0', 'left')] : [] %}
+{% set start_column_xxl_size = columns_xxl_size ? ['col-xxl-' ~ columns_xxl_size|split("_")[0]|trim('0', 'left')] : [] %}
+
+{# Mapping for the end column with selected column sizes on each brackpoint #}
+{% set end_column_xs_size = columns_xs_size ? ['col-' ~ columns_xs_size|split("_")[1]|trim('0', 'left')] : [] %}
+{% set end_column_sm_size = columns_sm_size ? ['col-sm-' ~ columns_sm_size|split("_")[1]|trim('0', 'left')] : [] %}
+{% set end_column_md_size = columns_md_size ? ['col-md-' ~ columns_md_size|split("_")[1]|trim('0', 'left')] : [] %}
+{% set end_column_lg_size = columns_lg_size ? ['col-lg-' ~ columns_lg_size|split("_")[1]|trim('0', 'left')] : [] %}
+{% set end_column_xl_size = columns_xl_size ? ['col-xl-' ~ columns_xl_size|split("_")[1]|trim('0', 'left')] : [] %}
+{% set end_column_xxl_size = columns_xxl_size ? ['col-xxl-' ~ columns_xxl_size|split("_")[1]|trim('0', 'left')] : [] %}
+
+{%
+  set card_classes = [
+    'card',
+    'varbase-featured-card',
+  ]|merge(style_size)|merge(card_border)|merge(padded)|merge(equal_height)|merge(anchor_all)|merge(card_featured_utility_classes)
+%}
+
+{% set row_gutters_between = gutters_between == 'no' ? ['gx-0'] : [] %}
+{%
+  set row_classes = [
+    'row',
+  ]|merge(media_position_classes|merge(row_gutters_between))
+%}
+
+{% set start_column_gutters_between = gutters_between == 'small-start' ? (media_position_classes == [] ? ['pe-0'] : ['ps-0']) : [] %}
+{%
+  set start_column_classes = []|merge(start_column_xs_size)|merge(start_column_sm_size)|merge(start_column_md_size)|merge(start_column_lg_size)|merge(start_column_xl_size)|merge(start_column_xxl_size)|merge(start_column_gutters_between)
+%}
+
+{% set end_column_gutters_between = gutters_between == 'small-end' ? (media_position_classes == [] ? ['ps-0'] : ['pe-0']) : [] %}
+{%
+  set end_column_classes = []|merge(end_column_xs_size)|merge(end_column_sm_size)|merge(end_column_md_size)|merge(end_column_lg_size)|merge(end_column_xl_size)|merge(end_column_xxl_size)|merge(end_column_gutters_between)|merge(content_vertical_alignment)
+%}
+
+{%
+  set media_classes = [
+    'card-img',
+    'card-img-' ~ media_position,
+  ]|merge(card_featured_media_utility_classes)
+%}
+
+{%
+  set content_classes = [
+    'featured-card-content',
+    'card-body',
+  ]|merge(card_featured_content_utility_classes)
+%}
+
+{% if not card_attributes %}
+  {% set card_attributes = create_attribute() %}
+{% endif %}
+
+{% if not row_attributes %}
+  {% set row_attributes = create_attribute() %}
+{% endif %}
+
+{% if not start_column_attributes %}
+  {% set start_column_attributes = create_attribute() %}
+{% endif %}
+
+{% if not end_column_attributes %}
+  {% set end_column_attributes = create_attribute() %}
+{% endif %}
+
+{% if not content_attributes %}
+  {% set content_attributes = create_attribute() %}
+{% endif %}
+
+{% if not media_attributes %}
+  {% set media_attributes = create_attribute() %}
+{% endif %}
+
+{% set card_attributes = card_attributes.addClass(card_classes) %}
+{% set row_attributes = row_attributes.addClass(row_classes) %}
+{% set start_column_attributes = start_column_attributes.addClass(start_column_classes) %}
+{% set end_column_attributes = end_column_attributes.addClass(end_column_classes) %}
+{% set content_attributes = content_attributes.addClass(content_classes) %}
+{% set media_attributes = media_attributes.addClass(media_classes) %}
+
+<div{{ card_attributes }}>
+  <div{{ row_attributes }}>
+    <div{{ start_column_attributes }}>
+      {% if media is not empty %}
+        {% if media_classes|length > 0 %}<div{{ media_attributes }}>{% endif %}
+        {{ media }}
+        {% if media_classes|length > 0 %}</div>{% endif %}
+      {% endif %}
+    </div>
+    <div{{ end_column_attributes }}>
+      <div{{ content_attributes }}>
+        {{ content }}
+      </div>
+    </div>
+  </div>
+</div>

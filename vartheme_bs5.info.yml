@@ -1,13 +1,6 @@
 name: Vartheme BS5
 description: Starterkit theme for Varbase standard websites. Based on Bootstrap 5 framework using SASS.
 core_version_requirement: ~11.2.0
-
-# These dependencies will not allow the installation of Vartheme BS5 at all if varbase_components is not activated.
-# As the Gin admin theme had issue with installation in profiles.
-# A bit harsh, so we'll continue to just rely on the composer requirement for now.
-# dependencies:
-#   - varbase_components:varbase_components
-
 engine: twig
 type: theme
 base theme: false
@@ -30,23 +23,6 @@ regions:
 
 libraries:
   - vartheme_bs5/framework
-
-libraries-override:
-  content_moderation/content_moderation: vartheme_bs5/content_moderation
-  varbase_components/popper-script: vartheme_bs5/popper-script
-  varbase_components/bs-base-component-script: vartheme_bs5/bs-base-component-script
-  # varbase_components/bs-alert-script: vartheme_bs5/bs-alert-script
-  # varbase_components/bs-button-script: vartheme_bs5/bs-button-script
-  # varbase_components/bs-carousel-script: vartheme_bs5/bs-carousel-script
-  # varbase_components/bs-collapse-script: vartheme_bs5/bs-collapse-script
-  # varbase_components/bs-dropdown-script: vartheme_bs5/bs-dropdown-script
-  varbase_components/bs-modal-script: vartheme_bs5/bs-modal-script
-  varbase_components/bs-offcanvas-script: vartheme_bs5/bs-offcanvas-script
-  varbase_components/bs-popover-script: vartheme_bs5/bs-popover-script
-  varbase_components/bs-scrollspy-script: vartheme_bs5/bs-scrollspy-script
-  varbase_components/bs-tab-script: vartheme_bs5/bs-tab-script
-  varbase_components/bs-toast-script: vartheme_bs5/bs-toast-script
-  varbase_components/bs-tooltip-script: vartheme_bs5/bs-tooltip-script
 
 ckeditor_stylesheets: false
 ckeditor5-stylesheets:

@@ -4,12 +4,12 @@
  * Template for the branding block.
  */
 #}
-{% embed 'varbase_components:block' with {
+{% embed 'vartheme_bs5:block' with {
   html_tag: 'div',
 } %}
 
 	{% block content %}
-		{% include 'varbase_components:navbar-brand' with {
+		{% include 'vartheme_bs5:navbar-brand' with {
     text: site_name,
     image_path: site_logo,
     height: 'auto',

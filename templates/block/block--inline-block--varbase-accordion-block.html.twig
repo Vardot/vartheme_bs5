@@ -56,7 +56,7 @@
 
 {% set accordion_toggle_all = (content['field_toggle_all'] and content['field_toggle_all']['#items'].value == 1) ? true : false %}
 
-{% include "varbase_components:block-accordion" with {
+{% include "vartheme_bs5:block-accordion" with {
   title_tag: 'h2',
   heading: label,
   items: accordion_items,

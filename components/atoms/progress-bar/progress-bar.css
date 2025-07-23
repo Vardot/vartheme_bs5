@@ -1,0 +1,132 @@
+@keyframes progress-bar-stripes {
+  0% {
+    background-position-x: 1.25rem;
+  }
+}
+
+.progress,
+.progress-stacked {
+  --bs-progress-height: 1.25rem;
+  --bs-progress-font-size: .875rem;
+  --bs-progress-bg: transparent;
+  --bs-progress-border-radius: .125rem;
+  --bs-progress-box-shadow: none;
+  --bs-progress-bar-color: #fff;
+  --bs-progress-bar-bg: #0d6efd;
+  --bs-progress-bar-transition: width .6s ease;
+  display: flex;
+  height: var(--bs-progress-height);
+  overflow: hidden;
+  font-size: var(--bs-progress-font-size);
+  background-color: var(--bs-progress-bg);
+  border-radius: var(--bs-progress-border-radius);
+}
+
+.progress-bar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  color: var(--bs-progress-bar-color);
+  text-align: center;
+  white-space: nowrap;
+  background-color: var(--bs-progress-bar-bg);
+  transition: var(--bs-progress-bar-transition);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .progress-bar {
+    transition: none;
+  }
+}
+
+.progress-bar-striped {
+  background-size: var(--bs-progress-height) var(--bs-progress-height);
+}
+
+[dir="ltr"] .progress-bar-striped {
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+}
+
+[dir="rtl"] .progress-bar-striped {
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+}
+
+.progress-stacked > .progress {
+  overflow: visible;
+}
+
+.progress-stacked > .progress > .progress-bar {
+  width: 100%;
+}
+
+.progress-bar-animated {
+  animation: 1s linear infinite progress-bar-stripes;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .progress-bar-animated {
+    animation: none;
+  }
+}
+
+.progress {
+  border: 1px solid var(--bs-border-color);
+}
+
+.progress-bar {
+  font-weight: 700;
+  line-height: 1.225rem;
+  padding: .0625rem 0rem;
+}
+
+.progress-bar.bg-primary {
+  color: #fff;
+}
+
+.progress-bar.bg-secondary {
+  color: #fff;
+}
+
+.progress-bar.bg-success {
+  color: #fff;
+}
+
+.progress-bar.bg-info {
+  color: #000;
+}
+
+.progress-bar.bg-warning {
+  color: #000;
+}
+
+.progress-bar.bg-danger {
+  color: #fff;
+}
+
+.progress-bar.bg-light {
+  color: #000;
+}
+
+.progress-bar.bg-dark {
+  color: #fff;
+}
+
+[dir=ltr] .progress-bar-striped {
+  background-image: url('data:image/svg+xml,<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><mask id="mask0_167_9176" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="16" height="16"><rect width="16" height="16" fill="%235082F7"/></mask><g mask="url(%23mask0_167_9176)"><rect x="-19" y="1.86823" width="6" height="28" transform="rotate(-45 -19 1.86823)" fill="white" fill-opacity="30%" /><rect x="-5" y="-0.131775" width="6" height="28" transform="rotate(-45 -5 -0.131775)" fill="white" fill-opacity="30%" /><rect x="11" y="-0.131775" width="6" height="28" transform="rotate(-45 11 -0.131775)" fill="white" fill-opacity="30%" /></g></svg>');
+}
+
+[dir=rtl] .progress-bar-striped {
+  background-image: url('data:image/svg+xml,<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" transform="rotate(-90)"><mask id="mask0_167_9176" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="16" height="16"><rect width="16" height="16" fill="%235082F7"/></mask><g mask="url(%23mask0_167_9176)"><rect x="-19" y="1.86823" width="6" height="28" transform="rotate(-45 -19 1.86823)" fill="white" fill-opacity="30%" /><rect x="-5" y="-0.131775" width="6" height="28" transform="rotate(-45 -5 -0.131775)" fill="white" fill-opacity="30%" /><rect x="11" y="-0.131775" width="6" height="28" transform="rotate(-45 11 -0.131775)" fill="white" fill-opacity="30%" /></g></svg>');
+}
+
+.progress-bar-striped {
+  background-size: 1rem 1rem;
+}
+
+@keyframes progress-bar-stripes {
+  0% {
+    background-position-x: 1rem;
+  }
+}
+

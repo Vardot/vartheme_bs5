@@ -1,0 +1,93 @@
+@import "../../defaults";   // Global component defaults.
+
+// Common styles for all types.
+.bs-callout {
+  background-color: var(--bs-gray-100);
+  @include padding(1.25rem);
+  @include margin(1.25rem 0);
+  border-left: 0.25rem solid var(--bs-gray-300);
+
+  &:before {
+    content: " ";
+    display: table;
+  }
+
+  &:after {
+    clear: both;
+  }
+
+  h4 {
+    margin-top: 0;
+    @include margin-bottom(0.3125rem);
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  code {
+    @include rfs(0.1875rem, border-radius);
+  }
+}
+
+// Tighten up space between multiple callouts.
+.bs-callout + .bs-callout {
+  @include margin-top(-0.3125rem);
+}
+
+// Variations.
+// Callout danger.
+.bs-callout-danger {
+  color: var(--bs-danger-text-emphasis);
+  background-color: var(--bs-danger-bg-subtle);
+  border-left-color: var(--bs-danger-border-subtle);
+
+  h4 {
+    color: var(--bs-danger);
+  }
+}
+
+// Callout warning.
+.bs-callout-warning {
+  color: var(--bs-warning-text-emphasis);
+  background-color: var(--bs-warning-bg-subtle);
+  border-left-color: var(--bs-warning-border-subtle);
+
+  h4 {
+    color: var(--bs-warning);
+  }
+}
+
+// Callout info.
+.bs-callout-info {
+  color: var(--bs-info-text-emphasis);
+  background-color: var(--bs-info-bg-subtle);
+  border-left-color: var(--bs-info-border-subtle);
+
+  h4 {
+    color: var(--bs-info);
+  }
+}
+
+// Bootstrap callouts right to left.
+// Common styles for all types.
+[dir="rtl"] .bs-callout {
+  border-left: 0;
+  border-right: 0.25rem solid var(--bs-gray-300);
+}
+
+// Variations.
+// Callout danger.
+[dir="rtl"] .bs-callout-danger {
+  border-right-color: var(--bs-danger-border-subtle);
+}
+
+// Callout warning.
+[dir="rtl"] .bs-callout-warning {
+  border-right-color: var(--bs-warning-border-subtle);
+}
+
+// Callout info.
+[dir="rtl"] .bs-callout-info {
+  border-right-color: var(--bs-info-border-subtle);
+}

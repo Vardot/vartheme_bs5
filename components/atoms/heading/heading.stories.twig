@@ -1,0 +1,209 @@
+{% stories Heading with {
+  "title": "Atoms/Heading",
+  "parameters": {
+    "componentSubtitle": "Bootstrap Heading Component",
+    "docs": {
+      "description": {
+        "component": "All HTML headings, `<h1>` through `<h6>`, are available."
+      },
+      "story": {
+        "inline": true
+      }
+    }
+  },
+  "argTypes": {
+    "html_tag": {
+      "name": "HTML Tag",
+      "description": "HTML header tag (h1, h2, h3, h4, h5, h6)",
+      "defaultValue": "h1",
+      "control": "select",
+      "options": {
+        "h1": "h1",
+        "h2": "h2",
+        "h3": "h3",
+        "h4": "h4",
+        "h5": "h5",
+        "h6": "h6"
+      }
+    },
+    "display": {
+      "name": "Display",
+      "description": "Bootstrap button size class",
+      "defaultValue": "",
+      "control": "select",
+      "options": {
+        "'- none -'": "",
+        "Display1": "display-1",
+        "Display2": "display-2",
+        "Display3": "display-3",
+        "Display4": "display-4",
+        "Display5": "display-5",
+        "Display6": "display-6"
+      }
+    },
+    "content": {
+      "name": "Content",
+      "description": "Content text for the heading.",
+      "defaultValue": "",
+      "control": "textfield"
+    },
+    "heading_utility_classes": {
+      "name": "Utility Classes",
+      "description": "An array of utility classes that can be used to add extra Bootstrap utility classes or custom classes to this component.",
+      "control": "object",
+      "defaultValue": []
+    },
+    "attributes": {
+      "name": "Attributes",
+      "description": "HTML attributes for the heading element.",
+      "control": "object",
+      "defaultValue": {}
+    }
+  }
+} %}
+
+{% story Heading1 with {
+  "name": "Heading 1",
+  "args": {
+    "html_tag": "h1",
+    "display": "",
+    "content": "Test Header 1",
+    "heading_utility_classes": []
+  }
+} %}
+{{ include('vartheme_bs5:heading') }}
+{% endstory %}
+
+{% story Heading2 with {
+  "name": "Heading 2",
+  "args": {
+    "html_tag": "h2",
+    "display": "",
+    "content": "Test Header 2",
+    "heading_utility_classes": []
+  }
+} %}
+{{ include('vartheme_bs5:heading') }}
+{% endstory %}
+
+{% story Heading3 with {
+  "name": "Heading 3",
+  "args": {
+    "html_tag": "h3",
+    "display": "",
+    "content": "Test Header 3",
+    "heading_utility_classes": []
+  }
+} %}
+{{ include('vartheme_bs5:heading') }}
+{% endstory %}
+
+{% story Heading4 with {
+  "name": "Heading 4",
+  "args": {
+    "html_tag": "h4",
+    "display": "",
+    "content": "Test Header 4",
+    "heading_utility_classes": []
+  }
+} %}
+{{ include('vartheme_bs5:heading') }}
+{% endstory %}
+
+{% story Heading5 with {
+  "name": "Heading 5",
+  "args": {
+    "html_tag": "h5",
+    "display": "",
+    "content": "Test Header 5",
+    "heading_utility_classes": []
+  }
+} %}
+{{ include('vartheme_bs5:heading') }}
+{% endstory %}
+
+{% story Heading6 with {
+  "name": "Heading 6",
+  "args": {
+    "html_tag": "h6",
+    "display": "",
+    "content": "Test Header 6",
+    "heading_utility_classes": []
+  }
+} %}
+{{ include('vartheme_bs5:heading') }}
+{% endstory %}
+
+{% story WithDisplay1 with {
+  "name": "With Display 1",
+  "args": {
+    "html_tag": "h1",
+    "display": "display-1",
+    "content": "Test Header 1 With Display 1",
+    "heading_utility_classes": []
+  }
+} %}
+{{ include('vartheme_bs5:heading') }}
+{% endstory %}
+
+{% story WithDisplay2 with {
+  "name": "With Display 2",
+  "args": {
+    "html_tag": "h2",
+    "display": "display-2",
+    "content": "Test Header 2 With Display 2",
+    "heading_utility_classes": []
+  }
+} %}
+{{ include('vartheme_bs5:heading') }}
+{% endstory %}
+
+{% story WithDisplay3 with {
+  "name": "With Display 3",
+  "args": {
+    "html_tag": "h3",
+    "display": "display-3",
+    "content": "Test Header 3 With Display 3",
+    "heading_utility_classes": []
+  }
+} %}
+{{ include('vartheme_bs5:heading') }}
+{% endstory %}
+
+{% story WithDisplay4 with {
+  "name": "With Display 4",
+  "args": {
+    "html_tag": "h4",
+    "display": "display-4",
+    "content": "Test Header 4 With Display 4",
+    "heading_utility_classes": []
+  }
+} %}
+{{ include('vartheme_bs5:heading') }}
+{% endstory %}
+
+{% story WithDisplay5 with {
+  "name": "With Display 5",
+  "args": {
+    "html_tag": "h5",
+    "display": "display-5",
+    "content": "Test Header 5 With Display 5",
+    "heading_utility_classes": []
+  }
+} %}
+{{ include('vartheme_bs5:heading') }}
+{% endstory %}
+
+{% story WithDisplay6 with {
+  "name": "With Display 6",
+  "args": {
+    "html_tag": "h6",
+    "display": "display-6",
+    "content": "Test Header 6 With Display 6",
+    "heading_utility_classes": []
+  }
+} %}
+{{ include('vartheme_bs5:heading') }}
+{% endstory %}
+
+{% endstories %}

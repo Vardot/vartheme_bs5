@@ -4,7 +4,7 @@
 // -----------------------------------------------------------------------------
 
 // Layout & components
-// The Root library was overridden and attached with the `varbase_components:root` component.
+// The Root library was overridden and attached with the `vartheme_bs5:root` component.
 // @import "../../node_modules/bootstrap/scss/root"; // Commented the import, but kept for reference.
 
 @import "../../node_modules/bootstrap/scss/reboot";
@@ -23,20 +23,20 @@
 @import "../../node_modules/bootstrap/scss/card";
 @import "../../node_modules/bootstrap/scss/badge";
 
-// The Accordion library was overridden and attached with the `varbase_components:accordion-item` component.
-// Which attached to the `varbase_components:accordion` component, when used with accordion items.
+// The Accordion library was overridden and attached with the `vartheme_bs5:accordion-item` component.
+// Which attached to the `vartheme_bs5:accordion` component, when used with accordion items.
 // @import "../../node_modules/bootstrap/scss/accordion"; // Commented the import, but kept for reference.
 
-// The Breadcrumb library was overridden and attached with the `varbase_components:breadcrumb` component.
+// The Breadcrumb library was overridden and attached with the `vartheme_bs5:breadcrumb` component.
 // @import "../../node_modules/bootstrap/scss/breadcrumb"; // Commented the import, but kept for reference.
 
-// The Pagination library was overridden and attached with the `varbase_components:pagination` component.
+// The Pagination library was overridden and attached with the `vartheme_bs5:pagination` component.
 // @import "../../node_modules/bootstrap/scss/pagination"; // Commented the import, but kept for reference.
 
-// The Alert library was overridden and attached with the `varbase_components:alert` component.
+// The Alert library was overridden and attached with the `vartheme_bs5:alert` component.
 // @import "../../node_modules/bootstrap/scss/alert"; // Commented the import, but kept for reference.
 
-// The Progress library was overridden and attached with the `varbase_components:progress-bar` component.
+// The Progress library was overridden and attached with the `vartheme_bs5:progress-bar` component.
 // @import "../../node_modules/bootstrap/scss/progress"; // Commented the import, but kept for reference.
 
 @import "../../node_modules/bootstrap/scss/list-group";

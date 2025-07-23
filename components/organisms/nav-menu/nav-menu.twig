@@ -1,0 +1,76 @@
+{#
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for the Nav component.
+ *
+ * Available config:
+ * - alignment: left | right | center | vertical.
+ * - style: tabs | pills
+ * - fill: fill | justify
+ * - nav_menu_utility_classes: An array of utility classes.
+ */
+#}
+{% set nav_menu_utility_classes = nav_menu_utility_classes ? nav_menu_utility_classes : [] %}
+
+{% import _self as menus %}
+
+{% if alignment == 'right' %}
+  {% set alignment = 'justify-content-end' %}
+{% elseif alignment == 'center' %}
+  {% set alignment = 'justify-content-center' %}
+{% elseif alignment == 'vertical' %}
+  {% set alignment = 'flex-column' %}
+{% else %}
+  {% set alignment = '' %}
+{% endif %}
+
+{% set style = style ? 'nav-' ~ style : '' %}
+{% set fill = fill ? 'nav-' ~ fill : '' %}
+
+{%
+  set nav_menu_classes = [
+    'nav',
+    'level-1',
+    style,
+    alignment,
+    fill
+  ]|merge(nav_menu_utility_classes)
+%}
+
+{% if items %}
+  <ul{{ attributes.addClass(nav_menu_classes) }}>
+    {% for item in items %}
+      {% set nav_item_classes = [
+        'nav-item',
+        item.is_expanded and item.below ? 'dropdown' : '',
+        item.in_active_trail ? 'active',
+      ] %}
+      {% set nav_link_classes = ['nav-link'] %}
+      {% if item.url.options.attributes.class is iterable %}
+        {% set nav_link_classes = nav_link_classes|merge(item.url.options.attributes.class) %}
+      {% elseif item.url.options.attributes.class %}
+        {% set nav_link_classes = nav_link_classes|merge([item.url.options.attributes.class]) %}
+      {% endif %}
+      <li class="{{ nav_item_classes|merge(['menu-item--expanded'])|join(' ') }}">
+        {% if item.is_expanded and item.below %}
+          <a href="{{ item.url }}" class="{{ nav_link_classes|merge(['dropdown-toggle'])|join(' ') }}" data-bs-toggle="dropdown">{{ item.title }}</a>
+          {% if item.below %}
+          {% set second_level = 2 %}
+            {% include 'vartheme_bs5:dropdown-menu' with {
+              items: item.below,
+              menu_level: (item.below|first).menu_link_level,
+              parent_item: item
+            } %}
+          {% endif %}
+          <div class="field-image-background d-none d-lg-block"> 
+            {{ item.content.field_media }}  
+          </div>
+        {% else %}
+          {% if item.url %}
+          {{ link(item.title, item.url, { 'class': nav_link_classes }) }}
+          {% endif %}
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}

@@ -1,0 +1,50 @@
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata-full.schema.json"
+name: Views view summary
+status: experimental
+description: Implementation for displaying a view as a view summary list group of items.
+group: Views
+props:
+  type: object
+  properties:
+    type:
+      type: string
+      title: Type
+      description: List type
+      enum:
+        - "ul"
+        - "ol"
+      meta:enum:
+        "ul" : "Unordered list"
+        "ol" : "Ordered list"
+      x-translation-context: Type
+      default: ''
+    summary_utility_classes:
+      type: array
+      title: Utility Classes
+      default: []
+      items:
+        type: 'string'
+      description: Use to add extra Bootstrap utility classes or custom CSS classes over to the summary view.
+    list_utility_classes:
+      type: array
+      title: List Utility Classes
+      default: []
+      items:
+        type: 'string'
+      description: Use to add extra Bootstrap utility classes or custom CSS classes over to the list.
+    list_item_utility_classes:
+      type: array
+      title: List Item Utility Classes
+      default: []
+      items:
+        type: 'string'
+      description: Use to add extra Bootstrap utility classes or custom CSS classes over to list items.
+    attributes:
+      type: object
+      title: Attributes
+      description: "HTML attributes to apply to the view summary tag."
+      $ref: 'ui-patterns://attributes'
+slots:
+  rows:
+    title: Rows
+    description: Rows

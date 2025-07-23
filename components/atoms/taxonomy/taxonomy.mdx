@@ -1,0 +1,34 @@
+{/* taxonomy.mdx */}
+
+import { Canvas, Title, Subtitle, ArgTypes, Source, Meta, Description, Primary, Story, Stories, Controls } from '@storybook/blocks';
+import * as comStories from './taxonomy.stories.json';
+import templateSource from './taxonomy.twig?raw';
+
+<Meta of={comStories} name="Docs"/>
+
+<Title />
+<Subtitle />
+<Description />
+
+
+<Primary />
+
+## Properties
+<Controls />
+
+<Stories of={comStories} />
+
+## Slots:
+* `content`: The content text or text with a link for the taxonomy term.
+
+
+## Examples:
+
+```
+{% include 'vartheme_bs5:taxonomy' with { content: item.content } only %}
+```
+
+
+## Source code
+[//]: # (Twig Template source code)
+<Source code={templateSource} />

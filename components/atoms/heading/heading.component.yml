@@ -1,0 +1,54 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Heading 
+status: experimental
+description: "All HTML headings, `<h1>` through `<h6>`, are available."
+props:
+  type: object
+  properties:
+    html_tag:
+      type: string
+      title: HTML tag
+      description: HTML header tag (h1, h2, h3, h4, h5, h6)
+      default: h1
+      enum:
+        - h1
+        - h2
+        - h3
+        - h4
+        - h5
+        - h6
+    display:
+      type: string
+      title: Display Heading
+      description: When you need a heading to stand out, consider using a display heading—a larger, slightly more opinionated heading style.
+      default: ''
+      enum:
+        - ''
+        - display-1
+        - display-2
+        - display-3
+        - display-4
+        - display-5
+        - display-6
+    url:
+      type: string
+      title: URL Link
+      description: Simple URL link for heading.
+      $ref: "ui-patterns://url"
+    heading_utility_classes:
+      type: array
+      title: Utility Classes 
+      default: []
+      items:
+        type: 'string'
+      description: An array of utility classes that can be used to add extra Bootstrap utility classes or custom classes to this component.
+    attributes:
+      type: object
+      title: Attributes
+      description: HTML attributes for the heading element.
+      $ref: 'ui-patterns://attributes'
+slots:
+  content:
+    type: string
+    title: Content
+    description: Content text for the heading.

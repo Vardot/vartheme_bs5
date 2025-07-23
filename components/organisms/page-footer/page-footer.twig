@@ -1,0 +1,51 @@
+{#
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for the Page Footer component.
+ *
+#}
+
+{% if page.footer_top or page.footer_bottom %}
+  <footer class="footer w-100 mt-auto py-3">
+    {% if page.footer_top %}
+      <div class="w-100 footer-top mt-5">
+        {% if container_footer_top %}
+        <div class="{{ container_footer_top }}">
+        {% endif %}
+          <div class="row">
+            <div class="col-12">
+              <div class="d-flex align-content-stretch flex-wrap">
+                 {{ page.footer_top}}
+              </div>
+            </div>
+          </div>
+        {% if container_footer_top %}
+        </div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if page.footer_bottom %}
+      <div class="w-100 footer-bottom mb-5">
+        {% if container_footer_bottom %}
+        <div class="{{ container_footer_bottom }}">
+        {% endif %}
+          {# Horizontal line when footer bottom has content. #}
+          <div class="text-wight"><hr></div> 
+
+          <div class="row">
+            <div class="col-12">
+              <div class="d-flex align-content-stretch flex-wrap">
+                {{ page.footer_bottom }}
+              </div>
+            </div>
+          </div>
+        {% if container_footer_bottom %}
+        </div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+  </footer>
+{% endif %}
+

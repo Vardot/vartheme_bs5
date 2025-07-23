@@ -1,0 +1,275 @@
+@import "../../defaults";   // Global component defaults.
+
+$varbase-heroslider-max-height-xs: auto;
+$varbase-heroslider-min-height-xs: auto;
+
+$varbase-heroslider-max-height-md: 43.75rem;
+$varbase-heroslider-min-height-md: 43.75rem;
+
+$hero-card-max-height-xs: auto;
+$hero-card-min-height-xs: auto;
+
+$hero-card-max-height-lg: 43.75rem;
+$hero-card-min-height-lg: 43.75rem;
+
+// Text color.
+$hero-title-text-color: $white;
+$hero-brief-text-color: $white;
+$hero-link-text-color: $white;
+
+$carousel-indicators-button-icon-light: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 11' fill='none'><circle cx='5' cy='5.5' r='4.5' stroke='white'/></svg>") no-repeat;
+$carousel-indicators-button-active-icon-light: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 11' fill='none'><circle cx='5' cy='5.5' r='4.5' fill='white' stroke='white'/></svg>") no-repeat;
+$carousel-control-prev-icon-light: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 35 35' fill='none'><path d='M17.5 0C7.83502 0 0 7.83502 0 17.5C0 27.165 7.83502 35 17.5 35C27.165 35 35 27.165 35 17.5C35 7.83502 27.165 0 17.5 0ZM25.1562 16.4062C25.7603 16.4062 26.25 16.8959 26.25 17.5C26.25 18.1041 25.7603 18.5938 25.1562 18.5938H12.4843L17.1796 23.2891C17.6068 23.7162 17.6068 24.4088 17.1796 24.8359C16.7525 25.263 16.06 25.263 15.6329 24.8359L9.07035 18.2734C8.64322 17.8463 8.64322 17.1537 9.07035 16.7266L15.6329 10.1641C16.06 9.73697 16.7525 9.73697 17.1796 10.1641C17.6068 10.5912 17.6068 11.2838 17.1796 11.7109L12.4843 16.4062H25.1562Z' fill='white'/></svg>");
+$carousel-control-next-icon-light: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 35 35' fill='none'><path d='M17.5 0C27.165 0 35 7.83502 35 17.5C35 27.165 27.165 35 17.5 35C7.83502 35 0 27.165 0 17.5C0 7.83502 7.83502 0 17.5 0ZM9.84375 16.4062C9.23969 16.4062 8.75 16.8959 8.75 17.5C8.75 18.1041 9.23969 18.5938 9.84375 18.5938H22.5157L17.8204 23.2891C17.3932 23.7162 17.3932 24.4088 17.8204 24.8359C18.2475 25.263 18.94 25.263 19.3671 24.8359L25.9296 18.2734C26.3568 17.8463 26.3568 17.1537 25.9296 16.7266L19.3671 10.1641C18.94 9.73697 18.2475 9.73697 17.8204 10.1641C17.3932 10.5912 17.3932 11.2838 17.8204 11.7109L22.5157 16.4062H9.84375Z' fill='white'/></svg>");
+$carousel-control-pause-icon-light: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 13' fill='none'><path d='M0 3C0 1.61929 1.11929 0.5 2.5 0.5C3.88071 0.5 5 1.61929 5 3V10C5 11.3807 3.88071 12.5 2.5 12.5C1.11929 12.5 0 11.3807 0 10V3ZM7 3C7 1.61929 8.11929 0.5 9.5 0.5C10.8807 0.5 12 1.61929 12 3V10C12 11.3807 10.8807 12.5 9.5 12.5C8.11929 12.5 7 11.3807 7 10V3Z' fill='white'/></svg>");
+
+$primary-str: "#{$primary}";
+$carousel-control-dark-color: str-slice($primary-str, 2, str-length($primary-str));
+$carousel-indicators-button-icon-dark: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 11' fill='none'><circle cx='5' cy='5.5' r='4.5' stroke='%23#{$carousel-control-dark-color}'/></svg>") no-repeat;
+$carousel-indicators-button-active-icon-dark: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 11' fill='none'><circle cx='5' cy='5.5' r='4.5' fill='%23#{$carousel-control-dark-color}' stroke='%23#{$carousel-control-dark-color}'/></svg>") no-repeat;
+$carousel-control-prev-icon-dark: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 35 35' fill='none'><path d='M17.5 0C7.83502 0 0 7.83502 0 17.5C0 27.165 7.83502 35 17.5 35C27.165 35 35 27.165 35 17.5C35 7.83502 27.165 0 17.5 0ZM25.1562 16.4062C25.7603 16.4062 26.25 16.8959 26.25 17.5C26.25 18.1041 25.7603 18.5938 25.1562 18.5938H12.4843L17.1796 23.2891C17.6068 23.7162 17.6068 24.4088 17.1796 24.8359C16.7525 25.263 16.06 25.263 15.6329 24.8359L9.07035 18.2734C8.64322 17.8463 8.64322 17.1537 9.07035 16.7266L15.6329 10.1641C16.06 9.73697 16.7525 9.73697 17.1796 10.1641C17.6068 10.5912 17.6068 11.2838 17.1796 11.7109L12.4843 16.4062H25.1562Z' fill='%23#{$carousel-control-dark-color}'/></svg>");
+$carousel-control-next-icon-dark: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 35 35' fill='none'><path d='M17.5 0C27.165 0 35 7.83502 35 17.5C35 27.165 27.165 35 17.5 35C7.83502 35 0 27.165 0 17.5C0 7.83502 7.83502 0 17.5 0ZM9.84375 16.4062C9.23969 16.4062 8.75 16.8959 8.75 17.5C8.75 18.1041 9.23969 18.5938 9.84375 18.5938H22.5157L17.8204 23.2891C17.3932 23.7162 17.3932 24.4088 17.8204 24.8359C18.2475 25.263 18.94 25.263 19.3671 24.8359L25.9296 18.2734C26.3568 17.8463 26.3568 17.1537 25.9296 16.7266L19.3671 10.1641C18.94 9.73697 18.2475 9.73697 17.8204 10.1641C17.3932 10.5912 17.3932 11.2838 17.8204 11.7109L22.5157 16.4062H9.84375Z' fill='%23#{$carousel-control-dark-color}'/></svg>");
+$carousel-control-pause-icon-dark: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 13' fill='none'><path d='M0 3C0 1.61929 1.11929 0.5 2.5 0.5C3.88071 0.5 5 1.61929 5 3V10C5 11.3807 3.88071 12.5 2.5 12.5C1.11929 12.5 0 11.3807 0 10V3ZM7 3C7 1.61929 8.11929 0.5 9.5 0.5C10.8807 0.5 12 1.61929 12 3V10C12 11.3807 10.8807 12.5 9.5 12.5C8.11929 12.5 7 11.3807 7 10V3Z' fill='%23#{$carousel-control-dark-color}'/></svg>");
+
+
+.carousel.varbase-heroslider {
+
+
+  &.hero-style-overlay {
+    max-height: $varbase-heroslider-max-height-md;
+    min-height: $varbase-heroslider-min-height-md;
+
+    @media screen and (max-width: map-get($grid-breakpoints, "sm")) {
+      .carousel-controls {
+        margin: 1.88rem;
+      }
+    }
+  }
+
+  @media screen and (min-width: map-get($grid-breakpoints, "lg")) {
+    &.hero-style-start,
+    &.hero-style-end {
+      max-height: $varbase-heroslider-max-height-md;
+      min-height: $varbase-heroslider-min-height-md;
+    }
+
+    &.hero-style-top,
+    &.hero-style-bottom {
+      min-height: $varbase-heroslider-min-height-md;
+    }
+  
+  }
+
+
+  .carousel-controls {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 5;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    height: 2.1875rem;
+    margin-bottom: 1.88rem;
+  }
+
+  .carousel-indicators {
+    position: relative;
+    width: fit-content;
+    padding: 0;
+    margin: 0;
+
+    button {
+      background: $carousel-indicators-button-icon-light;
+
+      &.active {
+        background: $carousel-indicators-button-active-icon-light;
+      }
+    }
+  }
+
+  .carousel-control-buttons {
+    position: relative;
+    display: flex;
+    align-items: baseline;
+  }
+
+  .carousel-control-prev,
+  .carousel-control-next,
+  .carousel-control-pause {
+    position: relative;
+    display: block;
+    width: 2.1875rem;
+    height: 2.1875rem;
+    padding: 0;
+    margin: 0;
+    align-self: flex-end;
+  }
+
+  .carousel-control-pause {
+    background: none;
+    border: 0;
+    opacity: 1;
+
+    .carousel-control-pause-icon {
+      display: inline-block;
+      width: 0.75rem;
+      height: 0.75rem;
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+      background-size: 100% 100%;
+      background-image: $carousel-control-pause-icon-light;
+    }
+  }
+  
+  &.hero-style-overlay,
+  &.hero-style-top,
+  &.hero-style-bottom {
+    .carousel-controls {
+      @media screen and (min-width: map-get($grid-breakpoints, "sm")) {
+        padding: 0 calc((100vw - map-get($container-max-widths, "sm"))/2);
+      }
+
+      @media screen and (min-width: map-get($grid-breakpoints, "md")) {
+        padding: 0 calc(((100vw - map-get($container-max-widths, "md"))/2) + $grid-gutter-width/2);
+      }
+
+      @media screen and (min-width: map-get($grid-breakpoints, "lg")) {
+        margin-bottom: 6.25rem;
+        padding: 0 calc(((100vw - map-get($container-max-widths, "lg"))/2) + $grid-gutter-width/2);
+      }
+
+      @media screen and (min-width: map-get($grid-breakpoints, "xl")) {
+        padding: 0 calc(((100vw - map-get($container-max-widths, "xl"))/2) + $grid-gutter-width/2);
+      }
+
+      @media screen and (min-width: map-get($grid-breakpoints, "xxl")) {
+        padding: 0 calc(((100vw - map-get($container-max-widths, "xxl"))/2) + $grid-gutter-width/2);
+      }
+    }
+  }
+
+  &.hero-style-top,
+  &.hero-style-bottom {
+    .carousel-controls {
+      position: relative;
+      margin-top: 1.88rem;
+      margin-bottom: 1.88rem;
+    }
+  }
+
+  &.hero-style-top {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  &.hero-style-start,
+  &.hero-style-end,
+  &.hero-style-top,
+  &.hero-style-bottom {
+
+    @media screen and (max-width: map-get($grid-breakpoints, "lg")) {
+      .carousel-controls {
+        position: relative;
+        margin: 1.88rem;
+      }
+    }
+
+    .carousel-indicators {
+      button {
+        background: $carousel-indicators-button-icon-dark !important;
+
+        &.active {
+          background: $carousel-indicators-button-active-icon-dark !important;
+        }
+      }
+    }
+
+    .carousel-control-prev {
+      .carousel-control-prev-icon {
+        background-image: $carousel-control-prev-icon-dark;
+      }
+    }
+
+    .carousel-control-pause {
+      .carousel-control-pause-icon {
+        background-image: $carousel-control-pause-icon-dark;
+      }
+    }
+
+    .carousel-control-next {
+      .carousel-control-next-icon {
+        background-image: $carousel-control-next-icon-dark;
+      }
+    }
+  }
+
+  &.hero-style-start,
+  &.hero-style-end {
+    .varbase-hero-card {
+      @media screen and (min-width: map-get($grid-breakpoints, "lg")) {
+        min-height: $hero-card-min-height-lg;
+        max-height: $hero-card-max-height-lg;
+      }
+  
+      .card-body,
+      .media {
+        @media screen and (min-width: map-get($grid-breakpoints, "lg")) {
+          min-height: $hero-card-min-height-lg;
+          max-height: $hero-card-max-height-lg;
+        }
+      }
+
+      @media screen and (min-width: map-get($grid-breakpoints, "lg")) {
+        .card-img {
+          .ratio {
+            height: 81vh;
+          }
+        }
+
+        .media {
+          iframe {
+            height: 81vh;
+            width: 100vw;
+          }
+        }
+      }
+    }
+  }
+
+  &.hero-style-start {
+    @media screen and (min-width: map-get($grid-breakpoints, "lg")) {
+      .carousel-controls {
+        position: absolute;
+        right: auto;
+        left: 9.375rem;
+        width: calc(50vw - 11.125rem);
+      }
+    }
+  }
+
+  &.hero-style-end {
+    @media screen and (min-width: map-get($grid-breakpoints, "lg")) {
+      .carousel-controls {
+        position: absolute;
+        right: 9.375rem;
+        left: auto;
+        width: calc(50vw - 11.125rem);
+      }
+    }
+  }
+
+  &> .view-empty {
+    background-color: #e0e0e0;
+    @include rfs(25rem 0 3rem, padding);
+    text-align: center;
+    color: #666;
+    background-repeat: no-repeat;
+    @include rfs(50% 5rem, background-position);
+    @include rfs(15rem, background-size);
+    @include font-size(1.75rem);
+    /* Icons made by DinosoftLabs (https://www.flaticon.com/authors/dinosoftlabs) from www.flaticon.com. And is licensed by CC 3.0 BY. */
+    background-image: url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCAzMjEuNDk0IDMyMS40OTQiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDMyMS40OTQgMzIxLjQ5NDsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIyNTZweCIgaGVpZ2h0PSIyNTZweCI+CjxnPgoJPGc+CgkJPHBhdGggZD0iTTY2Ljg4LDIwOC43NDd2NzcuNzVsNjcuMzY3LTM4LjgxN0w2Ni44OCwyMDguNzQ3eiBNODAuNzQ3LDIzMi44NTRsMjUuODEzLDE0LjkzM2wtMjUuODEzLDE0LjgyN1YyMzIuODU0eiIgZmlsbD0iI2E4YThhOCIvPgoJPC9nPgo8L2c+CjxnPgoJPGc+CgkJPHBhdGggZD0iTTAsMTczLjg2N3YxNDcuNjI3aDE4Ny43MzNWMTczLjg2N0gweiBNMTczLjg2NywzMDcuNjI3aC0xNjBWMTg3LjczNGgxNjBWMzA3LjYyN3oiIGZpbGw9IiNhOGE4YTgiLz4KCTwvZz4KPC9nPgo8Zz4KCTxnPgoJCTxwYXRoIGQ9Ik02Ni44OCwwdjE2MC45NmgyNTQuNjEzVjBINjYuODh6IE0zMDcuNjI4LDE0Ny4wOTRIODAuNzQ3VjEzLjg2N2gyMjYuODhWMTQ3LjA5NHoiIGZpbGw9IiNhOGE4YTgiLz4KCTwvZz4KPC9nPgo8Zz4KCTxnPgoJCTxwYXRoIGQ9Ik0xNTkuMjU1LDIwLjY5NGMtMTEuOTQ3LDAtMjEuNzYsOS44MTMtMjEuNzYsMjEuNzZjMCwxMS45NDcsOS44MTMsMjEuNzYsMjEuNzYsMjEuNzZjMTEuOTQ2LDAsMjEuNzYtOS44MTMsMjEuNzYtMjEuNzYgICAgQzE4MS4wMTUsMzAuNTA3LDE3MS4yMDEsMjAuNjk0LDE1OS4yNTUsMjAuNjk0eiBNMTU5LjI1NSw1MC4zNDZjLTQuMzczLDAtNy44OTMtMy41Mi03Ljg5My03Ljg5M3MzLjUyLTcuODkzLDcuODkzLTcuODkzICAgIHM3Ljg5MywzLjUyLDcuODkzLDcuODkzUzE2My42MjgsNTAuMzQ2LDE1OS4yNTUsNTAuMzQ2eiIgZmlsbD0iI2E4YThhOCIvPgoJPC9nPgo8L2c+CjxnPgoJPGc+CgkJPHBvbHlnb24gcG9pbnRzPSIzMDkuNzYsMjkuOTc0IDI1MS43MzQsODUuNTQ3IDIxNy43MDgsNTIuOTA3IDE2Mi43NzUsMTA1LjQ5NCAxMjYuMTg3LDcwLjUwNyA2OS4wMTUsMTI1LjEyIDc4LjYxNCwxMzUuMTQ3ICAgICAxMjYuMTg3LDg5LjcwNyAxNjIuNzc1LDEyNC42OTQgMjE3LjcwOCw3Mi4xMDcgMjUxLjczNCwxMDQuNzQ3IDMxOS4zNjEsNDAgICAiIGZpbGw9IiNhOGE4YTgiLz4KCTwvZz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K);
+  }
+}

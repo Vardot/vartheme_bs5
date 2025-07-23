@@ -1,0 +1,59 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Carousel
+status: experimental
+description: A slideshow component for cycling through elements images/media or slides of text—like a carousel.
+props:
+  type: object
+  properties:
+    id:
+      type: string
+      title: Carousel ID
+      description: Set a unique id on the carousel for optional controls, especially if you’re using multiple carousels on a single page.
+    slide_component:
+      type: string
+      title: Slider component
+      description: A component name to render a slide
+      default: 'vartheme_bs5:card-hero'
+    items:
+      type: array
+      title: Items
+      description: An array of slider items, Each item has (caption, media, content)
+      default: []
+    controls:
+      type: boolean
+      title: Controls
+      description: Add the previous/next controls.
+      default: false
+    indicators:
+      type: boolean
+      title: Indicators
+      description: Add indicators to the carousel, alongside the previous/next controls.
+      default: false
+    carousel_utility_classes:
+      type: array
+      title: Utility Classes
+      default: []
+      items:
+        type: 'string'
+      description: An array of utility classes. Use to add extra Bootstrap utility classes or custom CSS classes over to the carousel element.
+    carousel_indicators_utility_classes:
+      type: array
+      title: Indicators Utility Classes
+      default: []
+      items:
+        type: 'string'
+      description: An array of utility classes. Use to add extra Bootstrap utility classes or custom CSS classes over to the indicators element.
+    attributes:
+      type: object
+      title: Attributes
+      description: HTML attributes to apply to the carousel main wrapper tag.
+      $ref: 'ui-patterns://attributes'
+    indicators_attributes:
+      type: object
+      title: Attributes
+      description: HTML attributes to apply to the indicators wrapper tag.
+      $ref: 'ui-patterns://attributes'
+libraryOverrides:
+  dependencies:
+    - vartheme_bs5/bs-carousel-script
+    - drimage_improved/drimage_improved

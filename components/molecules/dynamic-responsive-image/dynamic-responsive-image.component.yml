@@ -1,0 +1,62 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Dynamic Responsive Image
+status: experimental
+description: Generate (nearly) perfectly scaled (or cropped) images on-the-fly assumes the width of images is set in CSS, either directly in the wrapper-div or inherited through a parent element. Any grid system will do just fine for this.
+group: Dynamic Responsive Image
+props:
+  type: object
+  properties:
+    url:
+      type: string
+      title: Optional URL
+      description: An optional URL the image can be linked to.
+      $ref: "ui-patterns://url"
+    width:
+      type: string
+      title: Original Width
+      description: The original width of the image.
+    height:
+      type: string
+      title: Original Height
+      description: The original height of the image.
+    alt:
+      type: string
+      title: Alt Text
+      description: The alt text for the image.
+    data:
+      type: object
+      title: Data
+      description: json encoded drimage data object
+    dynamic_responsive_image_utility_classes:
+      type: array
+      title: Utility Classes 
+      default: []
+      description: Use to add extra Bootstrap utility classes for the main wrapper.
+    item_attributes:
+      type: object
+      title: The Dynamic Responsive Image Item Attributes
+      description: HTML attributes for the item wrapper element.
+      $ref: 'ui-patterns://attributes'
+    picture_source_attributes:
+      type: object
+      title: Picture Source Attributes
+      description: HTML attributes for the picture source element.
+      $ref: 'ui-patterns://attributes'
+    picture_img_attributes:
+      type: object
+      title: Picture Image Attributes
+      description: HTML attributes for the picture image element.
+      $ref: 'ui-patterns://attributes'
+    url_attributes:
+      type: object
+      title: URL Attributes
+      description: HTML attributes for the URL element.
+      $ref: 'ui-patterns://attributes'
+    noscript_img_attributes:
+      type: object
+      title: No JavaScript Image Attributes
+      description: HTML attributes for the No JavaScript Image element.
+      $ref: 'ui-patterns://attributes'
+libraryOverrides:
+  dependencies:
+    - drimage_improved/drimage_improved

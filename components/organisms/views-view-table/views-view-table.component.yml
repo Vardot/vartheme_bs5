@@ -1,0 +1,170 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata-full.schema.json
+name: Views view table
+status: experimental
+description: Implementation for displaying a view as a table.
+group: Views
+props:
+  type: object
+  properties:
+    variant:
+      type: string
+      title: Variant
+      default: ''
+      enum:
+        - ''
+        - primary
+        - secondary
+        - success
+        - info
+        - warning
+        - danger
+        - light
+        - dark
+    responsive:
+      type: boolean
+      title: Responsive
+      description: Responsive tables allow tables to be scrolled horizontally with ease. Make any table responsive across all viewports.
+      default: true
+      $ref: "ui-patterns://boolean"
+    striped_rows:
+      type: boolean
+      title: Striped rows
+      description: Use to add zebra-striping to any table row within the tbody.
+      default: false
+      $ref: "ui-patterns://boolean"
+    striped_columns:
+      type: boolean
+      title: Striped columns
+      description: Use to add zebra-striping to any table column.
+      default: false
+      $ref: "ui-patterns://boolean"
+    hover:
+      type: boolean
+      title: Hover
+      description: Enable a hover state on table rows within a tbody for hoverable rows.
+      default: false
+      $ref: "ui-patterns://boolean"
+    bordered:
+      type: boolean
+      title: Bordered
+      description: Add borders on all sides of the table and cells.
+      default: false
+      $ref: "ui-patterns://boolean"
+    border_color:
+      type: string
+      title: Border Color
+      description: Use the border color utility to change border colors.
+      default: ''
+      enum:
+        - ""
+        - primary
+        - secondary
+        - success
+        - info
+        - warning
+        - danger
+        - light
+        - dark
+        - black
+        - white
+        - primary-subtle
+        - secondary-subtle
+        - success-subtle
+        - info-subtle
+        - warning-subtle
+        - danger-subtle
+        - light-subtle
+        - dark-subtle
+      meta:enum:
+        "": "Default (No Border Color)"
+        "primary": "Primary"
+        "secondary": "Secondary"
+        "success": "Success"
+        "info": "Info"
+        "warning": "Warning"
+        "danger": "Danger"
+        "light": "Light"
+        "dark": "Dark"
+        "black": "Black"
+        "white": "White"
+        "primary-subtle": "Primary Subtle"
+        "secondary-subtle": "Secondary Subtle"
+        "success-subtle": "Success Subtle"
+        "info-subtle": "Info Subtle"
+        "warning-subtle": "Warning Subtle"
+        "danger-subtle": "Danger Subtle"
+        "light-subtle": "Light Subtle"
+        "dark-subtle": "Dark Subtle"
+      x-translation-context: Border Color
+    size:
+      type: string
+      title: Table Size
+      description: Use sm for small to make any table more compact by cutting all cell padding in half.
+      enum:
+        - ""
+        - "sm"
+      meta:enum:
+        "" : "Default"
+        "sm" : "Small"
+      x-translation-context: Table Size
+      default: ''
+    caption:
+      type: string
+      title: Caption
+      description: "A localized string for the caption tag."
+      default: ''
+    table_utility_classes:
+      type: array
+      title: Utility Classes
+      default: []
+      items:
+        type: 'string'
+      description: Use to add extra Bootstrap utility classes or custom CSS classes over to the table element.
+    thead_utility_classes:
+      type: array
+      title: Table Header Utility Classes
+      default: []
+      items:
+        type: 'string'
+      description: Use to add extra Bootstrap utility classes or custom CSS classes over to the head of the table element.
+    tbody_utility_classes:
+      type: array
+      title: Table Body Utility Classes
+      default: []
+      items:
+        type: 'string'
+      description: Use to add extra Bootstrap utility classes or custom CSS classes over to the body of the table element.
+    tfoot_utility_classes:
+      type: array
+      title: Table Footer Utility Classes
+      default: []
+      items:
+        type: 'string'
+      description: Use to add extra Bootstrap utility classes or custom CSS classes over to the foot of the table element.
+    attributes:
+      type: object
+      title: Attributes
+      description: "HTML attributes to apply to the table tag."
+      $ref: 'ui-patterns://attributes'
+    thead_attributes:
+      type: object
+      title: Table Header attributes
+      description: "HTML attributes to apply to the thead tag."
+      $ref: 'ui-patterns://attributes'
+      default: {}
+    tbody_attributes:
+      type: object
+      title: Table Body attributes
+      description: "HTML attributes to apply to the tbody tag."
+      $ref: 'ui-patterns://attributes'
+      default: {}
+    tfoot_attributes:
+      type: object
+      title: Table Footer attributes
+      description: "HTML attributes to apply to the tfoot tag."
+      $ref: 'ui-patterns://attributes'
+      default: {}
+slots:
+  rows:
+    title: Rows
+    description: Rows

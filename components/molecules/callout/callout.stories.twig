@@ -1,0 +1,91 @@
+{% stories Callout with {
+  "title": "Molecules/Callout",
+  "parameters": {
+    "componentSubtitle": "Callout Component",
+    "docs": {
+      "description": {
+        "component": "Call out specific text from the content. These are intended to draw priority attention to that text."
+      },
+      "story": {
+        "inline": true
+      }
+    }
+  },
+  "argTypes": {
+    "type": {
+      "name": "Callout type",
+      "description": "Bootstrap includes several predefined callout type styles.",
+      "defaultValue": "",
+      "control": "select",
+      "options": {
+        "'- none -'": "",
+        "Danger": "bs-callout-danger",
+        "Warning": "bs-callout-warning",
+        "Info": "bs-callout-info"
+      }
+    },
+    "content": {
+      "name": "Callout content",
+      "description": "The content of the callout.",
+      "defaultValue": "",
+      "control": "text"
+    },
+    "callout_utility_classes": {
+      "name": "Utility Classes",
+      "description": "An array of utility classes that can be used to add extra Bootstrap utility classes or custom classes to this component.",
+      "control": "object",
+      "defaultValue": []
+    },
+    "attributes": {
+      "name": "Attributes",
+      "description": "HTML attributes for the callout element.",
+      "control": "object",
+      "defaultValue": {}
+    }
+  }
+} %}
+
+{% story Default with {
+  "name": "Default",
+  "args": {
+    "content": "<strong>Default callout.</strong> Example text to show it in action.",
+    "callout_utility_classes": []
+  }
+} %}
+{{ include('vartheme_bs5:callout') }}
+{% endstory %}
+
+{% story Info with {
+  "name": "Info",
+  "args": {
+    "type": "bs-callout-info",
+    "content": "<strong>This is an info callout.</strong> Example text to show it in action.",
+    "callout_utility_classes": []
+  }
+} %}
+{{ include('vartheme_bs5:callout') }}
+{% endstory %}
+
+{% story Warning with {
+  "name": "Warning",
+  "args": {
+    "type": "bs-callout-warning",
+    "content": "<strong>This is a warning callout.</strong> Example text to show it in action.",
+    "callout_utility_classes": []
+  }
+} %}
+{{ include('vartheme_bs5:callout') }}
+{% endstory %}
+
+{% story Danger with {
+  "name": "Danger",
+  "args": {
+    "type": "bs-callout-danger",
+    "content": "<strong>This is a danger callout.</strong> Example text to show it in action.",
+    "callout_utility_classes": []
+  }
+} %}
+{{ include('vartheme_bs5:callout') }}
+{% endstory %}
+
+{% endstories %}

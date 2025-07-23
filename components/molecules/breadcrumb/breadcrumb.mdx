@@ -1,0 +1,32 @@
+{/* breadcrumb.mdx */}
+
+import { Canvas, Title, Subtitle, ArgTypes, Source, Meta, Description, Primary, Story, Stories, Controls } from '@storybook/blocks';
+import * as comStories from './breadcrumb.stories.json';
+import templateSource from './breadcrumb.twig?raw';
+
+<Meta of={comStories} name="Docs"/>
+
+<Title />
+<Subtitle />
+<Description />
+
+
+> ### [Bootstrap documentation on Breadcrumb](https://getbootstrap.com/docs/5.3/components/breadcrumb)
+> * [Unordered list with linked list items](https://getbootstrap.com/docs/5.3/components/breadcrumb/#example)
+> * [Dividers](https://getbootstrap.com/docs/5.3/components/breadcrumb/#dividers)
+> * [Accessibility: ARIA Authoring Practices Guide breadcrumb pattern](https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/)
+
+<Primary />
+
+## Properties
+<Controls />
+
+### Available attributes:
+* `attributes`: HTML attributes for the breadcrumb nav element.
+* `items_attributes`: HTML attributes for the Breadcrumb trail items element.
+
+<Stories of={comStories} />
+
+## Source code
+[//]: # (Twig Template source code)
+<Source code={templateSource} />

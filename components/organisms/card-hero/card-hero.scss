@@ -1,0 +1,321 @@
+@import "../../defaults";   // Global component defaults.
+
+// Text color.
+$hero-title-text-color: $white;
+$hero-brief-text-color: $white;
+$hero-link-text-color: $white;
+
+// Font sizes with responsive sizes.
+$hero-xlarge-title-font-size-xs: 3.3rem;
+$hero-xlarge-title-font-size-sm: 3.3rem;
+$hero-xlarge-title-font-size-md: 57px;
+$hero-xlarge-title-font-size-lg: 57px;
+$hero-xlarge-title-font-size-xl: 57px;
+
+// Hero Card default styles.
+$hero-card-title-color: $white;
+$hero-card-xlarge-title-font-size: 3.5rem;
+$hero-card-content-hover-opacity: 0.7;
+$hero-card-content-background-color1: rgba(0, 0, 0, 0.00) 2.22%; 
+$hero-card-content-background-color2: rgba(0, 0, 0, 0.50) 73.4%;
+
+$hero-card-max-height-xs: auto;
+$hero-card-min-height-xs: auto;
+
+$hero-card-max-height-lg: 43.75rem;
+$hero-card-min-height-lg: 43.75rem;
+
+.varbase-hero-card {
+  &.hero-style-overlay {
+
+    min-height: $hero-card-min-height-lg;
+    max-height: $hero-card-max-height-lg;
+
+    .ratio {
+      width: 100vw;
+
+      .drimage picture {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      @media screen and (max-width: map-get($grid-breakpoints, "lg")) {
+        > .drimage,
+        > video,
+        > iframe {
+          position: fixed;
+          top: 20%;
+        }
+      }
+    }
+
+    .hero-card-content {
+      position: absolute;
+      width: 100%;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1.88rem;
+      z-index: 2;
+      color: $hero-brief-text-color;
+      background-image: linear-gradient(180deg, $hero-card-content-background-color1, $hero-card-content-background-color2);
+
+      > * {
+        max-width: 53rem;
+      }
+
+      @media screen and (max-width: map-get($grid-breakpoints, "sm")) {
+        padding-bottom: 9.375rem;
+      }
+
+      @media screen and (min-width: map-get($grid-breakpoints, "sm")) {
+        padding: 1.88rem calc((100vw - map-get($container-max-widths, "sm"))/2) 3.88rem;
+      }
+  
+      @media screen and (min-width: map-get($grid-breakpoints, "md")) {
+        padding: 1.88rem calc(((100vw - map-get($container-max-widths, "md"))/2) + $grid-gutter-width/2) 3.88rem;
+      }
+  
+      @media screen and (min-width: map-get($grid-breakpoints, "lg")) {
+        padding: 1.88rem calc(((100vw - map-get($container-max-widths, "lg"))/2) + $grid-gutter-width/2) 9.375rem;
+      }
+  
+      @media screen and (min-width: map-get($grid-breakpoints, "xl")) {
+        padding: 1.88rem calc(((100vw - map-get($container-max-widths, "xl"))/2) + $grid-gutter-width/2) 9.375rem;
+      }
+  
+      @media screen and (min-width: map-get($grid-breakpoints, "xxl")) {
+        padding: 1.88rem calc(((100vw - map-get($container-max-widths, "xxl"))/2) + $grid-gutter-width/2) 9.375rem;
+      }
+
+      .card-title {
+        color: $hero-card-title-color;
+        @include font-size($hero-card-xlarge-title-font-size);
+
+        a {
+          color: $hero-card-title-color;
+          text-transform: none;
+        }
+
+        h2,
+        h3 {
+
+          @include font-size($hero-xlarge-title-font-size-xs);
+
+          @media screen and (min-width: map-get($grid-breakpoints, "sm")) {
+            @include font-size($hero-xlarge-title-font-size-sm);
+          }
+
+          @media screen and (min-width: map-get($grid-breakpoints, "md")) {
+            @include font-size($hero-xlarge-title-font-size-md);
+          }
+
+          @media screen and (min-width: map-get($grid-breakpoints, "lg")) {
+            @include font-size($hero-xlarge-title-font-size-lg);
+          }
+
+          @media screen and (min-width: map-get($grid-breakpoints, "xl")) {
+            @include font-size($hero-xlarge-title-font-size-xl);
+          }
+        }
+
+      }
+
+      &.card-body {
+        @media screen and (min-width: map-get($grid-breakpoints, "md")) {
+          min-height: $hero-card-min-height-lg;
+        }
+      }
+    }
+
+
+
+    .media {
+      position: relative;
+      width: 100vw;
+      height: 130vh;
+      @media screen and (min-width: map-get($grid-breakpoints, "xl")) {
+        height: auto;
+      }
+      top: 50%;
+      left: 50%;
+      transform: translateY(-50%) translateX(-50%);
+      padding-bottom: 0;
+
+      .drimage img {
+        top: 0;
+        left: 0;
+        width: 100%;
+        min-height: $hero-card-min-height-lg;
+        object-fit: cover;
+      }
+
+      .varbase-video-player {
+        video {
+          top: 0;
+          left: 0;
+          width: 100%;
+          min-height: $hero-card-min-height-lg;
+          object-fit: cover;
+        }
+  
+        iframe {
+          position: absolute;
+          left: 0;
+          object-fit: cover;
+        }
+      }
+    }
+  }
+
+  &.hero-style-top,
+  &.hero-style-bottom {
+
+    @media screen and (min-width: map-get($grid-breakpoints, "md")) {
+      padding: 0 calc(((100vw - map-get($container-max-widths, "md"))/2) + $grid-gutter-width/2);
+    }
+
+    @media screen and (min-width: map-get($grid-breakpoints, "lg")) {
+      padding: 0 calc(((100vw - map-get($container-max-widths, "lg"))/2) + $grid-gutter-width/2);
+    }
+
+    @media screen and (min-width: map-get($grid-breakpoints, "xl")) {
+      padding: 0 calc(((100vw - map-get($container-max-widths, "xl"))/2) + $grid-gutter-width/2);
+    }
+
+    @media screen and (min-width: map-get($grid-breakpoints, "xxl")) {
+      padding: 0 calc(((100vw - map-get($container-max-widths, "xxl"))/2) + $grid-gutter-width/2);
+    }
+
+    .card-body {
+      @media screen and (min-width: map-get($grid-breakpoints, "lg")) {
+        padding-right: 9.375rem;
+        padding-left: 9.375rem;
+      }
+    }
+
+    .card-img {
+      overflow: hidden;
+      width: 100%;
+
+      @media screen and (min-width: map-get($grid-breakpoints, "lg")) {
+        min-height: $hero-card-min-height-lg;
+        max-height: $hero-card-max-height-lg;
+      }
+    }
+
+    @media screen and (min-width: map-get($grid-breakpoints, "lg")) {
+      min-height: $hero-card-min-height-lg;
+    }
+
+    .drimage picture {
+      @media screen and (min-width: map-get($grid-breakpoints, "lg")) {
+        max-height: $hero-card-max-height-lg;
+      }
+    }
+
+    .media {
+      position: relative;
+      width: 100vw;
+      height: 130vh;
+      @media screen and (min-width: map-get($grid-breakpoints, "xl")) {
+        height: auto;
+      }
+      top: 50%;
+      left: 50%;
+      transform: translateY(-50%) translateX(-50%);
+      padding-bottom: 0;
+
+      .drimage  {
+        img {
+          top: 0;
+          left: 0;
+          width: 100%;
+          min-height: $hero-card-min-height-lg;
+          object-fit: cover;
+        }
+
+        picture {
+          @media screen and (min-width: map-get($grid-breakpoints, "lg")) {
+            max-height: $hero-card-max-height-lg;
+          }
+        }
+      }
+
+      .varbase-video-player {
+        video {
+          top: 0;
+          left: 0;
+          width: 100%;
+          min-height: $hero-card-min-height-lg;
+          object-fit: cover;
+        }
+  
+        iframe {
+          position: absolute;
+          left: 0;
+          object-fit: cover;
+        }
+      }
+    }
+  }
+
+  &.hero-style-start,
+  &.hero-style-end {
+    @media screen and (max-width: map-get($grid-breakpoints, "lg")) {
+      margin-right: 1.88rem;
+      margin-left: 1.88rem;
+
+      .card-img {
+        overflow: hidden;
+        width: 100%;
+      }
+    }
+
+    .media {
+      position: relative;
+      overflow: hidden;
+
+      .drimage img {
+        position: absolute;
+        width: 80vw;
+        top: 50%;
+        left: 50%;
+        transform: translateY(-50%) translateX(-50%);
+        padding-bottom: 0;
+        object-fit: cover;
+      }
+
+      .varbase-video-player {
+        overflow: hidden;
+        position: static;
+  
+        @media screen and (min-width: map-get($grid-breakpoints, "lg")) {
+          video {
+            position: absolute;
+            width: 80vw;
+            left: 20vw !important;
+            top: 50%;
+            transform: translateY(-50%) translateX(-50%);
+            padding-bottom: 0;
+            object-fit: cover;
+          }
+    
+          iframe {
+            position: absolute;
+            width: 80vw;
+            left: 50%;
+            top: 50%;
+            transform: translateY(-50%) translateX(-50%);
+            padding-bottom: 0;
+            object-fit: cover;
+          }
+        }
+      }
+    }
+  }
+
+}

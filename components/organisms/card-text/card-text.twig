@@ -1,0 +1,60 @@
+{#
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for the Text Card component.
+ *
+ * Available properties:
+ * - style_size: Card style size. (xsmall|small|medium|large|xlarge)
+ * - card_border: Add a default border to the card. (true|false)
+ * - padded: Add a default padding to the card. (true|false)
+ * - equal_height: Equal height. (true|false)
+ * - anchor_all: Anchor All. (true|false)
+ * - card_text_utility_classes: Use to add extra Bootstrap utility classes for the main Card wrapper.
+ *                    E.g. `mb-3 shadow-lg` ( Do not add `card`).
+ * - card_text_content_utility_classes: Use to add extra Bootstrap utility classes for the Card Content region wrapper.
+ *                            E.g. `w-75 mb-3 overflow-y-hidden`  ( Do not add `card-body`).
+ *
+ * Available attributes:
+ * - card_attributes: HTML attributes for the Card element.
+ * - content_attributes: HTML attributes for the content element.
+ *
+ * Available slots:
+ * - content: Card Content slot region.
+ */
+#}
+
+{% set style_size = style_size ? [style_size]: [] %}
+{% set card_border = card_border ? ['bordered'] : ['border-0'] %}
+{% set padded = padded ? ['p-4'] : [''] %}
+{% set equal_height = equal_height ? ['h-100'] : [] %}
+{% set anchor_all = anchor_all ? ['anchor-all'] : [] %}
+{% set card_text_utility_classes = card_text_utility_classes ? card_text_utility_classes : [] %}
+{% set card_text_content_utility_classes = card_text_content_utility_classes ? card_text_content_utility_classes : [] %}
+
+{%
+  set card_classes = [
+    'card',
+    'varbase-text-card',
+  ]|merge(style_size)|merge(card_border)|merge(padded)|merge(equal_height)|merge(anchor_all)|merge(card_text_utility_classes)
+%}
+
+{%
+  set content_classes = [
+    'text-card-content',
+    'card-body'
+  ]|merge(card_text_content_utility_classes)
+%}
+
+{% if not card_attributes %}
+  {% set card_attributes = create_attribute() %}
+{% endif %}
+
+{% if not content_attributes %}
+  {% set content_attributes = create_attribute() %}
+{% endif %}
+
+<div{{ card_attributes.addClass(card_classes) }}>
+  <div{{ content_attributes.addClass(content_classes) }}>
+    {{ content }}
+  </div>
+</div>

@@ -1,0 +1,76 @@
+@import "../../defaults";   // Global component defaults.
+
+.vb-tags {
+  padding-left: 0;
+  list-style: none;
+  @include clearfix;
+
+  ul,
+  ol {
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    display: inline;
+
+    > a,
+    > span {
+      display: inline-block;
+      padding: 0.25rem 0.5rem;
+      @include font-size(1rem);
+      line-height: 1;
+      background-color: $primary;
+      border: 0;
+      border-radius: $badge-border-radius;
+      font-style: normal;
+      font-weight: 700;
+      color: var(--bs-white);
+      text-align: center;
+      white-space: nowrap;
+      vertical-align: baseline;
+      letter-spacing: 0.02rem;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    > a:hover,
+    > a:focus,
+    > a:active {
+      text-decoration: none;
+      background-color: $secondary;
+    }
+  }
+}
+[dir="rtl"] .vb-tags {
+  padding-right: 0;
+  padding-left: initial;
+}
+
+.vb-tag {
+  > * {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    @include font-size(1rem);
+    line-height: 1;
+    background-color: $primary;
+    border: 0;
+    border-radius: $badge-border-radius;
+    font-style: normal;
+    font-weight: 700;
+    color: var(--bs-white);
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    letter-spacing: 0.02rem;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  > a:hover,
+  > a:focus,
+  > a:active {
+    text-decoration: none;
+    background-color: $secondary;
+  }
+}

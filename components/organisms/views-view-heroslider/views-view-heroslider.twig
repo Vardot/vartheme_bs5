@@ -1,0 +1,36 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a view of heroslider rows.
+ *
+ * Available variables:
+ * - title: The title of this group of rows. May be empty.
+ * - rows: A list of the view's row items.
+ *   - attributes: The row's HTML attributes.
+ *   - content: The row's content.
+ * - view: The view object.
+ * - default_row_class: A flag indicating whether default classes should be
+ *   used on rows.
+ * - empty: The content to display if there are no rows.
+ *
+ */
+#}
+{{ 
+  include('vartheme_bs5:heroslider',
+    {
+      id: id,
+      controls: (controls ?? false),
+      indicators: (indicators ?? false),
+      controls_indicators_position: (controls_indicators_position ?? 'overlay'),
+      interval: (interval ?? 6000),
+      keyboard: (keyboard ?? true),
+      pause: (pause ?? 'hover'),
+      ride: (ride ?? 'carousel'),
+      touch: (touch ?? true),
+      wrap: (wrap ?? true),
+      items: (rows ?? []),
+      empty: (empty ?? '')
+    },
+    with_context = false
+  )
+}}

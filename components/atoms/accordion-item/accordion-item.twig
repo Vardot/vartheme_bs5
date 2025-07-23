@@ -1,0 +1,141 @@
+{#
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for the Accordion Item component.
+ *
+ * Available properties:
+ * - id: The target ID for the accordion item.
+ * - header_tag: The HTML (h1, h2, h3, h4, h5, or h6) header tag.
+ * - collapsable: Have a collapsed or collapsable accordion item.
+ * - expanded: Set the accordion item as expanded.
+ * - accordion_item_utility_classes: An array of utility classes that can be used to
+ *                    add extra Bootstrap utility classes or custom
+ *                    classes to the root accordion item wrapper.
+ * - accordion_item_header_utility_classes: An array of utility classes that can be used to
+ *                    add extra Bootstrap utility classes or custom
+ *                    classes to the accordion header wrapper.
+ * - accordion_item_body_utility_classes: An array of utility classes that can be used to
+ *                    add extra Bootstrap utility classes or custom
+ *                    classes to the accordion body wrapper.
+ * - accordion_item_button_utility_classes: An array of utility classes that can be used to
+ *                    add extra Bootstrap utility classes or custom
+ *                    classes to the accordion header button.
+ * - accordion_item_collapse_utility_classes: An array of utility classes that can be used to
+ *                    add extra Bootstrap utility classes or custom
+ *                    classes to the accordion body collapse wrapper.
+ *
+ * Available attributes:
+ * - attributes: HTML attributes for the root accordion item wrapper element.
+ * - header_attributes: HTML attributes for the accordion header wrapper element.
+ * - body_attributes: HTML attributes for the accordion body wrapper element.
+ * - button_attributes: HTML attributes for the accordion header button element.
+ * - collapse_attributes: HTML attributes for the accordion collapse wrapper element for the accordion body.
+ *
+ * Available slots:
+ * - header: Accordion header - The heading part of the accordion item.
+ * - body: Accordion body - The content body part of the accordion item.
+ */
+#}
+{% apply spaceless %}
+
+{% set accordion_id = accordion_id ? accordion_id : 'accordion-' ~ random(1000) %}
+{% set item_id = item_id ? accordion_id ~ '--' ~ item_id : accordion_id ~ '--item-' ~ random(1000) %}
+
+{% set header_tag = header_tag ? header_tag : 'h4' %}
+{% set collapsable = collapsable ? collapsable : true %}
+{% set accordion_item_utility_classes = accordion_item_utility_classes ? accordion_item_utility_classes : [] %}
+{% set accordion_item_header_utility_classes = accordion_item_header_utility_classes ? accordion_item_header_utility_classes : [] %}
+{% set accordion_item_body_utility_classes = accordion_item_body_utility_classes ? accordion_item_body_utility_classes : [] %}
+{% set accordion_item_button_utility_classes = accordion_item_button_utility_classes ? accordion_item_button_utility_classes : [] %}
+{% set accordion_item_collapse_utility_classes = accordion_item_collapse_utility_classes ? accordion_item_collapse_utility_classes : [] %}
+
+{# Accordion item wrapper #}
+{% set classes = [
+  'accordion-item',
+]|merge(accordion_item_utility_classes) %}
+
+{% if not attributes %}
+  {% set attributes = create_attribute() %}
+{% endif %}
+{% set attributes = attributes.addClass(classes) %}
+
+{# Accordion item header #}
+{%
+  set header_classes = [
+    'accordion-header',
+  ]|merge(accordion_item_header_utility_classes)
+%}
+
+{% if not header_attributes %}
+  {% set header_attributes = create_attribute() %}
+{% endif %}
+{%
+  set header_attributes = header_attributes.addClass(header_classes)
+                          .setAttribute('id', item_id)
+%}
+
+{# Accordion item body #}
+{%
+  set body_classes = [
+    'accordion-body',
+  ]|merge(accordion_item_body_utility_classes)
+%}
+
+{% if not body_attributes %}
+  {% set body_attributes = create_attribute() %}
+{% endif %}
+{% set body_attributes = body_attributes.addClass(body_classes) %}
+
+
+{% set button_collapsed_classs = expanded == false ? ['collapsed'] : [] %}
+
+{# Accordion item Button #}
+{%
+  set button_classes = [
+    'accordion-button',
+  ]|merge(button_collapsed_classs)|merge(accordion_item_button_utility_classes)
+%}
+
+{% if not button_attributes %}
+  {% set button_attributes = create_attribute() %}
+{% endif %}
+{%
+  set button_attributes = button_attributes.addClass(button_classes)
+                          .setAttribute('type', 'button')
+                          .setAttribute('data-bs-toggle', 'collapse')
+                          .setAttribute('data-bs-target', '#collapse-' ~ item_id)
+                          .setAttribute('aria-expanded', expanded == true ? 'true' : 'false')
+                          .setAttribute('aria-controls', 'collapse-' ~ item_id)
+%}
+
+{% set expanded_classs = expanded == true ? ['show'] : [] %}
+{% set collapsable_classs = collapsable == true ? ['collapse'] : [] %}
+
+{# Accordion item collapse #}
+{%
+  set collapse_classes = [
+    'accordion-collapse',
+  ]|merge(collapsable_classs)|merge(expanded_classs)|merge(accordion_item_collapse_utility_classes)
+%}
+
+{% if not collapse_attributes %}
+  {% set collapse_attributes = create_attribute() %}
+{% endif %}
+{%
+  set collapse_attributes = collapse_attributes.addClass(collapse_classes)
+                            .setAttribute('id', 'collapse-' ~ item_id)
+%}
+
+<div{{ attributes }}>
+  <{{ header_tag }}{{ header_attributes }}>
+    <button{{ button_attributes }}>
+      {{ header }}
+    </button>
+  </{{ header_tag }}>
+  <div{{ collapse_attributes }}>
+    <div{{ body_attributes }}>
+      {{ body }}
+    </div>
+  </div>
+</div>
+{% endapply %}

@@ -1,0 +1,257 @@
+{% stories TextCard with {
+  "title": "Organisms/Text Card",
+  "parameters": {
+    "componentSubtitle": "Bootstrap Text card component",
+    "docs": {
+      "description": {
+        "component": "Text card component and pattern with content."
+      },
+      "story": {
+        "inline": true
+      }
+    }
+  },
+  "argTypes": {
+    "style_size": {
+      "name": "Card style size",
+      "description": "Card style size",
+      "control": "select",
+      "defaultValue": "",
+      "options": {
+        "' - none - '": "",
+        "XSmall": "xsmall",
+        "Small": "small",
+        "Medium": "medium",
+        "Large": "large",
+        "XLarge": "xlarge"
+      }
+    },
+    "card_border": {
+      "name": "Card Border",
+      "description": "Add a default border to the card.",
+      "control": "boolean",
+      "defaultValue": true
+    },
+    "padded": {
+      "name": "Padded",
+      "description": "Add a default padding to the card.",
+      "control": "boolean",
+      "defaultValue": false
+    },
+    "equal_height": {
+      "name": "Equal height",
+      "description": "Equal height",
+      "control": "boolean",
+      "defaultValue": true
+    },
+    "anchor_all": {
+      "name": "Anchor All",
+      "description": "Anchor All",
+      "control": "boolean",
+      "defaultValue": false
+    },
+    "content": {
+      "name": "Card content",
+      "slots": "The content for card",
+      "control": "text",
+      "defaultValue": ""
+    },
+    "card_text_utility_classes": {
+      "name": "Utility Classes",
+      "description": "Use to add extra Bootstrap utility classes for the main Card wrapper. E.g. `mb-3 shadow-lg` ( Do not add card)",
+      "control": "object",
+      "defaultValue": []
+    },
+    "card_text_content_utility_classes": {
+      "name": "Content Utility Classes",
+      "description": "Use to add extra Bootstrap utility classes for the Card Content region wrapper. E.g. `w-75 mb-3 overflow-y-hidden`  ( Do not add card-body)",
+      "control": "object",
+      "defaultValue": []
+    },
+    "card_attributes": {
+      "name": "Card Attributes",
+      "description": "HTML attributes for the Card element.",
+      "control": "object",
+      "defaultValue": {}
+    },
+    "content_attributes": {
+      "name": "Content Attributes",
+      "description": "HTML attributes for the content element.",
+      "control": "object",
+      "defaultValue": {}
+    }
+  }
+} %}
+
+
+{% story xlarge with {
+  "name": "xlarge",
+  "args": {
+    "style_size": "xlarge",
+    "card_border": false,
+    "padded": false,
+    "equal_height": true,
+    "anchor_all": false,
+    "content": "<h3 class=\"card-title\"><a href=\"#\">Lorem Ipsum Dolor Sit Amet</a></h3><p class=\"card-text\">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut…</p>",
+    "card_text_utility_classes": ['col-12'],
+    "card_text_content_utility_classes": []
+  }
+} %}
+{{ include('vartheme_bs5:card-text') }}
+{% endstory %}
+
+
+{% story large with {
+  "name": "large",
+  "args": {
+    "style_size": "large",
+    "card_border": false,
+    "padded": false,
+    "equal_height": true,
+    "anchor_all": false,
+    "content": "<h3 class=\"card-title\"><a href=\"#\">Lorem Ipsum Dolor Sit Amet</a></h3><p class=\"card-text\">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut…</p>",
+    "card_text_utility_classes": ['col-9'],
+    "card_text_content_utility_classes": []
+  }
+} %}
+{{ include('vartheme_bs5:card-text') }}
+{% endstory %}
+
+
+{% story medium with {
+  "name": "medium",
+  "args": {
+    "style_size": "medium",
+    "card_border": false,
+    "padded": false,
+    "equal_height": true,
+    "anchor_all": false,
+    "content": "<h3 class=\"card-title\"><a href=\"#\">Lorem Ipsum Dolor Sit Amet</a></h3><p class=\"card-text\">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut…</p>",
+    "card_text_utility_classes": ['col-6'],
+    "card_text_content_utility_classes": []
+  }
+} %}
+{{ include('vartheme_bs5:card-text') }}
+{% endstory %}
+
+
+{% story small with {
+  "name": "small",
+  "args": {
+    "style_size": "small",
+    "card_border": false,
+    "padded": false,
+    "equal_height": true,
+    "anchor_all": false,
+    "content": "<h3 class=\"card-title\"><a href=\"#\">Lorem Ipsum Dolor Sit Amet</a></h3><p class=\"card-text\">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut…</p>",
+    "card_text_utility_classes": ['col-4'],
+    "card_text_content_utility_classes": []
+  }
+} %}
+{{ include('vartheme_bs5:card-text') }}
+{% endstory %}
+
+
+{% story xsmall with {
+  "name": "xsmall",
+  "args": {
+    "style_size": "xsmall",
+    "card_border": false,
+    "padded": false,
+    "equal_height": true,
+    "anchor_all": false,
+    "content": "<h3 class=\"card-title\"><a href=\"#\">Lorem Ipsum Dolor Sit Amet</a></h3><p class=\"card-text\">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut…</p>",
+    "card_text_utility_classes": ['col-3'],
+    "card_text_content_utility_classes": []
+  }
+} %}
+{{ include('vartheme_bs5:card-text') }}
+{% endstory %}
+
+
+{% story xlargePadded with {
+  "name": "xlarge - Padded",
+  "args": {
+    "style_size": "xlarge",
+    "card_border": true,
+    "padded": true,
+    "equal_height": true,
+    "anchor_all": false,
+    "content": "<div data-component-id=\"vartheme_bs5:field\" class=\"field field--name-node-title field--type-ds field--label-hidden field__item\"><h3 class=\"card-title\"><a href=\"#\" hreflang=\"en\">Lorem Ipsum Dolor Sit Amet</a></h3></div><div class=\"field field--name-body field--type-text-with-summary field--label-hidden field__item\">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut…</div>",
+    "card_text_utility_classes": ['col-12'],
+    "card_text_content_utility_classes": []
+  }
+} %}
+{{ include('vartheme_bs5:card-text') }}
+{% endstory %}
+
+
+{% story largePadded with {
+  "name": "large - Padded",
+  "args": {
+    "style_size": "large",
+    "card_border": true,
+    "padded": true,
+    "equal_height": true,
+    "anchor_all": false,
+    "content": "<div data-component-id=\"vartheme_bs5:field\" class=\"field field--name-node-title field--type-ds field--label-hidden field__item\"><h3 class=\"card-title\"><a href=\"#\" hreflang=\"en\">Lorem Ipsum Dolor Sit Amet</a></h3></div><div class=\"field field--name-body field--type-text-with-summary field--label-hidden field__item\">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut…</div>",
+    "card_text_utility_classes": ['col-9'],
+    "card_text_content_utility_classes": []
+  }
+} %}
+{{ include('vartheme_bs5:card-text') }}
+{% endstory %}
+
+
+{% story mediumPadded with {
+  "name": "medium - Padded",
+  "args": {
+    "style_size": "medium",
+    "card_border": true,
+    "padded": true,
+    "equal_height": true,
+    "anchor_all": false,
+    "content": "<div data-component-id=\"vartheme_bs5:field\" class=\"field field--name-node-title field--type-ds field--label-hidden field__item\"><h3 class=\"card-title\"><a href=\"#\" hreflang=\"en\">Lorem Ipsum Dolor Sit Amet</a></h3></div><div class=\"field field--name-body field--type-text-with-summary field--label-hidden field__item\">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut…</div>",
+    "card_text_utility_classes": ['col-6'],
+    "card_text_content_utility_classes": []
+  }
+} %}
+{{ include('vartheme_bs5:card-text') }}
+{% endstory %}
+
+
+{% story smallPadded with {
+  "name": "small - Padded",
+  "args": {
+    "style_size": "small",
+    "card_border": true,
+    "padded": true,
+    "equal_height": true,
+    "anchor_all": false,
+    "content": "<div data-component-id=\"vartheme_bs5:field\" class=\"field field--name-node-title field--type-ds field--label-hidden field__item\"><h3 class=\"card-title\"><a href=\"#\" hreflang=\"en\">Lorem Ipsum Dolor Sit Amet</a></h3></div><div class=\"field field--name-body field--type-text-with-summary field--label-hidden field__item\">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut…</div>",
+    "card_text_utility_classes": ['col-4'],
+    "card_text_content_utility_classes": []
+  }
+} %}
+{{ include('vartheme_bs5:card-text') }}
+{% endstory %}
+
+
+{% story xsmallPadded with {
+  "name": "xsmall - Padded",
+  "args": {
+    "style_size": "xsmall",
+    "card_border": true,
+    "padded": true,
+    "equal_height": true,
+    "anchor_all": false,
+    "content": "<div data-component-id=\"vartheme_bs5:field\" class=\"field field--name-node-title field--type-ds field--label-hidden field__item\"><h3 class=\"card-title\"><a href=\"#\" hreflang=\"en\">Lorem Ipsum Dolor Sit Amet</a></h3></div><div class=\"field field--name-body field--type-text-with-summary field--label-hidden field__item\">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut…</div>",
+    "card_text_utility_classes": ['col-3'],
+    "card_text_content_utility_classes": []
+  }
+} %}
+{{ include('vartheme_bs5:card-text') }}
+{% endstory %}
+
+
+{% endstories %}

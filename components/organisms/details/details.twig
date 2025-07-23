@@ -1,0 +1,44 @@
+{#
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for the details element.
+ */
+#}
+{% set classes = [
+  'details',
+  'mb-3',
+  ]
+%}
+{%
+  set content_wrapper_classes = [
+    'details-wrapper',
+  ]
+%}
+<details{{ attributes.addClass(classes) }}>
+  {%- if title -%}
+    {%
+      set summary_classes = [
+        required ? 'js-form-required',
+        required ? 'form-required',
+      ]
+    %}
+    <summary{{ summary_attributes.addClass(summary_classes) }}>
+      {{ title }}
+    </summary>
+  {%- endif -%}
+
+  <div{{ content_attributes.addClass(content_wrapper_classes) }}>
+    {% if errors %}
+      {{ errors }}
+    {% endif %}
+    {%- if description -%}
+      {{ description }}
+    {%- endif -%}
+    {%- if children -%}
+      {{ children }}
+    {%- endif -%}
+    {%- if value -%}
+      {{ value }}
+    {%- endif -%}
+  </div>
+</details>

@@ -1,0 +1,68 @@
+{#
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for Navbar component.
+ *
+ * Available properties:
+ * - container: fixed | fluid.
+ * - placement: '' | fixed-top | fixed-bottom | sticky-top
+ * - color_mode: light | dark
+ * - color: wight | dark
+ * - navbar_expand: sm | md | lg | xl
+ * - navbar_utility_classes: An array of utility classes that can be used to add extra Bootstrap utility classes or custom classes to this component.
+ * - attributes: HTML attributes for the containing element.
+ *
+ * Available slogs:
+ * - branding
+ * - navigation
+ */
+#}
+
+{% set container = container ?? false %}
+{% set placement = placement ? [placement] : [] %}
+{% set color_mode = color_mode ? ['navbar-' ~ color_mode] : [] %}
+{% set color = color ? ['bg-' ~ color] : [] %}
+{% set navbar_expand = navbar_expand ? ['navbar-expand-' ~ navbar_expand] : ['navbar-expand-lg'] %}
+{% set navbar_utility_classes = navbar_utility_classes ? navbar_utility_classes : [] %}
+
+{%
+  set classes = [
+    'navbar',
+    'justify-content-between',
+  ]|merge(placement)|merge(color_mode)|merge(color)|merge(navbar_expand)|merge(navbar_utility_classes)
+%}
+
+<nav{{ attributes.addClass(classes) }}>
+  {% if container %}
+    {%
+      set container_classes = [
+        container,
+        'z-3',
+      ]|merge(color)
+    %}
+
+    {% if not container_attributes %}
+      {% set container_attributes = create_attribute() %}
+    {% endif %}
+
+    <div{{ container_attributes.addClass(container_classes) }}>
+  {% endif %}
+
+  {% block branding %}
+    {{ branding }}
+  {% endblock %}
+
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse">
+    {% block navigation %}
+      {{ navigation }}
+    {% endblock %}
+  </div>
+
+  {% if container %}
+    </div>
+  {% endif %}
+</nav>

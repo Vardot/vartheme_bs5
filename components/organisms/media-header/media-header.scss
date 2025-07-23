@@ -1,0 +1,150 @@
+@import "../../defaults";   // Global component defaults.
+
+// Varbase Media Header container height.
+$vmh-container-v-padding: 3.75rem;
+$vmh-container-h-padding: 1rem;
+
+$vmh-container-min-height: 300px;
+$vmh-container-max-height: 300px;
+
+$vmh-container-min-height-lg: 300px;
+$vmh-container-max-height-lg: 300px;
+
+$vmh-container-top-margin: 0;
+$vmh-container-bottom-margin: 0.6875rem;
+
+// Varbase Media Header fallback container background color.
+$vmh-fullback-container-background-color: $primary;
+
+// Varbase Media Header content text general style.
+$vmh-content-text-color: $white;
+
+// Varbase Media Header title style.
+$vmh-title-color: $white;
+$vmh-title-font-size: 1.875rem;
+$vmh-title-font-size-lg: 3.625rem;
+
+// Varbase Media Header breadcrumb style.
+$vmh-breadcrumb-color: $white;
+$vmh-breadcrumb-font-size: 0.75rem;
+$vmh-breadcrumb-font-size-lg: 0.875rem;
+
+.vmh-container {
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $vmh-fullback-container-background-color;
+  @include margin-bottom(2.5rem);
+
+  max-height: $vmh-container-max-height;
+  @media screen and (min-width: map-get($grid-breakpoints, "lg")) {
+    max-height: $vmh-container-max-height-lg;
+  }
+
+  // Varbase Media Header fallback container background.
+  .vmh-background {
+    &:empty {
+      min-height: $vmh-container-min-height;
+      @media screen and (min-width: map-get($grid-breakpoints, "lg")) {
+        min-height: $vmh-container-min-height-lg;
+      }
+    }
+
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+
+    > img,
+    > picture,
+    > video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      z-index: 1;
+    }
+
+    > iframe {
+      width: 100vw;
+      min-height: 34vw;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      z-index: 1;
+    }
+
+    .varbase-video-player {
+      width: 100vw;
+      height: 100%;
+    }
+  }
+ 
+
+  // Varbase Media Header content.
+  .vmh-content-wrapper {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    -webkit-flex: 1; /* Safari 6.1+ */
+    flex: 1;
+    flex-flow: wrap;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .vmh-content {
+    @include padding($vmh-container-v-padding $vmh-container-h-padding);
+  }
+
+  // Varbase Media Header title.
+  .vmh-page-title {
+    text-align: center;
+    color: $vmh-content-text-color;
+    font-weight: bolder;
+    @include padding-left(0.9375rem);
+    @include padding-right(0.9375rem);
+    @include font-size($vmh-title-font-size);
+
+    @media screen and (min-width: map-get($grid-breakpoints, "lg")) {
+      @include font-size($vmh-title-font-size-lg);
+    }
+  }
+
+  // Varbase Media Header breadcrumb.
+  .vmh-breadcrumb {
+    .breadcrumb {
+      margin: 0;
+      text-align: center;
+      text-transform: uppercase;
+      background: none !important;
+      background-color: transparent !important;
+      color: $vmh-breadcrumb-color;
+      @include font-size($vmh-breadcrumb-font-size);
+
+      a,
+      .breadcrumb-item + .breadcrumb-item::before {
+        color: $vmh-breadcrumb-color;
+      }
+
+      @media screen and (min-width: map-get($grid-breakpoints, "lg")) {
+        @include font-size($vmh-breadcrumb-font-size-lg);
+      }
+
+      .active  {
+        display: none;
+      }
+    }
+  }
+}

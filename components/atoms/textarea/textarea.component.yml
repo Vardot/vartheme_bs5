@@ -1,0 +1,86 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Textarea 
+status: experimental
+description: Text area type form element.
+props:
+  type: object
+  properties:
+    resizable:
+      type: string
+      title: Resizable
+      description: An indicator for whether the text area is resizable.
+      default: ''
+      enum:
+        - ''
+        - 'none'
+        - 'vertical'
+        - 'horizontal'
+        - 'both'
+    required:
+      type: boolean
+      title: Required
+      description: An indicator for whether the text area is required.
+      default: false
+    value:
+      type: string
+      title: Value
+      description: The text area content.
+    rows:
+      type: number
+      title: Rows
+      description: Specifies the number of visible text lines.
+    cols:
+      type: number
+      title: Cols
+      description: Specifies the visible width in average character widths.
+    maxlength:
+      type: number
+      title: Max Length
+      description: Specifies the maximum length (in characters) of a text area. By default, the maximum is 524,288 characters.
+    placeholder:
+      type: string
+      title: Placeholder
+      description: Specifies a short hint that describes the expected value of a text area.
+    readonly:
+      type: boolean
+      title: Read Only
+      description: Specifies whether the control may be modified by the user.
+      default: false
+    disabled:
+      type: boolean
+      title: Disabled
+      description: Disables the control for user input.
+      default: false 
+    wrapper_html_tag:
+      type: string
+      title: Wrapper HTML tag
+      description: The HTML tag for the wrapper.
+      default: div
+      enum:
+        - ''
+        - 'div'
+        - 'span'
+    wrapper_utility_classes:
+      type: array
+      title: Wrapper utility classes
+      default: []
+      items:
+        type: 'string'
+      description: An array of utility classes. Use to add extra Bootstrap utility classes or custom CSS classes over the wrapper div to this component.
+    textarea_utility_classes:
+      type: array
+      title: Utility Classes
+      default: []
+      items:
+        type: 'string'
+      description: An array of utility classes. Use to add extra Bootstrap utility classes or custom CSS classes over the form element to this component.
+    wrapper_attributes:
+      type: object
+      title: Wrapper Attributes
+      description: HTML attributes for the wrapper element.
+      $ref: 'ui-patterns://attributes'
+    attributes:
+      type: object
+      title: Attributes
+      description: HTML attributes for the containing element.
+      $ref: 'ui-patterns://attributes'

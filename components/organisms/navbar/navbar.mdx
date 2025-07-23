@@ -1,0 +1,31 @@
+{/* navbar.mdx */}
+
+import { Canvas, Title, Subtitle, ArgTypes, Source, Meta, Description, Primary, Story, Stories, Controls } from '@storybook/blocks';
+import * as comStories from './navbar.stories.json';
+import templateSource from './navbar.twig?raw';
+
+<Meta of={comStories} name="Docs"/>
+
+<Title />
+<Subtitle />
+<Description />
+
+
+<Primary />
+
+## Properties
+<Controls />
+
+<Stories of={comStories} />
+
+## Attributes:
+* `attributes`: HTML attributes for the Spinner element.
+
+## Slots:
+* `branding`: Site branding.
+* `navigation`: site navigation.
+
+
+## Source code
+[//]: # (Twig Template source code)
+<Source code={templateSource} />

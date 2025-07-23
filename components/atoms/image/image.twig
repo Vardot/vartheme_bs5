@@ -1,0 +1,38 @@
+{#
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation of an image.
+ * 
+ * Available properties:
+ * - align: (optional) Align images with the helper float classes or text alignment classes.
+ *          block-level images can be centered using the .mx-auto margin utility class.
+ *          options (`float-start`, `mx-auto d-block`, `float-end`)
+ * - responsive: (optional) Images in Bootstrap are made responsive with `.img-fluid`. This applies max-width with 100% and height with auto to the image so that it scales with the parent width.
+ * - thumbnails: (optional) In addition to Bootstrap border-radius utilities, you can use `.img-thumbnail` to give an image a rounded 1px border appearance.
+ * - rounded: (optional) Rounded image
+ * - image_utility_classes: An array of utility classes that can be used to add extra
+ *                    Bootstrap utility classes or custom classes to this component.
+ *
+ * Available attributes:
+ * - attributes: HTML attributes for the img tag.
+ *
+ * Available slots:
+ * - N/A
+ *
+ */
+#}
+{% set aligning = {
+  start: ['float-start'],
+  center: ['mx-auto', 'd-block'],
+  end: ['float-end'],
+} %}
+
+{% set align = align ? aligning[align]: [] %}
+{% set responsive = responsive ? ['img-fluid'] : [] %}
+{% set thumbnails = thumbnails ? ['img-thumbnail'] : [] %}
+{% set rounded = rounded ? ['rounded'] : [] %}
+{% set image_utility_classes = image_utility_classes ? image_utility_classes : [] %}
+
+{% set classes = []|merge(align)|merge(responsive)|merge(thumbnails)|merge(rounded)|merge(image_utility_classes) %}
+
+<img{{ attributes.addClass(classes) }} />

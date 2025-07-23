@@ -1,0 +1,298 @@
+{% stories ViewsViewHerosliderBlock with {
+  "title": "Organisms/View Heroslider",
+  "parameters": {
+    "componentSubtitle": "Bootstrap heroslider component for a block, which using drupal views.",
+    "docs": {
+      "description": {
+        "component": "A Drupal View Block component as heroslider for cycling through elements images/media or slides of text—like a heroslider."
+      },
+      "story": {
+        "inline": true
+      }
+    }
+  },
+  "argTypes": {
+    "id": {
+      "name": "Hero Slider ID",
+      "description": "Set a unique id on the heroslider for optional controls, especially if the single page is using multiple hero sliders.",
+      "control": "text",
+      "defaultValue": ""
+    },
+    "rows": {
+      "name": "Rows",
+      "description": "An array of slider items, Each item is a hero card",
+      "control": "object",
+      "defaultValue": []
+    },
+    "controls": {
+      "name": "Controls",
+      "description": "Add the previous/next controls.",
+      "control": "boolean",
+      "defaultValue": true
+    },
+    "indicators": {
+      "name": "Indicators",
+      "description": "Add indicators to the heroslider, alongside the previous/next controls.",
+      "control": "boolean",
+      "defaultValue": true
+    },
+    "controls_indicators_position": {
+      "name": "Controls & Indicators position",
+      "description": "Choose the location of the controls and indicators from (overlay|start|end|top|bottom).",
+      "control": "select",
+      "defaultValue": "overlay",
+      "options": {
+        "' - none - '": "",
+        "Overlay": "overlay",
+        "Start": "start",
+        "End": "end",
+        "Top": "top",
+        "Bottom": "bottom"
+      }
+    },
+    "interval": {
+      "name": "Interval",
+      "description": "The amount of time to delay between automatically cycling an item.",
+      "control": "number",
+      "defaultValue": 5000
+    },
+    "keyboard": {
+      "name": "Keyboard",
+      "description": "Whether the carousel should react to keyboard events.",
+      "control": "boolean",
+      "defaultValue": true
+    },
+    "pause": {
+      "name": "Pause",
+      "description": "If set to `hover`, pauses the cycling of the carousel on mouseenter and resumes the cycling of the carousel on mouseleave. If set to false, hovering over the carousel won’t pause it. On touch-enabled devices, when set to `hover`, cycling will pause on touchend (once the user finished interacting with the carousel) for two intervals, before automatically resuming. This is in addition to the mouse behavior.",
+      "control": "select",
+      "defaultValue": "",
+      "options": {
+        "' - none - '": "",
+        "False": "false",
+        "True": "true",
+        "Hover": "hover"
+      }
+    },
+    "ride": {
+      "name": "Ride",
+      "description": "If set to `true`, autoplays the carousel after the user manually cycles the first item. If set to `carousel`, autoplays the carousel on load.",
+      "control": "select",
+      "defaultValue": "",
+      "options": {
+        "' - none - '": "",
+        "False": "false",
+        "True": "true",
+        "Carousel": "carousel"
+      }
+    },
+    "touch": {
+      "name": "Touch",
+      "description": "Whether the carousel should support left/right swipe interactions on touchscreen devices.",
+      "control": "boolean",
+      "defaultValue": true
+    },
+    "wrap": {
+      "name": "Wrap",
+      "description": "Whether the carousel should cycle continuously or have hard stops.",
+      "control": "boolean",
+      "defaultValue": true
+    },
+    "heroslider_utility_classes": {
+      "name": "Utility Classes",
+      "description": "An array of utility classes. Use to add extra Bootstrap utility classes or custom CSS classes over to the heroslider element.",
+      "control": "object",
+      "defaultValue": []
+    },
+    "heroslider_indicators_utility_classes": {
+      "name": "Indicators Utility Classes",
+      "description": "An array of utility classes. Use to add extra Bootstrap utility classes or custom CSS classes over to the indicators element.",
+      "control": "object",
+      "defaultValue": []
+    },
+    "attributes": {
+      "name": "Attributes",
+      "description": "HTML attributes to apply to the heroslider main wrapper tag.",
+      "control": "object",
+      "defaultValue": {}
+    },
+    "indicators_attributes": {
+      "name": "Indicators Attributes",
+      "description": "HTML attributes to apply to the indicators wrapper tag.",
+      "control": "object",
+      "defaultValue": {}
+    },
+    "empty": {
+      "name": "Empty",
+      "description": "The HTML message when the Hero Slider has no slides",
+      "control": "text",
+      "defaultValue": ""
+    }
+  }
+} %}
+
+{% story HeroSliderThreeSlides with {
+  "name": "Hero Slider - Three Slides",
+  "args": {
+    "id": "test-heroslider-with-3-slides",
+    "controls": true,
+    "indicators": true,
+    "controls_indicators_position": "overlay",
+    "interval": 5000,
+    "keyboard": true,
+    "pause": "hover",
+    "ride": "carousel",
+    "touch": true,
+    "wrap": true,
+    "empty": "<p> Hero Slider </p><p> There are no slides right now! </p><a class=\"btn btn-primary hidden-anonymous visible-admin add-slider\" href=\"[site:url]/node/add/varbase_heroslider/\"> Add One Now </a>",
+    "heroslider_utility_classes": [],
+    "heroslider_indicators_utility_classes": [],
+  }
+} %}
+
+  {% set image1_html = include('vartheme_bs5:image', {
+    attributes: create_attribute({
+      'src': 'https://raw.githubusercontent.com/Vardot/varbase_media_demo/10.1.x/recipes/default/content/file/meeting-1.webp',
+      'class': ['card-image', 'img-fluid']
+    })
+  }) %}
+
+  {% set image2_html = include('vartheme_bs5:image', {
+    attributes: create_attribute({
+      'src': 'https://raw.githubusercontent.com/Vardot/varbase_media_demo/10.1.x/recipes/default/content/file/meeting-2.webp',
+      'class': ['card-image', 'img-fluid']
+    })
+  }) %}
+
+  {% set image3_html = include('vartheme_bs5:image', {
+    attributes: create_attribute({
+      'src': 'https://raw.githubusercontent.com/Vardot/varbase_media_demo/10.1.x/recipes/default/content/file/meeting-3.webp',
+      'class': ['card-image', 'img-fluid']
+    })
+  }) %}
+
+  {% set card_hero_overlay_html1 = include('vartheme_bs5:card-hero', {
+      "media_position": "overlay",
+      "card_border": false,
+      "padded": false,
+      "horizontal_alignment": "start",
+      "vertical_alignment": "end",
+      "media": image1_html,
+      "content": "<div data-component-id=\"vartheme_bs5:field\" class=\"field field--name-node-title field--type-ds field--label-hidden field__item\"><h3 class=\"card-title\">Varbase; better than ever</h3></div><div class=\"field field--name-body field--type-text-with-summary field--label-hidden field__item\">Elevate your digital experience with Varbase's dynamic design system, seamlessly blending aesthetic appeal with unparalleled functionality. Unleash the power of intuitive design for a compelling web presence.</div><div class=\"mt-5\"><a href=\"\" class=\"btn btn-primary btn-lg\">Learn More</a></div>",
+      "card_hero_utility_classes": [],
+      "card_hero_media_utility_classes": [],
+      "card_hero_content_utility_classes": []
+    },
+    with_context = false
+  ) %}
+
+  {% set card_hero_overlay_html2 = include('vartheme_bs5:card-hero', {
+      "media_position": "overlay",
+      "card_border": false,
+      "padded": false,
+      "horizontal_alignment": "start",
+      "vertical_alignment": "end",
+      "media": image2_html,
+      "content": "<div data-component-id=\"vartheme_bs5:field\" class=\"field field--name-node-title field--type-ds field--label-hidden field__item\"><h3 class=\"card-title\">Varbase; better than ever</h3></div><div class=\"field field--name-body field--type-text-with-summary field--label-hidden field__item\">Elevate your digital experience with Varbase's dynamic design system, seamlessly blending aesthetic appeal with unparalleled functionality. Unleash the power of intuitive design for a compelling web presence.</div><div class=\"mt-5\"><a href=\"\" class=\"btn btn-primary btn-lg\">Learn More</a></div>",
+      "card_hero_utility_classes": [],
+      "card_hero_media_utility_classes": [],
+      "card_hero_content_utility_classes": []
+    },
+    with_context = false
+  ) %}
+
+  {% set card_hero_overlay_html3 = include('vartheme_bs5:card-hero', {
+      "media_position": "overlay",
+      "card_border": false,
+      "padded": false,
+      "horizontal_alignment": "start",
+      "vertical_alignment": "end",
+      "media": image3_html,
+      "content": "<div data-component-id=\"vartheme_bs5:field\" class=\"field field--name-node-title field--type-ds field--label-hidden field__item\"><h3 class=\"card-title\">Varbase; better than ever</h3></div><div class=\"field field--name-body field--type-text-with-summary field--label-hidden field__item\">Elevate your digital experience with Varbase's dynamic design system, seamlessly blending aesthetic appeal with unparalleled functionality. Unleash the power of intuitive design for a compelling web presence.</div><div class=\"mt-5\"><a href=\"\" class=\"btn btn-primary btn-lg\">Learn More</a></div>",
+      "card_hero_utility_classes": [],
+      "card_hero_media_utility_classes": [],
+      "card_hero_content_utility_classes": []
+    },
+    with_context = false
+  ) %}
+
+  {{
+    include('vartheme_bs5:views-view-heroslider', {
+      "rows": [
+        {"'#markup'": card_hero_overlay_html1 },
+        {"'#markup'": card_hero_overlay_html2 },
+        {"'#markup'": card_hero_overlay_html3 }
+      ]
+    })
+  }}
+{% endstory %}
+
+
+{% story HeroSliderOneSlide with {
+  "name": "Hero Slider - One Slide",
+  "args": {
+    "id": "test-heroslider-1-slide",
+    "controls": true,
+    "indicators": true,
+    "controls_indicators_position": "overlay",
+    "interval": 5000,
+    "keyboard": true,
+    "pause": "hover",
+    "ride": "carousel",
+    "touch": true,
+    "wrap": true,
+    "empty": "<p> Hero Slider </p><p> There are no slides right now! </p><a class=\"btn btn-primary hidden-anonymous visible-admin add-slider\" href=\"[site:url]/node/add/varbase_heroslider/\"> Add One Now </a>",
+    "heroslider_utility_classes": [],
+    "heroslider_indicators_utility_classes": []
+  }
+} %}
+
+
+  {% set card_hero_overlay_html1 = include('vartheme_bs5:card-hero', {
+      "media_position": "overlay",
+      "card_border": false,
+      "padded": false,
+      "horizontal_alignment": "start",
+      "vertical_alignment": "end",
+      "media": "<picture class=\"card-img img-fluid \"><img class=\"card-img img-fluid\" src=\"https://raw.githubusercontent.com/Vardot/varbase_media_demo/10.0.0/content/file/coworking-1.jpg\"></picture>",
+      "content": "<div data-component-id=\"vartheme_bs5:field\" class=\"field field--name-node-title field--type-ds field--label-hidden field__item\"><h3 class=\"card-title\">Varbase; better than ever</h3></div><div class=\"field field--name-body field--type-text-with-summary field--label-hidden field__item\">Elevate your digital experience with Varbase's dynamic design system, seamlessly blending aesthetic appeal with unparalleled functionality. Unleash the power of intuitive design for a compelling web presence.</div><div class=\"mt-5\"><a href=\"\" class=\"btn btn-primary btn-lg\">Learn More</a></div>",
+      "card_hero_utility_classes": [],
+      "card_hero_media_utility_classes": [],
+      "card_hero_content_utility_classes": []
+    },
+    with_context = false
+  ) %}
+
+  {{
+    include('vartheme_bs5:views-view-heroslider', {
+      "rows": [
+        {"'#markup'": card_hero_overlay_html1 }
+      ]
+    })
+  }}
+{% endstory %}
+
+
+{% story EmptyHeroSlider with {
+  "name": "Empty Hero Slider",
+  "args": {
+    "controls": true,
+    "indicators": true,
+    "controls_indicators_position": "overlay",
+    "interval": 5000,
+    "keyboard": true,
+    "pause": "hover",
+    "ride": "carousel",
+    "touch": true,
+    "wrap": true,
+    "rows": [],
+    "empty": "<p> Hero Slider </p><p> There are no slides right now! </p><a class=\"btn btn-primary hidden-anonymous visible-admin add-slider\" href=\"[site:url]/node/add/varbase_heroslider/\"> Add One Now </a>",
+  }
+} %}
+  {{
+    include('vartheme_bs5:views-view-heroslider')
+  }}
+{% endstory %}
+
+
+{% endstories %}

@@ -1,0 +1,59 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Media Header
+status: experimental
+description: The universal media header style on top of web pages.
+props:
+  type: object
+  properties:
+    media_type:
+      type: string
+      title: Media type
+      description: Media entity type.
+      default: ''
+      enum:
+        - ''
+        - 'image'
+        - 'video'
+        - 'remote_video'
+    provider:
+      type: string
+      title: Provider
+      description: Video provider (for remote video).
+      default: ''
+      enum:
+        - ''
+        - 'youtube'
+        - 'vimeo'
+    media_header_utility_classes:
+      type: array
+      title: Utility Classes
+      default: []
+      items:
+        type: 'string'
+      description: An array of utility classes that can be used to add extra Bootstrap utility classes or custom classes to this component.
+    attributes:
+      type: object
+      title: Attributes
+      description: HTML attributes for the containing element.
+      $ref: 'ui-patterns://attributes'
+slots:
+  page_breadcrumbs:
+    type: string
+    title: Media Header page breadcrumbs
+    description: System Page breadcrumbs.
+    default: ''
+  page_title:
+    type: string
+    title: Media Header page title
+    description: title System page title.
+    default: ''
+  background_media:
+    type: string
+    title: Background Media
+    description: Background media (Image, local or remote videos).
+    default: ''
+libraryOverrides:
+  dependencies:
+    - core/drupal
+    - core/drupalSettings
+    - core/once

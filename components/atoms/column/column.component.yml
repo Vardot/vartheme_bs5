@@ -1,0 +1,16 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Column
+status: experimental
+description: Column
+props:
+  type: object
+  properties:
+    content:
+      type: string
+      title: Content
+      description: Content for the column.
+    attributes:
+      type: object
+      title: Attributes
+      description: HTML attributes for the containing element.
+      $ref: 'ui-patterns://attributes'

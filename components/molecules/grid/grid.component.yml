@@ -1,0 +1,158 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Grid
+status: experimental
+description: Component implementation for a grid using Bootstrap ~5.3.0 methods.
+group: Grid
+props:
+  type: object
+  properties:
+    items:
+      type: array
+      title: Items
+      description: 'An array of items to display in the Grid.'
+      default: []
+    col_xs:
+      type: string
+      title: Column width of items at xs breakpoint
+      description: Set the number of columns each item should take up at the xs breakpoint and higher.
+      enum:
+        - "none"
+        - "col"
+        - "col-auto"
+        - "col-1"
+        - "col-2"
+        - "col-3"
+        - "col-4"
+        - "col-5"
+        - "col-6"
+        - "col-7"
+        - "col-8"
+        - "col-9"
+        - "col-10"
+        - "col-11"
+        - "col-12"
+      default: "none"
+    col_sm:
+      type: string
+      title: Column width of items at sm breakpoint
+      description: Set the number of columns each item should take up at the sm breakpoint and higher.
+      enum:
+        - "none"
+        - "col-sm"
+        - "col-sm-auto"
+        - "col-sm-1"
+        - "col-sm-2"
+        - "col-sm-3"
+        - "col-sm-4"
+        - "col-sm-5"
+        - "col-sm-6"
+        - "col-sm-7"
+        - "col-sm-8"
+        - "col-sm-9"
+        - "col-sm-10"
+        - "col-sm-11"
+        - "col-sm-12"
+      default: "none"
+    col_md:
+      type: string
+      title: Column width of items at md breakpoint
+      description: Set the number of columns each item should take up at the md breakpoint and higher.
+      enum:
+        - "none"
+        - "col-md"
+        - "col-md-auto"
+        - "col-md-1"
+        - "col-md-2"
+        - "col-md-3"
+        - "col-md-4"
+        - "col-md-5"
+        - "col-md-6"
+        - "col-md-7"
+        - "col-md-8"
+        - "col-md-9"
+        - "col-md-10"
+        - "col-md-11"
+        - "col-md-12"
+      default: "none"
+    col_lg:
+      type: string
+      title: Column width of items at lg breakpoint
+      description: Set the number of columns each item should take up at the lg breakpoint and higher.
+      enum:
+        - "none"
+        - "col-lg"
+        - "col-lg-auto"
+        - "col-lg-1"
+        - "col-lg-2"
+        - "col-lg-3"
+        - "col-lg-4"
+        - "col-lg-5"
+        - "col-lg-6"
+        - "col-lg-7"
+        - "col-lg-8"
+        - "col-lg-9"
+        - "col-lg-10"
+        - "col-lg-11"
+        - "col-lg-12"
+      default: "none"
+    col_xl:
+      type: string
+      title: Column width of items at xl breakpoint
+      description: Set the number of columns each item should take up at the xl breakpoint and higher.
+      enum:
+        - "none"
+        - "col-xl"
+        - "col-xl-auto"
+        - "col-xl-1"
+        - "col-xl-2"
+        - "col-xl-3"
+        - "col-xl-4"
+        - "col-xl-5"
+        - "col-xl-6"
+        - "col-xl-7"
+        - "col-xl-8"
+        - "col-xl-9"
+        - "col-xl-10"
+        - "col-xl-11"
+        - "col-xl-12"
+      default: "none"
+    col_xxl:
+      type: string
+      title: Column width of items at xxl breakpoint
+      description: Set the number of columns each item should take up at the xl breakpoint and higher.
+      enum:
+        - "none"
+        - "col-xxl"
+        - "col-xxl-auto"
+        - "col-xxl-1"
+        - "col-xxl-2"
+        - "col-xxl-3"
+        - "col-xxl-4"
+        - "col-xxl-5"
+        - "col-xxl-6"
+        - "col-xxl-7"
+        - "col-xxl-8"
+        - "col-xxl-9"
+        - "col-xxl-10"
+        - "col-xxl-11"
+        - "col-xxl-12"
+      default: "none"
+    grid_utility_classes:
+      type: array
+      title: 'Grid Row Utility Classes'
+      default: []
+      items:
+        type: 'string'
+      description: 'Use to add extra Bootstrap utility classes for the grid `row`. E.g. `row-cols-1 row-cols-sm-2 row-cols-md-4`. ( Do not add `grid`, or `row`).'
+    column_utility_classes:
+      type: array
+      title: 'Column Utility Classes'
+      default: []
+      items:
+        type: 'string'
+      description: 'Use to add extra Bootstrap utility classes for the column `col`. E.g. `gy-4 g-sm-4` or `mb-4`. ( Do not add `col` or `col-[*]`).'
+    attributes:
+      type: object
+      title: Attributes
+      description: HTML attributes for the containing element.
+      $ref: 'ui-patterns://attributes'

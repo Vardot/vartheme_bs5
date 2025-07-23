@@ -1,0 +1,21 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Filed
+status: experimental
+description: Field container divisions with attributes.
+props:
+  type: object
+  properties:
+    label_display:
+      type: string
+      title: Label display
+      description: Display the label of the field. 
+    title_attributes:
+      type: object
+      title: Title Attributes
+      description: HTML attributes for the title element.
+      $ref: 'ui-patterns://attributes'
+    attributes:
+      type: object
+      title: Attributes
+      description: HTML attributes for the containing element.
+      $ref: 'ui-patterns://attributes'

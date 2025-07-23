@@ -1,0 +1,43 @@
+{/* heroslider.mdx */}
+
+import { Canvas, Title, Subtitle, ArgTypes, Source, Meta, Description, Primary, Story, Stories, Controls } from '@storybook/blocks';
+import * as comStories from './heroslider.stories.json';
+import templateSource from './heroslider.twig?raw';
+
+<Meta of={comStories} name="Docs"/>
+
+<Title />
+<Subtitle />
+<Description />
+
+
+<Primary />
+
+## Properties
+<Controls />
+
+<Stories of={comStories} />
+
+## Examples:
+
+Pass rows for the Hero Slider content type from an unformatted view display which uses the Hero Card for the view mode. 
+```
+{%
+  include "vartheme_bs5:heroslider" with {
+    id: id,
+    controls: true,
+    indicators: true,
+    interval: 6000,
+    keyboard: true,
+    pause: "hover",
+    ride: "carousel",
+    touch: true,
+    wrap: true,
+    items: rows[0]['#rows'] ?? [],
+  }
+%}
+```
+
+## Source code
+[//]: # (Twig Template source code)
+<Source code={templateSource} />

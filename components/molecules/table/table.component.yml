@@ -1,0 +1,175 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Table 
+status: experimental
+description: The Table component with support for Bootstrap
+props:
+  type: object
+  properties:
+    variant:
+      type: string
+      title: Variant
+      default: ''
+      enum:
+        - ''
+        - primary
+        - secondary
+        - success
+        - info
+        - warning
+        - danger
+        - light
+        - dark
+    responsive:
+      type: boolean
+      title: Responsive
+      description: Responsive tables allow tables to be scrolled horizontally with ease. Make any table responsive across all viewports.
+      default: true
+      $ref: "ui-patterns://boolean"
+    striped_rows:
+      type: boolean
+      title: Striped rows
+      description: "Use to add zebra-striping to any table row within the tbody. Works when no_striping is false."
+      default: false
+      $ref: "ui-patterns://boolean"
+    striped_columns:
+      type: boolean
+      title: Striped columns
+      description: Use to add zebra-striping to any table column. Works when no_striping is false.
+      default: false
+      $ref: "ui-patterns://boolean"
+    hover:
+      type: boolean
+      title: Hover
+      description: "Enable a hover state on table rows within a tbody for hoverable rows."
+      default: false
+      $ref: "ui-patterns://boolean"
+    bordered:
+      type: boolean
+      title: Bordered
+      description: Add borders on all sides of the table and cells.
+      default: false
+      $ref: "ui-patterns://boolean"
+    border_color:
+      type: string
+      title: Border Color
+      description: Use the border color utility to change border colors.
+      default: ''
+      enum:
+        - ''
+        - primary
+        - secondary
+        - success
+        - info
+        - warning
+        - danger
+        - light
+        - dark
+        - black
+        - white
+        - primary-subtle
+        - secondary-subtle
+        - success-subtle
+        - info-subtle
+        - warning-subtle
+        - danger-subtle
+        - light-subtle
+        - dark-subtle
+    borderless:
+      type: boolean
+      title: Borderless
+      description: "Add .table-borderless for a table without borders."
+      default: false
+    size:
+      type: string
+      title: Table Size
+      description: Use sm for small to make any table more compact by cutting all cell padding in half.
+      default: ''
+      enum:
+        - ''
+        - 'sm'
+    caption:
+      type: string
+      title: Caption
+      description: "A localized string for the caption tag."
+      default: ''
+    colgroups:
+      type: array
+      title: Column groups
+      description: Column groups which contains attributes
+      default: []
+    sticky:
+      type: boolean
+      title: Sticky
+      description: A flag indicating whether to use a sticky table header. ( set responsive to false for sticky to work)
+      default: false
+      $ref: "ui-patterns://boolean"
+    header:
+      type: array
+      title: Table header cells
+      description: Table header cells which contains (tag, attributes, content, field, sort)
+      default: []
+    rows:
+      type: array
+      title: Table rows
+      description: Table rows, which each row contains (attributes, data, no_striping, cells). Each cell contains (tag, attributes, content, active_table_sort)
+      default: []
+    footer:
+      type: array
+      title: Table footer
+      description: Table footer rows, in the same format as the rows variable.
+      default: []
+    empty:
+      type: string
+      title: Empty
+      description: The message to display in an extra row if table does not have any rows.
+      default: ''
+    no_striping:
+      type: boolean
+      title: No Striping
+      description: A boolean indicating that the row should receive no striping.
+      default: false
+      $ref: "ui-patterns://boolean"
+    thead_utility_classes:
+      type: array
+      title: Table Header Utility Classes
+      default: []
+      items:
+        type: 'string'
+      description: Use to add extra Bootstrap utility classes or custom CSS classes over to the head of the table element.
+    tbody_utility_classes:
+      type: array
+      title: Table Body Utility Classes
+      default: []
+      items:
+        type: 'string'
+      description: Use to add extra Bootstrap utility classes or custom CSS classes over to the body of the table element.
+    tfoot_utility_classes:
+      type: array
+      title: Table Footer Utility Classes
+      default: []
+      items:
+        type: 'string'
+      description: Use to add extra Bootstrap utility classes or custom CSS classes over to the foot of the table element.
+    attributes:
+      type: object
+      title: Attributes
+      description: "HTML attributes to apply to the table tag."
+      $ref: 'ui-patterns://attributes'
+    thead_attributes:
+      type: object
+      title: Table Header attributes
+      description: "HTML attributes to apply to the thead tag."
+      $ref: 'ui-patterns://attributes'
+      default: {}
+    tbody_attributes:
+      type: object
+      title: Table Body attributes
+      description: "HTML attributes to apply to the tbody tag."
+      $ref: 'ui-patterns://attributes'
+      default: {}
+    tfoot_attributes:
+      type: object
+      title: Table Footer attributes
+      description: "HTML attributes to apply to the tfoot tag."
+      $ref: 'ui-patterns://attributes'
+      default: {}

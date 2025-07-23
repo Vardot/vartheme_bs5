@@ -1,0 +1,216 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: 'Featured Card' 
+status: experimental
+description: 'Featured card component and pattern with media and content.'
+group: Cards
+props:
+  type: object
+  properties:
+    style_size:
+      type: string
+      title: 'Card style size'
+      description: 'Card style size (xsmall|small|medium|large|xlarge).'
+      default: ''
+      enum:
+        - ''
+        - xsmall
+        - small
+        - medium
+        - large
+        - xlarge
+    card_border:
+      type: boolean
+      title: 'Card Border'
+      default: false
+      description: 'Add a default border for the card.'
+    padded:
+      type: boolean
+      title: Padded
+      default: false
+      description: 'Add a default padding to the card.'
+    equal_height:
+      type: boolean
+      title: 'Equal height'
+      default: true
+      description: 'Manage an equal height for this card with other cards in the same grid rows.'
+    anchor_all:
+      type: boolean
+      title: 'Anchor All'
+      default: false
+    media_position:
+      type: string
+      title: 'Media position'
+      description: 'Choose the location of the media from (start|end).'
+      default: ''
+      enum:
+        - ''
+        - start
+        - end
+    content_vertical_alignment:
+      type: string
+      title: 'Content Vertical alignment'
+      description: 'Vertical alignment of the content.'
+      default: 'center'
+      enum:
+        - ''
+        - start
+        - center
+        - end
+    gutters_between:
+      type: string
+      title: 'Gutters Between'
+      description: 'Manage the guttering between the start and end columns.'
+      default: no
+      enum:
+        - large
+        - small-start
+        - small-end
+        - no
+    columns_xs_size:
+      type: string
+      title: 'All Breakpoints'
+      description: 'Size of two columns for all devices. Starting from (Extra small and up).'
+      default: '06_06'
+      enum:
+        - ''
+        - '02_10'
+        - '10_02'
+        - '03_09'
+        - '09_03'
+        - '04_08'
+        - '08_04'
+        - '06_06'
+        - '12_12'
+    columns_sm_size:
+      type: string
+      title: 'Small Breakpoint size (sm)'
+      description: 'Size of two columns for Small devices (landscape phones, 576px and up).'
+      default: ''
+      enum:
+        - ''
+        - '02_10'
+        - '10_02'
+        - '03_09'
+        - '09_03'
+        - '04_08'
+        - '08_04'
+        - '06_06'
+        - '12_12'
+    columns_md_size:
+      type: string
+      title: 'Medium Breakpoint size (md)'
+      description: 'Size of two columns for Medium devices (tablets, 768px and up).'
+      default: ''
+      enum:
+        - ''
+        - '02_10'
+        - '10_02'
+        - '03_09'
+        - '09_03'
+        - '04_08'
+        - '08_04'
+        - '06_06'
+        - '12_12'
+    columns_lg_size:
+      type: string
+      title: 'Large Breakpoint size (lg)'
+      description: 'Size of two columns for Large devices (desktops, 992px and up).'
+      default: ''
+      enum:
+        - ''
+        - '02_10'
+        - '10_02'
+        - '03_09'
+        - '09_03'
+        - '04_08'
+        - '08_04'
+        - '06_06'
+        - '12_12'
+    columns_xl_size:
+      type: string
+      title: 'Extra Large Breakpoint size (xl)'
+      description: 'Size of two columns for X-Large devices (large desktops, 1200px and up).'
+      default: ''
+      enum:
+        - ''
+        - '02_10'
+        - '10_02'
+        - '03_09'
+        - '09_03'
+        - '04_08'
+        - '08_04'
+        - '06_06'
+        - '12_12'
+    columns_xxl_size:
+      type: string
+      title: 'Extra Extra Large Breakpoint size (xxl)'
+      description: 'Size of two columns for XX-Large devices (larger desktops, 1400px and up).'
+      default: ''
+      enum:
+        - ''
+        - '02_10'
+        - '10_02'
+        - '03_09'
+        - '09_03'
+        - '04_08'
+        - '08_04'
+        - '06_06'
+        - '12_12'
+    card_featured_utility_classes:
+      type: array
+      title: 'Utility Classes'
+      default: []
+      items:
+        type: 'string'
+      description: 'Use to add extra Bootstrap utility classes for the main Card wrapper. E.g. `mb-3 shadow-lg` ( Do not add `card`).'
+    card_featured_media_utility_classes:
+      type: array
+      title: 'Media Utility Classes'
+      default: []
+      items:
+        type: 'string'
+      description: 'Use to add extra Bootstrap utility classes for the Card Media region wrapper. E.g. `bg-secondary mb-3` ( Do not add `card-img`).'
+    card_featured_content_utility_classes:
+      type: array
+      title: 'Content Utility Classes'
+      default: []
+      items:
+        type: 'string'
+      description: 'Use to add extra Bootstrap utility classes for the Card Content region wrapper. E.g. `w-75 mb-3 overflow-y-hidden`  ( Do not add `card-body`).'
+    card_attributes:
+      type: object
+      title: 'Card Attributes'
+      description: 'HTML attributes for the card element.'
+      $ref: 'ui-patterns://attributes'
+    media_attributes:
+      type: object
+      title: 'Media Attributes'
+      description: 'HTML attributes for the media element.'
+      $ref: 'ui-patterns://attributes'
+    content_attributes:
+      type: object
+      title: 'Content Attributes'
+      description: 'HTML attributes for the content element.'
+      $ref: 'ui-patterns://attributes'
+    row_attributes:
+      type: object
+      title: 'Row Attributes'
+      description: 'HTML attributes for the row element.'
+      $ref: 'ui-patterns://attributes'
+    start_column_attributes:
+      type: object
+      title: 'Start Column Attributes'
+      description: 'HTML attributes for the start column element.'
+      $ref: 'ui-patterns://attributes'
+    end_column_attributes:
+      type: object
+      title: 'End Column Attributes'
+      description: 'HTML attributes for the end column element.'
+      $ref: 'ui-patterns://attributes'
+slots:
+  media:
+    title: 'Media'
+    description: 'The media image/video slot for the card.'
+  content:
+    title: 'Content'
+    description: 'The content slot for the card.'

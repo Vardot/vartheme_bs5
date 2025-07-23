@@ -1,0 +1,103 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Media Hero Slide
+status: experimental
+description: A rich hero slide that display video and/or image.
+props:
+  type: object
+  properties:
+    node:
+      type: Drupal\node\Entity\Node
+      title: Node
+      description: The node entity with limited access to object properties and methods.
+    label:
+      type: string
+      title: Label
+      description: The title of the node.
+    content:
+      type: string
+      title: Content
+      description: All node items.
+    author_picture:
+      type: string
+      title: Author Picture
+      description: The node author user entity, rendered using the compact view mode.
+    metadata:
+      type: string
+      title: Metadata
+      description: Metadata for this node.
+    date:
+      type: string
+      title: Date
+      description: Themed creation date field.
+    author_name:
+      type: string
+      title: Author Name
+      description: Themed author name field.
+    url:
+      type: string
+      title: URL
+      description: Direct URL of the current node.
+      $ref: "ui-patterns://url"
+    display_submitted:
+      type: boolean
+      title: Display Submitted
+      description: Whether submission information should be displayed.
+    attributes:
+      type: object
+      title: Attributes
+      description: HTML attributes for the containing element.
+      $ref: 'ui-patterns://attributes'
+    title_attributes:
+      type: object
+      title: Title Attributes
+      description: Same as attributes, except applied to the main title tag that appears in the template.
+      $ref: 'ui-patterns://attributes'
+    content_attributes:
+      type: object
+      title: Content Attributes
+      description: Same as attributes, except applied to the main content tag that appears in the template.
+      $ref: 'ui-patterns://attributes'
+    author_attributes:
+      type: object
+      title: Author Attributes
+      description: Same as attributes, except applied to the author of the node tag that appears in the template.
+      $ref: 'ui-patterns://attributes'
+    title_prefix:
+      type: array
+      title: Title Prefix
+      description: Additional output populated by modules, intended to be displayed in front of the main title tag that appears in the template.
+    title_suffix:
+      type: array
+      title: Title Suffix
+      description: Additional output populated by modules, intended to be displayed after the main title tag that appears in the template.
+    view_mode:
+      type: string
+      title: View Mode
+      description: View mode; for example, "teaser" or "full".
+    teaser:
+      type: boolean
+      title: Teaser
+      description: Flag for the teaser state. Will be true if view_mode is 'teaser'.
+    page:
+      type: boolean
+      title: Page
+      description: Flag for the full page state. Will be true if view_mode is 'full'.
+    readmore:
+      type: boolean
+      title: Read More
+      description: Flag for more state. Will be true if the teaser content of the node cannot hold the main body content.
+    logged_in:
+      type: boolean
+      title: Logged In
+      description: Flag for authenticated user status. Will be true when the current user is a logged-in member.
+    is_admin:
+      type: boolean
+      title: Is Admin
+      description: Flag for admin user status. Will be true when the current user is an administrator.
+libraryOverrides:
+  dependencies:
+    - core/drupal
+    - core/drupalSettings
+    - core/jquery
+    - core/once
+    - slick/slick

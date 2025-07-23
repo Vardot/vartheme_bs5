@@ -27,7 +27,7 @@
 
 {% set dismissible_attributes = dismissible_attributes.setAttribute('class', (dismissible_attributes.getAttribute('class') ?? '') ~ 'js-dismiss-button') %}
 
-{% include 'varbase_components:alert' with {
+{% include 'vartheme_bs5:alert' with {
   dismissible: is_dismissible,
   dismissible_attributes: dismissible_attributes,
 } %}

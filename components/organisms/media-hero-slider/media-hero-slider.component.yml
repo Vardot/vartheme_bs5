@@ -1,0 +1,59 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Media Hero Slider 
+status: experimental
+description: The universal implementation of a Hero Slider to be used on the homepage in most cases. A rich hero slider that allows you to display video and/or image slides.
+props:
+  type: object
+  properties:
+    attributes:
+      type: object
+      title: Attributes
+      description: HTML attributes for the containing element.
+      $ref: 'ui-patterns://attributes'
+    css_name:
+      type: string
+      title: CSS name
+      description: A css-safe version of the view name.
+      default: ''
+    css_class:
+      type: string
+      title: CSS Class
+      description: The user-specified classes names, if any.
+      default: ''
+    rows:
+      type: array
+      title: Rows
+      description: The results of the view query, if any.
+      default: ''
+    empty:
+      type: string
+      title: Empty
+      description: The content to display if there are no rows.
+      default: ''
+    title:
+      type: string
+      title: Title
+      description: Title of the view, only used when displaying in the admin preview.
+      default: ''
+    title_prefix:
+      type: array
+      title: Title Prefix
+      description: Additional output populated by modules, intended to be displayed in front of the view title.
+      default: []
+    title_suffix:
+      type: array
+      title: Title Suffix
+      description: Additional output populated by modules, intended to be displayed after the view title.
+      default: []
+    dom_id:
+      type: string
+      title: Dom ID
+      description: Unique id for every view being printed to give unique class for Javascript.
+      default: ''
+libraryOverrides:
+  dependencies:
+    - core/drupal
+    - core/drupalSettings
+    - core/jquery
+    - core/once
+    - slick/slick

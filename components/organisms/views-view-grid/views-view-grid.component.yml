@@ -1,0 +1,184 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Views view grid
+status: experimental
+description: Component implementation for views to display rows in a grid.
+group: Views
+props:
+  type: object
+  properties:
+    grid_utility_classes:
+      type: array
+      title: 'Grid Row Utility Classes'
+      default: []
+      items:
+        type: 'string'
+      description: 'Use to add extra Bootstrap utility classes for the grid `row`. E.g. `row-cols-1 row-cols-sm-2 row-cols-md-4`. ( Do not add `grid`, or `row`).'
+    column_utility_classes:
+      type: array
+      title: 'Column Utility Classes'
+      default: []
+      items:
+        type: 'string'
+      description: 'Use to add extra Bootstrap utility classes for the column `col`. E.g. `gy-4 g-sm-4` or `mb-4`. ( Do not add `col` or `col-[*]`).'
+    col_xs:
+      type: string
+      title: Column width of items at xs breakpoint
+      description: Set the number of columns each item should take up at the xs breakpoint and higher.
+      enum:
+        - "none"
+        - "col"
+        - "col-auto"
+        - "col-1"
+        - "col-2"
+        - "col-3"
+        - "col-4"
+        - "col-6"
+        - "col-12"
+      meta:enum:
+        "none" : "None (or inherit from previous)"
+        "col" : "Equal"
+        "col-auto" : "Fit to content"
+        "col-1" : "1 (12 columns per row)"
+        "col-2" : "2 (6 columns per row)"
+        "col-3" : "3 (4 columns per row)"
+        "col-4" : "4 (3 columns per row)"
+        "col-6" : "6 (2 columns per row)"
+        "col-12" : "12 (1 column per row)"
+      x-translation-context: Column width of items at xs breakpoint
+    col_sm:
+      type: string
+      title: Column width of items at sm breakpoint
+      description: Set the number of columns each item should take up at the sm breakpoint and higher.
+      enum:
+        - "none"
+        - "col-sm"
+        - "col-sm-auto"
+        - "col-sm-1"
+        - "col-sm-2"
+        - "col-sm-3"
+        - "col-sm-4"
+        - "col-sm-6"
+        - "col-sm-12"
+      meta:enum:
+        "none" : "None (or inherit from previous)"
+        "col-sm" : "Equal"
+        "col-sm-auto" : "Fit to content"
+        "col-sm-1" : "1 (12 columns per row)"
+        "col-sm-2" : "2 (6 columns per row)"
+        "col-sm-3" : "3 (4 columns per row)"
+        "col-sm-4" : "4 (3 columns per row)"
+        "col-sm-6" : "6 (2 columns per row)"
+        "col-sm-12" : "12 (1 column per row)"
+      x-translation-context: Column width of items at sm breakpoint
+    col_md:
+      type: string
+      title: Column width of items at md breakpoint
+      description: Set the number of columns each item should take up at the md breakpoint and higher.
+      enum:
+        - "none"
+        - "col-md"
+        - "col-md-auto"
+        - "col-md-1"
+        - "col-md-2"
+        - "col-md-3"
+        - "col-md-4"
+        - "col-md-6"
+        - "col-md-12"
+      meta:enum:
+        "none" : "None (or inherit from previous)"
+        "col-md" : "Equal"
+        "col-md-auto" : "Fit to content"
+        "col-md-1" : "1 (12 columns per row)"
+        "col-md-2" : "2 (6 columns per row)"
+        "col-md-3" : "3 (4 columns per row)"
+        "col-md-4" : "4 (3 columns per row)"
+        "col-md-6" : "6 (2 columns per row)"
+        "col-md-12" : "12 (1 column per row)"
+      x-translation-context: Column width of items at md breakpoint
+    col_lg:
+      type: string
+      title: Column width of items at lg breakpoint
+      description: Set the number of columns each item should take up at the lg breakpoint and higher.
+      enum:
+        - "none"
+        - "col-lg"
+        - "col-lg-auto"
+        - "col-lg-1"
+        - "col-lg-2"
+        - "col-lg-3"
+        - "col-lg-4"
+        - "col-lg-6"
+        - "col-lg-12"
+      meta:enum:
+        "none" : "None (or inherit from previous)"
+        "col-lg" : "Equal"
+        "col-lg-auto" : "Fit to content"
+        "col-lg-1" : "1 (12 columns per row)"
+        "col-lg-2" : "2 (6 columns per row)"
+        "col-lg-3" : "3 (4 columns per row)"
+        "col-lg-4" : "4 (3 columns per row)"
+        "col-lg-6" : "6 (2 columns per row)"
+        "col-lg-12" : "12 (1 column per row)"
+      x-translation-context: Column width of items at lg breakpoint
+    col_xl:
+      type: string
+      title: Column width of items at xl breakpoint
+      description: Set the number of columns each item should take up at the xl breakpoint and higher.
+      enum:
+        - "none"
+        - "col-xl"
+        - "col-xl-auto"
+        - "col-xl-1"
+        - "col-xl-2"
+        - "col-xl-3"
+        - "col-xl-4"
+        - "col-xl-6"
+        - "col-xl-12"
+      meta:enum:
+        "none" : "None (or inherit from previous)"
+        "col-xl" : "Equal"
+        "col-xl-auto" : "Fit to content"
+        "col-xl-1" : "1 (12 columns per row)"
+        "col-xl-2" : "2 (6 columns per row)"
+        "col-xl-3" : "3 (4 columns per row)"
+        "col-xl-4" : "4 (3 columns per row)"
+        "col-xl-6" : "6 (2 columns per row)"
+        "col-xl-12" : "12 (1 column per row)"
+      x-translation-context: Column width of items at xl breakpoint
+    col_xxl:
+      type: string
+      title: Column width of items at xxl breakpoint
+      description: Set the number of columns each item should take up at the xl breakpoint and higher.
+      enum:
+        - "none"
+        - "col-xxl"
+        - "col-xxl-auto"
+        - "col-xxl-1"
+        - "col-xxl-2"
+        - "col-xxl-3"
+        - "col-xxl-4"
+        - "col-xxl-6"
+        - "col-xxl-12"
+      meta:enum:
+        "none" : "None (or inherit from previous)"
+        "col-xxl" : "Equal"
+        "col-xxl-auto" : "Fit to content"
+        "col-xxl-1" : "1 (12 columns per row)"
+        "col-xxl-2" : "2 (6 columns per row)"
+        "col-xxl-3" : "3 (4 columns per row)"
+        "col-xxl-4" : "4 (3 columns per row)"
+        "col-xxl-6" : "6 (2 columns per row)"
+        "col-xxl-12" : "12 (1 column per row)"
+      x-translation-context: Column width of items at xxl breakpoint
+    attributes:
+      type: object
+      title: Attributes
+      description: HTML attributes for the containing element.
+      $ref: 'ui-patterns://attributes'
+slots:
+  rows:
+    type: array
+    title: 'Rows'
+    description: 'Rows'
+    items:
+      type: 'object'

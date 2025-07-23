@@ -1,0 +1,72 @@
+
+@import "../../defaults";   // Global component defaults.
+
+// Override default bootstrap pagination variables.
+$pagination-font-size: 1.25rem;
+$pagination-bg: transparent;
+$pagination-focus-bg: transparent;
+$pagination-disabled-bg: transparent;
+$pagination-hover-bg: transparent;
+$pagination-active-bg: transparent;
+$pagination-border-radius: 0;
+$pagination-border-width: 0;
+
+$pagination-focus-color: var(--bs-dark-text-emphasis);
+$pagination-active-color: var(--bs-dark-text-emphasis);
+
+@import "../../../node_modules/bootstrap/scss/pagination";
+
+// Change default bootstrap pagination style.
+.pagination {
+  font-size: 1.25rem;
+  font-weight: 700;
+
+  .pager__item--previous,
+  .pager__item--next {
+    a {
+      color: var(--bs-dark);
+
+      &:hover {
+        color: var(--bs-link-hover-color);
+      }
+    }
+  }
+
+  .pager__item--ellipsis {
+    a,
+    .page-link {
+      color: var(--bs-link-color);
+      &:hover {
+        color: var(--bs-link-hover-color);
+      }
+    }
+  }
+
+
+}
+
+@if $enable-dark-mode {
+  @include color-mode(dark) {
+    .pagination { 
+      .pager__item--previous,
+      .pager__item--next {
+        a {
+          color: var(--bs-light);
+        }
+      }
+    }
+  }
+}
+
+.pagination-sm {
+  .page-link {
+    font-size: 0.875rem;
+  }
+}
+
+.pagination-lg {
+  .page-link {
+    font-size: 1.25rem;
+    padding: 1.125rem;
+  }
+}

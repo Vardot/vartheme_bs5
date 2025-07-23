@@ -1,0 +1,12 @@
+{#
+  * Column component.
+  * Available config:
+    - attributes: Drupal attributes.
+    - content: The content that will be inside row.
+#}
+
+<div {{ attributes }}>
+  {% block content %}
+    {{ content }}
+  {% endblock %}
+</div>

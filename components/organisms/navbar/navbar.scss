@@ -1,0 +1,109 @@
+@import "../../defaults";   // Global component defaults.
+
+.navbar {
+  height: 5.25rem;
+  background: var(--bs-white);
+
+  .form-inline {
+    .form-actions {
+      display: none;
+    }
+  }
+
+  .navbar-nav {
+    .nav-item {
+      a.nav-link {
+        position: relative;
+        font-weight: bold;
+        color: var(--bs-gray-900);
+
+        &:hover,
+        &:focus,
+        &:active {
+          color: var(--bs-primary) !important;
+
+          &:after {
+            content: "";
+            position: absolute;
+            transition: left 0.3s;
+            transition: right 0.3s;
+            left: 15% !important;
+            right: 15% !important;
+            height: 1px;
+            bottom: 0;
+            background-color: var(--bs-primary);
+          }
+        }
+
+        &.is-active {
+          &:after {
+            content: "";
+            position: absolute;
+            left: 30%;
+            right: 30%;
+            height: 1px;
+            bottom: 0;
+            background-color: var(--bs-primary);
+          }
+        }
+      }
+    }
+  }
+}
+
+[data-bs-theme=dark] {
+  .navbar {
+    background: $blue-700;
+
+    .navbar-nav {
+      .nav-item {
+        a.nav-link {
+          position: relative;
+          color: var(--bs-white);
+
+          &:hover,
+          &:focus,
+          &:active {
+            color: var(--bs-white) !important;
+  
+            &:after {
+              content: "";
+              left: 15% !important;
+              right: 15% !important;
+              position: absolute;
+              height: 1px;
+              bottom: 0;
+              background-color: var(--bs-white);
+            }
+          }
+  
+          &.is-active {
+            &:after {
+              content: "";
+              position: absolute;
+              left: 30%;
+              right: 30%;
+              height: 1px;
+              bottom: 0;
+              background-color: var(--bs-white);
+            }
+
+            border-bottom: 1px var(--bs-white);
+          }
+        }
+      }
+    }
+  }
+}
+
+.toolbar-oriented .toolbar-bar {
+  z-index: 1200;
+}
+
+.toolbar-horizontal {
+  .toolbar-menu {
+    &.nav {
+      float: left;
+    }
+  }
+}

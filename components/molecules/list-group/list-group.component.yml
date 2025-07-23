@@ -1,0 +1,103 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata-full.schema.json
+name: List Group
+status: experimental
+description: Bootstrap 5.3 List Group component for displaying a flexible list of content.
+props:
+  type: object
+  properties:
+    items:
+      type: array
+      title: Items
+      description: An array of list group items to display.
+      default: []
+      items:
+        type: object
+        properties:
+          content:
+            type: string
+            title: Content
+            description: The content of the list item.
+          active:
+            type: boolean
+            title: Active
+            description: Whether this item is active.
+            default: false
+          disabled:
+            type: boolean
+            title: Disabled
+            description: Whether this item is disabled.
+            default: false
+          href:
+            type: string
+            title: Link URL
+            description: Optional URL to make the item a link.
+          badge:
+            type: object
+            title: Badge
+            description: Optional badge configuration.
+            properties:
+              text:
+                type: string
+                title: Badge Text
+                description: Text to display in the badge.
+              variant:
+                type: string
+                title: Badge Variant
+                description: Bootstrap badge variant.
+                enum:
+                  - primary
+                  - secondary
+                  - success
+                  - danger
+                  - warning
+                  - info
+                  - light
+                  - dark
+                default: primary
+          variant:
+            type: string
+            title: Item Variant
+            description: Bootstrap contextual variant for the list item.
+            enum:
+              - primary
+              - secondary
+              - success
+              - danger
+              - warning
+              - info
+              - light
+              - dark
+    flush:
+      type: boolean
+      title: Flush
+      description: Remove borders and rounded corners for edge-to-edge rendering.
+      default: false
+    numbered:
+      type: boolean
+      title: Numbered
+      description: Add numbers to list group items.
+      default: false
+    horizontal:
+      type: string
+      title: Horizontal
+      description: Make list group horizontal at specific breakpoint.
+      enum:
+        - ""
+        - sm
+        - md
+        - lg
+        - xl
+        - xxl
+      default: ""
+    utility_classes:
+      type: array
+      title: Utility Classes
+      default: []
+      items:
+        type: string
+      description: Additional Bootstrap utility classes for the list group.
+    attributes:
+      type: object
+      title: Attributes
+      description: HTML attributes to apply to the list group.
+      "$ref": "ui-patterns://attributes"

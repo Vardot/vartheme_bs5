@@ -1,0 +1,64 @@
+{/* page-title.mdx */}
+
+import { Canvas, Title, Subtitle, ArgTypes, Source, Meta, Description, Primary, Story, Stories, Controls } from '@storybook/blocks';
+import * as comStories from './page-title.stories.json';
+import templateSource from './page-title.twig?raw';
+
+<Meta of={comStories} name="Docs"/>
+
+<Title />
+<Subtitle />
+<Description />
+
+
+> ## Bootstrap Documentation on Page Title
+> * [Headings](https://getbootstrap.com/docs/5.3/content/typography/#headings)
+> * [Display Headings](https://getbootstrap.com/docs/5.3/content/typography/#display-headings)
+
+
+<Primary />
+
+## Properties
+<Controls />
+
+## Attributes:        
+* `title_attributes`: HTML attributes for the page title element.
+
+## Variables:        
+* `title_prefix`: Additional output populated by modules, intended to be
+                 displayed in front of the main title tag that appears in the template.
+* `title_suffix`: Additional output populated by modules, intended to be
+                 displayed after the main title tag that appears in the template.
+
+## Slots:
+* N/A
+
+<Stories of={comStories} />
+
+### Examples
+Used in the `page-title.html.twig` default theme implementation for a page title.
+
+**Example #1:** Normal Page title 
+```
+  {% include 'vartheme_bs5:page-title' %}
+```
+
+**Example #2:** Have a Bootstrap display class with the page title.
+```
+  {% include 'vartheme_bs5:page-title' with {
+      display: 'display-1'
+    }
+  %}
+```
+
+**Example #3:** Have custom title class with the page title.
+```
+  {% include 'vartheme_bs5:page-title' with {
+      page_title_utility_classes: ['custom-section-title1', 'custom-title2']
+    }
+  %}
+```
+
+## Source code
+[//]: # (Twig Template source code)
+<Source code={templateSource} />

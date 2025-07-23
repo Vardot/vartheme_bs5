@@ -1,0 +1,98 @@
+// Page footer styles.
+@import "../../defaults";   // Global component defaults.
+
+footer.footer {
+  background-color: shade-color($primary, 40%);
+  color: var(--bs-white);
+
+  a {
+    color: var(--bs-white);
+    text-decoration: none;
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: var(--bs-white);
+      text-decoration: underline;
+    }
+  }
+
+  p {
+    a {
+      text-decoration: underline;
+
+      &:hover,
+      &:focus,
+      &:active {
+        transition: text-decoration 0.4s;
+        text-decoration: none;
+      }
+    }
+  }
+
+  .footer-logo-image {
+    height: 1.88rem;
+  }
+}
+
+.sitemap-menu {
+  .nav-item {
+    a.nav-link {
+      position: relative;
+      color: var(--bs-white);
+      text-decoration: none;
+
+      &:hover,
+      &:focus,
+      &:active {
+        color: var(--bs-white);
+
+        &:after {
+          position: absolute;
+          content: "";
+          top: 80%;
+          left: 0;
+          transition: width 0.3s;
+          width: 2.4rem !important;
+          height: 1px;
+          bottom: 0;
+          background-color: var(--bs-white);
+        }
+      }
+
+      &.is-active {
+        &:after {
+          position: absolute;
+          content: "";
+          top: 80%;
+          left: 0;
+          width: 1.3rem;
+          height: 1px;
+          bottom: 0;
+          background-color: var(--bs-white);
+        }
+      }
+    }
+  }
+}
+
+.social-media-menu-icons li.nav-item > a {
+  overflow: hidden;
+  text-indent: -9999px;  
+
+  &::before {
+    text-indent: 0;
+    float: left;
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: tint-color($primary, 80%);
+    text-decoration: none;
+
+    &:after { 
+      display: none;
+    }
+  }
+}

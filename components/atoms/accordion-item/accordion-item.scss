@@ -1,0 +1,57 @@
+
+@import "../../defaults";   // Global component defaults.
+
+// Override default bootstrap accordion variables.
+$accordion-padding-y: 0.9375rem;
+$accordion-padding-x: 0.9375rem;
+$accordion-border-width: 1px;
+$accordion-border-color: var(--bs-primary);
+$accordion-border-radius: 0.125rem;
+$accordion-inner-border-radius: subtract($accordion-border-radius, $accordion-border-width) !default;
+
+$accordion-body-padding-y: $accordion-padding-y;
+$accordion-body-padding-x: $accordion-padding-x;
+
+$accordion-button-padding-y: $accordion-padding-y;
+$accordion-button-padding-x: $accordion-padding-x;
+$accordion-button-active-bg: var(--#{$prefix}primary-bg-subtle) !default;
+$accordion-button-active-color: var(--#{$prefix}primary-text-emphasis) !default;
+
+$accordion-button-focus-border-color: var(--bs-primary);
+$accordion-button-focus-box-shadow: var(--bs-primary);
+
+$accordion-icon-width: 0.9375rem;
+
+@import "../../../node_modules/bootstrap/scss/accordion";
+
+// Change default bootstrap accordion style.
+.accordion {
+  .accordion-item {
+    margin-top: 1.25rem;
+
+    &:first {
+      margin-top: 0;
+    }
+
+    &:not(:first-of-type) {
+      border-top: $accordion-border-width solid $accordion-border-color;
+    }
+  }
+
+  .accordion-button {
+    font-weight: 700;
+    background-color: $accordion-bg;
+    box-shadow: none;
+
+    .collapsed {
+      background-color: $accordion-bg;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: var(--bs-accordion-active-bg);
+      box-shadow: var(--bs-accordion-btn-focus-box-shadow);
+    }
+  }
+}

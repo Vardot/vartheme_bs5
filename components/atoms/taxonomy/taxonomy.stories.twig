@@ -1,0 +1,33 @@
+{% stories Taxonomy with {
+  "title": "Atoms/Taxonomy",
+  "parameters": {
+    "componentSubtitle": "Taxonomy",
+    "docs": {
+      "description": {
+        "component": "Taxonomy terms as taxonomy tags."
+      },
+      "story": {
+        "inline": true
+      }
+    }
+  },
+  "argTypes": {
+    "content": {
+      "name": "Content",
+      "description": "List of all the field items. Each item contains attributes, and content.",
+      "control": "text",
+      "defaultValue": ""
+    }
+  }
+} %}
+
+{% story Taxonomy with {
+  "name": "Taxonomy",
+  "args": {
+    "content": "<a href=\"#\" hreflang=\"en\">Taxonomy</a>"
+  }
+} %}
+{{ include('vartheme_bs5:taxonomy') }}
+{% endstory %}
+
+{% endstories %}

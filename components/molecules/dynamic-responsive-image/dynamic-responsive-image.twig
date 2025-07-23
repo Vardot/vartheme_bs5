@@ -1,0 +1,85 @@
+{#
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation to display a dynamic responsive image
+ *
+ * Available properties:
+ * - url: An optional URL the image can be linked to.
+ * - width: The original width of the image.
+ * - height: The original height of the image.
+ * - alt: The alt text for the image.
+ * - data: json encoded drimage data object
+ * - dynamic_responsive_image_utility_classes: Use to add extra Bootstrap utility classes for the main wrapper.
+ *
+ * Available attributes:
+ * - item_attributes: HTML attributes for the item wrapper element.
+ * - picture_source_attributes: HTML attributes for the picture source element.
+ * - picture_img_attributes: HTML attributes for the picture image element.
+ * - url_attributes: HTML attributes for the URL element.
+ * - noscript_img_attributes: HTML attributes for the No JavaScript Image element.
+ *
+ * Available slots:
+ * - N/A
+ *
+ */
+#}
+{% set data = data ?? [] %}
+{% set dynamic_responsive_image_utility_classes = dynamic_responsive_image_utility_classes ?? [] %}
+{% set dummy_image = "data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg'%20width='" ~ width ~ "'%20height='" ~ height ~ "'%20viewBox='0%200%20" ~ width ~ "%20" ~ height ~"'%20%3E%3C/svg%3E" %}
+
+{# The Dynamic Responsive Image Item Attributes #}
+{% if not item_attributes %}
+  {% set item_attributes = create_attribute() %}
+{% endif %}
+{% set item_attributes = item_attributes.addClass(dynamic_responsive_image_utility_classes) %}
+{% set item_attributes = item_attributes.setAttribute('data-drimage_improved', data|json_encode) %}
+
+{# Picture Source Attributes #}
+{% if not picture_source_attributes %}
+  {% set picture_source_attributes = create_attribute() %}
+{% endif %}
+{% set picture_source_attributes = picture_source_attributes.setAttribute('data-format', 'webp') %}
+{% set picture_source_attributes = picture_source_attributes.setAttribute('srcset', dummy_image) %}
+{% set picture_source_attributes = picture_source_attributes.setAttribute('type', 'image/webp') %}
+
+{# Picture Image Attributes #}
+{% if not picture_img_attributes %}
+  {% set picture_img_attributes = create_attribute() %}
+{% endif %}
+{% set picture_img_attributes = picture_img_attributes.setAttribute('src', dummy_image) %}
+{% set picture_img_attributes = picture_img_attributes.setAttribute('width', width) %}
+{% set picture_img_attributes = picture_img_attributes.setAttribute('height', height) %}
+{% set picture_img_attributes = picture_img_attributes.setAttribute('alt', alt) %}
+
+{# No JavaScript Image Attributes #}
+{% if not noscript_img_attributes %}
+  {% set noscript_img_attributes = create_attribute() %}
+{% endif %}
+{% set noscript_img_attributes = noscript_img_attributes.setAttribute('src', data.original_source) %}
+{% set noscript_img_attributes = noscript_img_attributes.setAttribute('alt', alt) %}
+{% set noscript_img_attributes = noscript_img_attributes.setAttribute('width', data.original_width) %}
+{% set noscript_img_attributes = noscript_img_attributes.setAttribute('height', data.original_height) %}
+
+<div{{ item_attributes }}>{% apply spaceless %}
+  {% if url and url != '' %}
+    {# URL Attributes #}
+    {% if not url_attributes %}
+      {% set url_attributes = create_attribute() %}
+    {% endif %}
+    {% set url_attributes = url_attributes.setAttribute('href', url) %}
+    <a{{ url_attributes }}>
+  {% endif %}
+  <picture>
+  {% if data.core_webp or data.imageapi_optimize_webp %}
+    <source{{ picture_source_attributes }}>
+  {% endif %}
+    <img{{ picture_img_attributes }}/>
+  </picture>
+  {% if url %}
+    </a>
+  {% endif %}
+</div>
+<noscript>
+  <img{{ noscript_img_attributes }}>
+</noscript>
+{% endapply %}

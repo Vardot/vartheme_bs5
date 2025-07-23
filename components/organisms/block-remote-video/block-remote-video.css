@@ -1,0 +1,27 @@
+.remote-video-media-wrapper {
+  position: relative;
+  width: fit-content;
+}
+
+.thumb-wrapper {
+  position: absolute;
+  top: 0;
+}
+
+.thumb-wrapper::after {
+  content: "";
+  display: block;
+  margin: auto;
+  position: absolute;
+  background-image: url(../../../../assets/images/play.svg);
+  width: 100px;
+  height: 100px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+}
+
+.thumb-wrapper:hover {
+  cursor: pointer;
+}

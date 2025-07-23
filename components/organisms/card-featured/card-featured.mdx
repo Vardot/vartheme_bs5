@@ -1,0 +1,55 @@
+{/* card-featured.mdx */}
+
+import { Canvas, Title, Subtitle, ArgTypes, Source, Meta, Description, Primary, Story, Stories, Controls } from '@storybook/blocks';
+import * as comStories from './card-featured.stories.json';
+import templateSource from './card-featured.twig?raw';
+
+<Meta of={comStories} name="Docs"/>
+
+<Title />
+<Subtitle />
+<Description />
+
+
+<Primary />
+
+## Properties
+<Controls />
+
+
+<Stories of={comStories} />
+
+### Options to custom:
+- Full clone/copy the **Featured Card** component and [customize it in a custom theme](https://docs.varbase.vardot.com/v/10.0.x/developers/theme-development-with-varbase/customize-a-varbase-sdc-component-in-a-custom-theme)
+- Minimal copy of parts of the component in a new custom component. Use for targeted selected entity type or bundle, and have the custom changes with styles(`css`) and scripts(`js`), or even with custom props and slots.
+
+#### Example:
+
+```
+{% include 'vartheme_bs5:card-featured' with {
+  style_size: medium,
+  card_border: true,
+  padded: true,
+  equal_height: true,
+  anchor_all: true,
+  media_position: 'start',
+  gutters_between: 'large',
+  columns_xs_size: '',
+  columns_sm_size: '04_08',
+  columns_md_size: '',
+  columns_lg_size: '',
+  columns_xl_size: '06_06',
+  columns_xxl_size: '',
+  card_featured_utility_classes: ['bg-light', 'shadow-lg'],
+  card_featured_media_utility_classes: ['bg-secondary'],
+  card_featured_content_utility_classes: ['overflow-y-hidden'],
+  media: media,
+  content: content,
+} only %}
+```
+
+
+
+## Source code
+[//]: # (Twig Template source code)
+<Source code={templateSource} />

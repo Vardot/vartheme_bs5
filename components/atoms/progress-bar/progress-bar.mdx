@@ -1,0 +1,76 @@
+{/* progress-bar.mdx */}
+
+import { Canvas, Title, Subtitle, ArgTypes, Source, Meta, Description, Primary, Story, Stories, Controls } from '@storybook/blocks';
+import * as comStories from './progress-bar.stories.json';
+import templateSource from './progress-bar.twig?raw';
+
+<Meta of={comStories} name="Docs"/>
+
+<Title />
+<Subtitle />
+<Description />
+
+
+> ### [Bootstrap Documentation on Progress](https://getbootstrap.com/docs/5.3/components/progress/)
+> * [Bar sizing](https://getbootstrap.com/docs/5.3/components/progress/#bar-sizing)
+> * [Height](https://getbootstrap.com/docs/5.3/components/progress/#height)
+> * [Labels](https://getbootstrap.com/docs/5.3/components/progress/#labels)
+> * [Backgrounds](https://getbootstrap.com/docs/5.3/components/progress/#backgrounds)
+> * [Striped](https://getbootstrap.com/docs/5.3/components/progress/#striped)
+> * [Animated stripes](https://getbootstrap.com/docs/5.3/components/progress/#animated-stripes)
+> * [Hover variants](https://getbootstrap.com/docs/5.3/utilities/link/#hover-variants)
+
+<Primary />
+
+## Properties
+<Controls />
+
+<Stories of={comStories} />
+
+## Attributes:
+* `wrapper_attributes`: HTML attributes for the Progress Bar wrapper element.
+* `indicator_attributes`: HTML attributes for the Progress Bar indicator element.
+* `label_attributes`: HTML attributes for the Progress Bar label element.
+* `message_attributes`: HTML attributes for the Progress Bar message element.
+
+### Examples
+**Example #1:** Use for the system progress
+```
+{% include 'vartheme_bs5:progress-bar' with {
+  color: '',
+  striped: true,
+  animated: true,
+  label: label,
+  percent: percent,
+  message: message
+} %}
+```
+
+**Example #2:** Job process Warning
+```
+  {% include 'vartheme_bs5:progress-bar' with {
+    color: 'bg-warning',
+    striped: false,
+    animated: false,
+    label: 'Job process Warning',
+    percent: percent,
+    message: 'Warning of system status'
+  } %}
+```
+
+**Example #3:** Success status passing progress
+```
+  {% include 'vartheme_bs5:progress-bar' with {
+    color: 'bg-success',
+    striped: false,
+    animated: false,
+    label: label,
+    percent: percent,
+    message: 'Passing status is in progress'|t
+  } %}
+```
+
+
+## Source code
+[//]: # (Twig Template source code)
+<Source code={templateSource} />

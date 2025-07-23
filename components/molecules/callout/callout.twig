@@ -1,0 +1,35 @@
+{#
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for the Callout component.
+ *
+ * Available properties:
+ * - type: Predefined callout type styles.
+ *         (''|bs-callout-info|bs-callout-warning|bs-callout-danger), If not provided the fallback default callout style will apply.
+ * - callout_utility_classes: An array of utility classes. Use to add extra utility classes or custom CSS classes over to this component.
+ *
+ * Available attributes:
+ * - attributes: HTML attributes for the callout element.
+ *
+ * Available slots:
+ * - content: The content of the callout.
+ */
+#}
+{% set type_classes = type ? [type] : [] %}
+{% set callout_utility_classes = callout_utility_classes ? callout_utility_classes : [] %}
+
+{% set classes = [
+  'bs-callout',
+]|merge(type_classes)|merge(callout_utility_classes) %}
+
+{% if not attributes %}
+  {% set attributes = create_attribute() %}
+{% endif %}
+{% set attributes = attributes.addClass(classes) %}
+{% set attributes = attributes.setAttribute('role', 'note') %}
+
+<div{{ attributes }}>
+  {% block content %}
+    {{ content }}
+  {% endblock %}
+</div>

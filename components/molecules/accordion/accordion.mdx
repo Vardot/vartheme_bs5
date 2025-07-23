@@ -1,0 +1,30 @@
+{/* accordion.mdx */}
+
+import { Canvas, Title, Subtitle, ArgTypes, Source, Meta, Description, Primary, Story, Stories, Controls } from '@storybook/blocks';
+import * as comStories from './accordion.stories.json';
+import templateSource from './accordion.twig?raw';
+
+<Meta of={comStories} name="Docs"/>
+
+<Title />
+<Subtitle />
+<Description />
+
+
+> ### [Bootstrap documentation on Accordion](https://getbootstrap.com/docs/5.3/components/accordion/)
+> * [Example](https://getbootstrap.com/docs/5.3/components/accordion/#example)
+> * [Flush](https://getbootstrap.com/docs/5.3/components/accordion/#flush)
+> * [Always open](https://getbootstrap.com/docs/5.3/components/accordion/#always-open)
+> * [Accessibility](https://getbootstrap.com/docs/5.3/components/accordion/#accessibility)
+
+<Primary />
+
+<Controls />
+
+
+<Stories of={comStories} />
+
+
+## Source code
+[//]: # (Twig Template source code)
+<Source code={templateSource} />

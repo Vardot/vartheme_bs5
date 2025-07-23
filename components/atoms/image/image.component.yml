@@ -1,0 +1,43 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Image
+status: experimental
+description: Image component with responsive behavior for the system image.
+props:
+  type: object
+  properties:
+    align:
+      type: string
+      title: Aligning images
+      description: (optional) Align images with the helper float classes or text alignment classes. block-level images can be centered using the .mx-auto margin utility class.
+      default: ''
+      enum:
+        - ''
+        - start
+        - center
+        - end
+    responsive:
+      type: boolean
+      title: Responsive image
+      description: (optional) Images in Bootstrap are made responsive with `.img-fluid`. This applies max-width with 100% and height with auto to the image so that it scales with the parent width.
+      default: false
+    thumbnails:
+      type: boolean
+      title: Image thumbnails
+      description: (optional) In addition to Bootstrap border-radius utilities, you can use .img-thumbnail to give an image a rounded 1px border appearance.
+      default: false
+    rounded:
+      type: boolean
+      title: Rounded image
+      default: false
+    image_utility_classes:
+      type: array
+      title: Utility Classes
+      default: []
+      items:
+        type: 'string'
+      description: An array of utility classes that can be used to add extra Bootstrap utility classes or custom classes to this component.
+    attributes:
+      type: object
+      title: Attributes
+      description: HTML attributes for the containing element.
+      $ref: 'ui-patterns://attributes'

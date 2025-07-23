@@ -1,0 +1,65 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Field tags
+status: experimental
+description: Field tags with styled taxonomy terms
+props:
+  type: object
+  properties:
+    label_display:
+      type: string
+      title: Label display
+      description: Display the label of the field as (above, inline, hidden, or visually_hidden).
+      default: inline
+      enum:
+        - ''
+        - above
+        - inline
+        - hidden
+        - visually_hidden
+    label_hidden:
+      type: boolean
+      title: Label hidden
+      description: Whether to show the field label or not.
+      default: true
+    label:
+      type: string
+      title: Label
+      description: The label for the field.
+    items:
+      type: array
+      title: Items
+      description: List of all the field items. Each item contains attributes, and content.
+    entity_type:
+      type: string
+      title: Entity type
+      description: The entity type to which the field belongs.
+    field_name:
+      type: string
+      title: Field name
+      description: The name of the field.
+    field_type:
+      type: string
+      title: Field type
+      description: The type of the field.
+    field_tags_utility_classes:
+      type: array
+      title: Utility Classes
+      default: []
+      items:
+        type: 'string'
+      description: Use to add extra Bootstrap utility classes for the main wrapper.
+    attributes:
+      type: object
+      title: Attributes
+      description: HTML attributes for the containing element.
+      $ref: 'ui-patterns://attributes'
+    title_attributes:
+      type: object
+      title: Title attributes
+      description: HTML attributes for the label.
+      $ref: 'ui-patterns://attributes'
+    content_attributes:
+      type: object
+      title: Content attributes
+      description: HTML attributes for the content.
+      $ref: 'ui-patterns://attributes'

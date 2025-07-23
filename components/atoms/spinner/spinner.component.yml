@@ -1,0 +1,78 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Spinner
+status: experimental
+description: Indicate the loading state of a component or page with Bootstrap spinners, built entirely with HTML, CSS, and no JavaScript.
+props:
+  type: object
+  properties:
+    html_tag:
+      type: string
+      title: HTML tag
+      description: Having the spinner as div or span
+      default: div
+      enum:
+        - div
+        - span
+    type:
+      type: string
+      title: Type
+      description: Use the border spinners for a lightweight loading indicator. If you do not fancy a border spinner, switch to the grow spinner. While it does not technically spin, it does repeatedly grow!
+      default: border
+      enum:
+        - ''
+        - border
+        - grow
+    color:
+      type: string
+      title: Color
+      description: Built with current Color, so you can easily change its appearance with text color utilities.
+      default: ''
+      enum:
+        - ''
+        - primary
+        - secondary
+        - success
+        - danger
+        - warning
+        - info
+        - dark
+        - light
+    size:
+      type: string
+      title: Size
+      description: Make a smaller spinner that can quickly be used within other components.
+      default: ''
+      enum:
+        - ''
+        - sm
+    hidden_status:
+      type: boolean
+      title: Hidden status
+      description: Hidden spinner status message.
+      default: true
+    spinner_utility_classes:
+      type: array
+      title: Utility Classes
+      default: []
+      items:
+        type: 'string'
+      description: An array of utility classes that can be used to add extra Bootstrap utility classes or custom classes to this component.
+    attributes:
+      type: object
+      title: Attributes
+      description: HTML attributes for the Spinner element.
+      $ref: 'ui-patterns://attributes'
+    spinner_status_attributes:
+      type: object
+      title: Spinner Status Attributes
+      description: HTML attributes for the Spinner status element.
+      $ref: 'ui-patterns://attributes'
+slots:
+  content:
+    type: string
+    title: Content
+    description: Spinner content
+    examples:
+      - Processing
+      - Saving
+      - Loading

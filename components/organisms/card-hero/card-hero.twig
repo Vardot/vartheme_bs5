@@ -1,0 +1,197 @@
+{#
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for the Hero Card component.
+ *
+ * Available properties:
+ * - card_border: Add a default border to the card. (true|false)
+ * - padded: Add a default padding to the card. (true|false)
+ * - media_position: Choose the location of the media from (overlay|start|end|top|bottom).
+ * - horizontal_alignment: Horizontal alignment of the content. (start|center|end)
+ * - vertical_alignment: Vertical alignment of the content. (start|center|end)
+ * - card_hero_utility_classes: Use to add extra Bootstrap utility classes for the main Card wrapper. E.g. `mb-3 shadow-lg` ( Do not add `card`)
+ * - card_hero_media_utility_classes: Use to add extra Bootstrap utility classes for the Card Media region wrapper. E.g. `bg-secondary mb-3` ( Do not add `card-img`)
+ * - card_hero_content_utility_classes: Use to add extra Bootstrap utility classes for the Card Content region wrapper. E.g. `w-75 mb-3 overflow-y-hidden`  ( Do not add `card-body`)
+ *
+ * Available attributes:
+ * - card_attributes: Drupal attributes for featured card wrapper.
+ * - media_attributes: Drupal attributes for card media slot region.
+ * - content_attributes: Drupal attributes for card content slot region.
+ *
+ * Available slots:
+ * - media: Card Media slot region.
+ * - content: Card Content slot region.
+ */
+#}
+{% set media_position = media_position ?? 'overlay' %}
+{% set card_border = card_border ? ['bordered'] : ['border-0'] %}
+{% set padded = padded ? ['p-4'] : [''] %}
+{% set vertical_alignment = vertical_alignment == '' ? [] : ['justify-content-' ~ vertical_alignment] %}
+{% set horizontal_alignment = horizontal_alignment == '' ? [] : ['align-items-' ~ horizontal_alignment, 'text-' ~ horizontal_alignment] %}
+{% set card_hero_utility_classes = card_hero_utility_classes ? card_hero_utility_classes : [] %}
+{% set card_hero_media_utility_classes = card_hero_media_utility_classes ? card_hero_media_utility_classes : [] %}
+{% set card_hero_content_utility_classes = card_hero_content_utility_classes ? card_hero_content_utility_classes : [] %}
+
+{% if not card_attributes %}
+  {% set card_attributes = create_attribute() %}
+{% endif %}
+
+{% if not content_attributes %}
+  {% set content_attributes = create_attribute() %}
+{% endif %}
+
+{% if not media_attributes %}
+  {% set media_attributes = create_attribute() %}
+{% endif %}
+
+{%
+  set card_classes = [
+    'card',
+    'varbase-hero-card',
+    'hero-style-' ~ media_position,
+    'clearfix',
+  ]|merge(card_border)|merge(padded)|merge(card_hero_utility_classes)
+%}
+
+{# Media position of media overlay #}
+{% if media_position == 'overlay' %}
+
+  {%
+    set media_classes = [
+      'card-img',
+      'card-img-overlay',
+      'p-0',
+      'm-0',
+    ]|merge(card_hero_media_utility_classes)
+  %}
+
+  {%
+    set content_classes = [
+      'card-body',
+      'hero-card-content',
+      'd-flex',
+      'flex-column',
+    ]|merge(vertical_alignment)|merge(horizontal_alignment)|merge(card_hero_content_utility_classes)
+  %}
+
+  {% set card_attributes = card_attributes.addClass(card_classes) %}
+  {% set content_attributes = content_attributes.addClass(content_classes) %}
+  {% set media_attributes = media_attributes.addClass(media_classes) %}
+
+  <div{{ card_attributes }}>
+    {% if media is not empty %}
+      {% if media_classes|length > 0 %}<div{{ media_attributes }}>{% endif %}
+      {{ media }}
+      {% if media_classes|length > 0 %}</div>{% endif %}
+    {% endif %}
+    <div{{ content_attributes }}>
+      {{ content }}
+    </div>
+  </div>
+
+{# Media position of media start or end #}
+{% elseif media_position == 'start' or media_position == 'end' %}
+
+  {%
+    set media_classes = [
+      'card-img',
+      'card-img-' ~ media_position,
+    ]|merge(card_hero_media_utility_classes)
+  %}
+
+  {%
+    set content_classes = [
+      'card-body',
+      'hero-card-content',
+      'd-flex',
+      'flex-column',
+    ]|merge(vertical_alignment)|merge(horizontal_alignment)|merge(card_hero_content_utility_classes)
+  %}
+
+  {%
+    set row_classes = [
+      'row',
+      'row-cols-1',
+      'row-cols-lg-2',
+    ]
+  %}
+
+  {% if media_position == 'end' %}
+    {% set row_classes = row_classes|merge(['flex-row-reverse']) %}
+  {% endif %}
+
+  {% if not row_attributes %}
+    {% set row_attributes = create_attribute() %}
+  {% endif %}
+
+  {% if not start_column_attributes %}
+    {% set start_column_attributes = create_attribute() %}
+  {% endif %}
+
+  {% if not end_column_attributes %}
+    {% set end_column_attributes = create_attribute() %}
+  {% endif %}
+
+  {% set card_attributes = card_attributes.addClass(card_classes) %}
+  {% set content_attributes = content_attributes.addClass(content_classes) %}
+  {% set media_attributes = media_attributes.addClass(media_classes) %}
+  {% set row_attributes = row_attributes.addClass(row_classes) %}
+  {% set start_column_attributes = start_column_attributes.addClass('col') %}
+  {% set end_column_attributes = end_column_attributes.addClass('col') %}
+
+  <div{{ card_attributes }}>
+    <div{{ row_attributes.addClass(row_classes) }}>
+      <div{{ start_column_attributes }}>
+        {% if media is not empty %}
+          {% if media_classes|length > 0 %}<div{{ media_attributes }}>{% endif %}
+          {{ media }}
+          {% if media_classes|length > 0 %}</div>{% endif %}
+        {% endif %}
+      </div>
+      <div{{ end_column_attributes }}>
+        <div{{ content_attributes }}>
+          {{ content }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+{# Media position of media top or bottom #}
+{% elseif media_position == 'top' or media_position == 'bottom' %}
+
+  {%
+    set media_classes = [
+      'card-img',
+      'card-img-' ~ media_position,
+    ]|merge(card_hero_media_utility_classes)
+  %}
+
+  {%
+    set content_classes = [
+      'card-body',
+      'hero-card-content',
+      'd-flex',
+      'flex-column',
+    ]|merge(vertical_alignment)|merge(horizontal_alignment)|merge(card_hero_content_utility_classes)
+  %}
+
+  {% if media_position == 'bottom' %}
+    {% set card_classes = card_classes|merge(['flex-column-reverse']) %}
+  {% endif %}
+
+  {% set card_attributes = card_attributes.addClass(card_classes) %}
+  {% set content_attributes = content_attributes.addClass(content_classes) %}
+  {% set media_attributes = media_attributes.addClass(media_classes) %}
+
+  <div{{ card_attributes }}>
+    {% if media is not empty %}
+      {% if media_classes|length > 0 %}<div{{ media_attributes }}>{% endif %}
+      {{ media }}
+      {% if media_classes|length > 0 %}</div>{% endif %}
+    {% endif %}
+    <div{{ content_attributes }}>
+      {{ content }}
+    </div>
+  </div>
+
+{% endif %}

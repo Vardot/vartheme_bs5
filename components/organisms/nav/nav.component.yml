@@ -1,0 +1,54 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Nav
+status: experimental
+description: Nav component description
+props:
+  type: object
+  properties:
+    alignment:
+      type: string
+      name: Alignment
+      enum:
+        - ''
+        - left
+        - right
+        - center
+        - vertical
+    style:
+      type: string
+      name: Style
+      enum:
+        - ''
+        - tabs
+        - pills
+    fill:
+      type: string
+      name: Fill
+      enum:
+        - ''
+        - fill
+        - justify
+    nav_utility_classes:
+      type: array
+      title: Utility Classes
+      default: []
+      items:
+        type: 'string'
+      description: Use to add extra Bootstrap utility classes or custom CSS classes over to this to this component.
+    attributes:
+      type: object
+      title: Attributes
+      description: HTML attributes for the containing element.
+      $ref: 'ui-patterns://attributes'
+slots:
+  items:
+    type: array
+    title: Items
+    item:
+      type: object
+      title: Link
+      $ref: "ui-patterns://links"
+    description: Navigation items.
+libraryOverrides:
+  dependencies:
+    - vartheme_bs5/bs-dropdown-script

@@ -1,0 +1,46 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Media
+status: experimental
+description: The Media component is designed to display a media item with customizable styling and options.
+props:
+  type: object
+  properties:
+    view_mode:
+      type: string
+      title: View Mode
+      description: The view mode of the media item; for example, `media_01_01` or `media_16_09`.
+    name:
+      type: string
+      title: Name
+      description: Name of the media item.
+    title_prefix:
+      type: array
+      title: Title Prefix
+      default: []
+      description: Additional output populated by modules, intended to be displayed in front of the main title tag that appears in the template.
+    title_suffix:
+      type: array
+      title: Title Suffix
+      default: []
+      description: Additional output populated by modules, intended to be displayed after the main title tag that appears in the template.
+    media_utility_classes:
+      type: array
+      title: Utility Classes
+      default: []
+      items:
+        type: 'string'
+      description: An array of utility classes that can be used to add extra Bootstrap utility classes or custom classes to the root accordion item wrapper.
+    attributes:
+      type: object
+      title: Attributes
+      description: HTML attributes for the containing element.
+      $ref: 'ui-patterns://attributes'
+    title_attributes:
+      type: object
+      title: Title Attributes
+      description: Same as attributes, except applied to the main title tag that appears in the template.
+      $ref: 'ui-patterns://attributes'
+slots:
+  content:
+    title: 'Content'
+    description: 'Media content'

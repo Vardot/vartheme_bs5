@@ -1,0 +1,33 @@
+// Page footer styles.
+@import "../../defaults";   // Global component defaults.
+
+.block-inline-blockvarbase-cta-block {
+
+  .field-name-body {
+    margin: 1.25rem auto 0;
+
+    @include media-breakpoint-up(xl) {
+      max-width: 39rem;
+    }
+  }
+
+  .field--name-field-buttons {
+    text-align: center !important;
+
+    .btn {
+      margin-top: 1.875rem;
+      margin-left: 3.125rem;
+      margin-right: 3.125rem;
+
+      @include media-breakpoint-down(md) {
+        margin-left: 1.5625rem;
+        margin-right: 1.5625rem;
+      }
+
+      @include media-breakpoint-down(sm) {
+        margin-left: 0.8125rem;
+        margin-right: 0.8125rem;
+      }
+    }
+  }
+}

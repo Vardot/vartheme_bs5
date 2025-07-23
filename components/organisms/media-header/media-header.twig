@@ -1,0 +1,46 @@
+{#
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation of a Media Header.
+ *
+ * Available properties:
+ * - media_type: Media entity type. (image, video, remote_video).
+ * - provider: Video provider (for remote video) (youtube, video).
+ * - media_header_utility_classes: (optional) An array of utility classes. Use to add extra Bootstrap utility classes or custom CSS classes over to this to this component.
+ *
+ * Available attributes:
+ * - N/A
+ *
+ * Available slots:
+ * - page_breadcrumbs: Media Header page breadcrumbs.
+ * - page_title: Media Header page title.
+ * - background_media: Background media (Image, local or remote videos).
+ *
+ */
+#}
+
+<header class="vmh-container bg-edge2edge">
+  <div class="vmh-content-wrapper">
+    <div class="container">
+      <div class="row">
+        <div class="vmh-content">
+          {# System Page breadcrumbs #}
+          {% if page_breadcrumbs %}
+            <div class="vmh-breadcrumb">{{ page_breadcrumbs }}</div>
+          {% endif %}
+
+          {# System page title #}
+          {% if page_title %}
+            {% include 'vartheme_bs5:page-title' with {
+                title: page_title,
+                page_title_utility_classes: ['vmh-page-title']
+              }
+            %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+  {# Background media #}
+  <div class="vmh-background">{% if background_media %}{{ background_media }}{% endif %}</div>
+</header>

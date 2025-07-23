@@ -8,6 +8,104 @@
 use Drupal\Core\Language\LanguageInterface;
 
 /**
+ * Implements hook_theme().
+ */
+function vartheme_bs5_theme($existing, $type, $theme, $path) {
+  return [
+    'media_oembed_iframe__remote_video__varbase_heroslider' => [
+      'template' => 'media-oembed-iframe--remote-video--varbase-heroslider',
+      'variables' => [
+        'provider' => NULL,
+        'media' => NULL,
+      ],
+    ],
+  ];
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function vartheme_bs5_preprocess_media_oembed_iframe__remote_video__varbase_heroslider(&$variables) {
+  // Send variables for the remote_video varbase heroslier oembed iframe.
+  $query = \Drupal::request()->query;
+  $variables['type'] = $query->get('type');
+  $variables['provider'] = $query->get('provider');
+  $variables['view_mode'] = $query->get('view_mode');
+  $variables['base_path'] = base_path();
+  $variables['vartheme_bs5_path'] = \Drupal::service('module_handler')->getModule('vartheme_bs5')->getPath();
+}
+
+/**
+ * Implements hook_library_info_alter().
+ */
+function vartheme_bs5_library_info_alter(array &$libraries, $module) {
+  if ($module === 'sitewide_alert' && isset($libraries['init'])) {
+    // Add the dependency only if it's not already present.
+    if (!in_array('core/components.vartheme_bs5--alert', $libraries['init']['dependencies'])) {
+      $libraries['init']['dependencies'][] = 'core/components.vartheme_bs5--alert';
+    }
+    unset($libraries['init']['css']);
+  }
+
+  // Load components root and styles for CKEditor5 styles.
+  if ($module === 'ckeditor5' && isset($libraries['internal.drupal.ckeditor5.stylesheets'])) {
+    $libraries['internal.drupal.ckeditor5.stylesheets']['dependencies'][] = 'vartheme_bs5/ckeditor5-root';
+    $libraries['internal.drupal.ckeditor5.stylesheets']['dependencies'][] = 'vartheme_bs5/ckeditor5-styles';
+  }
+
+  // Replace the Popper.js library file from the Responsive Theme preview module.
+  // Varbase Components and Vartheme BS5 need a different version which still
+  // works for the Responsive Theme preview module.
+  if ($module === 'responsive_preview'
+    && isset($libraries['drupal.responsive-preview'])
+    && isset($libraries['drupal.responsive-preview']['js'])
+    && isset($libraries['drupal.responsive-preview']['js']['js/popperjs/popper.min.js'])) {
+
+    unset($libraries['drupal.responsive-preview']['js']['js/popperjs/popper.min.js']);
+    $libraries['drupal.responsive-preview']['dependencies'][] = 'vartheme_bs5/popper-script';
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function vartheme_bs5_preprocess_field(&$variables) {
+  $ckeditor5_fields = [
+    'text_with_summary',
+    'text_long',
+  ];
+
+  // Check if the field type is in the list of CKEditor5 fields.
+  if (in_array($variables['field_type'], $ckeditor5_fields)) {
+    // Attach the library to the field.
+    $variables['#attached']['library'][] = 'vartheme_bs5/ckeditor5-styles';
+  }
+}
+
+/**
+ * Implements hook_preprocess().
+ */
+function vartheme_bs5_preprocess_menu(&$variables, $hook, $info) {
+  // Checks the nested level of a menu.
+  vartheme_bs5_process_menu_level($variables['items']);
+}
+
+/**
+ * Add menu_link_level to menus.
+ */
+function vartheme_bs5_process_menu_level(&$menu_items, $menu_level = 1) {
+  foreach ($menu_items as &$menu_item) {
+    // Set the menu level for the current item.
+    $menu_item['menu_link_level'] = $menu_level;
+
+    // If there are child items, process them recursively.
+    if (!empty($menu_item['below'])) {
+      vartheme_bs5_process_menu_level($menu_item['below'], $menu_level + 1);
+    }
+  }
+}
+
+/**
  * Implements hook_preprocess_page().
  */
 function vartheme_bs5_preprocess_page(&$variables) {

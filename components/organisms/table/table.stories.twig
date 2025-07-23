@@ -1,0 +1,2333 @@
+{% stories Table with {
+  "title": "Organisms/Table",
+  "parameters": {
+    "componentSubtitle": "Bootstrap Table Component",
+    "docs": {
+      "description": {
+        "component": "The Table component with support for Bootstrap"
+      },
+      "story": {
+        "inline": false,
+        "iframeHeight": 350
+      }
+    }
+  },
+  "argTypes": {
+    "responsive": {
+      "name": "Responsive",
+      "description": "Responsive tables allow tables to be scrolled horizontally with ease. Make any table responsive across all viewports.",
+      "control": "boolean",
+      "defaultValue": false
+    },
+    "color": {
+      "name": "Table Background Color",
+      "description": "Set a background contextual classes to color tables",
+      "defaultValue": "",
+      "control": "select",
+      "options": {
+        "'- none -'": "",
+        "Primary": "primary",
+        "Secondary": "secondary",
+        "Success": "success",
+        "Info": "info",
+        "Warning": "warning",
+        "Danger": "danger",
+        "Light": "light",
+        "Dark": "dark"
+      }
+    },
+    "striped_rows": {
+      "name": "Striped rows",
+      "description": "Use to add zebra-striping to any table row within the `<tbody>`. Works when `no_striping` is false.",
+      "control": "boolean",
+      "defaultValue": false
+    },
+    "striped_columns": {
+      "name": "Striped columns",
+      "description": "Use to add zebra-striping to any table column. Works when `no_striping` is false.",
+      "control": "boolean",
+      "defaultValue": false
+    },
+    "hover": {
+      "name": "Hover",
+      "description": "Enable a hover state on table rows within a `<tbody>` for hoverable rows.",
+      "control": "boolean",
+      "defaultValue": false
+    },
+    "bordered": {
+      "name": "Bordered",
+      "description": "Add borders on all sides of the table and cells.",
+      "control": "boolean",
+      "defaultValue": false
+    },
+    "border_color": {
+      "name": "Border Color",
+      "description": "Use the border color utility to change border colors.",
+      "defaultValue": "",
+      "control": "select",
+      "options": {
+        "'- none -'": "",
+        "Primary": "primary",
+        "Secondary": "secondary",
+        "Success": "success",
+        "Info": "info",
+        "Warning": "warning",
+        "Danger": "danger",
+        "Light": "light",
+        "Dark": "dark",
+        "Black": "black",
+        "White": "white",
+        "'Primary subtle'": "primary-subtle",
+        "'Secondary subtle'": "secondary-subtle",
+        "'Success subtle'": "success-subtle",
+        "'Info subtle'": "info-subtle",
+        "'Warning subtle'": "warning-subtle",
+        "'Danger subtle'": "danger-subtle",
+        "'Light subtle'": "light-subtle",
+        "'Dark subtle'": "dark-subtle"
+      }
+    },
+    "borderless": {
+      "name": "Borderless",
+      "description": "Add `.table-borderless` for a table without borders.",
+      "control": "boolean",
+      "defaultValue": false
+    },
+    "size": {
+      "name": "Table Size",
+      "description": "Use sm for small to make any table more compact by cutting all cell padding in half.",
+      "defaultValue": "",
+      "control": "select",
+      "options": {
+        "'- none -'": "",
+        "Small": "sm"
+      }
+    },
+    "caption": {
+      "name": "Caption",
+      "description": "A localized string for the `<caption>` tag.",
+      "control": "text",
+      "defaultValue": ""
+    },
+    "colgroups": {
+      "name": "Column groups",
+      "description": "Column groups which contains attributes",
+      "control": "object"
+    },
+    "header": {
+      "name": "Table header cells",
+      "description": "Table header cells which contains (tag, attributes, content, field, sort)",
+      "control": "object",
+      "defaultValue": {}
+    },
+    "sticky": {
+      "name": "Sticky",
+      "description": "A flag indicating whether to use a sticky table header.",
+      "control": "boolean",
+      "defaultValue": false
+    },
+    "rows": {
+      "name": "Rows",
+      "description": "Table rows, which each row contains (attributes, data, no_striping, cells). Each cell contains (tag, attributes, content, active_table_sort)",
+      "control": "object",
+      "defaultValue": {}
+    },
+    "footer": {
+      "name": "Footer",
+      "description": "Table footer rows, in the same format as the rows variable.",
+      "control": "object",
+      "defaultValue": {}
+    },
+    "empty": {
+      "name": "Empty",
+      "description": "The message to display in an extra row if table does not have any rows.",
+      "control": "text",
+      "defaultValue": ""
+    },
+    "no_striping": {
+      "name": "No Striping",
+      "description": "A boolean indicating that the row should receive no striping.",
+      "control": "boolean",
+      "defaultValue": false
+    },
+    "header_columns": {
+      "name": "Header Columns",
+      "description": "The number of columns in the header.",
+      "control": "number",
+      "min": 1,
+      "step": 1
+    },
+    "table_utility_classes": {
+      "name": "Utility Classes",
+      "description": "An array of utility classes. Use to add extra Bootstrap utility classes or custom CSS classes over to the table element.",
+      "control": "object",
+      "defaultValue": []
+    },
+    "thead_utility_classes": {
+      "name": "Table Head Utility Classes",
+      "description": "An array of utility classes. Use to add extra Bootstrap utility classes or custom CSS classes over to the head of the table element.",
+      "control": "object",
+      "defaultValue": []
+    },
+    "tbody_utility_classes": {
+      "name": "Table Body Utility Classes",
+      "description": "An array of utility classes. Use to add extra Bootstrap utility classes or custom CSS classes over to the body of the table element.",
+      "control": "object",
+      "defaultValue": []
+    },
+    "tfoot_utility_classes": {
+      "name": "Table Footer Utility Classes",
+      "description": "An array of utility classes. Use to add extra Bootstrap utility classes or custom CSS classes over to the footer of the table element.",
+      "control": "object",
+      "defaultValue": []
+    },
+    "attributes": {
+      "name": "Attributes",
+      "description": "HTML attributes to apply to the `<table>` tag.",
+      "control": "object",
+      "defaultValue": {}
+    },
+    "thead_attributes": {
+      "name": "Table head attributes",
+      "description": "HTML attributes to apply to the `<thead>` tag.",
+      "control": "object",
+      "defaultValue": {}
+    },
+    "tbody_attributes": {
+      "name": "Table body attributes",
+      "description": "HTML attributes to apply to the `<tbody>` tag.",
+      "control": "object",
+      "defaultValue": {}
+    },
+    "tfoot_attributes": {
+      "name": "Table footer attributes",
+      "description": "HTML attributes to apply to the `<tfoot>` tag.",
+      "control": "object",
+      "defaultValue": {}
+    }
+  }
+} %}
+
+
+{% story TableDefault with {
+  "name": "Table default",
+  "args": {
+    "responsive": true,
+    "color": "",
+    "striped_rows": false,
+    "striped_columns": false,
+    "hover": false,
+    "bordered": false,
+    "border_color": "",
+    "borderless": false,
+    "size": "",
+    "caption": "Example table caption",
+    "colgroups": {},
+    "header": {
+      "0": {
+        "tag": "th",
+        "content": "#"
+      },
+      "1": {
+        "tag": "th",
+        "content": "First"
+      },
+      "2": {
+        "tag": "th",
+        "content": "Last"
+      },
+      "3": {
+        "tag": "th",
+        "content": "Handle"
+      }
+    },
+    "sticky": false,
+    "rows": {
+      "0": {
+        "cells": {
+          "0":{
+            "tag":"td",
+            "content":"1"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Mark"
+          },
+          "2":{
+            "tag":"td",
+            "content":"Otto"
+          },
+          "3":{
+            "tag":"td",
+            "content":"@mdo"
+          }
+        }
+      },
+      "1": {
+        "cells": {
+          "0":{
+            "tag":"td",
+            "content":"2"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Jacob"
+          },
+          "2":{
+            "tag":"td",
+            "content":"Thornton"
+          },
+          "3":{
+            "tag":"td",
+            "content":"@fat"
+          }
+        }
+      },
+      "2": {
+        "cells": {
+          "0":{
+            "tag":"td",
+            "content":"3"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Larry the Bird"
+          },
+          "2":{
+            "tag":"td",
+            "content":""
+          },
+          "3":{
+            "tag":"td",
+            "content":"@twitter"
+          }
+        }
+      }
+    },
+    "footer":  {
+      "0":{
+        "cells":{
+          "0":{
+            "tag":"td",
+            "content":"Footer"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Footer"
+          },
+          "2":{
+            "tag":"td",
+            "content":"Footer"
+          },
+          "3":{
+            "tag":"td",
+            "content":"Footer"
+          }
+        }
+      }
+    },
+    "empty": "This Table is empty message",
+    "no_striping": false,
+    "header_columns": 4,
+    "table_utility_classes": [],
+    "thead_utility_classes": [],
+    "tbody_utility_classes": [],
+    "tfoot_utility_classes": []
+  }
+} %}
+{{ include('vartheme_bs5:table') }}
+{% endstory %}
+
+
+{% story TableStripedRows with {
+  "name": "Table striped rows",
+  "args": {
+    "responsive": true,
+    "color": "",
+    "striped_rows": true,
+    "striped_columns": false,
+    "hover": true,
+    "bordered": true,
+    "border_color": "",
+    "borderless": false,
+    "size": "",
+    "caption": "",
+    "colgroups": {},
+    "header": {
+      "0": {
+        "tag": "th",
+        "content": "#"
+      },
+      "1": {
+        "tag": "th",
+        "content": "First"
+      },
+      "2": {
+        "tag": "th",
+        "content": "Last"
+      },
+      "3": {
+        "tag": "th",
+        "content": "Handle"
+      }
+    },
+    "sticky": false,
+    "rows": {
+      "0": {
+        "cells": {
+          "0":{
+            "tag":"td",
+            "content":"1"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Mark"
+          },
+          "2":{
+            "tag":"td",
+            "content":"Otto"
+          },
+          "3":{
+            "tag":"td",
+            "content":"@mdo"
+          }
+        }
+      },
+      "1": {
+        "cells": {
+          "0":{
+            "tag":"td",
+            "content":"2"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Jacob"
+          },
+          "2":{
+            "tag":"td",
+            "content":"Thornton"
+          },
+          "3":{
+            "tag":"td",
+            "content":"@fat"
+          }
+        }
+      },
+      "2": {
+        "cells": {
+          "0":{
+            "tag":"td",
+            "content":"3"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Larry the Bird"
+          },
+          "2":{
+            "tag":"td",
+            "content":""
+          },
+          "3":{
+            "tag":"td",
+            "content":"@twitter"
+          }
+        }
+      }
+    },
+    "footer":  {
+      "0":{
+        "cells":{
+          "0":{
+            "tag":"td",
+            "content":"Footer"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Footer"
+          },
+          "2":{
+            "tag":"td",
+            "content":"Footer"
+          },
+          "3":{
+            "tag":"td",
+            "content":"Footer"
+          }
+        }
+      }
+    },
+    "empty": "This Table is empty message",
+    "no_striping": false,
+    "header_columns": 4,
+    "table_utility_classes": [],
+    "thead_utility_classes": [],
+    "tbody_utility_classes": [],
+    "tfoot_utility_classes": []
+  }
+} %}
+{{ include('vartheme_bs5:table') }}
+{% endstory %}
+
+
+{% story TableStripedColumns with {
+  "name": "Table striped columns",
+  "args": {
+    "responsive": true,
+    "color": "",
+    "striped_rows": false,
+    "striped_columns": true,
+    "hover": true,
+    "bordered": true,
+    "border_color": "",
+    "borderless": false,
+    "size": "",
+    "caption": "",
+    "colgroups": {},
+    "header": {
+      "0": {
+        "tag": "th",
+        "content": "#"
+      },
+      "1": {
+        "tag": "th",
+        "content": "First"
+      },
+      "2": {
+        "tag": "th",
+        "content": "Last"
+      },
+      "3": {
+        "tag": "th",
+        "content": "Handle"
+      }
+    },
+    "sticky": false,
+    "rows": {
+      "0": {
+        "cells": {
+          "0":{
+            "tag":"td",
+            "content":"1"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Mark"
+          },
+          "2":{
+            "tag":"td",
+            "content":"Otto"
+          },
+          "3":{
+            "tag":"td",
+            "content":"@mdo"
+          }
+        }
+      },
+      "1": {
+        "cells": {
+          "0":{
+            "tag":"td",
+            "content":"2"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Jacob"
+          },
+          "2":{
+            "tag":"td",
+            "content":"Thornton"
+          },
+          "3":{
+            "tag":"td",
+            "content":"@fat"
+          }
+        }
+      },
+      "2": {
+        "cells": {
+          "0":{
+            "tag":"td",
+            "content":"3"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Larry the Bird"
+          },
+          "2":{
+            "tag":"td",
+            "content":""
+          },
+          "3":{
+            "tag":"td",
+            "content":"@twitter"
+          }
+        }
+      }
+    },
+    "footer":  {
+      "0":{
+        "cells":{
+          "0":{
+            "tag":"td",
+            "content":"Footer"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Footer"
+          },
+          "2":{
+            "tag":"td",
+            "content":"Footer"
+          },
+          "3":{
+            "tag":"td",
+            "content":"Footer"
+          }
+        }
+      }
+    },
+    "empty": "This Table is empty message",
+    "no_striping": false,
+    "header_columns": 4,
+    "table_utility_classes": [],
+    "thead_utility_classes": [],
+    "tbody_utility_classes": [],
+    "tfoot_utility_classes": []
+  }
+} %}
+{{ include('vartheme_bs5:table') }}
+{% endstory %}
+
+
+{% story SmallTable with {
+  "name": "Small Table",
+  "args": {
+    "responsive": true,
+    "color": "",
+    "striped_rows": true,
+    "striped_columns": false,
+    "hover": true,
+    "bordered": true,
+    "border_color": "",
+    "borderless": false,
+    "size": "sm",
+    "caption": "",
+    "colgroups": {},
+    "header": {
+      "0": {
+        "tag": "th",
+        "content": "#"
+      },
+      "1": {
+        "tag": "th",
+        "content": "First"
+      },
+      "2": {
+        "tag": "th",
+        "content": "Last"
+      },
+      "3": {
+        "tag": "th",
+        "content": "Handle"
+      }
+    },
+    "sticky": false,
+    "rows": {
+      "0": {
+        "cells": {
+          "0":{
+            "tag":"td",
+            "content":"1"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Mark"
+          },
+          "2":{
+            "tag":"td",
+            "content":"Otto"
+          },
+          "3":{
+            "tag":"td",
+            "content":"@mdo"
+          }
+        }
+      },
+      "1": {
+        "cells": {
+          "0":{
+            "tag":"td",
+            "content":"2"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Jacob"
+          },
+          "2":{
+            "tag":"td",
+            "content":"Thornton"
+          },
+          "3":{
+            "tag":"td",
+            "content":"@fat"
+          }
+        }
+      },
+      "2": {
+        "cells": {
+          "0":{
+            "tag":"td",
+            "content":"3"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Larry the Bird"
+          },
+          "2":{
+            "tag":"td",
+            "content":""
+          },
+          "3":{
+            "tag":"td",
+            "content":"@twitter"
+          }
+        }
+      }
+    },
+    "footer":  {
+      "0":{
+        "cells":{
+          "0":{
+            "tag":"td",
+            "content":"Footer"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Footer"
+          },
+          "2":{
+            "tag":"td",
+            "content":"Footer"
+          },
+          "3":{
+            "tag":"td",
+            "content":"Footer"
+          }
+        }
+      }
+    },
+    "empty": "This Table is empty message",
+    "no_striping": false,
+    "header_columns": 4,
+    "table_utility_classes": [],
+    "thead_utility_classes": [],
+    "tbody_utility_classes": [],
+    "tfoot_utility_classes": []
+  }
+} %}
+{{ include('vartheme_bs5:table') }}
+{% endstory %}
+
+
+{% story StickyTableHeader with {
+  "name": "Sticky Table Header",
+  "args": {
+    "responsive": false,
+    "color": "",
+    "striped_rows": true,
+    "striped_columns": false,
+    "hover": true,
+    "bordered": true,
+    "border_color": "",
+    "borderless": false,
+    "size": "",
+    "caption": "",
+    "colgroups": {},
+    "header": {
+      "0": {
+        "tag": "th",
+        "content": "#"
+      },
+      "1": {
+        "tag": "th",
+        "content": "Heading"
+      },
+      "2": {
+        "tag": "th",
+        "content": "Heading"
+      },
+      "3": {
+        "tag": "th",
+        "content": "Heading"
+      },
+      "4": {
+        "tag": "th",
+        "content": "Heading"
+      },
+      "5": {
+        "tag": "th",
+        "content": "Heading"
+      }
+    },
+    "sticky": true,
+    "rows": {
+      "0": {
+        "cells": {
+          "0":{
+            "tag":"td",
+            "content":"1"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "2":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "3":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "4":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "5":{
+            "tag":"td",
+            "content":"Cell"
+          }
+        }
+      },
+      "1": {
+        "cells": {
+          "0":{
+            "tag":"td",
+            "content":"2"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "2":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "3":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "4":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "5":{
+            "tag":"td",
+            "content":"Cell"
+          }
+        }
+      },
+      "2": {
+        "cells": {
+          "0":{
+            "tag":"td",
+            "content":"3"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "2":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "3":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "4":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "5":{
+            "tag":"td",
+            "content":"Cell"
+          }
+        }
+      },
+      "3": {
+        "cells": {
+          "0":{
+            "tag":"td",
+            "content":"4"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "2":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "3":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "4":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "5":{
+            "tag":"td",
+            "content":"Cell"
+          }
+        }
+      },
+      "4": {
+        "cells": {
+          "0":{
+            "tag":"td",
+            "content":"5"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "2":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "3":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "4":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "5":{
+            "tag":"td",
+            "content":"Cell"
+          }
+        }
+      },
+      "5": {
+        "cells": {
+          "0":{
+            "tag":"td",
+            "content":"6"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "2":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "3":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "4":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "5":{
+            "tag":"td",
+            "content":"Cell"
+          }
+        }
+      },
+      "6": {
+        "cells": {
+          "0":{
+            "tag":"td",
+            "content":"7"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "2":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "3":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "4":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "5":{
+            "tag":"td",
+            "content":"Cell"
+          }
+        }
+      },
+      "7": {
+        "cells": {
+          "0":{
+            "tag":"td",
+            "content":"8"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "2":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "3":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "4":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "5":{
+            "tag":"td",
+            "content":"Cell"
+          }
+        }
+      },
+      "8": {
+        "cells": {
+          "0":{
+            "tag":"td",
+            "content":"9"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "2":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "3":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "4":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "5":{
+            "tag":"td",
+            "content":"Cell"
+          }
+        }
+      },
+      "9": {
+        "cells": {
+          "0":{
+            "tag":"td",
+            "content":"10"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "2":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "3":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "4":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "5":{
+            "tag":"td",
+            "content":"Cell"
+          }
+        }
+      },
+      "10": {
+        "cells": {
+          "0":{
+            "tag":"td",
+            "content":"11"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "2":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "3":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "4":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "5":{
+            "tag":"td",
+            "content":"Cell"
+          }
+        }
+      },
+      "11": {
+        "cells": {
+          "0":{
+            "tag":"td",
+            "content":"12"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "2":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "3":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "4":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "5":{
+            "tag":"td",
+            "content":"Cell"
+          }
+        }
+      },
+      "12": {
+        "cells": {
+          "0":{
+            "tag":"td",
+            "content":"13"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "2":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "3":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "4":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "5":{
+            "tag":"td",
+            "content":"Cell"
+          }
+        }
+      },
+      "13": {
+        "cells": {
+          "0":{
+            "tag":"td",
+            "content":"14"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "2":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "3":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "4":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "5":{
+            "tag":"td",
+            "content":"Cell"
+          }
+        }
+      },
+      "14": {
+        "cells": {
+          "0":{
+            "tag":"td",
+            "content":"15"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "2":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "3":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "4":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "5":{
+            "tag":"td",
+            "content":"Cell"
+          }
+        }
+      },
+      "15": {
+        "cells": {
+          "0":{
+            "tag":"td",
+            "content":"16"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "2":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "3":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "4":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "5":{
+            "tag":"td",
+            "content":"Cell"
+          }
+        }
+      },
+      "16": {
+        "cells": {
+          "0":{
+            "tag":"td",
+            "content":"17"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "2":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "3":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "4":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "5":{
+            "tag":"td",
+            "content":"Cell"
+          }
+        }
+      },
+      "17": {
+        "cells": {
+          "0":{
+            "tag":"td",
+            "content":"18"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "2":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "3":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "4":{
+            "tag":"td",
+            "content":"Cell"
+          },
+          "5":{
+            "tag":"td",
+            "content":"Cell"
+          }
+        }
+      }
+    },
+    "footer":  {},
+    "empty": "This Table is empty message",
+    "no_striping": false,
+    "header_columns": 4,
+    "table_utility_classes": [],
+    "thead_utility_classes": [],
+    "tbody_utility_classes": [],
+    "tfoot_utility_classes": []
+  }
+} %}
+{{ include('vartheme_bs5:table') }}
+{% endstory %}
+
+
+{% story TablePrimary with {
+  "name": "Primary",
+  "args": {
+    "responsive": true,
+    "color": "primary",
+    "striped_rows": true,
+    "striped_columns": false,
+    "hover": true,
+    "bordered": true,
+    "border_color": "",
+    "borderless": false,
+    "size": "",
+    "caption": "",
+    "colgroups": {},
+    "header": {
+      "0": {
+        "tag": "th",
+        "content": "#"
+      },
+      "1": {
+        "tag": "th",
+        "content": "First"
+      },
+      "2": {
+        "tag": "th",
+        "content": "Last"
+      },
+      "3": {
+        "tag": "th",
+        "content": "Handle"
+      }
+    },
+    "sticky": false,
+    "rows": {
+      "0": {
+        "cells": {
+          "0":{
+            "tag":"td",
+            "content":"1"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Mark"
+          },
+          "2":{
+            "tag":"td",
+            "content":"Otto"
+          },
+          "3":{
+            "tag":"td",
+            "content":"@mdo"
+          }
+        }
+      },
+      "1": {
+        "cells": {
+          "0":{
+            "tag":"td",
+            "content":"2"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Jacob"
+          },
+          "2":{
+            "tag":"td",
+            "content":"Thornton"
+          },
+          "3":{
+            "tag":"td",
+            "content":"@fat"
+          }
+        }
+      },
+      "2": {
+        "cells": {
+          "0":{
+            "tag":"td",
+            "content":"3"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Larry the Bird"
+          },
+          "2":{
+            "tag":"td",
+            "content":""
+          },
+          "3":{
+            "tag":"td",
+            "content":"@twitter"
+          }
+        }
+      }
+    },
+    "footer":  {
+      "0":{
+        "cells":{
+          "0":{
+            "tag":"td",
+            "content":"Footer"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Footer"
+          },
+          "2":{
+            "tag":"td",
+            "content":"Footer"
+          },
+          "3":{
+            "tag":"td",
+            "content":"Footer"
+          }
+        }
+      }
+    },
+    "empty": "This Table is empty message",
+    "no_striping": false,
+    "header_columns": 4,
+    "table_utility_classes": [],
+    "thead_utility_classes": [],
+    "tbody_utility_classes": [],
+    "tfoot_utility_classes": []
+  }
+} %}
+{{ include('vartheme_bs5:table') }}
+{% endstory %}
+
+
+{% story TableSecondary with {
+  "name": "Secondary",
+  "args": {
+    "responsive": true,
+    "color": "secondary",
+    "striped_rows": false,
+    "striped_columns": true,
+    "hover": true,
+    "bordered": true,
+    "border_color": "",
+    "borderless": false,
+    "size": "",
+    "caption": "",
+    "colgroups": {},
+    "header": {
+      "0": {
+        "tag": "th",
+        "content": "#"
+      },
+      "1": {
+        "tag": "th",
+        "content": "First"
+      },
+      "2": {
+        "tag": "th",
+        "content": "Last"
+      },
+      "3": {
+        "tag": "th",
+        "content": "Handle"
+      }
+    },
+    "sticky": false,
+    "rows": {
+      "0": {
+        "cells": {
+          "0":{
+            "tag":"td",
+            "content":"1"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Mark"
+          },
+          "2":{
+            "tag":"td",
+            "content":"Otto"
+          },
+          "3":{
+            "tag":"td",
+            "content":"@mdo"
+          }
+        }
+      },
+      "1": {
+        "cells": {
+          "0":{
+            "tag":"td",
+            "content":"2"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Jacob"
+          },
+          "2":{
+            "tag":"td",
+            "content":"Thornton"
+          },
+          "3":{
+            "tag":"td",
+            "content":"@fat"
+          }
+        }
+      },
+      "2": {
+        "cells": {
+          "0":{
+            "tag":"td",
+            "content":"3"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Larry the Bird"
+          },
+          "2":{
+            "tag":"td",
+            "content":""
+          },
+          "3":{
+            "tag":"td",
+            "content":"@twitter"
+          }
+        }
+      }
+    },
+    "footer":  {
+      "0":{
+        "cells":{
+          "0":{
+            "tag":"td",
+            "content":"Footer"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Footer"
+          },
+          "2":{
+            "tag":"td",
+            "content":"Footer"
+          },
+          "3":{
+            "tag":"td",
+            "content":"Footer"
+          }
+        }
+      }
+    },
+    "empty": "This Table is empty message",
+    "no_striping": false,
+    "header_columns": 4,
+    "table_utility_classes": [],
+    "thead_utility_classes": [],
+    "tbody_utility_classes": [],
+    "tfoot_utility_classes": []
+  }
+} %}
+{{ include('vartheme_bs5:table') }}
+{% endstory %}
+
+
+{% story TableSuccess with {
+  "name": "Success",
+  "args": {
+    "responsive": true,
+    "color": "success",
+    "striped_rows": true,
+    "striped_columns": false,
+    "hover": true,
+    "bordered": true,
+    "border_color": "",
+    "borderless": false,
+    "size": "",
+    "caption": "",
+    "colgroups": {},
+    "header": {
+      "0": {
+        "tag": "th",
+        "content": "#"
+      },
+      "1": {
+        "tag": "th",
+        "content": "First"
+      },
+      "2": {
+        "tag": "th",
+        "content": "Last"
+      },
+      "3": {
+        "tag": "th",
+        "content": "Handle"
+      }
+    },
+    "sticky": false,
+    "rows": {
+      "0": {
+        "cells": {
+          "0":{
+            "tag":"td",
+            "content":"1"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Mark"
+          },
+          "2":{
+            "tag":"td",
+            "content":"Otto"
+          },
+          "3":{
+            "tag":"td",
+            "content":"@mdo"
+          }
+        }
+      },
+      "1": {
+        "cells": {
+          "0":{
+            "tag":"td",
+            "content":"2"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Jacob"
+          },
+          "2":{
+            "tag":"td",
+            "content":"Thornton"
+          },
+          "3":{
+            "tag":"td",
+            "content":"@fat"
+          }
+        }
+      },
+      "2": {
+        "cells": {
+          "0":{
+            "tag":"td",
+            "content":"3"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Larry the Bird"
+          },
+          "2":{
+            "tag":"td",
+            "content":""
+          },
+          "3":{
+            "tag":"td",
+            "content":"@twitter"
+          }
+        }
+      }
+    },
+    "footer":  {
+      "0":{
+        "cells":{
+          "0":{
+            "tag":"td",
+            "content":"Footer"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Footer"
+          },
+          "2":{
+            "tag":"td",
+            "content":"Footer"
+          },
+          "3":{
+            "tag":"td",
+            "content":"Footer"
+          }
+        }
+      }
+    },
+    "empty": "This Table is empty message",
+    "no_striping": false,
+    "header_columns": 4,
+    "table_utility_classes": [],
+    "thead_utility_classes": [],
+    "tbody_utility_classes": [],
+    "tfoot_utility_classes": []
+  }
+} %}
+{{ include('vartheme_bs5:table') }}
+{% endstory %}
+
+
+{% story TableInfo with {
+  "name": "Info",
+  "args": {
+    "responsive": true,
+    "color": "info",
+    "striped_rows": true,
+    "striped_columns": false,
+    "hover": true,
+    "bordered": true,
+    "border_color": "",
+    "borderless": false,
+    "size": "",
+    "caption": "",
+    "colgroups": {},
+    "header": {
+      "0": {
+        "tag": "th",
+        "content": "#"
+      },
+      "1": {
+        "tag": "th",
+        "content": "First"
+      },
+      "2": {
+        "tag": "th",
+        "content": "Last"
+      },
+      "3": {
+        "tag": "th",
+        "content": "Handle"
+      }
+    },
+    "sticky": false,
+    "rows": {
+      "0": {
+        "cells": {
+          "0":{
+            "tag":"td",
+            "content":"1"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Mark"
+          },
+          "2":{
+            "tag":"td",
+            "content":"Otto"
+          },
+          "3":{
+            "tag":"td",
+            "content":"@mdo"
+          }
+        }
+      },
+      "1": {
+        "cells": {
+          "0":{
+            "tag":"td",
+            "content":"2"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Jacob"
+          },
+          "2":{
+            "tag":"td",
+            "content":"Thornton"
+          },
+          "3":{
+            "tag":"td",
+            "content":"@fat"
+          }
+        }
+      },
+      "2": {
+        "cells": {
+          "0":{
+            "tag":"td",
+            "content":"3"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Larry the Bird"
+          },
+          "2":{
+            "tag":"td",
+            "content":""
+          },
+          "3":{
+            "tag":"td",
+            "content":"@twitter"
+          }
+        }
+      }
+    },
+    "footer":  {
+      "0":{
+        "cells":{
+          "0":{
+            "tag":"td",
+            "content":"Footer"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Footer"
+          },
+          "2":{
+            "tag":"td",
+            "content":"Footer"
+          },
+          "3":{
+            "tag":"td",
+            "content":"Footer"
+          }
+        }
+      }
+    },
+    "empty": "This Table is empty message",
+    "no_striping": false,
+    "header_columns": 4,
+    "table_utility_classes": [],
+    "thead_utility_classes": [],
+    "tbody_utility_classes": [],
+    "tfoot_utility_classes": []
+  }
+} %}
+{{ include('vartheme_bs5:table') }}
+{% endstory %}
+
+
+{% story TableWarning with {
+  "name": "Warning",
+  "args": {
+    "responsive": true,
+    "color": "warning",
+    "striped_rows": true,
+    "striped_columns": false,
+    "hover": true,
+    "bordered": true,
+    "border_color": "",
+    "borderless": false,
+    "size": "",
+    "caption": "",
+    "colgroups": {},
+    "header": {
+      "0": {
+        "tag": "th",
+        "content": "#"
+      },
+      "1": {
+        "tag": "th",
+        "content": "First"
+      },
+      "2": {
+        "tag": "th",
+        "content": "Last"
+      },
+      "3": {
+        "tag": "th",
+        "content": "Handle"
+      }
+    },
+    "sticky": false,
+    "rows": {
+      "0": {
+        "cells": {
+          "0":{
+            "tag":"td",
+            "content":"1"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Mark"
+          },
+          "2":{
+            "tag":"td",
+            "content":"Otto"
+          },
+          "3":{
+            "tag":"td",
+            "content":"@mdo"
+          }
+        }
+      },
+      "1": {
+        "cells": {
+          "0":{
+            "tag":"td",
+            "content":"2"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Jacob"
+          },
+          "2":{
+            "tag":"td",
+            "content":"Thornton"
+          },
+          "3":{
+            "tag":"td",
+            "content":"@fat"
+          }
+        }
+      },
+      "2": {
+        "cells": {
+          "0":{
+            "tag":"td",
+            "content":"3"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Larry the Bird"
+          },
+          "2":{
+            "tag":"td",
+            "content":""
+          },
+          "3":{
+            "tag":"td",
+            "content":"@twitter"
+          }
+        }
+      }
+    },
+    "footer":  {
+      "0":{
+        "cells":{
+          "0":{
+            "tag":"td",
+            "content":"Footer"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Footer"
+          },
+          "2":{
+            "tag":"td",
+            "content":"Footer"
+          },
+          "3":{
+            "tag":"td",
+            "content":"Footer"
+          }
+        }
+      }
+    },
+    "empty": "This Table is empty message",
+    "no_striping": false,
+    "header_columns": 4,
+    "table_utility_classes": [],
+    "thead_utility_classes": [],
+    "tbody_utility_classes": [],
+    "tfoot_utility_classes": []
+  }
+} %}
+{{ include('vartheme_bs5:table') }}
+{% endstory %}
+
+
+{% story TableDanger with {
+  "name": "Danger",
+  "args": {
+    "responsive": true,
+    "color": "danger",
+    "striped_rows": true,
+    "striped_columns": false,
+    "hover": true,
+    "bordered": true,
+    "border_color": "",
+    "borderless": false,
+    "size": "",
+    "caption": "",
+    "colgroups": {},
+    "header": {
+      "0": {
+        "tag": "th",
+        "content": "#"
+      },
+      "1": {
+        "tag": "th",
+        "content": "First"
+      },
+      "2": {
+        "tag": "th",
+        "content": "Last"
+      },
+      "3": {
+        "tag": "th",
+        "content": "Handle"
+      }
+    },
+    "sticky": false,
+    "rows": {
+      "0": {
+        "cells": {
+          "0":{
+            "tag":"td",
+            "content":"1"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Mark"
+          },
+          "2":{
+            "tag":"td",
+            "content":"Otto"
+          },
+          "3":{
+            "tag":"td",
+            "content":"@mdo"
+          }
+        }
+      },
+      "1": {
+        "cells": {
+          "0":{
+            "tag":"td",
+            "content":"2"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Jacob"
+          },
+          "2":{
+            "tag":"td",
+            "content":"Thornton"
+          },
+          "3":{
+            "tag":"td",
+            "content":"@fat"
+          }
+        }
+      },
+      "2": {
+        "cells": {
+          "0":{
+            "tag":"td",
+            "content":"3"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Larry the Bird"
+          },
+          "2":{
+            "tag":"td",
+            "content":""
+          },
+          "3":{
+            "tag":"td",
+            "content":"@twitter"
+          }
+        }
+      }
+    },
+    "footer":  {
+      "0":{
+        "cells":{
+          "0":{
+            "tag":"td",
+            "content":"Footer"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Footer"
+          },
+          "2":{
+            "tag":"td",
+            "content":"Footer"
+          },
+          "3":{
+            "tag":"td",
+            "content":"Footer"
+          }
+        }
+      }
+    },
+    "empty": "This Table is empty message",
+    "no_striping": false,
+    "header_columns": 4,
+    "table_utility_classes": [],
+    "thead_utility_classes": [],
+    "tbody_utility_classes": [],
+    "tfoot_utility_classes": []
+  }
+} %}
+{{ include('vartheme_bs5:table') }}
+{% endstory %}
+
+
+{% story TableLight with {
+  "name": "Light",
+  "args": {
+    "responsive": true,
+    "color": "light",
+    "striped_rows": true,
+    "striped_columns": false,
+    "hover": true,
+    "bordered": true,
+    "border_color": "",
+    "borderless": false,
+    "size": "",
+    "caption": "",
+    "colgroups": {},
+    "header": {
+      "0": {
+        "tag": "th",
+        "content": "#"
+      },
+      "1": {
+        "tag": "th",
+        "content": "First"
+      },
+      "2": {
+        "tag": "th",
+        "content": "Last"
+      },
+      "3": {
+        "tag": "th",
+        "content": "Handle"
+      }
+    },
+    "sticky": false,
+    "rows": {
+      "0": {
+        "cells": {
+          "0":{
+            "tag":"td",
+            "content":"1"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Mark"
+          },
+          "2":{
+            "tag":"td",
+            "content":"Otto"
+          },
+          "3":{
+            "tag":"td",
+            "content":"@mdo"
+          }
+        }
+      },
+      "1": {
+        "cells": {
+          "0":{
+            "tag":"td",
+            "content":"2"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Jacob"
+          },
+          "2":{
+            "tag":"td",
+            "content":"Thornton"
+          },
+          "3":{
+            "tag":"td",
+            "content":"@fat"
+          }
+        }
+      },
+      "2": {
+        "cells": {
+          "0":{
+            "tag":"td",
+            "content":"3"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Larry the Bird"
+          },
+          "2":{
+            "tag":"td",
+            "content":""
+          },
+          "3":{
+            "tag":"td",
+            "content":"@twitter"
+          }
+        }
+      }
+    },
+    "footer":  {
+      "0":{
+        "cells":{
+          "0":{
+            "tag":"td",
+            "content":"Footer"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Footer"
+          },
+          "2":{
+            "tag":"td",
+            "content":"Footer"
+          },
+          "3":{
+            "tag":"td",
+            "content":"Footer"
+          }
+        }
+      }
+    },
+    "empty": "This Table is empty message",
+    "no_striping": false,
+    "header_columns": 4,
+    "table_utility_classes": [],
+    "thead_utility_classes": [],
+    "tbody_utility_classes": [],
+    "tfoot_utility_classes": []
+  }
+} %}
+{{ include('vartheme_bs5:table') }}
+{% endstory %}
+
+
+{% story TableDark with {
+  "name": "Dark",
+  "args": {
+    "responsive": true,
+    "color": "dark",
+    "striped_rows": true,
+    "striped_columns": false,
+    "hover": true,
+    "bordered": true,
+    "border_color": "light",
+    "borderless": false,
+    "size": "",
+    "caption": "",
+    "colgroups": {},
+    "header": {
+      "0": {
+        "tag": "th",
+        "content": "#"
+      },
+      "1": {
+        "tag": "th",
+        "content": "First"
+      },
+      "2": {
+        "tag": "th",
+        "content": "Last"
+      },
+      "3": {
+        "tag": "th",
+        "content": "Handle"
+      }
+    },
+    "sticky": false,
+    "rows": {
+      "0": {
+        "cells": {
+          "0":{
+            "tag":"td",
+            "content":"1"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Mark"
+          },
+          "2":{
+            "tag":"td",
+            "content":"Otto"
+          },
+          "3":{
+            "tag":"td",
+            "content":"@mdo"
+          }
+        }
+      },
+      "1": {
+        "cells": {
+          "0":{
+            "tag":"td",
+            "content":"2"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Jacob"
+          },
+          "2":{
+            "tag":"td",
+            "content":"Thornton"
+          },
+          "3":{
+            "tag":"td",
+            "content":"@fat"
+          }
+        }
+      },
+      "2": {
+        "cells": {
+          "0":{
+            "tag":"td",
+            "content":"3"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Larry the Bird"
+          },
+          "2":{
+            "tag":"td",
+            "content":""
+          },
+          "3":{
+            "tag":"td",
+            "content":"@twitter"
+          }
+        }
+      }
+    },
+    "footer":  {
+      "0":{
+        "cells":{
+          "0":{
+            "tag":"td",
+            "content":"Footer"
+          },
+          "1":{
+            "tag":"td",
+            "content":"Footer"
+          },
+          "2":{
+            "tag":"td",
+            "content":"Footer"
+          },
+          "3":{
+            "tag":"td",
+            "content":"Footer"
+          }
+        }
+      }
+    },
+    "empty": "This Table is empty message",
+    "no_striping": false,
+    "header_columns": 4,
+    "table_utility_classes": [],
+    "thead_utility_classes": [],
+    "tbody_utility_classes": [],
+    "tfoot_utility_classes": []
+  }
+} %}
+{{ include('vartheme_bs5:table') }}
+{% endstory %}
+
+
+{% endstories %}

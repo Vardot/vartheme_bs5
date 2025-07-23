@@ -1,0 +1,21 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Page
+status: experimental
+description: The page component.
+props:
+  type: object
+  properties:
+    attributes:
+      type: object
+      title: Attributes
+      description: HTML attributes for the containing element.
+      $ref: 'ui-patterns://attributes'
+slots:
+  branding:
+    type: array
+    title: Branding
+    description: Site branding.
+  navigation:
+    type: array
+    title: navigation
+    description: site navigation.

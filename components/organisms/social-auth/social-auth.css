@@ -1,0 +1,66 @@
+.social-auth {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 calc(-1.315rem - .78vw);
+}
+
+@media (min-width: 1200px) {
+  .social-auth {
+    margin: 0 -1.9rem;
+  }
+}
+
+.social-auth .social-network {
+  width: 45%;
+  margin: .25rem;
+  padding: .5rem;
+  cursor: pointer;
+  transition: box-shadow .2s ease 0s, color;
+  border-width: 0;
+}
+
+.social-auth .social-network:hover, .social-auth .social-network:focus, .social-auth .social-network:active {
+  box-shadow: 0 1px 4px rgba(26, 25, 43, .24) !important;
+}
+
+.social-auth .auth-link {
+  display: flex;
+  font-family: Roboto, sans-serif;
+  font-size: 1.125rem;
+  font-weight: 625;
+  line-height: var(--bs-body-line-height);
+  text-decoration: none;
+}
+
+.social-auth .auth-link:hover, .social-auth .auth-link:active, .social-auth .auth-link:focus {
+  color: #145cc6;
+}
+
+.social-auth .auth-icon {
+  width: 1.5rem;
+  max-width: 100%;
+  max-height: 40px;
+}
+
+[dir="ltr"] .social-auth .auth-icon {
+  margin-right: .75rem;
+  margin-left: 0;
+}
+
+[dir="rtl"] .social-auth .auth-icon {
+  margin-left: .75rem;
+  margin-right: 0;
+}
+
+@media (max-width: 575.98px) {
+  [dir="ltr"] .social-auth .social-network {
+    padding-right: .75rem;
+  }
+
+  [dir="rtl"] .social-auth .social-network {
+    padding-left: .75rem;
+  }
+}
+

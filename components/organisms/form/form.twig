@@ -1,0 +1,27 @@
+{#
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for the 'form' element.
+ *
+ * Available variables
+ * - attributes: HTML attributes for the wrapper element.
+ * - children: The child elements of the form.
+ *
+ * @see template_preprocess_form()
+ *
+ * @ingroup themeable
+ */
+#}
+
+{% set form_utility_classes = form_utility_classes ? form_utility_classes : [] %}
+
+{%
+  set classes = [
+    'form',
+    isInline ? 'form-inline',
+  ]|merge(form_utility_classes)
+%}
+
+<form{{ attributes.addClass(classes) }}>
+  {{ children }}
+</form>

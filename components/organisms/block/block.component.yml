@@ -1,0 +1,35 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Block 
+status: experimental
+description: The generic block component
+group: Blocks
+props:
+  type: object
+  properties:
+    label:
+      type: string
+      title: Label
+    id:
+      type: string
+      title: ID
+    bundle:
+      type: string
+      title: Bundle
+    html_tag:
+      type: string
+      title: HTML tag
+    attributes:
+      type: object
+      title: Attributes
+      description: HTML attributes for the containing element.
+      $ref: 'ui-patterns://attributes'
+    title_prefix:
+      type: array
+      title: title prefix
+    title_suffix:
+      type: array
+      title: title suffix
+slots:
+  content:
+    type: string
+    title: Content

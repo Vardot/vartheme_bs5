@@ -1,0 +1,5 @@
+
+{% set text_utility_classes = text_utility_classes ? text_utility_classes : [] %}
+{% set classes = []|merge(text_utility_classes) %}
+
+<p{{ attributes.addClass(classes) }}>{{ content }}</p>

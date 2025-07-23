@@ -1,0 +1,45 @@
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata-full.schema.json"
+name: List
+status: experimental
+description: Implementation for displaying a HTML list of items.
+props:
+  type: object
+  properties:
+    items:
+      type: array
+      title: Items
+      description: An array of items to display in the list.
+      default: []
+      items:
+        type: 'string'
+    type:
+      type: string
+      title: List type
+      description: List type
+      enum:
+        - ul
+        - ol
+      meta:enum:
+        ul: "Unordered list"
+        ol: "Ordered list"
+      x-translation-context: List type
+      default: ul
+    list_utility_classes:
+      type: array
+      title: List Utility Classes
+      default: []
+      items:
+        type: 'string'
+      description: Use to add extra Bootstrap utility classes or custom classes to the list component.
+    list_item_utility_classes:
+      type: array
+      title: List Item Utility Classes
+      default: []
+      items:
+        type: 'string'
+      description: Use to add extra Bootstrap utility classes or custom classes to list items.
+    attributes:
+      type: object
+      title: Attributes
+      description: "HTML attributes to apply to the list."
+      "$ref": "ui-patterns://attributes"

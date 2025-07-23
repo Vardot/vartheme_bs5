@@ -1,0 +1,70 @@
+{/* link.mdx */}
+
+import { Canvas, Title, Subtitle, ArgTypes, Source, Meta, Description, Primary, Story, Stories, Controls } from '@storybook/blocks';
+import * as comStories from './link.stories.json';
+import templateSource from './link.twig?raw';
+
+<Meta of={comStories} name="Docs"/>
+
+<Title />
+<Subtitle />
+<Description />
+
+
+> #### [Bootstrap Documentation on Buttons](https://getbootstrap.com/docs/5.3/utilities/link/)
+> * [Colored links](https://getbootstrap.com/docs/5.3/helpers/colored-links/)
+> * [Link opacity](https://getbootstrap.com/docs/5.3/utilities/link/#link-opacity)
+> * [Link underlines](https://getbootstrap.com/docs/5.3/utilities/link/#link-underlines)
+> * [Underline color](https://getbootstrap.com/docs/5.3/utilities/link/#underline-color)
+> * [Underline offset](https://getbootstrap.com/docs/5.3/utilities/link/#underline-offset)
+> * [Underline opacity](https://getbootstrap.com/docs/5.3/utilities/link/#underline-opacity)
+> * [Hover variants](https://getbootstrap.com/docs/5.3/utilities/link/#hover-variants)
+
+<Primary />
+
+## Properties
+<Controls />
+
+<Stories of={comStories} />
+
+## Attributes:
+* `attributes`: Drupal attributes for link.
+
+## Slots:
+* `content`: Link content.
+
+### Examples
+**Example #1:** Secondary link
+```
+  {% include 'vartheme_bs5:link' with {
+    url: 'https://drupal.org',
+    content: 'Link to Drupal site'|t,
+    color: 'secondary',
+  } %}
+```
+
+**Example #2:** A Read more link with to use with Cards components
+```
+  {% include 'vartheme_bs5:link' with {
+    url: '/blog/blog-test1',
+    content: 'Read more'|t,
+    color: 'primary',
+    link_utility_classes: ['card-link', 'float-end', 'mt-3', 'read-more']
+  } %}
+```
+
+**Example #3:** Add a link for a breadcrumb item
+```
+  {% if item.url %}
+    <li class="breadcrumb-item">
+      {% include 'vartheme_bs5:link' with {
+        url: item.url,
+        content: item.text
+      } only %}
+    </li>
+  {% else %}
+```
+
+## Source code
+[//]: # (Twig Template source code)
+<Source code={templateSource} />

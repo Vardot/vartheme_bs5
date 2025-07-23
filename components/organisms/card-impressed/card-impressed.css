@@ -1,0 +1,75 @@
+.varbase-impressed-card .impressed-card-content:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.varbase-impressed-card.anchor-all {
+  position: relative;
+}
+
+.varbase-impressed-card.anchor-all .impressed-card-content {
+  position: static;
+}
+
+.varbase-impressed-card.anchor-all .card-title {
+  position: static;
+}
+
+.varbase-impressed-card.anchor-all .card-title a {
+  position: static;
+}
+
+.varbase-impressed-card.anchor-all .card-title a::before {
+  position: absolute;
+  content: "";
+  display: block;
+  overflow: hidden;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.varbase-impressed-card.anchor-all a.card-link,
+.varbase-impressed-card.anchor-all div.card-link > a {
+  position: static;
+}
+
+.varbase-impressed-card.anchor-all a.card-link::before,
+.varbase-impressed-card.anchor-all div.card-link > a::before {
+  position: absolute;
+  content: "";
+  display: block;
+  overflow: hidden;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 2;
+}
+
+.varbase-impressed-card.anchor-all a {
+  z-index: 3;
+  position: relative;
+}
+
+.varbase-impressed-card.border-0 .impressed-card-content {
+  margin: 0;
+  padding: 0;
+}
+
+.varbase-impressed-card.bordered .impressed-card-content {
+  margin-right: 0;
+  margin-left: 0;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: var(--bs-card-spacer-y);
+  padding-bottom: 0;
+}
+
+.varbase-impressed-card.bordered.flex-column-reverse .impressed-card-content {
+  padding-top: 0;
+  padding-bottom: var(--bs-card-spacer-y);
+}
+

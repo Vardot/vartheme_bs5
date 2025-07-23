@@ -1,0 +1,71 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Input 
+status: experimental
+description: Textual form controls `<input>`s an upgrade with custom styles, sizing, focus states, and more.
+props:
+  type: object
+  properties:
+    type:
+      type: string
+      title: HTML Input Type
+      description: Specifies the type `<input>` element to display
+      default: text
+      enum:
+        - button
+        - checkbox
+        - color
+        - date
+        - datetime-local
+        - email
+        - file
+        - hidden
+        - image
+        - month
+        - number
+        - password
+        - radio
+        - range
+        - reset
+        - search
+        - submit
+        - tel
+        - text
+        - time
+        - url
+        - week
+    value:
+      type: string
+      title: Input Value
+      description: Specifies the value of the input element
+    bs_form_control:
+      type: boolean
+      title: Has Bootstrap Form Control class
+      description: Have class `.form-control` related to input type.
+    bs_size:
+      type: string
+      title: Bootstrap Size
+      description: Set heights using classes like `.form-control-lg` and `.form-control-sm`.
+      enum:
+        - ''
+        - form-control-sm
+        - form-control-lg
+    placeholder:
+      type: string
+      title: Placeholder
+      description: The input placeholder attribute specifies a short hint that describes the expected value of an input field (a sample value or a short description of the expected format).
+    input_utility_classes:
+      type: array
+      title: Utility Classes
+      default: []
+      items:
+        type: 'string'
+      description: An array of utility classes that can be used to add extra Bootstrap utility classes or custom classes to this component.
+    attributes:
+      type: object
+      title: Attributes
+      description: HTML attributes for the input element.
+      $ref: 'ui-patterns://attributes'
+    children:
+      type: string
+      title: Children
+      description: Optional additional rendered elements.

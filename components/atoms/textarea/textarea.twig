@@ -1,0 +1,89 @@
+{#
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for the 'textarea' #type form element.
+ *
+ * Available properties:
+ * - resizable: (none|vertical|horizontal|both) An indicator for whether the textarea is resizable.
+ * - required: (true|false) An indicator for whether the textarea is required.
+ * - value: The textarea content.
+ * - rows: Specifies the number of visible text lines.
+ * - cols: Specifies the visible width in average character widths.
+ * - maxlength: Specifies the maximum length (in characters) of a text area. By default, the maximum is 524,288 characters.
+ * - placeholder: Specifies a short hint that describes the expected value of a text area.
+ * - readonly: Specifies whether the control may be modified by the user.
+ * - disabled: Disables the control for user input.
+ * - wrapper_html_tag: (div|span) The HTML tag for the wrapper.
+ * - wrapper_utility_classes: An array of utility classes. Use to add extra Bootstrap utility classes or custom CSS classes over the wrapper div to this component.
+ * - textarea_utility_classes: An array of utility classes. Use to add extra Bootstrap utility classes or custom CSS classes over the form element to this component.
+ * 
+ * Available attributes:
+ * - attributes: HTML attributes for the <textarea> element.
+ * - wrapper_attributes: HTML attributes for the wrapper element.
+ *
+ * Available slots:
+ * - N/A
+ *
+ * @see template_preprocess_textarea()
+ */
+#}
+{% set resizable_classes = resizable ? ['resize-' ~ resizable] : [] %}
+{% set wrapper_utility_classes = wrapper_utility_classes ? wrapper_utility_classes : [] %}
+{% set textarea_utility_classes = textarea_utility_classes ? textarea_utility_classes : [] %}
+
+{% if required is not empty and required == true %}
+  {% set attributes = attributes.setAttribute('aria-required', 'true') %}
+  {% set attributes = attributes.setAttribute('required', true) %}
+{% endif %}
+
+{% if rows is not empty %}
+  {% set attributes = attributes.setAttribute('rows', rows) %}
+{% endif %}
+
+{% if cols is not empty %}
+  {% set attributes = attributes.setAttribute('cols', cols) %}
+{% endif %}
+
+{% if maxlength is not empty %}
+  {% set attributes = attributes.setAttribute('maxlength', maxlength) %}
+{% endif %}
+
+{% if placeholder is not empty %}
+  {% set attributes = attributes.setAttribute('placeholder', placeholder) %}
+{% endif %}
+
+{% if readony is not empty and readonly == true %}
+  {% set attributes = attributes.setAttribute('readonly', true) %}
+{% endif %}
+
+{% if disabled is not empty and disabled == true %}
+  {% set attributes = attributes.setAttribute('disabled', true) %}
+  {% set attributes = attributes.setAttribute('aria-disabled', 'true' ) %}
+  {% set attributes = attributes.setAttribute('tabindex', '-1' ) %}
+{% endif %}
+
+{%
+  set textarea_classes = [
+    'form-control',
+    'form-textarea',
+  ]|merge(resizable_classes)|merge(textarea_utility_classes)
+%}
+{% set attributes = attributes.addClass(textarea_classes) %}
+
+{% if wrapper_html_tag != '' %}
+  {%
+    set wrapper_classes = [
+      'form-textarea-wrapper'
+    ]|merge(wrapper_utility_classes)
+  %}
+
+  {% if not wrapper_attributes %}
+    {% set wrapper_attributes = create_attribute() %}
+  {% endif %}
+
+  {% set wrapper_attributes = wrapper_attributes.addClass(wrapper_classes) %}
+{% endif %}
+
+{% if wrapper_html_tag != '' %}<{{ wrapper_html_tag }}{{ wrapper_attributes }}>{% endif %}
+<textarea{{ attributes }}>{{ value }}</textarea>
+{% if wrapper_html_tag != '' %}</{{ wrapper_html_tag }}>{% endif %}

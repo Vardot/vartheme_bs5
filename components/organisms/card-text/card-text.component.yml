@@ -1,0 +1,66 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: 'Text Card' 
+status: experimental
+description: 'Text card component and pattern with content.'
+group: Cards
+props:
+  type: object
+  properties:
+    style_size:
+      type: string
+      title: 'Card style size'
+      description: 'Card style size (xsmall|small|medium|large|xlarge).'
+      default: ''
+      enum:
+        - ''
+        - xsmall
+        - small
+        - medium
+        - large
+        - xlarge
+    card_border:
+      type: boolean
+      title: 'Card Border'
+      description: 'Add a default border to the card.'
+      default: false
+    padded:
+      type: boolean
+      title: 'Padded'
+      description: 'Add a default padding to the card.'
+      default: false
+    equal_height:
+      type: boolean
+      title: 'Equal height'
+      default: true
+    anchor_all:
+      type: boolean
+      title: 'Anchor All'
+      default: false
+    card_text_utility_classes:
+      type: array
+      title: 'Utility Classes'
+      default: []
+      items:
+        type: 'string'
+      description: 'Use to add extra Bootstrap utility classes for the main Card wrapper. E.g. `mb-3 shadow-lg` ( Do not add `card`).' 
+    card_text_content_utility_classes:
+      type: array
+      title: 'Content Utility Classes'
+      default: []
+      items:
+        type: 'string'
+      description: 'Use to add extra Bootstrap utility classes for the Card Content region wrapper. E.g. `w-75 mb-3 overflow-y-hidden`  ( Do not add `card-body`).'
+    card_attributes:
+      type: object
+      title: 'Card attributes'
+      description: 'HTML attributes for the Card element.'
+      $ref: 'ui-patterns://attributes'
+    content_attributes:
+      type: object
+      title: 'Content Attributes'
+      description: 'HTML attributes for the content element.'
+      $ref: 'ui-patterns://attributes'
+slots:
+  content:
+    title: 'Card Content'
+    description: 'The content slot for the card.'

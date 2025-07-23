@@ -1,0 +1,176 @@
+{#
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for the Table component.
+ *
+ * Available Variants:
+ * - variant: Contextual classes for table variants.
+ *
+ * Available properties:
+ * - responsive: Responsive tables allow tables to be scrolled horizontally with ease.
+ *               Make any table responsive across all viewports.
+ * - striped_rows: Use to add zebra-striping to any table row within the `<tbody>`. Works with `no_striping` is false.
+ * - striped_columns: Use to add zebra-striping to any table column. Works with `no_striping` is false.
+ * - hover: Enable a hover state on table rows within a `<tbody>`.
+ * - bordered: Add borders on all sides of the table and cells.
+ * - border_color: Use the border color utility to change border colors.
+ * - borderless: Add `.table-borderless` for a table without borders.
+ * - size: Use sm for small to make any table more compact by cutting all cell padding in half.
+ * - caption: A localized string for the `<caption>` tag.
+ * - colgroups: Column groups which contains attributes.
+ * - header: Table header cells which contains (tag, attributes, content, field, sort).
+ * - sticky: A flag indicating whether to use a sticky table header.
+ *           ( set `responsive` to false for sticky to work)
+ * - rows: Table rows, which each row contains (attributes, data, no_striping, cells).
+ *         Each cell contains (tag, attributes, content, active_table_sort).
+ * - footer: Table footer rows, in the same format as the rows variable.
+ * - empty: The message to display in an extra row if table does not have any rows.
+ * - no_striping: A boolean indicating that the row should receive no striping.
+ * - header_columns: The number of columns in the header.
+ * - table_utility_classes: An array of utility classes. Use to add extra Bootstrap utility classes or
+ *                    custom CSS classes over to the table element.
+ * - thead_utility_classes: An array of utility classes. Use to add extra Bootstrap utility classes or
+ *                          custom CSS classes over to the head of the table element.
+ * - tbody_utility_classes: An array of utility classes. Use to add extra Bootstrap utility classes or
+ *                          custom CSS classes over to the body of the table element.
+ * - tfoot_utility_classes: An array of utility classes. Use to add extra Bootstrap utility classes or
+ *                          custom CSS classes over to the footer of the table element.
+ *
+ * Available attributes:
+ * - attributes: HTML attributes to apply to the `<table>` tag.
+ * - thead_attributes: HTML attributes to apply to the `<thead>` tag.
+ * - tbody_attributes: HTML attributes to apply to the `<tbody>` tag.
+ * - tfoot_attributes: HTML attributes to apply to the `<tfoot>` tag.
+ *
+ * Available slots:
+ * - N/A
+ *
+ */
+#}
+{% set responsive = responsive ?? true %}
+{% set variant_classes = ((variant is defined and variant != '') ? ['table-' ~ variant] : []) %}
+
+{% if no_striping %}
+  {% set striped_rows_classes = [] %}
+  {% set striped_columns_classes = [] %}
+{% else %}
+  {% set striped_rows_classes = striped_rows ? ['table-striped'] : [] %}
+  {% set striped_columns_classes = striped_columns ? ['table-striped-columns'] : [] %}
+{% endif %}
+
+{% set hover_classes = hover ? ['table-hover'] : [] %}
+{% set bordered_classes = bordered ? ['table-bordered'] : [] %}
+{% set border_color_classes = border_color ? ['border-' ~ border_color] : [] %}
+{% set borderless_classes = borderless ? ['table-borderless'] : [] %}
+{% set size_classes = size ? ['table-' ~ size] : [] %}
+{% set sticky_thead_classes = sticky ? ['sticky-top'] : [] %}
+
+{% set table_utility_classes = table_utility_classes ?? [] %}
+{% set thead_utility_classes = thead_utility_classes ?? [] %}
+{% set tbody_utility_classes = tbody_utility_classes ?? [] %}
+{% set tfoot_utility_classes = tfoot_utility_classes ?? [] %}
+
+{% set caption = caption ?? '' %}
+
+{%
+  set table_classes = [
+    'table',
+  ]|merge(variant_classes)|merge(striped_rows_classes)|merge(striped_columns_classes)|merge(hover_classes)|merge(bordered_classes)|merge(border_color_classes)|merge(borderless_classes)|merge(size_classes)|merge(table_utility_classes)
+%}
+
+{% if responsive %}
+<div class="table-responsive">
+{% endif %}
+{% if not attributes %}
+  {% set attributes = create_attribute() %}
+{% endif %}
+<table{{ attributes.addClass(table_classes) }}>
+  {% if caption %}
+    <caption>{{ caption }}</caption>
+  {% endif %}
+
+  {% for colgroup in colgroups %}
+    {% if colgroup.cols %}
+      <colgroup{{ colgroup.attributes }}>
+        {% for col in colgroup.cols %}
+          <col{{ col.attributes }} />
+        {% endfor %}
+      </colgroup>
+    {% else %}
+      <colgroup{{ colgroup.attributes }} />
+    {% endif %}
+  {% endfor %}
+
+  {% if header %}
+    {% if not thead_attributes %}
+      {% set thead_attributes = create_attribute() %}
+    {% endif %}
+
+    {% set thead_classes = []|merge(sticky_thead_classes)|merge(thead_utility_classes) %}
+
+    <thead{{ thead_attributes.addClass(thead_classes) }}>
+      <tr>
+        {% for cell in header %}
+          {%
+            set cell_classes = [
+              cell.active_table_sort ? 'active',
+            ]
+          %}
+          <{{ cell.tag }}{{ cell.attributes.addClass(cell_classes) }}>
+            {{- cell.content -}}
+          </{{ cell.tag }}>
+        {% endfor %}
+      </tr>
+    </thead>
+  {% endif %}
+
+  {% if rows and rows|length > 0 %}
+    {% if not tbody_attributes %}
+      {% set tbody_attributes = create_attribute() %}
+    {% endif %}
+    <tbody{{ tbody_attributes.addClass(tbody_utility_classes) }}>
+      {% for row in rows %}
+        {%
+          set row_classes = [
+            not no_striping ? cycle(['odd', 'even'], loop.index0),
+          ]
+        %}
+        <tr{{ row.attributes.addClass(row_classes) }}>
+          {% for cell in row.cells %}
+            <{{ cell.tag }}{{ cell.attributes }}>
+              {{- cell.content -}}
+            </{{ cell.tag }}>
+          {% endfor %}
+        </tr>
+      {% endfor %}
+    </tbody>
+  {% elseif empty %}
+    {% if not tbody_attributes %}
+      {% set tbody_attributes = create_attribute() %}
+    {% endif %}
+    <tbody{{ tbody_attributes.addClass(tbody_utility_classes) }}>
+      <tr>
+        <td colspan="{{ header|length }}" class="table message">{{ empty }}</td>
+      </tr>
+    </tbody>
+  {% endif %}
+  {% if footer %}
+    {% if not tfoot_attributes %}
+      {% set tfoot_attributes = create_attribute() %}
+    {% endif %}
+    <tfoot{{ tfoot_attributes.addClass(tfoot_utility_classes) }}>
+      {% for row in footer %}
+        <tr{{ row.attributes }}>
+          {% for cell in row.cells %}
+            <{{ cell.tag }}{{ cell.attributes }}>
+              {{- cell.content -}}
+            </{{ cell.tag }}>
+          {% endfor %}
+        </tr>
+      {% endfor %}
+    </tfoot>
+  {% endif %}
+</table>
+{% if responsive %}
+</div>
+{% endif %}
