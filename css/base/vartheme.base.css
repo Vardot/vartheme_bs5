@@ -7,7 +7,7 @@
 /* Temp fix for:
  * Issue #3233533: Core .placeholder class conflicts with new Bootstrap .placeholder class
  * https://www.drupal.org/project/drupal/issues/3233533
- * 
+ *
  * Issue #3246827: Fix em.placeholder style from Bootstrap 5 base styling with the Drupal core placeholder
  * https://www.drupal.org/i/3246827
  */
@@ -90,4 +90,3 @@ h6,
 a {
   text-underline-offset: .25em;
 }
-

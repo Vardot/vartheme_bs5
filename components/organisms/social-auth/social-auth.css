@@ -1,3 +1,9 @@
+/*!
+ * Bootstrap  v5.3.3 (https://getbootstrap.com/)
+ * Copyright 2011-2024 The Bootstrap Authors
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+ */
+
 .social-auth {
   display: flex;
   flex-direction: row;
@@ -21,7 +27,9 @@
   border-width: 0;
 }
 
-.social-auth .social-network:hover, .social-auth .social-network:focus, .social-auth .social-network:active {
+.social-auth .social-network:hover,
+ .social-auth .social-network:focus,
+ .social-auth .social-network:active {
   box-shadow: 0 1px 4px rgba(26, 25, 43, .24) !important;
 }
 
@@ -34,33 +42,38 @@
   text-decoration: none;
 }
 
-.social-auth .auth-link:hover, .social-auth .auth-link:active, .social-auth .auth-link:focus {
+.social-auth .auth-link:hover,
+ .social-auth .auth-link:active,
+ .social-auth .auth-link:focus {
   color: #145cc6;
 }
 
 .social-auth .auth-icon {
+
+  margin-right: .75rem;
+
+  margin-left: 0;
   width: 1.5rem;
   max-width: 100%;
   max-height: 40px;
 }
 
-[dir="ltr"] .social-auth .auth-icon {
-  margin-right: .75rem;
-  margin-left: 0;
-}
-
 [dir="rtl"] .social-auth .auth-icon {
+
   margin-left: .75rem;
+
   margin-right: 0;
 }
 
 @media (max-width: 575.98px) {
-  [dir="ltr"] .social-auth .social-network {
+  .social-auth .social-network {
+
     padding-right: .75rem;
   }
 
   [dir="rtl"] .social-auth .social-network {
+    padding-right: 0;
+
     padding-left: .75rem;
   }
 }
-

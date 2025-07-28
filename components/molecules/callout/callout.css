@@ -1,14 +1,20 @@
+/*!
+ * Bootstrap  v5.3.3 (https://getbootstrap.com/)
+ * Copyright 2011-2024 The Bootstrap Authors
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+ */
+
 .bs-callout {
   background-color: var(--bs-gray-100);
   padding: 1.25rem;
   margin: 1.25rem 0;
-}
 
-[dir="ltr"] .bs-callout {
   border-left: .25rem solid var(--bs-gray-300);
 }
 
 [dir="rtl"] .bs-callout {
+  border-left: none;
+
   border-right: .25rem solid var(--bs-gray-300);
 }
 
@@ -41,13 +47,13 @@
 .bs-callout-danger {
   color: var(--bs-danger-text-emphasis);
   background-color: var(--bs-danger-bg-subtle);
-}
 
-[dir="ltr"] .bs-callout-danger {
   border-left-color: var(--bs-danger-border-subtle);
 }
 
 [dir="rtl"] .bs-callout-danger {
+  border-left-color: currentcolor;
+
   border-right-color: var(--bs-danger-border-subtle);
 }
 
@@ -58,13 +64,13 @@
 .bs-callout-warning {
   color: var(--bs-warning-text-emphasis);
   background-color: var(--bs-warning-bg-subtle);
-}
 
-[dir="ltr"] .bs-callout-warning {
   border-left-color: var(--bs-warning-border-subtle);
 }
 
 [dir="rtl"] .bs-callout-warning {
+  border-left-color: currentcolor;
+
   border-right-color: var(--bs-warning-border-subtle);
 }
 
@@ -75,13 +81,13 @@
 .bs-callout-info {
   color: var(--bs-info-text-emphasis);
   background-color: var(--bs-info-bg-subtle);
-}
 
-[dir="ltr"] .bs-callout-info {
   border-left-color: var(--bs-info-border-subtle);
 }
 
 [dir="rtl"] .bs-callout-info {
+  border-left-color: currentcolor;
+
   border-right-color: var(--bs-info-border-subtle);
 }
 
@@ -89,37 +95,49 @@
   color: var(--bs-info);
 }
 
-[dir="ltr"] [dir=rtl] .bs-callout {
+[dir=rtl] .bs-callout {
+
   border-left: 0;
+
   border-right: .25rem solid var(--bs-gray-300);
 }
 
 [dir="rtl"] [dir=rtl] .bs-callout {
+
   border-right: 0;
+
   border-left: .25rem solid var(--bs-gray-300);
 }
 
-[dir="ltr"] [dir=rtl] .bs-callout-danger {
+[dir=rtl] .bs-callout-danger {
+
   border-right-color: var(--bs-danger-border-subtle);
 }
 
 [dir="rtl"] [dir=rtl] .bs-callout-danger {
+  border-right-color: currentcolor;
+
   border-left-color: var(--bs-danger-border-subtle);
 }
 
-[dir="ltr"] [dir=rtl] .bs-callout-warning {
+[dir=rtl] .bs-callout-warning {
+
   border-right-color: var(--bs-warning-border-subtle);
 }
 
 [dir="rtl"] [dir=rtl] .bs-callout-warning {
+  border-right-color: currentcolor;
+
   border-left-color: var(--bs-warning-border-subtle);
 }
 
-[dir="ltr"] [dir=rtl] .bs-callout-info {
+[dir=rtl] .bs-callout-info {
+
   border-right-color: var(--bs-info-border-subtle);
 }
 
 [dir="rtl"] [dir=rtl] .bs-callout-info {
+  border-right-color: currentcolor;
+
   border-left-color: var(--bs-info-border-subtle);
 }
-

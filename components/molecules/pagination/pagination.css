@@ -1,3 +1,9 @@
+/*!
+ * Bootstrap  v5.3.3 (https://getbootstrap.com/)
+ * Copyright 2011-2024 The Bootstrap Authors
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+ */
+
 .pagination {
   --bs-pagination-padding-x: .75rem;
   --bs-pagination-padding-y: .375rem;
@@ -20,14 +26,14 @@
   --bs-pagination-disabled-bg: transparent;
   --bs-pagination-disabled-border-color: var(--bs-border-color);
   display: flex;
+
+  padding-left: 0;
   list-style: none;
 }
 
-[dir="ltr"] .pagination {
-  padding-left: 0;
-}
-
 [dir="rtl"] .pagination {
+  padding-left: 0;
+
   padding-right: 0;
 }
 
@@ -64,25 +70,30 @@
   box-shadow: var(--bs-pagination-focus-box-shadow);
 }
 
-.page-link.active, .active > .page-link {
+.page-link.active,
+ .active > .page-link {
   z-index: 3;
   color: var(--bs-pagination-active-color);
   background-color: var(--bs-pagination-active-bg);
   border-color: var(--bs-pagination-active-border-color);
 }
 
-.page-link.disabled, .disabled > .page-link {
+.page-link.disabled,
+ .disabled > .page-link {
   color: var(--bs-pagination-disabled-color);
   pointer-events: none;
   background-color: var(--bs-pagination-disabled-bg);
   border-color: var(--bs-pagination-disabled-border-color);
 }
 
-[dir="ltr"] .page-item:not(:first-child) .page-link {
+.page-item:not(:first-child) .page-link {
+
   margin-left: calc(var(--bs-border-width) * -1);
 }
 
 [dir="rtl"] .page-item:not(:first-child) .page-link {
+  margin-left: 0;
+
   margin-right: calc(var(--bs-border-width) * -1);
 }
 
@@ -142,4 +153,3 @@
   font-size: 1.25rem;
   padding: 1.125rem;
 }
-

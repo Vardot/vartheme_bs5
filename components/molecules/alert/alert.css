@@ -1,3 +1,9 @@
+/*!
+ * Bootstrap  v5.3.3 (https://getbootstrap.com/)
+ * Copyright 2011-2024 The Bootstrap Authors
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+ */
+
 .alert {
   --bs-alert-bg: transparent;
   --bs-alert-padding-x: .9375rem;
@@ -26,26 +32,29 @@
   color: var(--bs-alert-link-color);
 }
 
-[dir="ltr"] .alert-dismissible {
+.alert-dismissible {
+
   padding-right: 3rem;
 }
 
 [dir="rtl"] .alert-dismissible {
+  padding-right: 0;
+
   padding-left: 3rem;
 }
 
 .alert-dismissible .btn-close {
   position: absolute;
   top: 0;
+
+  right: 0;
   z-index: 2;
   padding: 1.171875rem .9375rem;
 }
 
-[dir="ltr"] .alert-dismissible .btn-close {
-  right: 0;
-}
-
 [dir="rtl"] .alert-dismissible .btn-close {
+  right: auto;
+
   left: 0;
 }
 
@@ -119,7 +128,7 @@
 }
 
 .alert-secondary.alert-dismissible .btn-close {
-  background: rgb(81.6, 12.8, 193.6);
+  background: #520dc2;
 }
 
 .alert-success.alert-dismissible .btn-close {
@@ -131,18 +140,17 @@
 }
 
 .alert-warning.alert-dismissible .btn-close {
-  background: rgb(255, 205.4, 56.6);
+  background: #ffcd39;
 }
 
 .alert-danger.alert-dismissible .btn-close {
-  background: rgb(176, 42.4, 55.2);
+  background: #b02a37;
 }
 
 .alert-light.alert-dismissible .btn-close {
-  background: rgb(198.4, 199.2, 200);
+  background: #c6c7c8;
 }
 
 .alert-dark.alert-dismissible .btn-close {
-  background: rgb(77.4, 80.6, 83.8);
+  background: #4d5154;
 }
-
