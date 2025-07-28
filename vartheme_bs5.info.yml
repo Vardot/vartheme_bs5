@@ -5,6 +5,7 @@ engine: twig
 type: theme
 base theme: false
 starterkit: true
+auto_switch_components: true
 screenshot: screenshot.png
 alt text: Screenshot of Vartheme BS5, Varbase front-end theme.
 
