@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:varbase_rich_text_block:7cbc6f8a-b200-46a0-bb19-e1c72fc12c1f'
+  module:
+    - block_class
+    - block_content
+  theme:
+    - vartheme_bs5
+third_party_settings:
+  block_class:
+    classes: 'col-lg-5 pe-lg-5'
+id: vartheme_bs5_footer_logo
+theme: vartheme_bs5
+region: footer_top
+weight: -7
+provider: null
+plugin: 'block_content:7cbc6f8a-b200-46a0-bb19-e1c72fc12c1f'
+settings:
+  id: 'block_content:7cbc6f8a-b200-46a0-bb19-e1c72fc12c1f'
+  label: 'Vartheme footer logo'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:varbase_rich_text_block:2f3e092e-0470-4863-9ac8-4852cf1bf96a'
+  module:
+    - block_class
+    - block_content
+  theme:
+    - vartheme_bs5
+third_party_settings:
+  block_class:
+    classes: w-100
+id: vartheme_bs5_copyright
+theme: vartheme_bs5
+region: footer_bottom
+weight: -5
+provider: null
+plugin: 'block_content:2f3e092e-0470-4863-9ac8-4852cf1bf96a'
+settings:
+  id: 'block_content:2f3e092e-0470-4863-9ac8-4852cf1bf96a'
+  label: 'Vartheme Copyright'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }
