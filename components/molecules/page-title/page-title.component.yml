@@ -31,8 +31,14 @@ props:
         type: 'string'
       description: An array of utility classes. Use to add extra Bootstrap utility classes or custom CSS classes over to this to this component.
     attributes:
+      type: object
+      title: Attributes
+      description: HTML attributes to apply to the wrapper element.
       $ref: 'ui-patterns://attributes'
     title_attributes:
+      type: object
+      title: Attributes
+      description: HTML attributes to apply to the title element.
       $ref: 'ui-patterns://attributes'
     title_prefix:
       type: array

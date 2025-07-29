@@ -100,4 +100,4 @@ props:
       type: object
       title: Attributes
       description: HTML attributes to apply to the list group.
-      "$ref": "ui-patterns://attributes"
+      $ref: 'ui-patterns://attributes'

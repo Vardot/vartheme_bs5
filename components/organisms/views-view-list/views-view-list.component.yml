@@ -33,9 +33,10 @@ props:
         type: 'string'
       description: Use to add extra Bootstrap utility classes or custom CSS classes over to list items.
     attributes:
+      type: object
       title: Attributes
       description: "HTML attributes to apply to the list."
-      $ref: "ui-patterns://attributes"
+      $ref: 'ui-patterns://attributes'
 slots:
   rows:
     title: Rows
