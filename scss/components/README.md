@@ -5,6 +5,3 @@ Do not use this folder.
 Discrete, reusable UI elements.
 https://www.drupal.org/docs/develop/standards/css/css-file-organization-for-drupal-9
 
-NOTE: **Components** was moved to be included with **Single Directory Components (SDC)** components folder.
-
-Copy components from Varbase Components to have a custom change over the template, style, or script.

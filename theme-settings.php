@@ -78,7 +78,7 @@ function vartheme_bs5_form_system_theme_settings_alter(&$form, FormStateInterfac
     '#title'    => t('Email Logo'),
     '#open' => FALSE,
     '#description' => t('Email logo settings to be used with Varbase Email module. Have a look at @varbase_docs_link.', [
-      '@varbase_docs_link' => Link::fromTextAndUrl('Set the Email Logo for Symfony Mailer Template', Url::fromUri('https://docs.varbase.vardot.com/v/10.0.x/developers/understanding-varbase/core-components/varbase-email', ['absolute' => TRUE, 'fragment' => 'containers']))->toString(),
+      '@varbase_docs_link' => Link::fromTextAndUrl('Set the Email Logo for Symfony Mailer Template', Url::fromUri('https://docs.varbase.vardot.com/v/10.1.x/developers/understanding-varbase/core-components/varbase-email', ['absolute' => TRUE, 'fragment' => 'containers']))->toString(),
     ]),
   ];
 

@@ -157,6 +157,7 @@ final class StarterKit implements StarterKitInterface {
     }
 
     self::findAndReplace($working_dir, 'vartheme_bs5', $machine_name);
+    self::findAndReplace($working_dir, 'Vartheme BS5 Starter Kit', $theme_name);
     self::findAndReplace($working_dir, 'Vartheme BS5', $theme_name);
     self::findAndReplace($working_dir, 'starterkit.md', 'README.md', TRUE);
 

@@ -1,7 +1,6 @@
 ignore:
   - '/vartheme_bs5.starterkit.yml'
   - '/composer.json'
-  - '/yarn.lock'
   - '/.git'
   - '/.gitlab'
   - '/scripts'

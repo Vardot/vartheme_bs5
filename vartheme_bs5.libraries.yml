@@ -210,6 +210,31 @@ bootstrap-icons:
     theme:
       fonts/bootstrap-icons/font/bootstrap-icons.min.css: { minified: true }
 
+# Behaviors for local video scripts in the heroslider component.
+local-video-slider:
+  js:
+    components/organisms/heroslider/js/video.heroslider.local.js: {}
+
+# Behaviors for Youtube video scripts in the heroslider component.
+youtube-video-slider:
+  js:
+    components/organisms/heroslider/js/video.heroslider.youtube.js: { weight: -1 }
+
+# Behaviors for vimeo embeded videos scripts in the heroslider component.
+vimeo-video-slider:
+  js:
+    components/organisms/heroslider/js/video.heroslider.vimeo.js: { weight: -1 }
+
+# Oembed frame for Youtube video behaviors in the heroslider component.
+oembed-frame-video-youtube:
+  js:
+    components/organisms/heroslider/js/oembed-frame.heroslider.youtube.js: {}
+
+# Oembed frame for Vimeo video behaviors in the heroslider component.
+oembed-frame-video-vimeo:
+  js:
+    components/organisms/heroslider/js/oembed-frame.heroslider.vimeo.js: {}
+
 # Ckeditor 5 styles.
 ckeditor5-root:
   dependencies:

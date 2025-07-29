@@ -32,7 +32,7 @@ function vartheme_bs5_preprocess_media_oembed_iframe__remote_video__varbase_hero
   $variables['provider'] = $query->get('provider');
   $variables['view_mode'] = $query->get('view_mode');
   $variables['base_path'] = base_path();
-  $variables['vartheme_bs5_path'] = \Drupal::service('module_handler')->getModule('vartheme_bs5')->getPath();
+  $variables['vartheme_bs5'] = \Drupal::service('module_handler')->getModule('varbase_components')->getPath();
 }
 
 /**
@@ -54,7 +54,7 @@ function vartheme_bs5_library_info_alter(array &$libraries, $module) {
   }
 
   // Replace the Popper.js library file from the Responsive Theme preview module.
-  // Varbase Components and Vartheme BS5 need a different version which still
+  // Vartheme BS5 need a different version which still
   // works for the Responsive Theme preview module.
   if ($module === 'responsive_preview'
     && isset($libraries['drupal.responsive-preview'])
