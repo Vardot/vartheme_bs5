@@ -6,6 +6,7 @@ dependencies:
   module:
     - block_class
     - block_content
+    - varbase_default_content
   theme:
     - vartheme_bs5
 third_party_settings:

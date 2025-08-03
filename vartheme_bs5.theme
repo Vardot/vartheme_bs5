@@ -32,7 +32,7 @@ function vartheme_bs5_preprocess_media_oembed_iframe__remote_video__varbase_hero
   $variables['provider'] = $query->get('provider');
   $variables['view_mode'] = $query->get('view_mode');
   $variables['base_path'] = base_path();
-  $variables['vartheme_bs5'] = \Drupal::service('module_handler')->getModule('varbase_components')->getPath();
+  $variables['vartheme_bs5'] = \Drupal::service('extension.list.theme')->getPath('vartheme_bs5');
 }
 
 /**

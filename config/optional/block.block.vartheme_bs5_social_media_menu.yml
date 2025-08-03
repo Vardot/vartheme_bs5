@@ -5,6 +5,7 @@ dependencies:
     - system.menu.social-media-menu
   module:
     - menu_block
+    - varbase_default_content
   theme:
     - vartheme_bs5
 third_party_settings:
