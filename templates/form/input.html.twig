@@ -1,5 +1,4 @@
-{%
- include "vartheme_bs5:input" with {
-  bs_form_control: true
- }
-%}
+{% include "vartheme_bs5:input" with {
+  bs_form_control: true,
+  value: attributes.value,
+} %}
