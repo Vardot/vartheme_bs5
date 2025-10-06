@@ -13,7 +13,7 @@ use Drupal\Core\Language\LanguageInterface;
 function vartheme_bs5_theme($existing, $type, $theme, $path) {
   return [
     'media_oembed_iframe__remote_video__varbase_heroslider' => [
-      'template' => 'media-oembed-iframe--remote-video--varbase-heroslider',
+      'template' => 'media/media-oembed-iframe--remote-video--varbase-heroslider',
       'variables' => [
         'provider' => NULL,
         'media' => NULL,
