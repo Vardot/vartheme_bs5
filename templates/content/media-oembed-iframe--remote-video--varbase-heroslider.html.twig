@@ -1,0 +1,18 @@
+{#
+/**
+ * @file
+ * Theme override for remote video media displayed with varbase_heroslider view mode.
+ *
+ * @ingroup themeable
+ */
+#}
+<!DOCTYPE html>
+<html>
+  <head>
+    <css-placeholder token="{{ placeholder_token }}">
+    <script src="{{ base_path }}{{ varbase_media_path }}/js/oembed-frame.varbase-media.{{ provider }}.js"></script>
+  </head>
+  <body style="margin: 0;">
+    {{ media|raw }}
+  </body>
+</html>
