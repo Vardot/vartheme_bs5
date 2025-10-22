@@ -7,10 +7,12 @@ const firstScriptTag = document.getElementsByTagName("script")[0];
 var fn;
 
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag), fn = function() {
-  document.querySelector("iframe").setAttribute("id", "media-oembed-iframe");
+  const mediaIframe = document.querySelector("iframe");
+  mediaIframe.setAttribute("id", "media-oembed-iframe");
   let vimeoPlayer, playerConfgured = !1, videoLoop = !1;
   function actionProcessor(evt) {
     if ("play" === evt.data) {
+      mediaIframe.style.display = "block";
       if (!playerConfgured) {
         const vimeoIframe = document.querySelector('iframe[src*="vimeo.com"]'), vimeoOptions = {
           background: !0,
@@ -30,7 +32,14 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag), fn = function() {
           paused && vimeoPlayer.play();
         }));
       }));
-    } else "pause" === evt.data ? playerConfgured && vimeoPlayer.pause() : "loop" === evt.data && (videoLoop = !0);
+    } else if ("pause" === evt.data) {
+      if (playerConfgured) {
+        vimeoPlayer.pause();
+      }
+      mediaIframe.style.display = "none";
+    } else if ("loop" === evt.data) {
+      videoLoop = !0;
+    }
   }
   window.addEventListener ? window.addEventListener("message", actionProcessor, !1) : window.attachEvent("onmessage", actionProcessor);
 }, "loading" !== document.readyState ? fn() : document.addEventListener ? document.addEventListener("DOMContentLoaded", fn) : document.attachEvent("onreadystatechange", (function() {

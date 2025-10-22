@@ -13,6 +13,7 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag), fn = function() {
   let youtubePlayer, playerConfgured = !1;
   function actionProcessor(evt) {
     if ("play" === evt.data) {
+      mediaIframe.style.display = "block";
       const youtubeIframe = document.querySelector('iframe[src*="youtube.com"]');
       if (void 0 !== youtubeIframe && void 0 !== youtubeIframe.src) if (playerConfgured) "function" == typeof youtubePlayer.playVideo && youtubePlayer.playVideo(); else {
         let youtubeURL = String(youtubeIframe.src);
@@ -37,7 +38,13 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag), fn = function() {
           }
         }), playerConfgured = !0;
       }
-    } else "pause" === evt.data && playerConfgured && (youtubePlayer.pauseVideo(), youtubePlayer.isPlaying = !1);
+    } else if ("pause" === evt.data) {
+      if (playerConfgured) {
+        youtubePlayer.pauseVideo();
+        youtubePlayer.isPlaying = !1;
+      }
+      mediaIframe.style.display = "none";
+    }
   }
   function onPlayerReady(event) {
     event.target.mute(), event.target.setVolume(0), event.target.playVideo();

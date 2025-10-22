@@ -3,13 +3,21 @@
     attach(context) {
       const mediaSliders = $(".js-varbase-heroslider", context);
       mediaSliders.on("slide.bs.carousel", (function(event) {
-        const currentVideo = $(this).find(".carousel-item.active", context).find('.varbase-video-player iframe[src*="vimeo.com"]', context);
-        currentVideo.length > 0 && currentVideo.get(0).contentWindow.postMessage("pause", "*");
+        const allVideos = $(this).find(".carousel-item").find('.varbase-video-player iframe[src*="oembed"][src*="vimeo"]');
+        allVideos.each(function() {
+          $(this).hide();
+          this.contentWindow.postMessage("pause", "*");
+        });
       })), mediaSliders.on("slid.bs.carousel", (function(event) {
-        const currentVideo = $(this).find(".carousel-item.active", context).find('.varbase-video-player iframe[src*="vimeo.com"]', context);
-        currentVideo.length > 0 ? currentVideo.get(0).contentWindow.postMessage("play", "*") : mediaSliders.carousel("cycle");
+        const currentVideo = $(this).find(".carousel-item.active", context).find('.varbase-video-player iframe[src*="oembed"][src*="vimeo"]', context);
+        if (currentVideo.length > 0) {
+          currentVideo.show();
+          currentVideo.get(0).contentWindow.postMessage("play", "*");
+        } else {
+          mediaSliders.carousel("cycle");
+        }
       }));
-      const firstIframeVideo = mediaSliders.find(".carousel-item", context).first().find('.varbase-video-player iframe[src*="vimeo.com"]', context);
+      const firstIframeVideo = mediaSliders.find(".carousel-item", context).first().find('.varbase-video-player iframe[src*="oembed"][src*="vimeo"]', context);
       function vimeoActionProcessor(e) {
         "endedVimeo" === e.data || "endedVimeo" === e.message ? $(".js-varbase-heroslider .slide").length > 1 ? mediaSliders.carousel("next") : firstIframeVideo.get(0).contentWindow.postMessage("play", "*") : "playingVimeo" !== e.data && "playingVimeo" !== e.message || mediaSliders.carousel("pause");
       }

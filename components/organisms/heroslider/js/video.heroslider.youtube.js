@@ -3,13 +3,21 @@
     attach(context) {
       const mediaSliders = $(".js-varbase-heroslider", context);
       mediaSliders.on("slide.bs.carousel", (function(event) {
-        const currentVideo = $(this).find(".carousel-item.active", context).find('.varbase-video-player iframe[src*="youtube.com"]', context);
-        currentVideo.length > 0 && currentVideo.get(0).contentWindow.postMessage("pause", "*");
+        const allVideos = $(this).find(".carousel-item").find('.varbase-video-player iframe[src*="oembed"][src*="youtube"]');
+        allVideos.each(function() {
+          $(this).hide();
+          this.contentWindow.postMessage("pause", "*");
+        });
       })), mediaSliders.on("slid.bs.carousel", (function(event) {
-        const currentVideo = $(this).find(".carousel-item.active", context).find('.varbase-video-player iframe[src*="youtube.com"]', context);
-        currentVideo.length > 0 ? currentVideo.get(0).contentWindow.postMessage("play", "*") : mediaSliders.carousel("cycle");
+        const currentVideo = $(this).find(".carousel-item.active", context).find('.varbase-video-player iframe[src*="oembed"][src*="youtube"]', context);
+        if (currentVideo.length > 0) {
+          currentVideo.show();
+          currentVideo.get(0).contentWindow.postMessage("play", "*");
+        } else {
+          mediaSliders.carousel("cycle");
+        }
       }));
-      const firstIframeVideo = $(".js-varbase-heroslider").find(".carousel-item").first().find('.varbase-video-player iframe[src*="youtube.com"]', context);
+      const firstIframeVideo = $(".js-varbase-heroslider").find(".carousel-item").first().find('.varbase-video-player iframe[src*="oembed"][src*="youtube"]', context);
       function youtubeActionProcessor(e) {
         "endedYoutube" === e.data || "endedYoutube" === e.message ? $(".js-varbase-heroslider").length > 1 ? mediaSliders.carousel("next") : firstIframeVideo.get(0).contentWindow.postMessage("play", "*") : "playingYoutube" !== e.data && "playingYoutube" !== e.message || mediaSliders.carousel("pause");
       }
