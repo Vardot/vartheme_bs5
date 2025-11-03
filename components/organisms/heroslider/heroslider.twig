@@ -88,7 +88,7 @@
 
 {% if items and items|length >= 1 -%}
   <div{{ attributes }}>
-    {# Add carousel itmes #}
+    {# Add carousel items #}
     <div class="carousel-inner">
       {% for key, item in items %}
         {% set item_id = heroslider_id ~ '--item-' ~ key %}

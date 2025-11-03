@@ -8,25 +8,26 @@
 
 // Popper global namespace fixer for the `dropdown.js` file in Bootstrap.
 const fs = require('fs');
-fs.readFile('./js/bootstrap/dropdown.js', 'utf8', function (err,data) {
+
+fs.readFile('./js/bootstrap/dropdown.js', 'utf8', function (err, data) {
   if (err) {
     return console.log(err);
   }
-  var result = data.replace('global["@popperjs/core"]', "global.Popper");
+  const result = data.replace('global["@popperjs/core"]', 'global.Popper');
 
   fs.writeFile('./js/bootstrap/dropdown.js', result, 'utf8', function (err) {
-     if (err) return console.log(err);
+    if (err) return console.log(err);
   });
 });
 
 // Popper global namespace fixer for the `tooltip.js` file in Bootstrap.
-fs.readFile('./js/bootstrap/tooltip.js', 'utf8', function (err,data) {
+fs.readFile('./js/bootstrap/tooltip.js', 'utf8', function (err, data) {
   if (err) {
     return console.log(err);
   }
-  var result = data.replace('global["@popperjs/core"]', "global.Popper");
+  const result = data.replace('global["@popperjs/core"]', 'global.Popper');
 
   fs.writeFile('./js/bootstrap/tooltip.js', result, 'utf8', function (err) {
-     if (err) return console.log(err);
+    if (err) return console.log(err);
   });
 });

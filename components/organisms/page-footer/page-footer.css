@@ -1,24 +1,18 @@
-/*!
- * Bootstrap  v5.3.7 (https://getbootstrap.com/)
- * Copyright 2011-2025 The Bootstrap Authors
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- */
-
 footer.footer {
-  background-color: rgb(7.8, 66, 151.8);
   color: var(--bs-white);
+  background-color: rgb(7.8, 66, 151.8);
 }
 
 footer.footer a {
-  color: var(--bs-white);
   text-decoration: none;
+  color: var(--bs-white);
 }
 
 footer.footer a:hover,
- footer.footer a:focus,
- footer.footer a:active {
-  color: var(--bs-white);
+footer.footer a:focus,
+footer.footer a:active {
   text-decoration: underline;
+  color: var(--bs-white);
 }
 
 footer.footer p a {
@@ -26,11 +20,13 @@ footer.footer p a {
 }
 
 footer.footer p a:hover,
- footer.footer p a:focus,
- footer.footer p a:active {
-  transition: -webkit-text-decoration .4s;
-  transition: text-decoration .4s;
-  transition: text-decoration .4s, -webkit-text-decoration .4s;
+footer.footer p a:focus,
+footer.footer p a:active {
+  transition: -webkit-text-decoration 0.4s;
+  transition: text-decoration 0.4s;
+  transition:
+    text-decoration 0.4s,
+    -webkit-text-decoration 0.4s;
   text-decoration: none;
 }
 
@@ -40,55 +36,51 @@ footer.footer .footer-logo-image {
 
 .sitemap-menu .nav-item a.nav-link {
   position: relative;
-  color: var(--bs-white);
   text-decoration: none;
+  color: var(--bs-white);
 }
 
 .sitemap-menu .nav-item a.nav-link:hover,
- .sitemap-menu .nav-item a.nav-link:focus,
- .sitemap-menu .nav-item a.nav-link:active {
+.sitemap-menu .nav-item a.nav-link:focus,
+.sitemap-menu .nav-item a.nav-link:active {
   color: var(--bs-white);
 }
 
 .sitemap-menu .nav-item a.nav-link:hover:after,
- .sitemap-menu .nav-item a.nav-link:focus:after,
- .sitemap-menu .nav-item a.nav-link:active:after {
+.sitemap-menu .nav-item a.nav-link:focus:after,
+.sitemap-menu .nav-item a.nav-link:active:after {
   position: absolute;
-  content: "";
   top: 80%;
-
+  bottom: 0;
   left: 0;
-  transition: width .3s;
   width: 2.4rem !important;
   height: 1px;
-  bottom: 0;
+  content: "";
+  transition: width 0.3s;
   background-color: var(--bs-white);
 }
 
 [dir="rtl"] .sitemap-menu .nav-item a.nav-link:hover:after,
- [dir="rtl"] .sitemap-menu .nav-item a.nav-link:focus:after,
- [dir="rtl"] .sitemap-menu .nav-item a.nav-link:active:after {
-  left: auto;
-
+[dir="rtl"] .sitemap-menu .nav-item a.nav-link:focus:after,
+[dir="rtl"] .sitemap-menu .nav-item a.nav-link:active:after {
   right: 0;
+  left: auto;
 }
 
 .sitemap-menu .nav-item a.nav-link.is-active:after {
   position: absolute;
-  content: "";
   top: 80%;
-
+  bottom: 0;
   left: 0;
   width: 1.3rem;
   height: 1px;
-  bottom: 0;
+  content: "";
   background-color: var(--bs-white);
 }
 
 [dir="rtl"] .sitemap-menu .nav-item a.nav-link.is-active:after {
-  left: auto;
-
   right: 0;
+  left: auto;
 }
 
 .social-media-menu-icons li.nav-item > a {
@@ -97,25 +89,23 @@ footer.footer .footer-logo-image {
 }
 
 .social-media-menu-icons li.nav-item > a::before {
-  text-indent: 0;
-
   float: left;
+  text-indent: 0;
 }
 
 [dir="rtl"] .social-media-menu-icons li.nav-item > a::before {
-
   float: right;
 }
 
 .social-media-menu-icons li.nav-item > a:hover,
- .social-media-menu-icons li.nav-item > a:focus,
- .social-media-menu-icons li.nav-item > a:active {
-  color: rgb(206.6, 226, 254.6);
+.social-media-menu-icons li.nav-item > a:focus,
+.social-media-menu-icons li.nav-item > a:active {
   text-decoration: none;
+  color: rgb(206.6, 226, 254.6);
 }
 
 .social-media-menu-icons li.nav-item > a:hover:after,
- .social-media-menu-icons li.nav-item > a:focus:after,
- .social-media-menu-icons li.nav-item > a:active:after {
+.social-media-menu-icons li.nav-item > a:focus:after,
+.social-media-menu-icons li.nav-item > a:active:after {
   display: none;
 }

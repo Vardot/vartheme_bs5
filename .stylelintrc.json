@@ -1,5 +1,8 @@
 {
-  "extends": "stylelint-config-standard",
+  "extends": [
+    "stylelint-config-standard",
+    "stylelint-prettier/recommended"
+  ],
   "plugins": [
     "stylelint-order"
   ],
@@ -11,13 +14,11 @@
     "custom-property-pattern": "^[a-z][-_a-z0-9IE]*$",
     "declaration-block-no-redundant-longhand-properties": null,
     "function-url-quotes": null,
-    "function-whitespace-after": null,
     "hue-degree-notation": "number",
     "import-notation": "string",
     "no-descending-specificity": null,
     "no-duplicate-selectors": null,
     "no-unknown-animations": true,
-    "max-line-length": null,
     "media-feature-name-no-unknown": [true, {
       "ignoreMediaFeatureNames": [
         "prefers-reduced-motion"
@@ -25,7 +26,12 @@
     }],
     "media-feature-name-no-vendor-prefix": null,
     "media-feature-range-notation": "prefix",
-    "number-max-precision": 5,
+    "number-max-precision": null,
+    "selector-pseudo-class-no-unknown": null,
+    "selector-pseudo-element-colon-notation": null,
+    "font-family-no-missing-generic-family-keyword": null,
+    "function-linear-gradient-no-nonstandard-direction": null,
+    "function-no-unknown": null,
     "order/order": [
       "custom-properties",
       "dollar-variables",
@@ -379,7 +385,7 @@
     "selector-id-pattern": "^[a-z][-_a-z0-9]*$",
     "selector-no-vendor-prefix": null,
     "shorthand-property-no-redundant-values": null,
-    "unit-allowed-list": ["ch", "deg", "dpcm", "em", "ex", "fr", "ms", "rem", "%", "s", "px", "vw", "vh"],
+    "unit-allowed-list": ["ch", "deg", "dpcm", "em", "ex", "fr", "ms", "rem", "%", "s", "px", "vw", "vh", "cqw", "cqh", "cqi", "cqb", "cqmin", "cqmax"],
     "value-keyword-case": ["lower", {
       "camelCaseSvgKeywords": true,
       "ignoreProperties": [
@@ -388,5 +394,14 @@
       ]
     }],
     "value-no-vendor-prefix": null
-  }
+  },
+  "ignoreFiles": [
+    "assets/vendor/**/*.css",
+    "tests/Drupal/Tests/Core/Asset/css_test_files/**/*.css",
+    "themes/stable9/css/core/assets/vendor/**/*.css",
+    "node_modules/**/*.css",
+    "fonts/**/*.css",
+    "js/bootstrap/**/*.css",
+    "js/popperjs/**/*.css"
+  ]
 }

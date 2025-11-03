@@ -7,6 +7,10 @@ const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
 const postcssRTLCSS = require('postcss-rtlcss');
 const { Mode } = require('postcss-rtlcss/options');
 const CopyPlugin = require("copy-webpack-plugin");
+const postcssSorting = require('postcss-sorting');
+const discardComments = require('postcss-discard-comments');
+const discardEmpty = require('postcss-discard-empty');
+const sortingConfig = require('./.postcss-sorting.json');
 
 module.exports = {
   mode: 'development',
@@ -43,7 +47,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'components'),
-    pathinfo: true,
+    pathinfo: false,
     publicPath: '../../',
   },
   module: {
@@ -67,12 +71,6 @@ module.exports = {
               },
             },
           },
-          {
-            loader: 'img-loader',
-            options: {
-              enabled: !isDev,
-            },
-          },
         ],
       },
       {
@@ -80,22 +78,21 @@ module.exports = {
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
-            options: {
-              name: '[name].[ext]?[hash]',
-            }
           },
           {
             loader: 'css-loader',
             options: {
               sourceMap: isDev,
               importLoaders: 2,
-              url: (url) => {
-                // Don't handle sprite svg
-                if (url.includes('sprite.svg')) {
-                  return false;
-                }
+              url: {
+                filter: (url) => {
+                  // Don't handle sprite svg
+                  if (url.includes('sprite.svg')) {
+                    return false;
+                  }
 
-                return true;
+                  return true;
+                },
               },
             },
           },
@@ -110,15 +107,13 @@ module.exports = {
                     mode: Mode.override, // Use 'combined' mode for RTL flipping
                     ignorePrefixedRules: true,
                   }),
-                  ['postcss-perfectionist', {
-                    format: 'expanded',
-                    indentSize: 2,
-                    trimLeadingZero: true,
-                    zeroLengthNoUnit: false,
-                    maxAtRuleLength: false,
-                    maxSelectorLength: false,
-                    maxValueLength: false,
-                  }]
+                  postcssSorting(sortingConfig),
+                  // Remove all comments including Bootstrap license headers
+                  discardComments({
+                    removeAll: true,
+                  }),
+                  // Remove empty CSS rules and blocks
+                  discardEmpty(),
                 ],
               },
             },
@@ -133,6 +128,12 @@ module.exports = {
                 @use "sass:math";
                 @use "sass:string";
               `,
+              sassOptions: {
+                // Silence deprecation warnings from Bootstrap 5.3.8
+                // These will be fixed in Bootstrap 6
+                quietDeps: true,
+                silenceDeprecations: ['import', 'global-builtin', 'color-functions'],
+              },
             },
           },
         ],

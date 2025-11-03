@@ -35,8 +35,8 @@
 {% set equal_height = equal_height ? ['h-100'] : [] %}
 {% set anchor_all = anchor_all ? ['anchor-all'] : [] %}
 {% set vertical_alignment = vertical_alignment == '' ? [] : ['justify-content-' ~ vertical_alignment] %}
-{% set contnet_horizontal_alignment = horizontal_alignment == '' ? [] : ['align-items-' ~ horizontal_alignment] %}
-{% set text_horizontal_alignment = horizontal_alignmentv == '' ? [] : ['align-items-' ~ horizontal_alignment] %}
+{% set content_horizontal_alignment = horizontal_alignment == '' ? [] : ['align-items-' ~ horizontal_alignment] %}
+{% set text_horizontal_alignment = horizontal_alignment == '' ? [] : ['align-items-' ~ horizontal_alignment] %}
 {% set card_overlay_utility_classes = card_overlay_utility_classes ? card_overlay_utility_classes : [] %}
 {% set card_overlay_media_utility_classes = card_overlay_media_utility_classes ? card_overlay_media_utility_classes : [] %}
 {% set card_overlay_content_utility_classes = card_overlay_content_utility_classes ? card_overlay_content_utility_classes : [] %}
@@ -58,7 +58,7 @@
     'card-img-overlay',
     'd-flex',
     'flex-column',
-  ]|merge(vertical_alignment)|merge(contnet_horizontal_alignment)|merge(text_horizontal_alignment)|merge(card_overlay_content_utility_classes)
+  ]|merge(vertical_alignment)|merge(content_horizontal_alignment)|merge(text_horizontal_alignment)|merge(card_overlay_content_utility_classes)
 %}
 
 {% if not card_attributes %}

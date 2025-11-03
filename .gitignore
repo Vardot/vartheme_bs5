@@ -4,3 +4,5 @@
 *.codekit
 .idea
 node_modules
+.yarn/*
+.pnp.*

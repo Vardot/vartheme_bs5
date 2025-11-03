@@ -1,9 +1,3 @@
-/*!
- * Bootstrap  v5.3.7 (https://getbootstrap.com/)
- * Copyright 2011-2025 The Bootstrap Authors
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- */
-
 .varbase-text-card.anchor-all {
   position: relative;
 }
@@ -22,14 +16,14 @@
 
 .varbase-text-card.anchor-all .card-title a::before {
   position: absolute;
-  content: "";
+  z-index: 1;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   display: block;
   overflow: hidden;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  z-index: 1;
+  content: "";
 }
 
 .varbase-text-card.anchor-all a.card-link,
@@ -40,26 +34,26 @@
 .varbase-text-card.anchor-all a.card-link::before,
 .varbase-text-card.anchor-all div.card-link > a::before {
   position: absolute;
-  content: "";
+  z-index: 2;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   display: block;
   overflow: hidden;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  z-index: 2;
+  content: "";
 }
 
 .varbase-text-card.anchor-all a {
-  z-index: 3;
   position: relative;
+  z-index: 3;
 }
 
 .varbase-text-card.border-0 .text-card-content {
-  margin-left: 0;
   margin-right: 0;
-  padding-left: 0;
+  margin-left: 0;
   padding-right: 0;
+  padding-left: 0;
 }
 
 .varbase-text-card.bordered .text-card-content {

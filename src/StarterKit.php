@@ -7,6 +7,12 @@ use Drupal\Core\Theme\StarterKitInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
 
+/**
+ * Vartheme BS5 theme starter kit implementation.
+ *
+ * Handles theme generation from the Vartheme BS5 starter kit, including
+ * renaming files, replacing theme names, and updating configuration files.
+ */
 final class StarterKit implements StarterKitInterface {
 
   /**

@@ -1,17 +1,3 @@
-/*!
- * Bootstrap  v5.3.7 (https://getbootstrap.com/)
- * Copyright 2011-2025 The Bootstrap Authors
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- */
-
-/* Temp fix for:
- * Issue #3233533: Core .placeholder class conflicts with new Bootstrap .placeholder class
- * https://www.drupal.org/project/drupal/issues/3233533
- *
- * Issue #3246827: Fix em.placeholder style from Bootstrap 5 base styling with the Drupal core placeholder
- * https://www.drupal.org/i/3246827
- */
-
 em.placeholder {
   cursor: unset !important;
   vertical-align: unset !important;
@@ -24,30 +10,30 @@ em.placeholder {
 }
 
 .form-required::after {
+  display: inline-block;
+  width: calc(calc(1.5em + 0.75rem + calc(var(--bs-border-width) * 2)) * 0.1666666667);
+  height: calc(calc(1.5em + 0.75rem + calc(var(--bs-border-width) * 2)) * 0.1666666667);
+  margin: 0 0.3em;
   content: "";
   vertical-align: super;
-  display: inline-block;
-  background-image: url(../../images/required.svg);
+  background-image: url("..//[object%20Module]");
   background-repeat: no-repeat;
-  background-size: calc(calc(1.5em + .75rem + calc(var(--bs-border-width) * 2)) * .1666666667) calc(calc(1.5em + .75rem + calc(var(--bs-border-width) * 2)) * .1666666667);
-  width: calc(calc(1.5em + .75rem + calc(var(--bs-border-width) * 2)) * .1666666667);
-  height: calc(calc(1.5em + .75rem + calc(var(--bs-border-width) * 2)) * .1666666667);
-  margin: 0 .3em;
+  background-size: calc(calc(1.5em + 0.75rem + calc(var(--bs-border-width) * 2)) * 0.1666666667) calc(calc(1.5em + 0.75rem + calc(var(--bs-border-width) * 2)) * 0.1666666667);
 }
 
 .ajax-progress {
-  background-color: transparent !important;
   border: 0 !important;
+  background-color: transparent !important;
 }
 
 .ajax-progress-throbber .throbber {
-  background-color: transparent !important;
   border: 0 !important;
+  background-color: transparent !important;
 }
 
 .ajax-progress-throbber .message {
-  background-color: transparent !important;
   border: 0 !important;
+  background-color: transparent !important;
 }
 
 .ajax-progress-fullscreen {
@@ -88,5 +74,5 @@ h6,
 }
 
 a {
-  text-underline-offset: .25em;
+  text-underline-offset: 0.25em;
 }

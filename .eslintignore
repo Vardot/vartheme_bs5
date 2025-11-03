@@ -12,3 +12,4 @@ webpack.config.build.js
 webpack.config.components.js
 webpack.config.dev.js
 webpack.config.js
+bootstrap.fixer.js

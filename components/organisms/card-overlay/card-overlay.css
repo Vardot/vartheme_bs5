@@ -1,34 +1,26 @@
-/*!
- * Bootstrap  v5.3.7 (https://getbootstrap.com/)
- * Copyright 2011-2025 The Bootstrap Authors
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- */
-
 .varbase-overlay-card .overlay-card-content {
   position: absolute;
+  z-index: 3;
   top: 0;
+  right: 0;
   bottom: 0;
   left: 0;
-  right: 0;
-  padding: 1.25rem;
-  z-index: 3;
   display: flex;
   align-self: flex-end;
+  padding: 1.25rem;
   color: #fff;
   background: linear-gradient(to bottom, transparent 65%, #000 105%) repeat scroll 0 0;
-
   background: -moz-linear-gradient(to bottom, transparent 65%, #000 105%) repeat scroll 0 0;
 }
 
 [dir="rtl"] .varbase-overlay-card .overlay-card-content {
-
   background: -moz-linear-gradient(to bottom, transparent 65%, #000 105%) repeat scroll 100% 0;
 }
 
 .varbase-overlay-card .overlay-card-content:hover,
- .varbase-overlay-card .overlay-card-content:focus,
- .varbase-overlay-card .overlay-card-content:active {
-  opacity: .9;
+.varbase-overlay-card .overlay-card-content:focus,
+.varbase-overlay-card .overlay-card-content:active {
+  opacity: 0.9;
 }
 
 .varbase-overlay-card .overlay-card-content > .field {
@@ -48,21 +40,21 @@
 }
 
 .varbase-overlay-card.anchor-all .card-title a {
-  color: #fff;
-  text-decoration: none;
   position: static;
+  text-decoration: none;
+  color: #fff;
 }
 
 .varbase-overlay-card.anchor-all .card-title a::before {
   position: absolute;
-  content: "";
+  z-index: 2;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   display: block;
   overflow: hidden;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  z-index: 2;
+  content: "";
 }
 
 .varbase-overlay-card.anchor-all a.card-link,
@@ -73,19 +65,19 @@
 .varbase-overlay-card.anchor-all a.card-link::before,
 .varbase-overlay-card.anchor-all div.card-link > a::before {
   position: absolute;
-  content: "";
+  z-index: 3;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   display: block;
   overflow: hidden;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  z-index: 3;
+  content: "";
 }
 
 .varbase-overlay-card.anchor-all a {
-  z-index: 4;
   position: relative;
+  z-index: 4;
 }
 
 .varbase-overlay-card.xlarge .overlay-card-content {

@@ -9,17 +9,16 @@
 }
 
 .thumb-wrapper::after {
-  content: "";
-  display: block;
-  margin: auto;
   position: absolute;
-  background-image: url(../../../../assets/images/play.svg);
+  top: 50%;
+  left: 50%;
+  display: block;
   width: 100px;
   height: 100px;
-  left: 50%;
-  top: 50%;
+  margin: auto;
+  content: "";
   transform: translate(-50%, -50%);
-
+  background-image: url(../../../../assets/images/play.svg);
 }
 
 .thumb-wrapper:hover {

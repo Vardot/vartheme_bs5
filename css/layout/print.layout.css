@@ -1,19 +1,11 @@
-/*!
- * Bootstrap  v5.3.7 (https://getbootstrap.com/)
- * Copyright 2011-2025 The Bootstrap Authors
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- */
-
 @media print {
-  /* Hide link's href URL in print. */
-
   a[href]:after {
     content: none !important;
   }
 
   *,
- *:before,
- *:after {
+  *:before,
+  *:after {
     color: #000 !important;
     background: transparent !important;
     box-shadow: none !important;

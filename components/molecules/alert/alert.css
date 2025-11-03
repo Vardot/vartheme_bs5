@@ -1,26 +1,21 @@
-/*!
- * Bootstrap  v5.3.7 (https://getbootstrap.com/)
- * Copyright 2011-2025 The Bootstrap Authors
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- */
-
 .alert {
   --bs-alert-bg: transparent;
-  --bs-alert-padding-x: .9375rem;
-  --bs-alert-padding-y: .9375rem;
+  --bs-alert-padding-x: 0.9375rem;
+  --bs-alert-padding-y: 0.9375rem;
   --bs-alert-margin-bottom: 1rem;
   --bs-alert-color: inherit;
   --bs-alert-border-color: transparent;
   --bs-alert-border: 0 solid var(--bs-alert-border-color);
-  --bs-alert-border-radius: .125rem;
+  --bs-alert-border-radius: 0.125rem;
   --bs-alert-link-color: inherit;
+
   position: relative;
-  padding: var(--bs-alert-padding-y) var(--bs-alert-padding-x);
   margin-bottom: var(--bs-alert-margin-bottom);
+  padding: var(--bs-alert-padding-y) var(--bs-alert-padding-x);
   color: var(--bs-alert-color);
-  background-color: var(--bs-alert-bg);
   border: var(--bs-alert-border);
   border-radius: var(--bs-alert-border-radius);
+  background-color: var(--bs-alert-bg);
 }
 
 .alert-heading {
@@ -28,33 +23,29 @@
 }
 
 .alert-link {
-  font-weight: 700;
   color: var(--bs-alert-link-color);
+  font-weight: 700;
 }
 
 .alert-dismissible {
-
   padding-right: 3rem;
 }
 
 [dir="rtl"] .alert-dismissible {
   padding-right: 0;
-
   padding-left: 3rem;
 }
 
 .alert-dismissible .btn-close {
   position: absolute;
-  top: 0;
-
-  right: 0;
   z-index: 2;
-  padding: 1.171875rem .9375rem;
+  top: 0;
+  right: 0;
+  padding: 1.171875rem 0.9375rem;
 }
 
 [dir="rtl"] .alert-dismissible .btn-close {
   right: auto;
-
   left: 0;
 }
 
@@ -116,11 +107,12 @@
 
 .alert-dismissible .btn-close {
   --bs-btn-close-opacity: 1;
-  mask-image: var(--bs-btn-close-bg) !important;
-  width: .75rem !important;
-  height: .75rem !important;
-  padding: .225rem !important;
+
+  width: 0.75rem !important;
+  height: 0.75rem !important;
   margin: 1.22rem !important;
+  padding: 0.225rem !important;
+  mask-image: var(--bs-btn-close-bg) !important;
 }
 
 .alert-primary.alert-dismissible .btn-close {

@@ -1,12 +1,6 @@
-/*!
- * Bootstrap  v5.3.7 (https://getbootstrap.com/)
- * Copyright 2011-2025 The Bootstrap Authors
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- */
-
 .pagination {
-  --bs-pagination-padding-x: .75rem;
-  --bs-pagination-padding-y: .375rem;
+  --bs-pagination-padding-x: 0.75rem;
+  --bs-pagination-padding-y: 0.375rem;
   --bs-pagination-font-size: 1.25rem;
   --bs-pagination-color: var(--bs-link-color);
   --bs-pagination-bg: transparent;
@@ -18,35 +12,38 @@
   --bs-pagination-hover-border-color: var(--bs-border-color);
   --bs-pagination-focus-color: var(--bs-dark-text-emphasis);
   --bs-pagination-focus-bg: transparent;
-  --bs-pagination-focus-box-shadow: 0 0 0 .25rem rgba(13, 110, 253, .25);
+  --bs-pagination-focus-box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
   --bs-pagination-active-color: var(--bs-dark-text-emphasis);
   --bs-pagination-active-bg: transparent;
   --bs-pagination-active-border-color: #0d6efd;
   --bs-pagination-disabled-color: var(--bs-secondary-color);
   --bs-pagination-disabled-bg: transparent;
   --bs-pagination-disabled-border-color: var(--bs-border-color);
-  display: flex;
 
+  display: flex;
   padding-left: 0;
   list-style: none;
 }
 
 [dir="rtl"] .pagination {
-  padding-left: 0;
-
   padding-right: 0;
+  padding-left: 0;
 }
 
 .page-link {
   position: relative;
   display: block;
   padding: var(--bs-pagination-padding-y) var(--bs-pagination-padding-x);
-  font-size: var(--bs-pagination-font-size);
-  color: var(--bs-pagination-color);
+  transition:
+    color 0.15s ease-in-out,
+    background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
   text-decoration: none;
-  background-color: var(--bs-pagination-bg);
+  color: var(--bs-pagination-color);
   border: var(--bs-pagination-border-width) solid var(--bs-pagination-border-color);
-  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  background-color: var(--bs-pagination-bg);
+  font-size: var(--bs-pagination-font-size);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -58,43 +55,41 @@
 .page-link:hover {
   z-index: 2;
   color: var(--bs-pagination-hover-color);
-  background-color: var(--bs-pagination-hover-bg);
   border-color: var(--bs-pagination-hover-border-color);
+  background-color: var(--bs-pagination-hover-bg);
 }
 
 .page-link:focus {
   z-index: 3;
   color: var(--bs-pagination-focus-color);
-  background-color: var(--bs-pagination-focus-bg);
   outline: 0;
+  background-color: var(--bs-pagination-focus-bg);
   box-shadow: var(--bs-pagination-focus-box-shadow);
 }
 
 .page-link.active,
- .active > .page-link {
+.active > .page-link {
   z-index: 3;
   color: var(--bs-pagination-active-color);
-  background-color: var(--bs-pagination-active-bg);
   border-color: var(--bs-pagination-active-border-color);
+  background-color: var(--bs-pagination-active-bg);
 }
 
 .page-link.disabled,
- .disabled > .page-link {
-  color: var(--bs-pagination-disabled-color);
+.disabled > .page-link {
   pointer-events: none;
-  background-color: var(--bs-pagination-disabled-bg);
+  color: var(--bs-pagination-disabled-color);
   border-color: var(--bs-pagination-disabled-border-color);
+  background-color: var(--bs-pagination-disabled-bg);
 }
 
 .page-item:not(:first-child) .page-link {
-
   margin-left: calc(-1 * var(--bs-border-width));
 }
 
 [dir="rtl"] .page-item:not(:first-child) .page-link {
-  margin-left: 0;
-
   margin-right: calc(-1 * var(--bs-border-width));
+  margin-left: 0;
 }
 
 .page-item .page-link {
@@ -103,15 +98,15 @@
 
 .pagination-lg {
   --bs-pagination-padding-x: 1.5rem;
-  --bs-pagination-padding-y: .75rem;
+  --bs-pagination-padding-y: 0.75rem;
   --bs-pagination-font-size: 1.125rem;
   --bs-pagination-border-radius: var(--bs-border-radius-lg);
 }
 
 .pagination-sm {
-  --bs-pagination-padding-x: .5rem;
-  --bs-pagination-padding-y: .25rem;
-  --bs-pagination-font-size: .875rem;
+  --bs-pagination-padding-x: 0.5rem;
+  --bs-pagination-padding-y: 0.25rem;
+  --bs-pagination-font-size: 0.875rem;
   --bs-pagination-border-radius: var(--bs-border-radius-sm);
 }
 
@@ -140,16 +135,16 @@
   color: var(--bs-link-hover-color);
 }
 
-[data-bs-theme=dark] .pagination .pager__item--previous a,
-[data-bs-theme=dark] .pagination .pager__item--next a {
+[data-bs-theme="dark"] .pagination .pager__item--previous a,
+[data-bs-theme="dark"] .pagination .pager__item--next a {
   color: var(--bs-light);
 }
 
 .pagination-sm .page-link {
-  font-size: .875rem;
+  font-size: 0.875rem;
 }
 
 .pagination-lg .page-link {
-  font-size: 1.25rem;
   padding: 1.125rem;
+  font-size: 1.25rem;
 }

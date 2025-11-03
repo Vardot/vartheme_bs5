@@ -1,28 +1,22 @@
-/*!
- * Bootstrap  v5.3.7 (https://getbootstrap.com/)
- * Copyright 2011-2025 The Bootstrap Authors
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- */
-
 .equal-height .row {
   display: flex;
   flex-wrap: wrap;
 }
 
-.equal-height .row > div[class*=col-] {
+.equal-height .row > div[class*="col-"] {
   display: flex;
   flex-direction: column;
 }
 
-.equal-height .row > div[class*=col-] article.node {
+.equal-height .row > div[class*="col-"] article.node {
   height: 100%;
 }
 
-.equal-height .row > div[class*=col-] article.node div.main-content {
+.equal-height .row > div[class*="col-"] article.node div.main-content {
   height: 100%;
 }
 
-.equal-height .row > div[class*=col-] article.node div.main-content div.card {
+.equal-height .row > div[class*="col-"] article.node div.main-content div.card {
   height: 100%;
 }
 
@@ -32,20 +26,20 @@
     flex-wrap: wrap;
   }
 
-  .equal-height-sm .row > div[class*=col-] {
+  .equal-height-sm .row > div[class*="col-"] {
     display: flex;
     flex-direction: column;
   }
 
-  .equal-height-sm .row > div[class*=col-] article.node {
+  .equal-height-sm .row > div[class*="col-"] article.node {
     height: 100%;
   }
 
-  .equal-height-sm .row > div[class*=col-] article.node div.main-content {
+  .equal-height-sm .row > div[class*="col-"] article.node div.main-content {
     height: 100%;
   }
 
-  .equal-height-sm .row > div[class*=col-] article.node div.main-content div.card {
+  .equal-height-sm .row > div[class*="col-"] article.node div.main-content div.card {
     height: 100%;
   }
 }
@@ -56,20 +50,20 @@
     flex-wrap: wrap;
   }
 
-  .equal-height-md .row > div[class*=col-] {
+  .equal-height-md .row > div[class*="col-"] {
     display: flex;
     flex-direction: column;
   }
 
-  .equal-height-md .row > div[class*=col-] article.node {
+  .equal-height-md .row > div[class*="col-"] article.node {
     height: 100%;
   }
 
-  .equal-height-md .row > div[class*=col-] article.node div.main-content {
+  .equal-height-md .row > div[class*="col-"] article.node div.main-content {
     height: 100%;
   }
 
-  .equal-height-md .row > div[class*=col-] article.node div.main-content div.card {
+  .equal-height-md .row > div[class*="col-"] article.node div.main-content div.card {
     height: 100%;
   }
 }
@@ -80,20 +74,20 @@
     flex-wrap: wrap;
   }
 
-  .equal-height-lg .row > div[class*=col-] {
+  .equal-height-lg .row > div[class*="col-"] {
     display: flex;
     flex-direction: column;
   }
 
-  .equal-height-lg .row > div[class*=col-] article.node {
+  .equal-height-lg .row > div[class*="col-"] article.node {
     height: 100%;
   }
 
-  .equal-height-lg .row > div[class*=col-] article.node div.main-content {
+  .equal-height-lg .row > div[class*="col-"] article.node div.main-content {
     height: 100%;
   }
 
-  .equal-height-lg .row > div[class*=col-] article.node div.main-content div.card {
+  .equal-height-lg .row > div[class*="col-"] article.node div.main-content div.card {
     height: 100%;
   }
 }
@@ -104,20 +98,20 @@
     flex-wrap: wrap;
   }
 
-  .equal-height-xl .row > div[class*=col-] {
+  .equal-height-xl .row > div[class*="col-"] {
     display: flex;
     flex-direction: column;
   }
 
-  .equal-height-xl .row > div[class*=col-] article.node {
+  .equal-height-xl .row > div[class*="col-"] article.node {
     height: 100%;
   }
 
-  .equal-height-xl .row > div[class*=col-] article.node div.main-content {
+  .equal-height-xl .row > div[class*="col-"] article.node div.main-content {
     height: 100%;
   }
 
-  .equal-height-xl .row > div[class*=col-] article.node div.main-content div.card {
+  .equal-height-xl .row > div[class*="col-"] article.node div.main-content div.card {
     height: 100%;
   }
 }

@@ -1,9 +1,3 @@
-/*!
- * Bootstrap  v5.3.7 (https://getbootstrap.com/)
- * Copyright 2011-2025 The Bootstrap Authors
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- */
-
 .navbar {
   height: 5.25rem;
   background: var(--bs-white);
@@ -15,87 +9,85 @@
 
 .navbar .navbar-nav .nav-item a.nav-link {
   position: relative;
-  font-weight: bold;
   color: var(--bs-gray-900);
+  font-weight: bold;
 }
 
 .navbar .navbar-nav .nav-item a.nav-link:hover,
- .navbar .navbar-nav .nav-item a.nav-link:focus,
- .navbar .navbar-nav .nav-item a.nav-link:active {
+.navbar .navbar-nav .nav-item a.nav-link:focus,
+.navbar .navbar-nav .nav-item a.nav-link:active {
   color: var(--bs-primary) !important;
 }
 
 .navbar .navbar-nav .nav-item a.nav-link:hover:after,
- .navbar .navbar-nav .nav-item a.nav-link:focus:after,
- .navbar .navbar-nav .nav-item a.nav-link:active:after {
-  content: "";
+.navbar .navbar-nav .nav-item a.nav-link:focus:after,
+.navbar .navbar-nav .nav-item a.nav-link:active:after {
   position: absolute;
-  transition: left .3s;
-
-  transition: right .3s;
-  left: 15% !important;
   right: 15% !important;
-  height: 1px;
   bottom: 0;
+  left: 15% !important;
+  height: 1px;
+  content: "";
+  transition: left 0.3s;
+  transition: right 0.3s;
   background-color: var(--bs-primary);
 }
 
 [dir="rtl"] .navbar .navbar-nav .nav-item a.nav-link:hover:after,
- [dir="rtl"] .navbar .navbar-nav .nav-item a.nav-link:focus:after,
- [dir="rtl"] .navbar .navbar-nav .nav-item a.nav-link:active:after {
-
-  transition: left .3s;
+[dir="rtl"] .navbar .navbar-nav .nav-item a.nav-link:focus:after,
+[dir="rtl"] .navbar .navbar-nav .nav-item a.nav-link:active:after {
+  transition: left 0.3s;
 }
 
 .navbar .navbar-nav .nav-item a.nav-link.is-active:after {
-  content: "";
   position: absolute;
-  left: 30%;
   right: 30%;
-  height: 1px;
   bottom: 0;
+  left: 30%;
+  height: 1px;
+  content: "";
   background-color: var(--bs-primary);
 }
 
-[data-bs-theme=dark] .navbar {
+[data-bs-theme="dark"] .navbar {
   background: rgb(7.8, 66, 151.8);
 }
 
-[data-bs-theme=dark] .navbar .navbar-nav .nav-item a.nav-link {
+[data-bs-theme="dark"] .navbar .navbar-nav .nav-item a.nav-link {
   position: relative;
   color: var(--bs-white);
 }
 
-[data-bs-theme=dark] .navbar .navbar-nav .nav-item a.nav-link:hover,
- [data-bs-theme=dark] .navbar .navbar-nav .nav-item a.nav-link:focus,
- [data-bs-theme=dark] .navbar .navbar-nav .nav-item a.nav-link:active {
+[data-bs-theme="dark"] .navbar .navbar-nav .nav-item a.nav-link:hover,
+[data-bs-theme="dark"] .navbar .navbar-nav .nav-item a.nav-link:focus,
+[data-bs-theme="dark"] .navbar .navbar-nav .nav-item a.nav-link:active {
   color: var(--bs-white) !important;
 }
 
-[data-bs-theme=dark] .navbar .navbar-nav .nav-item a.nav-link:hover:after,
- [data-bs-theme=dark] .navbar .navbar-nav .nav-item a.nav-link:focus:after,
- [data-bs-theme=dark] .navbar .navbar-nav .nav-item a.nav-link:active:after {
-  content: "";
-  left: 15% !important;
+[data-bs-theme="dark"] .navbar .navbar-nav .nav-item a.nav-link:hover:after,
+[data-bs-theme="dark"] .navbar .navbar-nav .nav-item a.nav-link:focus:after,
+[data-bs-theme="dark"] .navbar .navbar-nav .nav-item a.nav-link:active:after {
+  position: absolute;
   right: 15% !important;
-  position: absolute;
-  height: 1px;
   bottom: 0;
-  background-color: var(--bs-white);
-}
-
-[data-bs-theme=dark] .navbar .navbar-nav .nav-item a.nav-link.is-active {
-  border-bottom: 1px var(--bs-white);
-}
-
-[data-bs-theme=dark] .navbar .navbar-nav .nav-item a.nav-link.is-active:after {
+  left: 15% !important;
+  height: 1px;
   content: "";
-  position: absolute;
-  left: 30%;
-  right: 30%;
-  height: 1px;
-  bottom: 0;
   background-color: var(--bs-white);
+}
+
+[data-bs-theme="dark"] .navbar .navbar-nav .nav-item a.nav-link.is-active:after {
+  position: absolute;
+  right: 30%;
+  bottom: 0;
+  left: 30%;
+  height: 1px;
+  content: "";
+  background-color: var(--bs-white);
+}
+
+[data-bs-theme="dark"] .navbar .navbar-nav .nav-item a.nav-link.is-active {
+  border-bottom: 1px var(--bs-white);
 }
 
 .toolbar-oriented .toolbar-bar {
@@ -103,11 +95,9 @@
 }
 
 .toolbar-horizontal .toolbar-menu.nav {
-
   float: left;
 }
 
 [dir="rtl"] .toolbar-horizontal .toolbar-menu.nav {
-
   float: right;
 }

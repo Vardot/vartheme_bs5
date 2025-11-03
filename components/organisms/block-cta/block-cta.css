@@ -14,20 +14,20 @@
 
 .block-inline-blockvarbase-cta-block .field--name-field-buttons .btn {
   margin-top: 1.875rem;
-  margin-left: 3.125rem;
   margin-right: 3.125rem;
+  margin-left: 3.125rem;
 }
 
 @media (max-width: 767.98px) {
   .block-inline-blockvarbase-cta-block .field--name-field-buttons .btn {
-    margin-left: 1.5625rem;
     margin-right: 1.5625rem;
+    margin-left: 1.5625rem;
   }
 }
 
 @media (max-width: 575.98px) {
   .block-inline-blockvarbase-cta-block .field--name-field-buttons .btn {
-    margin-left: .8125rem;
-    margin-right: .8125rem;
+    margin-right: 0.8125rem;
+    margin-left: 0.8125rem;
   }
 }
