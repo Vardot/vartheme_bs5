@@ -1,0 +1,37 @@
+bootstrap_icons:
+  enabled: true
+  label: "Bootstrap icons"
+  description: "General Bootstrap Icons available within the Vartheme BS5 theme."
+  links:
+    - https://icons.getbootstrap.com/#usage
+  version: 1.13.1
+  license:
+    name: MIT
+    url: https://github.com/twbs/icons/tree/main?tab=MIT-1-ov-file
+    gpl-compatible: true
+  extractor: svg
+  config:
+    sources:
+      - images/icons/*.svg
+  # settings:
+  #   size:
+  #     title: "Size"
+  #     type: "integer"
+  #     default: 32
+  #   color:
+  #     title: "Color"
+  #     type: "string"
+  #     format: "color"
+  #   class:
+  #     title: "Class"
+  #     type: "string"
+  template: >-
+    <svg{{
+        attributes
+          .setAttribute('viewBox', attributes.viewBox|default('0 0 16 16'))
+          .setAttribute('width', size|default('32'))
+          .setAttribute('height', size|default('32'))
+          .setAttribute('aria-hidden', 'true')
+    }}>
+      {{ content }}
+    </svg>
