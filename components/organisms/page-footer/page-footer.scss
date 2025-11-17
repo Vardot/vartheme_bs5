@@ -77,21 +77,35 @@ footer.footer {
 }
 
 .social-media-menu-icons li.nav-item > a {
-  overflow: hidden;
-  text-indent: -9999px;  
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  height: auto;
+  color: var(--bs-white);
+  text-decoration: none;
+  font-size: 0 !important;
+  line-height: 0 !important;
+  letter-spacing: -9999px !important;
 
   &::before {
-    text-indent: 0;
-    float: left;
+    display: inline-block;
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--bs-white);
+    letter-spacing: normal;
   }
 
   &:hover,
   &:focus,
   &:active {
-    color: tint-color($primary, 80%);
     text-decoration: none;
 
-    &:after { 
+    &::before {
+      color: tint-color($primary, 80%);
+    }
+
+    &:after {
       display: none;
     }
   }

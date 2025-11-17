@@ -2977,7 +2977,6 @@ textarea.form-control-lg {
   background-position: center;
   background-size: contain;
   appearance: none;
-  -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
 }
 

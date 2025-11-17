@@ -84,23 +84,35 @@ footer.footer .footer-logo-image {
 }
 
 .social-media-menu-icons li.nav-item > a {
-  overflow: hidden;
-  text-indent: -9999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  height: auto;
+  text-decoration: none;
+  letter-spacing: -9999px !important;
+  color: var(--bs-white);
+  font-size: 0 !important;
+  line-height: 0 !important;
 }
 
 .social-media-menu-icons li.nav-item > a::before {
-  float: left;
-  text-indent: 0;
-}
-
-[dir="rtl"] .social-media-menu-icons li.nav-item > a::before {
-  float: right;
+  display: inline-block;
+  margin: 0;
+  letter-spacing: normal;
+  color: var(--bs-white);
+  font-size: 1.5rem;
 }
 
 .social-media-menu-icons li.nav-item > a:hover,
 .social-media-menu-icons li.nav-item > a:focus,
 .social-media-menu-icons li.nav-item > a:active {
   text-decoration: none;
+}
+
+.social-media-menu-icons li.nav-item > a:hover::before,
+.social-media-menu-icons li.nav-item > a:focus::before,
+.social-media-menu-icons li.nav-item > a:active::before {
   color: rgb(206.6, 226, 254.6);
 }
 
