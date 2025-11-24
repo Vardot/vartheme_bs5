@@ -4,14 +4,13 @@ status: experimental
 description: Link with Bootstrap Link helpers and utility classes
 props:
   type: object
-  required:
-    - url
   properties:
     url:
       type: string
       title: URL Link
       description: URL link.
       $ref: "ui-patterns://url"
+      default: ''
     color:
       type: string
       title: Color
