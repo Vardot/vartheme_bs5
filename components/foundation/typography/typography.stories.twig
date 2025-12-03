@@ -3,7 +3,7 @@
   "parameters": {
     "docs": {
       "description": {
-        "component": "Getting started page for Varbase Storybook"
+        "component": "Typography"
       }
     }
   }
@@ -13,7 +13,560 @@
   "name": "Typography"
 } %}
 
-<h1>Typography</h1>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      {{ include('vartheme_bs5:heading', {
+        html_tag: 'h1',
+        content: 'Typography'
+      }) }}
+    </div>
+  </div>
+
+  {# 01 - Typeface #}
+  <div class="row mt-5 pt-5">
+    <div class="col pt-5 border-top border-light-subtle">
+      {{ include('vartheme_bs5:heading', {
+        html_tag: 'h2',
+        content: '01 - Typeface'
+      }) }}
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col">
+      <div class="row g-5">
+        <div class="col-md-6">
+          <div class="mb-2">
+            <small>primary</small>
+          </div>
+          <p class="fs-4 mb-0">
+            <span class="fw-normal">Inter - Regular, </span>
+            <span class="fw-normal fst-italic">Italic</span>
+            <span class="fw-normal"> and </span>
+            <span class="fw-bold">Bold</span>
+          </p>
+        </div>
+        <div class="col-md-6">
+          <div class="mb-2">
+            <small>secondary</small>
+          </div>
+          <p class="fs-4 mb-0">Secondary Typeface - Weight</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {# 02 - Text Color Variables #}
+  <div class="row mt-5 pt-5">
+    <div class="col pt-5 border-top border-light-subtle">
+      {{ include('vartheme_bs5:heading', {
+        html_tag: 'h2',
+        content: '02 - Text Color Variables'
+      }) }}
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col">
+      <div class="row g-5">
+        <div class="col-md-6">
+          <div class="border-bottom d-flex align-items-center" style="min-height: 50px;">
+            <div style="width: 100px;">default</div>
+            <div class="px-3 py-1">
+              <strong>Text</strong>
+            </div>
+          </div>
+          <div class="border-bottom d-flex align-items-center" style="min-height: 50px;">
+            <div style="width: 100px;">light</div>
+            <div class="px-3 py-1 bg-dark">
+              <strong class="text-light">Text</strong>
+            </div>
+          </div>
+          <div class="border-bottom d-flex align-items-center" style="min-height: 50px;">
+            <div style="width: 100px;">primary</div>
+            <div class="px-3 py-1">
+              <strong class="text-primary">Text</strong>
+            </div>
+          </div>
+          <div class="border-bottom d-flex align-items-center" style="min-height: 50px;">
+            <div style="width: 100px;">success</div>
+            <div class="px-3 py-1">
+              <strong class="text-success">Text</strong>
+            </div>
+          </div>
+          <div class="border-bottom d-flex align-items-center" style="min-height: 50px;">
+            <div style="width: 100px;">warning</div>
+            <div class="px-3 py-1">
+              <strong class="text-warning">Text</strong>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="border-bottom d-flex align-items-center" style="min-height: 50px;">
+            <div style="width: 100px;">subtle</div>
+            <div class="px-3 py-1">
+              <strong class="text-muted">Text</strong>
+            </div>
+          </div>
+          <div class="border-bottom d-flex align-items-center" style="min-height: 50px;">
+            <div style="width: 100px;">white</div>
+            <div class="px-3 py-1 bg-dark">
+              <strong class="text-white">Text</strong>
+            </div>
+          </div>
+          <div class="border-bottom d-flex align-items-center" style="min-height: 50px;">
+            <div style="width: 100px;">secondary</div>
+            <div class="px-3 py-1">
+              <strong class="text-secondary">Text</strong>
+            </div>
+          </div>
+          <div class="border-bottom d-flex align-items-center" style="min-height: 50px;">
+            <div style="width: 100px;">danger</div>
+            <div class="px-3 py-1">
+              <strong class="text-danger">Text</strong>
+            </div>
+          </div>
+          <div class="border-bottom d-flex align-items-center" style="min-height: 50px;">
+            <div style="width: 100px;">info</div>
+            <div class="px-3 py-1">
+              <strong class="text-info">Text</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {# 03 - Headings #}
+  <div class="row mt-5 pt-5">
+    <div class="col pt-5 border-top border-light-subtle">
+      {{ include('vartheme_bs5:heading', {
+        html_tag: 'h2',
+        content: '03 - Headings'
+      }) }}
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col">
+      <div class="py-3">
+        <div class="row fw-bold mb-3">
+          <div class="col-2">Heading</div>
+          <div class="col-5">Desktop</div>
+          <div class="col-5">Mobile</div>
+        </div>
+        <hr class="my-3">
+        <div class="row align-items-center mb-3">
+          <div class="col-2"><small>Heading 1</small></div>
+          <div class="col-5">
+            {{ include('vartheme_bs5:heading', {
+              html_tag: 'h1',
+              heading_utility_classes: ['mb-0'],
+              content: 'Heading 1'
+            }) }}
+          </div>
+          <div class="col-5">
+            {{ include('vartheme_bs5:heading', {
+              html_tag: 'h1',
+              heading_utility_classes: ['mb-0', 'fs-1'],
+              content: 'Heading 1'
+            }) }}
+          </div>
+        </div>
+        <hr class="my-3">
+        <div class="row align-items-center mb-3">
+          <div class="col-2"><small>Heading 2</small></div>
+          <div class="col-5">
+            {{ include('vartheme_bs5:heading', {
+              html_tag: 'h2',
+              heading_utility_classes: ['mb-0'],
+              content: 'Heading 2'
+            }) }}
+          </div>
+          <div class="col-5">
+            {{ include('vartheme_bs5:heading', {
+              html_tag: 'h2',
+              heading_utility_classes: ['mb-0', 'fs-2'],
+              content: 'Heading 2'
+            }) }}
+          </div>
+        </div>
+        <hr class="my-3">
+        <div class="row align-items-center mb-3">
+          <div class="col-2"><small>Heading 3</small></div>
+          <div class="col-5">
+            {{ include('vartheme_bs5:heading', {
+              html_tag: 'h3',
+              heading_utility_classes: ['mb-0'],
+              content: 'Heading 3'
+            }) }}
+          </div>
+          <div class="col-5">
+            {{ include('vartheme_bs5:heading', {
+              html_tag: 'h3',
+              heading_utility_classes: ['mb-0', 'fs-3'],
+              content: 'Heading 3'
+            }) }}
+          </div>
+        </div>
+        <hr class="my-3">
+        <div class="row align-items-center mb-3">
+          <div class="col-2"><small>Heading 4</small></div>
+          <div class="col-5">
+            {{ include('vartheme_bs5:heading', {
+              html_tag: 'h4',
+              heading_utility_classes: ['mb-0'],
+              content: 'Heading 4'
+            }) }}
+          </div>
+          <div class="col-5">
+            {{ include('vartheme_bs5:heading', {
+              html_tag: 'h4',
+              heading_utility_classes: ['mb-0', 'fs-4'],
+              content: 'Heading 4'
+            }) }}
+          </div>
+        </div>
+        <hr class="my-3">
+        <div class="row align-items-center mb-3">
+          <div class="col-2"><small>Heading 5</small></div>
+          <div class="col-5">
+            {{ include('vartheme_bs5:heading', {
+              html_tag: 'h5',
+              heading_utility_classes: ['mb-0'],
+              content: 'Heading 5'
+            }) }}
+          </div>
+          <div class="col-5">
+            {{ include('vartheme_bs5:heading', {
+              html_tag: 'h5',
+              heading_utility_classes: ['mb-0', 'fs-5'],
+              content: 'Heading 5'
+            }) }}
+          </div>
+        </div>
+        <hr class="my-3">
+        <div class="row align-items-center mb-3">
+          <div class="col-2"><small>Heading 6</small></div>
+          <div class="col-5">
+            {{ include('vartheme_bs5:heading', {
+              html_tag: 'h6',
+              heading_utility_classes: ['mb-0'],
+              content: 'Heading 6'
+            }) }}
+          </div>
+          <div class="col-5">
+            {{ include('vartheme_bs5:heading', {
+              html_tag: 'h6',
+              heading_utility_classes: ['mb-0', 'fs-6'],
+              content: 'Heading 6'
+            }) }}
+          </div>
+        </div>
+        <hr class="my-3">
+      </div>
+    </div>
+  </div>
+
+  {# 04 - Display #}
+  <div class="row mt-5 pt-5">
+    <div class="col pt-5 border-top border-light-subtle">
+      {{ include('vartheme_bs5:heading', {
+        html_tag: 'h2',
+        content: '04 - Display'
+      }) }}
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col">
+      <div class="py-3">
+        <div class="row fw-bold mb-3">
+          <div class="col-2">Display</div>
+          <div class="col-5">Desktop</div>
+          <div class="col-5">Mobile</div>
+        </div>
+        <hr class="my-3">
+        <div class="row align-items-center mb-3">
+          <div class="col-2"><small>Display 1</small></div>
+          <div class="col-5">
+            {{ include('vartheme_bs5:heading', {
+              html_tag: 'h1',
+              display: 'display-1',
+              heading_utility_classes: ['mb-0'],
+              content: 'Display 1'
+            }) }}
+          </div>
+          <div class="col-5">
+            {{ include('vartheme_bs5:heading', {
+              html_tag: 'h1',
+              display: 'display-1',
+              heading_utility_classes: ['mb-0'],
+              content: 'Display 1'
+            }) }}
+          </div>
+        </div>
+        <hr class="my-3">
+        <div class="row align-items-center mb-3">
+          <div class="col-2"><small>Display 2</small></div>
+          <div class="col-5">
+            {{ include('vartheme_bs5:heading', {
+              html_tag: 'h1',
+              display: 'display-2',
+              heading_utility_classes: ['mb-0'],
+              content: 'Display 2'
+            }) }}
+          </div>
+          <div class="col-5">
+            {{ include('vartheme_bs5:heading', {
+              html_tag: 'h1',
+              display: 'display-2',
+              heading_utility_classes: ['mb-0'],
+              content: 'Display 2'
+            }) }}
+          </div>
+        </div>
+        <hr class="my-3">
+        <div class="row align-items-center mb-3">
+          <div class="col-2"><small>Display 3</small></div>
+          <div class="col-5">
+            {{ include('vartheme_bs5:heading', {
+              html_tag: 'h1',
+              display: 'display-3',
+              heading_utility_classes: ['mb-0'],
+              content: 'Display 3'
+            }) }}
+          </div>
+          <div class="col-5">
+            {{ include('vartheme_bs5:heading', {
+              html_tag: 'h1',
+              display: 'display-3',
+              heading_utility_classes: ['mb-0'],
+              content: 'Display 3'
+            }) }}
+          </div>
+        </div>
+        <hr class="my-3">
+        <div class="row align-items-center mb-3">
+          <div class="col-2"><small>Display 4</small></div>
+          <div class="col-5">
+            {{ include('vartheme_bs5:heading', {
+              html_tag: 'h1',
+              display: 'display-4',
+              heading_utility_classes: ['mb-0'],
+              content: 'Display 4'
+            }) }}
+          </div>
+          <div class="col-5">
+            {{ include('vartheme_bs5:heading', {
+              html_tag: 'h1',
+              display: 'display-4',
+              heading_utility_classes: ['mb-0'],
+              content: 'Display 4'
+            }) }}
+          </div>
+        </div>
+        <hr class="my-3">
+        <div class="row align-items-center mb-3">
+          <div class="col-2"><small>Display 5</small></div>
+          <div class="col-5">
+            {{ include('vartheme_bs5:heading', {
+              html_tag: 'h1',
+              display: 'display-5',
+              heading_utility_classes: ['mb-0'],
+              content: 'Display 5'
+            }) }}
+          </div>
+          <div class="col-5">
+            {{ include('vartheme_bs5:heading', {
+              html_tag: 'h1',
+              display: 'display-5',
+              heading_utility_classes: ['mb-0'],
+              content: 'Display 5'
+            }) }}
+          </div>
+        </div>
+        <hr class="my-3">
+        <div class="row align-items-center mb-3">
+          <div class="col-2"><small>Display 6</small></div>
+          <div class="col-5">
+            {{ include('vartheme_bs5:heading', {
+              html_tag: 'h1',
+              display: 'display-6',
+              heading_utility_classes: ['mb-0'],
+              content: 'Display 6'
+            }) }}
+          </div>
+          <div class="col-5">
+            {{ include('vartheme_bs5:heading', {
+              html_tag: 'h1',
+              display: 'display-6',
+              heading_utility_classes: ['mb-0'],
+              content: 'Display 6'
+            }) }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {# 05 - Body Styles #}
+  <div class="row mt-5 pt-5">
+    <div class="col pt-5 border-top border-light-subtle">
+      {{ include('vartheme_bs5:heading', {
+        html_tag: 'h2',
+        content: '05 - Body Styles'
+      }) }}
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col">
+      <div class="mb-4">
+        <div class="mb-2"><small>Default</small></div>
+        <p class="fs-5 lh-lg">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc non sapien lacinia, pellentesque elit sit amet, tempor orci.</p>
+      </div>
+
+      <div class="mb-4">
+        <div class="mb-2"><small>Bold</small></div>
+        <p class="fs-5 lh-lg fw-bold">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc non sapien lacinia, pellentesque elit sit amet, tempor orci.</p>
+      </div>
+
+      <div class="mb-4">
+        <div class="mb-2"><small>Inline-link</small></div>
+        <p class="fs-5 lh-lg">
+          {{ include('vartheme_bs5:link', {
+            url: '#',
+            link_utility_classes: ['text-decoration-underline'],
+            content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+          }) }}
+        </p>
+      </div>
+
+      <div class="mb-4">
+        <div class="mb-2"><small>Lead</small></div>
+        <p class="lead lh-lg">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc non sapien lacinia, pellentesque elit sit amet, tempor orci.</p>
+      </div>
+
+      <div class="mb-4">
+        <div class="mb-2"><small>Small</small></div>
+        <p class="small lh-lg">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc non sapien lacinia, pellentesque elit sit amet, tempor orci.</p>
+      </div>
+
+      {# List Examples #}
+      <div class="py-3">
+        <div class="row fw-bold mb-3">
+          <div class="col-2">List</div>
+          <div class="col-5">Desktop</div>
+          <div class="col-5">Mobile</div>
+        </div>
+        <hr class="my-3">
+
+        {# Ordered Lists #}
+        <div class="row mb-3">
+          <div class="col-2"><small>Ordered</small></div>
+          <div class="col-5">
+            <ol class="fs-5 lh-lg ps-4">
+              <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+              <li class="ps-4">Consectetur adipiscing elit.
+                <ol type="a" class="ps-4">
+                  <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                  <li>Consectetur adipiscing elit.</li>
+                </ol>
+              </li>
+              <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+            </ol>
+          </div>
+          <div class="col-5">
+            <ol class="fs-6 lh-base ps-3">
+              <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+              <li class="ps-4">Consectetur adipiscing elit.
+                <ol type="a" class="ps-4">
+                  <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                  <li>Consectetur adipiscing elit.</li>
+                </ol>
+              </li>
+              <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+            </ol>
+          </div>
+        </div>
+        <hr class="my-3">
+
+        {# Unordered Lists #}
+        <div class="row mb-3">
+          <div class="col-2"><small>Unordered</small></div>
+          <div class="col-5">
+            <ul class="fs-5 lh-lg ps-4">
+              <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+              <li class="ps-4">Consectetur adipiscing elit.
+                <ul class="ps-4">
+                  <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                  <li>Consectetur adipiscing elit.</li>
+                </ul>
+              </li>
+              <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+            </ul>
+          </div>
+          <div class="col-5">
+            <ul class="fs-6 lh-base ps-3">
+              <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+              <li class="ps-4">Consectetur adipiscing elit.
+                <ul class="ps-4">
+                  <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                  <li>Consectetur adipiscing elit.</li>
+                </ul>
+              </li>
+              <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {# 06 - Other #}
+  <div class="row mt-5 pt-5">
+    <div class="col pt-5 border-top border-light-subtle">
+      {{ include('vartheme_bs5:heading', {
+        html_tag: 'h3',
+        content: '06 - Other'
+      }) }}
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col">
+      <div class="mb-4">
+        <div class="mb-2"><small>Hero Title</small></div>
+        {{ include('vartheme_bs5:heading', {
+          html_tag: 'h1',
+          display: 'display-1',
+          heading_utility_classes: ['mb-0'],
+          content: 'Hero Title'
+        }) }}
+      </div>
+
+      <div class="mb-4">
+        <div class="mb-2"><small>Hero Body</small></div>
+        <p class="lead lh-lg">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc non sapien lacinia, pellentesque elit sit amet, tempor orci.</p>
+      </div>
+
+      <div class="mb-4">
+        <div class="mb-2"><small>Quote</small></div>
+        <blockquote class="border-start border-5 border-primary ps-4">
+          <p class="lead fw-bold fst-italic lh-lg mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc non sapien lacinia, pellentesque elit sit amet, tempor orci.</p>
+          <footer class="fs-6 lh-lg">Quotee Name and Position</footer>
+        </blockquote>
+      </div>
+
+      <div class="mb-4">
+        <div class="mb-2"><small>Date</small></div>
+        <p class="fs-5 lh-lg">16 March 2022</p>
+      </div>
+
+      <div class="mb-4">
+        <div class="mb-2"><small>Figure Numbers</small></div>
+        <p class="display-2 fw-bold mb-0">123456</p>
+      </div>
+    </div>
+  </div>
+
+</div>
 
 {% endstory %}
 
