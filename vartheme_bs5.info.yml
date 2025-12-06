@@ -1,6 +1,6 @@
 name: Vartheme BS5
 description: Starterkit theme for Varbase standard websites. Based on Bootstrap 5 framework using SASS.
-core_version_requirement: ~11.2.0
+core_version_requirement: ~11.3.0
 engine: twig
 type: theme
 base theme: false
