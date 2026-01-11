@@ -16,8 +16,6 @@
     "source": "http://cgit.drupalcode.org/vartheme_bs5"
   },
   "require": {
-    "drupal/core": "~11.3.0",
-    "vardot/varbase-patches": "~10.1.0",
-    "drupal/varbase_components": "~3.0.0"
+    "drupal/core": "~11.3.0"
   }
 }
