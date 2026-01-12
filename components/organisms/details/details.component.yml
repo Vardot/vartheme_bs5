@@ -12,14 +12,35 @@ props:
       type: object
       title: Attributes
       description: HTML attributes for the containing element.
-      $ref: 'ui-patterns://attributes'
+      properties:
+        class:
+          type: string
+          default: ''
+        id:
+          type: string
+          default: ''
+      additionalProperties: true
     summary_attributes:
       type: object
       title: Attributes
       description: HTML attributes for the summary element.
-      $ref: 'ui-patterns://attributes'
+      properties:
+        class:
+          type: string
+          default: ''
+        id:
+          type: string
+          default: ''
+      additionalProperties: true
     content_attributes:
       type: object
       title: Attributes
       description: HTML attributes for the content element.
-      $ref: 'ui-patterns://attributes'
+      properties:
+        class:
+          type: string
+          default: ''
+        id:
+          type: string
+          default: ''
+      additionalProperties: true

@@ -47,12 +47,26 @@ props:
       type: object
       title: Attributes
       description: HTML attributes to apply to the carousel main wrapper tag.
-      $ref: 'ui-patterns://attributes'
+      properties:
+        class:
+          type: string
+          default: ''
+        id:
+          type: string
+          default: ''
+      additionalProperties: true
     indicators_attributes:
       type: object
       title: Attributes
       description: HTML attributes to apply to the indicators wrapper tag.
-      $ref: 'ui-patterns://attributes'
+      properties:
+        class:
+          type: string
+          default: ''
+        id:
+          type: string
+          default: ''
+      additionalProperties: true
 libraryOverrides:
   dependencies:
     - vartheme_bs5/bs-carousel-script

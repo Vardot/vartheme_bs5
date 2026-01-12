@@ -52,14 +52,35 @@ props:
       type: object
       title: Attributes
       description: HTML attributes for the containing element.
-      $ref: 'ui-patterns://attributes'
+      properties:
+        class:
+          type: string
+          default: ''
+        id:
+          type: string
+          default: ''
+      additionalProperties: true
     title_attributes:
       type: object
       title: Title attributes
       description: HTML attributes for the label.
-      $ref: 'ui-patterns://attributes'
+      properties:
+        class:
+          type: string
+          default: ''
+        id:
+          type: string
+          default: ''
+      additionalProperties: true
     content_attributes:
       type: object
       title: Content attributes
       description: HTML attributes for the content.
-      $ref: 'ui-patterns://attributes'
+      properties:
+        class:
+          type: string
+          default: ''
+        id:
+          type: string
+          default: ''
+      additionalProperties: true

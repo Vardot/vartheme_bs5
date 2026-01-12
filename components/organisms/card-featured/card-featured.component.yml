@@ -181,32 +181,74 @@ props:
       type: object
       title: 'Card Attributes'
       description: 'HTML attributes for the card element.'
-      $ref: 'ui-patterns://attributes'
+      properties:
+        class:
+          type: string
+          default: ''
+        id:
+          type: string
+          default: ''
+      additionalProperties: true
     media_attributes:
       type: object
       title: 'Media Attributes'
       description: 'HTML attributes for the media element.'
-      $ref: 'ui-patterns://attributes'
+      properties:
+        class:
+          type: string
+          default: ''
+        id:
+          type: string
+          default: ''
+      additionalProperties: true
     content_attributes:
       type: object
       title: 'Content Attributes'
       description: 'HTML attributes for the content element.'
-      $ref: 'ui-patterns://attributes'
+      properties:
+        class:
+          type: string
+          default: ''
+        id:
+          type: string
+          default: ''
+      additionalProperties: true
     row_attributes:
       type: object
       title: 'Row Attributes'
       description: 'HTML attributes for the row element.'
-      $ref: 'ui-patterns://attributes'
+      properties:
+        class:
+          type: string
+          default: ''
+        id:
+          type: string
+          default: ''
+      additionalProperties: true
     start_column_attributes:
       type: object
       title: 'Start Column Attributes'
       description: 'HTML attributes for the start column element.'
-      $ref: 'ui-patterns://attributes'
+      properties:
+        class:
+          type: string
+          default: ''
+        id:
+          type: string
+          default: ''
+      additionalProperties: true
     end_column_attributes:
       type: object
       title: 'End Column Attributes'
       description: 'HTML attributes for the end column element.'
-      $ref: 'ui-patterns://attributes'
+      properties:
+        class:
+          type: string
+          default: ''
+        id:
+          type: string
+          default: ''
+      additionalProperties: true
 slots:
   media:
     title: 'Media'

@@ -78,12 +78,26 @@ props:
       type: object
       title: Attributes
       description: HTML attributes for the root accordion wrapper element.
-      $ref: 'ui-patterns://attributes'
+      properties:
+        class:
+          type: string
+          default: ''
+        id:
+          type: string
+          default: ''
+      additionalProperties: true
     title_attributes:
       type: object
       title: Attributes
       description: HTML attributes for the accordion title element.
-      $ref: 'ui-patterns://attributes'
+      properties:
+        class:
+          type: string
+          default: ''
+        id:
+          type: string
+          default: ''
+      additionalProperties: true
 libraryOverrides:
   dependencies:
     - vartheme_bs5/bs-collapse-script

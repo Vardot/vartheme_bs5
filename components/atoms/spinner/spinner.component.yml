@@ -61,12 +61,26 @@ props:
       type: object
       title: Attributes
       description: HTML attributes for the Spinner element.
-      $ref: 'ui-patterns://attributes'
+      properties:
+        class:
+          type: string
+          default: ''
+        id:
+          type: string
+          default: ''
+      additionalProperties: true
     spinner_status_attributes:
       type: object
       title: Spinner Status Attributes
       description: HTML attributes for the Spinner status element.
-      $ref: 'ui-patterns://attributes'
+      properties:
+        class:
+          type: string
+          default: ''
+        id:
+          type: string
+          default: ''
+      additionalProperties: true
 slots:
   content:
     type: string

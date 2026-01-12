@@ -6,10 +6,17 @@ props:
   type: object
   properties:
     attributes:
-      type: object
+      type: ["object", "string", "null"]
       title: Attributes
       description: HTML attributes for the containing element.
-      $ref: 'ui-patterns://attributes'
+      properties:
+        class:
+          type: string
+          default: ''
+        id:
+          type: string
+          default: ''
+      additionalProperties: true
 slots:
   branding:
     type: array

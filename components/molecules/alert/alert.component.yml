@@ -35,12 +35,26 @@ props:
       type: object
       title: Attributes
       description: HTML attributes for the alert element.
-      $ref: 'ui-patterns://attributes'
+      properties:
+        class:
+          type: string
+          default: ''
+        id:
+          type: string
+          default: ''
+      additionalProperties: true
     dismissible_attributes:
       type: object
       title: Dismiss close button attributes
       description: HTML attributes for the alert dismiss close button element.
-      $ref: 'ui-patterns://attributes'
+      properties:
+        class:
+          type: string
+          default: ''
+        id:
+          type: string
+          default: ''
+      additionalProperties: true
 slots:
   content:
     type: string

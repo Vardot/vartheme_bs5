@@ -8,9 +8,9 @@ props:
   properties:
     url:
       type: string
+      format: uri
       title: Optional URL
       description: An optional URL the image can be linked to.
-      $ref: "ui-patterns://url"
     width:
       type: string
       title: Original Width
@@ -36,27 +36,62 @@ props:
       type: object
       title: The Dynamic Responsive Image Item Attributes
       description: HTML attributes for the item wrapper element.
-      $ref: 'ui-patterns://attributes'
+      properties:
+        class:
+          type: string
+          default: ''
+        id:
+          type: string
+          default: ''
+      additionalProperties: true
     picture_source_attributes:
       type: object
       title: Picture Source Attributes
       description: HTML attributes for the picture source element.
-      $ref: 'ui-patterns://attributes'
+      properties:
+        class:
+          type: string
+          default: ''
+        id:
+          type: string
+          default: ''
+      additionalProperties: true
     picture_img_attributes:
       type: object
       title: Picture Image Attributes
       description: HTML attributes for the picture image element.
-      $ref: 'ui-patterns://attributes'
+      properties:
+        class:
+          type: string
+          default: ''
+        id:
+          type: string
+          default: ''
+      additionalProperties: true
     url_attributes:
       type: object
       title: URL Attributes
       description: HTML attributes for the URL element.
-      $ref: 'ui-patterns://attributes'
+      properties:
+        class:
+          type: string
+          default: ''
+        id:
+          type: string
+          default: ''
+      additionalProperties: true
     noscript_img_attributes:
       type: object
       title: No JavaScript Image Attributes
       description: HTML attributes for the No JavaScript Image element.
-      $ref: 'ui-patterns://attributes'
+      properties:
+        class:
+          type: string
+          default: ''
+        id:
+          type: string
+          default: ''
+      additionalProperties: true
 libraryOverrides:
   dependencies:
     - drimage_improved/drimage_improved

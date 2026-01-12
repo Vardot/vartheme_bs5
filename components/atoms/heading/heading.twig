@@ -27,10 +27,19 @@
 
 {% set classes = []|merge(display)|merge(heading_utility_classes) %}
 
-{% if not attributes %}
+{# Normalize attributes to a Drupal Attribute object.
+   SDC/Canvas may pass '' or a class string. #}
+{% if attributes is not defined or attributes is null %}
   {% set attributes = create_attribute() %}
+{% elseif attributes is not iterable %}
+  {% if attributes|default('') is empty %}
+    {% set attributes = create_attribute() %}
+  {% else %}
+    {% set attributes = create_attribute({'class': [attributes]}) %}
+  {% endif %}
 {% endif %}
-{%  set attributes = attributes.addClass(classes) %}
+
+{% set attributes = attributes.addClass(classes) %}
 
 {% apply spaceless %}
   <{{ html_tag }}{{ attributes }}>

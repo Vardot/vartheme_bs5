@@ -27,6 +27,18 @@
   ]|merge(block_heading_utility_classes)
 %}
 
+{# Normalize attributes to a Drupal Attribute object.
+   SDC/Canvas may pass '' or a class string. #}
+{% if attributes is not defined or attributes is null %}
+  {% set attributes = create_attribute() %}
+{% elseif attributes is not iterable %}
+  {% if attributes|default('') is empty %}
+    {% set attributes = create_attribute() %}
+  {% else %}
+    {% set attributes = create_attribute({'class': [attributes]}) %}
+  {% endif %}
+{% endif %}
+
 <div{{ attributes.addClass(classes) }}>
   {{ title_prefix }}
   {% if heading_text|render|striptags|trim %}

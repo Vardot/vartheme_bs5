@@ -32,13 +32,16 @@
   ]|merge(page_title_utility_classes)
 %}
 
+{% set _attributes = (attributes is defined and attributes is iterable) ? attributes : (attributes is defined and attributes is not iterable and attributes is not empty ? create_attribute({'class': [attributes]}) : create_attribute()) %}
+{% set _title_attributes = (title_attributes is defined and title_attributes is iterable) ? title_attributes : (title_attributes is defined and title_attributes is not iterable and title_attributes is not empty ? create_attribute({'class': [title_attributes]}) : create_attribute()) %}
+
 {{ title_prefix }}
 {% if title|render|striptags|trim %}
   {% include 'vartheme_bs5:heading' with {
       html_tag: 'h1',
       content: title,
       display: display,
-      attributes: title_attributes,
+      attributes: _title_attributes,
       page_title_utility_classes: classes
     } only
   %}

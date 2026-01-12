@@ -5,4 +5,32 @@ description: Icons
 group: Meta
 props:
   type: object
-  properties: {}
+  required:
+    - icon
+    - icon_size
+  properties:
+    icon:
+      type: string
+      title: Icon name
+      description: 'The ID of an icon from the <a href="https://phosphoricons.com" target="_blank">Phosphor Icons</a> library.'
+      default: "rocket"
+      examples:
+        - "rocket"
+    icon_size:
+      type: string
+      title: Icon size
+      enum:
+        - extra-small
+        - small
+        - medium
+        - large
+        - extra-large
+      meta:enum:
+        extra-small: Extra small
+        small: Small
+        medium: Medium
+        large: Large
+        extra-large: Extra large
+      default: small
+      examples:
+        - small

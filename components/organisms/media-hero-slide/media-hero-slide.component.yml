@@ -6,9 +6,19 @@ props:
   type: object
   properties:
     node:
-      type: Drupal\node\Entity\Node
+      type: object
       title: Node
       description: The node entity with limited access to object properties and methods.
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        type:
+          type: string
+      required:
+        - id
+        - title
     label:
       type: string
       title: Label
@@ -37,7 +47,6 @@ props:
       type: string
       title: URL
       description: Direct URL of the current node.
-      $ref: "ui-patterns://url"
     display_submitted:
       type: boolean
       title: Display Submitted
@@ -46,22 +55,50 @@ props:
       type: object
       title: Attributes
       description: HTML attributes for the containing element.
-      $ref: 'ui-patterns://attributes'
+      properties:
+        class:
+          type: string
+          default: ''
+        id:
+          type: string
+          default: ''
+      additionalProperties: true
     title_attributes:
       type: object
       title: Title Attributes
       description: Same as attributes, except applied to the main title tag that appears in the template.
-      $ref: 'ui-patterns://attributes'
+      properties:
+        class:
+          type: string
+          default: ''
+        id:
+          type: string
+          default: ''
+      additionalProperties: true
     content_attributes:
       type: object
       title: Content Attributes
       description: Same as attributes, except applied to the main content tag that appears in the template.
-      $ref: 'ui-patterns://attributes'
+      properties:
+        class:
+          type: string
+          default: ''
+        id:
+          type: string
+          default: ''
+      additionalProperties: true
     author_attributes:
       type: object
       title: Author Attributes
       description: Same as attributes, except applied to the author of the node tag that appears in the template.
-      $ref: 'ui-patterns://attributes'
+      properties:
+        class:
+          type: string
+          default: ''
+        id:
+          type: string
+          default: ''
+      additionalProperties: true
     title_prefix:
       type: array
       title: Title Prefix

@@ -29,7 +29,14 @@ props:
       type: object
       title: Attributes
       description: HTML attributes for the close button element.
-      $ref: 'ui-patterns://attributes'
+      properties:
+        class:
+          type: string
+          default: ''
+        id:
+          type: string
+          default: ''
+      additionalProperties: true
 libraryOverrides:
   dependencies:
     - vartheme_bs5/bs-button-script

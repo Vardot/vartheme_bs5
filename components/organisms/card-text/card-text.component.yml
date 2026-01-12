@@ -54,12 +54,26 @@ props:
       type: object
       title: 'Card attributes'
       description: 'HTML attributes for the Card element.'
-      $ref: 'ui-patterns://attributes'
+      properties:
+        class:
+          type: string
+          default: ''
+        id:
+          type: string
+          default: ''
+      additionalProperties: true
     content_attributes:
       type: object
       title: 'Content Attributes'
       description: 'HTML attributes for the content element.'
-      $ref: 'ui-patterns://attributes'
+      properties:
+        class:
+          type: string
+          default: ''
+        id:
+          type: string
+          default: ''
+      additionalProperties: true
 slots:
   content:
     title: 'Card Content'

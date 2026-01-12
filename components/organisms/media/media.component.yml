@@ -34,12 +34,26 @@ props:
       type: object
       title: Attributes
       description: HTML attributes for the containing element.
-      $ref: 'ui-patterns://attributes'
+      properties:
+        class:
+          type: string
+          default: ''
+        id:
+          type: string
+          default: ''
+      additionalProperties: true
     title_attributes:
       type: object
       title: Title Attributes
       description: Same as attributes, except applied to the main title tag that appears in the template.
-      $ref: 'ui-patterns://attributes'
+      properties:
+        class:
+          type: string
+          default: ''
+        id:
+          type: string
+          default: ''
+      additionalProperties: true
 slots:
   content:
     title: 'Content'
