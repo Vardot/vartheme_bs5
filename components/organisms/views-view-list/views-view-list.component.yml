@@ -33,17 +33,9 @@ props:
         type: 'string'
       description: Use to add extra Bootstrap utility classes or custom CSS classes over to list items.
     attributes:
-      type: object
+      type: Drupal\Core\Template\Attribute
       title: Attributes
       description: "HTML attributes to apply to the list."
-      properties:
-        class:
-          type: string
-          default: ''
-        id:
-          type: string
-          default: ''
-      additionalProperties: true
 slots:
   rows:
     title: Rows

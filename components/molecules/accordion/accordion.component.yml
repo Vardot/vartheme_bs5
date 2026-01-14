@@ -75,29 +75,13 @@ props:
         type: 'string'
       description: An array of utility classes that can be used to add extra Bootstrap utility classes or custom classes to the title element.
     attributes:
-      type: object
+      type: Drupal\Core\Template\Attribute
       title: Attributes
       description: HTML attributes for the root accordion wrapper element.
-      properties:
-        class:
-          type: string
-          default: ''
-        id:
-          type: string
-          default: ''
-      additionalProperties: true
     title_attributes:
-      type: object
+      type: Drupal\Core\Template\Attribute
       title: Attributes
       description: HTML attributes for the accordion title element.
-      properties:
-        class:
-          type: string
-          default: ''
-        id:
-          type: string
-          default: ''
-      additionalProperties: true
 libraryOverrides:
   dependencies:
     - vartheme_bs5/bs-collapse-script

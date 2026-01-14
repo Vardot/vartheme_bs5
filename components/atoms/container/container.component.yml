@@ -17,14 +17,6 @@ props:
       title: children
       description: children for the container.
     attributes:
-      type: object
+      type: Drupal\Core\Template\Attribute
       title: Attributes
       description: HTML attributes for the containing element.
-      properties:
-        class:
-          type: string
-          default: ''
-        id:
-          type: string
-          default: ''
-      additionalProperties: true

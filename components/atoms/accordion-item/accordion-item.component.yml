@@ -73,65 +73,25 @@ props:
         type: 'string'
       description: An array of utility classes that can be used to add extra Bootstrap utility classes or custom classes to the accordion body collapse wrapper.
     attributes:
-      type: object
+      type: Drupal\Core\Template\Attribute
       title: Attributes
       description: HTML attributes for the root accordion item wrapper element.
-      properties:
-        class:
-          type: string
-          default: ''
-        id:
-          type: string
-          default: ''
-      additionalProperties: true
     header_attributes:
-      type: object
+      type: Drupal\Core\Template\Attribute
       title: Header Attributes
       description: HTML attributes for the accordion header wrapper element.
-      properties:
-        class:
-          type: string
-          default: ''
-        id:
-          type: string
-          default: ''
-      additionalProperties: true
     body_attributes:
-      type: object
+      type: Drupal\Core\Template\Attribute
       title: Body Attributes
       description: HTML attributes for the accordion body wrapper element.
-      properties:
-        class:
-          type: string
-          default: ''
-        id:
-          type: string
-          default: ''
-      additionalProperties: true
     button_attributes:
-      type: object
+      type: Drupal\Core\Template\Attribute
       title: Header Button Attributes
       description: HTML attributes for the accordion header button element.
-      properties:
-        class:
-          type: string
-          default: ''
-        id:
-          type: string
-          default: ''
-      additionalProperties: true
     collapse_attributes:
-      type: object
+      type: Drupal\Core\Template\Attribute
       title: Collapse Attributes
       description: HTML attributes for the accordion collapse wrapper element for the accordion body.
-      properties:
-        class:
-          type: string
-          default: ''
-        id:
-          type: string
-          default: ''
-      additionalProperties: true
 slots:
   header:
     type: string

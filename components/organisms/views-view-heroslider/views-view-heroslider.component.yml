@@ -91,41 +91,17 @@ props:
         type: 'string'
       description: 'An array of utility classes. Use to add extra Bootstrap utility classes or custom CSS classes over to the indicators element.'
     attributes:
-      type: object
+      type: Drupal\Core\Template\Attribute
       title: 'Attributes'
       description: 'HTML attributes to apply to the hero slider main wrapper tag.'
-      properties:
-        class:
-          type: string
-          default: ''
-        id:
-          type: string
-          default: ''
-      additionalProperties: true
     controls_attributes:
-      type: object
+      type: Drupal\Core\Template\Attribute
       title: Controls Attributes
       description: 'HTML attributes to apply to the controls wrapper tag.'
-      properties:
-        class:
-          type: string
-          default: ''
-        id:
-          type: string
-          default: ''
-      additionalProperties: true
     indicators_attributes:
-      type: object
+      type: Drupal\Core\Template\Attribute
       title: 'Indicators Attributes'
       description: 'HTML attributes to apply to the indicators wrapper tag.'
-      properties:
-        class:
-          type: string
-          default: ''
-        id:
-          type: string
-          default: ''
-      additionalProperties: true
 slots:
   rows:
     type: array

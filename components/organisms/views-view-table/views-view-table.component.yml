@@ -137,55 +137,23 @@ props:
         type: 'string'
       description: Use to add extra Bootstrap utility classes or custom CSS classes over to the foot of the table element.
     attributes:
-      type: object
+      type: Drupal\Core\Template\Attribute
       title: Attributes
       description: "HTML attributes to apply to the table tag."
-      properties:
-        class:
-          type: string
-          default: ''
-        id:
-          type: string
-          default: ''
-      additionalProperties: true
     thead_attributes:
-      type: object
+      type: Drupal\Core\Template\Attribute
       title: Table Header attributes
       description: "HTML attributes to apply to the thead tag."
-      properties:
-        class:
-          type: string
-          default: ''
-        id:
-          type: string
-          default: ''
-      additionalProperties: true
       default: {}
     tbody_attributes:
-      type: object
+      type: Drupal\Core\Template\Attribute
       title: Table Body attributes
       description: "HTML attributes to apply to the tbody tag."
-      properties:
-        class:
-          type: string
-          default: ''
-        id:
-          type: string
-          default: ''
-      additionalProperties: true
       default: {}
     tfoot_attributes:
-      type: object
+      type: Drupal\Core\Template\Attribute
       title: Table Footer attributes
       description: "HTML attributes to apply to the tfoot tag."
-      properties:
-        class:
-          type: string
-          default: ''
-        id:
-          type: string
-          default: ''
-      additionalProperties: true
       default: {}
 slots:
   rows:

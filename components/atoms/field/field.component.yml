@@ -10,26 +10,10 @@ props:
       title: Label display
       description: Display the label of the field. 
     title_attributes:
-      type: object
+      type: Drupal\Core\Template\Attribute
       title: Title Attributes
       description: HTML attributes for the title element.
-      properties:
-        class:
-          type: string
-          default: ''
-        id:
-          type: string
-          default: ''
-      additionalProperties: true
     attributes:
-      type: object
+      type: Drupal\Core\Template\Attribute
       title: Attributes
       description: HTML attributes for the containing element.
-      properties:
-        class:
-          type: string
-          default: ''
-        id:
-          type: string
-          default: ''
-      additionalProperties: true

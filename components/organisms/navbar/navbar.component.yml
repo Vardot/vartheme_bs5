@@ -68,13 +68,9 @@ props:
         type: string
       default: []
     attributes:
-      type:
-      - object
-      - string
-      - 'null'
+      type: Drupal\Core\Template\Attribute
       title: Attributes
       description: HTML attributes for the navbar element
-      additionalProperties: true
 slots:
   branding:
     title: Branding

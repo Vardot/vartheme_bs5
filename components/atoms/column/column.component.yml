@@ -10,14 +10,6 @@ props:
       title: Content
       description: Content for the column.
     attributes:
-      type: object
+      type: Drupal\Core\Template\Attribute
       title: Attributes
       description: HTML attributes for the containing element.
-      properties:
-        class:
-          type: string
-          default: ''
-        id:
-          type: string
-          default: ''
-      additionalProperties: true

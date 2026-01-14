@@ -12,17 +12,9 @@ props:
         - tabs
         - pills
     attributes:
-      type: object
+      type: Drupal\Core\Template\Attribute
       title: Attributes
       description: HTML attributes for the containing element.
-      properties:
-        class:
-          type: string
-          default: ''
-        id:
-          type: string
-          default: ''
-      additionalProperties: true
 libraryOverrides:
   dependencies:
     - vartheme_bs5/bs-tab-script

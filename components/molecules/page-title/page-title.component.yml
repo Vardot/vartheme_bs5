@@ -31,29 +31,13 @@ props:
         type: 'string'
       description: An array of utility classes. Use to add extra Bootstrap utility classes or custom CSS classes over to this to this component.
     attributes:
-      type: [object, string, 'null']
+      type: Drupal\Core\Template\Attribute
       title: Attributes
       description: HTML attributes to apply to the wrapper element.
-      properties:
-        class:
-          type: string
-          default: ''
-        id:
-          type: string
-          default: ''
-      additionalProperties: true
     title_attributes:
-      type: [object, string, 'null']
+      type: Drupal\Core\Template\Attribute
       title: Attributes
       description: HTML attributes to apply to the title element.
-      properties:
-        class:
-          type: string
-          default: ''
-        id:
-          type: string
-          default: ''
-      additionalProperties: true
     title_prefix:
       type: array
     title_suffix:

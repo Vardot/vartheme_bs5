@@ -16,29 +16,13 @@ props:
       type: string
       title: HTML tag
     attributes:
-      type: object
+      type: Drupal\Core\Template\Attribute
       title: Attributes
       description: HTML attributes for the containing element.
-      properties:
-        class:
-          type: string
-          default: ''
-        id:
-          type: string
-          default: ''
-      additionalProperties: true
     title_attributes:
-      type: object
+      type: Drupal\Core\Template\Attribute
       title: Title Attributes
       description: HTML attributes for the title element.
-      properties:
-        class:
-          type: string
-          default: ''
-        id:
-          type: string
-          default: ''
-      additionalProperties: true
     title_prefix:
       type: array
       title: title prefix

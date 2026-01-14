@@ -152,14 +152,6 @@ props:
         type: 'string'
       description: 'Use to add extra Bootstrap utility classes for the column `col`. E.g. `gy-4 g-sm-4` or `mb-4`. ( Do not add `col` or `col-[*]`).'
     attributes:
-      type: object
+      type: Drupal\Core\Template\Attribute
       title: Attributes
       description: HTML attributes for the containing element.
-      properties:
-        class:
-          type: string
-          default: ''
-        id:
-          type: string
-          default: ''
-      additionalProperties: true

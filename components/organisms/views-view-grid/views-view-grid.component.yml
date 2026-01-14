@@ -171,17 +171,9 @@ props:
         "col-xxl-12" : "12 (1 column per row)"
       x-translation-context: Column width of items at xxl breakpoint
     attributes:
-      type: object
+      type: Drupal\Core\Template\Attribute
       title: Attributes
       description: HTML attributes for the containing element.
-      properties:
-        class:
-          type: string
-          default: ''
-        id:
-          type: string
-          default: ''
-      additionalProperties: true
 slots:
   rows:
     type: array
