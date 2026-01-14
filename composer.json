@@ -16,6 +16,8 @@
     "source": "http://cgit.drupalcode.org/vartheme_bs5"
   },
   "require": {
-    "drupal/core": "~11.3.0"
+    "drupal/core": "~11.3.0",
+    "drupal/canvas": "~1",
+    "drupal/cva": "^1"
   }
 }
