@@ -1,0 +1,83 @@
+$schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: Blockquote
+group: Base
+status: stable
+
+props:
+  type: object
+  required:
+    - text
+  properties:
+    text:
+      type: string
+      title: Quotation text
+      examples:
+        - "“To confine our attention to terrestrial matters would be to limit the human spirit.”"
+
+    cite_name:
+      type: string
+      title: Citation name
+      examples:
+        - "Isiah Julio"
+
+    cite_text:
+      type: string
+      title: Citation text
+      default: "Engineer, Technical Services"
+      examples:
+        - "Engineer, Technical Services"
+
+    cite_url:
+      type: string
+      title: Citation link
+      format: uri
+
+    align:
+      type: string
+      title: Alignment
+      enum:
+        - start
+        - center
+        - end
+      default: start
+      examples:
+        - start
+
+    size:
+      type: string
+      title: Text size
+      enum:
+        - sm
+        - md
+        - lg
+      default: lg
+      examples:
+        - lg
+
+    icon:
+      type: boolean
+      title: Show quote icon
+      default: true
+      examples:
+        - true
+        - false
+
+    radius:
+      type: string
+      title: Border radius
+      enum:
+        - default
+        - sm
+        - lg
+        - pill
+        - none
+      default: default
+      examples:
+        - default
+
+    classes:
+      type: string
+      title: Extra CSS classes
+      default: ""
+      examples:
+        - "bg-body-tertiary p-4"

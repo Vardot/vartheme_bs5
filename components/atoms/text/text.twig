@@ -1,5 +1,41 @@
+{# Bootstrap Text component (Canvas-friendly, no attributes prop) #}
 
-{% set text_utility_classes = text_utility_classes ? text_utility_classes : [] %}
-{% set classes = []|merge(text_utility_classes) %}
+{% set size_value = text_size|default('default') %}
+{% set color_value = text_color|default('default') %}
 
-<p{{ attributes.addClass(classes) }}>{{ content }}</p>
+{% set classes = [] %}
+
+{# Font size (Bootstrap fs-1..fs-6). default = no class #}
+{% if size_value != 'default' %}
+  {% set classes = classes|merge([size_value]) %}
+{% endif %}
+
+{# Text color mapping #}
+{% set color_map = {
+  default: 'text-body',
+  primary: 'text-primary',
+  secondary: 'text-secondary',
+  success: 'text-success',
+  danger: 'text-danger',
+  warning: 'text-warning',
+  info: 'text-info',
+  muted: 'text-muted',
+  dark: 'text-dark',
+  white: 'text-white'
+} %}
+{% set classes = classes|merge([color_map[color_value]|default('text-body')]) %}
+
+{# Optional extra classes #}
+{% if extra_classes|default('')|trim %}
+  {% set classes = classes|merge(extra_classes|trim|split(' ')) %}
+{% endif %}
+
+{# Build attributes internally (Canvas-safe) #}
+{% set attrs = create_attribute().addClass(classes) %}
+{% if id|default('')|trim %}
+  {% set attrs = attrs.setAttribute('id', id|trim) %}
+{% endif %}
+
+<div{{ attrs }}>
+  {{ text|default('<p>Lorem ipsum dolor sit amet.</p>')|raw }}
+</div>

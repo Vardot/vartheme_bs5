@@ -1,0 +1,164 @@
+{#
+  Bootstrap 5 Card (SDC)
+
+  Backwards compatible with previous props:
+  - orientation: vertical|horizontal
+  - style: framed|full
+  - background: default|accent|primary|inverted
+  - heading_text, text, url, media, level, is_text_centered
+
+  New options:
+  - id, extra_classes
+  - shadow: none|sm|default|lg
+  - border: default|none|{color}
+  - rounded: default|0|1|2|3|pill
+#}
+
+{% set card_orientation = orientation|default('vertical') %}
+{% set card_style = style|default('framed') %}
+{% set bg = background|default('default') %}
+{% set has_link = url is not empty and url != 'No URL' %}
+{% set centered = is_text_centered|default(false) %}
+{% set has_media = media is defined and media and media.src is defined and media.src is not empty %}
+
+{# Map theme background to Bootstrap utilities #}
+{% set bg_map = {
+  'default': 'bg-body',
+  'accent': 'bg-light',
+  'primary': 'bg-primary text-white',
+  'inverted': 'bg-dark text-white'
+} %}
+
+{% set shadow_map = {
+  'none': '',
+  'sm': 'shadow-sm',
+  'default': 'shadow',
+  'lg': 'shadow-lg'
+} %}
+
+{% set border_value = border|default('default') %}
+{% set border_class = '' %}
+{% if border_value == 'none' %}
+  {% set border_class = 'border-0' %}
+{% elseif border_value == 'default' %}
+  {% set border_class = '' %}
+{% else %}
+  {% set border_class = 'border border-' ~ border_value %}
+{% endif %}
+
+{% set rounded_value = rounded|default('default') %}
+{% set rounded_map = {
+  'default': '',
+  '0': 'rounded-0',
+  '1': 'rounded-1',
+  '2': 'rounded-2',
+  '3': 'rounded-3',
+  'pill': 'rounded-pill'
+} %}
+
+{# overflow-hidden ensures media respects rounded corners consistently #}
+{% set classes = ['card', 'h-100', 'overflow-hidden'] %}
+{% set classes = classes|merge([bg_map[bg]|default('bg-body')]) %}
+{% if shadow_map[shadow|default('default')]|default('') %}
+  {% set classes = classes|merge([shadow_map[shadow|default('default')]]) %}
+{% endif %}
+{% if border_class %}
+  {% set classes = classes|merge([border_class]) %}
+{% endif %}
+{% if rounded_map[rounded_value]|default('') %}
+  {% set classes = classes|merge([rounded_map[rounded_value]]) %}
+{% endif %}
+{% if has_link %}
+  {% set classes = classes|merge(['position-relative']) %}
+{% endif %}
+{% if extra_classes|default('')|trim %}
+  {% set classes = classes|merge(extra_classes|trim|split(' ')) %}
+{% endif %}
+
+{% set attrs = create_attribute().addClass(classes) %}
+{% if id|default('')|trim %}
+  {% set attrs = attrs.setAttribute('id', id|trim) %}
+{% endif %}
+
+{# Horizontal layout uses Bootstrap grid within the card #}
+{% if card_orientation == 'horizontal' %}
+  <div{{ attrs }}>
+    <div class="row g-0 h-100">
+      {% if has_media %}
+        <div class="col-md-5">
+          {# Unique block name to avoid duplicate block definition errors. #}
+          {% block media_horizontal %}
+            {% include 'canvas:image' ignore missing with {
+              src: media.src,
+              alt: media.alt,
+              class: 'img-fluid h-100 w-100 object-fit-cover',
+              width: media.width,
+              height: media.height,
+              sizes: '50vw'
+            } only %}
+          {% endblock %}
+        </div>
+      {% endif %}
+
+      <div class="col-md-7">
+        <div class="card-body {{ card_style == 'full' ? 'p-4 p-lg-5' : 'p-3 p-md-4' }} {{ centered ? 'text-center' : 'text-start' }}">
+          {% if heading_text is not empty %}
+            {% set heading_level = level|default(3) %}
+            {% if heading_level == 2 %}
+              <h2 class="card-title h5 mb-2">{{ heading_text }}</h2>
+            {% elseif heading_level == 4 %}
+              <h4 class="card-title h6 mb-2">{{ heading_text }}</h4>
+            {% else %}
+              <h3 class="card-title h5 mb-2">{{ heading_text }}</h3>
+            {% endif %}
+          {% endif %}
+
+          {% if text is not empty %}
+            <p class="card-text mb-0">{{ text }}</p>
+          {% endif %}
+
+          {% if has_link %}
+            <a href="{{ url }}" class="stretched-link" aria-label="{{ heading_text|default('Open') }}"></a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% else %}
+  <div{{ attrs }}>
+    {% if has_media %}
+      {# Unique block name to avoid duplicate block definition errors. #}
+      {% block media_vertical %}
+        {% include 'canvas:image' ignore missing with {
+          src: media.src,
+          alt: media.alt,
+          class: 'card-img-top object-fit-cover',
+          width: media.width,
+          height: media.height,
+          sizes: '100vw'
+        } only %}
+      {% endblock %}
+    {% endif %}
+
+    <div class="card-body {{ card_style == 'full' ? 'p-4 p-lg-5' : 'p-3 p-md-4' }} {{ centered ? 'text-center' : 'text-start' }}">
+      {% if heading_text is not empty %}
+        {% set heading_level = level|default(3) %}
+        {% if heading_level == 2 %}
+          <h2 class="card-title h5 mb-2">{{ heading_text }}</h2>
+        {% elseif heading_level == 4 %}
+          <h4 class="card-title h6 mb-2">{{ heading_text }}</h4>
+        {% else %}
+          <h3 class="card-title h5 mb-2">{{ heading_text }}</h3>
+        {% endif %}
+      {% endif %}
+
+      {% if text is not empty %}
+        <p class="card-text mb-0">{{ text }}</p>
+      {% endif %}
+
+      {% if has_link %}
+        <a href="{{ url }}" class="stretched-link" aria-label="{{ heading_text|default('Open') }}"></a>
+      {% endif %}
+    </div>
+  </div>
+{% endif %}

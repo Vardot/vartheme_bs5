@@ -13,7 +13,7 @@ props:
     icon:
       type: string
       title: Icon name
-      description: 'The ID of an icon from the <a href="https://phosphoricons.com" target="_blank">Phosphor Icons</a> library.'
+      description: 'The ID of an icon from the <a href="https://icons.getbootstrap.com/" target="_blank">Bootstrap Icons</a> library.'
       default: "rocket"
       examples:
         - "rocket"

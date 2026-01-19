@@ -1,0 +1,11 @@
+<span id="{{ id|clean_id }}" class="anchor" tabindex="-1">
+  <span class="anchor--help-text visually-hidden">
+    {{
+      include(
+        '@vartheme_bs5/components/atoms/icon/icon.twig',
+        { icon: 'anchor' }
+      )
+    }}
+    {{ id }}
+  </span>
+</span>

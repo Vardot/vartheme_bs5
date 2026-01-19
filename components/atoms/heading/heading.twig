@@ -1,55 +1,69 @@
-{#
-/**
- * @file
- * Vartheme BS5 Starter Kit implementation for the heading component.
- *
- * Available properties:
- * - html_tag : The HTML tag to use for the header.
- *             Defaults to h1 (h1|h2|h3|h4|h5|h6)
- * - display: When you need a heading to stand out, consider using a display
-              heading—a larger, slightly more opinionated heading style.
- * - url: Simple URL link for heading.
- * - heading_utility_classes: An array of utility classes that can be used to add extra
- *                    Bootstrap utility classes or custom classes to this component.
- *
- * Available attributes:
- * - attributes: Attributes array.
- *
- * Available slots:
- * - content: Content text for the heading.
- *
- */
-#}
+{# Values #}
+{% set text = heading_text|default('Enter title') %}
+{% set level = level|default(2) %}
+{% set has_url = url is not empty %}
 
-{% set html_tag = html_tag ?? 'h1' %}
-{% set display = [display] ?? [] %}
-{% set heading_utility_classes = heading_utility_classes ? heading_utility_classes : [] %}
+{# Bootstrap classes #}
+{% set classes = [] %}
 
-{% set classes = []|merge(display)|merge(heading_utility_classes) %}
+{# Alignment #}
+{% set align_map = {
+  start: 'text-start',
+  center: 'text-center',
+  end: 'text-end'
+} %}
+{% set classes = classes|merge([align_map[align]|default('text-start')]) %}
 
-{# Normalize attributes to a Drupal Attribute object.
-   SDC/Canvas may pass '' or a class string. #}
-{% if attributes is not defined or attributes is null %}
-  {% set attributes = create_attribute() %}
-{% elseif attributes is not iterable %}
-  {% if attributes|default('') is empty %}
-    {% set attributes = create_attribute() %}
-  {% else %}
-    {% set attributes = create_attribute({'class': [attributes]}) %}
-  {% endif %}
+{# Text color #}
+{% set color_map = {
+  default: 'text-body',
+  primary: 'text-primary',
+  secondary: 'text-secondary',
+  success: 'text-success',
+  danger: 'text-danger',
+  warning: 'text-warning',
+  info: 'text-info',
+  muted: 'text-muted',
+  white: 'text-white'
+} %}
+{% set classes = classes|merge([color_map[text_color]|default('text-body')]) %}
+
+{# Size override #}
+{% if text_size != 'default' %}
+  {% set classes = classes|merge([text_size]) %}
 {% endif %}
 
-{% set attributes = attributes.addClass(classes) %}
+{# Extra classes #}
+{% if extra_classes|trim %}
+  {% set classes = classes|merge(extra_classes|trim|split(' ')) %}
+{% endif %}
 
-{% apply spaceless %}
-  <{{ html_tag }}{{ attributes }}>
-  {% if url is not empty and url != "" %}
-    {% include 'vartheme_bs5:link' with {
-      url: url,
-      content: content,
-    } %}
+{# Build attributes #}
+{% set attrs = create_attribute().addClass(classes) %}
+{% if id|trim %}
+  {% set attrs = attrs.setAttribute('id', id|trim) %}
+{% endif %}
+
+{# Content #}
+{% set content %}
+  {% if has_url %}
+    <a href="{{ url }}" class="text-reset text-decoration-none">{{ text }}</a>
   {% else %}
-    {{ content }}
+    {{ text }}
   {% endif %}
-  </{{ html_tag }}>
-{% endapply %}
+{% endset %}
+
+{# Render heading #}
+{% if level == 1 %}
+  <h1{{ attrs }}>{{ content }}</h1>
+{% elseif level == 2 %}
+  <h2{{ attrs }}>{{ content }}</h2>
+{% elseif level == 3 %}
+  <h3{{ attrs }}>{{ content }}</h3>
+{% elseif level == 4 %}
+  <h4{{ attrs }}>{{ content }}</h4>
+{% elseif level == 5 %}
+  <h5{{ attrs }}>{{ content }}</h5>
+{% elseif level == 6 %}
+  <h6{{ attrs }}>{{ content }}</h6>
+{% endif %}

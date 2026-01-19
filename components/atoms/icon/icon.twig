@@ -1,41 +1,68 @@
 {#
-/**
- * @file
- * Template for the Bootstrap Icon component.
- *
- * Vartheme BS5 Starter Kit implementation for Bootstrap icons.
- * https://icons.getbootstrap.com
- *
- * Available properties:
- * - name: Icon name - The name of the icon in Bootstrap Icon library. (https://icons.getbootstrap.com)
- * - role: The accessibility role for the icon as string. (https://icons.getbootstrap.com/#accessibility)
- * - rtl: RTL Icon name - If needed, The name of the Right to Left (RTL) icon replacement Bootstrap Icon for the default LTR one.
- * - icon_utility_classes: An array of utility classes that can be used to add extra
- *                    Bootstrap utility classes or custom classes to this component.
- *
- * Available attributes:
- * - attributes: HTML attributes for the icon element.
- *
- * Available slots:
- * - N/A
- *
- */
+  Icon component using SVG icons from the Phosphor icon pack.
+
+  Props:
+  - icon (string): Phosphor icon id (default: rocket)
+  - icon_size (string): extra-small|small|medium|large|extra-large (default: small)
+  - color (string): Bootstrap color (text-*) dropdown (default: default)
+  - alt (string): accessibility label (empty = decorative)
+  - id (string): optional wrapper id
+  - extra_classes (string): optional wrapper classes (Bootstrap utilities)
 #}
-{% set icon_name = name ? [name] : [] %}
-{% set icon_utility_classes = icon_utility_classes ? icon_utility_classes : [] %}
 
-{% if rtl is not empty and lang_dir == 'rtl' %}
-  {% set icon_name = [rtl] %}
+{% set size_map = {
+  'extra-small': 20,
+  'small': 24,
+  'medium': 32,
+  'large': 48,
+  'extra-large': 64
+} %}
+
+{% set chosen_size = icon_size|default('small') %}
+{% set resolved_size = size_map[chosen_size]|default(24) %}
+
+{# Bootstrap color class mapping #}
+{% set color_value = color|default('default') %}
+{% set color_map = {
+  default: '',
+  primary: 'text-primary',
+  secondary: 'text-secondary',
+  success: 'text-success',
+  danger: 'text-danger',
+  warning: 'text-warning',
+  info: 'text-info',
+  light: 'text-light',
+  dark: 'text-dark',
+  muted: 'text-muted',
+  white: 'text-white'
+} %}
+{% set color_class = color_map[color_value]|default('') %}
+
+{# Wrapper classes (Bootstrap friendly) #}
+{% set classes = ['d-inline-flex', 'align-items-center'] %}
+{% if color_class %}
+  {% set classes = classes|merge([color_class]) %}
 {% endif %}
 
-{% set classes = [
-  'bi',
-]|merge(icon_name)|merge(icon_utility_classes) %}
-
-{% if role is not empty %}
-  {% set attributes = attributes.setAttribute('role', role) %}
+{% if extra_classes|default('')|trim %}
+  {% set classes = classes|merge(extra_classes|trim|split(' ')) %}
 {% endif %}
 
-{% set attributes = attributes.setAttribute('aria-hidden', true) %}
+{% set attrs = create_attribute().addClass(classes) %}
+{% if id|default('')|trim %}
+  {% set attrs = attrs.setAttribute('id', id|trim) %}
+{% endif %}
 
-<i{{ attributes.addClass(classes) }}></i>
+<div{{ attrs }} style="min-width: {{ resolved_size }}px;">
+  {{
+    icon(
+      'bootstrap_icons',
+      icon|default('rocket'),
+      {
+        size: resolved_size,
+        color: 'currentColor',
+        alt: alt|default('')
+      }
+    )
+  }}
+</div>

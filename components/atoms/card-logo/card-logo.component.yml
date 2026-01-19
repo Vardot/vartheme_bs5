@@ -1,0 +1,71 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Logo card
+description: A component with an image and optional background and link.
+group: Card
+props:
+  type: object
+  properties:
+    id:
+      type: string
+      title: HTML ID
+      default: ""
+    extra_classes:
+      type: string
+      title: Extra classes
+      description: "Space separated classes (Bootstrap utilities allowed)."
+      default: ""
+    shadow:
+      type: string
+      title: Shadow
+      enum: [none, sm, default, lg]
+      default: default
+    border:
+      type: string
+      title: Border
+      enum: [default, none, primary, secondary, success, danger, warning, info, light, dark]
+      default: default
+    padding:
+      type: string
+      title: Padding
+      description: "Bootstrap padding utility suffix (0-5)."
+      enum: [0,1,2,3,4,5]
+      default: 4
+    media:
+      $ref: json-schema-definitions://canvas.module/image
+      type: object
+      title: Logo
+      examples:
+        - src: "assets/dark.png"
+          alt: "Placeholder brand logo"
+          width: 188
+          height: 113
+    background_color:
+      type: string
+      title: Background color
+      enum: [default, primary, secondary, success, danger, warning, info, light, dark]
+      meta:enum:
+        default: Default
+        primary: Primary
+        secondary: Secondary
+        success: Success
+        danger: Danger
+        warning: Warning
+        info: Info
+        light: Light
+        dark: Dark
+      default: default
+    border_radius:
+      type: string
+      title: Border radius
+      enum: [default, 0, 1, 2, 3, pill]
+      meta:enum:
+        default: Default
+        0: None
+        1: Small
+        2: Medium
+        3: Large
+        pill: Pill
+      default: default
+    url:
+      type: string
+      title: Link

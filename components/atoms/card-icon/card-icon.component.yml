@@ -1,0 +1,159 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Icon card
+group: Card
+props:
+  type: object
+  required:
+    - text_align
+    - icon_align
+  properties:
+    id:
+      type: string
+      title: HTML ID
+      default: ""
+    extra_classes:
+      type: string
+      title: Extra classes
+      description: "Space separated classes (Bootstrap utilities allowed)."
+      default: ""
+    shadow:
+      type: string
+      title: Shadow
+      enum: [none, sm, default, lg]
+      default: default
+    border:
+      type: string
+      title: Border
+      enum: [default, none, primary, secondary, success, danger, warning, info, light, dark]
+      default: default
+    tile_size:
+      type: string
+      title: Aspect ratio
+      enum:
+        - auto
+        - square
+        - "4:3"
+        - "16:9"
+      meta:
+        enum:
+          auto: Auto height
+          square: Square
+          "4:3": Rectangle 4 × 3
+          "16:9": Rectangle 16 × 9
+      default: auto
+      examples:
+        - auto
+    background_color:
+      type: string
+      title: Background color
+      enum:
+        - default
+        - primary
+        - secondary
+        - success
+        - danger
+        - warning
+        - info
+        - light
+        - dark
+      meta:
+        enum:
+          default: Default
+          primary: Primary
+          secondary: Secondary
+          success: Success
+          danger: Danger
+          warning: Warning
+          info: Info
+          light: Light
+          dark: Dark
+      default: default
+    border_radius:
+      type: string
+      title: Border radius
+      enum:
+        - default
+        - "0"
+        - "1"
+        - "2"
+        - "3"
+        - pill
+      meta:
+        enum:
+          default: Default
+          "0": None
+          "1": Small
+          "2": Medium
+          "3": Large
+          pill: Pill
+      default: default
+      examples:
+        - "2"
+    icon:
+      type: string
+      title: Icon name
+      description: 'The ID of an icon from the <a href="https://icons.getbootstrap.com/" target="_blank">Bootstrap Icons</a> library.'
+      default: "rocket"
+      examples:
+        - "rocket"
+    icon_size:
+      type: string
+      title: Icon size
+      enum:
+        - small
+        - medium
+        - large
+        - extra-large
+      meta:
+        enum:
+          small: Small
+          medium: Medium
+          large: Large
+          extra-large: Extra large
+      examples:
+        - large
+    icon_align:
+      type: string
+      title: Icon alignment
+      enum:
+        - left
+        - right
+        - center
+      meta:
+        enum:
+          left: Left
+          center: Center
+          right: Right
+      default: center
+      examples:
+        - center
+    url:
+      type: string
+      title: Link
+    text:
+      type: string
+      title: Heading
+      examples:
+        - Your heading here
+    description:
+      type: string
+      title: Description
+      contentMediaType: text/html
+      x-formatting-context: block
+      examples:
+        - "<p>This is placeholder text.</p>"
+    text_align:
+      type: string
+      title: Text alignment
+      enum:
+        - left
+        - center
+        - right
+      meta:
+        enum:
+          left: Left
+          center: Center
+          right: Right
+      default: center
+      examples:
+        - center

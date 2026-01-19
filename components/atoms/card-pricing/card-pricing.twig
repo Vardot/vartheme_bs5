@@ -1,0 +1,121 @@
+{#
+  Bootstrap 5 Pricing Card
+
+  Supports highlight/promote, badge, flexible button variants.
+  Uses rich text features list (text) as-is.
+#}
+
+{% set is_promoted = promote|default(false) %}
+
+{% set shadow_map = {
+  'none': '',
+  'sm': 'shadow-sm',
+  'default': 'shadow',
+  'lg': 'shadow-lg'
+} %}
+
+{% set border_value = border|default('default') %}
+{% set border_class = '' %}
+{% if border_value == 'none' %}
+  {% set border_class = 'border-0' %}
+{% elseif border_value == 'default' %}
+  {% set border_class = '' %}
+{% else %}
+  {% set border_class = 'border border-' ~ border_value %}
+{% endif %}
+
+{% set bg_value = background_color|default('default') %}
+{% set bg_map = {
+  'default': 'bg-body',
+  'light': 'bg-light',
+  'dark': 'bg-dark text-white',
+  'primary': 'bg-primary text-white',
+  'secondary': 'bg-secondary text-white',
+  'success': 'bg-success text-white',
+  'danger': 'bg-danger text-white',
+  'warning': 'bg-warning',
+  'info': 'bg-info'
+} %}
+
+{% set button_variant_value = button_variant|default(is_promoted ? 'secondary' : 'primary') %}
+{% set button_class_map = {
+  'primary': 'btn btn-primary',
+  'secondary': 'btn btn-secondary',
+  'outline-primary': 'btn btn-outline-primary',
+  'outline-secondary': 'btn btn-outline-secondary'
+} %}
+
+{% set has_button = button_url is not empty and button_url != 'No URL' and button_label is not empty %}
+
+{% set classes = ['card', 'h-100', 'position-relative'] %}
+{% set classes = classes|merge([bg_map[bg_value]|default('bg-body')]) %}
+{% if shadow_map[shadow|default('default')]|default('') %}
+  {% set classes = classes|merge([shadow_map[shadow|default('default')]]) %}
+{% endif %}
+{% if border_class %}
+  {% set classes = classes|merge([border_class]) %}
+{% endif %}
+
+{# Promote: subtle emphasis consistent with Bootstrap pricing examples #}
+{% if is_promoted %}
+  {% set classes = classes|merge(['border-primary', 'shadow-lg']) %}
+{% endif %}
+
+{% if extra_classes|default('')|trim %}
+  {% set classes = classes|merge(extra_classes|trim|split(' ')) %}
+{% endif %}
+
+{% set attrs = create_attribute().addClass(classes) %}
+{% if id|default('')|trim %}
+  {% set attrs = attrs.setAttribute('id', id|trim) %}
+{% endif %}
+
+{% set symbol_pos = symbol_position|default('before') %}
+
+<article{{ attrs }}>
+  <div class="card-body d-flex flex-column">
+    {% if badge_text|default('')|trim %}
+      <div class="mb-2">
+        <span class="badge {{ is_promoted ? 'text-bg-primary' : 'text-bg-secondary' }}">{{ badge_text|trim }}</span>
+      </div>
+    {% endif %}
+
+    {% if heading_text is not empty %}
+      <h3 class="h5 fw-bold mb-1">{{ heading_text }}</h3>
+    {% endif %}
+
+    {% if description is not empty %}
+      <p class="mb-3 opacity-75">{{ description }}</p>
+    {% endif %}
+
+    {% if price is not empty %}
+      <div class="mb-3">
+        <h4 class="display-6 fw-semibold mb-0">
+          <data value="{{ price }}" data-currency="{{ currency_code|default('USD') }}" class="d-inline-flex align-items-start gap-1">
+            {% if symbol_pos == 'before' %}
+              <span class="fs-5">{{ currency_symbol|default('$') }}</span>
+              <span>{{ price }}</span>
+            {% else %}
+              <span>{{ price }}</span>
+              <span class="fs-5">{{ currency_symbol|default('$') }}</span>
+            {% endif %}
+          </data>
+        </h4>
+      </div>
+    {% endif %}
+
+    {% if text is not empty %}
+      <div class="border-top pt-3 mb-4">
+        <div class="small">
+          {{ text|raw }}
+        </div>
+      </div>
+    {% endif %}
+
+    {% if has_button %}
+      <div class="mt-auto">
+        <a href="{{ button_url }}" class="{{ button_class_map[button_variant_value]|default('btn btn-primary') }} w-100">{{ button_label }}</a>
+      </div>
+    {% endif %}
+  </div>
+</article>

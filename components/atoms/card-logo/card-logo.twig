@@ -1,0 +1,93 @@
+{#
+  Bootstrap 5 Logo Card
+
+  Props: media, url, background_color, border_radius
+  Options: id, extra_classes, shadow, border, padding
+#}
+
+{% set has_url = url is not empty and url != 'No URL' %}
+
+{% set shadow_map = {
+  'none': '',
+  'sm': 'shadow-sm',
+  'default': 'shadow',
+  'lg': 'shadow-lg'
+} %}
+
+{% set border_value = border|default('default') %}
+{% set border_class = '' %}
+{% if border_value == 'none' %}
+  {% set border_class = 'border-0' %}
+{% elseif border_value == 'default' %}
+  {% set border_class = '' %}
+{% else %}
+  {% set border_class = 'border border-' ~ border_value %}
+{% endif %}
+
+{% set rounded_value = border_radius|default('default') %}
+{% set rounded_map = {
+  'default': '',
+  '0': 'rounded-0',
+  '1': 'rounded-1',
+  '2': 'rounded-2',
+  '3': 'rounded-3',
+  'pill': 'rounded-pill'
+} %}
+
+{% set bg_value = background_color|default('default') %}
+{% set bg_map = {
+  'default': 'bg-body',
+  'light': 'bg-light',
+  'dark': 'bg-dark text-white',
+  'primary': 'bg-primary text-white',
+  'secondary': 'bg-secondary text-white',
+  'success': 'bg-success text-white',
+  'danger': 'bg-danger text-white',
+  'warning': 'bg-warning',
+  'info': 'bg-info'
+} %}
+
+{% set p = padding|default(4) %}
+
+{% set classes = ['card', 'h-100'] %}
+{% set classes = classes|merge([bg_map[bg_value]|default('bg-body')]) %}
+{% if shadow_map[shadow|default('default')]|default('') %}
+  {% set classes = classes|merge([shadow_map[shadow|default('default')]]) %}
+{% endif %}
+{% if border_class %}
+  {% set classes = classes|merge([border_class]) %}
+{% endif %}
+{% if rounded_map[rounded_value]|default('') %}
+  {% set classes = classes|merge([rounded_map[rounded_value]]) %}
+{% endif %}
+{% if has_url %}
+  {% set classes = classes|merge(['position-relative']) %}
+{% endif %}
+{% if extra_classes|default('')|trim %}
+  {% set classes = classes|merge(extra_classes|trim|split(' ')) %}
+{% endif %}
+
+{% set attrs = create_attribute().addClass(classes) %}
+{% if id|default('')|trim %}
+  {% set attrs = attrs.setAttribute('id', id|trim) %}
+{% endif %}
+
+<div{{ attrs }}>
+  <div class="card-body d-flex align-items-center justify-content-center p-{{ p }}">
+    {% block logo %}
+      {% if media.src is not empty %}
+        {% if has_url %}
+          <a href="{{ url }}" class="stretched-link" aria-label="{{ media.alt|default('Open') }}"></a>
+        {% endif %}
+
+        {% include 'canvas:image' ignore missing with {
+          src: media.src,
+          alt: media.alt,
+          width: media.width,
+          height: media.height,
+          class: 'img-fluid'
+        } only %}
+      {% endif %}
+    {% endblock %}
+  </div>
+</div>

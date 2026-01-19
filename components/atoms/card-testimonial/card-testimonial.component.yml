@@ -1,0 +1,86 @@
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: Testimonial card
+group: Card
+props:
+  type: object
+  required:
+    - align
+    - style
+  properties:
+    id:
+      type: string
+      title: HTML ID
+      default: ""
+    extra_classes:
+      type: string
+      title: Extra classes
+      description: "Space separated classes (Bootstrap utilities allowed)."
+      default: ""
+    shadow:
+      type: string
+      title: Shadow
+      enum: [none, sm, default, lg]
+      default: default
+    border:
+      type: string
+      title: Border
+      enum: [default, none, primary, secondary, success, danger, warning, info, light, dark]
+      default: default
+    rounded:
+      type: string
+      title: Rounded
+      enum: [default, 0, 1, 2, 3, pill]
+      default: default
+    show_quote_icon:
+      type: boolean
+      title: Show quote icon
+      default: true
+    text:
+      type: string
+      title: Quote text
+      pattern: "(.|\\r?\\n)*"
+      examples:
+        - "My career’s guidance was crucial in helping me understand the tech industry landscape and ultimately secure my role."
+    cite_name:
+      type: string
+      title: Citation name
+      examples:
+        - "Isiah Julio"
+    cite_text:
+      type: string
+      title: Citation text
+      examples:
+        - "Engineer, Technical Services"
+    cite_url:
+      type: string
+      title: Citation link
+    align:
+      type: string
+      title: Alignment
+      enum:
+        - center
+        - left
+      default: center
+      examples:
+        - center
+    style:
+      type: string
+      title: Style
+      enum:
+        - default
+        - inverted
+      meta:enum:
+        default: Default
+        inverted: Inverted
+      default: default
+      examples:
+        - default
+    media:
+      $ref: json-schema-definitions://canvas.module/image
+      title: Image
+      type: object
+      examples:
+        - src: "assets/portrait.png"
+          alt: "Placeholder"
+          width: 100
+          height: 100

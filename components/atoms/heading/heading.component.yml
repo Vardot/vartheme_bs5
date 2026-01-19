@@ -1,53 +1,115 @@
-$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
-name: Heading 
-status: experimental
-description: "All HTML headings, `<h1>` through `<h6>`, are available."
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: Heading
+group: Base
+status: stable
+
 props:
   type: object
   properties:
-    html_tag:
+    heading_text:
       type: string
-      title: HTML tag
-      description: HTML header tag (h1, h2, h3, h4, h5, h6)
-      default: h1
+      title: Heading text
+      default: "Enter title"
+      examples:
+        - "Page title"
+
+    level:
+      type: integer
+      title: Heading level
+      description: HTML heading tag (h1–h6)
+      default: 2
+      enum: [1, 2, 3, 4, 5, 6]
+      examples:
+        - 2
+
+    text_size:
+      type: string
+      title: Text size
+      description: Override Bootstrap heading size
+      default: default
       enum:
+        - default
         - h1
         - h2
         - h3
         - h4
         - h5
         - h6
-    display:
-      type: string
-      title: Display Heading
-      description: When you need a heading to stand out, consider using a display heading—a larger, slightly more opinionated heading style.
-      default: ''
-      enum:
-        - ''
         - display-1
         - display-2
         - display-3
         - display-4
         - display-5
         - display-6
+      meta:
+        enum:
+          default: Match heading level
+          h1: H1 size
+          h2: H2 size
+          h3: H3 size
+          h4: H4 size
+          h5: H5 size
+          h6: H6 size
+          display-1: Display 1
+          display-2: Display 2
+          display-3: Display 3
+          display-4: Display 4
+          display-5: Display 5
+          display-6: Display 6
+
+    text_color:
+      type: string
+      title: Text color
+      default: default
+      enum:
+        - default
+        - primary
+        - secondary
+        - success
+        - danger
+        - warning
+        - info
+        - muted
+        - white
+      meta:
+        enum:
+          default: Default text
+          primary: Primary
+          secondary: Secondary
+          success: Success
+          danger: Danger
+          warning: Warning
+          info: Info
+          muted: Muted
+          white: White
+
+    align:
+      type: string
+      title: Text alignment
+      default: start
+      enum:
+        - start
+        - center
+        - end
+      meta:
+        enum:
+          start: Left
+          center: Center
+          end: Right
+
     url:
       type: string
-      format: uri
-      title: URL Link
-      description: Simple URL link for heading.
-    heading_utility_classes:
-      type: array
-      title: Utility Classes 
-      default: []
-      items:
-        type: 'string'
-      description: An array of utility classes that can be used to add extra Bootstrap utility classes or custom classes to this component.
-    attributes:
-      type: Drupal\Core\Template\Attribute
-      title: Attributes
-      description: HTML attributes for the heading element.
-slots:
-  content:
-    type: string
-    title: Content
-    description: Content text for the heading.
+      title: Link
+      description: Optional link for the heading text
+      default: ""
+
+    id:
+      type: string
+      title: HTML ID
+      default: ""
+
+    extra_classes:
+      type: string
+      title: Extra CSS classes
+      description: Space separated Bootstrap classes
+      default: ""

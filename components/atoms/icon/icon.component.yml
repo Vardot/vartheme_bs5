@@ -1,33 +1,73 @@
-$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
 name: Icon
-status: experimental
-description: Bootstrap Icon
+group: Base
+status: stable
+
 props:
   type: object
   properties:
-    name:
+    icon:
       type: string
       title: Icon name
-      description: The name of the icon in Bootstrap Icon library. (https://icons.getbootstrap.com)
-      default: ''
-    role:
+      description: "Bootstrap icon ID (examples: rocket, arrow-right). Reference: https://icons.getbootstrap.com/"
+      default: "rocket"
+
+    icon_size:
       type: string
-      title: Role
-      description: The accessibility role for the icon as string. (https://icons.getbootstrap.com/#accessibility)
-      default: ''
-    rtl:
+      title: Icon size
+      description: "Select icon size."
+      default: "small"
+      enum:
+        - "extra-small"
+        - "small"
+        - "medium"
+        - "large"
+        - "extra-large"
+
+    color:
       type: string
-      title: RTL Icon name
-      description: If needed, The name of the Right to Left (RTL) icon replacement Bootstrap Icon for the default LTR one.
-      default: ''
-    icon_utility_classes:
-      type: array
-      title: Utility Classes
-      default: []
-      items:
-        type: 'string'
-      description: An array of utility classes that can be used to add extra Bootstrap utility classes or custom classes to this component.
-    attributes:
-      type: Drupal\Core\Template\Attribute
-      title: attributes
-      description: HTML attributes for the icon element.
+      title: Color
+      description: "Uses Bootstrap text-* utilities. The icon uses currentColor."
+      default: "default"
+      enum:
+        - "default"
+        - "primary"
+        - "secondary"
+        - "success"
+        - "danger"
+        - "warning"
+        - "info"
+        - "light"
+        - "dark"
+        - "muted"
+        - "white"
+      meta:
+        enum:
+          default: Default
+          primary: Primary
+          secondary: Secondary
+          success: Success
+          danger: Danger
+          warning: Warning
+          info: Info
+          light: Light
+          dark: Dark
+          muted: Muted
+          white: White
+
+    alt:
+      type: string
+      title: Alt text
+      description: "Leave empty for decorative icons."
+      default: ""
+
+    id:
+      type: string
+      title: HTML ID
+      default: ""
+
+    extra_classes:
+      type: string
+      title: Extra classes
+      description: "Space separated classes (Bootstrap utilities allowed), e.g. me-2 align-middle."
+      default: ""

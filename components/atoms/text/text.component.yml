@@ -1,22 +1,59 @@
-$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+$schema: "https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json"
 name: Text
-status: experimental
-description: Text
+group: Base
+status: stable
+
 props:
   type: object
   properties:
-    text_utility_classes:
-      type: array
-      title: Utility Classes
-      default: []
-      items:
-        type: 'string'
-      description: An array of utility classes that can be used to add extra Bootstrap utility classes or custom classes to this component.
-    content:
+    text:
       type: string
-      title: Content
-      description: Text
-    attributes:
-      type: Drupal\Core\Template\Attribute
-      title: Attributes
-      description: HTML attributes for the containing element.
+      title: Rich text
+      description: "HTML content. Example: <p>Text</p>"
+      contentMediaType: text/html
+      x-formatting-context: block
+      default: "<p>Lorem ipsum dolor sit amet.</p>"
+      examples:
+        - "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>"
+
+    text_size:
+      type: string
+      title: Text size
+      description: "Bootstrap font-size utilities."
+      default: "default"
+      enum:
+        - "default"
+        - "fs-6"
+        - "fs-5"
+        - "fs-4"
+        - "fs-3"
+        - "fs-2"
+        - "fs-1"
+
+    text_color:
+      type: string
+      title: Text color
+      description: "Bootstrap text color utilities."
+      default: "default"
+      enum:
+        - "default"
+        - "primary"
+        - "secondary"
+        - "success"
+        - "danger"
+        - "warning"
+        - "info"
+        - "muted"
+        - "dark"
+        - "white"
+
+    id:
+      type: string
+      title: HTML ID
+      default: ""
+
+    extra_classes:
+      type: string
+      title: Extra classes
+      description: "Space separated classes (Bootstrap utilities allowed), e.g. mb-3 lh-lg."
+      default: ""

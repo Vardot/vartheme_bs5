@@ -1,0 +1,110 @@
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: Pricing card
+group: Card
+props:
+  type: object
+  required:
+    - symbol_position
+  properties:
+    id:
+      type: string
+      title: HTML ID
+      default: ""
+    extra_classes:
+      type: string
+      title: Extra classes
+      description: "Space separated classes (Bootstrap utilities allowed)."
+      default: ""
+    shadow:
+      type: string
+      title: Shadow
+      enum: [none, sm, default, lg]
+      default: default
+    border:
+      type: string
+      title: Border
+      enum: [default, none, primary, secondary, success, danger, warning, info, light, dark]
+      default: default
+    background_color:
+      type: string
+      title: Background
+      enum: [default, primary, secondary, success, danger, warning, info, light, dark]
+      default: default
+    badge_text:
+      type: string
+      title: Badge text
+      description: "Optional badge (e.g. Popular)."
+      default: ""
+    button_variant:
+      type: string
+      title: Button variant
+      enum: [primary, secondary, outline-primary, outline-secondary]
+      default: primary
+    heading_text:
+      type: string
+      title: Heading
+      examples:
+        - Premium
+    description:
+      type: string
+      title: Description
+      examples:
+        - Curabitur nascetur non potenti pede luctus vivamus
+    price:
+      title: Price
+      description: Price
+      type: string
+      examples:
+        - "159"
+    currency_code:
+      type: string
+      title: Currency code
+      examples:
+        - USD
+    currency_symbol:
+      type: string
+      title: Currency symbol
+      examples:
+        - "$"
+    symbol_position:
+      type: string
+      title: Symbol position
+      enum:
+        - before
+        - after
+      meta:enum:
+        before: Before
+        after: After
+      examples:
+        - before
+      default:
+        - before
+    text:
+      title: Text
+      type: string
+      contentMediaType: text/html
+      x-formatting-context: block
+      default: "<ul>
+        <li>Enter rich text</li>
+        <li>Facilisis dictumst letius in</li>
+        <li>Diam mus est faucibus ornare ut consectetuer metus</li>
+        </ul>"
+      examples:
+        - "<ul>
+          <li>Example item 1</li>
+          <li>Example item 2</li>
+          </ul>"
+    button_url:
+      type: string
+      title: Link
+    button_label:
+      type: string
+      title: Button label
+      examples:
+        - Choose this plan
+    promote:
+      type: boolean
+      title: Highlight card
+      default: false
+      examples:
+        - false
