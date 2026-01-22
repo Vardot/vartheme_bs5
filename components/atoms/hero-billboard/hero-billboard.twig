@@ -1,0 +1,95 @@
+{#
+  Hero Billboard (Bootstrap 5)
+
+  Props:
+  - height: full|large|ribbon
+  - flex_position: top-left|center-left|bottom-left|hero-center
+  - overlay_opacity: "0%"|"20%"|"40%"|"60%"|"75%"
+  - object_position: top|center|bottom
+  - media: background image (optional)
+
+  Slot:
+  - hero_slot: content
+#}
+
+{% set hero_height = height|default('full') %}
+{% set hero_position = flex_position|default('center-left') %}
+{% set hero_overlay = overlay_opacity|default('40%') %}
+{% set hero_object_position = object_position|default('center') %}
+
+{% set additional_classes = classes|default('') %}
+{% if additional_classes is iterable %}
+  {% set additional_classes = additional_classes|join(' ') %}
+{% endif %}
+
+{# Height strategy:
+  - full: fixed viewport height (prevents page from growing)
+  - large/ribbon: min-height (content can extend naturally)
+#}
+{% set hero_size_style = hero_height == 'full'
+  ? 'height: 100vh; height: 100svh;'
+  : (hero_height == 'large'
+      ? 'min-height: 70vh;'
+      : 'min-height: 45vh;'
+    )
+%}
+
+{% set v_align = {
+  'top-left': 'justify-content-start',
+  'center-left': 'justify-content-center',
+  'bottom-left': 'justify-content-end',
+  'hero-center': 'justify-content-center'
+}[hero_position]|default('justify-content-center') %}
+
+{% set center_mode = hero_position == 'hero-center' %}
+{% set text_align = center_mode ? 'text-center' : 'text-start' %}
+{% set content_align = center_mode ? 'align-items-center' : 'align-items-start' %}
+
+{% set object_pos = {
+  'top': '50% 0%',
+  'center': '50% 50%',
+  'bottom': '50% 100%'
+}[hero_object_position]|default('50% 50%') %}
+
+{% set overlay_alpha = {
+  '0%': '0',
+  '20%': '0.20',
+  '40%': '0.40',
+  '60%': '0.60',
+  '75%': '0.75'
+}[hero_overlay]|default('0.40') %}
+
+<section
+  class="hero-billboard position-relative overflow-hidden d-flex {{ additional_classes }}"
+  style="{{ hero_size_style }}"
+>
+  {% if media is defined and media.src is not empty %}
+    <div class="position-absolute top-0 start-0 end-0 bottom-0" aria-hidden="true">
+      <div class="position-absolute top-0 start-0 end-0 bottom-0" style="background: rgba(0,0,0,{{ overlay_alpha }});"></div>
+
+      {% include 'canvas:image' ignore missing with {
+        src: media.src,
+        alt: media.alt,
+        width: media.width,
+        height: media.height,
+        class: 'w-100 h-100 object-fit-cover d-block',
+        attributes: create_attribute().setAttribute('style', 'object-position: ' ~ object_pos ~ ';')
+      } only %}
+    </div>
+  {% endif %}
+
+  {# Content layer #}
+  <div class="container position-relative d-flex flex-grow-1">
+    <div class="d-flex flex-grow-1 {{ v_align }} {{ content_align }} {{ text_align }}">
+      {# KEY: full hero should NOT push page height; allow internal scroll if needed #}
+      <div
+        class="w-100"
+        style="max-width: 48rem; {{ hero_height == 'full' ? 'max-height: 100%; overflow:auto;' : '' }}"
+      >
+        <div class="{{ hero_height == 'ribbon' ? 'py-4' : 'py-5' }}">
+          {% block hero_slot %}{% endblock %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

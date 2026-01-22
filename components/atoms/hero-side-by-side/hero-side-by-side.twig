@@ -1,0 +1,72 @@
+{#
+  Hero Side-by-Side (Bootstrap 5)
+
+  Layout: image + content in two columns.
+  Props map to Bootstrap spacing and order utilities.
+#}
+
+{% set image_pos = image_position|default('left') %}
+{% set mobile_dir = hero_flex_direction_mobile|default('vertical') %}
+
+{% set pad_top = {
+  '0': 'pt-0',
+  '16': 'pt-3',
+  '32': 'pt-4',
+  '64': 'pt-5'
+}[padding_block_start|default('32')]|default('pt-4') %}
+
+{% set pad_bottom = {
+  '0': 'pb-0',
+  '16': 'pb-3',
+  '32': 'pb-4',
+  '64': 'pb-5'
+}[padding_block_end|default('32')]|default('pb-4') %}
+
+{% set gap_class = hero_flex_gap|default('large') == 'extra-large' ? 'g-5 g-lg-6' : 'g-4' %}
+
+{% set bg_class = {
+  'primary': 'bg-primary text-white',
+  'secondary': 'bg-secondary text-white',
+  'accent': 'bg-info text-white'
+}[background|default('')]|default('') %}
+
+{% set img_radius = {
+  'small': 'rounded-2',
+  'large': 'rounded-4',
+  'extra-large': 'rounded-5'
+}[image_radius|default('small')]|default('rounded-2') %}
+
+{# Mobile stacking order: default vertical means image then content; reverse flips. #}
+{% set mobile_image_order = mobile_dir == 'vertical-reverse' ? 'order-2' : 'order-1' %}
+{% set mobile_content_order = mobile_dir == 'vertical-reverse' ? 'order-1' : 'order-2' %}
+
+{# Desktop order based on image_position. #}
+{% set desktop_image_order = image_pos == 'right' ? 'order-lg-2' : 'order-lg-1' %}
+{% set desktop_content_order = image_pos == 'right' ? 'order-lg-1' : 'order-lg-2' %}
+
+<section class="hero-side-by-side {{ pad_top }} {{ pad_bottom }} {{ bg_class }}">
+  <div class="container">
+    <div class="row align-items-center {{ gap_class }}">
+      <div class="col-12 col-lg-6 {{ mobile_image_order }} {{ desktop_image_order }}">
+        {% block hero_media %}
+          {% if media is defined and media.src is not empty %}
+            {% include 'canvas:image' ignore missing with {
+              src: media.src,
+              alt: media.alt,
+              width: media.width,
+              height: media.height,
+              class: 'img-fluid w-100 ' ~ img_radius,
+              sizes: '50vw'
+            } only %}
+          {% endif %}
+        {% endblock %}
+      </div>
+
+      <div class="col-12 col-lg-6 {{ mobile_content_order }} {{ desktop_content_order }}">
+        <div class="d-flex flex-column gap-3">
+          {% block hero_slot %}{% endblock %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,93 @@
+$schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: Hero CTA
+description: A call to action with a heading, description and slot for buttons.
+group: Hero
+props:
+  type: object
+  required:
+    - text_align
+    - level
+  properties:
+    heading_text:
+      type: string
+      title: Heading
+      examples:
+        - Your heading goes here
+    level:
+      type: integer
+      title: Heading level
+      enum: [1, 2, 3, 4, 5, 6]
+      examples:
+        - 2
+    text:
+      type: string
+      title: Text
+      examples:
+        - Lorem ipsum dolor sit amet.
+    text_align:
+      type: string
+      title: Text alignment
+      enum:
+        - center
+        - start
+        - end
+      meta:enum:
+        center: Center
+        start: Left
+        end: Right
+      default: center
+      examples:
+        - center
+    background_color:
+      type: string
+      title: Background color
+      enum:
+        - none
+        - primary
+        - secondary
+        - light
+        - dark
+        - muted
+        - accent
+      meta:enum:
+        none: None
+        primary: Primary
+        secondary: Secondary
+        light: Light
+        dark: Dark
+        muted: Muted
+        accent: Accent
+      default: none
+    overlay_opacity:
+      type: string
+      title: Background image overlay
+      enum: ["0%", "20%", "40%", "60%", "75%"]
+      default: "40%"
+    media:
+      $ref: json-schema-definitions://canvas.module/image
+      title: Background image
+      type: object
+    padding_y:
+      type: string
+      title: Vertical padding
+      enum: ["py-3", "py-4", "py-5", "py-6"]
+      meta:enum:
+        "py-3": Small
+        "py-4": Medium
+        "py-5": Large
+        "py-6": Extra large
+      default: "py-5"
+    container_width:
+      type: string
+      title: Container width
+      enum: ["container", "container-fluid"]
+      default: "container"
+    extra_classes:
+      type: string
+      title: Extra classes
+      description: "Space separated classes (Bootstrap utilities allowed)."
+      default: ""
+
+slots:
+  actions:
+    title: Buttons

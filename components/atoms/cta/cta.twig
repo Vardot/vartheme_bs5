@@ -1,0 +1,102 @@
+{#
+  Hero CTA (Bootstrap 5)
+
+  Props:
+  - heading_text (string)
+  - level (int 1-6)
+  - text (string)
+  - text_align (center|start|end)
+  - background_color (none|primary|secondary|light|dark|muted|accent)
+  - media (canvas image object) optional
+  - overlay_opacity ("0%"|"20%"|"40%"|"60%"|"75%")
+  - padding_y (py-3|py-4|py-5|py-6)
+  - container_width (container|container-fluid)
+  - extra_classes (string)
+
+  Slots:
+  - actions (buttons/links)
+#}
+
+{% set align_value = text_align|default('center') %}
+{% set align_class = {
+  'start': 'text-start',
+  'center': 'text-center',
+  'end': 'text-end'
+}[align_value]|default('text-center') %}
+
+{% set actions_class = {
+  'start': 'justify-content-start',
+  'center': 'justify-content-center',
+  'end': 'justify-content-end'
+}[align_value]|default('justify-content-center') %}
+
+{% set bg_value = background_color|default('none') %}
+{% set bg_class = {
+  'none': '',
+  'primary': 'bg-primary text-white',
+  'secondary': 'bg-secondary text-white',
+  'light': 'bg-light',
+  'dark': 'bg-dark text-white',
+  'muted': 'bg-body-tertiary',
+  'accent': 'bg-info text-white'
+}[bg_value]|default('') %}
+
+{% set pad = padding_y|default('py-5') %}
+{% set container = container_width|default('container') %}
+
+{% set extra = extra_classes|default('')|trim %}
+{% set section_classes = ['hero-cta', pad, bg_class, extra]|filter(v => v is not empty) %}
+
+{% set overlay_alpha = {
+  '0%': '0',
+  '20%': '0.20',
+  '40%': '0.40',
+  '60%': '0.60',
+  '75%': '0.75'
+}[overlay_opacity|default('40%')]|default('0.40') %}
+
+<section class="{{ section_classes|join(' ') }} position-relative overflow-hidden">
+  {% if media is defined and media.src is not empty %}
+    <div class="position-absolute top-0 start-0 w-100 h-100" aria-hidden="true">
+      <div class="position-absolute top-0 start-0 w-100 h-100" style="background: rgba(0,0,0,{{ overlay_alpha }});"></div>
+      {% include 'canvas:image' ignore missing with {
+        src: media.src,
+        alt: media.alt,
+        width: media.width,
+        height: media.height,
+        class: 'w-100 h-100 object-fit-cover'
+      } only %}
+    </div>
+  {% endif %}
+
+  <div class="{{ container }} position-relative">
+    <div class="row">
+      <div class="col-12 col-lg-10 col-xl-8 mx-auto {{ align_class }}">
+        {{
+          include(
+            'vartheme_bs5:heading',
+            {
+              heading_text: heading_text|default(''),
+              level: level|default(2),
+              align: align_value,
+              text_color: 'default',
+              url: '',
+              text_size: 'display-5'
+            },
+            with_context: false
+          )
+        }}
+
+        {% if text is not empty %}
+          <p class="lead mt-3 mb-0">{{ text }}</p>
+        {% endif %}
+
+        {% if block('actions') is defined %}
+          <div class="d-flex flex-wrap gap-2 mt-4 {{ actions_class }}">
+            {% block actions %}{% endblock %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>

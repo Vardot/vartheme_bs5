@@ -1,0 +1,77 @@
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: Hero billboard
+group: Hero
+props:
+  type: object
+  required:
+    - height
+    - flex_position
+    - object_position
+    - overlay_opacity
+  properties:
+    height:
+      type: string
+      title: Height
+      enum:
+        - full
+        - large
+        - ribbon
+      meta:
+        enum:
+          full: Full screen
+          large: Large
+          ribbon: Ribbon
+      default: full
+      examples:
+        - full
+    flex_position:
+      type: string
+      title: Content position
+      enum:
+        - top-left
+        - center-left
+        - bottom-left
+        - hero-center
+      meta:
+        enum:
+          top-left: Top left
+          center-left: Center left
+          bottom-left: Bottom left
+          hero-center: Center
+      default: center-left
+      examples:
+        - center-left
+    overlay_opacity:
+      type: string
+      title: Overlay opacity
+      enum:
+        - "0%"
+        - "20%"
+        - "40%"
+        - "60%"
+        - "75%"
+      default: "0%"
+      examples:
+        - "0%"
+    object_position:
+      type: string
+      title: Background image position
+      enum:
+        - top
+        - center
+        - bottom
+      default: center
+      examples:
+        - center
+    media:
+      $ref: json-schema-definitions://canvas.module/image
+      title: Background image
+      type: object
+      examples:
+        - src: "assets/boliviainteligente-QPu42AAJ5ZY-unsplash.jpg"
+          alt: "Placeholder image"
+          width: 1920
+          height: 1075
+slots:
+  hero_slot:
+    title: "Hero content"

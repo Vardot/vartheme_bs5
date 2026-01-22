@@ -14,6 +14,13 @@ bootstrap-styles:
     base:
       css/base/bootstrap.base.css: {}
 
+# Minimal accordion styles (and the toggle icon) extracted from Bootstrap.
+# This theme's base Bootstrap build intentionally omits accordion styles.
+accordion-styles:
+  css:
+    component:
+      components/atoms/accordion-item/accordion-item.css: {}
+
 # Bootstrap 5 global scripts library.
 bootstrap-scripts:
   dependencies:
@@ -21,7 +28,8 @@ bootstrap-scripts:
     # - vartheme_bs5/bs-alert-script
     # - vartheme_bs5/bs-button-script
     # - vartheme_bs5/bs-carousel-script
-    # - vartheme_bs5/bs-collapse-script
+    # Needed for Bootstrap Accordion (Accordion is powered by Collapse).
+    - vartheme_bs5/bs-collapse-script
     # - vartheme_bs5/bs-dropdown-script
     - vartheme_bs5/bs-modal-script
     - vartheme_bs5/bs-offcanvas-script
@@ -245,3 +253,11 @@ ckeditor5-styles:
   dependencies:
     - core/components.vartheme_bs5--alert
     - core/components.vartheme_bs5--callout
+
+# Accordion behavior script (ensures Bootstrap Collapse works inside Drupal Canvas/SDC renders).
+accordion-scripts:
+  dependencies:
+    - vartheme_bs5/bs-collapse-script
+  js:
+    js/components/accordion-init.js: {}
+

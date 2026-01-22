@@ -1,0 +1,83 @@
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: Hero blog
+description: Blog hero with published date, title, author, and optional media.
+group: Hero
+props:
+  type: object
+  properties:
+    heading_text:
+      type: string
+      title: Heading
+      default: "Enter the title"
+      examples:
+        - "Vivamus curae metus neque mollis orci ipsum sapien velit cursus"
+
+    level:
+      type: integer
+      title: Heading level
+      enum: [1, 2, 3, 4, 5, 6]
+      examples:
+        - 1
+
+    heading_size:
+      type: string
+      title: Heading size
+      description: Uses Bootstrap heading/display sizes.
+      enum:
+        - default
+        - h1
+        - h2
+        - h3
+        - h4
+        - h5
+        - h6
+        - display-1
+        - display-2
+        - display-3
+        - display-4
+        - display-5
+        - display-6
+      default: display-4
+
+    date:
+      type: integer
+      title: Published Date
+      # 2026-02-12
+      default: 1770856866
+      examples:
+        - 1770856866
+
+    author:
+      type: string
+      title: Author
+      examples:
+        - "John Smith"
+
+    author_url:
+      type: string
+      title: Author link
+      default: ""
+      examples: []
+
+    container_width:
+      type: string
+      title: Container width
+      enum: [container, container-sm, container-md, container-lg, container-xl, container-xxl]
+      default: container
+
+    extra_classes:
+      type: string
+      title: Extra classes
+      description: "Space separated classes (Bootstrap utilities allowed)."
+      default: ""
+
+    media:
+      $ref: json-schema-definitions://canvas.module/image
+      title: Image
+      type: object
+      examples:
+        - src: "assets/boliviainteligente-I1rJ9ViO3ik-unsplash.jpg"
+          alt: "Placeholder image"
+slots:
+  blog_media:
+    title: "Place Image"
