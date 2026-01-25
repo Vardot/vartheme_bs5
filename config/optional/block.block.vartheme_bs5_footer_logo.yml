@@ -2,11 +2,10 @@ langcode: en
 status: true
 dependencies:
   content:
-    - 'block_content:varbase_rich_text_block:7cbc6f8a-b200-46a0-bb19-e1c72fc12c1f'
+    - 'block_content:basic:7cbc6f8a-b200-46a0-bb19-e1c72fc12c1f'
   module:
     - block_class
     - block_content
-    - varbase_default_content
   theme:
     - vartheme_bs5
 third_party_settings:
@@ -20,7 +19,7 @@ provider: null
 plugin: 'block_content:7cbc6f8a-b200-46a0-bb19-e1c72fc12c1f'
 settings:
   id: 'block_content:7cbc6f8a-b200-46a0-bb19-e1c72fc12c1f'
-  label: 'Vartheme footer logo'
+  label: 'Branding footer logo'
   label_display: '0'
   provider: block_content
   status: true

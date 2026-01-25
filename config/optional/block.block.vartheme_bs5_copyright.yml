@@ -2,11 +2,10 @@ langcode: en
 status: true
 dependencies:
   content:
-    - 'block_content:varbase_rich_text_block:2f3e092e-0470-4863-9ac8-4852cf1bf96a'
+    - 'block_content:basic:2f3e092e-0470-4863-9ac8-4852cf1bf96a'
   module:
     - block_class
     - block_content
-    - varbase_default_content
   theme:
     - vartheme_bs5
 third_party_settings:
