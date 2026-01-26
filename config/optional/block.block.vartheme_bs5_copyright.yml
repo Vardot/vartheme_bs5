@@ -10,7 +10,7 @@ dependencies:
     - vartheme_bs5
 third_party_settings:
   block_class:
-    classes: w-100
+    classes: 'w-100 d-flex justify-content-end small text-end fw-bold'
 id: vartheme_bs5_copyright
 theme: vartheme_bs5
 region: footer_bottom
