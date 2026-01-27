@@ -1,0 +1,272 @@
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: Section
+group: Layout
+status: stable
+description: "Bootstrap Section wrapper for building layouts (container, background, spacing, and responsive grid presets). Shows ONLY the selected number of columns."
+
+props:
+  type: object
+  properties:
+    container_type:
+      type: string
+      title: "Container style"
+      description: "Choose how the content is contained."
+      enum:
+        - "container"
+        - "container-fluid"
+        - "container-sm"
+        - "container-md"
+        - "container-lg"
+        - "container-xl"
+        - "container-xxl"
+        - "none"
+      default: "container"
+      'meta:enum':
+        container: "Container (default)"
+        container-fluid: "Full width (fluid)"
+        container-sm: "Container (SM)"
+        container-md: "Container (MD)"
+        container-lg: "Container (LG)"
+        container-xl: "Container (XL)"
+        container-xxl: "Container (XXL)"
+        none: "No container"
+
+    width:
+      type: string
+      title: "Content max width"
+      description: "Limit the width of content inside the container."
+      enum: ["100%", "90%", "80%", "75%", "50%"]
+      default: "100%"
+      'meta:enum':
+        "100%": "Full width (100%)"
+        "90%": "90%"
+        "80%": "80%"
+        "75%": "75%"
+        "50%": "Half width (50%)"
+
+    align:
+      type: string
+      title: "Content alignment"
+      description: "Align the inner content area."
+      enum: ["start", "center", "end"]
+      default: "center"
+      'meta:enum':
+        start: "Left"
+        center: "Center"
+        end: "Right"
+
+    background_color:
+      type: string
+      title: "Background color"
+      description: "Background color utility (Bootstrap)."
+      enum: ["none", "light", "muted", "primary", "secondary", "dark", "accent"]
+      default: "none"
+      'meta:enum':
+        none: "None"
+        light: "Light"
+        muted: "Muted"
+        primary: "Primary"
+        secondary: "Secondary"
+        dark: "Dark"
+        accent: "Accent"
+
+    text_color:
+      type: string
+      title: "Text color"
+      description: "Text color utility. Auto uses white on dark backgrounds."
+      enum: ["auto", "text-body", "text-dark", "text-white", "text-muted"]
+      default: "auto"
+      'meta:enum':
+        auto: "Auto (recommended)"
+        text-body: "Default"
+        text-dark: "Dark"
+        text-white: "White"
+        text-muted: "Muted"
+
+    background_media:
+      $ref: json-schema-definitions://canvas.module/image
+      title: "Background image"
+      type: object
+
+    background_overlay:
+      type: string
+      title: "Image overlay"
+      description: "Dark overlay on top of the background image."
+      enum: ["none", "overlay-10", "overlay-25", "overlay-50", "overlay-75"]
+      default: "none"
+      'meta:enum':
+        none: "None"
+        overlay-10: "Light (10%)"
+        overlay-25: "Soft (25%)"
+        overlay-50: "Medium (50%)"
+        overlay-75: "Strong (75%)"
+
+    columns:
+      type: string
+      title: "Grid layout (tablet/desktop)"
+      description: "Shows ONLY the selected number of columns."
+      enum:
+        - "100"
+        - "50-50"
+        - "33-33-33"
+        - "75-25"
+        - "25-75"
+        - "67-33"
+        - "33-67"
+        - "50-25-25"
+        - "25-25-50"
+        - "25-25-25-25"
+        - "20-20-20-20-20"
+        - "16-16-16-16-16-16"
+      default: "50-50"
+      'meta:enum':
+        "100": "1 column (100%)"
+        "50-50": "2 columns (50% / 50%)"
+        "33-33-33": "3 columns (33% / 33% / 33%)"
+        "75-25": "2 columns (75% / 25%)"
+        "25-75": "2 columns (25% / 75%)"
+        "67-33": "2 columns (67% / 33%)"
+        "33-67": "2 columns (33% / 67%)"
+        "50-25-25": "3 columns (50% / 25% / 25%)"
+        "25-25-50": "3 columns (25% / 25% / 50%)"
+        "25-25-25-25": "4 columns (25% each)"
+        "20-20-20-20-20": "5 columns (equal width)"
+        "16-16-16-16-16-16": "6 columns (equal width)"
+
+    gutter:
+      type: string
+      title: "Grid gap"
+      description: "Space between columns (Bootstrap gutters)."
+      enum: ["0", "1", "2", "3", "4", "5"]
+      default: "3"
+      'meta:enum':
+        "0": "None"
+        "1": "Small"
+        "2": "Medium"
+        "3": "Large (recommended)"
+        "4": "Extra large"
+        "5": "XX-Large"
+
+    padding_block_start:
+      type: string
+      title: "Padding top"
+      description: "Space inside the section at the top."
+      enum: ["0", "1", "2", "3", "4", "5"]
+      default: "0"
+      'meta:enum':
+        "0": "None"
+        "1": "Small"
+        "2": "Medium"
+        "3": "Large"
+        "4": "Extra large"
+        "5": "XX-Large"
+
+    padding_block_end:
+      type: string
+      title: "Padding bottom"
+      description: "Space inside the section at the bottom."
+      enum: ["0", "1", "2", "3", "4", "5"]
+      default: "0"
+      'meta:enum':
+        "0": "None"
+        "1": "Small"
+        "2": "Medium"
+        "3": "Large"
+        "4": "Extra large"
+        "5": "XX-Large"
+
+    margin_block_start:
+      type: string
+      title: "Margin top"
+      description: "Space outside the section at the top."
+      enum: ["0", "1", "2", "3", "4", "5"]
+      default: "0"
+      'meta:enum':
+        "0": "None"
+        "1": "Small"
+        "2": "Medium"
+        "3": "Large"
+        "4": "Extra large"
+        "5": "XX-Large"
+
+    margin_block_end:
+      type: string
+      title: "Margin bottom"
+      description: "Space outside the section at the bottom."
+      enum: ["0", "1", "2", "3", "4", "5"]
+      default: "0"
+      'meta:enum':
+        "0": "None"
+        "1": "Small"
+        "2": "Medium"
+        "3": "Large"
+        "4": "Extra large"
+        "5": "XX-Large"
+
+    border_radius:
+      type: string
+      title: "Rounded corners"
+      description: "Optional border radius (Bootstrap)."
+      enum: ["none", "rounded", "rounded-1", "rounded-2", "rounded-3", "rounded-pill"]
+      default: "none"
+      'meta:enum':
+        none: "None"
+        rounded: "Rounded"
+        rounded-1: "Rounded (small)"
+        rounded-2: "Rounded (medium)"
+        rounded-3: "Rounded (large)"
+        rounded-pill: "Pill"
+
+    shadow:
+      type: string
+      title: "Shadow"
+      description: "Optional shadow (Bootstrap)."
+      enum: ["none", "shadow-sm", "shadow", "shadow-lg"]
+      default: "none"
+      'meta:enum':
+        none: "None"
+        shadow-sm: "Small"
+        shadow: "Medium"
+        shadow-lg: "Large"
+
+    section_header:
+      type: boolean
+      title: "Show header region"
+      default: true
+
+    section_footer:
+      type: boolean
+      title: "Show footer region"
+      default: true
+
+    html_id:
+      type: string
+      title: "HTML ID"
+      description: "Optional ID attribute for the section."
+      default: ""
+
+    extra_classes:
+      type: string
+      title: "Extra CSS classes"
+      description: "Add custom classes (space separated)."
+      default: ""
+
+slots:
+  header_slot:
+    title: Header
+
+  col_1:
+    title: Column 1
+  col_2:
+    title: Column 2
+  col_3:
+    title: Column 3
+  col_4:
+    title: Column 4
+  col_5:
+    title: Column 5
+  col_6:
+    title: Column 6
+
+  footer_slot:
+    title: Footer

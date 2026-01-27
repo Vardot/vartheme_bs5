@@ -1,12 +1,11 @@
-{#
-  * Column component.
-  * Available config:
-    - attributes: Drupal attributes.
-    - content: The content that will be inside row.
-#}
+{% set attributes = attributes|default(create_attribute()) %}
+{% set extra_classes = extra_classes|default('') %}
 
-<div {{ attributes }}>
-  {% block content %}
-    {{ content }}
-  {% endblock %}
+{% set classes = ['col'] %}
+{% if extra_classes|trim %}
+  {% set classes = classes|merge(extra_classes|trim|split(' ')) %}
+{% endif %}
+
+<div {{ attributes.addClass(classes) }}>
+  {% block content %}{% endblock %}
 </div>

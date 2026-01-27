@@ -1,23 +1,62 @@
 {#
-  * Row component.
-  * Available config:
-  * - attributes: Drupal attributes.
-  * - withRow: Boolean variable to add row class or not.
-  * - content: The content block that will be inside row.
-  * - row_utility_classes: An array of utility classes that can be used to add extra
-  *                    Bootstrap utility classes or custom classes to this component.
+  Row (Bootstrap)
+  - Outputs a .row with gx/gy gutters (more predictable spacing)
+  - Optional container wrapper
+  - Optional responsive row-cols utilities
 #}
 
-{% set row_utility_classes = row_utility_classes ? row_utility_classes : [] %}
+{% set attributes = attributes|default(create_attribute()) %}
 
-{% set classes = []|merge(row_utility_classes) %}
+{% set container_type = container_type|default('none') %}
+{% set gutter = gutter|default('3') %}
+{% set columns_mobile = columns_mobile|default('none') %}
+{% set columns_desktop = columns_desktop|default('none') %}
+{% set align_items = align_items|default('none') %}
+{% set justify_content = justify_content|default('none') %}
 
-{% if withRow %}
-  {% set classes = classes|merge(['row']) %}
+{% set html_id = html_id|default('') %}
+{% set extra_classes = extra_classes|default('') %}
+
+{% set row_classes = [
+  'sdc-row',
+  'row',
+  'gx-' ~ gutter,
+  'gy-' ~ gutter
+] %}
+
+{# row-cols (optional) #}
+{% if columns_mobile != 'none' %}
+  {% set row_classes = row_classes|merge(['row-cols-' ~ columns_mobile]) %}
+{% endif %}
+{% if columns_desktop != 'none' %}
+  {% set row_classes = row_classes|merge(['row-cols-md-' ~ columns_desktop]) %}
 {% endif %}
 
-<div {{ attributes.addClass(classes) }}>
-  {% block content %}
-    {{ content }}
-  {% endblock %}
-</div>
+{% if align_items != 'none' %}
+  {% set row_classes = row_classes|merge([align_items]) %}
+{% endif %}
+{% if justify_content != 'none' %}
+  {% set row_classes = row_classes|merge([justify_content]) %}
+{% endif %}
+
+{% if extra_classes|trim %}
+  {% set row_classes = row_classes|merge(extra_classes|trim|split(' ')) %}
+{% endif %}
+
+{% if html_id|trim %}
+  {% set attributes = attributes.setAttribute('id', html_id|trim) %}
+{% endif %}
+
+{% set block_content %}{% block content %}{% endblock %}{% endset %}
+
+{% if container_type != 'none' %}
+  <div class="{{ container_type }}">
+    <div {{ attributes.addClass(row_classes) }}>
+      {{ block_content }}
+    </div>
+  </div>
+{% else %}
+  <div {{ attributes.addClass(row_classes) }}>
+    {{ block_content }}
+  </div>
+{% endif %}

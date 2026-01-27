@@ -1,0 +1,47 @@
+{#
+  Group (Bootstrap)
+  - A simple flex wrapper for stacking items.
+  - Default: vertical stack with gap.
+#}
+
+{% set attributes = attributes|default(create_attribute()) %}
+
+
+{% set direction = direction|default('vertical') %}
+{% set gap = gap|default('gap-3') %}
+{% set wrap = wrap|default('wrap') %}
+{% set align_items = align_items|default('align-items-stretch') %}
+{% set justify_content = justify_content|default('justify-content-start') %}
+
+{% set html_id = html_id|default('') %}
+{% set extra_classes = extra_classes|default('') %}
+
+{% set direction_class = (direction == 'horizontal') ? 'flex-row' : 'flex-column' %}
+{% set wrap_class = (direction == 'horizontal')
+  ? (wrap == 'wrap-reverse' ? 'flex-wrap-reverse' : (wrap == 'nowrap' ? 'flex-nowrap' : 'flex-wrap'))
+  : ''
+%}
+
+{% set classes = [
+  'sdc-group',
+  'd-flex',
+  direction_class,
+  wrap_class,
+  gap,
+  align_items,
+  justify_content
+] %}
+
+{% if extra_classes|trim %}
+  {% set classes = classes|merge(extra_classes|trim|split(' ')) %}
+{% endif %}
+
+{% if html_id|trim %}
+  {% set attributes = attributes.setAttribute('id', html_id|trim) %}
+{% endif %}
+
+{% set block_content %}{% block content %}{% endblock %}{% endset %}
+
+<div {{ attributes.addClass(classes) }}>
+  {{ block_content }}
+</div>

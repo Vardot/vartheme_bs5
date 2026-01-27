@@ -1,0 +1,196 @@
+{#
+  Section-only multi-column (no custom CSS)
+
+  Behavior:
+  - ONLY render the selected number of columns based on the "columns" preset.
+  - Extra slots (col_4..col_6) are skipped when layout is 1/2/3/4.
+#}
+
+{% set attributes = attributes|default(create_attribute()) %}
+
+{% set has_background_image = background_media is not empty and background_media.src is not empty %}
+{% set overlay_variant = background_overlay|default('none') %}
+{% set has_overlay = has_background_image and overlay_variant != 'none' %}
+
+{% set container_type = container_type|default('container') %}
+{% set gutter_scale = gutter|default('3') %}
+{% set background_color = background_color|default('none') %}
+{% set text_color = text_color|default('auto') %}
+{% set align = align|default('center') %}
+{% set border_radius = border_radius|default('none') %}
+{% set shadow = shadow|default('none') %}
+
+{% set html_id = html_id|default('') %}
+{% set extra_classes = extra_classes|default('') %}
+
+{% set bg_map = {
+  'none': '',
+  'primary': 'bg-primary',
+  'secondary': 'bg-secondary',
+  'accent': 'bg-info',
+  'muted': 'bg-body-tertiary',
+  'dark': 'bg-dark',
+  'light': 'bg-light'
+} %}
+
+{% set align_map = {'start':'ms-0 me-auto','center':'mx-auto','end':'ms-auto me-0'} %}
+
+{% set auto_text = (background_color in ['primary','secondary','dark']) ? 'text-white' : '' %}
+{% set text_class = (text_color == 'auto') ? auto_text : text_color %}
+
+{% set width = width|default('100%') %}
+{% set width_class = '' %}
+{% set width_style = '' %}
+{% if width == '100%' %}
+  {% set width_class = 'w-100' %}
+{% elseif width == '75%' %}
+  {% set width_class = 'w-75' %}
+{% elseif width == '50%' %}
+  {% set width_class = 'w-50' %}
+{% else %}
+  {% set width_style = 'max-width: ' ~ width ~ ';' %}
+{% endif %}
+
+{% set mt = 'mt-' ~ (margin_block_start|default('0')) %}
+{% set mb = 'mb-' ~ (margin_block_end|default('0')) %}
+{% set pt = 'pt-' ~ (padding_block_start|default('0')) %}
+{% set pb = 'pb-' ~ (padding_block_end|default('0')) %}
+
+{% set radius_class = (border_radius != 'none') ? border_radius : '' %}
+{% set shadow_class = (shadow != 'none') ? shadow : '' %}
+
+{% set overlay_opacity_map = {
+  'overlay-10': '0.10',
+  'overlay-25': '0.25',
+  'overlay-50': '0.50',
+  'overlay-75': '0.75'
+} %}
+{% set overlay_style = has_overlay ? ('opacity: ' ~ (overlay_opacity_map[overlay_variant]|default('0.25')) ~ ';') : '' %}
+
+{% set classes = [
+  'sdc-section',
+  mt, mb, pt, pb,
+  bg_map[background_color],
+  text_class,
+  radius_class,
+  shadow_class
+] %}
+
+{% if has_background_image or has_overlay %}
+  {% set classes = classes|merge(['position-relative','overflow-hidden']) %}
+{% endif %}
+
+{% if extra_classes|trim %}
+  {% set classes = classes|merge(extra_classes|trim|split(' ')) %}
+{% endif %}
+
+{% if html_id|trim %}
+  {% set attributes = attributes.setAttribute('id', html_id|trim) %}
+{% endif %}
+
+{% set container_classes = (container_type != 'none') ? [container_type] : [] %}
+{% set inner_classes = ['sdc-section__inner', align_map[align], width_class] %}
+
+{# Preset -> md widths (out of 12) for 1–4 column layouts #}
+{% set preset_map = {
+  '100': [12],
+  '50-50': [6,6],
+  '33-33-33': [4,4,4],
+  '75-25': [9,3],
+  '25-75': [3,9],
+  '67-33': [8,4],
+  '33-67': [4,8],
+  '50-25-25': [6,3,3],
+  '25-25-50': [3,3,6],
+  '25-25-25-25': [3,3,3,3]
+} %}
+
+{% set cols_key = columns|default('50-50') %}
+{% set is_five = cols_key == '20-20-20-20-20' %}
+{% set is_six  = cols_key == '16-16-16-16-16-16' %}
+
+{% set md_widths = preset_map[cols_key]|default([12]) %}
+{% set pattern_len = md_widths|length %}
+
+{# Selected count based on layout #}
+{% set selected_count = 1 %}
+{% if is_five %}
+  {% set selected_count = 5 %}
+{% elseif is_six %}
+  {% set selected_count = 6 %}
+{% else %}
+  {% set selected_count = pattern_len %}
+{% endif %}
+
+{# Slot content #}
+{% set col1 %}{% block col_1 %}{% endblock %}{% endset %}
+{% set col2 %}{% block col_2 %}{% endblock %}{% endset %}
+{% set col3 %}{% block col_3 %}{% endblock %}{% endset %}
+{% set col4 %}{% block col_4 %}{% endblock %}{% endset %}
+{% set col5 %}{% block col_5 %}{% endblock %}{% endset %}
+{% set col6 %}{% block col_6 %}{% endblock %}{% endset %}
+
+{% set cols = [col1, col2, col3, col4, col5, col6] %}
+
+<section {{ attributes.addClass(classes) }}>
+  {% if has_background_image %}
+    <div class="position-absolute top-0 start-0 w-100 h-100 z-0" aria-hidden="true">
+      {% include 'canvas:image' ignore missing with {
+        src: background_media.src,
+        alt: background_media.alt,
+        class: 'w-100 h-100 object-fit-cover',
+        width: background_media.width,
+        height: background_media.height
+      } only %}
+    </div>
+  {% endif %}
+
+  {% if has_overlay %}
+    <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark z-1" aria-hidden="true" style="{{ overlay_style }}"></div>
+  {% endif %}
+
+  <div class="position-relative z-2">
+    <div class="{{ container_classes|join(' ') }}">
+      <div class="{{ inner_classes|join(' ') }}" style="{{ width_style }}">
+        {% if section_header %}
+          {% set header_content %}{% block header_slot %}{% endblock %}{% endset %}
+          {% if header_content|trim is not empty %}
+            <header class="sdc-section__header mb-4">
+              {{ header_content }}
+            </header>
+          {% endif %}
+        {% endif %}
+
+        <div class="row gx-{{ gutter_scale }} gy-{{ gutter_scale }}
+          {% if is_five %}row-cols-1 row-cols-md-5{% endif %}
+          {% if is_six %}row-cols-1 row-cols-md-6{% endif %}
+        ">
+          {% for i in 0..(selected_count - 1) %}
+            {% set content = cols[i] %}
+            {% if content|trim is not empty %}
+              {% if is_five or is_six %}
+                <div class="col">
+                  {{ content }}
+                </div>
+              {% else %}
+                {% set md = md_widths[i % pattern_len] %}
+                <div class="col-12 col-md-{{ md }}">
+                  {{ content }}
+                </div>
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+        </div>
+
+        {% if section_footer %}
+          {% set footer_content %}{% block footer_slot %}{% endblock %}{% endset %}
+          {% if footer_content|trim is not empty %}
+            <footer class="sdc-section__footer mt-4">
+              {{ footer_content }}
+            </footer>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>

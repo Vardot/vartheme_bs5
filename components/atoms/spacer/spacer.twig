@@ -1,0 +1,67 @@
+{#
+  Spacer (Bootstrap, no component CSS)
+  - Adds spacing using Bootstrap spacing utilities.
+  - Renders a selectable helper box so admins can click/select it in Canvas/Layout Builder.
+  - Helper visuals are done with Bootstrap classes + inline styles (no spacer.css).
+#}
+
+{% set attributes = attributes|default(create_attribute()) %}
+
+{% set direction = direction|default('vertical') %}
+{% set size = size|default('3') %}
+{% set breakpoint = breakpoint|default('none') %}
+{% set show_helper = show_helper is defined ? show_helper : true %}
+
+{% set html_id = html_id|default('') %}
+{% set extra_classes = extra_classes|default('') %}
+
+{% set bp = (breakpoint != 'none') ? '-' ~ breakpoint : '' %}
+
+{# Bootstrap spacing utility #}
+{% if direction == 'vertical' %}
+  {% set spacing_class = 'my' ~ bp ~ '-' ~ size %}
+{% elseif direction == 'horizontal' %}
+  {% set spacing_class = 'mx' ~ bp ~ '-' ~ size %}
+{% else %}
+  {% set spacing_class = 'm' ~ bp ~ '-' ~ size %}
+{% endif %}
+
+{# Bootstrap spacing scale in rem for a clickable helper box #}
+{% set size_map = {
+  '0': '0rem',
+  '1': '0.25rem',
+  '2': '0.5rem',
+  '3': '1rem',
+  '4': '1.5rem',
+  '5': '3rem'
+} %}
+
+{% set box_size = size_map[size]|default('1rem') %}
+
+{% if direction == 'horizontal' %}
+  {% set helper_dim_style = 'width: ' ~ box_size ~ '; height: 1rem;' %}
+{% elseif direction == 'both' %}
+  {% set helper_dim_style = 'width: ' ~ box_size ~ '; height: ' ~ box_size ~ ';' %}
+{% else %}
+  {% set helper_dim_style = 'width: 100%; height: ' ~ box_size ~ '; min-height: 0.25rem;' %}
+{% endif %}
+
+{% set helper_base_style = helper_dim_style ~ ' border: 1px dashed rgba(13, 110, 253, 0.45); border-radius: 0.25rem; background: rgba(13, 110, 253, 0.08); user-select: none; pointer-events: auto;' %}
+{% set helper_hidden_style = helper_dim_style ~ ' border-color: transparent; background: transparent; user-select: none; pointer-events: auto;' %}
+{% set helper_style = show_helper ? helper_base_style : helper_hidden_style %}
+{% set label_style = show_helper ? 'line-height: 1; opacity: 0.85;' : 'display: none;' %}
+
+{% set classes = ['sdc-spacer', spacing_class] %}
+{% if extra_classes|trim %}
+  {% set classes = classes|merge(extra_classes|trim|split(' ')) %}
+{% endif %}
+
+{% if html_id|trim %}
+  {% set attributes = attributes.setAttribute('id', html_id|trim) %}
+{% endif %}
+
+<div {{ attributes.addClass(classes) }} data-direction="{{ direction }}">
+  <div class="d-flex align-items-center justify-content-center" aria-hidden="true" style="{{ helper_style }}">
+    <span class="small text-primary" style="{{ label_style }}">Spacer</span>
+  </div>
+</div>

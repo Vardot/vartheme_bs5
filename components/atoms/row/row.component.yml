@@ -1,22 +1,136 @@
-$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
-name: Row 
-status: experimental
-description: Row
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: Row
+group: Layout
+status: stable
+description: "Bootstrap .row wrapper with gutters, optional responsive row-cols presets, and alignment controls."
+
 props:
   type: object
   properties:
-    row_utility_classes:
-      type: array
-      title: Utility Classes
-      default: []
-      items:
-        type: 'string'
-      description: An array of utility classes that can be used to add extra Bootstrap utility classes or custom classes to this component.
-    attributes:
-      type: Drupal\Core\Template\Attribute
-      title: Attributes
-      description: HTML attributes for the containing element.
+    container_type:
+      type: string
+      title: "Container"
+      description: "Optionally wrap the row inside a Bootstrap container."
+      enum:
+        - "none"
+        - "container"
+        - "container-fluid"
+        - "container-sm"
+        - "container-md"
+        - "container-lg"
+        - "container-xl"
+        - "container-xxl"
+      default: "none"
+      'meta:enum':
+        none: "No container"
+        container: "Container (default)"
+        container-fluid: "Full width (fluid)"
+        container-sm: "Container (SM)"
+        container-md: "Container (MD)"
+        container-lg: "Container (LG)"
+        container-xl: "Container (XL)"
+        container-xxl: "Container (XXL)"
+
+    gutter:
+      type: string
+      title: "Grid gap"
+      description: "Space between columns (Bootstrap gutters)."
+      enum: ["0", "1", "2", "3", "4", "5"]
+      default: "3"
+      'meta:enum':
+        "0": "None"
+        "1": "Small"
+        "2": "Medium"
+        "3": "Large (recommended)"
+        "4": "Extra large"
+        "5": "XX-Large"
+
+    columns_mobile:
+      type: string
+      title: "Columns on mobile"
+      description: "How many columns per row on mobile (xs)."
+      enum: ["none", "1", "2", "3", "4", "5", "6"]
+      default: "none"
+      'meta:enum':
+        none: "Use child widths (default)"
+        "1": "1 per row"
+        "2": "2 per row"
+        "3": "3 per row"
+        "4": "4 per row"
+        "5": "5 per row"
+        "6": "6 per row"
+
+    columns_desktop:
+      type: string
+      title: "Columns on desktop"
+      description: "How many columns per row from md breakpoint and up."
+      enum: ["none", "1", "2", "3", "4", "5", "6"]
+      default: "none"
+      'meta:enum':
+        none: "No desktop override"
+        "1": "MD: 1 per row"
+        "2": "MD: 2 per row"
+        "3": "MD: 3 per row"
+        "4": "MD: 4 per row"
+        "5": "MD: 5 per row"
+        "6": "MD: 6 per row"
+
+    align_items:
+      type: string
+      title: "Vertical alignment"
+      description: "Align columns vertically."
+      enum:
+        - "none"
+        - "align-items-start"
+        - "align-items-center"
+        - "align-items-end"
+        - "align-items-stretch"
+      default: "none"
+      'meta:enum':
+        none: "Default"
+        align-items-start: "Top"
+        align-items-center: "Center"
+        align-items-end: "Bottom"
+        align-items-stretch: "Stretch"
+
+    justify_content:
+      type: string
+      title: "Horizontal distribution"
+      description: "Distribute columns across the row."
+      enum:
+        - "none"
+        - "justify-content-start"
+        - "justify-content-center"
+        - "justify-content-end"
+        - "justify-content-between"
+        - "justify-content-around"
+        - "justify-content-evenly"
+      default: "none"
+      'meta:enum':
+        none: "Default"
+        justify-content-start: "Start"
+        justify-content-center: "Center"
+        justify-content-end: "End"
+        justify-content-between: "Space between"
+        justify-content-around: "Space around"
+        justify-content-evenly: "Space evenly"
+
+    html_id:
+      type: string
+      title: "HTML ID"
+      description: "Optional ID for the row."
+      default: ""
+      examples:
+        - "custom-row-id"
+
+    extra_classes:
+      type: string
+      title: "Extra CSS classes"
+      description: "Add custom classes (space separated)."
+      default: ""
+      examples:
+        - "custom-row-class"
+
 slots:
   content:
-    type: string
-    title: Content
+    title: "Columns"

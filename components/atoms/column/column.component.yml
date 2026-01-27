@@ -1,15 +1,22 @@
-$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
 name: Column
-status: experimental
-description: Column
+group: Layout
+status: stable
+description: "Bootstrap column wrapper for Section grids. Ensures gutters (gx/gy) work."
+
 props:
   type: object
   properties:
-    content:
+    extra_classes:
       type: string
-      title: Content
-      description: Content for the column.
-    attributes:
-      type: Drupal\Core\Template\Attribute
-      title: Attributes
-      description: HTML attributes for the containing element.
+      title: "Extra CSS classes"
+      description: "Add Bootstrap col classes or utilities (space separated)."
+      default: ""
+      examples:
+        - "col-md-6"
+        - "col-lg-4"
+        - "d-flex"
+
+slots:
+  content:
+    title: Content

@@ -1,0 +1,112 @@
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: Group
+group: Layout
+status: stable
+description: "Bootstrap flex group for stacking items (horizontal/vertical) with gap and alignment."
+
+props:
+  type: object
+  properties:
+    direction:
+      type: string
+      title: "Direction"
+      description: "How items should flow."
+      enum:
+        - "vertical"
+        - "horizontal"
+      default: "vertical"
+      'meta:enum':
+        vertical: "Vertical (stack)"
+        horizontal: "Horizontal (row)"
+
+    gap:
+      type: string
+      title: "Space between items"
+      description: "Bootstrap gap utility."
+      enum:
+        - "gap-0"
+        - "gap-1"
+        - "gap-2"
+        - "gap-3"
+        - "gap-4"
+        - "gap-5"
+      default: "gap-3"
+      'meta:enum':
+        gap-0: "None"
+        gap-1: "Small"
+        gap-2: "Medium"
+        gap-3: "Large"
+        gap-4: "X-Large"
+        gap-5: "XX-Large"
+
+    wrap:
+      type: string
+      title: "Wrap items (horizontal only)"
+      description: "If horizontal, allow items to wrap onto new lines."
+      enum:
+        - "wrap"
+        - "nowrap"
+        - "wrap-reverse"
+      default: "wrap"
+      'meta:enum':
+        wrap: "Wrap"
+        nowrap: "No wrap"
+        wrap-reverse: "Wrap (reverse)"
+
+    align_items:
+      type: string
+      title: "Vertical alignment"
+      description: "Align items on the cross axis."
+      enum:
+        - "align-items-start"
+        - "align-items-center"
+        - "align-items-end"
+        - "align-items-stretch"
+        - "align-items-baseline"
+      default: "align-items-baseline"
+      'meta:enum':
+        align-items-start: "Top"
+        align-items-center: "Center"
+        align-items-end: "Bottom"
+        align-items-stretch: "Stretch"
+        align-items-baseline: "Baseline"
+
+    justify_content:
+      type: string
+      title: "Horizontal distribution"
+      description: "Distribute items along the main axis."
+      enum:
+        - "justify-content-start"
+        - "justify-content-center"
+        - "justify-content-end"
+        - "justify-content-between"
+        - "justify-content-around"
+        - "justify-content-evenly"
+      default: "justify-content-start"
+      'meta:enum':
+        justify-content-start: "Start"
+        justify-content-center: "Center"
+        justify-content-end: "End"
+        justify-content-between: "Space between"
+        justify-content-around: "Space around"
+        justify-content-evenly: "Space evenly"
+      
+    html_id:
+      type: string
+      title: "HTML ID"
+      description: "Optional ID for the wrapper."
+      default: ""
+      examples:
+        - "my-custom-group-id"
+
+    extra_classes:
+      type: string
+      title: "Extra CSS classes"
+      description: "Add custom classes (space separated)."
+      default: ""
+      examples:
+        - "my-custom-group-class"
+
+slots:
+  content:
+    title: "Content"

@@ -1,0 +1,85 @@
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: Spacer
+group: Layout
+status: stable
+description: "Bootstrap spacer for adding breathing room in layouts (visible/selectable in Canvas/Layout Builder)."
+
+props:
+  type: object
+  properties:
+
+    direction:
+      type: string
+      title: "Spacing direction"
+      description: "Where to add space."
+      enum:
+        - "vertical"
+        - "horizontal"
+        - "both"
+      default: "vertical"
+      'meta:enum':
+        vertical: "Vertical (top + bottom)"
+        horizontal: "Horizontal (left + right)"
+        both: "All sides"
+
+    size:
+      type: string
+      title: "Spacing size"
+      description: "Bootstrap spacing scale (0–5)."
+      enum:
+        - "0"
+        - "1"
+        - "2"
+        - "3"
+        - "4"
+        - "5"
+      default: "3"
+      'meta:enum':
+        "0": "None"
+        "1": "Small"
+        "2": "Medium"
+        "3": "Large"
+        "4": "X-Large"
+        "5": "XX-Large"
+
+    breakpoint:
+      type: string
+      title: "Responsive breakpoint"
+      description: "Apply spacing starting from this breakpoint (optional)."
+      enum:
+        - "none"
+        - "sm"
+        - "md"
+        - "lg"
+        - "xl"
+        - "xxl"
+      default: "none"
+      'meta:enum':
+        none: "Always"
+        sm: "SM and up"
+        md: "MD and up"
+        lg: "LG and up"
+        xl: "XL and up"
+        xxl: "XXL and up"
+
+    show_helper:
+      type: boolean
+      title: "Show helper in editor"
+      description: "Shows a dashed box so admins can select the spacer in Canvas/Layout Builder."
+      default: true
+    
+    html_id:
+      type: string
+      title: "HTML ID"
+      description: "Optional ID for the spacer."
+      default: ""
+      examples:
+        - "spacer-1"
+
+    extra_classes:
+      type: string
+      title: "Extra CSS classes"
+      description: "Add custom classes (space separated)."
+      default: ""
+      examples:
+        - "my-custom-spacer-class"
