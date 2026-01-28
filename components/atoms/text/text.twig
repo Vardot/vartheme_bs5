@@ -1,13 +1,32 @@
-{# Bootstrap Text component (Canvas-friendly, no attributes prop) #}
+{# Bootstrap Text component (SDC / Canvas-friendly) #}
+
+{% set element = element|default('div') %}
+{% set allowed_elements = ['div','section','article','p','span'] %}
+{% if element not in allowed_elements %}
+  {% set element = 'div' %}
+{% endif %}
 
 {% set size_value = text_size|default('default') %}
 {% set color_value = text_color|default('default') %}
+{% set align_value = align|default('start') %}
+{% set weight_value = weight|default('default') %}
+{% set lh_value = line_height|default('default') %}
+{% set spacing_y_value = spacing_y|default('none') %}
 
+{# Base classes #}
 {% set classes = [] %}
 
-{# Font size (Bootstrap fs-1..fs-6). default = no class #}
-{% if size_value != 'default' %}
-  {% set classes = classes|merge([size_value]) %}
+{# Text size mapping (user-friendly → bootstrap) #}
+{% set size_map = {
+  default: '',
+  sm: 'fs-6',
+  md: 'fs-5',
+  lg: 'fs-4',
+  xl: 'fs-3',
+  xxl: 'fs-2'
+} %}
+{% if size_map[size_value]|default('') %}
+  {% set classes = classes|merge([size_map[size_value]]) %}
 {% endif %}
 
 {# Text color mapping #}
@@ -25,17 +44,66 @@
 } %}
 {% set classes = classes|merge([color_map[color_value]|default('text-body')]) %}
 
+{# Alignment mapping #}
+{% set align_map = {
+  start: 'text-start',
+  center: 'text-center',
+  end: 'text-end',
+  justify: 'text-justify'
+} %}
+{% if align_map[align_value]|default('') %}
+  {% set classes = classes|merge([align_map[align_value]]) %}
+{% endif %}
+
+{# Weight mapping #}
+{% set weight_map = {
+  default: '',
+  light: 'fw-light',
+  normal: 'fw-normal',
+  medium: 'fw-medium',
+  semibold: 'fw-semibold',
+  bold: 'fw-bold'
+} %}
+{% if weight_map[weight_value]|default('') %}
+  {% set classes = classes|merge([weight_map[weight_value]]) %}
+{% endif %}
+
+{# Line-height mapping #}
+{% set lh_map = {
+  default: '',
+  tight: 'lh-1',
+  normal: 'lh-sm',
+  relaxed: 'lh-base',
+  loose: 'lh-lg'
+} %}
+{% if lh_map[lh_value]|default('') %}
+  {% set classes = classes|merge([lh_map[lh_value]]) %}
+{% endif %}
+
+{# Vertical spacing mapping #}
+{% set spacing_map = {
+  none: '',
+  sm: 'my-3',
+  md: 'my-4',
+  lg: 'my-5'
+} %}
+{% if spacing_map[spacing_y_value]|default('') %}
+  {% set classes = classes|merge([spacing_map[spacing_y_value]]) %}
+{% endif %}
+
 {# Optional extra classes #}
-{% if extra_classes|default('')|trim %}
+{% if extra_classes is defined and extra_classes|trim %}
   {% set classes = classes|merge(extra_classes|trim|split(' ')) %}
 {% endif %}
 
-{# Build attributes internally (Canvas-safe) #}
+{# Build attributes internally #}
 {% set attrs = create_attribute().addClass(classes) %}
-{% if id|default('')|trim %}
+{% if id is defined and id|trim %}
   {% set attrs = attrs.setAttribute('id', id|trim) %}
 {% endif %}
 
-<div{{ attrs }}>
-  {{ text|default('<p>Lorem ipsum dolor sit amet.</p>')|raw }}
-</div>
+{% set content = text|default('<p>Lorem ipsum dolor sit amet.</p>') %}
+
+<{{ element }}{{ attrs }}>
+  {{ content|raw }}
+</{{ element }}>

@@ -1,6 +1,7 @@
 {# Values #}
 {% set text = heading_text|default('Enter title') %}
 {% set level = level|default(2) %}
+{% set tag = 'h' ~ level %}
 {% set has_url = url is not empty %}
 
 {# Bootstrap classes #}
@@ -29,19 +30,69 @@
 {% set classes = classes|merge([color_map[text_color]|default('text-body')]) %}
 
 {# Size override #}
-{% if text_size != 'default' %}
+{% if text_size is defined and text_size != 'default' %}
   {% set classes = classes|merge([text_size]) %}
 {% endif %}
 
+{# Spacing (opt-in) #}
+{% if margin_top is defined and margin_top != 'none' %}
+  {% set classes = classes|merge(['mt-' ~ margin_top]) %}
+{% endif %}
+{% if margin_bottom is defined and margin_bottom != 'none' %}
+  {% set classes = classes|merge(['mb-' ~ margin_bottom]) %}
+{% endif %}
+
+{# Borders (opt-in) #}
+{% set borders_enabled = (border_top|default(false) or border_bottom|default(false)) %}
+{% if border_top|default(false) %}
+  {% set classes = classes|merge(['border-top']) %}
+{% endif %}
+{% if border_bottom|default(false) %}
+  {% set classes = classes|merge(['border-bottom']) %}
+{% endif %}
+
+{% if borders_enabled %}
+  {# Border width #}
+  {% if border_width is defined %}
+    {% set classes = classes|merge(['border-' ~ border_width]) %}
+  {% endif %}
+
+  {# Border color (optional) #}
+  {% set border_color_map = {
+    default: '',
+    primary: 'border-primary',
+    secondary: 'border-secondary',
+    success: 'border-success',
+    danger: 'border-danger',
+    warning: 'border-warning',
+    info: 'border-info',
+    light: 'border-light',
+    dark: 'border-dark',
+    white: 'border-white'
+  } %}
+  {% set border_color_class = border_color_map[border_color|default('default')]|default('') %}
+  {% if border_color_class %}
+    {% set classes = classes|merge([border_color_class]) %}
+  {% endif %}
+
+  {# Padding to control distance between border and text #}
+  {% if padding_top is defined and padding_top != 'none' %}
+    {% set classes = classes|merge(['pt-' ~ padding_top]) %}
+  {% endif %}
+  {% if padding_bottom is defined and padding_bottom != 'none' %}
+    {% set classes = classes|merge(['pb-' ~ padding_bottom]) %}
+  {% endif %}
+{% endif %}
+
 {# Extra classes #}
-{% if extra_classes|trim %}
+{% if extra_classes|default('')|trim %}
   {% set classes = classes|merge(extra_classes|trim|split(' ')) %}
 {% endif %}
 
-{# Build attributes #}
+{# Build attributes (Canvas-friendly: no 'attributes' prop) #}
 {% set attrs = create_attribute().addClass(classes) %}
-{% if id|trim %}
-  {% set attrs = attrs.setAttribute('id', id|trim) %}
+{% if html_id|default('')|trim %}
+  {% set attrs = attrs.setAttribute('id', html_id|trim) %}
 {% endif %}
 
 {# Content #}
@@ -53,17 +104,4 @@
   {% endif %}
 {% endset %}
 
-{# Render heading #}
-{% if level == 1 %}
-  <h1{{ attrs }}>{{ content }}</h1>
-{% elseif level == 2 %}
-  <h2{{ attrs }}>{{ content }}</h2>
-{% elseif level == 3 %}
-  <h3{{ attrs }}>{{ content }}</h3>
-{% elseif level == 4 %}
-  <h4{{ attrs }}>{{ content }}</h4>
-{% elseif level == 5 %}
-  <h5{{ attrs }}>{{ content }}</h5>
-{% elseif level == 6 %}
-  <h6{{ attrs }}>{{ content }}</h6>
-{% endif %}
+<{{ tag }}{{ attrs }}>{{ content }}</{{ tag }}>

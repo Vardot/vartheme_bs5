@@ -4,8 +4,10 @@
   Props:
   - heading_text (string)
   - level (int 1-6)
+  - heading_size (display-4|display-5|display-6|h1|h2|h3)
   - text (string)
   - text_align (center|start|end)
+  - content_width (narrow|normal|wide)
   - background_color (none|primary|secondary|light|dark|muted|accent)
   - media (canvas image object) optional
   - overlay_opacity ("0%"|"20%"|"40%"|"60%"|"75%")
@@ -16,6 +18,7 @@
   Slots:
   - actions (buttons/links)
 #}
+
 
 {% set align_value = text_align|default('center') %}
 {% set align_class = {
@@ -41,37 +44,85 @@
   'accent': 'bg-info text-white'
 }[bg_value]|default('') %}
 
+{% set content_color_value = content_color|default('auto') %}
+{% set auto_content_color = (bg_value in ['primary','secondary','dark','accent']) ? 'white' : 'default' %}
+{% set resolved_content_color = (content_color_value == 'auto') ? auto_content_color : content_color_value %}
+{% set content_text_class = {
+  'default': '',
+  'white': 'text-white',
+  'dark': 'text-dark'
+}[resolved_content_color]|default('') %}
+
+{# Bootstrap doesn't ship py-6 by default, normalize safely #}
 {% set pad = padding_y|default('py-5') %}
+{% if pad == 'py-6' %}
+  {% set pad = 'py-5' %}
+{% endif %}
+
 {% set container = container_width|default('container') %}
 
 {% set extra = extra_classes|default('')|trim %}
 {% set section_classes = ['hero-cta', pad, bg_class, extra]|filter(v => v is not empty) %}
 
-{% set overlay_alpha = {
-  '0%': '0',
-  '20%': '0.20',
-  '40%': '0.40',
-  '60%': '0.60',
-  '75%': '0.75'
-}[overlay_opacity|default('40%')]|default('0.40') %}
+{# Bootstrap-only overlay (no inline styles) #}
+{% set overlay_class = {
+  '0%': '',
+  '20%': 'bg-dark bg-opacity-25',
+  '40%': 'bg-dark bg-opacity-50',
+  '60%': 'bg-dark bg-opacity-75',
+  '75%': 'bg-dark bg-opacity-75'
+}[overlay_opacity|default('40%')]|default('bg-dark bg-opacity-50') %}
+
+{# Content width presets #}
+{% set width_class = {
+  'narrow': 'col-12 col-lg-8 col-xl-6',
+  'normal': 'col-12 col-lg-10 col-xl-8',
+  'wide': 'col-12 col-xl-10'
+}[content_width|default('normal')]|default('col-12 col-lg-10 col-xl-8') %}
+
+{# Heading size (visual) #}
+{% set heading_size_class = heading_size|default('display-5') %}
+
+{% set bg_image = null %}
+{% if background_image is defined and background_image.src is not empty %}
+  {% set bg_image = background_image %}
+{% elseif media is defined and media.src is not empty %}
+  {# Backward compatible: media can still be a Canvas image object #}
+  {% set bg_image = media %}
+{% endif %}
 
 <section class="{{ section_classes|join(' ') }} position-relative overflow-hidden">
-  {% if media is defined and media.src is not empty %}
+  {% if bg_image %}
     <div class="position-absolute top-0 start-0 w-100 h-100" aria-hidden="true">
-      <div class="position-absolute top-0 start-0 w-100 h-100" style="background: rgba(0,0,0,{{ overlay_alpha }});"></div>
+      {% if overlay_class %}
+        <div class="position-absolute top-0 start-0 w-100 h-100 {{ overlay_class }}"></div>
+      {% endif %}
       {% include 'canvas:image' ignore missing with {
-        src: media.src,
-        alt: media.alt,
-        width: media.width,
-        height: media.height,
+        src: bg_image.src,
+        alt: bg_image.alt,
+        width: bg_image.width,
+        height: bg_image.height,
         class: 'w-100 h-100 object-fit-cover'
       } only %}
+    </div>
+  {% elseif media is defined and media is not empty %}
+    <div class="position-absolute top-0 start-0 w-100 h-100" aria-hidden="true">
+      {% if overlay_class %}
+        <div class="position-absolute top-0 start-0 w-100 h-100 {{ overlay_class }}"></div>
+      {% endif %}
+      <div class="w-100 h-100 object-fit-cover">
+        {{ media }}
+      </div>
     </div>
   {% endif %}
 
   <div class="{{ container }} position-relative">
     <div class="row">
-      <div class="col-12 col-lg-10 col-xl-8 mx-auto {{ align_class }}">
+      <div class="{{ width_class }} mx-auto {{ align_class }} {{ content_text_class }}">
+        {% if eyebrow|default('')|trim %}
+          <div class="text-uppercase small opacity-75 mb-2">{{ eyebrow|trim }}</div>
+        {% endif %}
+
         {{
           include(
             'vartheme_bs5:heading',
@@ -79,9 +130,9 @@
               heading_text: heading_text|default(''),
               level: level|default(2),
               align: align_value,
-              text_color: 'default',
+              text_color: resolved_content_color == 'default' ? 'default' : resolved_content_color,
               url: '',
-              text_size: 'display-5'
+              text_size: heading_size_class
             },
             with_context: false
           )
@@ -91,11 +142,15 @@
           <p class="lead mt-3 mb-0">{{ text }}</p>
         {% endif %}
 
-        {% if block('actions') is defined %}
-          <div class="d-flex flex-wrap gap-2 mt-4 {{ actions_class }}">
-            {% block actions %}{% endblock %}
-          </div>
-        {% endif %}
+        {# Actions slot #}
+{% if slots is defined and slots.actions is defined %}
+  {% set actions_rendered = slots.actions|render %}
+  {% if actions_rendered|trim %}
+    <div class="d-flex flex-wrap gap-2 mt-4 {{ actions_class }}">
+      {{ actions_rendered }}
+    </div>
+  {% endif %}
+{% endif %}
       </div>
     </div>
   </div>

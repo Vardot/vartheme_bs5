@@ -2,11 +2,17 @@
   Hero Billboard (Bootstrap 5)
 
   Props:
+  - extra_style
+  - container_type
   - height: full|large|ribbon
   - flex_position: top-left|center-left|bottom-left|hero-center
+  - content_max_width: CSS value (e.g., 48rem)
   - overlay_opacity: "0%"|"20%"|"40%"|"60%"|"75%"
+  - overlay_color: CSS color (default #000000)
   - object_position: top|center|bottom
   - media: background image (optional)
+  - html_id
+  - extra_classes
 
   Slot:
   - hero_slot: content
@@ -15,11 +21,22 @@
 {% set hero_height = height|default('full') %}
 {% set hero_position = flex_position|default('center-left') %}
 {% set hero_overlay = overlay_opacity|default('40%') %}
+{% set hero_overlay_color = overlay_color|default('#000000') %}
 {% set hero_object_position = object_position|default('center') %}
+{% set max_width = content_max_width|default('48rem') %}
+{% set container_class = container_type|default('container') %}
+{% set extra_style_value = extra_style|default('') %}
 
-{% set additional_classes = classes|default('') %}
-{% if additional_classes is iterable %}
-  {% set additional_classes = additional_classes|join(' ') %}
+{# Build classes safely #}
+{% set class_list = [
+  'hero-billboard',
+  'position-relative',
+  'overflow-hidden',
+  'd-flex'
+] %}
+
+{% if extra_classes is defined and extra_classes is not empty %}
+  {% set class_list = class_list|merge(extra_classes|split(' ')) %}
 {% endif %}
 
 {# Height strategy:
@@ -33,6 +50,10 @@
       : 'min-height: 45vh;'
     )
 %}
+
+{% if extra_style_value %}
+  {% set hero_size_style = hero_size_style ~ ' ' ~ extra_style_value %}
+{% endif %}
 
 {% set v_align = {
   'top-left': 'justify-content-start',
@@ -60,12 +81,16 @@
 }[hero_overlay]|default('0.40') %}
 
 <section
-  class="hero-billboard position-relative overflow-hidden d-flex {{ additional_classes }}"
+  {% if html_id is defined and html_id is not empty %}id="{{ html_id }}"{% endif %}
+  class="{{ class_list|join(' ') }}"
   style="{{ hero_size_style }}"
 >
   {% if media is defined and media.src is not empty %}
     <div class="position-absolute top-0 start-0 end-0 bottom-0" aria-hidden="true">
-      <div class="position-absolute top-0 start-0 end-0 bottom-0" style="background: rgba(0,0,0,{{ overlay_alpha }});"></div>
+      <div
+        class="position-absolute top-0 start-0 end-0 bottom-0"
+        style="background: {{ hero_overlay_color }}; opacity: {{ overlay_alpha }};"
+      ></div>
 
       {% include 'canvas:image' ignore missing with {
         src: media.src,
@@ -79,12 +104,12 @@
   {% endif %}
 
   {# Content layer #}
-  <div class="container position-relative d-flex flex-grow-1">
+  <div class="{{ container_class != 'none' ? container_class : '' }} position-relative d-flex flex-grow-1">
     <div class="d-flex flex-grow-1 {{ v_align }} {{ content_align }} {{ text_align }}">
-      {# KEY: full hero should NOT push page height; allow internal scroll if needed #}
+      {# Full hero should NOT push page height; allow internal scroll if needed #}
       <div
         class="w-100"
-        style="max-width: 48rem; {{ hero_height == 'full' ? 'max-height: 100%; overflow:auto;' : '' }}"
+        style="max-width: {{ max_width }}; {{ hero_height == 'full' ? 'max-height: 100%; overflow:auto;' : '' }}"
       >
         <div class="{{ hero_height == 'ribbon' ? 'py-4' : 'py-5' }}">
           {% block hero_slot %}{% endblock %}

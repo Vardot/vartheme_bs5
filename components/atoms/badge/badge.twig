@@ -15,7 +15,7 @@
   {% set variant = 'primary' %}
 {% endif %}
 
-{# Normalize icon_first safely (supports boolean false, "false", 0, etc.) #}
+{# Normalize icon_first safely #}
 {% set is_icon_first = icon_first|default(true) %}
 {% if icon_first is defined and icon_first is same as(false) %}
   {% set is_icon_first = false %}
@@ -28,7 +28,30 @@
   {% endif %}
 {% endif %}
 
-{# Border radius mapping (Bootstrap utilities) #}
+{# Size mapping (padding + font size) #}
+{% set size = size|default('md') %}
+{% set size_classes = [] %}
+{% set icon_size = 'extra-small' %}
+
+{% if size == 'xs' %}
+  {% set size_classes = ['px-2','py-0','small'] %}
+  {% set icon_size = 'extra-small' %}
+{% elseif size == 'sm' %}
+  {% set size_classes = ['px-2','py-1','small'] %}
+  {% set icon_size = 'extra-small' %}
+{% elseif size == 'lg' %}
+  {% set size_classes = ['px-3','py-2','fs-6'] %}
+  {% set icon_size = 'small' %}
+{% elseif size == 'xl' %}
+  {% set size_classes = ['px-3','py-2','fs-5'] %}
+  {% set icon_size = 'small' %}
+{% else %}
+  {# md default #}
+  {% set size_classes = ['px-2','py-1'] %}
+  {% set icon_size = 'extra-small' %}
+{% endif %}
+
+{# Border radius mapping #}
 {% set radius = radius|default('default') %}
 {% set radius_class = '' %}
 {% if radius == 'sm' %}
@@ -41,42 +64,65 @@
   {% set radius_class = 'rounded-0' %}
 {% endif %}
 
-{# Base Bootstrap badge classes #}
+{# Base classes #}
 {% set base_classes = [
   'badge',
   'text-bg-' ~ variant,
-  radius_class,
   'text-decoration-none',
   'd-inline-flex',
   'align-items-center',
-  'gap-1',
-  'px-2',
-  'py-1'
+  'text-nowrap',
+  'lh-1',
+  'align-middle'
 ] %}
 
-{# Flip order when icon_first is false #}
-{% if not is_icon_first %}
-  {% set base_classes = base_classes|merge(['flex-row-reverse']) %}
+{% set base_classes = base_classes|merge(size_classes) %}
+
+
+{# Add radius class LAST to ensure it applies #}
+{% if radius_class %}
+  {% set base_classes = base_classes|merge([radius_class]) %}
 {% endif %}
 
-{% set class_attr = (base_classes|join(' ') ~ ' ' ~ additional_classes)|trim %}
+{# Merge extra classes and clean #}
+{% set merged_classes = (base_classes|join(' ') ~ ' ' ~ additional_classes)|trim %}
+{% set merged_classes = merged_classes|replace({'  ':' '}) %}
+
+{# Icon guard: support enum value "none" #}
+{% set icon_value = icon|default('none') %}
+{% set show_icon = (icon_value is not empty and icon_value != 'none') %}
 
 {% if has_url %}
-  <a href="{{ url|e }}" class="{{ class_attr }}" aria-label="{{ label|e }}">
+  <a href="{{ url|e }}" class="{{ merged_classes }}" aria-label="{{ label|e }}">
 {% else %}
-  <span class="{{ class_attr }}" aria-label="{{ label|e }}">
+  <span class="{{ merged_classes }}" aria-label="{{ label|e }}">
 {% endif %}
 
-  {% if icon is defined and icon is not empty %}
-    {{
-      include(
-        '@vartheme_bs5/components/atoms/icon/icon.twig',
-        { icon: icon, icon_size: 'extra-small' },
-        with_context: false
-      )
-    }}
+  {% if show_icon and is_icon_first %}
+    <span class="d-inline-flex align-items-center flex-shrink-0">
+      {{
+        include(
+          '@vartheme_bs5/components/atoms/icon/icon.twig',
+          { icon: icon_value, icon_size: icon_size, weight: 'bold' },
+          with_context: false
+        )
+      }}
+    </span>
+    <span class="ms-1">{{ label }}</span>
+  {% elseif show_icon and not is_icon_first %}
+    <span>{{ label }}</span>
+    <span class="ms-1 d-inline-flex align-items-center flex-shrink-0">
+      {{
+        include(
+          '@vartheme_bs5/components/atoms/icon/icon.twig',
+          { icon: icon_value, icon_size: icon_size, weight: 'bold' },
+          with_context: false
+        )
+      }}
+    </span>
+  {% else %}
+    <span>{{ label }}</span>
   {% endif %}
-  <span class="lh-1">{{ label }}</span>
 
 {% if has_url %}
   </a>

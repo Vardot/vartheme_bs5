@@ -10,7 +10,13 @@
 {# Date is passed as a unix timestamp in the component examples. #}
 {% set date_formatted = date is not empty ? (date|date('M d, Y')) : '' %}
 
-<section class="{{ classes|join(' ') }}">
+{# Only render media wrapper if slot actually has content. #}
+{% set media_content = block('blog_media')|default('')|trim %}
+
+<section
+  {% if html_id is defined and html_id is not empty %}id="{{ html_id }}"{% endif %}
+  class="{{ classes|join(' ') }}"
+>
   <div class="{{ container }}">
     <div class="row justify-content-center">
       <div class="col-12 col-lg-10 col-xl-8">
@@ -49,7 +55,7 @@
     </div>
   </div>
 
-  {% if block('blog_media') is defined %}
+  {% if media_content %}
     <div class="mt-4 mt-md-5">
       <div class="{{ container }}">
         <div class="row justify-content-center">

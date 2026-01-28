@@ -1,38 +1,123 @@
 {#
-/**
- * @file
- * Vartheme BS5 Starter Kit implementation of an image.
- * 
- * Available properties:
- * - align: (optional) Align images with the helper float classes or text alignment classes.
- *          block-level images can be centered using the .mx-auto margin utility class.
- *          options (`float-start`, `mx-auto d-block`, `float-end`)
- * - responsive: (optional) Images in Bootstrap are made responsive with `.img-fluid`. This applies max-width with 100% and height with auto to the image so that it scales with the parent width.
- * - thumbnails: (optional) In addition to Bootstrap border-radius utilities, you can use `.img-thumbnail` to give an image a rounded 1px border appearance.
- * - rounded: (optional) Rounded image
- * - image_utility_classes: An array of utility classes that can be used to add extra
- *                    Bootstrap utility classes or custom classes to this component.
- *
- * Available attributes:
- * - attributes: HTML attributes for the img tag.
- *
- * Available slots:
- * - N/A
- *
- */
+  Image component (Bootstrap 5, SDC)
+  - Supports optional ratio crop via Bootstrap .ratio
+  - No custom CSS
 #}
-{% set aligning = {
-  start: ['float-start'],
-  center: ['mx-auto', 'd-block'],
-  end: ['float-end'],
+
+{% set media_ok = media is defined and media and media.src is defined and media.src is not empty %}
+
+{% set has_link = link_url is defined and link_url is not empty and link_url != 'No URL' %}
+{% set target_value = target|default('self') %}
+{% set target_attr = target_value == 'blank' ? '_blank' : '_self' %}
+{% set rel_attr = target_value == 'blank' ? 'noopener noreferrer' : null %}
+
+{% set aria = aria_label|default('')|trim %}
+{% if aria == '' %}
+  {% set aria = media.alt|default('Open') %}
+{% endif %}
+
+{% set ratio_value = ratio|default('auto') %}
+{% set ratio_map = {
+  '16x9':'ratio ratio-16x9',
+  '4x3':'ratio ratio-4x3',
+  '1x1':'ratio ratio-1x1',
+  '21x9':'ratio ratio-21x9'
 } %}
+{% set ratio_class = ratio_map[ratio_value]|default('') %}
 
-{% set align = align ? aligning[align]: [] %}
-{% set responsive = responsive ? ['img-fluid'] : [] %}
-{% set thumbnails = thumbnails ? ['img-thumbnail'] : [] %}
-{% set rounded = rounded ? ['rounded'] : [] %}
-{% set image_utility_classes = image_utility_classes ? image_utility_classes : [] %}
+{% set fit_value = fit|default('cover') %}
+{% set fit_class = fit_value == 'contain' ? 'object-fit-contain' : 'object-fit-cover' %}
 
-{% set classes = []|merge(align)|merge(responsive)|merge(thumbnails)|merge(rounded)|merge(image_utility_classes) %}
+{% set align_value = align|default('start') %}
+{% set align_map = { 'start':'me-auto', 'center':'mx-auto', 'end':'ms-auto' } %}
 
-<img{{ attributes.addClass(classes) }} />
+{% set width_value = width|default('auto') %}
+{% set width_map = { '25':'w-25', '50':'w-50', '75':'w-75', '100':'w-100' } %}
+{% set width_class = width_map[width_value]|default('') %}
+
+{% set rounded_value = rounded|default('none') %}
+{% set rounded_map = {
+  'none': '',
+  'sm': 'rounded-1',
+  'md': 'rounded-2',
+  'lg': 'rounded-3',
+  'pill': 'rounded-pill'
+} %}
+{% set rounded_class = rounded_map[rounded_value]|default('') %}
+
+{% set border_value = border|default('none') %}
+{% set border_class = border_value == 'default' ? 'border' : '' %}
+
+{% set shadow_value = shadow|default('none') %}
+{% set shadow_map = { 'none':'', 'sm':'shadow-sm', 'default':'shadow', 'lg':'shadow-lg' } %}
+{% set shadow_class = shadow_map[shadow_value]|default('') %}
+
+{% set loading_value = loading|default('lazy') %}
+{% set sizes_value = sizes|default('')|trim %}
+
+{% set figcap_align = figcaption_align|default('start') %}
+{% set figcap_align_map = { 'start':'text-start', 'center':'text-center', 'end':'text-end' } %}
+
+{% set classes = ['d-block'] %}
+{% if width_class %}{% set classes = classes|merge([width_class]) %}{% endif %}
+{% set classes = classes|merge([align_map[align_value]|default('me-auto')]) %}
+{% if extra_classes|default('')|trim %}
+  {% set classes = classes|merge(extra_classes|trim|split(' ')) %}
+{% endif %}
+
+{% set figure_attrs = create_attribute().addClass(classes) %}
+{% if id|default('')|trim %}
+  {% set figure_attrs = figure_attrs.setAttribute('id', id|trim) %}
+{% endif %}
+
+{% set img_class = (['img-fluid', fit_class, rounded_class, border_class, shadow_class]|filter(v => v)|join(' ')) %}
+
+<figure{{ figure_attrs }}>
+  {% if media_ok %}
+    {% if ratio_class %}
+      <div class="{{ ratio_class }}">
+        {% if has_link %}
+          <a href="{{ link_url|e }}" class="d-block w-100 h-100" aria-label="{{ aria|e }}" target="{{ target_attr }}"{% if rel_attr %} rel="{{ rel_attr }}"{% endif %}>
+        {% endif %}
+
+        {% include 'canvas:image' ignore missing with {
+          src: media.src,
+          alt: media.alt,
+          width: media.width,
+          height: media.height,
+          class: 'w-100 h-100 ' ~ img_class,
+          loading: loading_value,
+          sizes: sizes_value ? sizes_value : null
+        } only %}
+
+        {% if has_link %}
+          </a>
+        {% endif %}
+      </div>
+    {% else %}
+      {% if has_link %}
+        <a href="{{ link_url|e }}" class="d-inline-block" aria-label="{{ aria|e }}" target="{{ target_attr }}"{% if rel_attr %} rel="{{ rel_attr }}"{% endif %}>
+      {% endif %}
+
+      {% include 'canvas:image' ignore missing with {
+        src: media.src,
+        alt: media.alt,
+        width: media.width,
+        height: media.height,
+        class: img_class,
+        loading: loading_value,
+        sizes: sizes_value ? sizes_value : null
+      } only %}
+
+      {% if has_link %}
+        </a>
+      {% endif %}
+    {% endif %}
+  {% endif %}
+
+  {% if caption is defined and caption|trim %}
+    <figcaption class="small mt-2 {{ figcap_align_map[figcap_align]|default('text-start') }}">
+      {{ caption }}
+    </figcaption>
+  {% endif %}
+</figure>

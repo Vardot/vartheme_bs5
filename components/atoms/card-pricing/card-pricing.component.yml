@@ -1,87 +1,166 @@
 "$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
 name: Pricing card
 group: Card
+status: stable
+
 props:
   type: object
   required:
     - symbol_position
   properties:
-    id:
-      type: string
-      title: HTML ID
-      default: ""
-    extra_classes:
-      type: string
-      title: Extra classes
-      description: "Space separated classes (Bootstrap utilities allowed)."
-      default: ""
+
     shadow:
       type: string
       title: Shadow
+      description: Adds depth to the card.
       enum: [none, sm, default, lg]
       default: default
+      examples: [default]
+      meta:enum:
+        none: No shadow
+        sm: Small shadow
+        default: Default shadow
+        lg: Large shadow
+
     border:
       type: string
-      title: Border
+      title: Border style
+      description: Adds a border (or removes it).
       enum: [default, none, primary, secondary, success, danger, warning, info, light, dark]
       default: default
+      examples: [default]
+      meta:enum:
+        default: Default
+        none: No border
+        primary: Primary
+        secondary: Secondary
+        success: Success
+        danger: Danger
+        warning: Warning
+        info: Info
+        light: Light
+        dark: Dark
+
     background_color:
       type: string
-      title: Background
+      title: Background theme
+      description: Background color style for the card.
       enum: [default, primary, secondary, success, danger, warning, info, light, dark]
       default: default
+      examples: [default]
+      meta:enum:
+        default: Default
+        primary: Primary
+        secondary: Secondary
+        success: Success
+        danger: Danger
+        warning: Warning
+        info: Info
+        light: Light
+        dark: Dark
+
+    text_align:
+      type: string
+      title: Text alignment
+      description: Align heading/description/price.
+      enum: [start, center]
+      default: start
+      examples: [start]
+      meta:enum:
+        start: Left
+        center: Center
+
     badge_text:
       type: string
-      title: Badge text
-      description: "Optional badge (e.g. Popular)."
+      title: Badge text (optional)
+      description: Optional badge (e.g. Popular).
       default: ""
-    button_variant:
-      type: string
-      title: Button variant
-      enum: [primary, secondary, outline-primary, outline-secondary]
-      default: primary
+      examples:
+        - "Most popular"
+
     heading_text:
       type: string
       title: Heading
       examples:
-        - Premium
+        - "Premium"
+
+    level:
+      type: number
+      title: Heading level
+      description: HTML heading level for the card title.
+      enum: [2, 3, 4]
+      default: 3
+      examples: [3]
+      meta:enum:
+        2: H2
+        3: H3
+        4: H4
+
     description:
       type: string
-      title: Description
+      title: Description (optional)
       examples:
-        - Curabitur nascetur non potenti pede luctus vivamus
+        - "Curabitur nascetur non potenti pede luctus vivamus."
+
     price:
-      title: Price
-      description: Price
       type: string
+      title: Price
+      description: Numeric value (e.g. 159).
       examples:
         - "159"
+
     currency_code:
       type: string
-      title: Currency code
+      title: Currency code (optional)
+      description: Used in the <data> attribute (e.g. USD).
       examples:
-        - USD
+        - "USD"
+
     currency_symbol:
       type: string
-      title: Currency symbol
+      title: Currency symbol (optional)
+      description: Display symbol (e.g. $).
       examples:
         - "$"
+
     symbol_position:
       type: string
-      title: Symbol position
-      enum:
-        - before
-        - after
-      meta:enum:
-        before: Before
-        after: After
+      title: Currency symbol position
+      enum: [before, after]
+      default: before
       examples:
         - before
-      default:
-        - before
-    text:
-      title: Text
+      meta:enum:
+        before: Before the price
+        after: After the price
+
+    price_period:
       type: string
+      title: Price period (optional)
+      description: Short text after the price (e.g. /month).
+      default: ""
+      examples:
+        - "/month"
+
+    price_note:
+      type: string
+      title: Price note (optional)
+      description: Small note under the price (e.g. “Billed annually”).
+      default: ""
+      examples:
+        - "Billed annually"
+
+    show_features_divider:
+      type: boolean
+      title: Divider above features
+      description: Adds a top border before the features list.
+      default: true
+      examples: [true]
+
+    text:
+      type: string
+      title: Features (rich text)
+      description: HTML list content for features.
       contentMediaType: text/html
       x-formatting-context: block
       default: "<ul>
@@ -90,21 +169,64 @@ props:
         <li>Diam mus est faucibus ornare ut consectetuer metus</li>
         </ul>"
       examples:
-        - "<ul>
-          <li>Example item 1</li>
-          <li>Example item 2</li>
-          </ul>"
+        - "<ul><li>Example item 1</li><li>Example item 2</li></ul>"
+
     button_url:
       type: string
-      title: Link
+      title: Button link (optional)
+
+    button_target:
+      type: string
+      title: Button target
+      description: Controls how the button link opens.
+      enum: [self, blank]
+      default: self
+      examples: [self]
+      meta:enum:
+        self: Same tab
+        blank: New tab
+
     button_label:
       type: string
-      title: Button label
+      title: Button label (optional)
       examples:
-        - Choose this plan
+        - "Choose this plan"
+
+    button_variant:
+      type: string
+      title: Button style
+      enum:
+        - primary
+        - secondary
+        - outline-primary
+        - outline-secondary
+      default: primary
+      examples: [primary]
+      meta:enum:
+        primary: Primary
+        secondary: Secondary
+        outline-primary: Primary (outline)
+        outline-secondary: Secondary (outline)
+
     promote:
       type: boolean
       title: Highlight card
+      description: Emphasizes the card visually (border + stronger shadow).
       default: false
       examples:
         - false
+
+    id:
+      type: string
+      title: HTML ID (optional)
+      default: ""
+      examples:
+        - "pricing-premium"
+
+    extra_classes:
+      type: string
+      title: Extra CSS classes (optional)
+      description: Space separated classes (Bootstrap utilities allowed).
+      default: ""
+      examples:
+        - "mb-4"

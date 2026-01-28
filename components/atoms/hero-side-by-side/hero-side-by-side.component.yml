@@ -1,127 +1,94 @@
-"$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
-name: Hero side-by-side
-description: Hero with side-by-side slots for media and content.
+$schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+name: Hero side by side
 group: Hero
+status: stable
+
 props:
   type: object
-  required:
-    - padding_block_start
-    - padding_block_end
   properties:
-    hero_flex_gap:
+    id:
       type: string
-      title: Flex gap
-      enum:
-        - large
-        - extra-large
-      meta:
-        enum:
-          large: Normal
-          extra-large: Extra-Large
-      default: large
+      title: HTML ID (optional)
       examples:
-        - "large"
-    hero_flex_direction_mobile:
+        - "hero-intro"
+
+    heading:
       type: string
-      title: Mobile flex direction
-      enum:
-        - vertical
-        - vertical-reverse
-      meta:
-        enum:
-          vertical: Vertical
-          vertical-reverse: Reverse vertical
-      default: vertical
+      title: Heading
       examples:
-        - "vertical"
-    background:
+        - "Build better digital experiences"
+
+    heading_level:
+      type: number
+      title: Heading level
+      enum: [1, 2, 3]
+      default: 1
+      examples: [1]
+      meta:enum:
+        1: H1
+        2: H2
+        3: H3
+
+    text:
       type: string
-      title: Background color
-      enum:
-        - primary
-        - secondary
-        - accent
-      meta:
-        enum:
-          primary: Primary
-          secondary: Secondary
-          accent: Accent
-    padding_block_start:
-      type: string
-      title: Padding top
-      enum:
-        - "0"
-        - "16"
-        - "32"
-        - "64"
+      title: Description text
+      contentMediaType: text/html
+      x-formatting-context: block
       examples:
-        - "0"
-    padding_block_end:
-      type: string
-      title: Padding bottom
-      enum:
-        - "0"
-        - "16"
-        - "32"
-        - "64"
-      examples:
-        - "0"
-    image_size:
-      type: string
-      title: Aspect ratio
-      enum:
-        - "2:1"
-        - "16:9"
-        - "3:2"
-        - "4:3"
-        - "1:1"
-      meta:
-        enum:
-          "2:1": 2 × 1
-          "16:9": 16 × 9
-          "3:2": 3 × 2
-          "4:3": 4 × 3
-          "1:1": Square
-      default: "4:3"
-      examples:
-        - "4:3"
-    image_position:
-      type: string
-      title: Image position
-      enum:
-        - left
-        - right
-      meta:
-        enum:
-          left: Left
-          right: Right
-      default: left
-      examples:
-        - "left"
-    image_radius:
-      type: string
-      title: Image border radius
-      enum:
-        - small
-        - large
-        - extra-large
-      meta:
-        enum:
-          small: Small
-          large: Large
-          extra-large: Extra-Large
-      default: small
-      examples:
-        - "small"
-    media:
+        - "<p>Create flexible, scalable Drupal experiences using modern components.</p>"
+
+    image:
       $ref: json-schema-definitions://canvas.module/image
       title: Image
       type: object
       examples:
-        - src: "assets/boliviainteligente-QPu42AAJ5ZY-unsplash.jpg"
-          alt: "Placeholder image"
-          width: 1920
-          height: 1075
-slots:
-  hero_slot:
-    title: "Content"
+        - src: "assets/image-placeholder.svg"
+          alt: "Hero image"
+          width: 1200
+          height: 900
+
+    image_position:
+      type: string
+      title: Image position
+      enum: [right, left]
+      default: right
+      examples: [right]
+      meta:enum:
+        right: Image right
+        left: Image left
+
+    button_label:
+      type: string
+      title: Button label (optional)
+      examples:
+        - "Get started"
+
+    button_url:
+      type: string
+      title: Button link (optional)
+
+    button_target:
+      type: string
+      title: Button target
+      enum: [self, blank]
+      default: self
+      examples: [self]
+      meta:enum:
+        self: Same tab
+        blank: New tab
+
+    align:
+      type: string
+      title: Content alignment
+      enum: [start, center]
+      default: start
+      examples: [start]
+      meta:enum:
+        start: Left
+        center: Center
+
+    extra_classes:
+      type: string
+      title: Extra CSS classes (optional)
+      examples:
+        - "mb-5"

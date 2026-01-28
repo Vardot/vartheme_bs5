@@ -1,6 +1,8 @@
 "$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
 name: Testimonial card
 group: Card
+status: stable
+
 props:
   type: object
   required:
@@ -9,78 +11,185 @@ props:
   properties:
     id:
       type: string
-      title: HTML ID
+      title: HTML ID (optional)
       default: ""
+      examples:
+        - "testimonial-1"
+
     extra_classes:
       type: string
-      title: Extra classes
-      description: "Space separated classes (Bootstrap utilities allowed)."
+      title: Extra CSS classes (optional)
+      description: Space separated classes (Bootstrap utilities allowed).
       default: ""
+      examples:
+        - "mb-4"
+
+    style:
+      type: string
+      title: Theme style
+      description: Card background style.
+      enum: [default, inverted]
+      default: default
+      examples: [default]
+      meta:enum:
+        default: Default (light)
+        inverted: Dark (inverted)
+
     shadow:
       type: string
       title: Shadow
+      description: Adds depth to the card.
       enum: [none, sm, default, lg]
       default: default
+      examples: [default]
+      meta:enum:
+        none: No shadow
+        sm: Small shadow
+        default: Default shadow
+        lg: Large shadow
+
     border:
       type: string
-      title: Border
+      title: Border style
+      description: Adds a border (or removes it).
       enum: [default, none, primary, secondary, success, danger, warning, info, light, dark]
       default: default
+      examples: [default]
+      meta:enum:
+        default: Default
+        none: No border
+        primary: Primary
+        secondary: Secondary
+        success: Success
+        danger: Danger
+        warning: Warning
+        info: Info
+        light: Light
+        dark: Dark
+
     rounded:
       type: string
-      title: Rounded
-      enum: [default, 0, 1, 2, 3, pill]
+      title: Corner style
+      description: Controls how rounded the card corners are.
+      enum: [default, "0", "1", "2", "3", pill]
       default: default
+      examples: [default]
+      meta:enum:
+        default: Default
+        "0": Square corners
+        "1": Slightly rounded
+        "2": Rounded
+        "3": More rounded
+        pill: Fully rounded (pill)
+
+    padding:
+      type: string
+      title: Content spacing
+      description: Padding inside the card.
+      enum: [compact, normal, spacious]
+      default: normal
+      examples: [normal]
+      meta:enum:
+        compact: Compact
+        normal: Normal
+        spacious: Spacious
+
+    align:
+      type: string
+      title: Content alignment
+      description: Align quote + author block.
+      enum: [center, left]
+      default: center
+      examples: [center]
+      meta:enum:
+        center: Center
+        left: Left
+
     show_quote_icon:
       type: boolean
       title: Show quote icon
+      description: Displays a decorative quote icon in the corner.
       default: true
+      examples: [true]
+
+    quote_size:
+      type: string
+      title: Quote text size
+      description: Controls the quote text size.
+      enum: [sm, md, lg]
+      default: md
+      examples: [md]
+      meta:enum:
+        sm: Small
+        md: Medium
+        lg: Large
+
     text:
       type: string
       title: Quote text
+      description: The testimonial quote text.
       pattern: "(.|\\r?\\n)*"
       examples:
-        - "My career’s guidance was crucial in helping me understand the tech industry landscape and ultimately secure my role."
+        - "My career guidance was crucial in helping me understand the tech industry landscape and ultimately secure my role."
+
     cite_name:
       type: string
-      title: Citation name
+      title: Author name (optional)
       examples:
         - "Isiah Julio"
+
     cite_text:
       type: string
-      title: Citation text
+      title: Author title / role (optional)
       examples:
         - "Engineer, Technical Services"
+
     cite_url:
       type: string
-      title: Citation link
-    align:
+      title: Author link (optional)
+      description: Optional link for the author role/company text.
+      format: uri
+
+    cite_target:
       type: string
-      title: Alignment
-      enum:
-        - center
-        - left
-      default: center
-      examples:
-        - center
-    style:
-      type: string
-      title: Style
-      enum:
-        - default
-        - inverted
+      title: Author link target
+      description: Controls how the author link opens.
+      enum: [self, blank]
+      default: self
+      examples: [self]
       meta:enum:
-        default: Default
-        inverted: Inverted
-      default: default
-      examples:
-        - default
+        self: Same tab
+        blank: New tab
+
     media:
       $ref: json-schema-definitions://canvas.module/image
-      title: Image
+      title: Avatar image (optional)
       type: object
       examples:
-        - src: "assets/portrait.png"
-          alt: "Placeholder"
-          width: 100
-          height: 100
+        - src: "assets/avatar-placeholder.svg"
+          alt: "Avatar placeholder"
+          width: 120
+          height: 120
+
+    avatar_size:
+      type: string
+      title: Avatar size
+      description: Controls avatar image size.
+      enum: [sm, md, lg]
+      default: md
+      examples: [md]
+      meta:enum:
+        sm: Small
+        md: Medium
+        lg: Large
+
+    avatar_shape:
+      type: string
+      title: Avatar shape
+      description: Controls avatar corner style.
+      enum: [circle, rounded]
+      default: circle
+      examples: [circle]
+      meta:enum:
+        circle: Circle
+        rounded: Rounded

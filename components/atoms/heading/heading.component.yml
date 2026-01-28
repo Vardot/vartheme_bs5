@@ -2,114 +2,198 @@
 name: Heading
 group: Base
 status: stable
-
 props:
   type: object
   properties:
     heading_text:
       type: string
-      title: Heading text
+      title: "Heading text"
       default: "Enter title"
       examples:
         - "Page title"
-
     level:
       type: integer
-      title: Heading level
-      description: HTML heading tag (h1–h6)
+      title: "Heading level"
+      description: "HTML heading tag (h1–h6)."
       default: 2
       enum: [1, 2, 3, 4, 5, 6]
-      examples:
-        - 2
-
     text_size:
       type: string
-      title: Text size
-      description: Override Bootstrap heading size
-      default: default
+      title: "Text size"
+      description: "Optional Bootstrap size utility. Leave as Default to match the heading level."
+      default: "default"
       enum:
-        - default
-        - h1
-        - h2
-        - h3
-        - h4
-        - h5
-        - h6
-        - display-1
-        - display-2
-        - display-3
-        - display-4
-        - display-5
-        - display-6
-      meta:
-        enum:
-          default: Match heading level
-          h1: H1 size
-          h2: H2 size
-          h3: H3 size
-          h4: H4 size
-          h5: H5 size
-          h6: H6 size
-          display-1: Display 1
-          display-2: Display 2
-          display-3: Display 3
-          display-4: Display 4
-          display-5: Display 5
-          display-6: Display 6
-
+        - "default"
+        - "h1"
+        - "h2"
+        - "h3"
+        - "h4"
+        - "h5"
+        - "h6"
+        - "display-1"
+        - "display-2"
+        - "display-3"
+        - "display-4"
+        - "display-5"
+        - "display-6"
+      'meta:enum':
+        default: "Default (match level)"
+        h1: "Heading size: H1"
+        h2: "Heading size: H2"
+        h3: "Heading size: H3"
+        h4: "Heading size: H4"
+        h5: "Heading size: H5"
+        h6: "Heading size: H6"
+        display-1: "Display 1"
+        display-2: "Display 2"
+        display-3: "Display 3"
+        display-4: "Display 4"
+        display-5: "Display 5"
+        display-6: "Display 6"
     text_color:
       type: string
-      title: Text color
-      default: default
+      title: "Text color"
+      default: "default"
       enum:
-        - default
-        - primary
-        - secondary
-        - success
-        - danger
-        - warning
-        - info
-        - muted
-        - white
-      meta:
-        enum:
-          default: Default text
-          primary: Primary
-          secondary: Secondary
-          success: Success
-          danger: Danger
-          warning: Warning
-          info: Info
-          muted: Muted
-          white: White
-
+        - "default"
+        - "primary"
+        - "secondary"
+        - "success"
+        - "danger"
+        - "warning"
+        - "info"
+        - "muted"
+        - "white"
+      'meta:enum':
+        default: "Default"
+        primary: "Primary"
+        secondary: "Secondary"
+        success: "Success"
+        danger: "Danger"
+        warning: "Warning"
+        info: "Info"
+        muted: "Muted"
+        white: "White"
     align:
       type: string
-      title: Text alignment
-      default: start
+      title: "Alignment"
+      default: "start"
       enum:
-        - start
-        - center
-        - end
-      meta:
-        enum:
-          start: Left
-          center: Center
-          end: Right
-
+        - "start"
+        - "center"
+        - "end"
+      'meta:enum':
+        start: "Left"
+        center: "Center"
+        end: "Right"
+    margin_top:
+      type: string
+      title: "Top spacing"
+      description: "Adds a Bootstrap margin-top class."
+      default: "none"
+      enum: ["none", "0", "1", "2", "3", "4", "5"]
+      'meta:enum':
+        none: "None (default)"
+        "0": "No top margin (mt-0)"
+        "1": "Small (mt-1)"
+        "2": "Medium (mt-2)"
+        "3": "Large (mt-3)"
+        "4": "XL (mt-4)"
+        "5": "XXL (mt-5)"
+    margin_bottom:
+      type: string
+      title: "Bottom spacing"
+      description: "Adds a Bootstrap margin-bottom class."
+      default: "none"
+      enum: ["none", "0", "1", "2", "3", "4", "5"]
+      'meta:enum':
+        none: "None (default)"
+        "0": "No bottom margin (mb-0)"
+        "1": "Small (mb-1)"
+        "2": "Medium (mb-2)"
+        "3": "Large (mb-3)"
+        "4": "XL (mb-4)"
+        "5": "XXL (mb-5)"
+    border_top:
+      type: boolean
+      title: "Top border"
+      default: false
+    border_bottom:
+      type: boolean
+      title: "Bottom border"
+      default: false
+    border_color:
+      type: string
+      title: "Border color"
+      description: "Applied only when a border is enabled."
+      default: "default"
+      enum:
+        - "default"
+        - "primary"
+        - "secondary"
+        - "success"
+        - "danger"
+        - "warning"
+        - "info"
+        - "light"
+        - "dark"
+        - "white"
+      'meta:enum':
+        default: "Default"
+        primary: "Primary"
+        secondary: "Secondary"
+        success: "Success"
+        danger: "Danger"
+        warning: "Warning"
+        info: "Info"
+        light: "Light"
+        dark: "Dark"
+        white: "White"
+    border_width:
+      type: integer
+      title: "Border thickness"
+      description: "Bootstrap border width utility (1–5)."
+      default: 1
+      enum: [1, 2, 3, 4, 5]
+    padding_top:
+      type: string
+      title: "Padding above text"
+      description: "Adds padding-top (useful when top border is enabled)."
+      default: "none"
+      enum: ["none", "0", "1", "2", "3", "4", "5"]
+      'meta:enum':
+        none: "None (default)"
+        "0": "No padding (pt-0)"
+        "1": "Small (pt-1)"
+        "2": "Medium (pt-2)"
+        "3": "Large (pt-3)"
+        "4": "XL (pt-4)"
+        "5": "XXL (pt-5)"
+    padding_bottom:
+      type: string
+      title: "Padding below text"
+      description: "Adds padding-bottom (useful when bottom border is enabled)."
+      default: "none"
+      enum: ["none", "0", "1", "2", "3", "4", "5"]
+      'meta:enum':
+        none: "None (default)"
+        "0": "No padding (pb-0)"
+        "1": "Small (pb-1)"
+        "2": "Medium (pb-2)"
+        "3": "Large (pb-3)"
+        "4": "XL (pb-4)"
+        "5": "XXL (pb-5)"
     url:
       type: string
-      title: Link
-      description: Optional link for the heading text
+      title: "Link (optional)"
+      description: "If provided, the heading text will be a link."
       default: ""
-
-    id:
+    html_id:
       type: string
-      title: HTML ID
+      title: "HTML ID (optional)"
       default: ""
-
     extra_classes:
       type: string
-      title: Extra CSS classes
-      description: Space separated Bootstrap classes
+      title: "Extra CSS classes"
+      description: "Space separated classes to add to the heading."
       default: ""

@@ -1,19 +1,24 @@
 {#
-  Bootstrap 5 Icon Card
+  Bootstrap 5 Icon Card (SDC)
 
-  Props (common): id, extra_classes, shadow, border, background_color, border_radius
-  Layout: tile_size uses Bootstrap ratio helpers.
-  Link: uses stretched-link when url provided.
+  Improvements:
+  - Icon select list + user-friendly labels (YAML meta:enum)
+  - Icon color option
+  - Hover effect option (lift)
+  - Button mode (button_label + button_variant) OR full-card link fallback
+  - Target support + safe rel when opening new tab
 #}
 
-{% set has_url = url is not empty and url != 'No URL' %}
+{% set has_url = url is defined and url is not empty and url != 'No URL' %}
 
-{% set shadow_map = {
-  'none': '',
-  'sm': 'shadow-sm',
-  'default': 'shadow',
-  'lg': 'shadow-lg'
-} %}
+{% set button_label_value = button_label|default('')|trim %}
+{% set show_button = has_url and button_label_value != '' %}
+
+{% set target_value = target|default('self') %}
+{% set target_attr = target_value == 'blank' ? '_blank' : '_self' %}
+{% set rel_attr = target_value == 'blank' ? 'noopener noreferrer' : null %}
+
+{% set shadow_map = { 'none':'', 'sm':'shadow-sm', 'default':'shadow', 'lg':'shadow-lg' } %}
 
 {% set border_value = border|default('default') %}
 {% set border_class = '' %}
@@ -26,64 +31,74 @@
 {% endif %}
 
 {% set rounded_value = border_radius|default('default') %}
-{% set rounded_map = {
-  'default': '',
-  '0': 'rounded-0',
-  '1': 'rounded-1',
-  '2': 'rounded-2',
-  '3': 'rounded-3',
-  'pill': 'rounded-pill'
-} %}
+{% set rounded_map = { 'default':'', '0':'rounded-0', '1':'rounded-1', '2':'rounded-2', '3':'rounded-3', 'pill':'rounded-pill' } %}
 
 {% set bg_value = background_color|default('default') %}
 {% set bg_map = {
-  'default': 'bg-body',
-  'light': 'bg-light',
-  'dark': 'bg-dark text-white',
-  'primary': 'bg-primary text-white',
-  'secondary': 'bg-secondary text-white',
-  'success': 'bg-success text-white',
-  'danger': 'bg-danger text-white',
-  'warning': 'bg-warning',
-  'info': 'bg-info'
+  'default':'bg-body',
+  'light':'bg-light',
+  'dark':'bg-dark text-white',
+  'primary':'bg-primary text-white',
+  'secondary':'bg-secondary text-white',
+  'success':'bg-success text-white',
+  'danger':'bg-danger text-white',
+  'warning':'bg-warning',
+  'info':'bg-info'
 } %}
 
-{% set ratio_map = {
-  'square': 'ratio-1x1',
-  '4:3': 'ratio-4x3',
-  '16:9': 'ratio-16x9'
+{% set ratio_map = { 'square':'ratio-1x1', '4x3':'ratio-4x3', '16x9':'ratio-16x9' } %}
+{% set ratio_class = ratio_map[tile_size|default('auto')]|default('') %}
+
+{% set justify_map = { 'left':'justify-content-start', 'center':'justify-content-center', 'right':'justify-content-end' } %}
+{% set text_align_map = { 'left':'text-start', 'center':'text-center', 'right':'text-end' } %}
+
+{% set icon_size_map = { 'sm':'small', 'md':'medium', 'lg':'large', 'xl':'extra-large' } %}
+
+{% set padding_map = {
+  'compact': 'p-3',
+  'normal': 'p-3 p-md-4',
+  'spacious': 'p-4 p-lg-5'
 } %}
 
-{% set justify_map = {
-  'left': 'justify-content-start',
-  'center': 'justify-content-center',
-  'right': 'justify-content-end'
+{% set icon_color_value = icon_color|default('auto') %}
+{% set icon_color_map = {
+  'auto': '',
+  'primary': 'text-primary',
+  'secondary': 'text-secondary',
+  'success': 'text-success',
+  'danger': 'text-danger',
+  'warning': 'text-warning',
+  'info': 'text-info',
+  'dark': 'text-dark',
+  'light': 'text-light'
 } %}
 
-{% set text_align_map = {
-  'left': 'text-start',
-  'center': 'text-center',
-  'right': 'text-end'
-} %}
+{% set hover_value = hover_effect|default('none') %}
+{% set hover_class = hover_value == 'lift' ? 'transition-transform' : '' %}
 
-{% set icon_size_map = {
-  'small': 'small',
-  'medium': 'medium',
-  'large': 'large',
-  'extra-large': 'extra-large'
-} %}
+{% set heading_level = level|default(3) %}
+{% set heading_tag = heading_level == 2 ? 'h2' : (heading_level == 4 ? 'h4' : 'h3') %}
 
-{% set classes = ['card', 'h-100'] %}
+{% set classes = ['card','h-100','overflow-hidden'] %}
 {% set classes = classes|merge([bg_map[bg_value]|default('bg-body')]) %}
+
 {% if shadow_map[shadow|default('default')]|default('') %}
   {% set classes = classes|merge([shadow_map[shadow|default('default')]]) %}
 {% endif %}
+
 {% if border_class %}
   {% set classes = classes|merge([border_class]) %}
 {% endif %}
+
 {% if rounded_map[rounded_value]|default('') %}
   {% set classes = classes|merge([rounded_map[rounded_value]]) %}
 {% endif %}
+
+{# Hover effect: use utility approach without custom css dependencies #}
+{% if hover_value == 'lift' %}
+  {% set classes = classes|merge(['card-hover-lift']) %}
+{% endif %}
+
 {% if extra_classes|default('')|trim %}
   {% set classes = classes|merge(extra_classes|trim|split(' ')) %}
 {% endif %}
@@ -93,72 +108,82 @@
   {% set attrs = attrs.setAttribute('id', id|trim) %}
 {% endif %}
 
-{% set ratio_class = ratio_map[tile_size|default('')]|default('') %}
+{% set icon_align_value = icon_align|default('center') %}
+{% set text_align_value = text_align|default('center') %}
+{% set icon_name = icon|default('rocket') %}
+{% set icon_size_value = icon_size|default('md') %}
 
+{% set aria = aria_label|default('')|trim %}
+{% if aria == '' %}
+  {% set aria = text|default('Open') %}
+{% endif %}
+
+{# Button variant mapping #}
+{% set button_variant_value = button_variant|default('primary') %}
+{% set btn_class = button_variant_value == 'link' ? 'btn-link' : ('btn-' ~ button_variant_value) %}
+
+{% set inner %}
+  <div class="card-body d-flex flex-column justify-content-center {{ padding_map[padding|default('normal')]|default('p-3 p-md-4') }} {{ text_align_map[text_align_value]|default('text-center') }}">
+    <div class="d-flex {{ justify_map[icon_align_value]|default('justify-content-center') }}">
+      {% if icon_name is not empty and icon_name != 'none' %}
+        <span class="{{ icon_color_map[icon_color_value]|default('') }}">
+          {{
+            include(
+              '@vartheme_bs5/components/atoms/icon/icon.twig',
+              {
+                icon: icon_name,
+                icon_size: icon_size_map[icon_size_value]|default('medium')
+              },
+              with_context: false
+            )
+          }}
+        </span>
+      {% endif %}
+    </div>
+
+    {% if text is not empty %}
+      <{{ heading_tag }} class="h5 mt-3 mb-2">{{ text }}</{{ heading_tag }}>
+    {% endif %}
+
+    {% if description is not empty %}
+      <div class="opacity-75">{{ description|raw }}</div>
+    {% endif %}
+
+    {% if show_button %}
+      <div class="mt-3">
+        <a
+          href="{{ url|e }}"
+          class="btn {{ btn_class }}"
+          target="{{ target_attr }}"
+          {% if rel_attr %}rel="{{ rel_attr }}"{% endif %}
+          aria-label="{{ aria|e }}"
+        >
+          {{ button_label_value }}
+        </a>
+      </div>
+    {% elseif has_url %}
+      <a
+        href="{{ url|e }}"
+        class="stretched-link"
+        aria-label="{{ aria|e }}"
+        target="{{ target_attr }}"
+        {% if rel_attr %}rel="{{ rel_attr }}"{% endif %}
+      ></a>
+    {% endif %}
+  </div>
+{% endset %}
+
+{# Optional fixed ratio wrapper #}
 {% if ratio_class %}
   <div class="ratio {{ ratio_class }}">
     <div>
       <div{{ attrs }}>
-        <div class="card-body d-flex flex-column justify-content-center">
-          <div class="d-flex {{ justify_map[icon_align|default('center')]|default('justify-content-center') }}">
-            {% if icon %}
-              {{
-                include(
-                  '@vartheme_bs5/components/atoms/icon/icon.twig',
-                  {
-                    icon: icon,
-                    icon_size: icon_size_map[icon_size]|default('medium')
-                  },
-                  with_context: false
-                )
-              }}
-            {% endif %}
-          </div>
-
-          <div class="mt-3 {{ text_align_map[text_align|default('center')]|default('text-center') }}">
-            {% if text is not empty %}
-              <h3 class="h5 mb-2">{{ text }}</h3>
-            {% endif %}
-            {% if description is not empty %}
-              <div class="opacity-75">{{ description|raw }}</div>
-            {% endif %}
-            {% if has_url %}
-              <a href="{{ url }}" class="stretched-link" aria-label="{{ text|default('Open') }}"></a>
-            {% endif %}
-          </div>
-        </div>
+        {{ inner }}
       </div>
     </div>
   </div>
 {% else %}
   <div{{ attrs }}>
-    <div class="card-body d-flex flex-column justify-content-center">
-      <div class="d-flex {{ justify_map[icon_align|default('center')]|default('justify-content-center') }}">
-        {% if icon %}
-          {{
-            include(
-              '@vartheme_bs5/components/atoms/icon/icon.twig',
-              {
-                icon: icon,
-                icon_size: icon_size_map[icon_size]|default('medium')
-              },
-              with_context: false
-            )
-          }}
-        {% endif %}
-      </div>
-
-      <div class="mt-3 {{ text_align_map[text_align|default('center')]|default('text-center') }}">
-        {% if text is not empty %}
-          <h3 class="h5 mb-2">{{ text }}</h3>
-        {% endif %}
-        {% if description is not empty %}
-          <div class="opacity-75">{{ description|raw }}</div>
-        {% endif %}
-        {% if has_url %}
-          <a href="{{ url }}" class="stretched-link" aria-label="{{ text|default('Open') }}"></a>
-        {% endif %}
-      </div>
-    </div>
+    {{ inner }}
   </div>
 {% endif %}

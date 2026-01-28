@@ -1,54 +1,110 @@
-$schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
+$schema: https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json
 name: Hero CTA
 description: A call to action with a heading, description and slot for buttons.
 group: Hero
 props:
   type: object
   required:
-    - text_align
-    - level
+  - text_align
+  - level
   properties:
+    eyebrow:
+      type: string
+      title: Eyebrow (optional)
+      description: Small text shown above the heading.
+      default: ''
+      examples:
+      - Get started
     heading_text:
       type: string
       title: Heading
       examples:
-        - Your heading goes here
+      - Your heading goes here
     level:
       type: integer
       title: Heading level
-      enum: [1, 2, 3, 4, 5, 6]
+      enum:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
       examples:
-        - 2
+      - 2
+      meta:enum:
+        1: H1
+        2: H2
+        3: H3
+        4: H4
+        5: H5
+        6: H6
     text:
       type: string
       title: Text
       examples:
-        - Lorem ipsum dolor sit amet.
+      - Lorem ipsum dolor sit amet.
+    heading_size:
+      type: string
+      title: Heading size
+      description: Controls the visual size of the heading.
+      enum:
+      - display-4
+      - display-5
+      - display-6
+      - h1
+      - h2
+      - h3
+      default: display-5
+      examples:
+      - display-5
+      meta:enum:
+        display-4: Extra large
+        display-5: Large
+        display-6: Medium
+        h1: Heading 1 size
+        h2: Heading 2 size
+        h3: Heading 3 size
     text_align:
       type: string
       title: Text alignment
       enum:
-        - center
-        - start
-        - end
+      - center
+      - start
+      - end
       meta:enum:
         center: Center
         start: Left
         end: Right
       default: center
       examples:
-        - center
+      - center
+    content_width:
+      type: string
+      title: Content width
+      description: Controls the max width of the text block.
+      enum:
+      - narrow
+      - normal
+      - wide
+      default: normal
+      examples:
+      - normal
+      meta:enum:
+        narrow: Narrow
+        normal: Normal
+        wide: Wide
     background_color:
       type: string
       title: Background color
       enum:
-        - none
-        - primary
-        - secondary
-        - light
-        - dark
-        - muted
-        - accent
+      - none
+      - primary
+      - secondary
+      - light
+      - dark
+      - muted
+      - accent
       meta:enum:
         none: None
         primary: Primary
@@ -58,36 +114,79 @@ props:
         muted: Muted
         accent: Accent
       default: none
+    content_color:
+      type: string
+      title: Content color
+      description: Controls text/icon color for eyebrow, heading, body text and actions.
+      enum:
+      - auto
+      - default
+      - white
+      - dark
+      default: auto
+      meta:enum:
+        auto: Auto (based on background)
+        default: Default
+        white: White
+        dark: Dark
     overlay_opacity:
       type: string
       title: Background image overlay
-      enum: ["0%", "20%", "40%", "60%", "75%"]
-      default: "40%"
+      description: Dark overlay over background image.
+      enum:
+      - 0%
+      - 20%
+      - 40%
+      - 60%
+      - 75%
+      default: 40%
+      examples:
+      - 40%
+      meta:enum:
+        0%: None
+        20%: Light
+        40%: Medium
+        60%: Strong
+        75%: Very strong
+    background_image:
+      $ref: json-schema-definitions://canvas.module/image
+      title: Background image (preferred)
+      type: object
     media:
       $ref: json-schema-definitions://canvas.module/image
-      title: Background image
+      title: Media (backup)
       type: object
+      description: Optional Drupal media/renderable output used if Background image
+        is not provided.
     padding_y:
       type: string
       title: Vertical padding
-      enum: ["py-3", "py-4", "py-5", "py-6"]
+      enum:
+      - py-3
+      - py-4
+      - py-5
+      - py-6
       meta:enum:
-        "py-3": Small
-        "py-4": Medium
-        "py-5": Large
-        "py-6": Extra large
-      default: "py-5"
+        py-3: Small
+        py-4: Medium
+        py-5: Large
+        py-6: Extra large
+      default: py-5
     container_width:
       type: string
       title: Container width
-      enum: ["container", "container-fluid"]
-      default: "container"
+      enum:
+      - container
+      - container-fluid
+      default: container
+      meta:enum:
+        container: Normal
+        container-fluid: Full width
     extra_classes:
       type: string
       title: Extra classes
-      description: "Space separated classes (Bootstrap utilities allowed)."
-      default: ""
-
+      description: Space separated classes (Bootstrap utilities allowed).
+      default: ''
 slots:
   actions:
     title: Buttons

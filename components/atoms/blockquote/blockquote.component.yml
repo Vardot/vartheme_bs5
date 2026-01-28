@@ -8,63 +8,73 @@ props:
   required:
     - text
   properties:
+
     text:
       type: string
-      title: Quotation text
+      title: Quote text
+      description: Main quotation content.
       examples:
         - "“To confine our attention to terrestrial matters would be to limit the human spirit.”"
 
     cite_name:
       type: string
-      title: Citation name
+      title: Author name
+      description: Name of the person being quoted.
       examples:
         - "Isiah Julio"
 
     cite_text:
       type: string
-      title: Citation text
+      title: Author role / source
+      description: Job title, organization, or source of the quote.
       default: "Engineer, Technical Services"
       examples:
         - "Engineer, Technical Services"
 
     cite_url:
       type: string
-      title: Citation link
+      title: Source link (optional)
+      description: External link for the quote source.
       format: uri
 
     align:
       type: string
-      title: Alignment
+      title: Text alignment
+      description: Horizontal alignment of the quote content.
       enum:
         - start
         - center
         - end
       default: start
-      examples:
-        - start
+      meta:enum:
+        start: Left
+        center: Center
+        end: Right
 
     size:
       type: string
-      title: Text size
+      title: Quote size
+      description: Controls overall text size of the quote.
       enum:
         - sm
         - md
         - lg
       default: lg
-      examples:
-        - lg
+      meta:enum:
+        sm: Small
+        md: Medium
+        lg: Large
 
     icon:
       type: boolean
       title: Show quote icon
+      description: Displays a decorative quotation mark icon.
       default: true
-      examples:
-        - true
-        - false
 
     radius:
       type: string
-      title: Border radius
+      title: Corner style
+      description: Rounds the blockquote container corners.
       enum:
         - default
         - sm
@@ -72,12 +82,33 @@ props:
         - pill
         - none
       default: default
-      examples:
-        - default
+      meta:enum:
+        default: Default
+        sm: Small rounding
+        lg: Large rounding
+        pill: Fully rounded
+        none: No rounding
+
+    spacing_y:
+      type: string
+      title: Vertical spacing
+      description: Space above and below the blockquote.
+      enum:
+        - none
+        - sm
+        - md
+        - lg
+      default: md
+      meta:enum:
+        none: No spacing
+        sm: Small spacing
+        md: Medium spacing
+        lg: Large spacing
 
     classes:
       type: string
-      title: Extra CSS classes
+      title: Additional CSS classes
+      description: Optional custom classes for styling.
       default: ""
       examples:
         - "bg-body-tertiary p-4"

@@ -1,77 +1,148 @@
 "$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
 name: Hero billboard
 group: Hero
+status: stable
+description: "Bootstrap hero billboard with background image, overlay, and flexible content positioning."
+
 props:
   type: object
-  required:
-    - height
-    - flex_position
-    - object_position
-    - overlay_opacity
   properties:
+
+    extra_style:
+      type: string
+      title: "Extra inline style"
+      description: "Optional inline CSS appended to the component style."
+      default: ""
+      examples:
+        - "border-radius: 1rem;"
+
+    container_type:
+      type: string
+      title: "Container style"
+      description: "Choose how the content is wrapped."
+      enum:
+        - "container"
+        - "container-fluid"
+        - "container-sm"
+        - "container-md"
+        - "container-lg"
+        - "container-xl"
+        - "container-xxl"
+        - "none"
+      default: "container"
+      examples:
+        - "container"
+      'meta:enum':
+        container: "Container (default)"
+        container-fluid: "Full width"
+        container-sm: "Container sm"
+        container-md: "Container md"
+        container-lg: "Container lg"
+        container-xl: "Container xl"
+        container-xxl: "Container xxl"
+        none: "No container (full width content)"
+
     height:
       type: string
-      title: Height
+      title: "Height"
       enum:
-        - full
-        - large
-        - ribbon
-      meta:
-        enum:
-          full: Full screen
-          large: Large
-          ribbon: Ribbon
-      default: full
+        - "full"
+        - "large"
+        - "ribbon"
+      default: "full"
       examples:
-        - full
+        - "full"
+      'meta:enum':
+        full: "Full screen"
+        large: "Large"
+        ribbon: "Ribbon"
+
     flex_position:
       type: string
-      title: Content position
+      title: "Content position"
       enum:
-        - top-left
-        - center-left
-        - bottom-left
-        - hero-center
-      meta:
-        enum:
-          top-left: Top left
-          center-left: Center left
-          bottom-left: Bottom left
-          hero-center: Center
-      default: center-left
+        - "top-left"
+        - "center-left"
+        - "bottom-left"
+        - "hero-center"
+      default: "center-left"
       examples:
-        - center-left
+        - "center-left"
+      'meta:enum':
+        top-left: "Top left"
+        center-left: "Center left"
+        bottom-left: "Bottom left"
+        hero-center: "Center"
+
+    content_max_width:
+      type: string
+      title: "Content max width"
+      description: "Max width for the hero content area (CSS value)."
+      default: "48rem"
+      examples:
+        - "48rem"
+        - "56rem"
+        - "640px"
+
     overlay_opacity:
       type: string
-      title: Overlay opacity
+      title: "Overlay opacity"
       enum:
         - "0%"
         - "20%"
         - "40%"
         - "60%"
         - "75%"
-      default: "0%"
+      default: "40%"
       examples:
-        - "0%"
+        - "40%"
+
+    overlay_color:
+      type: string
+      title: "Overlay color"
+      description: "Overlay color used with the selected opacity (CSS color value)."
+      default: "#000000"
+      examples:
+        - "#000000"
+        - "rgba(0,0,0,1)"
+
     object_position:
       type: string
-      title: Background image position
+      title: "Background image position"
       enum:
-        - top
-        - center
-        - bottom
-      default: center
+        - "top"
+        - "center"
+        - "bottom"
+      default: "center"
       examples:
-        - center
+        - "center"
+
     media:
       $ref: json-schema-definitions://canvas.module/image
-      title: Background image
+      title: "Background image"
       type: object
       examples:
-        - src: "assets/boliviainteligente-QPu42AAJ5ZY-unsplash.jpg"
+        - src: "assets/hero-placeholder.svg"
           alt: "Placeholder image"
           width: 1920
           height: 1075
+
+    html_id:
+      type: string
+      title: "HTML ID"
+      description: "Optional ID attribute for the outer section."
+      default: ""
+      examples:
+        - "homepage-hero"
+
+    extra_classes:
+      type: string
+      title: "Extra CSS classes"
+      description: "Additional Bootstrap/utility classes (space separated)."
+      default: ""
+      examples:
+        - "mb-4"
+
 slots:
   hero_slot:
     title: "Hero content"

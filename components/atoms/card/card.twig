@@ -1,25 +1,22 @@
 {#
   Bootstrap 5 Card (SDC)
 
-  Backwards compatible with previous props:
-  - orientation: vertical|horizontal
-  - style: framed|full
-  - background: default|accent|primary|inverted
-  - heading_text, text, url, media, level, is_text_centered
-
-  New options:
-  - id, extra_classes
-  - shadow: none|sm|default|lg
-  - border: default|none|{color}
-  - rounded: default|0|1|2|3|pill
+  Fixes / improvements:
+  - Better placeholder image (assets/card-placeholder.svg)
+  - Vertical images no longer become too tall (ratio wrapper option)
+  - Button props are now used (button_label + button_variant)
+  - User-friendly options in YAML (meta:enum)
 #}
 
 {% set card_orientation = orientation|default('vertical') %}
 {% set card_style = style|default('framed') %}
 {% set bg = background|default('default') %}
-{% set has_link = url is not empty and url != 'No URL' %}
 {% set centered = is_text_centered|default(false) %}
 {% set has_media = media is defined and media and media.src is defined and media.src is not empty %}
+
+{% set has_link = url is not empty and url != 'No URL' %}
+{% set button_label_value = button_label|default('')|trim %}
+{% set show_button = has_link and button_label_value != '' %}
 
 {# Map theme background to Bootstrap utilities #}
 {% set bg_map = {
@@ -56,21 +53,39 @@
   'pill': 'rounded-pill'
 } %}
 
-{# overflow-hidden ensures media respects rounded corners consistently #}
+{# Vertical media ratio wrapper #}
+{% set media_ratio = media_ratio|default('16x9') %}
+{% set ratio_class = '' %}
+{% if media_ratio == '16x9' %}
+  {% set ratio_class = 'ratio ratio-16x9' %}
+{% elseif media_ratio == '4x3' %}
+  {% set ratio_class = 'ratio ratio-4x3' %}
+{% elseif media_ratio == '1x1' %}
+  {% set ratio_class = 'ratio ratio-1x1' %}
+{% endif %}
+
+{# Card classes #}
 {% set classes = ['card', 'h-100', 'overflow-hidden'] %}
 {% set classes = classes|merge([bg_map[bg]|default('bg-body')]) %}
-{% if shadow_map[shadow|default('default')]|default('') %}
-  {% set classes = classes|merge([shadow_map[shadow|default('default')]]) %}
+
+{% set shadow_key = shadow|default('default') %}
+{% if shadow_map[shadow_key]|default('') %}
+  {% set classes = classes|merge([shadow_map[shadow_key]]) %}
 {% endif %}
+
 {% if border_class %}
   {% set classes = classes|merge([border_class]) %}
 {% endif %}
+
 {% if rounded_map[rounded_value]|default('') %}
   {% set classes = classes|merge([rounded_map[rounded_value]]) %}
 {% endif %}
-{% if has_link %}
+
+{# Only make whole card clickable when link exists and no button label is set #}
+{% if has_link and not show_button %}
   {% set classes = classes|merge(['position-relative']) %}
 {% endif %}
+
 {% if extra_classes|default('')|trim %}
   {% set classes = classes|merge(extra_classes|trim|split(' ')) %}
 {% endif %}
@@ -80,13 +95,25 @@
   {% set attrs = attrs.setAttribute('id', id|trim) %}
 {% endif %}
 
-{# Horizontal layout uses Bootstrap grid within the card #}
+{# Heading rendering #}
+{% set heading_level = level|default(3) %}
+{% set heading_tag = 'h3' %}
+{% if heading_level == 2 %}
+  {% set heading_tag = 'h2' %}
+{% elseif heading_level == 4 %}
+  {% set heading_tag = 'h4' %}
+{% endif %}
+
+{# Button class mapping (simple + safe) #}
+{% set button_variant_value = button_variant|default('primary') %}
+{% set btn_class = button_variant_value == 'link' ? 'btn-link' : ('btn-' ~ button_variant_value) %}
+
+{# Horizontal layout #}
 {% if card_orientation == 'horizontal' %}
   <div{{ attrs }}>
     <div class="row g-0 h-100">
       {% if has_media %}
         <div class="col-md-5">
-          {# Unique block name to avoid duplicate block definition errors. #}
           {% block media_horizontal %}
             {% include 'canvas:image' ignore missing with {
               src: media.src,
@@ -103,61 +130,69 @@
       <div class="col-md-7">
         <div class="card-body {{ card_style == 'full' ? 'p-4 p-lg-5' : 'p-3 p-md-4' }} {{ centered ? 'text-center' : 'text-start' }}">
           {% if heading_text is not empty %}
-            {% set heading_level = level|default(3) %}
-            {% if heading_level == 2 %}
-              <h2 class="card-title h5 mb-2">{{ heading_text }}</h2>
-            {% elseif heading_level == 4 %}
-              <h4 class="card-title h6 mb-2">{{ heading_text }}</h4>
-            {% else %}
-              <h3 class="card-title h5 mb-2">{{ heading_text }}</h3>
-            {% endif %}
+            <{{ heading_tag }} class="card-title h5 mb-2">{{ heading_text }}</{{ heading_tag }}>
           {% endif %}
 
           {% if text is not empty %}
             <p class="card-text mb-0">{{ text }}</p>
           {% endif %}
 
-          {% if has_link %}
-            <a href="{{ url }}" class="stretched-link" aria-label="{{ heading_text|default('Open') }}"></a>
+          {% if show_button %}
+            <div class="mt-3">
+              <a href="{{ url|e }}" class="btn {{ btn_class }}">{{ button_label_value }}</a>
+            </div>
+          {% elseif has_link %}
+            <a href="{{ url|e }}" class="stretched-link" aria-label="{{ heading_text|default('Open') }}"></a>
           {% endif %}
         </div>
       </div>
     </div>
   </div>
+
+{# Vertical layout #}
 {% else %}
   <div{{ attrs }}>
     {% if has_media %}
-      {# Unique block name to avoid duplicate block definition errors. #}
       {% block media_vertical %}
-        {% include 'canvas:image' ignore missing with {
-          src: media.src,
-          alt: media.alt,
-          class: 'card-img-top object-fit-cover',
-          width: media.width,
-          height: media.height,
-          sizes: '100vw'
-        } only %}
+        {% if ratio_class %}
+          <div class="{{ ratio_class }}">
+            {% include 'canvas:image' ignore missing with {
+              src: media.src,
+              alt: media.alt,
+              class: 'w-100 h-100 object-fit-cover',
+              width: media.width,
+              height: media.height,
+              sizes: '100vw'
+            } only %}
+          </div>
+        {% else %}
+          {% include 'canvas:image' ignore missing with {
+            src: media.src,
+            alt: media.alt,
+            class: 'card-img-top object-fit-cover',
+            width: media.width,
+            height: media.height,
+            sizes: '100vw'
+          } only %}
+        {% endif %}
       {% endblock %}
     {% endif %}
 
     <div class="card-body {{ card_style == 'full' ? 'p-4 p-lg-5' : 'p-3 p-md-4' }} {{ centered ? 'text-center' : 'text-start' }}">
       {% if heading_text is not empty %}
-        {% set heading_level = level|default(3) %}
-        {% if heading_level == 2 %}
-          <h2 class="card-title h5 mb-2">{{ heading_text }}</h2>
-        {% elseif heading_level == 4 %}
-          <h4 class="card-title h6 mb-2">{{ heading_text }}</h4>
-        {% else %}
-          <h3 class="card-title h5 mb-2">{{ heading_text }}</h3>
-        {% endif %}
+        <{{ heading_tag }} class="card-title h5 mb-2">{{ heading_text }}</{{ heading_tag }}>
       {% endif %}
 
       {% if text is not empty %}
         <p class="card-text mb-0">{{ text }}</p>
       {% endif %}
 
-      {% if has_link %}
-        <a href="{{ url }}" class="stretched-link" aria-label="{{ heading_text|default('Open') }}"></a>
+      {% if show_button %}
+        <div class="mt-3">
+          <a href="{{ url|e }}" class="btn {{ btn_class }}">{{ button_label_value }}</a>
+        </div>
+      {% elseif has_link %}
+        <a href="{{ url|e }}" class="stretched-link" aria-label="{{ heading_text|default('Open') }}"></a>
       {% endif %}
     </div>
   </div>

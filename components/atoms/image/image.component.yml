@@ -1,42 +1,177 @@
-$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+$schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
 name: Image
-status: experimental
-description: Image component with responsive behavior for the system image.
+group: Base
+status: stable
+
 props:
   type: object
   properties:
+    media:
+      $ref: json-schema-definitions://canvas.module/image
+      type: object
+      title: Image
+      description: Main image source.
+      examples:
+        - src: "assets/image-placeholder.svg"
+          alt: "Placeholder image"
+          width: 1200
+          height: 800
+
+    caption:
+      type: string
+      title: Caption (optional)
+      description: Small text shown under the image.
+
+    figcaption_align:
+      type: string
+      title: Caption alignment
+      enum: [start, center, end]
+      default: start
+      examples: [start]
+      meta:enum:
+        start: Left
+        center: Center
+        end: Right
+
+    link_url:
+      type: string
+      title: Link URL (optional)
+      description: If provided, the image becomes clickable.
+
+    target:
+      type: string
+      title: Link target
+      enum: [self, blank]
+      default: self
+      examples: [self]
+      meta:enum:
+        self: Same tab
+        blank: New tab
+
+    aria_label:
+      type: string
+      title: Link accessibility label (optional)
+      description: If empty, image alt text is used.
+
+    ratio:
+      type: string
+      title: Image ratio (crop)
+      description: Keeps consistent image shapes.
+      enum: [auto, "16x9", "4x3", "1x1", "21x9"]
+      default: auto
+      examples: [auto]
+      meta:enum:
+        auto: Auto (no crop)
+        "16x9": Wide (16:9)
+        "4x3": Standard (4:3)
+        "1x1": Square (1:1)
+        "21x9": Ultra-wide (21:9)
+
+    fit:
+      type: string
+      title: Image fit
+      description: How the image behaves inside a fixed ratio.
+      enum: [cover, contain]
+      default: cover
+      examples: [cover]
+      meta:enum:
+        cover: Fill (crop)
+        contain: Fit (no crop)
+
     align:
       type: string
-      title: Aligning images
-      description: (optional) Align images with the helper float classes or text alignment classes. block-level images can be centered using the .mx-auto margin utility class.
-      default: ''
-      enum:
-        - ''
-        - start
-        - center
-        - end
-    responsive:
-      type: boolean
-      title: Responsive image
-      description: (optional) Images in Bootstrap are made responsive with `.img-fluid`. This applies max-width with 100% and height with auto to the image so that it scales with the parent width.
-      default: false
-    thumbnails:
-      type: boolean
-      title: Image thumbnails
-      description: (optional) In addition to Bootstrap border-radius utilities, you can use .img-thumbnail to give an image a rounded 1px border appearance.
-      default: false
+      title: Alignment
+      description: Alignment of the whole image block.
+      enum: [start, center, end]
+      default: start
+      examples: [start]
+      meta:enum:
+        start: Left
+        center: Center
+        end: Right
+
+    width:
+      type: string
+      title: Width
+      description: Controls the visual width of the image container.
+      enum: [auto, "25", "50", "75", "100"]
+      default: auto
+      examples: [auto]
+      meta:enum:
+        auto: Auto
+        "25": 25%
+        "50": 50%
+        "75": 75%
+        "100": 100%
+
     rounded:
-      type: boolean
-      title: Rounded image
-      default: false
-    image_utility_classes:
-      type: array
-      title: Utility Classes
-      default: []
-      items:
-        type: 'string'
-      description: An array of utility classes that can be used to add extra Bootstrap utility classes or custom classes to this component.
-    attributes:
-      type: Drupal\Core\Template\Attribute
-      title: Attributes
-      description: HTML attributes for the containing element.
+      type: string
+      title: Corner style
+      description: Controls how rounded the image corners are.
+      enum: [none, sm, md, lg, pill]
+      default: none
+      examples: [none]
+      meta:enum:
+        none: None
+        sm: Slightly rounded
+        md: Rounded
+        lg: More rounded
+        pill: Fully rounded (pill)
+
+    border:
+      type: string
+      title: Border
+      description: Adds a border around the image.
+      enum: [none, default]
+      default: none
+      examples: [none]
+      meta:enum:
+        none: None
+        default: Show border
+
+    shadow:
+      type: string
+      title: Shadow
+      description: Adds a shadow around the image.
+      enum: [none, sm, default, lg]
+      default: none
+      examples: [none]
+      meta:enum:
+        none: None
+        sm: Small
+        default: Default
+        lg: Large
+
+    loading:
+      type: string
+      title: Loading behavior
+      description: Controls browser loading strategy.
+      enum: [lazy, eager]
+      default: lazy
+      examples: [lazy]
+      meta:enum:
+        lazy: Lazy load
+        eager: Load immediately
+
+    sizes:
+      type: string
+      title: Responsive sizes (optional)
+      description: "HTML sizes attribute (advanced). Example: (max-width: 768px) 100vw, 50vw"
+      default: ""
+      examples:
+        - "(max-width: 768px) 100vw, 50vw"
+
+    id:
+      type: string
+      title: HTML ID (optional)
+      default: ""
+      examples:
+        - "hero-image"
+
+    extra_classes:
+      type: string
+      title: Extra CSS classes (optional)
+      description: Space separated classes (Bootstrap utilities allowed).
+      default: ""
+      examples:
+        - "mb-4"

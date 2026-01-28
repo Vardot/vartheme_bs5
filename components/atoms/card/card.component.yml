@@ -1,6 +1,8 @@
 "$schema": "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
 name: Card
 group: Card
+status: stable
+
 props:
   type: object
   required:
@@ -8,157 +10,188 @@ props:
     - orientation
     - style
   properties:
-    id:
-      type: string
-      title: HTML ID
-      default: ""
-    extra_classes:
-      type: string
-      title: Extra classes
-      description: "Space separated classes (Bootstrap utilities allowed)."
-      default: ""
     shadow:
       type: string
       title: Shadow
+      description: Adds depth to the card.
       enum: [none, sm, default, lg]
-      meta:
-        enum:
-          none: None
-          sm: Small
-          default: Default
-          lg: Large
       default: default
+      examples: [default]
+      meta:enum:
+        none: No shadow
+        sm: Small shadow
+        default: Default shadow
+        lg: Large shadow
+
     border:
       type: string
-      title: Border
+      title: Border style
+      description: Adds a border (or removes it).
       enum: [default, none, primary, secondary, success, danger, warning, info, light, dark]
-      meta:
-        enum:
-          default: Default
-          none: None
-          primary: Primary
-          secondary: Secondary
-          success: Success
-          danger: Danger
-          warning: Warning
-          info: Info
-          light: Light
-          dark: Dark
       default: default
+      examples: [default]
+      meta:enum:
+        default: Default
+        none: No border
+        primary: Primary
+        secondary: Secondary
+        success: Success
+        danger: Danger
+        warning: Warning
+        info: Info
+        light: Light
+        dark: Dark
+
     rounded:
       type: string
-      title: Rounded
-      # Note: keep enum values as strings because prop type is string.
+      title: Corner style
+      description: Controls how rounded the card corners are.
+      # Keep enum values as strings because prop type is string.
       enum: [default, "0", "1", "2", "3", pill]
-      meta:
-        enum:
-          default: Default
-          "0": None
-          "1": Small
-          "2": Medium
-          "3": Large
-          pill: Pill
       default: default
+      examples: [default]
+      meta:enum:
+        default: Default
+        "0": Square corners
+        "1": Slightly rounded
+        "2": Rounded
+        "3": More rounded
+        pill: Fully rounded (pill)
+
     background:
       type: string
-      title: Background
-      enum:
-        - default
-        - accent
-        - primary
-        - inverted
-      meta:
-        enum:
-          default: Secondary
-          accent: Accent
-          primary: Primary
-          inverted: Inverted
+      title: Background theme
+      description: Background color style for the card.
+      enum: [default, accent, primary, inverted]
       default: default
-      examples:
-        - default
+      examples: [default]
+      meta:enum:
+        default: Default
+        accent: Light background
+        primary: Primary background
+        inverted: Dark background
+
     style:
       type: string
-      title: Style
-      enum:
-        - framed
-        - full
-      meta:
-        enum:
-          framed: Framed
-          full: Full width
+      title: Padding style
+      description: Controls padding inside the card.
+      enum: [framed, full]
       default: framed
-      examples:
-        - framed
+      examples: [framed]
+      meta:enum:
+        framed: Normal padding
+        full: Larger padding
+
     orientation:
       type: string
-      title: Orientation
-      enum:
-        - vertical
-        - horizontal
-      meta:
-        enum:
-          vertical: Vertical
-          horizontal: Horizontal
+      title: Layout
+      description: Controls how image and content are arranged.
+      enum: [vertical, horizontal]
       default: vertical
-      examples:
-        - vertical
+      examples: [vertical]
+      meta:enum:
+        vertical: Image on top
+        horizontal: Image on left
+
+    media_ratio:
+      type: string
+      title: Image size (vertical)
+      description: Controls the image height for vertical cards (prevents very tall images).
+      enum: [auto, "16x9", "4x3", "1x1"]
+      default: "16x9"
+      examples: ["16x9"]
+      meta:enum:
+        auto: Auto (no fixed ratio)
+        "16x9": Wide (16:9)
+        "4x3": Standard (4:3)
+        "1x1": Square (1:1)
+
     heading_text:
       type: string
       title: Heading
       default: "This is your card title"
       examples:
         - "This is your card title"
+
     level:
       type: number
       title: Heading level
-      enum:
-        - 2
-        - 3
-        - 4
+      description: HTML heading level for the card title.
+      enum: [2, 3, 4]
       default: 3
-      examples:
-        - 3
+      examples: [3]
+      meta:enum:
+        2: H2
+        3: H3
+        4: H4
+
     url:
       type: string
-      title: Link
+      title: Link URL (optional)
+      description: If provided, the whole card can link (or show a button if label is set).
+
     media:
       $ref: json-schema-definitions://canvas.module/image
       title: Image
       type: object
       examples:
-        - src: "assets/jj-ying-8bghKxNU1j0-unsplash.jpg"
+        - src: "assets/card-placeholder.svg"
           width: 1200
           height: 900
-          alt: "Photo by jjying: https://unsplash.com/photos/purple-and-blue-light-digital-wallpaper-8bghKxNU1j0"
+          alt: "Placeholder card image"
+
     text:
       type: string
       title: Description
+      description: Short supporting text under the heading.
       pattern: "(.|\\r?\\n)*"
       examples:
-        - "Quaerat laborum rerum dolores dolores dolor qui."
+        - "A short description goes here."
+
     is_text_centered:
       type: boolean
       title: Center text
-      examples:
-        - false
+      description: Centers the text content inside the card body.
+      examples: [false]
+
     button_label:
       type: string
-      title: Button label
-      description: "Optional CTA button label (shows when url is provided)."
+      title: Button label (optional)
+      description: If set and Link URL is provided, shows a button instead of linking the entire card.
       default: ""
+      examples:
+        - "Learn more"
+
     button_variant:
       type: string
-      title: Button variant
+      title: Button style
+      description: Style for the optional button.
       enum: [primary, secondary, success, danger, warning, info, light, dark, link]
-      meta:
-        enum:
-          primary: Primary
-          secondary: Secondary
-          success: Success
-          danger: Danger
-          warning: Warning
-          info: Info
-          light: Light
-          dark: Dark
-          link: Link
       default: primary
+      examples: [primary]
+      meta:enum:
+        primary: Primary
+        secondary: Secondary
+        success: Success
+        danger: Danger
+        warning: Warning
+        info: Info
+        light: Light
+        dark: Dark
+        link: Link style
+
+    id:
+      type: string
+      title: HTML ID (optional)
+      description: Optional ID attribute for linking.
+      default: ""
+      examples:
+        - "feature-card"
+
+    extra_classes:
+      type: string
+      title: Extra CSS classes (optional)
+      description: Space separated classes (Bootstrap utilities allowed).
+      default: ""
+      examples:
+        - "mb-4"

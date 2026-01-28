@@ -1,4 +1,4 @@
-$schema: "https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json"
+$schema: "https://git.drupalcode.org/project/drupal/-/raw/10.1.x/core/modules/sdc/src/metadata.schema.json"
 name: Text
 group: Base
 status: stable
@@ -8,52 +8,142 @@ props:
   properties:
     text:
       type: string
-      title: Rich text
-      description: "HTML content. Example: <p>Text</p>"
+      title: Content (rich text)
+      description: "HTML content (e.g. Text). Make sure this content is filtered/safe before rendering."
       contentMediaType: text/html
       x-formatting-context: block
       default: "<p>Lorem ipsum dolor sit amet.</p>"
       examples:
         - "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>"
 
+    element:
+      type: string
+      title: Wrapper element
+      description: Select the HTML wrapper used around the content.
+      enum: [div, section, article, p, span]
+      default: div
+      examples:
+        - div
+      meta:enum:
+        div: Div (default)
+        section: Section
+        article: Article
+        p: Paragraph
+        span: Inline (span)
+
     text_size:
       type: string
       title: Text size
-      description: "Bootstrap font-size utilities."
-      default: "default"
-      enum:
-        - "default"
-        - "fs-6"
-        - "fs-5"
-        - "fs-4"
-        - "fs-3"
-        - "fs-2"
-        - "fs-1"
+      description: Controls text size using Bootstrap sizing.
+      default: default
+      enum: [default, sm, md, lg, xl, xxl]
+      examples:
+        - default
+      meta:enum:
+        default: Default
+        sm: Small
+        md: Medium
+        lg: Large
+        xl: Extra large
+        xxl: Extra extra large
 
     text_color:
       type: string
       title: Text color
-      description: "Bootstrap text color utilities."
-      default: "default"
+      description: Choose a text color.
+      default: default
       enum:
-        - "default"
-        - "primary"
-        - "secondary"
-        - "success"
-        - "danger"
-        - "warning"
-        - "info"
-        - "muted"
-        - "dark"
-        - "white"
+        - default
+        - primary
+        - secondary
+        - success
+        - danger
+        - warning
+        - info
+        - muted
+        - dark
+        - white
+      examples:
+        - default
+      meta:enum:
+        default: Default
+        primary: Primary
+        secondary: Secondary
+        success: Success
+        danger: Danger
+        warning: Warning
+        info: Info
+        muted: Muted
+        dark: Dark
+        white: White
+
+    align:
+      type: string
+      title: Text alignment
+      description: Align the text inside the wrapper.
+      default: start
+      enum: [start, center, end, justify]
+      examples:
+        - start
+      meta:enum:
+        start: Left
+        center: Center
+        end: Right
+        justify: Justified
+
+    weight:
+      type: string
+      title: Font weight
+      description: Controls text boldness.
+      default: default
+      enum: [default, light, normal, medium, semibold, bold]
+      examples:
+        - default
+      meta:enum:
+        default: Default
+        light: Light
+        normal: Normal
+        medium: Medium
+        semibold: Semi-bold
+        bold: Bold
+
+    line_height:
+      type: string
+      title: Line spacing
+      description: Controls line height (readability).
+      default: default
+      enum: [default, tight, normal, relaxed, loose]
+      examples:
+        - default
+      meta:enum:
+        default: Default
+        tight: Tight
+        normal: Normal
+        relaxed: Relaxed
+        loose: Loose
+
+    spacing_y:
+      type: string
+      title: Vertical spacing
+      description: Adds space above and below the text block.
+      default: none
+      enum: [none, sm, md, lg]
+      examples:
+        - none
+      meta:enum:
+        none: No spacing
+        sm: Small spacing
+        md: Medium spacing
+        lg: Large spacing
 
     id:
       type: string
-      title: HTML ID
-      default: ""
+      title: HTML ID (optional)
+      description: Optional ID attribute for linking.
+      examples:
+        - "intro-text"
 
     extra_classes:
       type: string
-      title: Extra classes
-      description: "Space separated classes (Bootstrap utilities allowed), e.g. mb-3 lh-lg."
-      default: ""
+      title: Extra CSS classes (optional)
+      description: Space-separated classes (Bootstrap utilities allowed), e.g. mb-3 text-uppercase.

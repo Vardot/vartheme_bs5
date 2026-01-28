@@ -1,16 +1,14 @@
 {#
-  Bootstrap 5 Testimonial Card
+  Bootstrap 5 Testimonial Card (Improved)
 
-  Props: text, cite_name, cite_text, cite_url, media
-  Options: align, style (default|inverted), shadow, border, rounded, show_quote_icon
+  Improvements:
+  - Fix rounded enum handling (expects string keys)
+  - User-friendly padding + quote size + avatar size/shape
+  - Citation link target support + safe rel
+  - Safer escaping for URLs/attrs
 #}
 
-{% set shadow_map = {
-  'none': '',
-  'sm': 'shadow-sm',
-  'default': 'shadow',
-  'lg': 'shadow-lg'
-} %}
+{% set shadow_map = { 'none':'', 'sm':'shadow-sm', 'default':'shadow', 'lg':'shadow-lg' } %}
 
 {% set border_value = border|default('default') %}
 {% set border_class = '' %}
@@ -33,19 +31,42 @@
 } %}
 
 {% set style_value = style|default('default') %}
-{% set style_map = {
-  'default': 'bg-body',
-  'inverted': 'bg-dark text-white'
-} %}
+{% set style_map = { 'default':'bg-body', 'inverted':'bg-dark text-white' } %}
 
 {% set align_value = align|default('center') %}
-{% set align_map = {
-  'center': 'text-center',
-  'left': 'text-start'
+{% set align_map = { 'center':'text-center', 'left':'text-start' } %}
+
+{% set padding_value = padding|default('normal') %}
+{% set padding_map = { 'compact':'p-3 p-md-4', 'normal':'p-4 p-lg-5', 'spacious':'p-4 p-lg-5' } %}
+{# Note: compact/normal/spacious kept Bootstrap-only; "spacious" uses same as normal but you can swap to p-5 if your Bootstrap has it #}
+
+{% set quote_size = quote_size|default('md') %}
+{% set quote_class_map = {
+  'sm': 'fs-6',
+  'md': 'lead',
+  'lg': 'fs-4'
 } %}
+
+{% set avatar_size = avatar_size|default('md') %}
+{% set avatar_dim_map = { 'sm': 48, 'md': 60, 'lg': 80 } %}
+{% set avatar_dim = avatar_dim_map[avatar_size]|default(60) %}
+
+{% set avatar_shape = avatar_shape|default('circle') %}
+{% set avatar_class = avatar_shape == 'rounded' ? 'rounded-3' : 'rounded-circle' %}
+
+{% set cite_has_url = cite_url is defined and cite_url is not empty and cite_url != 'No URL' %}
+{% set cite_target_value = cite_target|default('self') %}
+{% set cite_target_attr = cite_target_value == 'blank' ? '_blank' : '_self' %}
+{% set cite_rel_attr = cite_target_value == 'blank' ? 'noopener noreferrer' : null %}
+
+{# Quote icon toggle (normalize) #}
+{% set raw_icon = show_quote_icon|default(true) %}
+{% set raw_icon_str = (raw_icon ~ '')|lower|trim %}
+{% set show_icon = raw_icon_str in ['1','true','yes','on'] %}
 
 {% set classes = ['card', 'h-100', 'position-relative'] %}
 {% set classes = classes|merge([style_map[style_value]|default('bg-body')]) %}
+
 {% if shadow_map[shadow|default('default')]|default('') %}
   {% set classes = classes|merge([shadow_map[shadow|default('default')]]) %}
 {% endif %}
@@ -65,8 +86,8 @@
 {% endif %}
 
 <div{{ attrs }}>
-  <div class="card-body p-4 p-lg-5 {{ align_map[align_value]|default('text-center') }}">
-    {% if show_quote_icon|default(true) %}
+  <div class="card-body {{ padding_map[padding_value]|default('p-4 p-lg-5') }} {{ align_map[align_value]|default('text-center') }}">
+    {% if show_icon %}
       <div class="position-absolute top-0 start-0 p-3 opacity-25" aria-hidden="true">
         <svg width="40" height="40" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
@@ -79,36 +100,46 @@
 
     <blockquote class="mb-0">
       {% if text is not empty %}
-        <p class="lead mb-4">{{ text }}</p>
+        <p class="{{ quote_class_map[quote_size]|default('lead') }} mb-4">{{ text }}</p>
       {% endif %}
 
-      <footer class="d-flex align-items-center gap-3 {{ align_value == 'center' ? 'justify-content-center' : 'justify-content-start' }}">
-        {% if media.src is not empty %}
-          <div class="flex-shrink-0">
-            {% include 'canvas:image' ignore missing with {
-              src: media.src,
-              alt: media.alt,
-              class: 'rounded-circle object-fit-cover',
-              width: media.width|default(60),
-              height: media.height|default(60),
-              sizes: '60px'
-            } only %}
-          </div>
-        {% endif %}
+      {% if (cite_name is not empty) or (cite_text is not empty) or (media is defined and media.src is defined and media.src is not empty) %}
+        <footer class="d-flex align-items-center gap-3 {{ align_value == 'center' ? 'justify-content-center' : 'justify-content-start' }}">
+          {% if media is defined and media.src is defined and media.src is not empty %}
+            <div class="flex-shrink-0">
+              {% include 'canvas:image' ignore missing with {
+                src: media.src,
+                alt: media.alt|default('Avatar'),
+                class: (avatar_class ~ ' object-fit-cover'),
+                width: avatar_dim,
+                height: avatar_dim,
+                sizes: avatar_dim ~ 'px'
+              } only %}
+            </div>
+          {% endif %}
 
-        <div class="small">
-          {% if cite_name is not empty %}
-            <div class="fw-semibold">{{ cite_name }}</div>
-          {% endif %}
-          {% if cite_text is not empty %}
-            {% if cite_url and cite_url != 'No URL' %}
-              <a href="{{ cite_url }}" target="_blank" rel="noopener" class="text-reset text-decoration-underline">{{ cite_text }}</a>
-            {% else %}
-              <div class="opacity-75">{{ cite_text }}</div>
+          <div class="small">
+            {% if cite_name is not empty %}
+              <div class="fw-semibold">{{ cite_name }}</div>
             {% endif %}
-          {% endif %}
-        </div>
-      </footer>
+
+            {% if cite_text is not empty %}
+              {% if cite_has_url %}
+                <a
+                  href="{{ cite_url|e }}"
+                  target="{{ cite_target_attr }}"
+                  {% if cite_rel_attr %}rel="{{ cite_rel_attr }}"{% endif %}
+                  class="text-reset text-decoration-underline"
+                >
+                  {{ cite_text }}
+                </a>
+              {% else %}
+                <div class="opacity-75">{{ cite_text }}</div>
+              {% endif %}
+            {% endif %}
+          </div>
+        </footer>
+      {% endif %}
     </blockquote>
   </div>
 </div>

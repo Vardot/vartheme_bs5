@@ -1,32 +1,22 @@
-{# Button component (Bootstrap 5 / VarTheme) #}
-
 {% set label = label|default('Button label') %}
 {% set variant = variant|default('primary') %}
-{% set size = size|default('medium') %}
+{% set size = size|default('md') %}
 {% set is_disabled = disabled|default(false) %}
 {% set href_value = (href is defined and href is not empty) ? href : null %}
 
-{% set has_icon = icon is defined and icon is not empty %}
+{% set target = target|default('self') %}
+{% set target_attr = target == 'blank' ? '_blank' : '_self' %}
+{% set rel_attr = target == 'blank' ? 'noopener noreferrer' : null %}
+
+{% set icon = icon|default('none') %}
+{% set has_icon = icon != 'none' %}
+{% set alignment = alignment|default('inline') %}
 {% set mobile_width = mobile_width|default(false) %}
 {% set full_width = full_width|default(false) %}
 {% set radius = radius|default('default') %}
 
-{# Normalize icon_first safely #}
-{% set raw_icon_first = icon_first|default(false) %}
-{% set raw_icon_first_str = (raw_icon_first ~ '')|lower|trim %}
-{% set is_icon_first = raw_icon_first_str in ['1','true','yes','on'] %}
+{% set is_icon_first = (icon_first|default(false) ~ '')|lower|trim in ['1','true','yes','on'] %}
 
-{# Validate variant #}
-{% set allowed_variants = [
-  'primary','secondary','success','danger','warning','info','light','dark','link',
-  'primary-inverted','secondary-inverted',
-  'outline-primary','outline-secondary','outline-success','outline-danger','outline-warning','outline-info','outline-light','outline-dark'
-] %}
-{% if variant not in allowed_variants %}
-  {% set variant = 'primary' %}
-{% endif %}
-
-{# Variant → Bootstrap class #}
 {% if variant == 'primary-inverted' %}
   {% set btn_variant_class = 'btn-outline-primary' %}
 {% elseif variant == 'secondary-inverted' %}
@@ -39,41 +29,32 @@
   {% set btn_variant_class = 'btn-' ~ variant %}
 {% endif %}
 
-{# Size → Bootstrap class #}
 {% set size_class = '' %}
-{% if size == 'small' %}
+{% if size == 'xs' %}
+  {% set size_class = 'btn-sm px-2 py-1' %}
+{% elseif size == 'sm' %}
   {% set size_class = 'btn-sm' %}
-{% elseif size == 'large' %}
+{% elseif size == 'lg' %}
   {% set size_class = 'btn-lg' %}
+{% elseif size == 'xl' %}
+  {% set size_class = 'btn-lg px-4 py-3' %}
 {% endif %}
 
-{# Width classes #}
-{% set width_class = '' %}
-{% if full_width %}
-  {% set width_class = 'w-100' %}
-{% elseif mobile_width %}
-  {% set width_class = 'w-100 w-sm-auto' %}
-{% endif %}
+{% set width_class = full_width ? 'w-100' : (mobile_width ? 'w-100 w-sm-auto' : '') %}
 
-{# Border radius mapping (Bootstrap utilities) #}
-{% set radius_class = '' %}
-{% if radius == 'sm' %}
-  {% set radius_class = 'rounded-1' %}
-{% elseif radius == 'lg' %}
-  {% set radius_class = 'rounded-3' %}
-{% elseif radius == 'pill' %}
-  {% set radius_class = 'rounded-pill' %}
-{% elseif radius == 'none' %}
-  {% set radius_class = 'rounded-0' %}
-{% endif %}
+{% set radius_class = radius == 'sm' ? 'rounded-1'
+  : radius == 'lg' ? 'rounded-3'
+  : radius == 'pill' ? 'rounded-pill'
+  : radius == 'none' ? 'rounded-0'
+  : '' %}
 
-{# Extra classes #}
 {% set extra = btn_classes|default('') %}
-{% if extra is iterable %}
-  {% set extra = extra|join(' ') %}
-{% endif %}
 
-{# Build classes #}
+{% set wrapper_class = alignment == 'left' ? 'd-flex justify-content-start'
+  : alignment == 'center' ? 'd-flex justify-content-center'
+  : alignment == 'right' ? 'd-flex justify-content-end'
+  : '' %}
+
 {% set classes = [
   'btn',
   btn_variant_class,
@@ -92,61 +73,32 @@
 
 {% set class_attr = (classes|join(' ') ~ ' ' ~ extra)|trim %}
 
-{# Icon size mapping #}
-{% set icon_size_map = {
-  small: 'extra-extra-small',
-  medium: 'extra-small',
-  large: 'small'
-} %}
-
 {% if is_disabled %}
   {% set href_value = null %}
 {% endif %}
 
+{% if wrapper_class %}<div class="{{ wrapper_class }}">{% endif %}
+
 {% if href_value %}
-  <a
-    href="{{ href_value|e }}"
-    class="{{ class_attr }}"
-    {% if is_disabled %}aria-disabled="true" tabindex="-1"{% endif %}
-  >
-    {% if has_icon %}
-      <span class="d-inline-flex align-items-center">
-        {{
-          include(
-            '@vartheme_bs5/components/atoms/icon/icon.twig',
-            {
-              weight: 'bold',
-              icon: icon,
-              icon_size: icon_size_map[size]|default('extra-small')
-            },
-            with_context: false
-          )
-        }}
-      </span>
-    {% endif %}
-    <span>{{ label }}</span>
-  </a>
+<a href="{{ href_value|e }}"
+   class="{{ class_attr }}"
+   target="{{ target_attr }}"
+   {% if rel_attr %}rel="{{ rel_attr }}"{% endif %}
+   {% if is_disabled %}aria-disabled="true" tabindex="-1"{% endif %}>
 {% else %}
-  <button
-    type="button"
-    class="{{ class_attr }}"
-    {% if is_disabled %}disabled aria-disabled="true"{% endif %}
-  >
-    {% if has_icon %}
-      <span class="d-inline-flex align-items-center">
-        {{
-          include(
-            '@vartheme_bs5/components/atoms/icon/icon.twig',
-            {
-              weight: 'bold',
-              icon: icon,
-              icon_size: icon_size_map[size]|default('extra-small')
-            },
-            with_context: false
-          )
-        }}
-      </span>
-    {% endif %}
-    <span>{{ label }}</span>
-  </button>
+<button type="button" class="{{ class_attr }}" {% if is_disabled %}disabled{% endif %}>
 {% endif %}
+
+{% if has_icon %}
+  {{ include('@vartheme_bs5/components/atoms/icon/icon.twig', {
+    icon: icon,
+    weight: 'bold',
+    icon_size: 'extra-small'
+  }, with_context=false) }}
+{% endif %}
+
+<span>{{ label }}</span>
+
+{% if href_value %}</a>{% else %}</button>{% endif %}
+
+{% if wrapper_class %}</div>{% endif %}

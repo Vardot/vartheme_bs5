@@ -1,18 +1,25 @@
 {#
-  Bootstrap 5 Logo Card
+  Bootstrap 5 Logo Card (SDC)
 
-  Props: media, url, background_color, border_radius
-  Options: id, extra_classes, shadow, border, padding
+  Improvements:
+  - New nice placeholder (assets/logo-placeholder.svg)
+  - Prevents very big/tall logos using ratio wrapper + object-fit: contain
+  - Target support + secure rel
+  - User-friendly options (padding presets, size presets, readable selects)
+  - Optional grayscale logo style (Bootstrap filter utility)
 #}
 
-{% set has_url = url is not empty and url != 'No URL' %}
+{% set has_url = url is defined and url is not empty and url != 'No URL' %}
+{% set target_value = target|default('self') %}
+{% set target_attr = target_value == 'blank' ? '_blank' : '_self' %}
+{% set rel_attr = target_value == 'blank' ? 'noopener noreferrer' : null %}
 
-{% set shadow_map = {
-  'none': '',
-  'sm': 'shadow-sm',
-  'default': 'shadow',
-  'lg': 'shadow-lg'
-} %}
+{% set aria = aria_label|default('')|trim %}
+{% if aria == '' %}
+  {% set aria = media.alt|default('Open') %}
+{% endif %}
+
+{% set shadow_map = { 'none':'', 'sm':'shadow-sm', 'default':'shadow', 'lg':'shadow-lg' } %}
 
 {% set border_value = border|default('default') %}
 {% set border_class = '' %}
@@ -47,9 +54,29 @@
   'info': 'bg-info'
 } %}
 
-{% set p = padding|default(4) %}
+{% set padding_value = padding|default('normal') %}
+{% set padding_map = {
+  'compact': 'p-3',
+  'normal': 'p-3 p-md-4',
+  'spacious': 'p-4 p-lg-5'
+} %}
 
-{% set classes = ['card', 'h-100'] %}
+{% set tile_ratio = tile_ratio|default('square') %}
+{% set ratio_map = { 'square':'ratio-1x1', '4x3':'ratio-4x3', '16x9':'ratio-16x9' } %}
+{% set ratio_class = ratio_map[tile_ratio]|default('') %}
+
+{% set logo_size = logo_size|default('md') %}
+{% set logo_size_map = {
+  'sm': 'w-50',
+  'md': 'w-75',
+  'lg': 'w-100'
+} %}
+
+{% set logo_style = logo_style|default('default') %}
+{% set logo_filter_class = logo_style == 'grayscale' ? 'filter-grayscale' : '' %}
+
+{# Card classes #}
+{% set classes = ['card','h-100','overflow-hidden'] %}
 {% set classes = classes|merge([bg_map[bg_value]|default('bg-body')]) %}
 {% if shadow_map[shadow|default('default')]|default('') %}
   {% set classes = classes|merge([shadow_map[shadow|default('default')]]) %}
@@ -63,31 +90,73 @@
 {% if has_url %}
   {% set classes = classes|merge(['position-relative']) %}
 {% endif %}
-{% if extra_classes|default('')|trim %}
+{% if extra_classes is defined and extra_classes|trim %}
   {% set classes = classes|merge(extra_classes|trim|split(' ')) %}
 {% endif %}
 
 {% set attrs = create_attribute().addClass(classes) %}
-{% if id|default('')|trim %}
+{% if id is defined and id|trim %}
   {% set attrs = attrs.setAttribute('id', id|trim) %}
 {% endif %}
 
+{# Image classes: contain + centered #}
+{% set img_classes = [
+  'img-fluid',
+  'object-fit-contain',
+  'd-block',
+  'mx-auto',
+  logo_size_map[logo_size]|default('w-75'),
+  logo_filter_class
+]|filter(v => v)|join(' ') %}
+
+{% set media_ok = media is defined and media and media.src is defined and media.src is not empty %}
+
 <div{{ attrs }}>
-  <div class="card-body d-flex align-items-center justify-content-center p-{{ p }}">
-    {% block logo %}
-      {% if media.src is not empty %}
+  {% if ratio_class %}
+    <div class="ratio {{ ratio_class }}">
+      <div class="d-flex align-items-center justify-content-center {{ padding_map[padding_value]|default('p-3 p-md-4') }}">
         {% if has_url %}
-          <a href="{{ url }}" class="stretched-link" aria-label="{{ media.alt|default('Open') }}"></a>
+          <a
+            href="{{ url|e }}"
+            class="stretched-link text-decoration-none"
+            aria-label="{{ aria|e }}"
+            target="{{ target_attr }}"
+            {% if rel_attr %}rel="{{ rel_attr }}"{% endif %}
+          ></a>
         {% endif %}
 
+        {% if media_ok %}
+          {% include 'canvas:image' ignore missing with {
+            src: media.src,
+            alt: media.alt,
+            width: media.width,
+            height: media.height,
+            class: img_classes
+          } only %}
+        {% endif %}
+      </div>
+    </div>
+  {% else %}
+    <div class="card-body d-flex align-items-center justify-content-center {{ padding_map[padding_value]|default('p-3 p-md-4') }}">
+      {% if has_url %}
+        <a
+          href="{{ url|e }}"
+          class="stretched-link text-decoration-none"
+          aria-label="{{ aria|e }}"
+          target="{{ target_attr }}"
+          {% if rel_attr %}rel="{{ rel_attr }}"{% endif %}
+        ></a>
+      {% endif %}
+
+      {% if media_ok %}
         {% include 'canvas:image' ignore missing with {
           src: media.src,
           alt: media.alt,
           width: media.width,
           height: media.height,
-          class: 'img-fluid'
+          class: img_classes
         } only %}
       {% endif %}
-    {% endblock %}
-  </div>
+    </div>
+  {% endif %}
 </div>
