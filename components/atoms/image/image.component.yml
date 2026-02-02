@@ -165,13 +165,9 @@ props:
       type: string
       title: HTML ID (optional)
       default: ""
-      examples:
-        - "hero-image"
 
     extra_classes:
       type: string
       title: Extra CSS classes (optional)
       description: Space separated classes (Bootstrap utilities allowed).
       default: ""
-      examples:
-        - "mb-4"

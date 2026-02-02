@@ -3,6 +3,7 @@ name: Views view summary
 status: experimental
 description: Implementation for displaying a view as a view summary list group of items.
 group: Views
+noUi: true
 props:
   type: object
   properties:

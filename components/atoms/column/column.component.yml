@@ -3,6 +3,7 @@ name: Column
 group: Layout
 status: stable
 description: "Bootstrap column wrapper for Section grids. Ensures gutters (gx/gy) work."
+noUi: true
 
 props:
   type: object

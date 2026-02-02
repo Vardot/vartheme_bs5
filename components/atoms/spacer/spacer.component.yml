@@ -73,13 +73,9 @@ props:
       title: "HTML ID"
       description: "Optional ID for the spacer."
       default: ""
-      examples:
-        - "spacer-1"
 
     extra_classes:
       type: string
       title: "Extra CSS classes"
       description: "Add custom classes (space separated)."
       default: ""
-      examples:
-        - "my-custom-spacer-class"

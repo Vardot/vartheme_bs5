@@ -3,6 +3,7 @@ name: Block Local Video
 status: experimental
 description: Block Local Video component description.
 group: Blocks
+noUi: true
 props:
   type: object
   properties:

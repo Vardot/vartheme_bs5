@@ -3,6 +3,7 @@ name: Varbase HTML Block
 status: experimental
 description: The HTML block.
 group: Blocks
+noUi: true
 props:
   type: object
   properties:

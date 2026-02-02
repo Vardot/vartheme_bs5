@@ -2,6 +2,7 @@ $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schema
 name: Media Header
 status: experimental
 description: The universal media header style on top of web pages.
+noUi: true
 props:
   type: object
   properties:

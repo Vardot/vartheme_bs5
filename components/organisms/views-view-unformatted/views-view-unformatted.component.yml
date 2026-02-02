@@ -3,6 +3,7 @@ name: Views view unformatted
 status: experimental
 description: Component implementation to display a view of unformatted rows.
 group: Views
+noUi: true
 props:
   type: object
   properties:

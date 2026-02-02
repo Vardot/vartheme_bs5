@@ -185,13 +185,9 @@ props:
       title: HTML ID (optional)
       description: Optional ID attribute for linking.
       default: ""
-      examples:
-        - "feature-card"
 
     extra_classes:
       type: string
       title: Extra CSS classes (optional)
       description: Space separated classes (Bootstrap utilities allowed).
       default: ""
-      examples:
-        - "mb-4"

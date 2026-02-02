@@ -20,7 +20,7 @@ module.exports = {
     // ################################################
     // Components
     'base/root/root': ['./components/base/root/root.scss'],
-    'atoms/accordion-item/accordion-item': ['./components/atoms/accordion-item/accordion-item.scss'],
+    'atoms/accordion-item/accordion-item': ['./components/atoms/accordion-block/accordion-item.scss'],
     'atoms/progress-bar/progress-bar': ['./components/atoms/progress-bar/progress-bar.scss'],
     'atoms/taxonomy/taxonomy': ['./components/atoms/taxonomy/taxonomy.scss'],
     'molecules/alert/alert': ['./components/molecules/alert/alert.scss'],

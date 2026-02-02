@@ -96,16 +96,12 @@ props:
       title: "HTML ID"
       description: "Optional ID for the wrapper."
       default: ""
-      examples:
-        - "my-custom-group-id"
 
     extra_classes:
       type: string
       title: "Extra CSS classes"
       description: "Add custom classes (space separated)."
       default: ""
-      examples:
-        - "my-custom-group-class"
 
 slots:
   content:

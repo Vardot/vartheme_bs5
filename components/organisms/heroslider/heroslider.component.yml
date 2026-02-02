@@ -2,6 +2,7 @@ $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schema
 name: Heroslider
 status: experimental
 description: 'A slideshow component for cycling through elements images/media or slides of text—like a heroslider.'
+noUi: true
 props:
   type: object
   properties:

@@ -3,6 +3,7 @@ name: Block
 status: experimental
 description: The generic block component
 group: Blocks
+noUi: true
 props:
   type: object
   properties:

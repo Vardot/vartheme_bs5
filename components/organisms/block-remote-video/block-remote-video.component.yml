@@ -3,6 +3,7 @@ name: Block Remote Video
 status: experimental
 description: The Remote Video block component.
 group: Blocks
+noUi: true
 props:
   type: object
   properties:

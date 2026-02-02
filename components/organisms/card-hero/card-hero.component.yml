@@ -3,6 +3,7 @@ name: 'Hero Card'
 status: experimental
 description: 'Hero card component for a media and a content over the media'
 group: Cards
+noUi: true
 props:
   type: object
   properties:

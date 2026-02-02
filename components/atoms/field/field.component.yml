@@ -2,6 +2,7 @@ $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schema
 name: Filed
 status: experimental
 description: Field container divisions with attributes.
+noUi: true
 props:
   type: object
   properties:

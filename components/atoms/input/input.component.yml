@@ -2,6 +2,7 @@ $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schema
 name: Input 
 status: experimental
 description: Textual form controls `<input>`s an upgrade with custom styles, sizing, focus states, and more.
+noUi: true
 props:
   type: object
   properties:

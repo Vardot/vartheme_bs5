@@ -3,6 +3,7 @@ name: Block CTA
 status: experimental
 description: Call to action (CTA) block component.
 group: Blocks
+noUi: true
 props:
   type: object
   properties:

@@ -140,8 +140,6 @@ props:
       type: string
       title: HTML ID (optional)
       description: Optional ID attribute for linking.
-      examples:
-        - "intro-text"
 
     extra_classes:
       type: string

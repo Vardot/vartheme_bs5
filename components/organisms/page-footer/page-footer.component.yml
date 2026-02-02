@@ -3,6 +3,7 @@ $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schema
 name: Footer 
 status: experimental
 description: Block
+noUi: true
 props:
   type: object
   properties:

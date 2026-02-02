@@ -3,6 +3,7 @@ name: Block Accordion
 status: experimental
 description: A wrapper accordion block for the Varbase Accordion component.
 group: Blocks
+noUi: true
 props:
   type: object
   properties:

@@ -3,6 +3,7 @@ name: Views view table
 status: experimental
 description: Implementation for displaying a view as a table.
 group: Views
+noUi: true
 props:
   type: object
   properties:

@@ -3,6 +3,7 @@ name: Views view
 status: experimental
 description: Implementation for main view component.
 group: Views
+noUi: true
 props:
   type: object
   properties:

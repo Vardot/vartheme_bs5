@@ -2,6 +2,7 @@ $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schema
 name: Close button
 status: experimental
 description: A generic close button for dismissing content like modals and alerts.
+noUi: true
 props:
   type: object
   properties:

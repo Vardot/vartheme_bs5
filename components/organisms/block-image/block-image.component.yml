@@ -3,6 +3,7 @@ name: Block Image
 status: experimental
 description: Block Image component description.
 group: Blocks
+noUi: true
 props:
   type: object
   properties:

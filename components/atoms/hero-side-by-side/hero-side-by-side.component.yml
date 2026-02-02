@@ -6,11 +6,6 @@ status: stable
 props:
   type: object
   properties:
-    id:
-      type: string
-      title: HTML ID (optional)
-      examples:
-        - "hero-intro"
 
     heading:
       type: string
@@ -86,9 +81,15 @@ props:
       meta:enum:
         start: Left
         center: Center
+    
+    id:
+      type: string
+      title: HTML ID (optional)
+      description: "Optional ID attribute for the outer section."
+      default: ""
 
     extra_classes:
       type: string
       title: Extra CSS classes (optional)
-      examples:
-        - "mb-5"
+      description: "Space separated classes (Bootstrap utilities allowed)."
+      default: ""

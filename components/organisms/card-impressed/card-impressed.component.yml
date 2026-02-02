@@ -3,6 +3,7 @@ name: 'Impressed Card'
 status: experimental
 description: 'Impressed card component with media at the side.'
 group: Cards
+noUi: true
 props:
   type: object
   properties:

@@ -2,6 +2,7 @@
 name: List
 status: experimental
 description: Implementation for displaying a HTML list of items.
+noUi: true
 props:
   type: object
   properties:

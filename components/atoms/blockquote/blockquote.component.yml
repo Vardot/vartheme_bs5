@@ -110,5 +110,3 @@ props:
       title: Additional CSS classes
       description: Optional custom classes for styling.
       default: ""
-      examples:
-        - "bg-body-tertiary p-4"

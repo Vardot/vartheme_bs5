@@ -2227,5 +2227,3 @@ props:
       title: Extra CSS classes
       description: "Space separated classes to add on top of badge classes."
       default: ""
-      examples:
-        - "fw-semibold"

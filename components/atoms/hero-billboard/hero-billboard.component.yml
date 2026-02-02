@@ -132,16 +132,12 @@ props:
       title: "HTML ID"
       description: "Optional ID attribute for the outer section."
       default: ""
-      examples:
-        - "homepage-hero"
 
     extra_classes:
       type: string
       title: "Extra CSS classes"
       description: "Additional Bootstrap/utility classes (space separated)."
       default: ""
-      examples:
-        - "mb-4"
 
 slots:
   hero_slot:

@@ -120,16 +120,12 @@ props:
       title: "HTML ID"
       description: "Optional ID for the row."
       default: ""
-      examples:
-        - "custom-row-id"
 
     extra_classes:
       type: string
       title: "Extra CSS classes"
       description: "Add custom classes (space separated)."
       default: ""
-      examples:
-        - "custom-row-class"
 
 slots:
   content:

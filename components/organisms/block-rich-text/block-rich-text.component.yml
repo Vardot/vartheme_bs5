@@ -3,6 +3,7 @@ name: Block Rich Text
 status: experimental
 description: Block Rich Text description.
 group: Blocks
+noUi: true
 props:
   type: object
   properties:

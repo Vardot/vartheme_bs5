@@ -9,20 +9,6 @@ props:
     - align
     - style
   properties:
-    id:
-      type: string
-      title: HTML ID (optional)
-      default: ""
-      examples:
-        - "testimonial-1"
-
-    extra_classes:
-      type: string
-      title: Extra CSS classes (optional)
-      description: Space separated classes (Bootstrap utilities allowed).
-      default: ""
-      examples:
-        - "mb-4"
 
     style:
       type: string
@@ -193,3 +179,14 @@ props:
       meta:enum:
         circle: Circle
         rounded: Rounded
+
+    id:
+      type: string
+      title: HTML ID (optional)
+      default: ""
+
+    extra_classes:
+      type: string
+      title: Extra CSS classes (optional)
+      description: Space separated classes (Bootstrap utilities allowed).
+      default: ""

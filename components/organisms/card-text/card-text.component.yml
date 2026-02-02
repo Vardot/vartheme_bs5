@@ -3,6 +3,7 @@ name: 'Text Card'
 status: experimental
 description: 'Text card component and pattern with content.'
 group: Cards
+noUi: true
 props:
   type: object
   properties:

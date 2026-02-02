@@ -112,8 +112,6 @@ props:
       title: "HTML ID"
       description: "Optional ID attribute for the outer section."
       default: ""
-      examples:
-        - "blog-hero"
 
     extra_classes:
       type: string

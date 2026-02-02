@@ -3,6 +3,7 @@ name: 'Overlay Card'
 status: experimental
 description: 'Overlay card component for a media and a content over the media with sizes.'
 group: Cards
+noUi: true
 props:
   type: object
   properties:

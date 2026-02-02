@@ -3,6 +3,7 @@ name: 'Featured Card'
 status: experimental
 description: 'Featured card component and pattern with media and content.'
 group: Cards
+noUi: true
 props:
   type: object
   properties:

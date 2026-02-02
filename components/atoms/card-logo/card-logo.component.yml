@@ -3,6 +3,7 @@ name: Card Logo
 description: A logo card with optional background, border, and link.
 group: Card
 status: stable
+noUI: true
 
 props:
   type: object
@@ -158,12 +159,8 @@ props:
       type: string
       title: HTML ID (optional)
       description: Optional ID attribute for linking.
-      examples:
-        - "logo-card-1"
 
     extra_classes:
       type: string
       title: Extra CSS classes (optional)
       description: Space separated classes (Bootstrap utilities allowed).
-      examples:
-        - "mb-4"

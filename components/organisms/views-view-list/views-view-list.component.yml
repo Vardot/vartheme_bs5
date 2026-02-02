@@ -3,6 +3,7 @@ name: Views View List
 status: experimental
 description: Implementation for displaying a view as a view list of items.
 group: Views
+noUi: true
 props:
   type: object
   properties:

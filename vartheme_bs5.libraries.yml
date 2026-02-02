@@ -19,7 +19,7 @@ bootstrap-styles:
 accordion-styles:
   css:
     component:
-      components/atoms/accordion-item/accordion-item.css: {}
+      components/atoms/accordion-block/accordion-item.css: {}
 
 # Bootstrap 5 global scripts library.
 bootstrap-scripts:
