@@ -8,14 +8,6 @@ props:
   type: object
   properties:
 
-    extra_style:
-      type: string
-      title: "Extra inline style"
-      description: "Optional inline CSS appended to the component style."
-      default: ""
-      examples:
-        - "border-radius: 1rem;"
-
     container_type:
       type: string
       title: "Container style"
@@ -74,37 +66,44 @@ props:
         bottom-left: "Bottom left"
         hero-center: "Center"
 
-    content_max_width:
+    overlay_bg:
       type: string
-      title: "Content max width"
-      description: "Max width for the hero content area (CSS value)."
-      default: "48rem"
-      examples:
-        - "48rem"
-        - "56rem"
-        - "640px"
+      title: "Overlay background"
+      description: "Bootstrap background utility class."
+      default: "bg-dark"
+      enum:
+        - "bg-dark"
+        - "bg-black"
+        - "bg-primary"
+        - "bg-secondary"
+        - "bg-success"
+        - "bg-danger"
+        - "bg-warning"
+        - "bg-info"
+        - "bg-white"
 
     overlay_opacity:
       type: string
       title: "Overlay opacity"
+      description: "Bootstrap opacity utility class."
+      default: "opacity-50"
       enum:
-        - "0%"
-        - "20%"
-        - "40%"
-        - "60%"
-        - "75%"
-      default: "40%"
-      examples:
-        - "40%"
+        - "opacity-0"
+        - "opacity-25"
+        - "opacity-50"
+        - "opacity-75"
+        - "opacity-100"
 
-    overlay_color:
+    content_width:
       type: string
-      title: "Overlay color"
-      description: "Overlay color used with the selected opacity (CSS color value)."
-      default: "#000000"
-      examples:
-        - "#000000"
-        - "rgba(0,0,0,1)"
+      title: "Content width"
+      description: "Bootstrap width utility class."
+      default: "w-100"
+      enum:
+        - "w-100"
+        - "w-75"
+        - "w-50"
+        - "w-25"
 
     object_position:
       type: string

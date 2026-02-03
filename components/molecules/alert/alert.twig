@@ -1,60 +1,69 @@
 {#
-/**
- * @file
- * Vartheme BS5 Starter Kit implementation for the Alert component.
- *
- * Available properties:
- * - type: Bootstrap includes several predefined alert type styles.
- *         (alert-primary|alert-secondary|alert-success|alert-info|
- *          alert-warning|alert-danger|alert-light|alert-dark)
- * - dismissible: It is possible to dismiss any alert inline, When an alert is dismissed, the element is completely removed from the page structure.
- * - alert_utility_classes: An array of utility classes. Use to add extra Bootstrap utility classes or custom CSS classes over to this component.
- *
- * Available attributes:
- * - attributes: HTML attributes for the alert element.
- * - dismissible_attributes: HTML attributes for the alert dismiss close button element.
- *
- * Available slots:
- * - content: The content of the alert.
- * - heading: Alerts can also contain primary alert heading.
- */
+  Bootstrap Alert
+  Props:
+    - type (string): "" or "alert-primary" etc
+    - dismissible (bool)
+    - heading (string)
+    - message (string)
+    - html_id (string)
+    - extra_classes (string)
+  Slot:
+    - content
 #}
-{% set type_classes = type ? [type] : [] %}
-{% set dismissible = dismissible ?? true %}
-{% set dismissible_classes = dismissible ? ['alert-dismissible', 'fade', 'show'] : [] %}
-{% set alert_utility_classes = alert_utility_classes ? alert_utility_classes : [] %}
 
-{% set classes = [
-  'alert',
-]|merge(type_classes)|merge(dismissible_classes)|merge(alert_utility_classes) %}
+{% set attributes = attributes|default(create_attribute()) %}
 
-{% if not attributes %}
-  {% set attributes = create_attribute() %}
+{# Ensure safe scalar defaults (prevents runtime issues) #}
+{% set variant = type|default('') %}
+{% set is_dismissible = dismissible|default(false) %}
+{% set heading_text = heading|default('') %}
+{% set message_text = message|default('') %}
+{% set html_id = html_id|default('') %}
+{% set extra_classes = extra_classes|default('') %}
+
+{% set classes = ['alert'] %}
+{% if variant|trim %}
+  {% set classes = classes|merge([variant|trim]) %}
+{% else %}
+  {# Optional: choose a sensible default visual if blank #}
+  {% set classes = classes|merge(['alert-primary']) %}
 {% endif %}
-{% set attributes = attributes.addClass(classes) %}
-{% set attributes = attributes.setAttribute('role', 'alert') %}
 
-<div{{ attributes }}>
-  {% if heading|render|striptags|trim is not empty %}
-    {% include "vartheme_bs5:heading" with {
-      html_tag: 'h4',
-      content: heading|render|striptags|trim,
-      alert_utility_classes: ['alert-heading']
-    } only %}
+{% if is_dismissible %}
+  {% set classes = classes|merge(['alert-dismissible', 'fade', 'show']) %}
+{% endif %}
+
+{% if extra_classes|trim %}
+  {% set classes = classes|merge(extra_classes|trim|split(' ')) %}
+{% endif %}
+
+{% if html_id|trim %}
+  {% set attributes = attributes.setAttribute('id', html_id|trim) %}
+{% endif %}
+
+{# Slot content (Canvas provides variable; fallback to Twig block) #}
+{% if content is defined %}
+  {% set slot_content = content %}
+{% else %}
+  {% set slot_content %}{% block content %}{% endblock %}{% endset %}
+{% endif %}
+
+<div role="alert" {{ attributes.addClass(classes) }}>
+  {% if heading_text|trim %}
+    <h4 class="alert-heading mb-2">{{ heading_text }}</h4>
   {% endif %}
 
-  {% block content %}
-    {{ content }}
-  {% endblock %}
+  {% if message_text|trim %}
+    <p class="mb-0">{{ message_text }}</p>
+  {% endif %}
 
-  {% if dismissible %}
-    {% if not dismissible_attributes %}
-      {% set dismissible_attributes = create_attribute() %}
-    {% endif %}
-    {% set dismissible_attributes = dismissible_attributes.setAttribute('data-bs-dismiss', 'alert') %}
-    {{ include ('vartheme_bs5:close-button', {
-        size: 'btn-sm',
-        attributes: dismissible_attributes
-      }, with_context: false) }}
+  {% if slot_content|trim %}
+    <div class="{{ (message_text|trim or heading_text|trim) ? 'mt-2' : '' }}">
+      {{ slot_content }}
+    </div>
+  {% endif %}
+
+  {% if is_dismissible %}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   {% endif %}
 </div>

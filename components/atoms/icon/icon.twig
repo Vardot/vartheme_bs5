@@ -1,10 +1,10 @@
 {#
-  Icon component using SVG icons from the Bootstrap Icons (SVGs from images/icons via vartheme_bs5.icons.yml).
+  Icon component using SVG icons from Bootstrap Icons (via vartheme_bs5.icons.yml).
 
   Props:
-  - icon (string): Phosphor icon id (default: rocket)
+  - icon (string): icon id (default: rocket)
   - icon_size (string): extra-small|small|medium|large|extra-large (default: small)
-  - color (string): Bootstrap color (text-*) dropdown (default: default)
+  - color (string): Bootstrap text-* dropdown (default: default)
   - alt (string): accessibility label (empty = decorative)
   - id (string): optional wrapper id
   - extra_classes (string): optional wrapper classes (Bootstrap utilities)
@@ -38,8 +38,15 @@
 } %}
 {% set color_class = color_map[color_value]|default('') %}
 
-{# Wrapper classes (Bootstrap friendly) #}
-{% set classes = ['d-inline-flex', 'align-items-center'] %}
+{# Wrapper classes (Bootstrap only) #}
+{% set classes = [
+  'd-inline-flex',
+  'align-items-center',
+  'justify-content-center',
+  'flex-shrink-0',
+  'lh-1'
+] %}
+
 {% if color_class %}
   {% set classes = classes|merge([color_class]) %}
 {% endif %}
@@ -53,7 +60,7 @@
   {% set attrs = attrs.setAttribute('id', id|trim) %}
 {% endif %}
 
-<div{{ attrs }} style="min-width: {{ resolved_size }}px;">
+<div{{ attrs }}>
   {{
     icon(
       'bootstrap_icons',

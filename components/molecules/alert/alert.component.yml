@@ -1,17 +1,19 @@
-$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
-name: Alert 
-status: experimental
-description: Alerts are available for any length of text, as well as an optional close button. For proper styling, use one of the eight required contextual classes (e.g., .alert-success). 
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json"
+name: Alert
+group: Feedback
+status: stable
+description: "Bootstrap alert component."
+
 props:
   type: object
   properties:
     type:
       type: string
-      title: Alert type
-      description: Bootstrap includes several predefined alert type styles.
-      default: ''
+      title: "Alert type"
+      description: "Bootstrap alert variant class."
+      default: ""
       enum:
-        - ''
+        - ""
         - alert-primary
         - alert-secondary
         - alert-success
@@ -20,34 +22,33 @@ props:
         - alert-info
         - alert-dark
         - alert-light
+
     dismissible:
       type: boolean
-      title: Dismissible
-      description: It is possible to dismiss any alert inline, When an alert is dismissed, the element is completely removed from the page structure.
-    alert_utility_classes:
-      type: array
-      title: Utility Classes
-      default: []
-      items:
-        type: 'string'
-      description: An array of utility classes that can be used to add extra Bootstrap utility classes or custom classes to this component.
-    attributes:
-      type: Drupal\Core\Template\Attribute
-      title: Attributes
-      description: HTML attributes for the alert element.
-    dismissible_attributes:
-      type: Drupal\Core\Template\Attribute
-      title: Dismiss close button attributes
-      description: HTML attributes for the alert dismiss close button element.
+      title: "Dismissible"
+      description: "Show dismiss button."
+      default: false
+
+    heading:
+      type: string
+      title: "Heading"
+      default: ""
+
+    message:
+      type: string
+      title: "Message"
+      default: ""
+
+    html_id:
+      type: string
+      title: "HTML ID"
+      default: ""
+
+    extra_classes:
+      type: string
+      title: "Extra classes"
+      default: ""
+
 slots:
   content:
-    type: string
-    title: Alert content
-    description: The content of the alert.
-  heading:
-    type: string
-    title: Alert heading
-    description: Alerts can also contain primary alert heading.
-libraryOverrides:
-  dependencies:
-    - vartheme_bs5/bs-alert-script
+    title: "Content"
