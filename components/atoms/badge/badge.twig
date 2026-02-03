@@ -29,7 +29,7 @@
 {% endif %}
 
 {# Size mapping (padding + font size) #}
-{% set size = size|default('md') %}
+{% set size = size|default('lg') %}
 {% set size_classes = [] %}
 {% set icon_size = 'extra-small' %}
 
@@ -64,6 +64,63 @@
   {% set radius_class = 'rounded-0' %}
 {% endif %}
 
+{# Icon guard: support enum value "none" #}
+{% set icon_value = icon|default('none') %}
+{% set show_icon = (icon_value is not empty and icon_value != 'none') %}
+
+{# -----------------------------
+   Notification indicator logic
+   ----------------------------- #}
+{% set indicator = indicator|default('none') %}
+{% set indicator_allowed = ['none','dot','count'] %}
+{% if indicator not in indicator_allowed %}
+  {% set indicator = 'none' %}
+{% endif %}
+
+{% set indicator_text = indicator_text|default('') %}
+{% set indicator_style = indicator_style|default('danger') %}
+{% set indicator_label = indicator_label|default('unread notifications') %}
+
+{# Dot size mapping -> Bootstrap utilities only #}
+{% set indicator_dot_size = indicator_dot_size|default('small') %}
+{% set dot_sizes = ['small','medium','large'] %}
+{% if indicator_dot_size not in dot_sizes %}
+  {% set indicator_dot_size = 'small' %}
+{% endif %}
+{% set dot_size_class = 'p-1' %}
+{% if indicator_dot_size == 'medium' %}
+  {% set dot_size_class = 'p-2' %}
+{% elseif indicator_dot_size == 'large' %}
+  {% set dot_size_class = 'p-3' %}
+{% endif %}
+
+{# Count box size mapping -> Bootstrap utilities only #}
+{% set indicator_count_size = indicator_count_size|default('medium') %}
+{% set count_sizes = ['small','medium','large'] %}
+{% if indicator_count_size not in count_sizes %}
+  {% set indicator_count_size = 'medium' %}
+{% endif %}
+{% set count_size_classes = [] %}
+{% if indicator_count_size == 'small' %}
+  {% set count_size_classes = ['px-1','py-0','small'] %}
+{% elseif indicator_count_size == 'large' %}
+  {% set count_size_classes = ['px-2','py-1','fs-6'] %}
+{% else %}
+  {# medium default #}
+  {% set count_size_classes = ['px-2','py-1','small'] %}
+{% endif %}
+
+{% set has_indicator =
+  indicator == 'dot'
+  or (indicator == 'count' and indicator_text is not empty)
+%}
+
+{# BIG GAP when indicator is ON (prevents overlap in same row) #}
+{% set indicator_gap_class = '' %}
+{% if has_indicator %}
+  {% set indicator_gap_class = 'me-4' %}
+{% endif %}
+
 {# Base classes #}
 {% set base_classes = [
   'badge',
@@ -78,6 +135,15 @@
 
 {% set base_classes = base_classes|merge(size_classes) %}
 
+{# Add gap only when indicator enabled #}
+{% if indicator_gap_class %}
+  {% set base_classes = base_classes|merge([indicator_gap_class]) %}
+{% endif %}
+
+{# Add position-relative only when indicator enabled #}
+{% if has_indicator %}
+  {% set base_classes = base_classes|merge(['position-relative']) %}
+{% endif %}
 
 {# Add radius class LAST to ensure it applies #}
 {% if radius_class %}
@@ -87,10 +153,6 @@
 {# Merge extra classes and clean #}
 {% set merged_classes = (base_classes|join(' ') ~ ' ' ~ additional_classes)|trim %}
 {% set merged_classes = merged_classes|replace({'  ':' '}) %}
-
-{# Icon guard: support enum value "none" #}
-{% set icon_value = icon|default('none') %}
-{% set show_icon = (icon_value is not empty and icon_value != 'none') %}
 
 {% if has_url %}
   <a href="{{ url|e }}" class="{{ merged_classes }}" aria-label="{{ label|e }}">
@@ -122,6 +184,20 @@
     </span>
   {% else %}
     <span>{{ label }}</span>
+  {% endif %}
+
+  {# Indicator (Bootstrap-only) #}
+  {% if has_indicator %}
+    {% if indicator == 'count' %}
+      <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill text-bg-{{ indicator_style }} {{ count_size_classes|join(' ') }}">
+        {{ indicator_text }}
+        <span class="visually-hidden">{{ indicator_label }}</span>
+      </span>
+    {% elseif indicator == 'dot' %}
+      <span class="position-absolute top-0 start-100 translate-middle {{ dot_size_class }} bg-{{ indicator_style }} border border-light rounded-circle">
+        <span class="visually-hidden">{{ indicator_label }}</span>
+      </span>
+    {% endif %}
   {% endif %}
 
 {% if has_url %}

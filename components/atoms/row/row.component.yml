@@ -114,6 +114,71 @@ props:
         justify-content-between: "Space between"
         justify-content-around: "Space around"
         justify-content-evenly: "Space evenly"
+    bg_edge2edge:
+      type: boolean
+      title: "Background edge-to-edge"
+      description: "If enabled, adds the class bg-edge2edge (for full-bleed backgrounds)."
+      default: false
+
+    background_color:
+      type: string
+      title: "Background color"
+      description: "Applies a Bootstrap background utility to the row wrapper."
+      enum: ["none","white","light","dark","primary","secondary","success","danger","warning","info"]
+      default: "white"
+      'meta:enum':
+        none: "None"
+        white: "White"
+        light: "Light"
+        dark: "Dark"
+        primary: "Primary"
+        secondary: "Secondary"
+        success: "Success"
+        danger: "Danger"
+        warning: "Warning"
+        info: "Info"
+
+    background_image:
+      $ref: json-schema-definitions://canvas.module/image
+      type: object
+      title: "Background image (optional)"
+      description: "Optional background image applied to the row wrapper. Leave empty for a solid background color."
+
+    overlay_color:
+      type: string
+      title: "Background overlay color"
+      description: "Color of the overlay on top of the background image."
+      enum: ["none","dark","light"]
+      default: "dark"
+      'meta:enum':
+        none: "None"
+        dark: "Dark"
+        light: "Light"
+
+    overlay_opacity:
+      type: integer
+      title: "Background overlay opacity"
+      description: "Overlay opacity using Bootstrap opacity utilities."
+      enum: [0,25,50,75,100]
+      default: 50
+      'meta:enum':
+        0: "0% (transparent)"
+        25: "25%"
+        50: "50% (recommended)"
+        75: "75%"
+        100: "100% (solid)"
+
+    vertical_padding:
+      type: string
+      title: "Vertical padding"
+      description: "Top & bottom spacing using Bootstrap utilities."
+      enum: ["py-0","py-3","py-4","py-5"]
+      default: "py-4"
+      'meta:enum':
+        py-0: "None"
+        py-3: "Small"
+        py-4: "Medium (recommended)"
+        py-5: "Large"
 
     html_id:
       type: string

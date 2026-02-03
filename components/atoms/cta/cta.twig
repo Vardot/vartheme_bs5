@@ -13,6 +13,7 @@
   - overlay_opacity ("0%"|"20%"|"40%"|"60%"|"75%")
   - padding_y (py-3|py-4|py-5|py-6)
   - container_width (container|container-fluid)
+  - bg_edge2edge (bool)
   - extra_classes (string)
 
   Slots:
@@ -53,6 +54,9 @@
   'dark': 'text-dark'
 }[resolved_content_color]|default('') %}
 
+{# Keep heading component prop values valid; rely on wrapper text classes for "dark". #}
+{% set heading_text_color_prop = (resolved_content_color == 'white') ? 'white' : 'default' %}
+
 {# Bootstrap doesn't ship py-6 by default, normalize safely #}
 {% set pad = padding_y|default('py-5') %}
 {% if pad == 'py-6' %}
@@ -61,8 +65,12 @@
 
 {% set container = container_width|default('container') %}
 
+{# Optional helper class to allow edge-to-edge background image treatments #}
+{% set is_bg_edge2edge = bg_edge2edge|default(false) %}
+
 {% set extra = extra_classes|default('')|trim %}
-{% set section_classes = ['hero-cta', pad, bg_class, extra]|filter(v => v is not empty) %}
+{% set edge_class = is_bg_edge2edge ? 'bg-edge2edge' : '' %}
+{% set section_classes = ['hero-cta', pad, bg_class, edge_class, extra]|filter(v => v is not empty) %}
 
 {# Bootstrap-only overlay (no inline styles) #}
 {% set overlay_class = {
@@ -82,6 +90,28 @@
 
 {# Heading size (visual) #}
 {% set heading_size_class = heading_size|default('display-5') %}
+
+{# Optional primary button (in addition to the actions slot) #}
+{% set btn_text = button_text|default('')|trim %}
+{% set btn_url = button_url|default('')|trim %}
+{% set btn_variant = button_variant|default('primary')|trim %}
+{% set btn_size = button_size|default('default')|trim %}
+{% set btn_new_tab = button_new_tab|default(false) %}
+
+{% set btn_variant_class = '' %}
+{% if btn_variant == 'link' %}
+  {% set btn_variant_class = 'btn-link' %}
+{% elseif btn_variant starts with 'outline-' %}
+  {% set btn_variant_class = 'btn-outline-' ~ (btn_variant|replace({'outline-': ''})) %}
+{% else %}
+  {% set btn_variant_class = 'btn-' ~ btn_variant %}
+{% endif %}
+
+{% set btn_size_class = {
+  'default': '',
+  'sm': 'btn-sm',
+  'lg': 'btn-lg'
+}[btn_size]|default('') %}
 
 {% set bg_image = null %}
 {% if background_image is defined and background_image.src is not empty %}
@@ -130,7 +160,7 @@
               heading_text: heading_text|default(''),
               level: level|default(2),
               align: align_value,
-              text_color: resolved_content_color == 'default' ? 'default' : resolved_content_color,
+              text_color: heading_text_color_prop,
               url: '',
               text_size: heading_size_class
             },
@@ -142,15 +172,27 @@
           <p class="lead mt-3 mb-0">{{ text }}</p>
         {% endif %}
 
-        {# Actions slot #}
-{% if slots is defined and slots.actions is defined %}
-  {% set actions_rendered = slots.actions|render %}
-  {% if actions_rendered|trim %}
-    <div class="d-flex flex-wrap gap-2 mt-4 {{ actions_class }}">
-      {{ actions_rendered }}
-    </div>
-  {% endif %}
-{% endif %}
+        {# Actions: optional primary button + actions slot #}
+        {% set has_primary_btn = (btn_text and btn_url) %}
+        {% set slot_actions = '' %}
+        {% if slots is defined and slots.actions is defined %}
+          {% set slot_actions = slots.actions|render %}
+        {% endif %}
+
+        {% if has_primary_btn or slot_actions|trim %}
+          <div class="d-flex flex-wrap gap-2 mt-4 {{ actions_class }}">
+            {% if has_primary_btn %}
+              <a
+                href="{{ btn_url }}"
+                class="btn {{ btn_variant_class }} {{ btn_size_class }}"
+                {% if btn_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
+              >
+                {{ btn_text }}
+              </a>
+            {% endif %}
+            {{ slot_actions }}
+          </div>
+        {% endif %}
       </div>
     </div>
   </div>

@@ -1,22 +1,78 @@
 {#
-  Hero Side-by-Side (Minimal, Bootstrap-only)
+  Hero Side-by-Side (Bootstrap-only)
 #}
+
+{# ---- Defaults / normalization ---- #}
+{% set bg_edge2edge = bg_edge2edge|default(false) %}
+{% set background_color = background_color|default('white') %}
+{% set content_color = content_color|default('dark') %}
+{% set background_image = background_image|default({}) %}
+{% set background_overlay_color = background_overlay_color|default('none') %}
+{% set background_overlay_opacity = background_overlay_opacity|default(50) %}
+{% set button_variant = button_variant|default('primary') %}
+{% set button_size = button_size|default('default') %}
+{% set vertical_padding = vertical_padding|default('md') %}
 
 {% set heading_tag = heading_level == 2 ? 'h2' : (heading_level == 3 ? 'h3' : 'h1') %}
 {% set image_on_left = image_position == 'left' %}
 {% set text_align_class = align == 'center' ? 'text-center' : 'text-start' %}
 
-{% set attrs = create_attribute().addClass([
-  'py-5',
+{% set padding_class = vertical_padding == 'none' ? 'py-0' : (vertical_padding == 'sm' ? 'py-3' : (vertical_padding == 'lg' ? 'py-5' : 'py-4')) %}
+
+{# Background image style (optional)
+   Canvas image objects can vary (src/url/uri). Also handle public:// style URIs.
+#}
+{% set bg_style = '' %}
+{% set bg_src = '' %}
+
+{% if background_image is defined and background_image is not empty %}
+  {% set bg_src = background_image.src|default(background_image.url|default(background_image.uri|default(''))) %}
+{% endif %}
+
+{% if bg_src %}
+  {# Convert stream wrappers to real URLs when needed. #}
+  {% if bg_src starts with 'public://' or bg_src starts with 'private://' %}
+    {% set bg_src = file_url(bg_src) %}
+  {% endif %}
+
+  {#
+    IMPORTANT:
+    - Do NOT escape as html_attr here, or Twig/Drupal will entity-encode the URL
+      (e.g. / becomes &#x2F;), which breaks CSS background-image.
+    - Escape for CSS context, and mark the final style attribute as safe.
+  #}
+  {% set bg_style = "background-image: url('" ~ bg_src|e('css') ~ "'); background-size: cover; background-position: center;" %}
+{% endif %}
+
+{# Section attributes #}
+{% set section_classes = [
+  'hero-side-by-side',
+  padding_class,
+  'position-relative',
+  'overflow-hidden',
+  bg_edge2edge ? 'bg-edge2edge' : '',
+  background_color != 'none' ? 'bg-' ~ background_color : '',
+  content_color == 'light' ? 'text-light' : 'text-dark',
   extra_classes|default('')
-]) %}
+] %}
+
+{% set attrs = create_attribute().addClass(section_classes) %}
 
 {% if id is defined and id|trim %}
   {% set attrs = attrs.setAttribute('id', id|trim) %}
 {% endif %}
 
+{% if bg_style %}
+  {% set attrs = attrs.setAttribute('style', bg_style|raw) %}
+{% endif %}
+
 <section{{ attrs }}>
-  <div class="container">
+  {# Background overlay (optional) #}
+  {% if background_overlay_color != 'none' and bg_style %}
+    <div class="position-absolute top-0 start-0 w-100 h-100 bg-{{ background_overlay_color }} opacity-{{ background_overlay_opacity }}"></div>
+  {% endif %}
+
+  <div class="container position-relative z-1">
     <div class="row align-items-center g-4 g-lg-5">
 
       {# Text column #}
@@ -32,7 +88,7 @@
         {% if button_label and button_url %}
           <a
             href="{{ button_url|e }}"
-            class="btn btn-primary btn-lg"
+            class="btn btn-{{ button_variant }} {{ button_size == 'sm' ? 'btn-sm' : (button_size == 'lg' ? 'btn-lg' : '') }}"
             target="{{ button_target == 'blank' ? '_blank' : '_self' }}"
             {% if button_target == 'blank' %}rel="noopener noreferrer"{% endif %}
           >

@@ -3,12 +3,13 @@
 
   Props:
   - container_type
-  - height: full|large|ribbon
+  - height: ribbon|large
   - flex_position: top-left|center-left|bottom-left|hero-center
   - overlay_bg: Bootstrap bg-* class
   - overlay_opacity: Bootstrap opacity-* class
   - content_width: Bootstrap w-* class
   - object_position: top|center|bottom
+  - bg_edge2edge: add bg-edge2edge class
   - media: background image (optional)
   - html_id
   - extra_classes
@@ -17,7 +18,7 @@
   - hero_slot: content
 #}
 
-{% set hero_height = height|default('full') %}
+{% set hero_height = height|default('ribbon') %}
 {% set hero_position = flex_position|default('center-left') %}
 {% set hero_object_position = object_position|default('center') %}
 {% set container_class = container_type|default('container') %}
@@ -26,24 +27,56 @@
 {% set overlay_opacity_class = overlay_opacity|default('opacity-50') %}
 {% set content_width_class = content_width|default('w-100') %}
 
+{#
+  Canvas/preview environments often auto-resize an iFrame to match its content.
+  Using viewport units (vh/svh/dvh) inside an auto-resizing iFrame can create a
+  feedback loop where the iFrame keeps growing ("infinite scroll").
+
+  Drupal exposes an `in_preview` Twig variable in various preview contexts.
+  When previewing in Canvas, we avoid viewport height units to prevent iFrame auto-resize loops.
+#}
+{% set _route = (app is defined and app.request is defined) ? (app.request.attributes.get('_route')|default('')) : '' %}
+{% set _path = (app is defined and app.request is defined) ? (app.request.pathinfo|default('')) : '' %}
+{% set _uri  = (app is defined and app.request is defined) ? (app.request.uri|default('')) : '' %}
+{% set _canvas_q = (app is defined and app.request is defined) ? (app.request.query.get('canvas')|default('')) : '' %}
+
+{# Canvas route names and paths can vary by setup; detect both route + URL/path clues. #}
+{% set is_canvas_route = (_route matches '/^canvas[._]/') or (_route matches '/canvas/i') %}
+{% set is_canvas_path  = (_path matches '#/canvas(/|$)#') or (_uri matches '#/canvas(/|$)#') %}
+{% set is_sdc_library = (_route matches '/sdc_component_library/i') or (_path matches '/sdc_component_library/i') %}
+
+{% set is_preview = in_preview|default(false) or is_canvas_route or is_canvas_path or is_sdc_library or _canvas_q %}
+
 {# Build classes safely #}
 {% set class_list = [
   'hero-billboard',
   'position-relative',
-  'overflow-hidden',
+  (is_preview ? 'overflow-auto' : 'overflow-hidden'),
   'd-flex'
 ] %}
+
+{% if bg_edge2edge|default(false) %}
+  {% set class_list = class_list|merge(['bg-edge2edge']) %}
+{% endif %}
 
 {% if extra_classes is defined and extra_classes is not empty %}
   {% set class_list = class_list|merge(extra_classes|split(' ')) %}
 {% endif %}
 
 {# Height strategy:
-  - full: fixed viewport height (prevents page from growing)
-  - large/ribbon: min-height (content can extend naturally)
+  Canvas/preview iFrames commonly auto-resize to match content height.
+  Using viewport units (vh/svh/dvh) inside an auto-resizing iFrame can
+  create a feedback loop that grows the iFrame forever ("infinite scrolling").
+
+  So:
+  - In preview: use fixed pixel min-heights (stable, no viewport dependency)
+  - On the real page: use viewport units for the intended design
 #}
-{% set hero_size_style = hero_height == 'full'
-  ? 'height: 100vh; height: 100svh;'
+{% set hero_size_style = is_preview
+  ? (hero_height == 'large'
+      ? 'min-height: 300px; max-height: 640px; overscroll-behavior: contain;'
+      : 'max-height: 640px; overscroll-behavior: contain;'
+    )
   : (hero_height == 'large'
       ? 'min-height: 70vh;'
       : 'min-height: 45vh;'
@@ -91,7 +124,7 @@
   <div class="{{ container_class != 'none' ? container_class : '' }} position-relative d-flex flex-grow-1">
     <div class="d-flex flex-grow-1 {{ v_align }} {{ content_align }} {{ text_align }}">
       {# Full hero should NOT push page height; allow internal scroll if needed #}
-      <div class="{{ content_width_class }} {{ hero_height == 'full' ? 'h-100 overflow-auto' : '' }}">
+      <div class="{{ content_width_class }}">
         <div class="{{ hero_height == 'ribbon' ? 'py-4' : 'py-5' }}">
           {% block hero_slot %}{% endblock %}
         </div>

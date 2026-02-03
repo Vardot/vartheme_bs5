@@ -2,7 +2,6 @@ $schema: "https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schem
 name: Badge
 group: Base
 status: stable
-
 props:
   type: object
   required:
@@ -15,13 +14,11 @@ props:
       description: "Text shown inside the badge."
       examples:
         - "Badge text"
-
     url:
       type: string
       title: Link (optional)
       description: "If provided, badge will render as a link."
       default: ""
-
     style:
       type: string
       title: Color style
@@ -46,7 +43,6 @@ props:
         dark: "Dark"
       examples:
         - primary
-
     size:
       type: string
       title: Size
@@ -54,17 +50,14 @@ props:
       enum:
         - xs
         - sm
-        - md
         - lg
         - xl
-      default: md
+      default: lg
       'meta:enum':
         xs: "Extra small"
         sm: "Small"
-        md: "Medium (default)"
-        lg: "Large"
+        lg: "Large (default)"
         xl: "Extra large"
-
     icon:
       type: string
       title: Icon (optional)
@@ -2150,50 +2143,6 @@ props:
         - youtube
         - zoom-in
         - zoom-out
-      'meta:enum':
-        none: "None"
-        alarm: "Alarm"
-        arrow-left: "Arrow left"
-        arrow-right: "Arrow right"
-        arrow-up: "Arrow up"
-        arrow-down: "Arrow down"
-        bell: "Bell"
-        bookmark: "Bookmark"
-        calendar: "Calendar"
-        camera: "Camera"
-        cart: "Cart"
-        chat-dots: "Chat"
-        check: "Check"
-        chevron-right: "Chevron right"
-        chevron-left: "Chevron left"
-        clock: "Clock"
-        cloud-download: "Cloud download"
-        cloud-upload: "Cloud upload"
-        dash: "Minus"
-        download: "Download"
-        envelope: "Email"
-        exclamation-circle: "Alert (circle)"
-        exclamation-triangle: "Alert (triangle)"
-        file-earmark: "File"
-        folder: "Folder"
-        gear: "Settings"
-        geo-alt: "Location"
-        heart: "Heart"
-        info-circle: "Info"
-        link-45deg: "Link"
-        pencil: "Edit"
-        person: "User"
-        people: "Users"
-        plus: "Plus"
-        search: "Search"
-        shield-lock: "Security"
-        star: "Star"
-        tag: "Tag"
-        telephone: "Phone"
-        trash: "Trash"
-        upload: "Upload"
-        x: "Close"
-
     icon_first:
       type: boolean
       title: Icon position
@@ -2202,7 +2151,6 @@ props:
       examples:
         - true
         - false
-
     radius:
       type: string
       title: Border radius
@@ -2220,8 +2168,79 @@ props:
         pill: "Pill"
         none: "None"
       examples:
-        - pill
-
+        - lg
+    indicator:
+      type: string
+      title: Notification indicator
+      description: "Show a dot or a count bubble on the badge."
+      enum:
+        - none
+        - dot
+        - count
+      default: none
+      'meta:enum':
+        none: "None"
+        dot: "Dot"
+        count: "Count (e.g. 99+)"
+    indicator_text:
+      type: string
+      title: Indicator count text
+      description: "Text shown in count bubble (e.g. 1, 9, 99+). Used only when indicator=count."
+      default: ""
+    indicator_style:
+      type: string
+      title: Indicator color style
+      description: "Bootstrap contextual style for the indicator bubble/dot."
+      enum:
+        - danger
+        - primary
+        - secondary
+        - success
+        - warning
+        - info
+        - light
+        - dark
+      default: danger
+      'meta:enum':
+        danger: "Danger (default)"
+        primary: "Primary"
+        secondary: "Secondary"
+        success: "Success"
+        warning: "Warning"
+        info: "Info"
+        light: "Light"
+        dark: "Dark"
+    indicator_label:
+      type: string
+      title: Indicator accessibility label
+      description: "Screen reader text for the indicator."
+      default: "unread notifications"
+    indicator_dot_size:
+      type: string
+      title: Dot size
+      description: "Dot size using Bootstrap padding utilities."
+      enum:
+        - small
+        - medium
+        - large
+      default: small
+      'meta:enum':
+        small: "Small"
+        medium: "Medium"
+        large: "Large"
+    indicator_count_size:
+      type: string
+      title: Count box size
+      description: "Controls count bubble size (padding + font size)."
+      enum:
+        - small
+        - medium
+        - large
+      default: medium
+      'meta:enum':
+        small: "Small"
+        medium: "Medium (default)"
+        large: "Large"
     badge_classes:
       type: string
       title: Extra CSS classes

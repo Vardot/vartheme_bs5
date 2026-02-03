@@ -1,95 +1,249 @@
-$schema: "https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json"
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: Hero side by side
 group: Hero
 status: stable
-
 props:
   type: object
   properties:
-
     heading:
       type: string
       title: Heading
       examples:
-        - "Build better digital experiences"
-
+      - Build better digital experiences
     heading_level:
       type: number
       title: Heading level
-      enum: [1, 2, 3]
+      enum:
+      - 1
+      - 2
+      - 3
       default: 1
-      examples: [1]
+      examples:
+      - 1
       meta:enum:
         1: H1
         2: H2
         3: H3
-
     text:
       type: string
       title: Description text
       contentMediaType: text/html
       x-formatting-context: block
       examples:
-        - "<p>Create flexible, scalable Drupal experiences using modern components.</p>"
-
+      - <p>Create flexible, scalable Drupal experiences using modern components.</p>
     image:
       $ref: json-schema-definitions://canvas.module/image
       title: Image
       type: object
       examples:
-        - src: "assets/image-placeholder.svg"
-          alt: "Hero image"
-          width: 1200
-          height: 900
-
+      - src: assets/image-placeholder.svg
+        alt: Hero image
+        width: 1200
+        height: 900
     image_position:
       type: string
       title: Image position
-      enum: [right, left]
+      enum:
+      - right
+      - left
       default: right
-      examples: [right]
+      examples:
+      - right
       meta:enum:
         right: Image right
         left: Image left
-
+    bg_edge2edge:
+      type: boolean
+      title: Edge-to-edge background
+      description: When enabled, adds the class bg-edge2edge so the background spans
+        the full width.
+      default: false
     button_label:
       type: string
       title: Button label (optional)
       examples:
-        - "Get started"
-
+      - Get started
     button_url:
       type: string
       title: Button link (optional)
-
+    button_variant:
+      type: string
+      title: Button style
+      description: Bootstrap button variant.
+      enum:
+      - primary
+      - secondary
+      - success
+      - danger
+      - warning
+      - info
+      - light
+      - dark
+      - link
+      - outline-primary
+      - outline-secondary
+      - outline-success
+      - outline-danger
+      - outline-warning
+      - outline-info
+      - outline-light
+      - outline-dark
+      default: primary
+      meta:enum:
+        primary: Primary
+        secondary: Secondary
+        success: Success
+        danger: Danger
+        warning: Warning
+        info: Info
+        light: Light
+        dark: Dark
+        link: Link
+        outline-primary: Outline Primary
+        outline-secondary: Outline Secondary
+        outline-success: Outline Success
+        outline-danger: Outline Danger
+        outline-warning: Outline Warning
+        outline-info: Outline Info
+        outline-light: Outline Light
+        outline-dark: Outline Dark
+    button_size:
+      type: string
+      title: Button size
+      description: Optional Bootstrap button size.
+      enum:
+      - default
+      - sm
+      - lg
+      default: default
+      meta:enum:
+        default: Default
+        sm: Small
+        lg: Large
     button_target:
       type: string
       title: Button target
-      enum: [self, blank]
+      enum:
+      - self
+      - blank
       default: self
-      examples: [self]
+      examples:
+      - self
       meta:enum:
         self: Same tab
         blank: New tab
-
     align:
       type: string
       title: Content alignment
-      enum: [start, center]
+      enum:
+      - start
+      - center
       default: start
-      examples: [start]
+      examples:
+      - start
       meta:enum:
         start: Left
         center: Center
-    
+    background_color:
+      type: string
+      title: Background color
+      description: Bootstrap background utility applied to the section (bg-*).
+      enum:
+      - none
+      - white
+      - primary
+      - secondary
+      - success
+      - danger
+      - warning
+      - info
+      - light
+      - dark
+      default: white
+      meta:enum:
+        none: None (transparent)
+        primary: Primary
+        secondary: Secondary
+        success: Success
+        danger: Danger
+        warning: Warning
+        info: Info
+        light: Light
+        dark: Dark
+        white: White
+    content_color:
+      type: string
+      title: Text color
+      description: Controls the text color for heading/description/button area.
+      enum:
+      - light
+      - dark
+      default: dark
+      meta:enum:
+        dark: Dark text
+        light: Light text
+    background_image:
+      $ref: json-schema-definitions://canvas.module/image
+      title: Background image (optional)
+      description: Optional background image applied to the section. Leave empty for
+        a solid background color.
+      type: object
+    background_overlay_color:
+      type: string
+      title: Background overlay color
+      description: Optional overlay placed over the background image.
+      enum:
+      - none
+      - dark
+      - light
+      - primary
+      - secondary
+      default: none
+      meta:enum:
+        none: No overlay
+        dark: Dark (bg-dark)
+        light: Light (bg-light)
+        primary: Primary (bg-primary)
+        secondary: Secondary (bg-secondary)
+    background_overlay_opacity:
+      type: integer
+      title: Overlay opacity
+      description: Bootstrap opacity utility applied to the overlay (opacity-*).
+      enum:
+      - 0
+      - 25
+      - 50
+      - 75
+      - 100
+      default: 50
+      meta:enum:
+        0: 0% (transparent)
+        25: 25%
+        50: 50%
+        75: 75%
+        100: 100% (solid)
+    vertical_padding:
+      type: string
+      title: Vertical padding
+      description: Top & bottom space using Bootstrap py-* utilities.
+      enum:
+      - none
+      - sm
+      - md
+      - lg
+      default: md
+      meta:enum:
+        none: None
+        sm: Small
+        md: Medium
+        lg: Large
     id:
       type: string
       title: HTML ID (optional)
-      description: "Optional ID attribute for the outer section."
-      default: ""
-
+      description: Optional ID attribute for the outer section.
+      default: ''
     extra_classes:
       type: string
       title: Extra CSS classes (optional)
-      description: "Space separated classes (Bootstrap utilities allowed)."
-      default: ""
+      description: Space separated classes (Bootstrap utilities allowed).
+      default: ''

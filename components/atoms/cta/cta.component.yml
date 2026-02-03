@@ -182,6 +182,82 @@ props:
       meta:enum:
         container: Normal
         container-fluid: Full width
+
+    bg_edge2edge:
+      type: boolean
+      title: Background edge to edge
+      description: Adds the "bg-edge2edge" class to make the background image span edge to edge.
+      default: false
+
+    button_text:
+      type: string
+      title: Button text (optional)
+      description: Optional primary button label. If provided with Button URL, a Bootstrap button is rendered.
+      default: ''
+      examples:
+      - Learn more
+    button_url:
+      type: string
+      title: Button URL (optional)
+      description: Link for the primary button.
+      default: ''
+      examples:
+      - https://example.com
+    button_variant:
+      type: string
+      title: Button style
+      description: Bootstrap button variant.
+      enum:
+      - primary
+      - secondary
+      - success
+      - danger
+      - warning
+      - info
+      - light
+      - dark
+      - outline-primary
+      - outline-secondary
+      - outline-success
+      - outline-danger
+      - outline-warning
+      - outline-info
+      - outline-light
+      - outline-dark
+      - link
+      default: primary
+      meta:enum:
+        primary: Primary
+        secondary: Secondary
+        success: Success
+        danger: Danger
+        warning: Warning
+        info: Info
+        light: Light
+        dark: Dark
+        outline-primary: Outline - Primary
+        outline-secondary: Outline - Secondary
+        outline-success: Outline - Success
+        outline-danger: Outline - Danger
+        outline-warning: Outline - Warning
+        outline-info: Outline - Info
+        outline-light: Outline - Light
+        outline-dark: Outline - Dark
+        link: Link
+    button_size:
+      type: string
+      title: Button size
+      description: Bootstrap button size.
+      enum: [default, sm, lg]
+      default: default
+      meta:enum:
+        default: Default
+        sm: Small
+        lg: Large
+    button_new_tab:
+      type: boolean
+      title: Open button in new tab
+      default: false
     extra_classes:
       type: string
       title: Extra classes

@@ -8,6 +8,9 @@
 
 {% set attributes = attributes|default(create_attribute()) %}
 
+{# Edge-to-edge background class toggle #}
+{% set bg_edge2edge = bg_edge2edge|default(false) %}
+
 {% set has_background_image = background_media is not empty and background_media.src is not empty %}
 {% set overlay_variant = background_overlay|default('none') %}
 {% set has_overlay = has_background_image and overlay_variant != 'none' %}
@@ -75,6 +78,10 @@
   radius_class,
   shadow_class
 ] %}
+
+{% if bg_edge2edge %}
+  {% set classes = classes|merge(['bg-edge2edge']) %}
+{% endif %}
 
 {% if has_background_image or has_overlay %}
   {% set classes = classes|merge(['position-relative','overflow-hidden']) %}

@@ -7,6 +7,12 @@ description: "Bootstrap Section wrapper for building layouts (container, backgro
 props:
   type: object
   properties:
+    bg_edge2edge:
+      type: boolean
+      title: "Background edge-to-edge"
+      description: "Enable full-bleed background (adds bg-edge2edge class)."
+      default: false
+
     container_type:
       type: string
       title: "Container style"

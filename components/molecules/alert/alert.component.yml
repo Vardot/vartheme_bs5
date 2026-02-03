@@ -1,16 +1,15 @@
 "$schema": "https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json"
 name: Alert
-group: Feedback
-status: stable
-description: "Bootstrap alert component."
+status: experimental
+description: "Alerts are available for any length of text, as well as an optional close button."
 
 props:
   type: object
   properties:
-    type:
+    variant:
       type: string
-      title: "Alert type"
-      description: "Bootstrap alert variant class."
+      title: Alert variant
+      description: "Bootstrap predefined alert classes."
       default: ""
       enum:
         - ""
@@ -25,30 +24,38 @@ props:
 
     dismissible:
       type: boolean
-      title: "Dismissible"
-      description: "Show dismiss button."
+      title: Dismissible
+      description: "Show close button."
       default: false
 
-    heading:
-      type: string
-      title: "Heading"
-      default: ""
+    alert_utility_classes:
+      type: array
+      title: Utility classes
+      default: []
+      items:
+        type: string
+      description: "Extra Bootstrap utility / custom classes."
 
-    message:
-      type: string
-      title: "Message"
-      default: ""
+    attributes:
+      type: object
+      title: Attributes
+      description: "HTML attributes for the alert element."
+      additionalProperties: true
+      default: {}
 
-    html_id:
-      type: string
-      title: "HTML ID"
-      default: ""
-
-    extra_classes:
-      type: string
-      title: "Extra classes"
-      default: ""
+    dismissible_attributes:
+      type: object
+      title: Dismiss close button attributes
+      description: "HTML attributes for the close button."
+      additionalProperties: true
+      default: {}
 
 slots:
+  heading:
+    title: Alert heading
   content:
-    title: "Content"
+    title: Alert content
+
+libraryOverrides:
+  dependencies:
+    - vartheme_bs5/bs-alert-script

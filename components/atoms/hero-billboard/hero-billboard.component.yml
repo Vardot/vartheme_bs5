@@ -1,143 +1,164 @@
-"$schema": "https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json"
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: Hero billboard
 group: Hero
 status: stable
-description: "Bootstrap hero billboard with background image, overlay, and flexible content positioning."
-
+description: Bootstrap hero billboard with background image, overlay, and flexible
+  content positioning.
 props:
   type: object
   properties:
-
     container_type:
       type: string
-      title: "Container style"
-      description: "Choose how the content is wrapped."
+      title: Container style
+      description: Choose how the content is wrapped.
       enum:
-        - "container"
-        - "container-fluid"
-        - "container-sm"
-        - "container-md"
-        - "container-lg"
-        - "container-xl"
-        - "container-xxl"
-        - "none"
-      default: "container"
+      - container
+      - container-fluid
+      - container-sm
+      - container-md
+      - container-lg
+      - container-xl
+      - container-xxl
+      - none
+      default: container
       examples:
-        - "container"
-      'meta:enum':
-        container: "Container (default)"
-        container-fluid: "Full width"
-        container-sm: "Container sm"
-        container-md: "Container md"
-        container-lg: "Container lg"
-        container-xl: "Container xl"
-        container-xxl: "Container xxl"
-        none: "No container (full width content)"
-
+      - container
+      meta:enum:
+        container: Container (default)
+        container-fluid: Full width
+        container-sm: Container sm
+        container-md: Container md
+        container-lg: Container lg
+        container-xl: Container xl
+        container-xxl: Container xxl
+        none: No container (full width content)
+    bg_edge2edge:
+      type: boolean
+      title: Background edge-to-edge
+      description: If enabled, adds the bg-edge2edge class to the outer section so
+        the background image can extend full width.
+      default: false
+      examples:
+      - false
     height:
       type: string
-      title: "Height"
+      title: Hero height
       enum:
-        - "full"
-        - "large"
-        - "ribbon"
-      default: "full"
+      - ribbon
+      - large
+      default: ribbon
       examples:
-        - "full"
-      'meta:enum':
-        full: "Full screen"
-        large: "Large"
-        ribbon: "Ribbon"
-
+      - ribbon
+      meta:enum:
+        ribbon: Ribbon (default)
+        large: Large
+      description: Choose the vertical size of the hero (Ribbon is the default).
     flex_position:
       type: string
-      title: "Content position"
+      title: Content position
       enum:
-        - "top-left"
-        - "center-left"
-        - "bottom-left"
-        - "hero-center"
-      default: "center-left"
+      - top-left
+      - center-left
+      - bottom-left
+      - hero-center
+      default: center-left
       examples:
-        - "center-left"
-      'meta:enum':
-        top-left: "Top left"
-        center-left: "Center left"
-        bottom-left: "Bottom left"
-        hero-center: "Center"
-
+      - center-left
+      meta:enum:
+        top-left: Top left
+        center-left: Center left
+        bottom-left: Bottom left
+        hero-center: Center
     overlay_bg:
       type: string
-      title: "Overlay background"
-      description: "Bootstrap background utility class."
-      default: "bg-dark"
+      title: Overlay background
+      description: Bootstrap background utility class.
+      default: bg-dark
       enum:
-        - "bg-dark"
-        - "bg-black"
-        - "bg-primary"
-        - "bg-secondary"
-        - "bg-success"
-        - "bg-danger"
-        - "bg-warning"
-        - "bg-info"
-        - "bg-white"
-
+      - bg-dark
+      - bg-black
+      - bg-primary
+      - bg-secondary
+      - bg-success
+      - bg-danger
+      - bg-warning
+      - bg-info
+      - bg-white
+      meta:enum:
+        bg-dark: Dark
+        bg-black: Black
+        bg-primary: Primary
+        bg-secondary: Secondary
+        bg-success: Success
+        bg-danger: Danger
+        bg-warning: Warning
+        bg-info: Info
+        bg-white: White
     overlay_opacity:
       type: string
-      title: "Overlay opacity"
-      description: "Bootstrap opacity utility class."
-      default: "opacity-50"
+      title: Overlay opacity
+      description: Bootstrap opacity utility class.
+      default: opacity-50
       enum:
-        - "opacity-0"
-        - "opacity-25"
-        - "opacity-50"
-        - "opacity-75"
-        - "opacity-100"
-
+      - opacity-0
+      - opacity-25
+      - opacity-50
+      - opacity-75
+      - opacity-100
+      meta:enum:
+        opacity-0: 0% (none)
+        opacity-25: 25%
+        opacity-50: 50%
+        opacity-75: 75%
+        opacity-100: 100% (solid)
     content_width:
       type: string
-      title: "Content width"
-      description: "Bootstrap width utility class."
-      default: "w-100"
+      title: Content width
+      description: Bootstrap width utility class.
+      default: w-100
       enum:
-        - "w-100"
-        - "w-75"
-        - "w-50"
-        - "w-25"
-
+      - w-100
+      - w-75
+      - w-50
+      - w-25
+      meta:enum:
+        w-100: 100% (full)
+        w-75: 75%
+        w-50: 50%
+        w-25: 25%
     object_position:
       type: string
-      title: "Background image position"
+      title: Background image position
       enum:
-        - "top"
-        - "center"
-        - "bottom"
-      default: "center"
+      - top
+      - center
+      - bottom
+      default: center
       examples:
-        - "center"
-
+      - center
+      meta:enum:
+        top: Top
+        center: Center
+        bottom: Bottom
     media:
       $ref: json-schema-definitions://canvas.module/image
-      title: "Background image"
+      title: Background image
       type: object
       examples:
-        - src: "assets/hero-placeholder.svg"
-          alt: "Placeholder image"
-          width: 1920
-          height: 1075
-
+      - src: assets/hero-bg-placeholder.svg
+        alt: Placeholder image
+        width: 1920
+        height: 1075
     html_id:
       type: string
-      title: "HTML ID"
-      description: "Optional ID attribute for the outer section."
-      default: ""
-
+      title: HTML ID
+      description: Optional ID attribute for the outer section.
+      default: ''
     extra_classes:
       type: string
-      title: "Extra CSS classes"
-      description: "Additional Bootstrap/utility classes (space separated)."
-      default: ""
-
+      title: Extra CSS classes
+      description: Additional Bootstrap/utility classes (space separated).
+      default: ''
 slots:
   hero_slot:
-    title: "Hero content"
+    title: Hero content
