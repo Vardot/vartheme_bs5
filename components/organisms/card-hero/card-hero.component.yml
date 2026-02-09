@@ -1,6 +1,5 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Hero Card' 
-status: experimental
 description: 'Hero card component for a media and a content over the media'
 group: Cards
 noUi: true

@@ -1,6 +1,5 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: Page User Edit
-status: experimental
 description: The user edit page component.
 noUi: true
 props:

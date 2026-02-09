@@ -1,7 +1,6 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: Hero billboard
 group: Hero
-status: stable
 description: Bootstrap hero billboard with background image, overlay, and flexible
   content positioning.
 props:

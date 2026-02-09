@@ -1,6 +1,5 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: Page title
-status: experimental
 description: The Title component is responsible for rendering the page's main heading using the h1 HTML tag.
 props:
   type: object

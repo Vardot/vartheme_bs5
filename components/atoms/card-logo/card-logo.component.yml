@@ -2,7 +2,6 @@ $schema: "https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schem
 name: Card Logo
 description: A logo card with optional background, border, and link.
 group: Card
-status: stable
 noUI: true
 
 props:

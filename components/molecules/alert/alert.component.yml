@@ -1,6 +1,5 @@
 "$schema": "https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json"
 name: Alert
-status: experimental
 description: "Alerts are available for any length of text, as well as an optional close button."
 
 props:

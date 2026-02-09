@@ -1,6 +1,5 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: Breadcrumb
-status: experimental
 description: Breadcrumb trail items that indicate the current page’s location within a navigational hierarchy that automatically adds separators via CSS.
 props:
   type: object

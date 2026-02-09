@@ -1,6 +1,5 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Featured Card' 
-status: experimental
 description: 'Featured card component and pattern with media and content.'
 group: Cards
 noUi: true

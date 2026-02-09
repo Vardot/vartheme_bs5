@@ -1,6 +1,5 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: Root 
-status: experimental
 description: Provides a list of Root CSS3 variables for Bootstrap 5
 noUi: true
 props:

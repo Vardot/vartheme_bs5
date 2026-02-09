@@ -1,6 +1,5 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: Varbase HTML Block
-status: experimental
 description: The HTML block.
 group: Blocks
 noUi: true

@@ -1,6 +1,5 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: Dynamic Responsive Image
-status: experimental
 description: Generate (nearly) perfectly scaled (or cropped) images on-the-fly assumes the width of images is set in CSS, either directly in the wrapper-div or inherited through a parent element. Any grid system will do just fine for this.
 group: Dynamic Responsive Image
 props:

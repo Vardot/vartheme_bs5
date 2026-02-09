@@ -1,6 +1,5 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: Accordion
-status: experimental
 description: Build vertically collapsing accordions in combination with our Collapse JavaScript plugin. Accordion component, see Bootstrap Documentation - https://getbootstrap.com/docs/5.3/components/accordion/
 props:
   type: object

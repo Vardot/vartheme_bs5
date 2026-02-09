@@ -1,6 +1,5 @@
 "$schema": "https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata-full.schema.json"
 name: List
-status: experimental
 description: Implementation for displaying a HTML list of items.
 noUi: true
 props:

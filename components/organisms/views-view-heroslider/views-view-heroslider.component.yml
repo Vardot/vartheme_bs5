@@ -1,6 +1,5 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: Views view Heroslider
-status: experimental
 description: 'A slideshow component for cycling through elements images/media or slides of text—like a heroslider.'
 group: Views
 noUi: true

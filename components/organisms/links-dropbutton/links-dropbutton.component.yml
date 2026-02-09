@@ -1,6 +1,5 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: Links Drop button 
-status: experimental
 description: Links Drop button 
 noUi: true
 props:

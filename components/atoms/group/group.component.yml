@@ -1,7 +1,6 @@
 "$schema": "https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json"
 name: Group
 group: Layout
-status: stable
 description: "Bootstrap flex group for stacking items (horizontal/vertical) with gap and alignment."
 
 props:

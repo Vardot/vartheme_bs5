@@ -2,7 +2,6 @@
 name: Hero Blog
 description: "Blog hero with published date, title, author, and optional media."
 group: Hero
-status: stable
 
 props:
   type: object

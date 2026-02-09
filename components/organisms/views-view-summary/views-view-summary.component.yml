@@ -1,6 +1,5 @@
 "$schema": "https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata-full.schema.json"
 name: Views view summary
-status: experimental
 description: Implementation for displaying a view as a view summary list group of items.
 group: Views
 noUi: true

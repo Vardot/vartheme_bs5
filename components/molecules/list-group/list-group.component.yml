@@ -1,6 +1,5 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata-full.schema.json
 name: List Group
-status: experimental
 description: Bootstrap 5.3 List Group component for displaying a flexible list of content.
 props:
   type: object

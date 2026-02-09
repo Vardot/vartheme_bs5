@@ -1,6 +1,5 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: Media
-status: experimental
 description: The Media component is designed to display a media item with customizable styling and options.
 noUi: true
 props:

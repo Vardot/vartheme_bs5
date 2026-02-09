@@ -1,7 +1,6 @@
 "$schema": "https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json"
 name: Section
 group: Layout
-status: stable
 description: "Bootstrap Section wrapper for building layouts (container, background, spacing, and responsive grid presets). Shows ONLY the selected number of columns."
 
 props:

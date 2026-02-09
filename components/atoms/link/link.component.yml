@@ -1,6 +1,5 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: Link
-status: experimental
 description: Link with Bootstrap Link helpers and utility classes
 noUi: true
 props:

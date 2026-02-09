@@ -1,6 +1,5 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: Block Remote Video
-status: experimental
 description: The Remote Video block component.
 group: Blocks
 noUi: true

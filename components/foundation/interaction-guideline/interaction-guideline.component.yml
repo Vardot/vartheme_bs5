@@ -1,6 +1,5 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: Interaction Guideline 
-status: experimental
 description: Interaction Guideline
 noUi: true
 group: Meta

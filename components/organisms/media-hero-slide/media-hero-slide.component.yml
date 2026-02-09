@@ -1,6 +1,5 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: Media Hero Slide
-status: experimental
 description: A rich hero slide that display video and/or image.
 noUi: true
 props:

@@ -1,6 +1,5 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: Page User Register
-status: experimental
 description: The user register page component.
 noUi: true
 props:
