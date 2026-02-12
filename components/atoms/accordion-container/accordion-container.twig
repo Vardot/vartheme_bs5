@@ -39,6 +39,7 @@
 {# Make parent id available to nested accordion blocks rendered in the slot. #}
 {% set accordion_parent_id = accordion_id %}
 {% set accordion_always_open = always_open ? true : false %}
+{% set accordion_color = color|default('default') %}
 
 <div id="{{ accordion_id }}" class="{{ classes|join(' ') }}">
   {% if accordion_content is defined and accordion_content|render|trim is not empty %}

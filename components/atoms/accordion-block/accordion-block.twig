@@ -43,7 +43,10 @@
 {% set heading_id = 'heading-' ~ uid %}
 {% set collapse_id = 'collapse-' ~ uid %}
 
-{% set expanded = open_by_default ? true : false %}
+{% set route_name = app.request.attributes.get('_route')|default('') %}
+{% set is_canvas_preview = (route_name matches '/canvas/i') or (route_name matches '/sdc/i') or (route_name matches '/component/i') %}
+{# In Canvas/preview contexts we keep items expanded for easier editing. #}
+{% set expanded = is_canvas_preview ? true : (open_by_default ? true : false) %}
 {% set button_classes = ['accordion-button'] %}
 {% if resolved_color and resolved_color != 'default' %}
   {% set button_classes = button_classes|merge(['text-bg-' ~ resolved_color]) %}
@@ -75,7 +78,7 @@
       aria-expanded="{{ expanded ? 'true' : 'false' }}"
       aria-controls="{{ collapse_id }}"
     >
-      {{ title }}
+      {{ title|default('Accordion item') }}
     </button>
   </h{{ heading_level|default(3) }}>
 
@@ -89,8 +92,13 @@
       {% if accordion_content is defined and accordion_content|render|trim is not empty %}
         {{ accordion_content }}
       {% else %}
-        <p class="mb-0">Accordion body content…</p>
-      {% endif %}
+  {#
+    Canvas-friendly default:
+    If no slot content is provided, render the Text component so users can edit content later.
+  #}
+  {% set default_body = '<p class="mb-0">Accordion body content…</p>' %}
+  {{ include('vartheme_bs5:text', { text: default_body, element: 'div' }, with_context = false) }}
+{% endif %}
     </div>
   </div>
 </div>

@@ -1,0 +1,251 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Hero Slide
+group: Hero
+status: stable
+description: >
+  A single slide item meant to be placed inside "Hero Slider (Container)".
+  Add unlimited Hero Slide items and reorder via drag & drop in Canvas.
+
+props:
+  type: object
+  properties:
+    enabled:
+      type: boolean
+      title: Enabled
+      examples: [true]
+      default: true
+
+    active:
+      type: boolean
+      title: Active by default
+      description: If no slide is active, the container will auto-activate the first slide.
+      default: false
+
+    title:
+      type: string
+      title: Title
+      default: "Varbase; better than ever"
+
+    content:
+      type: string
+      title: Content (rich text)
+      contentMediaType: text/html
+      x-formatting-context: block
+      default: ""
+      examples:
+        - "<p>Elevate your digital experience with Varbase's dynamic design system, seamlessly blending aesthetic appeal with unparalleled functionality. Unleash the power of intuitive design for a compelling web presence.</p>"
+
+    button_text:
+      type: string
+      title: Button text
+      default: "Learn more"
+
+    button_url:
+      type: string
+      title: Button URL
+      default: "#"
+
+    button_variant:
+      type: string
+      title: Button style
+      enum: [btn-primary, btn-secondary, btn-light, btn-dark, btn-outline-light, btn-outline-dark]
+      default: btn-primary
+      meta:enum:
+        btn-primary: Primary
+        btn-secondary: Secondary
+        btn-light: Light
+        btn-dark: Dark
+        btn-outline-light: Outline light
+        btn-outline-dark: Outline dark
+
+    media:
+      $ref: json-schema-definitions://canvas.module/image
+      type: object
+      title: Image
+      examples:
+        - src: assets/hero-slider-image.webp
+          alt: Placeholder image
+          width: 1600
+          height: 700
+
+    extra_classes:
+      type: string
+      title: Extra classes
+      description: Space separated classes (Bootstrap utilities allowed).
+      default: ""
+
+    media_position:
+      type: string
+      title: Media position (per slide)
+      description: "Override the container media position for this slide only. Use 'Inherit' to follow the container setting."
+      enum: [inherit, overlay, start, end, none]
+      default: inherit
+      meta:enum:
+        inherit: Inherit from container
+        overlay: Overlay background
+        start: Image left
+        end: Image right
+        none: No media (text only)
+
+    # --- Presentation settings (per slide) ---
+    title_tag:
+      type: string
+      title: Title tag
+      enum: [h1, h2, h3, h4, h5, h6]
+      default: h2
+      meta:enum:
+        h1: H1
+        h2: H2
+        h3: H3
+        h4: H4
+        h5: H5
+        h6: H6
+
+    title_size:
+      type: string
+      title: Title size
+      enum: [display-3, display-4, display-5, h1, h2, h3]
+      default: display-5
+      meta:enum:
+        display-3: Display 3
+        display-4: Display 4
+        display-5: Display 5
+        h1: Heading 1
+        h2: Heading 2
+        h3: Heading 3
+
+    content_size:
+      type: string
+      title: Content text size
+      enum: [lead, fs-5, fs-6, small]
+      default: fs-6
+      meta:enum:
+        lead: Lead
+        fs-5: Large
+        fs-6: Normal
+        small: Small
+
+    content_padding_x:
+      type: string
+      title: Content horizontal padding
+      enum: [px-0, px-2, px-3, px-4, px-5]
+      default: px-0
+      meta:enum:
+        px-0: None
+        px-2: Small
+        px-3: Medium
+        px-4: Large
+        px-5: Extra large
+
+    content_padding_y:
+      type: string
+      title: Content vertical padding
+      enum: [py-0, py-2, py-3, py-4, py-5]
+      default: py-0
+      meta:enum:
+        py-0: None
+        py-2: Small
+        py-3: Medium
+        py-4: Large
+        py-5: Extra large
+
+    content_max_width:
+      type: string
+      title: Content max width
+      enum: [narrow, normal, wide]
+      default: normal
+      meta:enum:
+        narrow: Narrow
+        normal: Normal
+        wide: Wide
+
+    horizontal_alignment:
+      type: string
+      title: Horizontal alignment
+      enum: [start, center, end]
+      default: start
+      meta:enum:
+        start: Left
+        center: Center
+        end: Right
+
+    vertical_alignment:
+      type: string
+      title: Vertical alignment
+      enum: [start, center, end]
+      default: center
+      meta:enum:
+        start: Top
+        center: Center
+        end: Bottom
+
+    text_align:
+      type: string
+      title: Text alignment
+      enum: [text-start, text-center, text-end]
+      default: text-start
+      meta:enum:
+        text-start: Left
+        text-center: Center
+        text-end: Right
+
+    text_color:
+      type: string
+      title: Text color
+      enum: [text-white, text-dark]
+      default: text-white
+      meta:enum:
+        text-white: White
+        text-dark: Dark
+
+    split_gap:
+      type: string
+      title: Grid gap (split layout)
+      enum: [none, sm, md, lg]
+      default: md
+      meta:enum:
+        none: No gap
+        sm: Small
+        md: Medium
+        lg: Large
+
+    background_color:
+      type: string
+      title: Background color (split layout)
+      enum: [bg-transparent, bg-white, bg-light, bg-dark, bg-black, bg-primary, bg-secondary, bg-success, bg-danger, bg-warning, bg-info]
+      default: bg-black
+
+    overlay_bg:
+      type: string
+      title: Overlay color
+      enum: [none, bg-dark, bg-black, bg-white, bg-primary, bg-secondary, bg-success, bg-danger, bg-warning, bg-info]
+      default: bg-dark
+
+    overlay_opacity:
+      type: string
+      title: Overlay opacity
+      enum: [opacity-10, opacity-25, opacity-50, opacity-75, opacity-100]
+      default: opacity-50
+
+    object_position:
+      type: string
+      title: Image focal position
+      enum: [top, center, bottom]
+      default: center
+      meta:enum:
+        top: Top
+        center: Center
+        bottom: Bottom
+
+    image_fit:
+      type: string
+      title: Image fit
+      enum: [cover, contain]
+      default: cover
+      meta:enum:
+        cover: Cover
+        contain: Contain
+
+libraryOverrides:
+  dependencies:
+    - vartheme_bs5/framework

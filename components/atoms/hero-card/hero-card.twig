@@ -1,0 +1,319 @@
+{#
+  Hero Card (Bootstrap 5) - Canvas + SDC safe
+  - Full-width bg + overlay when bg_edge2edge + overlay
+  - Vertical alignment works (overlay wrapper now has h-100, card gets min-height in overlay)
+#}
+
+{% set container_type = container_type|default('container') %}
+{% set media_position = media_position|default('end') %}
+{% set merge_media = merge_media|default(true) %}
+{% set section_padding_y = section_padding_y|default('py-5') %}
+{% set split_gap = split_gap|default('md') %}
+{% set overlay_image_mode = overlay_image_mode|default('cover') %}
+{% set card_border = card_border|default(false) %}
+{% set padding = padding|default(true) %}
+
+{#
+  Card border + padding behavior (requested):
+  - Enabling Card border should ONLY add a border.
+  - Padding should ONLY be added when "Add padding" is enabled.
+  - Media can stay flush/merged; padding is applied to the content area.
+#}
+{% set merge_media_effective = merge_media %}
+{% set horizontal_alignment = horizontal_alignment|default('start') %}
+{% set vertical_alignment = vertical_alignment|default('center') %}
+{% set background_color = background_color|default('bg-white') %}
+{% set content_color = content_color|default('text-dark') %}
+{% set overlay_bg = overlay_bg|default('bg-dark') %}
+{% set overlay_opacity = overlay_opacity|default('opacity-50') %}
+{% set object_position = object_position|default('center') %}
+{% set media_height_mode = media_height_mode|default('auto') %}
+{% set bg_edge2edge = bg_edge2edge|default(false) %}
+{% set html_id = html_id|default('') %}
+{% set extra_classes = extra_classes|default('')|trim %}
+{% set media_extra_classes = media_extra_classes|default('')|trim %}
+{% set content_extra_classes = content_extra_classes|default('')|trim %}
+
+{% set eyebrow = eyebrow|default('') %}
+{% set title = title|default('Demo title') %}
+{% set heading_tag = heading_tag|default('h1') %}
+{# NOTE: avoid using a generic prop name like "text" as it can be flaky in Canvas updates. #}
+{% set content_text = content_text|default('Demo content text goes here. You can edit this in Canvas.') %}
+{% set content_text_size = content_text_size|default('default') %}
+{% set content_width = content_width|default('default') %}
+
+{% set card_attributes_extra = card_attributes_extra|default('')|trim %}
+{% set content_attributes_extra = content_attributes_extra|default('')|trim %}
+
+{# Slots #}
+{% set slots = slots|default({}) %}
+{% set actions_slot = (slots.actions is defined) ? (slots.actions|render|trim) : '' %}
+{% set media_slot_override = (slots.media_slot is defined) ? (slots.media_slot|render|trim) : '' %}
+
+{# Height preset classes #}
+{% set media_height_class = '' %}
+{% if media_height_mode == 'ribbon' %}
+  {% set media_height_class = 'hero-card--ribbon' %}
+{% elseif media_height_mode == 'large' %}
+  {% set media_height_class = 'hero-card--large' %}
+{% endif %}
+
+{# Bootstrap utility mapping #}
+{% set justify_map = { start: 'justify-content-start', center: 'justify-content-center', end: 'justify-content-end' } %}
+{% set align_map = { start: 'align-items-start', center: 'align-items-center', end: 'align-items-end' } %}
+{% set gap_map = { none: 'g-0', sm: 'g-2', md: 'g-4', lg: 'g-5' } %}
+{% set text_map = { start: 'text-start', center: 'text-center', end: 'text-end' } %}
+
+{# Determine whether we have media to render (either slot override or uploaded media) #}
+{% set has_media = (media_position != 'none') %}
+
+{# Outer wrapper: section container (padding + background) #}
+{% set outer_classes = 'hero-card position-relative overflow-hidden ' ~ section_padding_y ~ ' ' ~ background_color ~ ' ' ~ content_color %}
+{% if bg_edge2edge %}{% set outer_classes = outer_classes ~ ' bg-edge2edge' %}{% endif %}
+{% if media_height_class %}{% set outer_classes = outer_classes ~ ' ' ~ media_height_class %}{% endif %}
+{% if extra_classes %}{% set outer_classes = outer_classes ~ ' ' ~ extra_classes %}{% endif %}
+{% set outer_classes = outer_classes|trim %}
+
+{# Card classes #}
+{% set card_classes = 'position-relative overflow-hidden rounded-3' %}
+{% if card_border %}{% set card_classes = card_classes ~ ' border' %}{% else %}{% set card_classes = card_classes ~ ' border-0' %}{% endif %}
+{#
+  Padding behavior (requested):
+  - Card border ONLY adds a border.
+  - Padding ONLY applies when enabled.
+  - When media is merged (top/bottom/start/end), keep media flush and pad ONLY the content area.
+  - When there is no merged media (no media / overlay / content media), pad the card itself.
+#}
+{% set pad_card = padding and not (has_media and merge_media_effective and media_position in ['top','bottom','start','end']) %}
+{% if pad_card %}
+  {% set card_classes = card_classes ~ ' p-3 p-md-4' %}
+{% endif %}
+
+{% set card_classes = card_classes|trim %}
+
+{% set media_wrap_classes = 'hero-card__media' %}
+{% if media_extra_classes %}{% set media_wrap_classes = media_wrap_classes ~ ' ' ~ media_extra_classes %}{% endif %}
+{% set media_wrap_classes = media_wrap_classes|trim %}
+
+{% set content_wrap_classes = 'hero-card__content position-relative' %}
+{% if content_extra_classes %}{% set content_wrap_classes = content_wrap_classes ~ ' ' ~ content_extra_classes %}{% endif %}
+{% if content_width and content_width != 'default' %}{% set content_wrap_classes = content_wrap_classes ~ ' ' ~ content_width %}{% endif %}
+{% set content_wrap_classes = content_wrap_classes|trim %}
+
+{# Media values + placeholder #}
+{% set media = media|default({}) %}
+{# Canvas media object can vary; support src, src.url, url, uri #}
+{% set media_src_final = '' %}
+{% if media.src is defined and media.src %}
+  {% if media.src.url is defined and media.src.url %}
+    {% set media_src_final = media.src.url %}
+  {% else %}
+    {% set media_src_final = media.src %}
+  {% endif %}
+{% elseif media.url is defined and media.url %}
+  {% set media_src_final = media.url %}
+{% elseif media.uri is defined and media.uri %}
+  {% set media_src_final = media.uri %}
+{% endif %}
+{% if not media_src_final %}
+  {% set media_src_final = 'assets/hero-card-image-placeholder.svg' %}
+{% endif %}
+{% set media_alt_final = (media.alt is defined and media.alt) ? media.alt : 'Placeholder image' %}
+{% set media_w_final = (media.width is defined and media.width) ? media.width : 1200 %}
+{% set media_h_final = (media.height is defined and media.height) ? media.height : 800 %}
+
+{# Edge-to-edge background image (overlay mode) #}
+{% set bg_position_map = { top: 'center top', center: 'center center', bottom: 'center bottom' } %}
+{% set use_edge_bg_image = bg_edge2edge and (media_position == 'overlay') and has_media and (not media_slot_override) %}
+{% set outer_style_attr = '' %}
+{% if use_edge_bg_image %}
+  {# Quote + escape the URL to avoid broken render immediately after upload #}
+  {% set outer_style_attr = 'style="background-image: url(\'' ~ (media_src_final|e('html_attr')) ~ '\'); background-position: ' ~ bg_position_map[object_position] ~ '; background-size: ' ~ overlay_image_mode ~ '; background-repeat: no-repeat;"' %}
+{% endif %}
+
+{# Full-width overlay color when edge2edge+overlay #}
+{% set use_edge_overlay_color = bg_edge2edge and (media_position == 'overlay') and has_media %}
+
+{% macro render_media(media_slot_override, media_src, media_alt, media_w, media_h, object_position, extra_class) %}
+  {% if media_slot_override %}
+    {{ media_slot_override|raw }}
+  {% else %}
+    <img
+      src="{{ media_src|e('html_attr') }}"
+      alt="{{ media_alt|e('html_attr') }}"
+      {% if media_w %}width="{{ media_w }}"{% endif %}
+      {% if media_h %}height="{{ media_h }}"{% endif %}
+      class="{{ extra_class }}"
+      style="object-position: {{ object_position }};"
+      loading="lazy"
+      decoding="async"
+    />
+  {% endif %}
+{% endmacro %}
+
+{% macro render_button(actions_slot, label, url, style, size, target) %}
+  {% if actions_slot %}
+    {{ actions_slot|raw }}
+  {% else %}
+    {% set has_button = (label|default('')|trim) and (url|default('')|trim) %}
+    {% if has_button %}
+      <div class="hero-card__actions mt-3">
+        {% set btn_size = (size|default('default') != 'default') ? size : '' %}
+        {% set btn_target = (target|default('default') != 'default') ? target : '' %}
+        <a class="btn {{ style|default('btn-primary') }} {{ btn_size }} mb-2"
+           href="{{ url }}"
+           {% if btn_target %}target="{{ btn_target }}"{% endif %}>
+          {{ label }}
+        </a>
+      </div>
+    {% endif %}
+  {% endif %}
+{% endmacro %}
+
+<div class="{{ outer_classes }}" {{ outer_style_attr|raw }} {% if html_id %}id="{{ html_id }}"{% endif %}>
+
+  {# Full width overlay color layer #}
+  {% if use_edge_overlay_color %}
+    <div class="position-absolute top-0 start-0 w-100 h-100 {{ overlay_bg }} {{ overlay_opacity }} z-0" aria-hidden="true"></div>
+  {% endif %}
+
+  {% if container_type != 'none' %}
+    <div class="{{ container_type }} position-relative z-1">
+  {% endif %}
+
+  <div class="{{ card_classes }}" {{ card_attributes_extra ? card_attributes_extra|raw : '' }}>
+
+    {# OVERLAY visuals #}
+    {% if media_position == 'overlay' and has_media %}
+      <div class="position-absolute top-0 start-0 w-100 h-100">
+        {% if not use_edge_overlay_color %}
+          <div class="position-absolute top-0 start-0 w-100 h-100 {{ overlay_bg }} {{ overlay_opacity }}"></div>
+        {% endif %}
+
+        {% if not use_edge_bg_image %}
+          <div class="position-absolute top-0 start-0 w-100 h-100">
+            <div class="w-100 h-100 {{ media_wrap_classes }}">
+              {{ _self.render_media(media_slot_override, media_src_final, media_alt_final, media_w_final, media_h_final, object_position, 'w-100 h-100 object-fit-' ~ overlay_image_mode ~ ' d-block') }}
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if media_position == 'overlay' %}
+      {# ✅ h-100 makes vertical alignment work (even without media) #}
+      <div class="d-flex w-100 h-100 {{ justify_map[horizontal_alignment] }} {{ align_map[vertical_alignment] }} position-relative">
+    {% elseif has_media and media_position in ['start','end'] %}
+      {% set media_first = (media_position == 'start') %}
+      {# When "merge media" is enabled, remove the grid gap and let media/content sit flush inside the card. #}
+      {% set split_row_gap = merge_media_effective ? 'g-0' : gap_map[split_gap] %}
+      {% set split_media_round = merge_media_effective ? (media_first ? 'rounded-start-3' : 'rounded-end-3') : 'rounded-3' %}
+      {# Optional divider between media and content when card border is on and media is merged. #}
+      {% set split_divider = (card_border and merge_media_effective) ? (media_first ? 'border-end' : 'border-start') : '' %}
+
+      <div class="row {{ split_row_gap }} align-items-stretch">
+        <div class="col-12 col-lg-6 d-flex {{ media_first ? '' : 'order-lg-2' }} {{ merge_media_effective ? 'p-0' : '' }}">
+          <div class="{{ media_wrap_classes }} w-100 overflow-hidden {{ split_media_round }} {{ split_divider }}">
+            {{ _self.render_media(media_slot_override, media_src_final, media_alt_final, media_w_final, media_h_final, object_position, 'w-100 h-100 object-fit-cover d-block') }}
+          </div>
+        </div>
+        <div class="col-12 col-lg-6 d-flex flex-column {{ align_map[horizontal_alignment] }} {{ {start:'justify-content-start',center:'justify-content-center',end:'justify-content-end'}[vertical_alignment] }} {{ media_first ? '' : 'order-lg-1' }} {{ merge_media_effective ? 'p-0' : '' }}">
+{% elseif has_media and media_position in ['top','bottom'] %}
+      {% set media_first = (media_position == 'top') %}
+      {% if media_first %}
+        {% set top_divider = (card_border and merge_media_effective) ? 'border-bottom' : '' %}
+        <div class="{{ media_wrap_classes }} {{ merge_media_effective ? 'mb-0' : 'mb-3' }} overflow-hidden {{ merge_media_effective ? 'rounded-top-3' : 'rounded-3' }} {{ top_divider }}">
+          {{ _self.render_media(media_slot_override, media_src_final, media_alt_final, media_w_final, media_h_final, object_position, 'w-100 h-100 object-fit-cover d-block') }}
+        </div>
+      {% endif %}
+      <div class="d-flex flex-column {{ align_map[horizontal_alignment] }} {{ {start:'justify-content-start',center:'justify-content-center',end:'justify-content-end'}[vertical_alignment] }}">
+    {% elseif media_position == 'content' %}
+      <div class="d-flex {{ justify_map[horizontal_alignment] }} {{ align_map[vertical_alignment] }}">
+    {% else %}
+      <div class="d-flex flex-column {{ align_map[horizontal_alignment] }} {{ {start:'justify-content-start',center:'justify-content-center',end:'justify-content-end'}[vertical_alignment] }}">
+    {% endif %}
+
+      {# Content area should only have top/bottom padding, not all sides (requested). #}
+      {#
+        Content padding:
+        - When card has border+padding, avoid duplicating padding here.
+        - When media is merged (start/end/top/bottom), keep vertical padding plus add
+          side padding (gap) between media and text for start/end.
+      #}
+
+      {% set split_inner_gap_map = { none: '', sm: '3', md: '4', lg: '5' } %}
+      {% set split_inner_gap = split_inner_gap_map[split_gap]|default('4') %}
+      {% set side_gap_class = '' %}
+      {% if has_media and media_position in ['start','end'] and merge_media_effective and split_gap != 'none' %}
+        {#
+          - Desktop: add side padding between media and content (gap fix).
+          - Mobile (stacked): add top margin so text doesn't touch the image.
+        #}
+        {% set side_gap_class = (media_position == 'start')
+          ? (' mt-3 mt-lg-0 ps-' ~ split_inner_gap ~ ' ps-lg-' ~ (split_inner_gap == '3' ? '4' : split_inner_gap))
+          : (' mt-3 mt-lg-0 pe-' ~ split_inner_gap ~ ' pe-lg-' ~ (split_inner_gap == '3' ? '4' : split_inner_gap))
+        %}
+      {% endif %}
+
+      {% set content_padding_classes = '' %}
+      {% if padding and has_media and merge_media_effective and media_position in ['top','bottom','start','end'] %}
+        {#
+          When media is merged into the card, the card itself has no padding.
+          Add padding to the content area so border + padding behave like a
+          standard Bootstrap "card image + card body" pattern.
+        #}
+        {% set content_padding_classes = 'py-4 py-md-5 px-3 px-md-4' ~ side_gap_class %}
+      {% endif %}
+
+      {% set content_rounding = (has_media and media_position in ['top','bottom'] and merge_media_effective) ? (media_position == 'top' ? 'rounded-bottom-3' : 'rounded-top-3') : '' %}
+      {% set content_width_class = (content_width != 'default') ? content_width : '' %}
+      <div class="{{ content_wrap_classes }} {{ text_map[horizontal_alignment] }} {{ content_padding_classes }} {{ content_rounding }} {{ content_width_class }}" {{ content_attributes_extra ? content_attributes_extra|raw : '' }}>
+        {% if media_position == 'content' %}
+          <div class="{{ media_wrap_classes }} mb-3">
+            {{ _self.render_media(media_slot_override, media_src_final, media_alt_final, media_w_final, media_h_final, object_position, 'img-fluid rounded') }}
+          </div>
+        {% endif %}
+
+        {# If Advanced HTML is provided, render it. Otherwise render Title + Content text. #}
+        {% if eyebrow %}<div class="text-uppercase small opacity-75 mb-2">{{ eyebrow }}</div>{% endif %}
+        {% if title %}<{{ heading_tag }} class="mb-3">{{ title }}</{{ heading_tag }}>{% endif %}
+        {% if content_text %}
+          {% set fs_class = (content_text_size and content_text_size != 'default') ? (' ' ~ content_text_size) : '' %}
+          <div class="mb-0{{ fs_class }}">{{ content_text|raw }}</div>
+        {% endif %}
+
+        {{ _self.render_button(
+          actions_slot,
+          button_1_label|default('Learn more'),
+          button_1_url|default('#'),
+          button_1_style|default('btn-primary'),
+          button_1_size|default('default'),
+          button_1_target|default('default')
+        ) }}
+      </div>
+
+    {% if media_position == 'overlay' %}
+      </div>
+    {% elseif has_media and media_position in ['start','end'] %}
+        </div>
+      </div>
+    {% elseif has_media and media_position in ['top','bottom'] %}
+      </div>
+      {% if media_position == 'bottom' %}
+        {% set bottom_divider = (card_border and merge_media_effective) ? 'border-top' : '' %}
+        <div class="{{ media_wrap_classes }} {{ merge_media_effective ? 'mt-0' : 'mt-3' }} overflow-hidden {{ merge_media_effective ? 'rounded-bottom-3' : 'rounded-3' }} {{ bottom_divider }}">
+          {{ _self.render_media(media_slot_override, media_src_final, media_alt_final, media_w_final, media_h_final, object_position, 'w-100 h-100 object-fit-cover d-block') }}
+        </div>
+      {% endif %}
+    {% elseif media_position == 'content' %}
+      </div>
+    {% else %}
+      </div>
+    {% endif %}
+
+  </div>
+
+  {% if container_type != 'none' %}
+    </div>
+  {% endif %}
+</div>

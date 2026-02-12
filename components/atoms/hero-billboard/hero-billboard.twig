@@ -100,17 +100,33 @@
   'bottom': '50% 100%'
 }[hero_object_position]|default('50% 50%') %}
 
+{# Normalize Canvas media value: can be a string URL or an object/array (first render) #}
+{% set media_src = '' %}
+{% if media is defined %}
+  {% if media.src is defined and media.src is not empty %}
+    {% if media.src is iterable %}
+      {% set media_src = media.src.url|default(media.src.uri|default(media.src.value|default(''))) %}
+    {% else %}
+      {% set media_src = media.src %}
+    {% endif %}
+  {% elseif media.url is defined and media.url is not empty %}
+    {% set media_src = media.url %}
+  {% endif %}
+{% endif %}
+
+
+
 <section
   {% if html_id is defined and html_id is not empty %}id="{{ html_id }}"{% endif %}
   class="{{ class_list|join(' ') }}"
   style="{{ hero_size_style }}"
 >
-  {% if media is defined and media.src is not empty %}
+  {% if media_src is not empty %}
     <div class="position-absolute top-0 start-0 end-0 bottom-0" aria-hidden="true">
       <div class="position-absolute top-0 start-0 end-0 bottom-0 {{ overlay_bg_class }} {{ overlay_opacity_class }}"></div>
 
       {% include 'canvas:image' ignore missing with {
-        src: media.src,
+        src: media_src,
         alt: media.alt,
         width: media.width,
         height: media.height,

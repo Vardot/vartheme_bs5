@@ -1,0 +1,387 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Hero Card
+group: Hero
+status: stable
+description: >
+  Flexible hero card (overlay/split/stacked/content-media) with Bootstrap 5 utilities.
+  Canvas-friendly controls for title/text + optional raw HTML mode.
+
+props:
+  type: object
+  properties:
+
+    html_id:
+      type: string
+      title: HTML ID
+      default: ""
+
+    eyebrow:
+      type: string
+      title: Eyebrow text
+      default: "New release"
+
+    title:
+      type: string
+      title: Title
+      default: "Demo title"
+
+    heading_tag:
+      type: string
+      title: Heading tag
+      enum: [h1, h2, h3, h4, h5, h6]
+      default: h1
+      meta:enum:
+        h1: H1
+        h2: H2
+        h3: H3
+        h4: H4
+        h5: H5
+        h6: H6
+
+    content_text:
+      type: string
+      title: Content (rich text)
+      description: "HTML content (e.g. Text). Make sure this content is filtered/safe before rendering."
+      contentMediaType: text/html
+      x-formatting-context: block
+      default: "<p>Elevate your digital experience with Varbase's dynamic design system, seamlessly blending aesthetic appeal with unparalleled functionality. Unleash the power of intuitive design for a compelling web presence.</p>"
+      examples:
+        - "<p>Elevate your digital experience with Varbase's dynamic design system, seamlessly blending aesthetic appeal with unparalleled functionality. Unleash the power of intuitive design for a compelling web presence.</p>"
+
+    card_content:
+      type: string
+      title: HTML content (Advanced)
+      default: "<h1>Varbase; better than ever</h1><p>Elevate your digital experiences with Varbase’s dynamic design system. Launch faster, stay consistent, and scale confidently.</p>"
+      meta:ui:
+        widget: textarea
+
+    # Canvas image schema (reliable uploader)
+    media:
+      $ref: json-schema-definitions://canvas.module/image
+      type: object
+      title: Media image
+      examples:
+        - src: assets/hero-card-image-placeholder.svg
+          alt: Placeholder image
+          width: 1200
+          height: 800
+
+    section_padding_y:
+      type: string
+      title: Section vertical padding
+      enum: [py-0, py-3, py-4, py-5]
+      default: py-5
+      meta:enum:
+        py-0: None
+        py-3: Small
+        py-4: Medium
+        py-5: Large
+
+    merge_media:
+      type: boolean
+      title: Merge media with card (top/bottom)
+      default: true
+
+    container_type:
+      type: string
+      title: Container width
+      enum: [container, container-fluid, none]
+      default: container
+      meta:enum:
+        container: Container
+        container-fluid: Full width (container-fluid)
+        none: No container
+
+    bg_edge2edge:
+      type: boolean
+      title: Edge-to-edge background
+      default: false
+
+    media_position:
+      type: string
+      title: Media position
+      enum: [overlay, start, end, top, bottom, content, none]
+      default: end
+      meta:enum:
+        overlay: Overlay background
+        start: Left
+        end: Right
+        top: Top
+        bottom: Bottom
+        content: Inside content
+        none: No media
+
+    split_gap:
+      type: string
+      title: Grid gap (split layout)
+      enum: [none, sm, md, lg]
+      default: md
+      meta:enum:
+        none: No gap
+        sm: Small
+        md: Medium
+        lg: Large
+
+    card_border:
+      type: boolean
+      title: Card border
+      default: false
+
+    padding:
+      type: boolean
+      title: Add padding
+      default: true
+
+    horizontal_alignment:
+      type: string
+      title: Horizontal alignment
+      enum: [start, center, end]
+      default: start
+      meta:enum:
+        start: Left
+        center: Center
+        end: Right
+
+    vertical_alignment:
+      type: string
+      title: Vertical alignment
+      enum: [start, center, end]
+      default: center
+      meta:enum:
+        start: Top
+        center: Middle
+        end: Bottom
+
+    # ✅ Background color dropdown (Canvas shows options now)
+    background_color:
+      type: string
+      title: Background color
+      enum:
+        - bg-transparent
+        - bg-white
+        - bg-light
+        - bg-dark
+        - bg-primary
+        - bg-secondary
+        - bg-success
+        - bg-danger
+        - bg-warning
+        - bg-info
+      default: bg-white
+      meta:enum:
+        bg-transparent: Transparent
+        bg-white: White
+        bg-light: Light
+        bg-dark: Dark
+        bg-primary: Primary
+        bg-secondary: Secondary
+        bg-success: Success
+        bg-danger: Danger
+        bg-warning: Warning
+        bg-info: Info
+
+    # (Optional but useful) content text color dropdown
+    content_color:
+      type: string
+      title: Content text color
+      enum: [text-dark, text-white]
+      default: text-dark
+      meta:enum:
+        text-dark: Dark text
+        text-white: White text
+
+    content_text_size:
+      type: string
+      title: Content text font size
+      enum: [default, fs-6, fs-5, fs-4, fs-3]
+      default: default
+      meta:enum:
+        default: Default
+        fs-6: Small
+        fs-5: Normal
+        fs-4: Large
+        fs-3: X-Large
+
+    content_width:
+      type: string
+      title: Content width
+      enum: [default, w-25, w-50, w-75, w-100]
+      default: default
+      meta:enum:
+        default: Auto
+        w-25: 25%
+        w-50: 50%
+        w-75: 75%
+        w-100: 100%
+
+    # ✅ Overlay color dropdown too
+    overlay_bg:
+      type: string
+      title: Overlay color
+      enum:
+        - bg-dark
+        - bg-black
+        - bg-white
+        - bg-primary
+        - bg-secondary
+        - bg-success
+        - bg-danger
+        - bg-warning
+        - bg-info
+      default: bg-dark
+      meta:enum:
+        bg-dark: Dark
+        bg-black: Black
+        bg-white: White
+        bg-primary: Primary
+        bg-secondary: Secondary
+        bg-success: Success
+        bg-danger: Danger
+        bg-warning: Warning
+        bg-info: Info
+
+    overlay_opacity:
+      type: string
+      title: Overlay opacity
+      enum: [opacity-10, opacity-25, opacity-50, opacity-75, opacity-100]
+      default: opacity-50
+      meta:enum:
+        opacity-10: 10%
+        opacity-25: 25%
+        opacity-50: 50%
+        opacity-75: 75%
+        opacity-100: 100%
+
+    object_position:
+      type: string
+      title: Media focal position
+      enum: [top, center, bottom]
+      default: center
+      meta:enum:
+        top: Top
+        center: Center
+        bottom: Bottom
+
+    overlay_image_mode:
+      type: string
+      title: Overlay image fit
+      enum: [cover, contain]
+      default: cover
+      meta:enum:
+        cover: Cover
+        contain: Contain
+
+    media_height_mode:
+      type: string
+      title: Media height mode
+      enum: [auto, ribbon, large]
+      default: auto
+      meta:enum:
+        auto: Auto
+        ribbon: Ribbon
+        large: Large
+
+    extra_classes:
+      type: string
+      title: Extra classes (wrapper)
+      default: ""
+
+    media_extra_classes:
+      type: string
+      title: Extra classes (media)
+      default: ""
+
+    content_extra_classes:
+      type: string
+      title: Extra classes (content)
+      default: ""
+
+    card_attributes_extra:
+      type: string
+      title: Extra attributes (card wrapper)
+      default: ""
+
+    content_attributes_extra:
+      type: string
+      title: Extra attributes (content wrapper)
+      default: ""
+
+    button_1_label:
+      type: string
+      title: Button label
+      default: "Learn more"
+
+    button_1_url:
+      type: string
+      title: Button URL
+      default: "#"
+
+    button_1_style:
+      type: string
+      title: Button style
+      enum:
+        - btn-primary
+        - btn-secondary
+        - btn-success
+        - btn-danger
+        - btn-warning
+        - btn-info
+        - btn-light
+        - btn-dark
+        - btn-outline-primary
+        - btn-outline-secondary
+        - btn-outline-success
+        - btn-outline-danger
+        - btn-outline-warning
+        - btn-outline-info
+        - btn-outline-light
+        - btn-outline-dark
+        - btn-link
+      default: btn-primary
+      meta:enum:
+        btn-primary: Primary
+        btn-secondary: Secondary
+        btn-success: Success
+        btn-danger: Danger
+        btn-warning: Warning
+        btn-info: Info
+        btn-light: Light
+        btn-dark: Dark
+        btn-outline-primary: Outline primary
+        btn-outline-secondary: Outline secondary
+        btn-outline-success: Outline success
+        btn-outline-danger: Outline danger
+        btn-outline-warning: Outline warning
+        btn-outline-info: Outline info
+        btn-outline-light: Outline light
+        btn-outline-dark: Outline dark
+        btn-link: Link
+
+    button_1_size:
+      type: string
+      title: Button size
+      enum: [default, btn-sm, btn-lg]
+      default: default
+      meta:enum:
+        default: Default
+        btn-sm: Small
+        btn-lg: Large
+
+    button_1_target:
+      type: string
+      title: Button target
+      enum: [default, _self, _blank]
+      default: default
+      meta:enum:
+        default: Same tab (default)
+        _self: Same tab
+        _blank: New tab
+
+slots:
+  media_slot:
+    title: Card media (slot)
+    description: Optional override for media (e.g. video).
+
+  actions:
+    title: Actions (slot)
+    description: Optional override for buttons rendering.

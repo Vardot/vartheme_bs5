@@ -1,5 +1,9 @@
 {#
   Hero Side-by-Side (Bootstrap-only)
+
+  Canvas media values can arrive in different shapes on first render (string vs object/array).
+  This template normalizes both the main image and background image so the media shows
+  immediately after upload.
 #}
 
 {# ---- Defaults / normalization ---- #}
@@ -19,14 +23,30 @@
 
 {% set padding_class = vertical_padding == 'none' ? 'py-0' : (vertical_padding == 'sm' ? 'py-3' : (vertical_padding == 'lg' ? 'py-5' : 'py-4')) %}
 
-{# Background image style (optional)
-   Canvas image objects can vary (src/url/uri). Also handle public:// style URIs.
+{#
+  Background image style (optional)
+  Canvas image objects can vary (string vs object/array). Also handle public:// style URIs.
 #}
 {% set bg_style = '' %}
 {% set bg_src = '' %}
 
-{% if background_image is defined and background_image is not empty %}
-  {% set bg_src = background_image.src|default(background_image.url|default(background_image.uri|default(''))) %}
+{# Resolve background_image into a string URL/URI #}
+{% set _bg = background_image|default('') %}
+
+{% if _bg is not empty %}
+  {# Allow background_image to be a direct string #}
+  {% if _bg is not iterable and _bg is not same as(false) %}
+    {% set bg_src = _bg %}
+  {% else %}
+    {# Try common keys: src/url/uri/value/path #}
+    {% set _bg_raw = _bg.src|default(_bg.url|default(_bg.uri|default(_bg.value|default(_bg.path|default(''))))) %}
+
+    {% if _bg_raw is iterable %}
+      {% set bg_src = _bg_raw.url|default(_bg_raw.uri|default(_bg_raw.value|default(_bg_raw.path|default(_bg_raw.0|default(''))))) %}
+    {% else %}
+      {% set bg_src = _bg_raw %}
+    {% endif %}
+  {% endif %}
 {% endif %}
 
 {% if bg_src %}
@@ -99,12 +119,36 @@
 
       {# Image column #}
       <div class="col-lg-6 {{ image_on_left ? 'order-lg-1' : '' }}">
-        {% if image is defined and image.src is defined and image.src %}
+        {# Normalize image src from Canvas (string vs object/array) #}
+        {% set image_src = '' %}
+        {% set _img = image|default('') %}
+
+        {% if _img is not empty %}
+          {# Allow image to be a direct string #}
+          {% if _img is not iterable and _img is not same as(false) %}
+            {% set image_src = _img %}
+          {% else %}
+            {# Try common keys: src/url/uri/value/path #}
+            {% set _img_raw = _img.src|default(_img.url|default(_img.uri|default(_img.value|default(_img.path|default(''))))) %}
+
+            {% if _img_raw is iterable %}
+              {% set image_src = _img_raw.url|default(_img_raw.uri|default(_img_raw.value|default(_img_raw.path|default(_img_raw.0|default(''))))) %}
+            {% else %}
+              {% set image_src = _img_raw %}
+            {% endif %}
+          {% endif %}
+        {% endif %}
+
+        {% if image_src %}
+          {% if image_src starts with 'public://' or image_src starts with 'private://' %}
+            {% set image_src = file_url(image_src) %}
+          {% endif %}
+
           {% include 'canvas:image' ignore missing with {
-            src: image.src,
-            alt: image.alt,
-            width: image.width,
-            height: image.height,
+            src: image_src,
+            alt: _img.alt|default(''),
+            width: _img.width|default(null),
+            height: _img.height|default(null),
             class: 'img-fluid rounded'
           } only %}
         {% endif %}

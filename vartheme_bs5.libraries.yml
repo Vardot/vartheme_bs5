@@ -27,7 +27,7 @@ bootstrap-scripts:
     - vartheme_bs5/bs-base-component-script
     # - vartheme_bs5/bs-alert-script
     # - vartheme_bs5/bs-button-script
-    # - vartheme_bs5/bs-carousel-script
+    - vartheme_bs5/bs-carousel-script
     # Needed for Bootstrap Accordion (Accordion is powered by Collapse).
     - vartheme_bs5/bs-collapse-script
     # - vartheme_bs5/bs-dropdown-script
@@ -39,6 +39,17 @@ bootstrap-scripts:
     - vartheme_bs5/bs-toast-script
     - vartheme_bs5/bs-tooltip-script
     - content_moderation/content_moderation
+
+hero-slider:
+  css:
+    theme:
+      components/atoms/hero-slider/assets/css/hero-slider.css: {}
+  js:
+    components/atoms/hero-slider/assets/js/hero-slider.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
+    - vartheme_bs5/framework
 
 # Popperjs core.
 popper-script:

@@ -1,0 +1,60 @@
+/**
+ * Hero Slider styles (source SCSS)
+ * Compile to: components/atoms/hero-slider/assets/css/hero-slider.css
+ *
+ * Notes:
+ * - Keep selectors scoped to `.hero-slider` to avoid leaking styles.
+ * - Uses CSS custom property `--hero-controller-color` already set inline in Twig.
+ */
+
+.hero-slider {
+  // Ensure controls sit within the carousel container area
+  .carousel-control-prev,
+  .carousel-control-next {
+    width: auto;
+    opacity: 1;
+  }
+
+  // Shared control button base
+  .hero-slider__control-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    background: transparent;
+    color: var(--hero-controller-color, #fff);
+    line-height: 1;
+    transition: transform 120ms ease, border-color 120ms ease, opacity 120ms ease;
+    user-select: none;
+
+    &:hover {
+      transform: scale(1.04);
+      border-color: rgba(255, 255, 255, 0.85);
+    }
+  }
+
+  // Indicators – circular
+  .carousel-indicators [data-bs-target] {
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    border: 1px solid currentColor;
+    background: transparent;
+    color: var(--hero-controller-color, #fff);
+    opacity: 0.85;
+    margin: 0 6px;
+  }
+
+  .carousel-indicators .active {
+    background: currentColor;
+    opacity: 1;
+  }
+
+  // Reduce accidental whitespace impact (img src etc.) – purely visual protection
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+}

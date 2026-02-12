@@ -1,0 +1,143 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Hero Slider (Container)
+group: Hero
+status: stable
+description: >
+  Bootstrap 5 Carousel container for Hero Slide items. Add unlimited slides by
+  placing multiple "Hero Slide" components into the slot (drag & drop reorder).
+
+props:
+  type: object
+  properties:
+    html_id:
+      type: string
+      title: HTML ID
+      description: Leave empty to auto-generate.
+      default: ""
+
+    section_padding_y:
+      type: string
+      title: Section vertical padding
+      enum: [py-0, py-3, py-4, py-5]
+      default: py-0
+      meta:enum:
+        py-0: None
+        py-3: Small
+        py-4: Medium
+        py-5: Large
+
+    container_type:
+      type: string
+      title: Container width
+      enum: [container, container-fluid, none]
+      default: none
+      meta:enum:
+        container: Container
+        container-fluid: Full width (container-fluid)
+        none: No container
+
+    bg_edge2edge:
+      type: boolean
+      title: Edge-to-edge background
+      examples: [true]
+      default: true
+
+    media_position:
+      type: string
+      title: Media position
+      description: Default media position for slides (slides can override).
+      enum: [overlay, start, end, none]
+      default: overlay
+      meta:enum:
+        overlay: Overlay background
+        start: Image left
+        end: Image right
+        none: No media (text only)
+
+    transition:
+      type: string
+      title: Transition
+      enum: [slide, fade]
+      default: slide
+      meta:enum:
+        slide: Slide
+        fade: Fade
+
+    autoplay:
+      type: boolean
+      title: Autoplay
+      examples: [true]
+      default: true
+
+    interval_ms:
+      type: integer
+      title: Autoplay interval (ms)
+      default: 5000
+      minimum: 1000
+      maximum: 60000
+
+    pause_on_hover:
+      type: boolean
+      title: Pause on hover
+      examples: [true]
+      default: true
+
+    show_indicators:
+      type: boolean
+      title: Show indicators
+      examples: [true]
+      default: true
+
+    show_controls:
+      type: boolean
+      title: Show prev/next controls
+      examples: [true]
+      default: true
+
+    slider_height:
+      type: string
+      title: Slider height
+      description: Fixed height presets (px).
+      enum: ['500', '700', '900']
+      default: '700'
+      meta:enum:
+        '500': 500px
+        '700': 700px
+        '900': 900px
+
+    controller_shape:
+      type: string
+      title: Controller shape
+      enum: [round, square, pill]
+      default: round
+      meta:enum:
+        round: Round
+        square: Square
+        pill: Pill
+
+    controller_color:
+      type: string
+      title: Controller color
+      enum: [primary, light, dark, white]
+      default: primary
+      meta:enum:
+        primary: Primary
+        light: Light
+        dark: Dark
+        white: White
+
+    extra_classes:
+      type: string
+      title: Extra classes
+      description: Space separated classes (Bootstrap utilities allowed).
+      default: ""
+
+slots:
+  slides:
+    title: Slides
+    description: Add one or more "Hero Slide" components here (unlimited, drag & drop reorder).
+
+libraryOverrides:
+  dependencies:
+    - vartheme_bs5/framework
+    # `framework` depends on `bootstrap-scripts` which already includes carousel.

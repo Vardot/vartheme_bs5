@@ -109,7 +109,22 @@
   logo_filter_class
 ]|filter(v => v)|join(' ') %}
 
-{% set media_ok = media is defined and media and media.src is defined and media.src is not empty %}
+{% set src_value = '' %}
+{% if media is defined and media %}
+  {# Drupal Canvas media uploads can provide src as a string OR as an object/array (e.g. {url: ...}). #}
+  {% if media.src is defined and media.src %}
+    {% if media.src is iterable %}
+      {% set src_value = media.src.url|default(media.src.uri|default(media.src.value|default(''))) %}
+    {% else %}
+      {% set src_value = media.src %}
+    {% endif %}
+  {% elseif media.url is defined and media.url %}
+    {% set src_value = media.url %}
+  {% endif %}
+{% endif %}
+
+{% set media_ok = src_value is not empty %}
+
 
 <div{{ attrs }}>
   {% if ratio_class %}
@@ -127,7 +142,7 @@
 
         {% if media_ok %}
           {% include 'canvas:image' ignore missing with {
-            src: media.src,
+            src: src_value,
             alt: media.alt,
             width: media.width,
             height: media.height,
@@ -150,7 +165,7 @@
 
       {% if media_ok %}
         {% include 'canvas:image' ignore missing with {
-          src: media.src,
+          src: src_value,
           alt: media.alt,
           width: media.width,
           height: media.height,

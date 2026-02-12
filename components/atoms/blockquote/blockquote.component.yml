@@ -68,6 +68,7 @@ props:
       type: boolean
       title: Show quote icon
       description: Displays a decorative quotation mark icon.
+      examples: [true]
       default: true
 
     radius:

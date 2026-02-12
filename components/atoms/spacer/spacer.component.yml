@@ -65,7 +65,8 @@ props:
       type: boolean
       title: "Show helper in editor"
       description: "Shows a dashed box so admins can select the spacer in Canvas/Layout Builder."
-      default: true
+      examples: [false]
+      default: false
     
     html_id:
       type: string
