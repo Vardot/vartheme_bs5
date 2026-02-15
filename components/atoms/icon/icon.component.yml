@@ -9,7 +9,7 @@ props:
       type: string
       title: Icon name
       description: "Select an SVG icon from images/icons (generated from vartheme_bs5.icons.yml)."
-      default: "rocket"
+      default: "circle-fill"
       enum:
         - 0-circle
         - 0-circle-fill
@@ -2144,6 +2144,16 @@ props:
       title: HTML ID
       default: ""
 
+    role:
+      type: string
+      title: Role
+      description: The accessibility role for the icon as string. (https://icons.getbootstrap.com/#accessibility)
+      default: ''
+    rtl:
+      type: string
+      title: RTL Icon name
+      description: If needed, The name of the Right to Left (RTL) icon replacement Bootstrap Icon for the default LTR one.
+      default: ''
     extra_classes:
       type: string
       title: Extra classes
