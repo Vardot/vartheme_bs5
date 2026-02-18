@@ -3,6 +3,7 @@ name: Views view summary
 description: Implementation for displaying a view as a view summary list group of items.
 group: Views
 noUi: true
+use_in_views: true
 props:
   type: object
   properties:
@@ -45,5 +46,8 @@ props:
       description: "HTML attributes to apply to the view summary tag."
 slots:
   rows:
-    title: Rows
-    description: Rows
+    type: array
+    title: 'Rows'
+    description: 'Rows'
+    items:
+      type: 'object'

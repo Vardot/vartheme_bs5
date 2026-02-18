@@ -3,6 +3,7 @@ name: Views view table
 description: Implementation for displaying a view as a table.
 group: Views
 noUi: true
+use_in_views: true
 props:
   type: object
   properties:
@@ -157,5 +158,8 @@ props:
       default: {}
 slots:
   rows:
-    title: Rows
-    description: Rows
+    type: array
+    title: 'Rows'
+    description: 'Rows'
+    items:
+      type: 'object'

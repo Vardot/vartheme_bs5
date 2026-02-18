@@ -3,9 +3,17 @@ name: Views view unformatted
 description: Component implementation to display a view of unformatted rows.
 group: Views
 noUi: true
+use_in_views: true
 props:
   type: object
   properties:
     content:
       type: string
       title: Content
+slots:
+  rows:
+    type: array
+    title: 'Rows'
+    description: 'Rows'
+    items:
+      type: 'object'

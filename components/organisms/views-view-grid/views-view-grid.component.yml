@@ -3,6 +3,7 @@ name: Views view grid
 description: Component implementation for views to display rows in a grid.
 group: Views
 noUi: true
+use_in_views: true
 props:
   type: object
   properties:

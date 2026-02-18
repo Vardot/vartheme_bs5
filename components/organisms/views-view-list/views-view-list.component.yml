@@ -38,5 +38,8 @@ props:
       description: "HTML attributes to apply to the list."
 slots:
   rows:
-    title: Rows
-    description: 'Data rows by view rows.'
+    type: array
+    title: 'Rows'
+    description: 'Rows'
+    items:
+      type: 'object'
