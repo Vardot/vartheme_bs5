@@ -40,17 +40,6 @@ bootstrap-scripts:
     - vartheme_bs5/bs-tooltip-script
     - content_moderation/content_moderation
 
-hero-slider:
-  css:
-    theme:
-      components/atoms/hero-slider/assets/css/hero-slider.css: {}
-  js:
-    components/atoms/hero-slider/assets/js/hero-slider.js: {}
-  dependencies:
-    - core/drupal
-    - core/once
-    - vartheme_bs5/framework
-
 # Popperjs core.
 popper-script:
   js:

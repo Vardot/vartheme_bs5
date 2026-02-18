@@ -77,10 +77,6 @@ props:
         py-4: Medium
         py-5: Large
 
-    merge_media:
-      type: boolean
-      title: Merge media with card (top/bottom)
-      default: true
 
     container_type:
       type: string
@@ -130,7 +126,7 @@ props:
     padding:
       type: boolean
       title: Add padding
-      default: true
+      default: false
 
     horizontal_alignment:
       type: string
@@ -167,7 +163,7 @@ props:
         - bg-danger
         - bg-warning
         - bg-info
-      default: bg-white
+      default: bg-transparent
       meta:enum:
         bg-transparent: Transparent
         bg-white: White
@@ -271,40 +267,15 @@ props:
         cover: Cover
         contain: Contain
 
-    media_height_mode:
-      type: string
-      title: Media height mode
-      enum: [auto, ribbon, large]
-      default: auto
-      meta:enum:
-        auto: Auto
-        ribbon: Ribbon
-        large: Large
 
     extra_classes:
       type: string
       title: Extra classes (wrapper)
       default: ""
 
-    media_extra_classes:
-      type: string
-      title: Extra classes (media)
-      default: ""
 
-    content_extra_classes:
-      type: string
-      title: Extra classes (content)
-      default: ""
 
-    card_attributes_extra:
-      type: string
-      title: Extra attributes (card wrapper)
-      default: ""
 
-    content_attributes_extra:
-      type: string
-      title: Extra attributes (content wrapper)
-      default: ""
 
     button_1_label:
       type: string

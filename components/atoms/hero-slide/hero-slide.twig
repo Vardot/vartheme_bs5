@@ -50,9 +50,15 @@
   {% set container_type = hero_slider_container_type|default('none') %}
   {% set pad_x = content_padding_x|default('px-0') %}
   {% set pad_y = content_padding_y|default('py-0') %}
-  {% if mp == 'overlay' or mp == 'none' %}{% set pad_x = 'px-0' %}{% set pad_y = 'py-0' %}{% endif %}
-  {% if mp == 'start' and (pad_x == 'px-0') %}{% set pad_x = 'px-4' %}{% endif %}
-  {% if mp != 'overlay' and (pad_y == 'py-0') %}{% set pad_y = 'py-5' %}{% endif %}
+  {% if mp == 'overlay' %}{% set pad_x = 'px-0' %}{% set pad_y = 'pt-4 pt-lg-0 pb-4 pb-lg-0' %}{% elseif mp == 'none' %}{% set pad_x = 'px-0' %}{% set pad_y = 'py-4' %}{% endif %}
+  {#
+    Split layout content horizontal padding:
+    - For media position START (image left), desktop wants some breathing room,
+      but on responsive we should avoid extra left/right padding.
+    - Apply padding only from lg and up.
+  #}
+  {% if mp == 'start' and (pad_x == 'px-0') %}{% set pad_x = 'px-0 px-lg-4' %}{% endif %}
+  {% if mp != 'overlay' and (pad_y == 'py-0') %}{% set pad_y = 'py-3 py-lg-5' %}{% endif %}
   {% set title_tag_res = title_tag|default('h2') %}
   {% set title_size_res = title_size|default('display-5') %}
   {% set content_size_res = content_size|default('fs-6') %}
@@ -79,6 +85,8 @@
 
   {% set justify_map = { start: 'justify-content-start', center: 'justify-content-center', end: 'justify-content-end' } %}
   {% set align_map = { start: 'align-items-start', center: 'align-items-center', end: 'align-items-end' } %}
+
+  {% set content_wrap_class = (mp == 'none') ? 'position-relative w-100 h-100' : 'position-absolute top-0 start-0 w-100 h-100' %}
   {% set width_map = { narrow: 'col-lg-5', normal: 'col-lg-6', wide: 'col-lg-7' } %}
   {% set gap_map = { none: 'g-0', sm: 'g-2', md: 'g-3', lg: 'g-4' } %}
 
@@ -130,8 +138,7 @@
       {% if mp == 'overlay' or mp == 'none' %}
         {% if src_final %}
           {% if src_final %}
-<img class="d-block w-100 h-100 hero-slider__img"
-            style="object-fit: {{ img_fit }}; object-position: {{ object_pos }};"
+<img class="d-block w-100 h-100 hero-slider__img hero-slider__img-fit-{{ img_fit }} hero-slider__img-pos-{{ object_pos }}"
             src="{{- src_final|trim -}}"
             alt="{{ alt_final|e('html_attr') }}"
             loading="lazy"
@@ -139,7 +146,7 @@
 {% endif %}
         {% else %}
           {% if mp == 'none' %}
-          <div class="position-absolute top-0 start-0 w-100 h-100 bg-white" aria-hidden="true"></div>
+          {# No-media text-only: background comes from bg_color on .hero-slider__item #}
         {% else %}
           <div class="position-absolute top-0 start-0 w-100 h-100 bg-black" aria-hidden="true"></div>
         {% endif %}
@@ -153,7 +160,7 @@
           <div class="position-absolute top-0 start-0 w-100 h-100 {{ overlay_classes }}" aria-hidden="true"></div>
         {% endif %}
 
-        <div class="position-absolute top-0 start-0 w-100 h-100 d-flex {{ justify_map[h_align] }} {{ align_map[v_align] }}">
+        <div class="{{ content_wrap_class }} d-flex {{ justify_map[h_align] }} {{ align_map[v_align] }} hero-slider__content-wrap">
           <div class="w-100 {{ pad_y }}">
             <div class="{{ content_container_class }}">
               <div class="row g-0">
@@ -189,8 +196,7 @@
               <div class="h-100 w-100 position-relative">
                 {% if src_final %}
                   {% if src_final %}
-<img class="d-block w-100 h-100 hero-slider__img"
-                    style="object-fit: {{ img_fit }}; object-position: {{ object_pos }};"
+<img class="d-block w-100 h-100 hero-slider__img hero-slider__img-fit-{{ img_fit }} hero-slider__img-pos-{{ object_pos }}"
                     src="{{- src_final|trim -}}"
                     alt="{{ alt_final|e('html_attr') }}"
                     loading="lazy"

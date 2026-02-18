@@ -1,0 +1,233 @@
+{#
+  Hero Slider Container (Bootstrap 5)
+
+  Usage (Canvas):
+  - Add "Hero Slider (Container)" component.
+  - Inside its "Slides" slot, add unlimited "Hero Slide" components.
+  - Reorder slides via drag & drop (Canvas component order).
+
+  Notes:
+  - Canvas does not support array-of-object props, so we use a slot.
+  - If no slide is marked Active, we automatically mark the first slide active
+    by patching the rendered markup (Canvas-safe).
+#}
+
+{#
+  Attach only the theme framework library.
+  In vartheme_bs5, `framework` depends on `bootstrap-scripts`, which already
+  includes `bs-carousel-script`.
+#}
+{{ attach_library('vartheme_bs5/framework') }}
+{# Theme-level Hero Slider enhancements (indicators builder, active layout tracking). #}
+
+{% set base_id = html_id|default('heroSlider')|trim %}
+{% if base_id is empty %}{% set base_id = 'heroSlider' %}{% endif %}
+{# Always append a random suffix so duplicated sliders never share the same DOM id. #}
+{% set carousel_id = (base_id|clean_id) ~ '-' ~ random(1000000) %}
+
+{# Expose settings to nested Hero Slide items (similar to accordion container pattern). #}
+{% set hero_slider_id = carousel_id %}
+{% set hero_slider_media_position = media_position|default('overlay') %}
+{% set hero_slider_bg_edge2edge = bg_edge2edge ? true : true %}
+{% set hero_slider_container_type = container_type|default('none') %}
+{% set hero_slider_section_padding_y = section_padding_y|default('py-0') %}
+{# Default height requested: 700px #}
+{% set hero_slider_slider_height = slider_height|default('700') %}
+{% set hero_slider_controller_shape = controller_shape|default('round') %}
+{% set hero_slider_controller_color = controller_color|default('primary') %}
+
+{% set carousel_classes = 'carousel slide hero-slider hero-slider--h-' ~ hero_slider_slider_height ~ ' hero-slider--controller-' ~ hero_slider_controller_color %}
+{% if transition|default('slide') == 'fade' %}{% set carousel_classes = carousel_classes ~ ' carousel-fade' %}{% endif %}
+
+{#
+  Width rule (requested):
+  - Media position "Overlay background" => slider is full width.
+  - Media position "Image left" / "Image right" => slider is container width.
+
+  We still keep `container_type` for the *content* inside slides.
+#}
+{#
+  Width rule is handled per slide:
+  - Overlay slides are full width.
+  - Split slides (left/right) wrap themselves in `.container`.
+  This avoids double-containers when Canvas wraps components.
+#}
+{% set outer_container_class = '' %}
+
+{# Content container class (used inside slides + empty-state preview). #}
+{% set content_container_class = '' %}
+{% if hero_slider_container_type == 'container' %}
+  {% set content_container_class = 'container' %}
+{% elseif hero_slider_container_type == 'container-fluid' %}
+  {% set content_container_class = 'container-fluid' %}
+{% else %}
+  {% set content_container_class = 'container' %}
+{% endif %}
+
+{# Let Hero Slide know whether the whole slider is wrapped in a container. #}
+{% set hero_slider_outer_container = outer_container_class ? true : false %}
+
+{% set section_classes = [] %}
+{% if hero_slider_section_padding_y %}{% set section_classes = section_classes|merge([hero_slider_section_padding_y]) %}{% endif %}
+{% if extra_classes|default('')|trim %}{% set section_classes = section_classes|merge(extra_classes|trim|split(' ')) %}{% endif %}
+
+{#
+  Slot handling (Canvas-safe):
+  - Do NOT pre-render slot content into a string (keeps bubbleable metadata).
+  - We will activate the first slide (if needed) and build indicators via JS.
+#}
+{% set has_slides = slides is defined and slides|render|trim is not empty %}
+
+{# Controller styles #}
+{% set control_base = ['hero-slider__control'] %}
+{% if hero_slider_controller_shape == 'round' %}
+  {% set control_base = control_base|merge(['rounded-circle']) %}
+{% elseif hero_slider_controller_shape == 'pill' %}
+  {% set control_base = control_base|merge(['rounded-pill']) %}
+{% else %}
+  {% set control_base = control_base|merge(['rounded-0']) %}
+{% endif %}
+
+{# Controller icon color (no background, matches previous components). #}
+{% set control_text_class = 'text-' ~ hero_slider_controller_color %}
+{% if hero_slider_controller_color == 'white' %}
+  {% set control_text_class = 'text-white' %}
+{% endif %}
+
+{% set slider_height_style = 'height: ' ~ hero_slider_slider_height ~ 'px; min-height: ' ~ hero_slider_slider_height ~ 'px;' %}
+
+{#
+  Keep class naming consistent with previous components:
+  - `bg-edge2edge` is used across components for full-bleed backgrounds.
+  - We also keep `hero-slider--edge2edge` for backward compatibility.
+#}
+<section class="hero-slider{% if hero_slider_bg_edge2edge %} hero-slider--edge2edge bg-edge2edge{% endif %} {{ section_classes|join(' ') }}">
+
+{% if outer_container_class %}
+    <div class="{{ outer_container_class }}">
+  {% endif %}
+
+  <div id="{{ carousel_id }}" class="{{ carousel_classes }}"
+   
+    data-hero-media-position="{{ hero_slider_media_position }}"
+	    data-hero-autoplay="{{ autoplay ? '1' : '0' }}"
+    {% if autoplay %}data-bs-ride="carousel" data-bs-interval="{{ interval_ms|default(5000) }}"{% else %}data-bs-interval="false"{% endif %}
+    {% if pause_on_hover %}data-bs-pause="hover"{% else %}data-bs-pause="false"{% endif %}
+  >
+
+    {# Inline styles scoped to this carousel instance (matches existing hero-slider component approach). #}
+    
+
+    {# Default to enabled indicators/controls unless explicitly turned off. #}
+    {% set _show_indicators = show_indicators is defined ? show_indicators : false %}
+    {% set _show_controls = show_controls is defined ? show_controls : false %}
+
+    
+    {# Nav (indicators + controls) alignment:
+       - overlay/none: full width
+       - start (image left): align under content (right column) => offset on lg
+       - end (image right): align under content (left column)
+    #}
+    {% set nav_col_class = 'col-12' %}
+    {% if hero_slider_media_position == 'start' %}
+      {% set nav_col_class = 'col-12 col-lg-6 offset-lg-6' %}
+    {% elseif hero_slider_media_position == 'end' %}
+      {% set nav_col_class = 'col-12 col-lg-6' %}
+    {% endif %}
+
+
+    <div class="carousel-inner">
+      {% if has_slides %}
+        {{ slides }}
+      {% else %}
+        {# Canvas preview fallback when empty. #}
+        <div class="carousel-item active" data-hero-slide>
+          <div class="hero-slider__item position-relative w-100 bg-black">
+            <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50" aria-hidden="true"></div>
+            <div class="position-absolute top-0 start-0 w-100 h-100 d-flex justify-content-start align-items-center">
+              <div class="w-100 py-4">
+                  <div class="{{ content_container_class }}">
+                  <div class="row g-0">
+                    <div class="col-12 col-lg-8 px-4">
+                      <div class="hero-slider__caption text-start text-white">
+                        <h2 class="hero-slider__title display-5 mb-3">Hero Slider</h2>
+                        <div class="hero-slider__text fs-6"><p>Add “Hero Slide” components into the Slides slot.</p></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+
+
+{% if _show_indicators or _show_controls %}
+      <div class="hero-slider__nav" aria-hidden="false">
+        <div class="{{ content_container_class }}">
+          <div class="row">
+            <div class="{{ nav_col_class }}" data-hero-nav-col>
+              {% set nav_inner_class = 'd-flex align-items-center gap-3' %}
+              {% if _show_indicators and _show_controls %}
+                {% set nav_inner_class = nav_inner_class ~ ' justify-content-between' %}
+              {% elseif (not _show_indicators) and _show_controls %}
+                {% set nav_inner_class = nav_inner_class ~ ' justify-content-end' %}
+              {% else %}
+                {% set nav_inner_class = nav_inner_class ~ ' justify-content-start' %}
+              {% endif %}
+              {# Apply controller color to indicators too via currentColor. #}
+              <div class="{{ (nav_inner_class ~ ' ' ~ control_text_class ~ (hero_slider_media_position == 'overlay' ? ' mt-3 mt-md-4' : ' mt-3'))|trim }}">
+            {#
+              Canvas-safe indicators:
+              We don't count slides in Twig (that would require pre-rendering slot content).
+              Indicators are built in JS after render based on `.carousel-item` count.
+            #}
+            {% if _show_indicators %}
+              <div class="carousel-indicators position-static justify-content-start m-0" data-hero-indicators></div>
+            {% endif %}
+
+            {% if _show_controls %}
+              <div class="hero-slider__controls d-flex align-items-center gap-2" role="group" aria-label="Carousel controls">
+                <button class="{{ control_base|join(' ') }} btn btn-link {{ control_text_class }}" type="button" data-bs-target="#{{ carousel_id }}" data-bs-slide="prev">
+                  <span class="visually-hidden">Previous</span>
+                  {# Bootstrap icon: arrow-left-circle-fill (color via currentColor) #}
+                  <svg class="icon-prev" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                    <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H6.707l1.147 1.146a.5.5 0 1 1-.708.708l-2-2a.5.5 0 0 1 0-.708l2-2a.5.5 0 1 1 .708.708L6.707 7.5H11.5z" fill="currentColor"/>
+                  </svg>
+                </button>
+
+                <button class="{{ (control_base|merge(['hero-slider__control--pause']))|join(' ') }} btn btn-link {{ control_text_class }}" type="button" data-hero-toggle="pause" data-paused="{{ autoplay ? 'false' : 'true' }}" aria-label="{{ autoplay ? 'Pause' : 'Play' }}">
+                  <span class="visually-hidden">{{ autoplay ? 'Pause' : 'Play' }}</span>
+                  {# Bootstrap icon: pause-fill (color via currentColor) #}
+                  <svg class="icon-pause" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                    <path d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5zm5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5z" fill="currentColor"/>
+                  </svg>
+                  <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M10 8l8 4-8 4V8z" fill="currentColor"/>
+                  </svg>
+                </button>
+
+                <button class="{{ control_base|join(' ') }} btn btn-link {{ control_text_class }}" type="button" data-bs-target="#{{ carousel_id }}" data-bs-slide="next">
+                  <span class="visually-hidden">Next</span>
+                  {# Bootstrap icon: arrow-right-circle-fill (color via currentColor) #}
+                  <svg class="icon-next" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                    <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zm-3.5 7.5a.5.5 0 0 0 0 1h4.793l-1.147 1.146a.5.5 0 1 0 .708.708l2-2a.5.5 0 0 0 0-.708l-2-2a.5.5 0 1 0-.708.708L9.293 7.5H4.5z" fill="currentColor"/>
+                  </svg>
+                </button>
+              </div>
+            {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+
+  </div>
+
+  {% if outer_container_class %}
+    </div>
+  {% endif %}
+</section>

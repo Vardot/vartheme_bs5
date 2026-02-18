@@ -1,0 +1,42 @@
+/**
+ * Hero Card styles (source SCSS)
+ * Compile to: components/atoms/hero-card/assets/css/hero-card.css
+ *
+ * Keep selectors scoped to `.hero-card` to avoid leaking styles.
+ */
+
+.hero-card {
+  // Inherit text color into common content elements.
+  .hero-card__content :where(h1,h2,h3,h4,h5,h6,p,span,small,em,strong,ul,ol,li,blockquote,dl,dt,dd) {
+    color: inherit;
+  }
+  .hero-card__content a:not(.btn) {
+    color: inherit;
+  }
+
+  // Edge-to-edge background image (overlay mode with edge-to-edge option).
+  &.hero-card--edge-bg {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-card__edge-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    // Default
+    object-fit: cover;
+    object-position: center;
+    z-index: 0;
+  }
+
+  // Fit modifiers
+  .hero-card__media-fit-cover { object-fit: cover; }
+  .hero-card__media-fit-contain { object-fit: contain; }
+
+  // Position modifiers (focal point)
+  .hero-card__media-pos-top { object-position: top; }
+  .hero-card__media-pos-center { object-position: center; }
+  .hero-card__media-pos-bottom { object-position: bottom; }
+}
