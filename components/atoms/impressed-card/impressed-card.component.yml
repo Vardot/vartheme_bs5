@@ -1,0 +1,154 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Impressed Card
+group: Card
+status: stable
+description: Impressed card (image + content) with Bootstrap 5 styles. Content is
+  a drag & drop slot; media uses the Media upload setting only.
+props:
+  type: object
+  properties:
+    media_position:
+      type: string
+      title: Media position
+      default: top
+      enum:
+      - top
+      - bottom
+      meta:enum:
+        top: Top
+        bottom: Bottom
+    card_border:
+      type: boolean
+      title: Card border
+      default: false
+    padded:
+      type: string
+      title: Content padding
+      description: Padding applied to the content area.
+      default: none
+      enum:
+      - none
+      - small
+      - medium
+      - large
+      - x_large
+      meta:enum:
+        none: None
+        small: Small
+        medium: Medium
+        large: Large
+        x_large: Extra large
+    equal_height:
+      type: boolean
+      title: Equal height
+      default: false
+    anchor_all:
+      type: boolean
+      title: Anchor all (whole card)
+      default: true
+    box_shadow:
+      type: string
+      title: Shadow
+      description: Bootstrap shadow utility applied to the card.
+      default: none
+      enum:
+      - none
+      - shadow-sm
+      - shadow
+      - shadow-lg
+      - shadow-xl
+      meta:enum:
+        none: None
+        shadow-sm: Small
+        shadow: Medium
+        shadow-lg: Large
+        shadow-xl: Extra large
+    corner_style:
+      type: string
+      title: Corner style
+      description: Bootstrap rounded utility applied to the card.
+      default: rounded
+      enum:
+      - none
+      - rounded_sm
+      - rounded
+      - rounded_lg
+      - rounded_pill
+      meta:enum:
+        none: None
+        rounded_sm: Small
+        rounded: Default
+        rounded_lg: Large
+        rounded_pill: Pill
+    link_url:
+      type: string
+      title: Card link
+      default: ''
+    link_target:
+      type: string
+      title: Link target
+      enum:
+      - default
+      - _self
+      - _blank
+      default: default
+      meta:enum:
+        default: Same tab (default)
+        _self: Same tab
+        _blank: New tab
+    media_image:
+      title: Media upload
+      description: Image selected from Media Library or uploaded. Displayed in the
+        media area (no drag & drop slot).
+      $ref: json-schema-definitions://canvas.module/image
+      type: object
+      examples:
+      - src: assets/impressed-card-image-placeholder.svg
+        alt: Impressed image
+        width: 800
+        height: 600
+    background_color:
+      type: string
+      title: Background color
+      description: Bootstrap background utility applied to the card.
+      default: none
+      enum:
+      - none
+      - bg-body
+      - bg-body-tertiary
+      - bg-white
+      - bg-light
+      - bg-dark
+      - bg-primary
+      - bg-secondary
+      - bg-success
+      - bg-danger
+      - bg-warning
+      - bg-info
+      - bg-transparent
+      meta:enum:
+        none: None (transparent)
+        bg-body: Body
+        bg-body-tertiary: Body tertiary
+        bg-white: White
+        bg-light: Light
+        bg-dark: Dark
+        bg-primary: Primary
+        bg-secondary: Secondary
+        bg-success: Success
+        bg-danger: Danger
+        bg-warning: Warning
+        bg-info: Info
+        bg-transparent: Transparent
+    html_id:
+      type: string
+      title: HTML ID
+      default: ''
+    extra_classes:
+      type: string
+      title: Extra classes (wrapper)
+      default: ''
+slots:
+  content:
+    title: Card content (slot)
+    description: Drag & drop content slot for text/buttons/etc.
