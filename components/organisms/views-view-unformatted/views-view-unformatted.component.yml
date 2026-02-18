@@ -7,9 +7,20 @@ use_in_views: true
 props:
   type: object
   properties:
-    content:
+    title:
       type: string
-      title: Content
+      title: Title
+      description: 'The title of this group of rows. May be empty.'
+      default: ''
+    default_row_class:
+      type: boolean
+      title: 'Default Row Class'
+      description: 'Add a default "views-row" CSS class to each row wrapper.'
+      default: false
+    attributes:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      description: 'HTML attributes for the wrapping element.'
 slots:
   rows:
     type: array

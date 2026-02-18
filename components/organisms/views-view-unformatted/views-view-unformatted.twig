@@ -3,14 +3,22 @@
  * @file
  * Varbase Component implementation to display a view of unformatted rows.
  *
- * Available variables:
- * - title: The title of this group of rows. May be empty.
- * - rows: A list of the view's row items.
- *   - attributes: The row's HTML attributes.
- *   - content: The row's content.
- * - view: The view object.
- * - default_row_class: A flag indicating whether default classes should be
- *   used on rows.
+ * This template is used in two contexts:
+ *
+ * 1. As a theme template (via {% include "vartheme_bs5:views-view-unformatted" %}
+ *    in templates/views/views-view-unformatted.html.twig). In this context the
+ *    variables come from template_preprocess_views_view_unformatted():
+ *    - title: The title of this group of rows. May be empty.
+ *    - rows: A list of the view's row items where each item has:
+ *      - attributes: The row's HTML attributes (Drupal\Core\Template\Attribute).
+ *      - content: The row's rendered content.
+ *    - view: The view object.
+ *    - default_row_class: TRUE if default classes should be applied on rows.
+ *
+ * 2. As an SDC component (via ComponentsViewsStyle views style plugin). In
+ *    this context the "rows" slot receives an array of render arrays from the
+ *    views row plugin. Each row item is a render array, not a
+ *    {attributes, content} object.
  *
  * @see template_preprocess_views_view_unformatted()
  */
@@ -28,7 +36,15 @@
       default_row_class ? 'views-row',
     ]
   %}
-  <div{{ row.attributes.addClass(row_classes) }}>
-    {{- row.content -}}
-  </div>
+  {% if row.content is defined %}
+    {# Theme template context: rows come from template_preprocess_views_view_unformatted(). #}
+    <div{{ row.attributes.addClass(row_classes) }}>
+      {{- row.content -}}
+    </div>
+  {% else %}
+    {# SDC component context: rows are render arrays from the views row plugin. #}
+    <div{{ create_attribute().addClass(row_classes) }}>
+      {{- row -}}
+    </div>
+  {% endif %}
 {% endfor %}
