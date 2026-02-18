@@ -1,0 +1,104 @@
+{#
+  Overlay Card (Bootstrap 5) - Canvas + SDC safe
+  - No inline CSS/JS
+  - Background media from Media upload prop (no media slot UI)
+  - Content is the only Canvas slot (drag & drop)
+#}
+
+{% set html_id = html_id|default('') %}
+{% set extra_classes = extra_classes|default('')|trim %}
+
+{% set card_border = card_border|default(false) %}
+{% set padded = padded|default('medium') %}
+{% set equal_height = equal_height|default(false) %}
+{% set anchor_all = anchor_all|default(true) %}
+{% set box_shadow = box_shadow|default('none') %}
+{% set card_height = card_height|default('medium') %}
+{% set overlay_color = overlay_color|default('none') %}
+{% set h_align = h_align|default('start') %}
+{% set v_align = v_align|default('center') %}
+
+{% set link_url = link_url|default('')|trim %}
+{% set link_target = link_target|default('default') %}
+{% set link_target_attr = (link_target != 'default') ? link_target : '' %}
+
+{% set media_image = media_image|default({}) %}
+{% set has_media = (media_image.src|default('')|trim) is not empty %}
+
+{# Canvas slot: expose ONLY the content slot. #}
+{% set content_slot %}{% block content %}{% endblock %}{% endset %}
+{% set has_content_slot = content_slot|render|trim is not empty %}
+
+{# Optional placeholder background if no media provided.
+   component_metadata.path is relative to the Drupal root; prepend base_path() so it also works when Drupal is installed in a subdirectory.
+   See: https://www.drupal.org/project/drupal/issues/3567767
+#}
+{% set placeholder_src = (component_metadata.path is defined) ? (base_path ~ component_metadata.path ~ '/assets/overlay-card-image-placeholder.svg') : 'assets/overlay-card-image-placeholder.svg' %}
+{% set bg_src = has_media ? media_image.src : placeholder_src %}
+{% set bg_alt = media_image.alt|default('') %}
+
+{% set padding_map = { small: 'p-2', medium: 'p-3', large: 'p-4', x_large: 'p-5' } %}
+{% set content_padding_class = padding_map[padded]|default('p-3') %}
+{% set height_map = { auto: 'overlay-card--height-auto', small: 'overlay-card--height-small', medium: 'overlay-card--height-medium', large: 'overlay-card--height-large', x_large: 'overlay-card--height-x-large' } %}
+{% set height_class = height_map[card_height]|default('overlay-card--height-medium') %}
+
+
+{# Horizontal alignment is a text alignment concern for the slot content. #}
+{% set h_map = { start: 'text-start', center: 'text-center', end: 'text-end' } %}
+{% set v_map = { start: 'align-items-start', center: 'align-items-center', end: 'align-items-end' } %}
+{% set h_class = h_map[h_align]|default('text-start') %}
+{% set overlay_map = { none: '', dark_25: 'overlay-card__overlay--dark-25', dark_50: 'overlay-card__overlay--dark-50', dark_75: 'overlay-card__overlay--dark-75', light_25: 'overlay-card__overlay--light-25', light_50: 'overlay-card__overlay--light-50', primary_25: 'overlay-card__overlay--primary-25', primary_50: 'overlay-card__overlay--primary-50', secondary_25: 'overlay-card__overlay--secondary-25', secondary_50: 'overlay-card__overlay--secondary-50' } %}
+{% set overlay_class = overlay_map[overlay_color]|default('') %}
+
+{% set v_class = v_map[v_align]|default('align-items-center') %}
+
+{% set use_anchor_all = anchor_all and link_url %}
+
+{% set card_classes = [
+  'overlay-card',
+  height_class,
+  'card',
+  'overflow-hidden',
+  'position-relative',
+  (card_border ? 'border' : 'border-0'),
+  ((box_shadow != 'none') ? box_shadow : ''),
+  (equal_height ? 'h-100' : ''),
+  extra_classes
+]|filter(v => v is not empty)|join(' ') %}
+
+<div{% if html_id %} id="{{ html_id }}"{% endif %} class="{{ card_classes }}">
+  {# Whole-card link wrapper #}
+  {% if use_anchor_all %}
+    <a class="overlay-card__linkwrap d-block text-decoration-none text-reset" href="{{ link_url }}"{% if link_target_attr %} target="{{ link_target_attr }}"{% endif %}>
+  {% endif %}
+
+  {# Background image #}
+  <img class="overlay-card__bg-img" src="{{ bg_src }}" alt="{{ bg_alt }}">
+
+  {# Color overlay (optional) #}
+  {% if overlay_class %}
+    <div class="overlay-card__overlay {{ overlay_class }}" aria-hidden="true"></div>
+  {% endif %}
+
+  {# Content overlay #}
+  <div class="overlay-card__content d-flex {{ v_class }} {{ content_padding_class }} text-white">
+    <div class="overlay-card__content-inner w-100 {{ h_class }}">
+      {% if has_content_slot %}
+        {{ content_slot }}
+      {% else %}
+        <div class="overlay-card__empty {{ h_class }} py-3">
+          Drop content here
+        </div>
+      {% endif %}
+
+      {# Non-anchor-all link (optional) #}
+      {% if link_url and (not anchor_all) %}
+        <a class="stretched-link" href="{{ link_url }}"{% if link_target_attr %} target="{{ link_target_attr }}"{% endif %}></a>
+      {% endif %}
+    </div>
+  </div>
+
+  {% if use_anchor_all %}
+    </a>
+  {% endif %}
+</div>
