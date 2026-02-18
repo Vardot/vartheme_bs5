@@ -1,0 +1,212 @@
+{#
+  Featured Card (Bootstrap 5) - Canvas + SDC safe
+  - No inline CSS/JS
+  - Responsive grid ratios per breakpoint
+  - Two slots only: media + content (intended for Views / blog cards)
+#}
+
+{% set html_id = html_id|default('') %}
+{% set extra_classes = extra_classes|default('')|trim %}
+
+{% set card_size = card_size|default('medium') %}
+{% set card_border = card_border|default(false) %}
+{% set padded = padded|default('medium') %}
+{# Back-compat: if padded comes as boolean, map true->large, false->none #}
+{% if padded is same as(true) %}
+  {% set padded = 'large' %}
+{% elseif padded is same as(false) %}
+  {% set padded = 'none' %}
+{% endif %}
+{% set padding_map = { none: '', x_small: 'p-1', small: 'p-2', medium: 'p-3', large: 'p-4', x_large: 'p-5' } %}
+{% set content_padding_class = padding_map[padded]|default('') %}
+{% set background_color = background_color|default('none') %}
+{% set box_shadow = box_shadow|default('none') %}
+{% set equal_height = equal_height|default(false) %}
+{% set anchor_all = anchor_all|default(true) %}
+{% set media_position = media_position|default('start') %}
+{% set content_valign = content_valign|default('center') %}
+{% set gutters = gutters|default('small_start') %}
+
+{% set corner_style = corner_style|default('rounded') %}
+{% set corner_map = { none: '', rounded_sm: 'rounded-1', rounded: 'rounded-3', rounded_lg: 'rounded-4', rounded_pill: 'rounded-pill', rounded_circle: 'rounded-circle' } %}
+{% set corner_class = corner_map[corner_style]|default('rounded-3') %}
+
+{% set title = title|default('')|trim %}
+{% set text = text|default('') %}
+{% set title_color = title_color|default('default') %}
+{% set text_color = text_color|default('default') %}
+{% set title_color_class = (title_color != 'default') ? title_color : '' %}
+{% set text_color_class = (text_color != 'default') ? text_color : '' %}
+{% set media_image = media_image|default({}) %}
+{% set has_media_prop = (media_image.src|default('')|trim) is not empty %}
+
+{% set link_url = link_url|default('')|trim %}
+{% set link_target = link_target|default('default') %}
+{% set link_target_attr = (link_target != 'default') ? link_target : '' %}
+
+{#
+  Slots (Canvas slots)
+  We intentionally expose ONLY the content slot.
+  Media is controlled via the Media upload prop to avoid Canvas "drag & drop" slot UI.
+#}
+{% set content_slot %}{% block content %}{% endblock %}{% endset %}
+
+{# Canvas UX: if a slot is empty, render a lightweight placeholder so the component is visible and droppable. #}
+{# NOTE: Do NOT use striptags() here. Pure media markup like <img> would become empty and placeholders would remain visible. #}
+{% set placeholder_src = (component_metadata.path is defined) ? (component_metadata.path ~ '/assets/featured-card-image-placeholder.svg') : 'assets/featured-card-image-placeholder.svg' %}
+{% set has_media = has_media_prop %}
+{% set has_content_slot = content_slot|render|trim is not empty %}
+
+{# Ratio mapping (Bootstrap 12-col) - key represents MEDIA / CONTENT #}
+{% set ratio_map = {
+  sixteen_eighty_three: {m: 2, c: 10},
+  eighty_three_sixteen: {m: 10, c: 2},
+  twentyfive_seventyfive: {m: 3, c: 9},
+  seventyfive_twentyfive: {m: 9, c: 3},
+  thirtythree_sixtysix: {m: 4, c: 8},
+  sixtysix_thirtythree: {m: 8, c: 4},
+  fifty_fifty: {m: 6, c: 6},
+  hundred_hundred: {m: 12, c: 12}
+} %}
+
+{% set ratio_all = ratio_all|default('fifty_fifty') %}
+{% set ratio_sm = ratio_sm|default(ratio_all) %}
+{% set ratio_md = ratio_md|default(ratio_all) %}
+{% set ratio_lg = ratio_lg|default(ratio_all) %}
+{% set ratio_xl = ratio_xl|default(ratio_all) %}
+{% set ratio_xxl = ratio_xxl|default(ratio_all) %}
+
+{% set r_all = ratio_map[ratio_all] %}
+{% set r_sm = ratio_map[ratio_sm] %}
+{% set r_md = ratio_map[ratio_md] %}
+{% set r_lg = ratio_map[ratio_lg] %}
+{% set r_xl = ratio_map[ratio_xl] %}
+{% set r_xxl = ratio_map[ratio_xxl] %}
+
+{# Build column classes (MEDIA) #}
+{% set media_col_classes = [
+  'col-12',
+  'col-' ~ r_all.m,
+  'col-sm-' ~ r_sm.m,
+  'col-md-' ~ r_md.m,
+  'col-lg-' ~ r_lg.m,
+  'col-xl-' ~ r_xl.m,
+  'col-xxl-' ~ r_xxl.m
+]|join(' ') %}
+
+{# Build column classes (CONTENT) #}
+{% set content_col_classes = [
+  'col-12',
+  'col-' ~ r_all.c,
+  'col-sm-' ~ r_sm.c,
+  'col-md-' ~ r_md.c,
+  'col-lg-' ~ r_lg.c,
+  'col-xl-' ~ r_xl.c,
+  'col-xxl-' ~ r_xxl.c
+]|join(' ') %}
+
+{# Gutters mapping #}
+{% set gutter_classes = 'g-4' %}
+{% if gutters == 'none' %}
+  {% set gutter_classes = 'g-0' %}
+{% elseif gutters == 'large' %}
+  {% set gutter_classes = 'g-4 g-lg-5' %}
+{% elseif gutters == 'small_start' %}
+  {% set gutter_classes = (media_position == 'start') ? 'g-2 g-lg-3' : 'g-4 g-lg-5' %}
+{% elseif gutters == 'small_end' %}
+  {% set gutter_classes = (media_position == 'end') ? 'g-2 g-lg-3' : 'g-4 g-lg-5' %}
+{% endif %}
+
+{# Content vertical alignment mapping #}
+{% set valign_map = { start: 'justify-content-start', center: 'justify-content-center', end: 'justify-content-end' } %}
+
+{# Root classes #}
+{% set root_classes = [
+  'featured-card',
+  'card',
+  corner_class,
+  'overflow-hidden',
+  (card_border ? 'border' : 'border-0'),
+  ((background_color != 'none') ? background_color : ''),
+  ((box_shadow != 'none') ? box_shadow : ''),
+  (equal_height ? 'h-100' : ''),
+  ('featured-card--size-' ~ card_size),
+  extra_classes
+]|join(' ')|trim %}
+
+{# Row order based on media_position #}
+{% set row_order_class = (media_position == 'end') ? 'flex-row-reverse' : '' %}
+
+{# Make the whole card clickable when enabled and URL is provided #}
+{% set use_anchor_all = anchor_all and link_url %}
+
+{% if use_anchor_all %}
+  <a class="featured-card__linkwrap text-reset text-decoration-none d-block" href="{{ link_url }}"
+     {% if link_target_attr %}target="{{ link_target_attr }}"{% endif %}
+     {% if link_target_attr == '_blank' %}rel="noopener noreferrer"{% endif %}>
+{% endif %}
+
+<div class="{{ root_classes }}" {% if html_id %}id="{{ html_id }}"{% endif %}>
+  <div class="featured-card__inner">
+    <div class="row {{ gutter_classes }} {{ row_order_class }} {{ equal_height ? 'h-100 align-items-stretch' : 'align-items-stretch' }}">
+
+      <div class="{{ media_col_classes }} {{ equal_height ? 'h-100' : '' }} featured-card__media-col d-flex">
+        <div class="featured-card__media-wrap w-100 h-100">
+          <div class="featured-card__slot featured-card__slot--media w-100 h-100 {{ not has_media ? 'is-empty' : '' }}">
+            {% if has_media_prop %}
+              {% set image_props = {
+                src: media_image.src,
+                alt: media_image.alt|default(''),
+                class: 'img-fluid w-100 h-100 object-fit-cover d-block',
+                loading: media_image.loading|default('lazy')
+              } %}
+              {% if media_image.width is defined and media_image.width is not empty %}
+                {% set image_props = image_props|merge({ width: media_image.width }) %}
+              {% endif %}
+              {% if media_image.height is defined and media_image.height is not empty %}
+                {% set image_props = image_props|merge({ height: media_image.height }) %}
+              {% endif %}
+              {% if media_image.sizes is defined and media_image.sizes is not empty %}
+                {% set image_props = image_props|merge({ sizes: media_image.sizes }) %}
+              {% endif %}
+              {% include 'canvas:image' ignore missing with image_props only %}
+            {% endif %}
+            {% if not has_media %}
+              <div class="featured-card__placeholder featured-card__placeholder--media">
+                <img class="featured-card__placeholder-img w-100 h-100 object-fit-cover d-block" src="{{ placeholder_src }}" alt="" loading="lazy" />
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      <div class="{{ content_col_classes }} {{ equal_height ? 'h-100' : '' }} featured-card__content-col d-flex">
+        <div class="featured-card__content d-flex flex-column h-100 w-100 {{ valign_map[content_valign] }}">
+          <div class="featured-card__slot featured-card__slot--content w-100 {{ content_padding_class }} {{ (not has_content_slot and not title) ? 'is-empty' : '' }}">
+            {% if title %}
+              <h3 class="featured-card__title mb-3 {{ title_color_class }}">{{ title }}</h3>
+              {% if text|trim is not empty %}
+                <div class="featured-card__description mb-3 {{ text_color_class }}">{{ text }}</div>
+              {% endif %}
+            {% endif %}
+            {% if (not title) and (text|trim is not empty) %}
+              <div class="featured-card__description mb-3 {{ text_color_class }}">{{ text }}</div>
+            {% endif %}
+            {{ content_slot }}
+            {% if not has_content_slot and not title %}
+              <div class="featured-card__placeholder featured-card__placeholder--content text-body-secondary">
+                <i class="bi bi-body-text" aria-hidden="true"></i>
+                <span>Drop content here</span>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% if use_anchor_all %}
+  </a>
+{% endif %}

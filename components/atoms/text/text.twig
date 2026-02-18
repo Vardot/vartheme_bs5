@@ -102,8 +102,12 @@
   {% set attrs = attrs.setAttribute('id', id|trim) %}
 {% endif %}
 
-{% set content = text|default('<p>Lorem ipsum dolor sit amet.</p>') %}
+{% set content = text|default('') %}
+{% set supporting = short_text|default('') %}
 
 <{{ element }}{{ attrs }}>
   {{ content|raw }}
+  {% if supporting|trim %}
+    {{ supporting|e }}
+  {% endif %}
 </{{ element }}>

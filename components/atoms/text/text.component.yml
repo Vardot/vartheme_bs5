@@ -15,6 +15,12 @@ props:
       examples:
         - "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>"
 
+    short_text:
+      type: string
+      title: Description
+      description: Short supporting text under the heading.
+      pattern: "(.|\\r?\\n)*"
+
     element:
       type: string
       title: Wrapper element

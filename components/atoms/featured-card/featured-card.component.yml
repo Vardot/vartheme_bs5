@@ -1,0 +1,382 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Featured Card
+group: Card
+status: stable
+description: 'Featured card (media + content) with Bootstrap 5 grid ratios per breakpoint. Canvas-friendly controls for size,
+  border, padding, equal-height, gutters and alignment.'
+props:
+  type: object
+  properties:
+    title:
+      type: string
+      title: Title
+      description: Optional title text. Leave blank when using Views/slots.
+      default: ''
+    link_url:
+      type: string
+      title: Card link URL
+      default: ''
+    link_target:
+      type: string
+      title: Link target
+      enum:
+      - default
+      - _self
+      - _blank
+      default: default
+      meta:enum:
+        default: Same tab (default)
+        _self: Same tab
+        _blank: New tab
+    card_size:
+      type: string
+      title: Card style size
+      default: medium
+      enum:
+      - x_small
+      - small
+      - small_plus
+      - medium
+      - large
+      - x_large
+      meta:enum:
+        x_small: X-Small
+        small: Small
+        small_plus: Small+
+        medium: Medium
+        large: Large
+        x_large: X-Large
+    card_border:
+      type: boolean
+      title: Card border
+      default: true
+      examples: [true]
+    padded:
+      type: string
+      title: Content padding
+      description: Padding applied to the content slot area.
+      default: medium
+      enum:
+      - none
+      - x_small
+      - small
+      - medium
+      - large
+      - x_large
+      meta:enum:
+        none: None
+        x_small: X-Small
+        small: Small
+        medium: Medium
+        large: Large
+        x_large: X-Large
+
+    corner_style:
+      type: string
+      title: Corner style
+      description: Bootstrap rounded utility applied to the card.
+      default: rounded
+      enum:
+      - none
+      - rounded_sm
+      - rounded
+      - rounded_lg
+      - rounded_pill
+      - rounded_circle
+      meta:enum:
+        none: None
+        rounded_sm: Small
+        rounded: Default
+        rounded_lg: Large
+        rounded_pill: Pill
+        rounded_circle: Circle
+    background_color:
+      type: string
+      title: Background color
+      description: Bootstrap background utility applied to the card.
+      default: none
+      enum:
+      - none
+      - bg-body
+      - bg-body-tertiary
+      - bg-white
+      - bg-light
+      - bg-dark
+      - bg-primary
+      - bg-secondary
+      - bg-success
+      - bg-danger
+      - bg-warning
+      - bg-info
+      - bg-transparent
+      meta:enum:
+        none: None (transparent)
+        bg-body: Body
+        bg-body-tertiary: Body tertiary
+        bg-white: White
+        bg-light: Light
+        bg-dark: Dark
+        bg-primary: Primary
+        bg-secondary: Secondary
+        bg-success: Success
+        bg-danger: Danger
+        bg-warning: Warning
+        bg-info: Info
+        bg-transparent: Transparent
+    box_shadow:
+      type: string
+      title: Box shadow
+      description: Bootstrap shadow utility applied to the card.
+      default: none
+      enum:
+      - none
+      - shadow-sm
+      - shadow
+      - shadow-lg
+      meta:enum:
+        none: None
+        shadow-sm: Small
+        shadow: Medium
+        shadow-lg: Large
+    equal_height:
+      type: boolean
+      title: Equal height
+      default: false
+    anchor_all:
+      type: boolean
+      title: Anchor all (whole card)
+      default: true
+    media_position:
+      type: string
+      title: Media position
+      default: start
+      enum:
+      - start
+      - end
+      meta:enum:
+        start: Start
+        end: End
+    content_valign:
+      type: string
+      title: Content vertical alignment
+      default: center
+      enum:
+      - start
+      - center
+      - end
+      meta:enum:
+        start: Start
+        center: Center
+        end: End
+    gutters:
+      type: string
+      title: Gutters between
+      default: small_start
+      enum:
+      - large
+      - small_start
+      - small_end
+      - none
+      meta:enum:
+        large: Large
+        small_start: Small (start)
+        small_end: Small (end)
+        none: false
+    ratio_all:
+      type: string
+      title: All breakpoints
+      default: fifty_fifty
+      enum:
+      - sixteen_eighty_three
+      - eighty_three_sixteen
+      - twentyfive_seventyfive
+      - seventyfive_twentyfive
+      - thirtythree_sixtysix
+      - sixtysix_thirtythree
+      - fifty_fifty
+      - hundred_hundred
+      meta:enum:
+        sixteen_eighty_three: 16% - 83%
+        eighty_three_sixteen: 83% - 16%
+        twentyfive_seventyfive: 25% - 75%
+        seventyfive_twentyfive: 75% - 25%
+        thirtythree_sixtysix: 33% - 66%
+        sixtysix_thirtythree: 66% - 33%
+        fifty_fifty: 50% - 50%
+        hundred_hundred: 100% - 100%
+    ratio_sm:
+      type: string
+      title: Small breakpoint size (sm)
+      default: fifty_fifty
+      enum:
+      - sixteen_eighty_three
+      - eighty_three_sixteen
+      - twentyfive_seventyfive
+      - seventyfive_twentyfive
+      - thirtythree_sixtysix
+      - sixtysix_thirtythree
+      - fifty_fifty
+      - hundred_hundred
+      meta:enum:
+        sixteen_eighty_three: 16% - 83%
+        eighty_three_sixteen: 83% - 16%
+        twentyfive_seventyfive: 25% - 75%
+        seventyfive_twentyfive: 75% - 25%
+        thirtythree_sixtysix: 33% - 66%
+        sixtysix_thirtythree: 66% - 33%
+        fifty_fifty: 50% - 50%
+        hundred_hundred: 100% - 100%
+    ratio_md:
+      type: string
+      title: Medium breakpoint size (md)
+      default: fifty_fifty
+      enum:
+      - sixteen_eighty_three
+      - eighty_three_sixteen
+      - twentyfive_seventyfive
+      - seventyfive_twentyfive
+      - thirtythree_sixtysix
+      - sixtysix_thirtythree
+      - fifty_fifty
+      - hundred_hundred
+      meta:enum:
+        sixteen_eighty_three: 16% - 83%
+        eighty_three_sixteen: 83% - 16%
+        twentyfive_seventyfive: 25% - 75%
+        seventyfive_twentyfive: 75% - 25%
+        thirtythree_sixtysix: 33% - 66%
+        sixtysix_thirtythree: 66% - 33%
+        fifty_fifty: 50% - 50%
+        hundred_hundred: 100% - 100%
+    ratio_lg:
+      type: string
+      title: Large breakpoint size (lg)
+      default: fifty_fifty
+      enum:
+      - sixteen_eighty_three
+      - eighty_three_sixteen
+      - twentyfive_seventyfive
+      - seventyfive_twentyfive
+      - thirtythree_sixtysix
+      - sixtysix_thirtythree
+      - fifty_fifty
+      - hundred_hundred
+      meta:enum:
+        sixteen_eighty_three: 16% - 83%
+        eighty_three_sixteen: 83% - 16%
+        twentyfive_seventyfive: 25% - 75%
+        seventyfive_twentyfive: 75% - 25%
+        thirtythree_sixtysix: 33% - 66%
+        sixtysix_thirtythree: 66% - 33%
+        fifty_fifty: 50% - 50%
+        hundred_hundred: 100% - 100%
+    ratio_xl:
+      type: string
+      title: Extra large breakpoint size (xl)
+      default: fifty_fifty
+      enum:
+      - sixteen_eighty_three
+      - eighty_three_sixteen
+      - twentyfive_seventyfive
+      - seventyfive_twentyfive
+      - thirtythree_sixtysix
+      - sixtysix_thirtythree
+      - fifty_fifty
+      - hundred_hundred
+      meta:enum:
+        sixteen_eighty_three: 16% - 83%
+        eighty_three_sixteen: 83% - 16%
+        twentyfive_seventyfive: 25% - 75%
+        seventyfive_twentyfive: 75% - 25%
+        thirtythree_sixtysix: 33% - 66%
+        sixtysix_thirtythree: 66% - 33%
+        fifty_fifty: 50% - 50%
+        hundred_hundred: 100% - 100%
+    ratio_xxl:
+      type: string
+      title: Extra extra breakpoint size (xxl)
+      default: fifty_fifty
+      enum:
+      - sixteen_eighty_three
+      - eighty_three_sixteen
+      - twentyfive_seventyfive
+      - seventyfive_twentyfive
+      - thirtythree_sixtysix
+      - sixtysix_thirtythree
+      - fifty_fifty
+      - hundred_hundred
+      meta:enum:
+        sixteen_eighty_three: 16% - 83%
+        eighty_three_sixteen: 83% - 16%
+        twentyfive_seventyfive: 25% - 75%
+        seventyfive_twentyfive: 75% - 25%
+        thirtythree_sixtysix: 33% - 66%
+        sixtysix_thirtythree: 66% - 33%
+        fifty_fifty: 50% - 50%
+        hundred_hundred: 100% - 100%
+    text:
+      type: string
+      title: Description
+      description: Short supporting text under the heading.
+      pattern: (.|\r?\n)*
+      default: ''
+    title_color:
+      type: string
+      title: Title color
+      description: Bootstrap text utility applied to the title.
+      default: default
+      enum: &id001
+      - default
+      - text-body
+      - text-body-secondary
+      - text-muted
+      - text-primary
+      - text-secondary
+      - text-success
+      - text-danger
+      - text-warning
+      - text-info
+      - text-dark
+      - text-white
+      meta:enum: &id002
+        default: Default
+        text-body: Body
+        text-body-secondary: Body secondary
+        text-muted: Muted
+        text-primary: Primary
+        text-secondary: Secondary
+        text-success: Success
+        text-danger: Danger
+        text-warning: Warning
+        text-info: Info
+        text-dark: Dark
+        text-white: White
+    text_color:
+      type: string
+      title: Description color
+      description: Bootstrap text utility applied to the description.
+      default: default
+      enum: *id001
+      meta:enum: *id002
+    media_image:
+      title: Media upload
+      description: Optional image selected from Media Library or uploaded. Used when the media slot is empty.
+      $ref: json-schema-definitions://canvas.module/image
+      type: object
+      examples:
+      - src: "assets/featured-card-image-placeholder.svg"
+        alt: Featured image
+        width: 800
+        height: 600
+    html_id:
+      type: string
+      title: HTML ID
+      default: ''
+    extra_classes:
+      type: string
+      title: Extra classes (wrapper)
+      default: ''
+slots:
+  content:
+    title: Card content (slot)
+    description: Content slot for text/buttons/etc.

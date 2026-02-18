@@ -1,0 +1,71 @@
+/* Featured Card - media height sync (Canvas + frontend)
+   Use flex stretching so the media area reliably matches the content height.
+*/
+
+@media (min-width: 576px) {
+  .featured-card__media-col {
+    display: flex;
+    min-width: 0;
+  }
+
+  .featured-card__media-wrap {
+    display: flex;
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .featured-card__slot--media {
+    display: flex;
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  /* Canvas image markup may include wrappers; stretch them via flex */
+  .featured-card__slot--media > *,
+  .featured-card__slot--media figure,
+  .featured-card__slot--media picture,
+  .featured-card__slot--media a,
+  .featured-card__slot--media .field,
+  .featured-card__slot--media .field__item,
+  .featured-card__slot--media .canvas-image,
+  .featured-card__slot--media .canvas-image__wrapper {
+    display: flex;
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .featured-card__slot--media figure { margin: 0; }
+
+  /* Fill available height and remove baseline gap */
+  .featured-card__slot--media img {
+    display: block;
+    width: 100%;
+    height: 100% !important;
+    object-fit: cover;
+  }
+}
+
+/* Keep placeholders behaving */
+.featured-card__placeholder { pointer-events: none; }
+
+/* When media slot is empty, reserve some height */
+.featured-card__slot--media.is-empty { min-height: 180px; }
+.featured-card__slot--content.is-empty { min-height: 120px; }
+
+/* On extra-small screens, stacked layout should use natural height */
+@media (max-width: 575.98px) {
+  .featured-card__media-col,
+  .featured-card__media-wrap,
+  .featured-card__slot--media,
+  .featured-card__slot--media > *,
+  .featured-card__slot--media figure,
+  .featured-card__slot--media picture,
+  .featured-card__slot--media a,
+  .featured-card__slot--media .field,
+  .featured-card__slot--media .field__item,
+  .featured-card__slot--media .canvas-image,
+  .featured-card__slot--media .canvas-image__wrapper,
+  .featured-card__slot--media img {
+    height: auto !important;
+  }
+}
