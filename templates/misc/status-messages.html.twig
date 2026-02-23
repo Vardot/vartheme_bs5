@@ -5,21 +5,20 @@
  */
 #}
 {% set types = {
-  status: 'alert-success',
-  warning: 'alert-warning',
-  error: 'alert-danger',
-  info: 'alert-info',
-  primary: 'alert-primary',
-  secondary: 'alert-secondary',
-  light: 'alert-light',
-  dark: 'alert-dark'
+  status: 'success',
+  warning: 'warning',
+  error: 'danger',
+  info: 'info',
+  primary: 'primary',
+  secondary: 'secondary',
+  light: 'light',
+  dark: 'dark',
 } %}
 
 {% for type, messages in message_list %}
 	<div role="region" aria-label="{{ status_headings[type] }}" {{ attributes|without('role', 'aria-label') }}>
 		{% embed 'vartheme_bs5:alert' with {
       variant: types[type]|default(''),
-      attributes: {},
     } %}
 			{% block content %}
 				{% if status_headings[type] %}

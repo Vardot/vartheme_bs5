@@ -1,76 +1,50 @@
 {#
-  Alert (Bootstrap 5)
-  Props:
-    - variant (string): "" or "alert-primary" etc
-    - dismissible (bool)
-    - alert_utility_classes (array of strings)
-    - attributes (object/array map)
-    - dismissible_attributes (object/array map)
-  Slots:
-    - heading
-    - content
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for the Alert component.
+ *
+ * Available properties:
+ * - variant: Bootstrap predefined alert variant.
+ *            (primary|secondary|success|info|warning|danger|light|dark)
+ * - dismissible: It is possible to dismiss any alert inline. When an alert
+ *   is dismissed, the element is completely removed from the page structure.
+ *
+ * Available slots:
+ * - heading: Alerts can also contain a primary alert heading.
+ * - content: The content of the alert.
+ */
 #}
+{% set variant_classes = variant ? ['alert-' ~ variant] : [] %}
+{% set dismissible = dismissible ?? true %}
+{% set dismissible_classes = dismissible ? ['alert-dismissible', 'fade', 'show'] : [] %}
 
-{% set base_attrs = create_attribute() %}
+{% set classes = [
+  'alert',
+]|merge(variant_classes)|merge(dismissible_classes) %}
 
-{# Convert attributes map/object to Attribute if provided #}
-{% if attributes is defined and attributes is not empty %}
-  {% for k, v in attributes %}
-    {% set base_attrs = base_attrs.setAttribute(k, v) %}
-  {% endfor %}
-{% endif %}
+{% set attributes = create_attribute() %}
+{% set attributes = attributes.addClass(classes) %}
+{% set attributes = attributes.setAttribute('role', 'alert') %}
 
-{% set close_attrs = create_attribute() %}
-{% if dismissible_attributes is defined and dismissible_attributes is not empty %}
-  {% for k, v in dismissible_attributes %}
-    {% set close_attrs = close_attrs.setAttribute(k, v) %}
-  {% endfor %}
-{% endif %}
-
-{% set variant_class = variant|default('') %}
-{% set is_dismissible = dismissible|default(false) %}
-{% set utility = alert_utility_classes|default([]) %}
-
-{% set classes = ['alert'] %}
-
-{# If empty, choose a safe visible default #}
-{% if variant_class|trim %}
-  {% set classes = classes|merge([variant_class|trim]) %}
-{% else %}
-  {% set classes = classes|merge(['alert-primary']) %}
-{% endif %}
-
-{% if is_dismissible %}
-  {% set classes = classes|merge(['alert-dismissible', 'fade', 'show']) %}
-{% endif %}
-
-{% if utility is iterable and utility|length %}
-  {% set classes = classes|merge(utility) %}
-{% endif %}
-
-{# Slots: Canvas variables first, block fallback #}
-{% if heading is defined %}
-  {% set heading_content = heading %}
-{% else %}
-  {% set heading_content %}{% block heading %}{% endblock %}{% endset %}
-{% endif %}
-
-{% if content is defined %}
-  {% set body_content = content %}
-{% else %}
-  {% set body_content %}{% block content %}{% endblock %}{% endset %}
-{% endif %}
-
-<div role="alert" {{ base_attrs.addClass(classes) }}>
-  {% if heading_content|trim %}
-    <h4 class="alert-heading mb-2">{{ heading_content }}</h4>
+<div{{ attributes }}>
+  {% if heading|render|striptags|trim is not empty %}
+    {% include "vartheme_bs5:heading" with {
+      heading_text: heading|render|striptags|trim,
+      level: 4,
+      extra_classes: 'alert-heading',
+    } only %}
   {% endif %}
 
-  {% if body_content|trim %}
-    {{ body_content }}
-  {% endif %}
+  {% block content %}
+    {{ content }}
+  {% endblock %}
 
-  {% if is_dismissible %}
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" {{ close_attrs }}></button>
+  {% if dismissible %}
+    {% set close_attrs = create_attribute() %}
+    {% set close_attrs = close_attrs.setAttribute('data-bs-dismiss', 'alert') %}
+    {{ include('vartheme_bs5:close-button', {
+        size: 'btn-sm',
+        attributes: close_attrs,
+      }, with_context: false) }}
   {% endif %}
 </div>

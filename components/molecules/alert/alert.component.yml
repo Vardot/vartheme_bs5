@@ -8,46 +8,34 @@ props:
     variant:
       type: string
       title: Alert variant
-      description: "Bootstrap predefined alert classes."
+      description: "Predefined alert variant."
       default: ""
       enum:
         - ""
-        - alert-primary
-        - alert-secondary
-        - alert-success
-        - alert-danger
-        - alert-warning
-        - alert-info
-        - alert-dark
-        - alert-light
+        - primary
+        - secondary
+        - success
+        - danger
+        - warning
+        - info
+        - dark
+        - light
+      meta:enum:
+        "": "- None -"
+        primary: "Primary"
+        secondary: "Secondary"
+        success: "Success"
+        danger: "Danger"
+        warning: "Warning"
+        info: "Info"
+        dark: "Dark"
+        light: "Light"
 
     dismissible:
       type: boolean
       title: Dismissible
-      description: "Show close button."
-      default: false
-
-    alert_utility_classes:
-      type: array
-      title: Utility classes
-      default: []
-      items:
-        type: string
-      description: "Extra Bootstrap utility / custom classes."
-
-    attributes:
-      type: object
-      title: Attributes
-      description: "HTML attributes for the alert element."
-      additionalProperties: true
-      default: {}
-
-    dismissible_attributes:
-      type: object
-      title: Dismiss close button attributes
-      description: "HTML attributes for the close button."
-      additionalProperties: true
-      default: {}
+      description: "Show close button to dismiss the alert."
+      default: true
 
 slots:
   heading:
