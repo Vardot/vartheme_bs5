@@ -10,41 +10,6 @@ props:
       title: Video (upload/select)
       description: Upload or select a video from the Media Library.
 
-    caption:
-      type: string
-      title: Caption (optional)
-
-    figcaption_align:
-      type: string
-      title: Caption alignment
-      enum: [start, center, end]
-      default: start
-      meta:enum:
-        start: Left
-        center: Center
-        end: Right
-
-    align:
-      type: string
-      title: Block alignment
-      enum: [start, center, end]
-      default: center
-      meta:enum:
-        start: Left
-        center: Center
-        end: Right
-
-    width:
-      type: string
-      title: Width
-      description: Controls the width of the video block.
-      enum: ["50", "75", "100"]
-      default: "75"
-      meta:enum:
-        "50": 50%
-        "75": 75%
-        "100": 100%
-
     ratio:
       type: string
       title: Aspect ratio
@@ -57,34 +22,6 @@ props:
         "1x1": 1:1 (Square)
         "21x9": 21:9 (Ultra-wide)
 
-    rounded:
-      type: string
-      title: Corners
-      enum: [none, sm, md, lg, pill]
-      default: md
-      meta:enum:
-        none: None
-        sm: Small
-        md: Medium
-        lg: Large
-        pill: Pill
-
-    border:
-      type: boolean
-      title: Show border
-      default: false
-
-    shadow:
-      type: string
-      title: Shadow
-      enum: [none, sm, md, lg]
-      default: sm
-      meta:enum:
-        none: None
-        sm: Small
-        md: Medium
-        lg: Large
-
     loading:
       type: string
       title: Loading
@@ -93,11 +30,6 @@ props:
       meta:enum:
         lazy: Lazy
         eager: Eager
-
-    id:
-      type: string
-      title: HTML ID (optional)
-      default: ""
 
     extra_classes:
       type: string
