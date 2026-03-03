@@ -1,112 +1,33 @@
-$schema: "https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json"
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: Blockquote
 group: Base
-
 props:
   type: object
   required:
     - text
   properties:
-
+    type:
+      type: string
+      title: Type
+      description: Color style of the blockquote.
+      enum:
+        - dark
+        - light
+      default: dark
+      meta:enum:
+        dark: Dark
+        light: Light
     text:
       type: string
       title: Quote text
-      description: Main quotation content.
+      description: The main content of the blockquote. Make sure this content is filtered/safe before rendering.
+      pattern: "(.|\\r?\\n)*"
       examples:
-        - "“To confine our attention to terrestrial matters would be to limit the human spirit.”"
-
-    cite_name:
-      type: string
-      title: Author name
-      description: Name of the person being quoted.
-      examples:
-        - "Isiah Julio"
-
+        - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc non sapien lacinia, pellentesque elit sit amet, tempor orci.
     cite_text:
       type: string
-      title: Author role / source
-      description: Job title, organization, or source of the quote.
-      default: "Engineer, Technical Services"
+      title: Quotee Name and Position
+      description: Name and Role, organization, or source of the quote.
       examples:
-        - "Engineer, Technical Services"
+        - Quotee Name and Position
 
-    cite_url:
-      type: string
-      title: Source link (optional)
-      description: External link for the quote source.
-      format: uri
-
-    align:
-      type: string
-      title: Text alignment
-      description: Horizontal alignment of the quote content.
-      enum:
-        - start
-        - center
-        - end
-      default: start
-      meta:enum:
-        start: Left
-        center: Center
-        end: Right
-
-    size:
-      type: string
-      title: Quote size
-      description: Controls overall text size of the quote.
-      enum:
-        - sm
-        - md
-        - lg
-      default: lg
-      meta:enum:
-        sm: Small
-        md: Medium
-        lg: Large
-
-    icon:
-      type: boolean
-      title: Show quote icon
-      description: Displays a decorative quotation mark icon.
-      examples: [true]
-      default: true
-
-    radius:
-      type: string
-      title: Corner style
-      description: Rounds the blockquote container corners.
-      enum:
-        - default
-        - sm
-        - lg
-        - pill
-        - none
-      default: default
-      meta:enum:
-        default: Default
-        sm: Small rounding
-        lg: Large rounding
-        pill: Fully rounded
-        none: No rounding
-
-    spacing_y:
-      type: string
-      title: Vertical spacing
-      description: Space above and below the blockquote.
-      enum:
-        - none
-        - sm
-        - md
-        - lg
-      default: md
-      meta:enum:
-        none: No spacing
-        sm: Small spacing
-        md: Medium spacing
-        lg: Large spacing
-
-    classes:
-      type: string
-      title: Additional CSS classes
-      description: Optional custom classes for styling.
-      default: ""

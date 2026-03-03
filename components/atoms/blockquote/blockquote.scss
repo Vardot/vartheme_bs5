@@ -1,0 +1,32 @@
+@import "../../defaults";   // Global component defaults.
+
+.blockquote {
+  /* Layout */
+  padding-inline-start: 1.875rem; /* 30px */
+  gap: 0.625rem; /* 10px */
+
+  /* Quote text */
+  > p {
+    line-height: 1.6;
+  }
+
+  /* Cite text */
+  cite {
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+}
+
+/* Desktop typography */
+@include media-breakpoint-up(md) {
+  .blockquote {
+    > p {
+      font-size: 1.25rem;
+      line-height: 1.7;
+    }
+
+    cite {
+      line-height: 1.7;
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{/* blockquote.mdx */}
+
+import { Title, Subtitle, Description, Primary, Stories, Controls, Meta, Source } from '@storybook/blocks';
+import * as comStories from './blockquote.stories.json';
+import templateSource from './blockquote.twig?raw';
+
+<Meta of={comStories} name="Docs" />
+
+<Title />
+<Subtitle />
+<Description />
+
+> ### Bootstrap documentation
+> * [Typography: Blockquotes](https://getbootstrap.com/docs/5.3/content/typography/#blockquotes)
+
+<Primary />
+
+## Properties
+<Controls />
+
+<Stories of={comStories} />
+
+## Attributes
+* N/A (this component currently does not expose an `attributes` prop)
+
+## Slots
+* N/A
+
+## Twig usage example
+```twig
+{% include "vartheme_bs5:blockquote" with {
+  type: 'dark',
+  text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+  cite_text: 'Quotee Name and Position'
+} %}
+```
+
+## Source code
+<Source code={templateSource} />
