@@ -1,0 +1,58 @@
+{/* badge.mdx */}
+
+import { Title, Subtitle, Meta, Description, Primary, Stories, Controls, Source } from '@storybook/blocks';
+import * as comStories from './badge.stories.json';
+import templateSource from './badge.twig?raw';
+
+<Meta of={comStories} name="Docs" />
+
+<Title />
+<Subtitle />
+<Description />
+
+> ### [Bootstrap Documentation on Badges](https://getbootstrap.com/docs/5.3/components/badge/)
+> * [Examples](https://getbootstrap.com/docs/5.3/components/badge/#examples)
+> * [Background colors](https://getbootstrap.com/docs/5.3/components/badge/#background-colors)
+> * [Pill badges](https://getbootstrap.com/docs/5.3/components/badge/#pill-badges)
+> * [Positioned badges](https://getbootstrap.com/docs/5.3/components/badge/#positioned)
+
+<Primary />
+
+## Properties
+<Controls />
+
+<Stories of={comStories} />
+
+## Attributes
+* N/A
+
+## Slots
+* N/A
+
+## Examples
+
+### Example #1: Simple badge
+```
+{% include 'vartheme_bs5:badge' with {
+  label: 'New',
+  variant: 'text-bg-success'
+} only %}
+```
+
+### Example #2: Linked badge with icon and count
+```
+{% include 'vartheme_bs5:badge' with {
+  label: 'Inbox',
+  url: 'https://example.com',
+  icon: 'inbox',
+  icon_first: true,
+  indicator: 'count',
+  indicator_text: '3',
+  variant: 'text-bg-primary',
+  radius: 'rounded-pill'
+} only %}
+```
+
+## Source code
+[//]: # (Twig Template source code)
+<Source code={templateSource} />

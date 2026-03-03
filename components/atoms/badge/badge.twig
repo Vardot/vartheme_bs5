@@ -1,19 +1,66 @@
 {# Badge component (Bootstrap 5 / VarTheme) #}
 
-{# Normalize extra classes (string or array) #}
-{% set additional_classes = badge_classes|default('') %}
-{% if additional_classes is iterable %}
-  {% set additional_classes = additional_classes|join(' ') %}
-{% endif %}
-
 {% set has_url = url is defined and url is not empty and url != 'No URL' %}
 
-{# Normalize + validate style #}
-{% set variant = style|default('primary') %}
-{% set allowed = ['primary','secondary','success','danger','warning','info','light','dark'] %}
-{% if variant not in allowed %}
-  {% set variant = 'primary' %}
+{# -----------------------------
+   Variant (Bootstrap utility)
+   ----------------------------- #}
+{% set variant = variant|default('text-bg-primary') %}
+{% set variant_allowed = [
+  'text-bg-primary',
+  'text-bg-secondary',
+  'text-bg-success',
+  'text-bg-danger',
+  'text-bg-warning',
+  'text-bg-info',
+  'text-bg-light',
+  'text-bg-dark'
+] %}
+{% if variant not in variant_allowed %}
+  {% set variant = 'text-bg-primary' %}
 {% endif %}
+
+{# -----------------------------
+   Size (Bootstrap utilities)
+   ----------------------------- #}
+{% set size = size|default('fs-6 px-3 py-2') %}
+{% set size_allowed = [
+  'fs-6 px-2 py-1',
+  'fs-6 px-3 py-2',
+  'fs-5 px-3 py-2'
+] %}
+{% if size not in size_allowed %}
+  {% set size = 'fs-6 px-3 py-2' %}
+{% endif %}
+
+{# Keep component SCSS size modifiers (internal only) #}
+{% set size_modifier = 'badge-medium' %}
+{% if size == 'fs-6 px-2 py-1' %}
+  {% set size_modifier = 'badge-small' %}
+{% elseif size == 'fs-5 px-3 py-2' %}
+  {% set size_modifier = 'badge-large' %}
+{% endif %}
+
+{# Icon sizing (kept Bootstrap/VarTheme friendly) #}
+{% set icon_size = 'extra-small' %}
+{% if size_modifier == 'badge-large' %}
+  {% set icon_size = 'small' %}
+{% endif %}
+
+{# -----------------------------
+   Border radius (Bootstrap utility)
+   ----------------------------- #}
+{% set radius = radius|default('rounded-1') %}
+{% set radius_allowed = ['rounded-1','rounded-pill'] %}
+{% if radius not in radius_allowed %}
+  {% set radius = 'rounded-1' %}
+{% endif %}
+
+{# -----------------------------
+   Icon options
+   ----------------------------- #}
+{% set icon_value = icon|default('none') %}
+{% set show_icon = (icon_value is not empty and icon_value != 'none') %}
 
 {# Normalize icon_first safely #}
 {% set is_icon_first = icon_first|default(true) %}
@@ -28,46 +75,6 @@
   {% endif %}
 {% endif %}
 
-{# Size mapping (padding + font size) #}
-{% set size = size|default('lg') %}
-{% set size_classes = [] %}
-{% set icon_size = 'extra-small' %}
-
-{% if size == 'xs' %}
-  {% set size_classes = ['px-2','py-0','small'] %}
-  {% set icon_size = 'extra-small' %}
-{% elseif size == 'sm' %}
-  {% set size_classes = ['px-2','py-1','small'] %}
-  {% set icon_size = 'extra-small' %}
-{% elseif size == 'lg' %}
-  {% set size_classes = ['px-3','py-2','fs-6'] %}
-  {% set icon_size = 'small' %}
-{% elseif size == 'xl' %}
-  {% set size_classes = ['px-3','py-2','fs-5'] %}
-  {% set icon_size = 'small' %}
-{% else %}
-  {# md default #}
-  {% set size_classes = ['px-2','py-1'] %}
-  {% set icon_size = 'extra-small' %}
-{% endif %}
-
-{# Border radius mapping #}
-{% set radius = radius|default('default') %}
-{% set radius_class = '' %}
-{% if radius == 'sm' %}
-  {% set radius_class = 'rounded-1' %}
-{% elseif radius == 'lg' %}
-  {% set radius_class = 'rounded-3' %}
-{% elseif radius == 'pill' %}
-  {% set radius_class = 'rounded-pill' %}
-{% elseif radius == 'none' %}
-  {% set radius_class = 'rounded-0' %}
-{% endif %}
-
-{# Icon guard: support enum value "none" #}
-{% set icon_value = icon|default('none') %}
-{% set show_icon = (icon_value is not empty and icon_value != 'none') %}
-
 {# -----------------------------
    Notification indicator logic
    ----------------------------- #}
@@ -77,81 +84,35 @@
   {% set indicator = 'none' %}
 {% endif %}
 
-{% set indicator_text = indicator_text|default('') %}
-{% set indicator_style = indicator_style|default('danger') %}
-{% set indicator_label = indicator_label|default('unread notifications') %}
-
-{# Dot size mapping -> Bootstrap utilities only #}
-{% set indicator_dot_size = indicator_dot_size|default('small') %}
-{% set dot_sizes = ['small','medium','large'] %}
-{% if indicator_dot_size not in dot_sizes %}
-  {% set indicator_dot_size = 'small' %}
-{% endif %}
-{% set dot_size_class = 'p-1' %}
-{% if indicator_dot_size == 'medium' %}
-  {% set dot_size_class = 'p-2' %}
-{% elseif indicator_dot_size == 'large' %}
-  {% set dot_size_class = 'p-3' %}
+{% set indicator_text = indicator_text|default('99+')|trim %}
+{% if indicator_text is empty %}
+  {% set indicator_text = '99+' %}
 {% endif %}
 
-{# Count box size mapping -> Bootstrap utilities only #}
-{% set indicator_count_size = indicator_count_size|default('medium') %}
-{% set count_sizes = ['small','medium','large'] %}
-{% if indicator_count_size not in count_sizes %}
-  {% set indicator_count_size = 'medium' %}
-{% endif %}
-{% set count_size_classes = [] %}
-{% if indicator_count_size == 'small' %}
-  {% set count_size_classes = ['px-1','py-0','small'] %}
-{% elseif indicator_count_size == 'large' %}
-  {% set count_size_classes = ['px-2','py-1','fs-6'] %}
-{% else %}
-  {# medium default #}
-  {% set count_size_classes = ['px-2','py-1','small'] %}
-{% endif %}
-
-{% set has_indicator =
-  indicator == 'dot'
-  or (indicator == 'count' and indicator_text is not empty)
-%}
-
-{# BIG GAP when indicator is ON (prevents overlap in same row) #}
-{% set indicator_gap_class = '' %}
-{% if has_indicator %}
-  {% set indicator_gap_class = 'me-4' %}
-{% endif %}
+{% set has_indicator = (indicator == 'dot' or indicator == 'count') %}
 
 {# Base classes #}
 {% set base_classes = [
   'badge',
-  'text-bg-' ~ variant,
+  variant,
+  radius,
+  size,
+  size_modifier,
   'text-decoration-none',
   'd-inline-flex',
   'align-items-center',
   'text-nowrap',
   'lh-1',
+  'me-3',
   'align-middle'
 ] %}
-
-{% set base_classes = base_classes|merge(size_classes) %}
-
-{# Add gap only when indicator enabled #}
-{% if indicator_gap_class %}
-  {% set base_classes = base_classes|merge([indicator_gap_class]) %}
-{% endif %}
 
 {# Add position-relative only when indicator enabled #}
 {% if has_indicator %}
   {% set base_classes = base_classes|merge(['position-relative']) %}
 {% endif %}
 
-{# Add radius class LAST to ensure it applies #}
-{% if radius_class %}
-  {% set base_classes = base_classes|merge([radius_class]) %}
-{% endif %}
-
-{# Merge extra classes and clean #}
-{% set merged_classes = (base_classes|join(' ') ~ ' ' ~ additional_classes)|trim %}
+{% set merged_classes = base_classes|join(' ')|trim %}
 {% set merged_classes = merged_classes|replace({'  ':' '}) %}
 
 {% if has_url %}
@@ -189,14 +150,11 @@
   {# Indicator (Bootstrap-only) #}
   {% if has_indicator %}
     {% if indicator == 'count' %}
-      <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill text-bg-{{ indicator_style }} {{ count_size_classes|join(' ') }}">
+      <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill text-bg-danger badge__count">
         {{ indicator_text }}
-        <span class="visually-hidden">{{ indicator_label }}</span>
       </span>
     {% elseif indicator == 'dot' %}
-      <span class="position-absolute top-0 start-100 translate-middle {{ dot_size_class }} bg-{{ indicator_style }} border border-light rounded-circle">
-        <span class="visually-hidden">{{ indicator_label }}</span>
-      </span>
+      <span class="position-absolute top-0 start-100 translate-middle bg-danger border border-light rounded-circle badge__dot"></span>
     {% endif %}
   {% endif %}
 

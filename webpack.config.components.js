@@ -43,7 +43,8 @@ module.exports = {
     'organisms/media-hero-slide/media-hero-slide': ['./components/organisms/media-hero-slide/media-hero-slide.scss'],
     'organisms/media-hero-slider/media-hero-slider': ['./components/organisms/media-hero-slider/media-hero-slider.scss'],
     'organisms/media-header/media-header': ['./components/organisms/media-header/media-header.scss'],
-    'pages/page/page': ['./components/pages/page/page.scss']
+    'pages/page/page': ['./components/pages/page/page.scss'],
+    'atoms/badge/badge': ['./components/atoms/badge/badge.scss'],
   },
   output: {
     path: path.resolve(__dirname, 'components'),

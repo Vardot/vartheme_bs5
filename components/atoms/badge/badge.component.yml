@@ -5,58 +5,61 @@ props:
   type: object
   required:
     - label
-    - style
+    - variant
   properties:
     label:
       type: string
       title: Label
       description: "Text shown inside the badge."
       examples:
-        - "Badge text"
+        - "Badge"
     url:
       type: string
       title: Link (optional)
       description: "If provided, badge will render as a link."
       default: ""
-    style:
+    variant:
       type: string
-      title: Color style
+      title: Variant
+      description: "Bootstrap contextual color utility for badges."
       enum:
-        - primary
-        - secondary
-        - success
-        - danger
-        - warning
-        - info
-        - light
-        - dark
-      default: primary
+        - "text-bg-primary"
+        - "text-bg-secondary"
+        - "text-bg-success"
+        - "text-bg-danger"
+        - "text-bg-warning"
+        - "text-bg-info"
+        - "text-bg-light"
+        - "text-bg-dark"
+      default: "text-bg-primary"
       'meta:enum':
-        primary: "Primary"
-        secondary: "Secondary"
-        success: "Success"
-        danger: "Danger"
-        warning: "Warning"
-        info: "Info"
-        light: "Light"
-        dark: "Dark"
+        "text-bg-primary": "Primary"
+        "text-bg-secondary": "Secondary"
+        "text-bg-success": "Success"
+        "text-bg-danger": "Danger"
+        "text-bg-warning": "Warning"
+        "text-bg-info": "Info"
+        "text-bg-light": "Light"
+        "text-bg-dark": "Dark"
       examples:
-        - primary
+        - "text-bg-primary"
+
     size:
       type: string
       title: Size
-      description: "Controls badge padding + font size."
+      description: "Bootstrap utility classes for sizing (font-size + padding)."
       enum:
-        - xs
-        - sm
-        - lg
-        - xl
-      default: lg
+        - "fs-6 px-2 py-1"
+        - "fs-6 px-3 py-2"
+        - "fs-5 px-3 py-2"
+      default: "fs-6 px-3 py-2"
       'meta:enum':
-        xs: "Extra small"
-        sm: "Small"
-        lg: "Large (default)"
-        xl: "Extra large"
+        "fs-6 px-2 py-1": "Small"
+        "fs-6 px-3 py-2": "Medium (default)"
+        "fs-5 px-3 py-2": "Large"
+      examples:
+        - "fs-6 px-3 py-2"
+
     icon:
       type: string
       title: Icon (optional)
@@ -2153,21 +2156,17 @@ props:
     radius:
       type: string
       title: Border radius
+      description: "Bootstrap border-radius utility class."
       enum:
-        - default
-        - sm
-        - lg
-        - pill
-        - none
-      default: pill
+        - "rounded-1"
+        - "rounded-pill"
+      default: "rounded-1"
       'meta:enum':
-        default: "Default"
-        sm: "Small"
-        lg: "Large"
-        pill: "Pill"
-        none: "None"
+        "rounded-1": "Rounded (default)"
+        "rounded-pill": "Rounded pill"
       examples:
-        - lg
+        - "rounded-1"
+
     indicator:
       type: string
       title: Notification indicator
@@ -2185,63 +2184,6 @@ props:
       type: string
       title: Indicator count text
       description: "Text shown in count bubble (e.g. 1, 9, 99+). Used only when indicator=count."
-      default: ""
-    indicator_style:
-      type: string
-      title: Indicator color style
-      description: "Bootstrap contextual style for the indicator bubble/dot."
-      enum:
-        - danger
-        - primary
-        - secondary
-        - success
-        - warning
-        - info
-        - light
-        - dark
-      default: danger
-      'meta:enum':
-        danger: "Danger (default)"
-        primary: "Primary"
-        secondary: "Secondary"
-        success: "Success"
-        warning: "Warning"
-        info: "Info"
-        light: "Light"
-        dark: "Dark"
-    indicator_label:
-      type: string
-      title: Indicator accessibility label
-      description: "Screen reader text for the indicator."
-      default: "unread notifications"
-    indicator_dot_size:
-      type: string
-      title: Dot size
-      description: "Dot size using Bootstrap padding utilities."
-      enum:
-        - small
-        - medium
-        - large
-      default: small
-      'meta:enum':
-        small: "Small"
-        medium: "Medium"
-        large: "Large"
-    indicator_count_size:
-      type: string
-      title: Count box size
-      description: "Controls count bubble size (padding + font size)."
-      enum:
-        - small
-        - medium
-        - large
-      default: medium
-      'meta:enum':
-        small: "Small"
-        medium: "Medium (default)"
-        large: "Large"
-    badge_classes:
-      type: string
-      title: Extra CSS classes
-      description: "Space separated classes to add on top of badge classes."
-      default: ""
+      default: "99+"
+      examples:
+        - "99+"

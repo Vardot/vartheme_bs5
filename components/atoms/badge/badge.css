@@ -1,0 +1,56 @@
+.badge.badge-large {
+  padding-block: 0.3125rem;
+  padding-inline: 0.625rem;
+  font-size: 1rem;
+}
+
+.badge.badge-large .badge__dot {
+  inline-size: 0.5rem;
+  block-size: 0.5rem;
+  padding-block: 0;
+  padding-inline: 0;
+}
+
+.badge.badge-large .badge__count {
+  padding-block: 0.0625rem;
+  padding-inline: 0.3125rem;
+  font-size: 0.625rem;
+}
+
+.badge.badge-medium {
+  padding-block: 0.3125rem;
+  padding-inline: 0.625rem;
+  font-size: 0.875rem;
+}
+
+.badge.badge-medium .badge__dot {
+  inline-size: 0.4375rem;
+  block-size: 0.4375rem;
+  padding-block: 0;
+  padding-inline: 0;
+}
+
+.badge.badge-medium .badge__count {
+  padding-block: 0.0625rem;
+  padding-inline: 0.1875rem;
+  font-size: 0.4375rem;
+}
+
+.badge.badge-small {
+  padding-block: 0.125rem;
+  padding-inline: 0.3125rem;
+  font-size: 0.75rem;
+}
+
+.badge.badge-small .badge__dot {
+  inline-size: 0.4375rem;
+  block-size: 0.4375rem;
+  padding-block: 0;
+  padding-inline: 0;
+}
+
+.badge.badge-small .badge__count {
+  padding-block: 0.0625rem;
+  padding-inline: 0.1875rem;
+  font-size: 0.3125rem;
+}
