@@ -1,16 +1,40 @@
-{#
-/**
- * @file
- * Vartheme BS5 Starter Kit implementation for taxonomy tags.
- *
- * Available slots:
- * - content: The content text or text with a link for the taxonomy term.
- *
- */
-#}
+{# Taxonomy component (SDC + Canvas, Bootstrap utilities + minimal SCSS) #}
 
-{% if content['#type'] == 'link' or content['#type'] == 'text' %}
-  {{ content|render }}
+{% set has_url = url is defined and url is not empty %}
+
+{# Size modifier class (taxonomy-lg / taxonomy-sm) #}
+{% set size_class = size|default('taxonomy-lg') %}
+
+{# Base visual styling #}
+{% set base_classes = [
+  'taxonomy',
+  'badge',
+  'd-inline-flex',
+  'align-items-center',
+  'justify-content-center',
+  'text-nowrap',
+  'fw-bold',
+  'text-uppercase',
+  'rounded-1',
+  'bg-secondary-subtle',
+  'text-dark',
+  size_class
+] %}
+
+{% set classes = base_classes|filter(v => v is not empty)|join(' ') %}
+
+{% if has_url %}
+  <a
+    href="{{ url|e }}"
+    class="{{ classes }} text-decoration-none"
+    {% if target is defined and target == '_blank' %}
+      target="_blank" rel="noopener noreferrer"
+    {% endif %}
+  >
+    {{ label|e }}
+  </a>
 {% else %}
-  <span class="vb-tag" >{{ content|raw }}</span>
+  <span class="{{ classes }}">
+    {{ label|e }}
+  </span>
 {% endif %}
