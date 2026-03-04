@@ -1,0 +1,27 @@
+{/* html-code.mdx */}
+
+import { Title, Subtitle, Meta, Description } from '@storybook/blocks';
+import * as comStories from './html-code.stories.json';
+import templateSource from './html-code.twig?raw';
+
+<Meta of={comStories} name="Docs"/>
+
+<Title />
+<Subtitle />
+<Description />
+
+> ### Bootstrap Documentation
+> * Typography: https://getbootstrap.com/docs/5.3/content/typography/
+> * Helpers: https://getbootstrap.com/docs/5.3/helpers/
+> * Utilities: https://getbootstrap.com/docs/5.3/utilities/api/
+
+## Twig template
+
+```twig
+{templateSource}
+```
+
+## Notes
+
+- This component outputs **raw HTML** (`|raw`).
+- Use it only for **trusted** content (e.g., admin-provided markup or vetted templates).

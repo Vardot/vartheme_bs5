@@ -1,0 +1,50 @@
+{% stories HtmlCode with {
+  "title": "Base/HTML Code",
+  "parameters": {
+    "componentSubtitle": "Trusted HTML output",
+    "docs": {
+      "description": {
+        "component": "Renders trusted HTML markup (unescaped). Use only with content you trust."
+      },
+      "story": {
+        "inline": true
+      }
+    }
+  },
+  "argTypes": {
+    "code": {
+      "name": "HTML code",
+      "description": "HTML markup (unescaped).",
+      "control": "text"
+    }
+  }
+} %}
+
+{% story Default with {
+  "name": "Default",
+  "args": {
+    "code": "<p class=\"mb-0\">This is <strong>HTML</strong> output.</p>"
+  }
+} %}
+{{ include('vartheme_bs5:html-code') }}
+{% endstory %}
+
+{% story WithLink with {
+  "name": "With link",
+  "args": {
+    "code": "<p class=\"mb-0\">Visit <a class=\"link-primary\" href=\"#\">this link</a>.</p>"
+  }
+} %}
+{{ include('vartheme_bs5:html-code') }}
+{% endstory %}
+
+{% story Multiline with {
+  "name": "Multiline",
+  "args": {
+    "code": "<div class=\"p-3 border rounded-2\">\n  <h3 class=\"h5 mb-2\">Card title</h3>\n  <p class=\"mb-0\">Some <em>rich</em> content.</p>\n</div>"
+  }
+} %}
+{{ include('vartheme_bs5:html-code') }}
+{% endstory %}
+
+{% endstories %}
