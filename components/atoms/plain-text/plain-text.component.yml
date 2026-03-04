@@ -1,0 +1,13 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Plain Text
+group: Base
+props:
+  type: object
+  properties:
+    text:
+      type: string
+      title: Plain text
+      description: Add plain text, without any tags.
+      pattern: (.|\r?\n)*
+      examples:
+        - Lorem ipsum dolor sit amet, consectetur adipiscing elit.

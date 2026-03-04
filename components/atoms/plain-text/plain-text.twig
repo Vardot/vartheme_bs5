@@ -1,0 +1,7 @@
+{# Text component (Plain text only) #}
+
+{% if text is defined and text is not empty %}
+  <div>
+    {{ text|e }}
+  </div>
+{% endif %}

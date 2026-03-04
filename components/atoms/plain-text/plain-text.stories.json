@@ -1,0 +1,41 @@
+{
+  "title": "Base/Text",
+  "parameters": {
+    "componentSubtitle": "Plain text wrapper",
+    "docs": {
+      "description": {
+        "component": "Renders plain text only (escaped)."
+      },
+      "story": {
+        "inline": true
+      }
+    }
+  },
+  "argTypes": {
+    "text": {
+      "name": "Plain text",
+      "description": "Plain text without HTML tags.",
+      "control": "text"
+    }
+  },
+  "stories": [
+    {
+      "name": "Default",
+      "args": {
+        "text": "Plain text example"
+      }
+    },
+    {
+      "name": "Multiline",
+      "args": {
+        "text": "Line 1\nLine 2\nLine 3"
+      }
+    },
+    {
+      "name": "Long sentence",
+      "args": {
+        "text": "This is a longer plain text example to demonstrate wrapping in the component output."
+      }
+    }
+  ]
+}
