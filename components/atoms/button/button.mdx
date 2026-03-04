@@ -1,0 +1,63 @@
+{/* button.mdx */}
+
+import { Title, Subtitle, Meta, Description, Primary, Stories, Controls, Source } from '@storybook/blocks';
+import * as comStories from './button.stories.json';
+import templateSource from './button.twig?raw';
+
+<Meta of={comStories} name="Docs"/>
+
+<Title />
+<Subtitle />
+<Description />
+
+> ### [Bootstrap Documentation on Buttons](https://getbootstrap.com/docs/5.3/components/buttons/)
+> * [Button tags](https://getbootstrap.com/docs/5.3/components/buttons/#button-tags)
+> * [Outline buttons](https://getbootstrap.com/docs/5.3/components/buttons/#outline-buttons)
+> * [Sizes](https://getbootstrap.com/docs/5.3/components/buttons/#sizes)
+
+<Primary />
+
+## Properties
+<Controls />
+
+<Stories of={comStories} />
+
+## Attributes
+* N/A
+
+## Slots
+* N/A
+
+## Examples
+
+### Example #1: Link button (opens in a new tab)
+```
+{% include "vartheme_bs5:button" with {
+  variant: 'btn-primary',
+  outline: true,
+  size: 'btn',
+  label: 'Visit site',
+  href: 'https://example.com',
+  target: 'blank',
+  icon: 'box-arrow-up-right',
+  icon_first: false,
+  alignment: 'inline',
+  radius: 'rounded'
+} %}
+```
+
+### Example #2: Large button with icon first
+```
+{% include "vartheme_bs5:button" with {
+  variant: 'btn-dark',
+  size: 'btn-lg',
+  label: 'Download',
+  icon: 'download',
+  icon_first: true,
+  radius: 'rounded-pill'
+} %}
+```
+
+## Source code
+[//]: # (Twig Template source code)
+<Source code={templateSource} />

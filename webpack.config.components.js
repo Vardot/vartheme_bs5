@@ -44,6 +44,7 @@ module.exports = {
     'organisms/media-hero-slider/media-hero-slider': ['./components/organisms/media-hero-slider/media-hero-slider.scss'],
     'organisms/media-header/media-header': ['./components/organisms/media-header/media-header.scss'],
     'pages/page/page': ['./components/pages/page/page.scss'],
+    'atoms/button/button': ['./components/atoms/button/button.scss'],
     'atoms/badge/badge': ['./components/atoms/badge/badge.scss'],
   },
   output: {

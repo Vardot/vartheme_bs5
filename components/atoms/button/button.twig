@@ -1,6 +1,11 @@
+{# Button component #}
+
 {% set label = label|default('Button label') %}
-{% set variant = variant|default('primary') %}
-{% set size = size|default('md') %}
+{# Variant and size values are Bootstrap class names so they can be used directly. #}
+{% set variant = variant|default('btn-primary') %}
+{% set is_outline = outline|default(false) %}
+{% set variant_class = (is_outline and variant != 'btn-link') ? (variant|replace({'btn-':'btn-outline-'}) ) : variant %}
+{% set size = size|default('btn') %}
 {% set is_disabled = disabled|default(false) %}
 {% set href_value = (href is defined and href is not empty) ? href : null %}
 
@@ -9,47 +14,28 @@
 {% set rel_attr = target == 'blank' ? 'noopener noreferrer' : null %}
 
 {% set icon = icon|default('none') %}
-{% set has_icon = icon != 'none' %}
+{% set icon_custom = icon_custom|default('') %}
+{% set icon_value = icon_custom is not empty ? icon_custom : icon %}
+{# Be tolerant if someone enters full class like "bi-alarm". #}
+{% set icon_value = icon_value|replace({'bi-': ''}) %}
+{% set has_icon = icon_value is not empty and icon_value != 'none' %}
 {% set alignment = alignment|default('inline') %}
-{% set mobile_width = mobile_width|default(false) %}
-{% set full_width = full_width|default(false) %}
-{% set radius = radius|default('default') %}
+{# Radius values are Bootstrap utility class names. #}
+{% set radius = radius|default('rounded') %}
 
 {% set is_icon_first = (icon_first|default(false) ~ '')|lower|trim in ['1','true','yes','on'] %}
 
-{% if variant == 'primary-inverted' %}
-  {% set btn_variant_class = 'btn-outline-primary' %}
-{% elseif variant == 'secondary-inverted' %}
-  {% set btn_variant_class = 'btn-outline-secondary' %}
-{% elseif variant starts with 'outline-' %}
-  {% set btn_variant_class = 'btn-' ~ variant %}
-{% elseif variant == 'link' %}
-  {% set btn_variant_class = 'btn-link' %}
-{% else %}
-  {% set btn_variant_class = 'btn-' ~ variant %}
-{% endif %}
+{# Size text adjustment (Figma requirement): Large text uses Bootstrap fs-5. #}
+{% set size_text_class = (size == 'btn-lg') ? 'fs-5' : '' %}
 
-{% set size_class = '' %}
-{% if size == 'xs' %}
-  {% set size_class = 'btn-sm px-2 py-1' %}
-{% elseif size == 'sm' %}
-  {% set size_class = 'btn-sm' %}
-{% elseif size == 'lg' %}
-  {% set size_class = 'btn-lg' %}
-{% elseif size == 'xl' %}
-  {% set size_class = 'btn-lg px-4 py-3' %}
-{% endif %}
+{# Width #}
+{# Full-width options removed. Keep natural button width across all breakpoints. #}
+{% set width_class = '' %}
 
-{% set width_class = full_width ? 'w-100' : (mobile_width ? 'w-100 w-sm-auto' : '') %}
+{# Radius class is used directly. #}
+{% set radius_class = radius %}
 
-{% set radius_class = radius == 'sm' ? 'rounded-1'
-  : radius == 'lg' ? 'rounded-3'
-  : radius == 'pill' ? 'rounded-pill'
-  : radius == 'none' ? 'rounded-0'
-  : '' %}
-
-{% set extra = btn_classes|default('') %}
-
+{# Alignment wrapper #}
 {% set wrapper_class = alignment == 'left' ? 'd-flex justify-content-start'
   : alignment == 'center' ? 'd-flex justify-content-center'
   : alignment == 'right' ? 'd-flex justify-content-end'
@@ -57,21 +43,24 @@
 
 {% set classes = [
   'btn',
-  btn_variant_class,
-  size_class,
+  variant_class,
+  size,
+  size_text_class,
   width_class,
   radius_class,
   'd-inline-flex',
   'align-items-center',
   'justify-content-center',
-  'gap-2'
+  'gap-2',
+  'fw-bold'
 ] %}
 
 {% if has_icon and not is_icon_first %}
   {% set classes = classes|merge(['flex-row-reverse']) %}
 {% endif %}
 
-{% set class_attr = (classes|join(' ') ~ ' ' ~ extra)|trim %}
+{% set class_attr = (classes|join(' '))|trim %}
+{% set class_attr = class_attr|replace({'  ':' '}) %}
 
 {% if is_disabled %}
   {% set href_value = null %}
@@ -81,20 +70,20 @@
 
 {% if href_value %}
 <a href="{{ href_value|e }}"
-   class="{{ class_attr }}"
+   class="{{ class_attr|e }}"
    target="{{ target_attr }}"
    {% if rel_attr %}rel="{{ rel_attr }}"{% endif %}
    {% if is_disabled %}aria-disabled="true" tabindex="-1"{% endif %}>
 {% else %}
-<button type="button" class="{{ class_attr }}" {% if is_disabled %}disabled{% endif %}>
+<button type="button" class="{{ class_attr|e }}" {% if is_disabled %}disabled{% endif %}>
 {% endif %}
 
 {% if has_icon %}
-  {{ include('@vartheme_bs5/components/atoms/icon/icon.twig', {
-    icon: icon,
+  {{ include('vartheme_bs5:icon', {
+    icon: icon_value,
     weight: 'bold',
     icon_size: 'extra-small'
-  }, with_context=false) }}
+  }, with_context = false) }}
 {% endif %}
 
 <span>{{ label }}</span>
