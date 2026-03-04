@@ -1,0 +1,51 @@
+{
+  "title": "Base/Rich Text",
+  "parameters": {
+    "componentSubtitle": "Bootstrap Rich Text component (renders trusted HTML)",
+    "docs": {
+      "description": {
+        "component": "Renders **trusted HTML** (rich text) via the `text` prop."
+      },
+      "story": {
+        "inline": true
+      }
+    }
+  },
+  "argTypes": {
+    "text": {
+      "name": "Content (rich text)",
+      "description": "HTML content rendered with `|raw`. Make sure it is already filtered / trusted.",
+      "defaultValue": "<p><strong>Hello</strong> from rich text.</p>",
+      "control": "text"
+    }
+  },
+  "stories": [
+    {
+      "name": "Default",
+      "args": {
+        "text": "<p><strong>Hello</strong> from rich text.</p><p class=\"mb-0\">You can include basic HTML like <em>emphasis</em>, <a href=\"#\">links</a>, and lists.</p>"
+      },
+      "parameters": {
+        "server": {}
+      }
+    },
+    {
+      "name": "List example",
+      "args": {
+        "text": "<p class=\"mb-2\">A simple list:</p><ul class=\"mb-0\"><li>First item</li><li>Second item</li><li>Third item</li></ul>"
+      },
+      "parameters": {
+        "server": {}
+      }
+    },
+    {
+      "name": "Mixed content",
+      "args": {
+        "text": "<h3 class=\"h5\">Small heading</h3><p>Paragraph with <code>inline code</code> and <strong>strong text</strong>.</p><blockquote class=\"blockquote mb-0\"><p class=\"mb-0\">Blockquote example.</p></blockquote>"
+      },
+      "parameters": {
+        "server": {}
+      }
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Rich Text
+group: Base
+props:
+  type: object
+  properties:
+    text:
+      type: string
+      title: Content (rich text)
+      description: HTML content (e.g. Text). Make sure this content is filtered/safe before rendering.
+      contentMediaType: text/html
+      x-formatting-context: block
+      default: <p>Lorem ipsum dolor sit amet.</p>
+      examples:
+      - <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>

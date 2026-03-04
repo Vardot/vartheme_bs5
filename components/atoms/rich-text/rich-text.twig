@@ -1,0 +1,8 @@
+{# Rich Text component (SDC / Canvas-friendly, Bootstrap utilities) #}
+
+{# Renders trusted HTML only. The `text` prop is output with `|raw`. #}
+{% set content = text|default('') %}
+
+<div>
+  {{ content|raw }}
+</div>
