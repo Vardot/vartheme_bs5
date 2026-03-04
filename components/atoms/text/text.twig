@@ -1,113 +1,16 @@
-{# Bootstrap Text component (SDC / Canvas-friendly) #}
+{# Rich Text component (SDC / Canvas-friendly, Bootstrap utilities) #}
 
-{% set element = element|default('div') %}
-{% set allowed_elements = ['div','section','article','p','span'] %}
-{% if element not in allowed_elements %}
-  {% set element = 'div' %}
-{% endif %}
+{# Props are Bootstrap utility class names (e.g. fs-6, text-body) so we can use them directly #}
+{% set classes = [
+  'rich-text',
+  text_size|default('none'),
+  text_color|default('text-body')
+]|filter(v => v is not empty) %}
 
-{% set size_value = text_size|default('default') %}
-{% set color_value = text_color|default('default') %}
-{% set align_value = align|default('start') %}
-{% set weight_value = weight|default('default') %}
-{% set lh_value = line_height|default('default') %}
-{% set spacing_y_value = spacing_y|default('none') %}
-
-{# Base classes #}
-{% set classes = [] %}
-
-{# Text size mapping (user-friendly → bootstrap) #}
-{% set size_map = {
-  default: '',
-  sm: 'fs-6',
-  md: 'fs-5',
-  lg: 'fs-4',
-  xl: 'fs-3',
-  xxl: 'fs-2'
-} %}
-{% if size_map[size_value]|default('') %}
-  {% set classes = classes|merge([size_map[size_value]]) %}
-{% endif %}
-
-{# Text color mapping #}
-{% set color_map = {
-  default: 'text-body',
-  primary: 'text-primary',
-  secondary: 'text-secondary',
-  success: 'text-success',
-  danger: 'text-danger',
-  warning: 'text-warning',
-  info: 'text-info',
-  muted: 'text-muted',
-  dark: 'text-dark',
-  white: 'text-white'
-} %}
-{% set classes = classes|merge([color_map[color_value]|default('text-body')]) %}
-
-{# Alignment mapping #}
-{% set align_map = {
-  start: 'text-start',
-  center: 'text-center',
-  end: 'text-end',
-  justify: 'text-justify'
-} %}
-{% if align_map[align_value]|default('') %}
-  {% set classes = classes|merge([align_map[align_value]]) %}
-{% endif %}
-
-{# Weight mapping #}
-{% set weight_map = {
-  default: '',
-  light: 'fw-light',
-  normal: 'fw-normal',
-  medium: 'fw-medium',
-  semibold: 'fw-semibold',
-  bold: 'fw-bold'
-} %}
-{% if weight_map[weight_value]|default('') %}
-  {% set classes = classes|merge([weight_map[weight_value]]) %}
-{% endif %}
-
-{# Line-height mapping #}
-{% set lh_map = {
-  default: '',
-  tight: 'lh-1',
-  normal: 'lh-sm',
-  relaxed: 'lh-base',
-  loose: 'lh-lg'
-} %}
-{% if lh_map[lh_value]|default('') %}
-  {% set classes = classes|merge([lh_map[lh_value]]) %}
-{% endif %}
-
-{# Vertical spacing mapping #}
-{% set spacing_map = {
-  none: '',
-  sm: 'my-3',
-  md: 'my-4',
-  lg: 'my-5'
-} %}
-{% if spacing_map[spacing_y_value]|default('') %}
-  {% set classes = classes|merge([spacing_map[spacing_y_value]]) %}
-{% endif %}
-
-{# Optional extra classes #}
-{% if extra_classes is defined and extra_classes|trim %}
-  {% set classes = classes|merge(extra_classes|trim|split(' ')) %}
-{% endif %}
-
-{# Build attributes internally #}
 {% set attrs = create_attribute().addClass(classes) %}
-{% if id is defined and id|trim %}
-  {% set attrs = attrs.setAttribute('id', id|trim) %}
-{% endif %}
 
 {% set content = text|default('') %}
-{% set supporting = short_text|default('') %}
 
-<{{ element }}{{ attrs }}>
+<div {{ attrs }}>
   {{ content|raw }}
-  {% if supporting|trim %}
-    {{ supporting|e }}
-  {% endif %}
-</{{ element }}>
+</div>

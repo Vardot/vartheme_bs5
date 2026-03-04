@@ -1,0 +1,30 @@
+{/* text.mdx */}
+
+import { Meta, Title, Subtitle, Description, Primary, Stories, Controls, Source } from '@storybook/blocks';
+import * as comStories from './text.stories.json';
+import templateSource from './text.twig?raw';
+
+<Meta of={comStories} name="Docs"/>
+
+<Title />
+<Subtitle />
+<Description />
+
+> ### Bootstrap documentation
+> * [Typography](https://getbootstrap.com/docs/5.3/content/typography/)
+> * [Colors](https://getbootstrap.com/docs/5.3/utilities/colors/)
+> * [Font size utilities](https://getbootstrap.com/docs/5.3/utilities/text/#font-size)
+
+<Primary />
+
+## Properties
+<Controls />
+
+<Stories of={comStories} />
+
+## Notes
+- `text` is rendered using `|raw`. Ensure the content is already filtered / trusted before passing it into the component.
+
+## Source code
+[//]: # (Twig Template source code)
+<Source code={templateSource} />

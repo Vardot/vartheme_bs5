@@ -1,0 +1,98 @@
+{% stories RichText with {
+  "title": "Base/Rich Text",
+  "parameters": {
+    "componentSubtitle": "Bootstrap Rich Text component (renders trusted HTML)",
+    "docs": {
+      "description": {
+        "component": "Renders **trusted HTML** (rich text) and lets you control typography using Bootstrap utility classes."
+      },
+      "story": {
+        "inline": true
+      }
+    }
+  },
+  "argTypes": {
+    "text": {
+      "name": "Content (rich text)",
+      "description": "HTML content rendered with `|raw`. Make sure it is already filtered / trusted.",
+      "defaultValue": "<p><strong>Hello</strong> from rich text.</p>",
+      "control": "text"
+    },
+    "text_size": {
+      "name": "Text size",
+      "description": "Bootstrap font-size utility class.",
+      "defaultValue": "fs-6",
+      "control": "select",
+      "options": {
+        "Default (fs-6)": "fs-6",
+        "Medium (fs-5)": "fs-5",
+        "Large (fs-4)": "fs-4",
+        "Extra large (fs-3)": "fs-3"
+      }
+    },
+    "text_color": {
+      "name": "Text color",
+      "description": "Bootstrap text color utility class.",
+      "defaultValue": "text-body",
+      "control": "select",
+      "options": {
+        "Default (text-body)": "text-body",
+        "Primary (text-primary)": "text-primary",
+        "Secondary (text-secondary)": "text-secondary",
+        "Success (text-success)": "text-success",
+        "Danger (text-danger)": "text-danger",
+        "Warning (text-warning)": "text-warning",
+        "Info (text-info)": "text-info",
+        "Muted (text-muted)": "text-muted",
+        "Dark (text-dark)": "text-dark",
+        "White (text-white)": "text-white"
+      }
+    }
+  }
+} %}
+
+{% story Default with {
+  "name": "Default",
+  "args": {
+    "text": "<p><strong>Hello</strong> from rich text.</p>",
+    "text_size": "",
+    "text_color": "text-body"
+  }
+} %}
+{{ include('vartheme_bs5:text') }}
+{% endstory %}
+
+{% story Large with {
+  "name": "Large",
+  "args": {
+    "text": "<p>This is a <em>larger</em> paragraph using <code>fs-3</code>.</p>",
+    "text_size": "fs-3",
+    "text_color": "text-body"
+  }
+} %}
+{{ include('vartheme_bs5:text') }}
+{% endstory %}
+
+{% story Primary with {
+  "name": "Primary",
+  "args": {
+    "text": "<p>This text uses <code>text-primary</code> color.</p>",
+    "text_size": "fs-6",
+    "text_color": "text-primary"
+  }
+} %}
+{{ include('vartheme_bs5:text') }}
+{% endstory %}
+
+{% story MutedMedium with {
+  "name": "Muted + Medium",
+  "args": {
+    "text": "<p class=\"mb-0\">Muted text with <code>fs-5</code>.</p>",
+    "text_size": "fs-5",
+    "text_color": "text-muted"
+  }
+} %}
+{{ include('vartheme_bs5:text') }}
+{% endstory %}
+
+{% endstories %}
