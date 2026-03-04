@@ -1,0 +1,76 @@
+{/* image.mdx */}
+
+import { Canvas, Title, Subtitle, ArgTypes, Source, Meta, Description, Primary, Story, Stories, Controls } from '@storybook/blocks';
+import * as comStories from './image.stories.json';
+import templateSource from './image.twig?raw';
+
+<Meta of={comStories} name="Docs"/>
+
+<Title />
+<Subtitle />
+<Description />
+
+> ### Bootstrap documentation
+> * [Images](https://getbootstrap.com/docs/5.3/content/images/)
+> * [Ratio](https://getbootstrap.com/docs/5.3/helpers/ratio/)
+> * [Object fit](https://getbootstrap.com/docs/5.3/helpers/ratio/#object-fit)
+
+<Primary />
+
+## Properties
+<Controls />
+
+<Stories of={comStories} />
+
+## Notes
+* The component prefers `dynamic-responsive-image` when available, and falls back to `canvas:image` (both are included with `ignore missing`).
+* `media.data` can be provided when integrating with `drimage_improved`.
+
+## Examples
+
+### Example #1 : Default image
+```
+{% include "vartheme_bs5:image" with {
+  media: {
+    src: 'assets/image-placeholder.svg',
+    alt: 'Placeholder image',
+    width: 1200,
+    height: 800
+  }
+} %}
+```
+
+### Example #2 : 16:9 ratio crop + cover
+```
+{% include "vartheme_bs5:image" with {
+  media: {
+    src: 'assets/image-placeholder.svg',
+    alt: 'Wide image',
+    width: 1200,
+    height: 800
+  },
+  ratio: 'ratio-16x9',
+  fit: 'object-fit-cover',
+  width: 'w-75',
+  align: 'mx-auto',
+  rounded: 'rounded-1'
+} %}
+```
+
+### Example #3 : Linked image (new tab)
+```
+{% include "vartheme_bs5:image" with {
+  media: {
+    src: 'assets/image-placeholder.svg',
+    alt: 'Linked image',
+    width: 1200,
+    height: 800
+  },
+  link_url: 'https://example.com',
+  target: 'blank'
+} %}
+```
+
+## Source code
+[//]: # (Twig Template source code)
+<Source code={templateSource} />

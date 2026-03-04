@@ -1,123 +1,98 @@
 {#
-  Image component (Bootstrap 5, SDC)
-  - Supports optional ratio crop via Bootstrap .ratio
-  - No custom CSS
+  Image component
+  - Optional ratio crop via Bootstrap .ratio + .ratio-*
+  - Bootstrap utility classes only
 #}
 
 {% set media_ok = media is defined and media and media.src is defined and media.src is not empty %}
 
-{% set has_link = link_url is defined and link_url is not empty and link_url != 'No URL' %}
+{% set link_url = link_url|default('')|trim %}
+{% set has_link = link_url is not empty and link_url != 'No URL' %}
+
 {% set target_value = target|default('self') %}
 {% set target_attr = target_value == 'blank' ? '_blank' : '_self' %}
 {% set rel_attr = target_value == 'blank' ? 'noopener noreferrer' : null %}
 
-{% set aria = aria_label|default('')|trim %}
-{% if aria == '' %}
-  {% set aria = media.alt|default('Open') %}
+{# Link attributes for vartheme_bs5:link #}
+{% set link_attrs_ratio = create_attribute().addClass(['d-block','w-100','h-100']) %}
+{% set link_attrs_inline = create_attribute().addClass(['d-inline-block']) %}
+{% if target_attr %}
+  {% set link_attrs_ratio = link_attrs_ratio.setAttribute('target', target_attr) %}
+  {% set link_attrs_inline = link_attrs_inline.setAttribute('target', target_attr) %}
+{% endif %}
+{% if rel_attr %}
+  {% set link_attrs_ratio = link_attrs_ratio.setAttribute('rel', rel_attr) %}
+  {% set link_attrs_inline = link_attrs_inline.setAttribute('rel', rel_attr) %}
 {% endif %}
 
-{% set ratio_value = ratio|default('auto') %}
-{% set ratio_map = {
-  '16x9':'ratio ratio-16x9',
-  '4x3':'ratio ratio-4x3',
-  '1x1':'ratio ratio-1x1',
-  '21x9':'ratio ratio-21x9'
-} %}
-{% set ratio_class = ratio_map[ratio_value]|default('') %}
+{# Ratio: use a special value for "no crop" (ratio-auto) #}
+{% set ratio_value = ratio|default('ratio-auto') %}
+{% set has_ratio = ratio_value != 'ratio-auto' %}
+{% set ratio_wrapper_class = has_ratio ? ('ratio ' ~ ratio_value) : '' %}
 
-{% set fit_value = fit|default('cover') %}
-{% set fit_class = fit_value == 'contain' ? 'object-fit-contain' : 'object-fit-cover' %}
+{# Fit: Bootstrap object-fit utilities #}
+{% set fit_class = fit|default('object-fit-cover') %}
 
-{% set align_value = align|default('start') %}
-{% set align_map = { 'start':'me-auto', 'center':'mx-auto', 'end':'ms-auto' } %}
+{# Alignment + width: Bootstrap utilities (values are the class names) #}
+{% set align_class = align|default('me-auto') %}
+{% set width_class = width|default('w-auto') %}
 
-{% set width_value = width|default('auto') %}
-{% set width_map = { '25':'w-25', '50':'w-50', '75':'w-75', '100':'w-100' } %}
-{% set width_class = width_map[width_value]|default('') %}
-
-{% set rounded_value = rounded|default('none') %}
-{% set rounded_map = {
-  'none': '',
-  'sm': 'rounded-1',
-  'md': 'rounded-2',
-  'lg': 'rounded-3',
-  'pill': 'rounded-pill'
-} %}
-{% set rounded_class = rounded_map[rounded_value]|default('') %}
-
-{% set border_value = border|default('none') %}
-{% set border_class = border_value == 'default' ? 'border' : '' %}
-
-{% set shadow_value = shadow|default('none') %}
-{% set shadow_map = { 'none':'', 'sm':'shadow-sm', 'default':'shadow', 'lg':'shadow-lg' } %}
-{% set shadow_class = shadow_map[shadow_value]|default('') %}
+{# Rounded: Bootstrap utilities (values are the class names) #}
+{% set rounded_class = rounded|default('rounded-0') %}
 
 {% set loading_value = loading|default('lazy') %}
-{% set sizes_value = sizes|default('')|trim %}
 
-{% set figcap_align = figcaption_align|default('start') %}
-{% set figcap_align_map = { 'start':'text-start', 'center':'text-center', 'end':'text-end' } %}
+{# Figure wrapper classes #}
+{% set figure_classes = (['d-block', 'm-0', width_class, align_class])|filter(v => v is not empty) %}
+{% set figure_attrs = create_attribute().addClass(figure_classes) %}
 
-{% set classes = ['d-block'] %}
-{% if width_class %}{% set classes = classes|merge([width_class]) %}{% endif %}
-{% set classes = classes|merge([align_map[align_value]|default('me-auto')]) %}
-{% if extra_classes|default('')|trim %}
-  {% set classes = classes|merge(extra_classes|trim|split(' ')) %}
-{% endif %}
+{# Image classes #}
+{% set img_classes = (['img-fluid', fit_class, rounded_class]|filter(v => v is not empty)) %}
+{% set img_classes_final = (has_ratio ? ['w-100','h-100'] : [])|merge(img_classes) %}
+{% set img_class_final = img_classes_final|join(' ') %}
 
-{% set figure_attrs = create_attribute().addClass(classes) %}
-{% if id|default('')|trim %}
-  {% set figure_attrs = figure_attrs.setAttribute('id', id|trim) %}
-{% endif %}
+{# Pick link attributes based on ratio mode #}
+{% set link_attrs = has_ratio ? link_attrs_ratio : link_attrs_inline %}
 
-{% set img_class = (['img-fluid', fit_class, rounded_class, border_class, shadow_class]|filter(v => v)|join(' ')) %}
+{# Build the image once #}
+{% set image_markup %}
+  {% include 'canvas:image' ignore missing with {
+    src: media.src,
+    alt: media.alt,
+    width: media.width,
+    height: media.height,
+    class: img_class_final,
+    loading: loading_value,
+  } only %}
+{% endset %}
 
-<figure{{ figure_attrs }}>
-  {% if media_ok %}
-    {% if ratio_class %}
-      <div class="{{ ratio_class }}">
-        {% if has_link %}
-          <a href="{{ link_url|e }}" class="d-block w-100 h-100" aria-label="{{ aria|e }}" target="{{ target_attr }}"{% if rel_attr %} rel="{{ rel_attr }}"{% endif %}>
-        {% endif %}
+{# Build the optional link wrapper once #}
+{% set linked_markup %}
+  {% if has_link %}
+    {% include 'vartheme_bs5:link' ignore missing with {
+      url: link_url,
+      attributes: link_attrs,
+      content: image_markup
+    } only %}
+  {% else %}
+    {{ image_markup }}
+  {% endif %}
+{% endset %}
 
-        {% include 'canvas:image' ignore missing with {
-          src: media.src,
-          alt: media.alt,
-          width: media.width,
-          height: media.height,
-          class: 'w-100 h-100 ' ~ img_class,
-          loading: loading_value,
-          sizes: sizes_value ? sizes_value : null
-        } only %}
-
-        {% if has_link %}
-          </a>
-        {% endif %}
+{# Build the inner markup (no logic in <figure>) #}
+{% set figure_content %}{% endset %}
+{% if media_ok %}
+  {% set figure_content %}
+    {% if has_ratio %}
+      <div class="{{ ratio_wrapper_class }}">
+        {{ linked_markup }}
       </div>
     {% else %}
-      {% if has_link %}
-        <a href="{{ link_url|e }}" class="d-inline-block" aria-label="{{ aria|e }}" target="{{ target_attr }}"{% if rel_attr %} rel="{{ rel_attr }}"{% endif %}>
-      {% endif %}
-
-      {% include 'canvas:image' ignore missing with {
-        src: media.src,
-        alt: media.alt,
-        width: media.width,
-        height: media.height,
-        class: img_class,
-        loading: loading_value,
-        sizes: sizes_value ? sizes_value : null
-      } only %}
-
-      {% if has_link %}
-        </a>
-      {% endif %}
+      {{ linked_markup }}
     {% endif %}
-  {% endif %}
+  {% endset %}
+{% endif %}
 
-  {% if caption is defined and caption|trim %}
-    <figcaption class="small mt-2 {{ figcap_align_map[figcap_align]|default('text-start') }}">
-      {{ caption }}
-    </figcaption>
-  {% endif %}
+<figure{{ figure_attrs }}>
+  {{ figure_content }}
 </figure>
