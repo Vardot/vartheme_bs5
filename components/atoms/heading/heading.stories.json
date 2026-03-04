@@ -1,0 +1,199 @@
+{
+  "title": "Base/Heading",
+  "parameters": {
+    "componentSubtitle": "Bootstrap heading component",
+    "docs": {
+      "description": {
+        "component": "Renders an HTML heading (h1\u2013h6) with optional Bootstrap typography utilities and optional link."
+      },
+      "story": {
+        "inline": true
+      }
+    }
+  },
+  "argTypes": {
+    "heading_text": {
+      "name": "Heading text",
+      "defaultValue": "Enter title",
+      "control": "text"
+    },
+    "level": {
+      "name": "Heading level",
+      "description": "HTML heading tag (h1\u2013h6).",
+      "defaultValue": 2,
+      "control": "select",
+      "options": {
+        "H1": 1,
+        "H2": 2,
+        "H3": 3,
+        "H4": 4,
+        "H5": 5,
+        "H6": 6
+      }
+    },
+    "text_size": {
+      "name": "Text size",
+      "description": "Optional Bootstrap typography utility.",
+      "defaultValue": "",
+      "control": "select",
+      "options": {
+        "Default (match level)": "",
+        "Heading size: H1": "h1",
+        "Heading size: H2": "h2",
+        "Heading size: H3": "h3",
+        "Heading size: H4": "h4",
+        "Heading size: H5": "h5",
+        "Heading size: H6": "h6",
+        "Display 1": "display-1",
+        "Display 2": "display-2",
+        "Display 3": "display-3",
+        "Display 4": "display-4",
+        "Display 5": "display-5",
+        "Display 6": "display-6"
+      }
+    },
+    "text_color": {
+      "name": "Text color",
+      "description": "Bootstrap text color utility.",
+      "defaultValue": "",
+      "control": "select",
+      "options": {
+        "Default": "",
+        "Primary": "text-primary",
+        "Secondary": "text-secondary",
+        "Success": "text-success",
+        "Danger": "text-danger",
+        "Warning": "text-warning",
+        "Info": "text-info",
+        "Muted": "text-muted",
+        "White": "text-white",
+        "Dark": "text-dark"
+      }
+    },
+    "align": {
+      "name": "Alignment",
+      "description": "Bootstrap text alignment utility.",
+      "defaultValue": "",
+      "control": "select",
+      "options": {
+        "Default": "",
+        "Left": "text-start",
+        "Center": "text-center",
+        "Right": "text-end"
+      }
+    },
+    "url": {
+      "name": "Link (optional)",
+      "description": "If provided, the heading text will be a link.",
+      "defaultValue": "",
+      "control": "text"
+    },
+    "target": {
+      "name": "Link target",
+      "description": "Target attribute for the link.",
+      "defaultValue": "",
+      "control": "select",
+      "options": {
+        "Default": "",
+        "Same tab": "_self",
+        "New tab": "_blank"
+      }
+    }
+  },
+  "stories": [
+    {
+      "name": "Default",
+      "args": {
+        "heading_text": "Page title",
+        "level": 2,
+        "text_size": "",
+        "text_color": "",
+        "align": "",
+        "url": "",
+        "target": ""
+      },
+      "parameters": {
+        "server": {
+          "id": "eyJwYXRoIjoidGhlbWVzXFxcXGNvbnRyaWJcXFxcdmFydGhlbWVfYnM1XFxcXGNvbXBvbmVudHNcXFxcYmFzZVxcXFxoZWFkaW5nXFxcXGhlYWRpbmcuc3Rvcmllcy50d2lnIiwiaWQiOiJEZWZhdWx0In0%3D"
+        }
+      }
+    },
+    {
+      "name": "H1 heading",
+      "args": {
+        "heading_text": "Heading level 1",
+        "level": 1,
+        "text_size": "",
+        "text_color": "",
+        "align": "",
+        "url": "",
+        "target": ""
+      },
+      "parameters": {
+        "server": {
+          "id": "eyJwYXRoIjoidGhlbWVzXFxcXGNvbnRyaWJcXFxcdmFydGhlbWVfYnM1XFxcXGNvbXBvbmVudHNcXFxcYmFzZVxcXFxoZWFkaW5nXFxcXGhlYWRpbmcuc3Rvcmllcy50d2lnIiwiaWQiOiJIMSJ9"
+        }
+      }
+    },
+    {
+      "name": "Display style",
+      "args": {
+        "heading_text": "Display heading",
+        "level": 2,
+        "text_size": "display-3",
+        "text_color": "text-primary",
+        "align": "",
+        "url": "",
+        "target": ""
+      },
+      "parameters": {
+        "server": {
+          "id": "eyJwYXRoIjoidGhlbWVzXFxcXGNvbnRyaWJcXFxcdmFydGhlbWVfYnM1XFxcXGNvbXBvbmVudHNcXFxcYmFzZVxcXFxoZWFkaW5nXFxcXGhlYWRpbmcuc3Rvcmllcy50d2lnIiwiaWQiOiJEaXNwbGF5In0%3D"
+        }
+      }
+    },
+    {
+      "name": "Centered",
+      "args": {
+        "heading_text": "Centered heading",
+        "level": 3,
+        "text_size": "",
+        "text_color": "text-success",
+        "align": "text-center",
+        "url": "",
+        "target": ""
+      },
+      "parameters": {
+        "server": {
+          "id": "eyJwYXRoIjoidGhlbWVzXFxcXGNvbnRyaWJcXFxcdmFydGhlbWVfYnM1XFxcXGNvbXBvbmVudHNcXFxcYmFzZVxcXFxoZWFkaW5nXFxcXGhlYWRpbmcuc3Rvcmllcy50d2lnIiwiaWQiOiJDZW50ZXJlZCJ9"
+        }
+      }
+    },
+    {
+      "name": "Linked (new tab)",
+      "args": {
+        "heading_text": "Linked heading",
+        "level": 2,
+        "text_size": "",
+        "text_color": "text-info",
+        "align": "",
+        "url": "https://getbootstrap.com/docs/5.3/content/typography/#headings",
+        "target": "_blank"
+      },
+      "parameters": {
+        "server": {
+          "id": "eyJwYXRoIjoidGhlbWVzXFxcXGNvbnRyaWJcXFxcdmFydGhlbWVfYnM1XFxcXGNvbXBvbmVudHNcXFxcYmFzZVxcXFxoZWFkaW5nXFxcXGhlYWRpbmcuc3Rvcmllcy50d2lnIiwiaWQiOiJMaW5rZWRCbGFuayJ9"
+        }
+      }
+    },
+    {
+      "name": "Linked",
+      "args": {
+        "heading_text": "Linked heading",
+        "level": 3,
+        "url": "/about",
+        "target": "_self"
+      }
+    }
+  ]
+}

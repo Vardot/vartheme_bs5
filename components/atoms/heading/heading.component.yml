@@ -1,42 +1,41 @@
-"$schema": "https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json"
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: Heading
 group: Base
+status: stable
 props:
   type: object
   properties:
     heading_text:
       type: string
-      title: "Heading text"
+      title: Heading text
       default: "Enter title"
       examples:
         - "Page title"
     level:
       type: integer
-      title: "Heading level"
+      title: Heading level
       description: "HTML heading tag (h1–h6)."
-      default: 2
+      default: 3
       enum: [1, 2, 3, 4, 5, 6]
     text_size:
       type: string
-      title: "Text size"
-      description: "Optional Bootstrap size utility. Leave as Default to match the heading level."
-      default: "default"
+      title: Text size
+      description: "Optional Bootstrap typography utility. Leave empty to match the selected heading level."
+      default: ""
       enum:
-        - "default"
-        - "h1"
-        - "h2"
-        - "h3"
-        - "h4"
-        - "h5"
-        - "h6"
-        - "display-1"
-        - "display-2"
-        - "display-3"
-        - "display-4"
-        - "display-5"
-        - "display-6"
+        - h1
+        - h2
+        - h3
+        - h4
+        - h5
+        - h6
+        - display-1
+        - display-2
+        - display-3
+        - display-4
+        - display-5
+        - display-6
       'meta:enum':
-        default: "Default (match level)"
         h1: "Heading size: H1"
         h2: "Heading size: H2"
         h3: "Heading size: H3"
@@ -51,148 +50,55 @@ props:
         display-6: "Display 6"
     text_color:
       type: string
-      title: "Text color"
-      default: "default"
+      title: Text color
+      description: "Bootstrap text color utility. Leave empty for theme default."
+      default: ""
       enum:
-        - "default"
-        - "primary"
-        - "secondary"
-        - "success"
-        - "danger"
-        - "warning"
-        - "info"
-        - "muted"
-        - "white"
+        - text-primary
+        - text-secondary
+        - text-success
+        - text-danger
+        - text-warning
+        - text-info
+        - text-muted
+        - text-white
+        - text-dark
       'meta:enum':
-        default: "Default"
-        primary: "Primary"
-        secondary: "Secondary"
-        success: "Success"
-        danger: "Danger"
-        warning: "Warning"
-        info: "Info"
-        muted: "Muted"
-        white: "White"
+        text-primary: Primary
+        text-secondary: Secondary
+        text-success: Success
+        text-danger: Danger
+        text-warning: Warning
+        text-info: Info
+        text-muted: Muted
+        text-white: White
+        text-dark: Dark
     align:
       type: string
-      title: "Alignment"
-      default: "start"
+      title: Alignment
+      description: "Bootstrap text alignment utility. Leave empty for default alignment."
+      default: ""
       enum:
-        - "start"
-        - "center"
-        - "end"
+        - text-start
+        - text-center
+        - text-end
       'meta:enum':
-        start: "Left"
-        center: "Center"
-        end: "Right"
-    margin_top:
-      type: string
-      title: "Top spacing"
-      description: "Adds a Bootstrap margin-top class."
-      default: "none"
-      enum: ["none", "0", "1", "2", "3", "4", "5"]
-      'meta:enum':
-        none: "None (default)"
-        "0": "No top margin (mt-0)"
-        "1": "Small (mt-1)"
-        "2": "Medium (mt-2)"
-        "3": "Large (mt-3)"
-        "4": "XL (mt-4)"
-        "5": "XXL (mt-5)"
-    margin_bottom:
-      type: string
-      title: "Bottom spacing"
-      description: "Adds a Bootstrap margin-bottom class."
-      default: "none"
-      enum: ["none", "0", "1", "2", "3", "4", "5"]
-      'meta:enum':
-        none: "None (default)"
-        "0": "No bottom margin (mb-0)"
-        "1": "Small (mb-1)"
-        "2": "Medium (mb-2)"
-        "3": "Large (mb-3)"
-        "4": "XL (mb-4)"
-        "5": "XXL (mb-5)"
-    border_top:
-      type: boolean
-      title: "Top border"
-      default: false
-    border_bottom:
-      type: boolean
-      title: "Bottom border"
-      default: false
-    border_color:
-      type: string
-      title: "Border color"
-      description: "Applied only when a border is enabled."
-      default: "default"
-      enum:
-        - "default"
-        - "primary"
-        - "secondary"
-        - "success"
-        - "danger"
-        - "warning"
-        - "info"
-        - "light"
-        - "dark"
-        - "white"
-      'meta:enum':
-        default: "Default"
-        primary: "Primary"
-        secondary: "Secondary"
-        success: "Success"
-        danger: "Danger"
-        warning: "Warning"
-        info: "Info"
-        light: "Light"
-        dark: "Dark"
-        white: "White"
-    border_width:
-      type: integer
-      title: "Border thickness"
-      description: "Bootstrap border width utility (1–5)."
-      default: 1
-      enum: [1, 2, 3, 4, 5]
-    padding_top:
-      type: string
-      title: "Padding above text"
-      description: "Adds padding-top (useful when top border is enabled)."
-      default: "none"
-      enum: ["none", "0", "1", "2", "3", "4", "5"]
-      'meta:enum':
-        none: "None (default)"
-        "0": "No padding (pt-0)"
-        "1": "Small (pt-1)"
-        "2": "Medium (pt-2)"
-        "3": "Large (pt-3)"
-        "4": "XL (pt-4)"
-        "5": "XXL (pt-5)"
-    padding_bottom:
-      type: string
-      title: "Padding below text"
-      description: "Adds padding-bottom (useful when bottom border is enabled)."
-      default: "none"
-      enum: ["none", "0", "1", "2", "3", "4", "5"]
-      'meta:enum':
-        none: "None (default)"
-        "0": "No padding (pb-0)"
-        "1": "Small (pb-1)"
-        "2": "Medium (pb-2)"
-        "3": "Large (pb-3)"
-        "4": "XL (pb-4)"
-        "5": "XXL (pb-5)"
+        text-start: Left
+        text-center: Center
+        text-end: Right
     url:
       type: string
-      title: "Link (optional)"
-      description: "If provided, the heading text will be a link."
+      title: Link URL
+      description: "Optional. When provided, the heading text will be rendered as a link using the vartheme_bs5:link component."
       default: ""
-    html_id:
+    target:
       type: string
-      title: "HTML ID (optional)"
-      default: ""
-    extra_classes:
-      type: string
-      title: "Extra CSS classes"
-      description: "Space separated classes to add to the heading."
-      default: ""
+      title: Link target
+      description: "Optional. Controls where the linked heading opens."
+      default: "_self"
+      enum:
+        - _self
+        - _blank
+      'meta:enum':
+        _self: "Same tab"
+        _blank: "New tab"

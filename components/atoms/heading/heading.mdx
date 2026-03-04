@@ -1,0 +1,63 @@
+{/* heading.mdx */}
+
+import { Title, Subtitle, Meta, Description, Primary, Stories, Controls, Source } from '@storybook/blocks';
+import * as comStories from './heading.stories.json';
+import templateSource from './heading.twig?raw';
+
+<Meta of={comStories} name="Docs" />
+
+<Title />
+<Subtitle />
+<Description />
+
+> ### Bootstrap Documentation
+> * [Typography – Headings](https://getbootstrap.com/docs/5.3/content/typography/#headings)
+> * [Typography – Display headings](https://getbootstrap.com/docs/5.3/content/typography/#display-headings)
+
+<Primary />
+
+## Properties
+<Controls />
+
+<Stories of={comStories} />
+
+## Attributes
+* N/A
+
+## Slots
+* N/A
+
+## Examples
+
+### Example #1: Simple H2
+```
+{% include "vartheme_bs5:heading" with {
+  heading_text: 'Hello world',
+  level: 2
+} only %}
+```
+
+### Example #2: Display heading, centered, colored
+```
+{% include "vartheme_bs5:heading" with {
+  heading_text: 'Big title',
+  level: 2,
+  text_size: 'display-3',
+  align: 'text-center',
+  text_color: 'text-primary'
+} only %}
+```
+
+### Example #3: Linked heading (opens in a new tab)
+```
+{% include "vartheme_bs5:heading" with {
+  heading_text: 'Read more',
+  level: 3,
+  url: 'https://example.com',
+  target: '_blank'
+} only %}
+```
+
+## Source code
+[//]: # (Twig Template source code)
+<Source code={templateSource} />

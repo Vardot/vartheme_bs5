@@ -1,107 +1,34 @@
-{# Values #}
-{% set text = heading_text|default('Enter title') %}
-{% set level = level|default(2) %}
+{# Heading component #}
+
+{# Prepare values before markup #}
+{% set level = level|default(3) %}
 {% set tag = 'h' ~ level %}
-{% set has_url = url is not empty %}
+{% set heading_text = heading_text|default('') %}
+{% set url = url|default('')|trim %}
+{% set target = target|default('_self') %}
 
-{# Bootstrap classes #}
-{% set classes = [] %}
 
-{# Alignment #}
-{% set align_map = {
-  start: 'text-start',
-  center: 'text-center',
-  end: 'text-end'
-} %}
-{% set classes = classes|merge([align_map[align]|default('text-start')]) %}
+{% set text_size = text_size|default('') %}
+{% set text_color = text_color|default('') %}
+{% set align = align|default('') %}
 
-{# Text color #}
-{% set color_map = {
-  default: 'text-body',
-  primary: 'text-primary',
-  secondary: 'text-secondary',
-  success: 'text-success',
-  danger: 'text-danger',
-  warning: 'text-warning',
-  info: 'text-info',
-  muted: 'text-muted',
-  white: 'text-white'
-} %}
-{% set classes = classes|merge([color_map[text_color]|default('text-body')]) %}
-
-{# Size override #}
-{% if text_size is defined and text_size != 'default' %}
-  {% set classes = classes|merge([text_size]) %}
+{# Build attributes (keep markup simple) #}
+{% set class_list = [text_size, text_color, align]|filter(v => v is not empty) %}
+{% set heading_attributes = create_attribute() %}
+{% if class_list %}
+  {% set heading_attributes = heading_attributes.addClass(class_list) %}
 {% endif %}
 
-{# Spacing (opt-in) #}
-{% if margin_top is defined and margin_top != 'none' %}
-  {% set classes = classes|merge(['mt-' ~ margin_top]) %}
-{% endif %}
-{% if margin_bottom is defined and margin_bottom != 'none' %}
-  {% set classes = classes|merge(['mb-' ~ margin_bottom]) %}
+{# Link props for vartheme_bs5:link #}
+{% set link_props = url ? { url: url, content: heading_text } : {} %}
+{% if url and target and target != '_self' %}
+  {% set link_props = link_props|merge({ target: target }) %}
 {% endif %}
 
-{# Borders (opt-in) #}
-{% set borders_enabled = (border_top|default(false) or border_bottom|default(false)) %}
-{% if border_top|default(false) %}
-  {% set classes = classes|merge(['border-top']) %}
-{% endif %}
-{% if border_bottom|default(false) %}
-  {% set classes = classes|merge(['border-bottom']) %}
-{% endif %}
-
-{% if borders_enabled %}
-  {# Border width #}
-  {% if border_width is defined %}
-    {% set classes = classes|merge(['border-' ~ border_width]) %}
-  {% endif %}
-
-  {# Border color (optional) #}
-  {% set border_color_map = {
-    default: '',
-    primary: 'border-primary',
-    secondary: 'border-secondary',
-    success: 'border-success',
-    danger: 'border-danger',
-    warning: 'border-warning',
-    info: 'border-info',
-    light: 'border-light',
-    dark: 'border-dark',
-    white: 'border-white'
-  } %}
-  {% set border_color_class = border_color_map[border_color|default('default')]|default('') %}
-  {% if border_color_class %}
-    {% set classes = classes|merge([border_color_class]) %}
-  {% endif %}
-
-  {# Padding to control distance between border and text #}
-  {% if padding_top is defined and padding_top != 'none' %}
-    {% set classes = classes|merge(['pt-' ~ padding_top]) %}
-  {% endif %}
-  {% if padding_bottom is defined and padding_bottom != 'none' %}
-    {% set classes = classes|merge(['pb-' ~ padding_bottom]) %}
-  {% endif %}
-{% endif %}
-
-{# Extra classes #}
-{% if extra_classes|default('')|trim %}
-  {% set classes = classes|merge(extra_classes|trim|split(' ')) %}
-{% endif %}
-
-{# Build attributes (Canvas-friendly: no 'attributes' prop) #}
-{% set attrs = create_attribute().addClass(classes) %}
-{% if html_id|default('')|trim %}
-  {% set attrs = attrs.setAttribute('id', html_id|trim) %}
-{% endif %}
-
-{# Content #}
-{% set content %}
-  {% if has_url %}
-    <a href="{{ url }}" class="text-reset text-decoration-none">{{ text }}</a>
+<{{ tag }}{{ heading_attributes }}>
+  {% if url %}
+    {% include 'vartheme_bs5:link' with link_props only %}
   {% else %}
-    {{ text }}
+    {{ heading_text }}
   {% endif %}
-{% endset %}
-
-<{{ tag }}{{ attrs }}>{{ content }}</{{ tag }}>
+</{{ tag }}>
