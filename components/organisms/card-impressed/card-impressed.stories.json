@@ -1,1 +1,214 @@
-{"title":"Organisms\/Impressed Card","parameters":{"componentSubtitle":"Bootstrap Impressed card component","docs":{"description":{"component":"Impressed card component and pattern with media and content."},"story":{"inline":true}}},"argTypes":{"style_size":{"name":"Card style size","description":"Card style size","control":"select","defaultValue":"","options":{"' - none - '":"","XSmall":"xsmall","Small":"small","Medium":"medium","Large":"large","XLarge":"xlarge"}},"media_position":{"name":"Media position","description":"Media position","control":"select","defaultValue":"","options":{"' - none - '":"","Top":"top","Bottom":"bottom"}},"card_border":{"name":"Card Border","description":"Add a default border to the card.","control":"boolean","defaultValue":true},"padded":{"name":"Padded","description":"Add a default padding to the card.","control":"boolean","defaultValue":false},"equal_height":{"name":"Equal height","description":"Equal height","control":"boolean","defaultValue":true},"anchor_all":{"name":"Anchor All","description":"Anchor All","control":"boolean","defaultValue":false},"media":{"name":"Card media","description":"Choose the location of the media from (top|bottom).","control":"text","defaultValue":""},"content":{"name":"Card content","slots":"The content slot for the card.","control":"text","defaultValue":""},"card_impressed_utility_classes":{"name":"Utility Classes","description":"Use to add extra Bootstrap utility classes for the main Card wrapper. E.g. `mb-3 shadow-lg` ( Do not add `card`).","control":"object","defaultValue":[]},"card_impressed_media_utility_classes":{"name":"Media Utility Classes","description":"Use to add extra Bootstrap utility classes for the Card Media region wrapper. E.g. `bg-secondary mb-3` ( Do not add `card-img`).","control":"object","defaultValue":[]},"card_impressed_content_utility_classes":{"name":"Content Utility Classes","description":"Use to add extra Bootstrap utility classes for the Card Content region wrapper. E.g. `w-75 mb-3 overflow-y-hidden`  ( Do not add `card-body`).","control":"object","defaultValue":[]},"card_attributes":{"name":"Card Attributes","description":"HTML attributes for the card element.","control":"object","defaultValue":[]},"content_attributes":{"name":"Content Attributes","description":"HTML attributes for the content element.","control":"object","defaultValue":[]}},"stories":[{"name":"xlarge","args":{"style_size":"xlarge","media_position":"top","card_border":false,"padded":false,"equal_height":true,"anchor_all":true,"media":"<picture class=\"card-img-top img-fluid\"><img class=\"card-img-top img-fluid\" src=\"https:\/\/raw.githubusercontent.com\/Vardot\/varbase_media_demo\/10.0.0\/content\/file\/coworking-1.jpg\"><\/picture>","content":"<h3 class=\"card-title\"><a href=\"#\">Lorem Ipsum Dolor Sit Amet<\/a><\/h3><p class=\"card-text\">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas.<\/p>","card_impressed_utility_classes":["col-12"],"card_impressed_media_utility_classes":[],"card_impressed_content_utility_classes":[]},"parameters":{"server":{"id":"eyJwYXRoIjoidGhlbWVzXC9jb250cmliXC92YXJ0aGVtZV9iczVcL2NvbXBvbmVudHNcL29yZ2FuaXNtc1wvY2FyZC1pbXByZXNzZWRcL2NhcmQtaW1wcmVzc2VkLnN0b3JpZXMudHdpZyIsImlkIjoieGxhcmdlIn0%3D"}}},{"name":"large","args":{"style_size":"large","media_position":"top","card_border":false,"padded":false,"equal_height":true,"anchor_all":true,"media":"<picture class=\"card-img-top img-fluid\"><img class=\"card-img-top img-fluid\" src=\"https:\/\/raw.githubusercontent.com\/Vardot\/varbase_media_demo\/10.0.0\/content\/file\/coworking-1.jpg\"><\/picture>","content":"<h3 class=\"card-title\"><a href=\"#\">Lorem Ipsum Dolor Sit Amet<\/a><\/h3><p class=\"card-text\">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas.<\/p>","card_impressed_utility_classes":["col-9"],"card_impressed_media_utility_classes":[],"card_impressed_content_utility_classes":[]},"parameters":{"server":{"id":"eyJwYXRoIjoidGhlbWVzXC9jb250cmliXC92YXJ0aGVtZV9iczVcL2NvbXBvbmVudHNcL29yZ2FuaXNtc1wvY2FyZC1pbXByZXNzZWRcL2NhcmQtaW1wcmVzc2VkLnN0b3JpZXMudHdpZyIsImlkIjoibGFyZ2UifQ%3D%3D"}}},{"name":"medium","args":{"style_size":"medium","media_position":"top","card_border":false,"padded":false,"equal_height":true,"anchor_all":true,"media":"<picture class=\"card-img-top img-fluid\"><img class=\"card-img-top img-fluid\" src=\"https:\/\/raw.githubusercontent.com\/Vardot\/varbase_media_demo\/10.0.0\/content\/file\/coworking-1.jpg\"><\/picture>","content":"<h3 class=\"card-title\"><a href=\"#\">Lorem Ipsum Dolor Sit Amet<\/a><\/h3><p class=\"card-text\">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas.<\/p>","card_impressed_utility_classes":["col-6"],"card_impressed_media_utility_classes":[],"card_impressed_content_utility_classes":[]},"parameters":{"server":{"id":"eyJwYXRoIjoidGhlbWVzXC9jb250cmliXC92YXJ0aGVtZV9iczVcL2NvbXBvbmVudHNcL29yZ2FuaXNtc1wvY2FyZC1pbXByZXNzZWRcL2NhcmQtaW1wcmVzc2VkLnN0b3JpZXMudHdpZyIsImlkIjoibWVkaXVtIn0%3D"}}},{"name":"small","args":{"style_size":"small","media_position":"top","card_border":false,"padded":false,"equal_height":true,"anchor_all":true,"media":"<picture class=\"card-img-top img-fluid\"><img class=\"card-img-top img-fluid\" src=\"https:\/\/raw.githubusercontent.com\/Vardot\/varbase_media_demo\/10.0.0\/content\/file\/coworking-1.jpg\"><\/picture>","content":"<h3 class=\"card-title\"><a href=\"#\">Lorem Ipsum Dolor Sit Amet<\/a><\/h3><p class=\"card-text\">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas.<\/p>","card_impressed_utility_classes":["col-4"],"card_impressed_media_utility_classes":[],"card_impressed_content_utility_classes":[]},"parameters":{"server":{"id":"eyJwYXRoIjoidGhlbWVzXC9jb250cmliXC92YXJ0aGVtZV9iczVcL2NvbXBvbmVudHNcL29yZ2FuaXNtc1wvY2FyZC1pbXByZXNzZWRcL2NhcmQtaW1wcmVzc2VkLnN0b3JpZXMudHdpZyIsImlkIjoic21hbGwifQ%3D%3D"}}},{"name":"xsmall","args":{"style_size":"xsmall","media_position":"top","card_border":false,"padded":false,"equal_height":true,"anchor_all":true,"media":"<picture class=\"card-img-top img-fluid\"><img class=\"card-img-top img-fluid\" src=\"https:\/\/raw.githubusercontent.com\/Vardot\/varbase_media_demo\/10.0.0\/content\/file\/coworking-1.jpg\"><\/picture>","content":"<h3 class=\"card-title\"><a href=\"#\">Lorem Ipsum Dolor Sit Amet<\/a><\/h3><p class=\"card-text\">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas.<\/p>","card_impressed_utility_classes":["col-3"],"card_impressed_media_utility_classes":[],"card_impressed_content_utility_classes":[]},"parameters":{"server":{"id":"eyJwYXRoIjoidGhlbWVzXC9jb250cmliXC92YXJ0aGVtZV9iczVcL2NvbXBvbmVudHNcL29yZ2FuaXNtc1wvY2FyZC1pbXByZXNzZWRcL2NhcmQtaW1wcmVzc2VkLnN0b3JpZXMudHdpZyIsImlkIjoieHNtYWxsIn0%3D"}}},{"name":"xlarge - Padded","args":{"style_size":"xlarge","media_position":"top","card_border":true,"padded":true,"equal_height":true,"anchor_all":true,"media":"<picture class=\"card-img-top img-fluid\"><img class=\"card-img-top img-fluid\" src=\"https:\/\/raw.githubusercontent.com\/Vardot\/varbase_media_demo\/10.0.0\/content\/file\/coworking-1.jpg\"><\/picture>","content":"<div data-component-id=\"vartheme_bs5:field\" class=\"field field--name-node-title field--type-ds field--label-hidden field__item\"><h3 class=\"card-title\"><a href=\"#\" hreflang=\"en\">Lorem Ipsum Dolor Sit Amet<\/a><\/h3><\/div><div class=\"field field--name-body field--type-text-with-summary field--label-hidden field__item\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pharetra arcu risus, id tempus risus elementum at. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas ...<\/div>","card_impressed_utility_classes":["col-12"],"card_impressed_media_utility_classes":[],"card_impressed_content_utility_classes":[]},"parameters":{"server":{"id":"eyJwYXRoIjoidGhlbWVzXC9jb250cmliXC92YXJ0aGVtZV9iczVcL2NvbXBvbmVudHNcL29yZ2FuaXNtc1wvY2FyZC1pbXByZXNzZWRcL2NhcmQtaW1wcmVzc2VkLnN0b3JpZXMudHdpZyIsImlkIjoieGxhcmdlUGFkZGVkIn0%3D"}}},{"name":"large - Padded","args":{"style_size":"large","media_position":"top","card_border":true,"padded":true,"equal_height":true,"anchor_all":true,"media":"<picture class=\"card-img-top img-fluid\"><img class=\"card-img-top img-fluid\" src=\"https:\/\/raw.githubusercontent.com\/Vardot\/varbase_media_demo\/10.0.0\/content\/file\/coworking-1.jpg\"><\/picture>","content":"<div data-component-id=\"vartheme_bs5:field\" class=\"field field--name-node-title field--type-ds field--label-hidden field__item\"><h3 class=\"card-title\"><a href=\"#\" hreflang=\"en\">Lorem Ipsum Dolor Sit Amet<\/a><\/h3><\/div><div class=\"field field--name-body field--type-text-with-summary field--label-hidden field__item\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pharetra arcu risus, id tempus risus elementum at. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas ...<\/div>","card_impressed_utility_classes":["col-9"],"card_impressed_media_utility_classes":[],"card_impressed_content_utility_classes":[]},"parameters":{"server":{"id":"eyJwYXRoIjoidGhlbWVzXC9jb250cmliXC92YXJ0aGVtZV9iczVcL2NvbXBvbmVudHNcL29yZ2FuaXNtc1wvY2FyZC1pbXByZXNzZWRcL2NhcmQtaW1wcmVzc2VkLnN0b3JpZXMudHdpZyIsImlkIjoibGFyZ2VQYWRkZWQifQ%3D%3D"}}},{"name":"medium - Padded","args":{"style_size":"medium","media_position":"top","card_border":true,"padded":true,"equal_height":true,"anchor_all":true,"media":"<picture class=\"card-img-top img-fluid\"><img class=\"card-img-top img-fluid\" src=\"https:\/\/raw.githubusercontent.com\/Vardot\/varbase_media_demo\/10.0.0\/content\/file\/coworking-1.jpg\"><\/picture>","content":"<div data-component-id=\"vartheme_bs5:field\" class=\"field field--name-node-title field--type-ds field--label-hidden field__item\"><h3 class=\"card-title\"><a href=\"#\" hreflang=\"en\">Lorem Ipsum Dolor Sit Amet<\/a><\/h3><\/div><div class=\"field field--name-body field--type-text-with-summary field--label-hidden field__item\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pharetra arcu risus, id tempus risus elementum at. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas ...<\/div>","card_impressed_utility_classes":["col-6"],"card_impressed_media_utility_classes":[],"card_impressed_content_utility_classes":[]},"parameters":{"server":{"id":"eyJwYXRoIjoidGhlbWVzXC9jb250cmliXC92YXJ0aGVtZV9iczVcL2NvbXBvbmVudHNcL29yZ2FuaXNtc1wvY2FyZC1pbXByZXNzZWRcL2NhcmQtaW1wcmVzc2VkLnN0b3JpZXMudHdpZyIsImlkIjoibWVkaXVtUGFkZGVkIn0%3D"}}},{"name":"Large Shadow - Top Media","args":{"style_size":"medium","media_position":"top","card_border":true,"padded":true,"equal_height":true,"anchor_all":true,"media":"<picture class=\"card-img-top img-fluid\"><img class=\"card-img-top img-fluid\" src=\"https:\/\/raw.githubusercontent.com\/Vardot\/varbase_media_demo\/10.0.0\/content\/file\/coworking-1.jpg\"><\/picture>","content":"<div data-component-id=\"vartheme_bs5:field\" class=\"field field--name-node-title field--type-ds field--label-hidden field__item\"><h3 class=\"card-title\"><a href=\"#\" hreflang=\"en\">Lorem Ipsum Dolor Sit Amet<\/a><\/h3><\/div><div class=\"field field--name-body field--type-text-with-summary field--label-hidden field__item\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pharetra arcu risus, id tempus risus elementum at. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas ...<\/div>","card_impressed_utility_classes":["shadow-lg","col-12"],"card_impressed_media_utility_classes":[],"card_impressed_content_utility_classes":[]},"parameters":{"server":{"id":"eyJwYXRoIjoidGhlbWVzXC9jb250cmliXC92YXJ0aGVtZV9iczVcL2NvbXBvbmVudHNcL29yZ2FuaXNtc1wvY2FyZC1pbXByZXNzZWRcL2NhcmQtaW1wcmVzc2VkLnN0b3JpZXMudHdpZyIsImlkIjoiTGFyZ2VTaGFkb3dUb3BNZWRpYSJ9"}}},{"name":"Large Shadow - Buttom Media","args":{"style_size":"medium","media_position":"bottom","card_border":true,"padded":true,"equal_height":true,"anchor_all":true,"media":"<picture class=\"card-img-top img-fluid\"><img class=\"card-img-top img-fluid\" src=\"https:\/\/raw.githubusercontent.com\/Vardot\/varbase_media_demo\/10.0.0\/content\/file\/coworking-1.jpg\"><\/picture>","content":"<div data-component-id=\"vartheme_bs5:field\" class=\"field field--name-node-title field--type-ds field--label-hidden field__item\"><h3 class=\"card-title\"><a href=\"#\" hreflang=\"en\">Lorem Ipsum Dolor Sit Amet<\/a><\/h3><\/div><div class=\"field field--name-body field--type-text-with-summary field--label-hidden field__item\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pharetra arcu risus, id tempus risus elementum at. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas ...<\/div>","card_impressed_utility_classes":["shadow-lg","col-6"],"card_impressed_media_utility_classes":[],"card_impressed_content_utility_classes":[]},"parameters":{"server":{"id":"eyJwYXRoIjoidGhlbWVzXC9jb250cmliXC92YXJ0aGVtZV9iczVcL2NvbXBvbmVudHNcL29yZ2FuaXNtc1wvY2FyZC1pbXByZXNzZWRcL2NhcmQtaW1wcmVzc2VkLnN0b3JpZXMudHdpZyIsImlkIjoiTGFyZ2VTaGFkb3dCdXR0b21NZWRpYSJ9"}}},{"name":"Light Backbround - Large Shadow","args":{"style_size":"medium","media_position":"top","card_border":true,"padded":true,"equal_height":true,"anchor_all":true,"media":"<picture class=\"card-img-top img-fluid\"><img class=\"card-img-top img-fluid\" src=\"https:\/\/raw.githubusercontent.com\/Vardot\/varbase_media_demo\/10.0.0\/content\/file\/coworking-1.jpg\"><\/picture>","content":"<div data-component-id=\"vartheme_bs5:field\" class=\"field field--name-node-title field--type-ds field--label-hidden field__item\"><h3 class=\"card-title\"><a href=\"#\" hreflang=\"en\">Lorem Ipsum Dolor Sit Amet<\/a><\/h3><\/div><div class=\"field field--name-body field--type-text-with-summary field--label-hidden field__item\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pharetra arcu risus, id tempus risus elementum at. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas ...<\/div>","card_impressed_utility_classes":["bg-light","text-dark","shadow-lg","col-6"],"card_impressed_media_utility_classes":[],"card_impressed_content_utility_classes":[]},"parameters":{"server":{"id":"eyJwYXRoIjoidGhlbWVzXC9jb250cmliXC92YXJ0aGVtZV9iczVcL2NvbXBvbmVudHNcL29yZ2FuaXNtc1wvY2FyZC1pbXByZXNzZWRcL2NhcmQtaW1wcmVzc2VkLnN0b3JpZXMudHdpZyIsImlkIjoiTGlnaHRCYWNrYnJvdW5kTGFyZ2VTaGFkb3cifQ%3D%3D"}}},{"name":"Light Backbround - Small Shadow","args":{"style_size":"medium","media_position":"top","card_border":true,"padded":true,"equal_height":true,"anchor_all":true,"media":"<picture class=\"card-img-top img-fluid\"><img class=\"card-img-top img-fluid\" src=\"https:\/\/raw.githubusercontent.com\/Vardot\/varbase_media_demo\/10.0.0\/content\/file\/coworking-1.jpg\"><\/picture>","content":"<div data-component-id=\"vartheme_bs5:field\" class=\"field field--name-node-title field--type-ds field--label-hidden field__item\"><h3 class=\"card-title\"><a href=\"#\" hreflang=\"en\">Lorem Ipsum Dolor Sit Amet<\/a><\/h3><\/div><div class=\"field field--name-body field--type-text-with-summary field--label-hidden field__item\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pharetra arcu risus, id tempus risus elementum at. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas ...<\/div>","card_impressed_utility_classes":["bg-light","text-dark","shadow-sm","col-6"],"card_impressed_media_utility_classes":[],"card_impressed_content_utility_classes":[]},"parameters":{"server":{"id":"eyJwYXRoIjoidGhlbWVzXC9jb250cmliXC92YXJ0aGVtZV9iczVcL2NvbXBvbmVudHNcL29yZ2FuaXNtc1wvY2FyZC1pbXByZXNzZWRcL2NhcmQtaW1wcmVzc2VkLnN0b3JpZXMudHdpZyIsImlkIjoiTGlnaHRCYWNrYnJvdW5kU21hbGxTaGFkb3cifQ%3D%3D"}}},{"name":"Dark Backbround - Top Media","args":{"style_size":"medium","media_position":"top","card_border":true,"padded":true,"equal_height":true,"anchor_all":true,"media":"<picture class=\"card-img-top img-fluid\"><img class=\"card-img-top img-fluid\" src=\"https:\/\/raw.githubusercontent.com\/Vardot\/varbase_media_demo\/10.0.0\/content\/file\/coworking-1.jpg\"><\/picture>","content":"<div data-component-id=\"vartheme_bs5:field\" class=\"field field--name-node-title field--type-ds field--label-hidden field__item\"><h3 class=\"card-title text-light\"><a class=\"text-light\" href=\"#\" hreflang=\"en\">Lorem Ipsum Dolor Sit Amet<\/a><\/h3><\/div><div class=\"field field--name-body field--type-text-with-summary field--label-hidden field__item\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pharetra arcu risus, id tempus risus elementum at. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas ...<\/div><div class=\"read-more text-end\"><\/div>","card_impressed_utility_classes":["bg-dark","text-light","col-6"],"card_impressed_media_utility_classes":[],"card_impressed_content_utility_classes":[]},"parameters":{"server":{"id":"eyJwYXRoIjoidGhlbWVzXC9jb250cmliXC92YXJ0aGVtZV9iczVcL2NvbXBvbmVudHNcL29yZ2FuaXNtc1wvY2FyZC1pbXByZXNzZWRcL2NhcmQtaW1wcmVzc2VkLnN0b3JpZXMudHdpZyIsImlkIjoiRGFya0JhY2ticm91bmRUb3BNZWRpYSJ9"}}},{"name":"Dark Backbround - Bottom Media","args":{"style_size":"medium","media_position":"bottom","card_border":true,"padded":true,"equal_height":true,"anchor_all":true,"media":"<picture class=\"card-img-top img-fluid\"><img class=\"card-img-top img-fluid\" src=\"https:\/\/raw.githubusercontent.com\/Vardot\/varbase_media_demo\/10.0.0\/content\/file\/coworking-1.jpg\"><\/picture>","content":"<div data-component-id=\"vartheme_bs5:field\" class=\"field field--name-node-title field--type-ds field--label-hidden field__item\"><h3 class=\"card-title text-light\"><a class=\"text-light\" href=\"#\" hreflang=\"en\">Lorem Ipsum Dolor Sit Amet<\/a><\/h3><\/div><div class=\"field field--name-body field--type-text-with-summary field--label-hidden field__item\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pharetra arcu risus, id tempus risus elementum at. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas ...<\/div><div class=\"read-more text-end\"><\/div>","card_impressed_utility_classes":["bg-dark","text-light","col-6"],"card_impressed_media_utility_classes":[],"card_impressed_content_utility_classes":[]},"parameters":{"server":{"id":"eyJwYXRoIjoidGhlbWVzXC9jb250cmliXC92YXJ0aGVtZV9iczVcL2NvbXBvbmVudHNcL29yZ2FuaXNtc1wvY2FyZC1pbXByZXNzZWRcL2NhcmQtaW1wcmVzc2VkLnN0b3JpZXMudHdpZyIsImlkIjoiRGFya0JhY2ticm91bmRCb3R0b21NZWRpYSJ9"}}}]}
+{
+  "title": "Cards/Impressed Card",
+  "parameters": {
+    "componentSubtitle": "Stacked card with optional media (top/bottom) and a single content slot.",
+    "docs": {
+      "description": {
+        "component": "Impressed Card is a Bootstrap 5 card layout with an optional media area rendered through the image component. Use utility-class props to control border, padding, background, rounding, and shadows."
+      },
+      "story": {
+        "inline": true
+      }
+    }
+  },
+  "argTypes": {
+    "media_position": {
+      "control": {
+        "type": "select"
+      },
+      "options": [
+        "top",
+        "bottom"
+      ]
+    },
+    "media_image": {
+      "control": {
+        "type": "object"
+      }
+    },
+    "ratio": {
+      "control": {
+        "type": "select"
+      },
+      "options": [
+        "ratio-auto",
+        "ratio-16x9",
+        "ratio-4x3",
+        "ratio-1x1",
+        "ratio-21x9"
+      ]
+    },
+    "fit": {
+      "control": {
+        "type": "select"
+      },
+      "options": [
+        "object-fit-cover",
+        "object-fit-contain"
+      ]
+    },
+    "card_border": {
+      "control": {
+        "type": "boolean"
+      }
+    },
+    "background_color": {
+      "control": {
+        "type": "select"
+      },
+      "options": [
+        "bg-transparent",
+        "bg-body",
+        "bg-body-tertiary",
+        "bg-white",
+        "bg-light",
+        "bg-dark",
+        "bg-primary",
+        "bg-secondary",
+        "bg-success",
+        "bg-danger",
+        "bg-warning",
+        "bg-info"
+      ]
+    },
+    "padded": {
+      "control": {
+        "type": "boolean"
+      }
+    },
+    "box_shadow": {
+      "control": {
+        "type": "select"
+      },
+      "options": [
+        "shadow-none",
+        "shadow-sm",
+        "shadow",
+        "shadow-lg"
+      ]
+    },
+    "corner_style": {
+      "control": {
+        "type": "select"
+      },
+      "options": [
+        "rounded-0",
+        "rounded-1",
+        "rounded-3",
+        "rounded-pill"
+      ]
+    },
+    "equal_height": {
+      "control": {
+        "type": "boolean"
+      }
+    },
+    "stretched_link": {
+      "control": {
+        "type": "boolean"
+      }
+    },
+    "link_url": {
+      "control": {
+        "type": "text"
+      }
+    },
+    "link_target": {
+      "control": {
+        "type": "select"
+      },
+      "options": [
+        "default",
+        "_self",
+        "_blank"
+      ]
+    }
+  },
+  "stories": [
+    {
+      "name": "Default",
+      "args": {
+        "media_position": "top",
+        "ratio": "ratio-16x9",
+        "fit": "object-fit-cover",
+        "card_border": true,
+        "background_color": "bg-white",
+        "padded": false,
+        "box_shadow": "shadow-sm",
+        "corner_style": "rounded-3",
+        "equal_height": false,
+        "stretched_link": false,
+        "link_url": "",
+        "link_target": "default"
+      }
+    },
+    {
+      "name": "Padded content",
+      "args": {
+        "media_position": "top",
+        "ratio": "ratio-16x9",
+        "fit": "object-fit-cover",
+        "card_border": true,
+        "background_color": "bg-body",
+        "padded": true,
+        "box_shadow": "shadow",
+        "corner_style": "rounded-3",
+        "equal_height": false,
+        "stretched_link": false,
+        "link_url": "",
+        "link_target": "default"
+      }
+    },
+    {
+      "name": "Media bottom",
+      "args": {
+        "media_position": "bottom",
+        "ratio": "ratio-4x3",
+        "fit": "object-fit-cover",
+        "card_border": true,
+        "background_color": "bg-white",
+        "padded": true,
+        "box_shadow": "shadow-sm",
+        "corner_style": "rounded-3",
+        "equal_height": false,
+        "stretched_link": false,
+        "link_url": "",
+        "link_target": "default"
+      }
+    },
+    {
+      "name": "Contain fit",
+      "args": {
+        "media_position": "top",
+        "ratio": "ratio-1x1",
+        "fit": "object-fit-contain",
+        "card_border": true,
+        "background_color": "bg-white",
+        "padded": true,
+        "box_shadow": "shadow-none",
+        "corner_style": "rounded-0",
+        "equal_height": false,
+        "stretched_link": false,
+        "link_url": "",
+        "link_target": "default"
+      }
+    },
+    {
+      "name": "Linked card",
+      "args": {
+        "media_position": "top",
+        "ratio": "ratio-21x9",
+        "fit": "object-fit-cover",
+        "card_border": true,
+        "background_color": "bg-white",
+        "padded": true,
+        "box_shadow": "shadow-lg",
+        "corner_style": "rounded-3",
+        "equal_height": false,
+        "stretched_link": true,
+        "link_url": "https://example.com",
+        "link_target": "_blank"
+      }
+    }
+  ]
+}

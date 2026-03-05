@@ -1,88 +1,111 @@
 {#
-/**
- * @file
- * Vartheme BS5 Starter Kit implementation for the Impressed Card component.
- *
- * Available properties:
- * - style_size: Card style size. (xsmall|small|medium|large|xlarge).
- * - card_border: Add a default padding to the card. (true|false).
- * - padded: Add a default padding to the card. (true|false).
- * - equal_height: Equal height. (true|false).
- * - anchor_all: Anchor All (true|false).
- * - media_position: Choose the location of the media from (top|bottom).
- * - card_impressed_utility_classes: Use to add extra Bootstrap utility classes for the main Card wrapper.
- *                    E.g. `mb-3 shadow-lg` ( Do not add `card`).
- * - card_impressed_media_utility_classes: Use to add extra Bootstrap utility classes for the Card Media region wrapper.
- *                          E.g. `bg-secondary mb-3` ( Do not add `card-img`).
- * - card_impressed_content_utility_classes: Use to add extra Bootstrap utility classes for the Card Content region wrapper.
- *                            E.g. `w-75 mb-3 overflow-y-hidden`  ( Do not add `card-body`).
- *
- * Available attributes:
- * - card_attributes: HTML attributes for the card element.
- * - media_attributes: HTML attributes for the media element.
- * - content_attributes: HTML attributes for the content element.
- *
- * Available slots:
- * - media: The media image/video slot for the card.
- * - content: The content slot for the card.
- */
+  Impressed Card
+  - Stacked layout (media top/bottom)
+  - One drag & drop slot: content
+  - Media uses the "media_image" prop
 #}
 
-{% set style_size = style_size ? [style_size]: [] %}
-{% set card_border = card_border ? ['bordered'] : ['border-0'] %}
-{% set padded = padded ? ['p-4'] : [''] %}
-{% set equal_height = equal_height ? ['h-100'] : [] %}
-{% set anchor_all = anchor_all ? ['anchor-all'] : [] %}
 {% set media_position = media_position ?? 'top' %}
-{% set media_position_classes = media_position == 'bottom' ? ['flex-column-reverse'] : [] %}
-{% set card_impressed_utility_classes = card_impressed_utility_classes ? card_impressed_utility_classes : [] %}
-{% set card_impressed_media_utility_classes = card_impressed_media_utility_classes ? card_impressed_media_utility_classes : [] %}
-{% set card_impressed_content_utility_classes = card_impressed_content_utility_classes ? card_impressed_content_utility_classes : [] %}
+{% set card_border = card_border|default(false) %}
+{% set padded = padded|default(false) %}
+{% set equal_height = equal_height|default(false) %}
+{% set box_shadow = box_shadow|default('shadow-none') %}
+{% set background_color = background_color|default('bg-transparent') %}
+{% set corner_style = corner_style|default('rounded-0') %}
 
-{%
-  set card_classes = [
-    'card',
-    'varbase-impressed-card',
-  ]|merge(style_size)|merge(card_border)|merge(padded)|merge(equal_height)|merge(anchor_all)|merge(media_position_classes)|merge(card_impressed_utility_classes)
+{% set stretched_link = stretched_link|default(false) %}
+
+{% set link_url = link_url|default('')|trim %}
+{% set link_target_raw = link_target|default('default') %}
+{% set link_target = (link_target_raw == 'default') ? '_self' : link_target_raw %}
+
+{% set media_image = media_image|default({}) %}
+{% set ratio = ratio|default('ratio-16x9') %}
+{% set fit = fit|default('object-fit-cover') %}
+{% set has_media = (media_image.src|default('')|trim) is not empty %}
+{% set render_media = true %}
+
+{% set card_impressed_media_utility_classes = card_impressed_media_utility_classes|default([]) %}
+{% set content_slot %}{% block content %}{% endblock %}{% endset %}
+{% set has_content_slot = content_slot|render|trim is not empty %}
+
+{% set placeholder_src = (component_metadata.path is defined)
+  ? (component_metadata.path ~ '/assets/impressed-card-image-placeholder.svg')
+  : 'assets/impressed-card-image-placeholder.svg'
 %}
 
-{%
-  set media_classes = [
-    'card-img',
-    'card-img-' ~ media_position,
-  ]|merge(card_impressed_media_utility_classes)
-%}
+{% set use_stretched_link = stretched_link and (link_url is not empty) %}
+{% set media_position_classes = (media_position == 'bottom') ? ['flex-column-reverse'] : [] %}
 
-{%
-  set content_classes = [
-    'impressed-card-content',
-    'card-body'
-  ]|merge(card_impressed_content_utility_classes)
-%}
+{% set card_attributes = create_attribute().addClass([
+  'card',
+  'card-impressed',
+  'd-flex',
+  'flex-column',
+  'overflow-hidden',
+  'position-relative',
+  background_color,
+  corner_style,
+  (card_border ? 'border' : 'border-0'),
+  box_shadow,
+  (use_stretched_link ? 'position-relative' : ''),
+  (equal_height ? 'h-100' : '')
+]|merge(media_position_classes)|filter(v => v is not empty)) %}
 
-{% if not card_attributes %}
-  {% set card_attributes = create_attribute() %}
-{% endif %}
+{% set media_attributes = create_attribute().addClass([
+  'card-img',
+  'card-img-' ~ media_position,
+]|merge(card_impressed_media_utility_classes)|filter(v => v is not empty)) %}
 
-{% if not content_attributes %}
-  {% set content_attributes = create_attribute() %}
-{% endif %}
+{% set card_body_attributes = create_attribute().addClass([
+  'card-body',
+  (padded ? 'p-4' : 'p-0'),
+  ((not has_content_slot) and (not padded) ? 'py-4' : '')
+]|filter(v => v is not empty)) %}
 
-{% if not media_attributes %}
-  {% set media_attributes = create_attribute() %}
-{% endif %}
+{% set image_payload = {
+  media: {
+    src: has_media ? media_image.src : placeholder_src,
+    alt: has_media ? (media_image.alt|default('')) : 'Placeholder image',
+    width: media_image.width|default(null),
+    height: media_image.height|default(null)
+  },
+  ratio: ratio,
+  width: 'w-100',
+  fit: fit,
+  extra_classes: ['d-block','img-fluid','w-100',('card-img-' ~ media_position)]|join(' '),
+  loading: media_image.loading|default('lazy'),
+  sizes: media_image.sizes|default('')
+} %}
 
-{% set card_attributes = card_attributes.addClass(card_classes) %}
-{% set content_attributes = content_attributes.addClass(content_classes) %}
-{% set media_attributes = media_attributes.addClass(media_classes) %}
+{% set media_markup %}
+  {% if render_media %}
+    <div{{ media_attributes }}>
+      {% include 'vartheme_bs5:image' ignore missing with image_payload only %}
+    </div>
+  {% endif %}
+{% endset %}
+
+{% set content_markup %}
+  <div{{ card_body_attributes }}>
+    {% if has_content_slot %}
+      {{ content_slot }}
+    {% else %}
+      <div class="text-muted small py-3 pe-none">Drop content here</div>
+    {% endif %}
+  </div>
+{% endset %}
 
 <div{{ card_attributes }}>
-  {% if media is not empty %}
-    {% if media_classes|length > 0 %}<div{{ media_attributes }}>{% endif %}
-    {{ media }}
-    {% if media_classes|length > 0 %}</div>{% endif %}
+  {{ media_markup }}
+  {{ content_markup }}
+
+  {% if use_stretched_link %}
+    {% include 'vartheme_bs5:link' with {
+      url: link_url,
+      target: link_target,
+      content: '',
+      link_utility_classes: ['stretched-link']
+    } %}
   {% endif %}
-  <div{{ content_attributes }}>
-    {{ content }}
-  </div>
 </div>

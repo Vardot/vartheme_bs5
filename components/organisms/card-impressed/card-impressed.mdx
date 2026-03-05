@@ -1,6 +1,6 @@
 {/* card-impressed.mdx */}
 
-import { Canvas, Title, Subtitle, ArgTypes, Source, Meta, Description, Primary, Story, Stories, Controls } from '@storybook/blocks';
+import { Title, Subtitle, Description, ArgTypes, Source, Meta, Primary, Stories, Controls } from '@storybook/blocks';
 import * as comStories from './card-impressed.stories.json';
 import templateSource from './card-impressed.twig?raw';
 
@@ -10,35 +10,26 @@ import templateSource from './card-impressed.twig?raw';
 <Subtitle />
 <Description />
 
+> ### Bootstrap documentation
+> Card: https://getbootstrap.com/docs/5.3/components/card/  
+> Ratio: https://getbootstrap.com/docs/5.3/helpers/ratio/  
+> Object fit: https://getbootstrap.com/docs/5.3/utilities/object-fit/
+
+## Usage
+
+This component provides a stacked card with an optional media area (top or bottom) and a single content slot.
+
+## Props
+
+<ArgTypes />
+
+## Examples
 
 <Primary />
 
-## Properties
+### Twig source
+
+<Source code={templateSource} language="twig" />
+
+<Stories />
 <Controls />
-
-
-<Stories of={comStories} />
-
-### Options to custom:
-- Full clone/copy the **Impressed Card** component and [customize it in a custom theme](https://docs.varbase.vardot.com/v/10.0.x/developers/theme-development-with-varbase/customize-a-varbase-sdc-component-in-a-custom-theme)
-- Minimal copy of parts of the component and use for targeted selected entity type or bundle, and have the custom changes with styles(`css`) and scripts(`js`), or even with custom props and slots.
-```
-{% include 'vartheme_bs5:card-impressed' with {
-  style_size: medium,
-  card_border: false,
-  padded: false,
-  equal_height: true,
-  anchor_all: true,
-  media_position: 'top',
-  card_impressed_utility_classes: [],
-  card_impressed_media_utility_classes: [],
-  card_impressed_content_utility_classes: [],
-  media: media,
-  content: content,
-} only %}
-```
-
-
-## Source code
-[//]: # (Twig Template source code)
-<Source code={templateSource} />
