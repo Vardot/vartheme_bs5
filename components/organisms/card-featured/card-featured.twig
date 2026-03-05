@@ -1,159 +1,229 @@
 {#
-/**
- * @file
- * Vartheme BS5 Starter Kit implementation for the Featured card component.
- *
- * Available properties:
- * - style_size: Card style size. (xsmall|small|medium|large|xlarge).
- * - card_border: Add a default border for the card. (true|false).
- * - padded: Add a default padding to the card. (true|false).
- * - equal_height: Equal height (true|false)
- * - anchor_all: Anchor All (true|false)
- * - media_position: Choose the location of the media from (start|end).
- * - content_vertical_alignment: Vertical alignment of the content.
- * - gutters_between: Gutters Between - (large|small-start|small-end|no) to manage the guttering between the start and end columns.
- * - columns_xs_size: All Breakpoints - Size of two columns for all devices.
- *                    Starting from Extra small and up.
- * - columns_sm_size: Small Breakpoint size (sm) - Size of two columns for Small devices
- *                    (landscape phones, 576px and up)
- * - columns_md_size: Medium Breakpoint size (md) - Size of two columns for Medium devices
- *                    (tablets, 768px and up)
- * - columns_lg_size: Large Breakpoint size (lg) - Size of two columns for Large devices
- *                    (desktops, 992px and up)
- * - columns_xl_size: Extra Large Breakpoint size (xl) - Size of two columns for X-Large devices
- *                    (large desktops, 1200px and up)
- * - columns_xxl_size: Extra Extra Large Breakpoint size (xxl) - Size of two columns for XX-Large devices
- *                     (larger desktops, 1400px and up)
- * - card_featured_utility_classes: Use to add extra Bootstrap utility classes for the main Card wrapper.
- *                    E.g. `mb-3 shadow-lg` ( Do not add `card`).
- * - card_featured_media_utility_classes: Use to add extra Bootstrap utility classes for the Card Media region wrapper.
- *                          E.g. `bg-secondary mb-3` ( Do not add `card-img`).
- * - card_featured_content_utility_classes: Use to add extra Bootstrap utility classes for the Card Content region wrapper.
- *                            E.g. `w-75 mb-3 overflow-y-hidden`  ( Do not add `card-body`).
- *
- * Available attributes:
- * - card_attributes: HTML attributes for the card element.
- * - media_attributes: HTML attributes for the media element.
- * - content_attributes: HTML attributes for the content element.
- * - row_attributes: HTML attributes for the row element.
- * - start_column_attributes: HTML attributes for the start column element.
- * - end_column_attributes: HTML attributes for the end column element.
- *
- * Available slots:
- * - media: Card Media slot region.
- * - content: Card Content slot region.
- */
+  Featured Card
+  - Bootstrap utility classes only (no custom classes)
+  - Responsive grid ratios per breakpoint
+  - One slot: content (media is a prop)
 #}
-{% set style_size = style_size ? [style_size]: [] %}
-{% set card_border = card_border ? ['bordered'] : ['border-0'] %}
-{% set padded = padded ? ['p-4'] : [''] %}
-{% set equal_height = equal_height ? ['h-100'] : [] %}
-{% set anchor_all = anchor_all ? ['anchor-all'] : [] %}
-{% set media_position = media_position ?? 'start' %}
-{% set media_position_classes = media_position == 'end' ? ['flex-row-reverse'] : [] %}
-{% set content_vertical_alignment = content_vertical_alignment ? ['align-self-' ~ content_vertical_alignment] : [] %}
-{% set card_featured_utility_classes = card_featured_utility_classes ? card_featured_utility_classes : [] %}
-{% set card_featured_media_utility_classes = card_featured_media_utility_classes ? card_featured_media_utility_classes : [] %}
-{% set card_featured_content_utility_classes = card_featured_content_utility_classes ? card_featured_content_utility_classes : [] %}
 
-{# Mapping for the start column with selected column sizes on each brackpoint #}
-{% set start_column_xs_size = columns_xs_size ? ['col-' ~ columns_xs_size|split("_")[0]|trim('0', 'left')] : [] %}
-{% set start_column_sm_size = columns_sm_size ? ['col-sm-' ~ columns_sm_size|split("_")[0]|trim('0', 'left')] : [] %}
-{% set start_column_md_size = columns_md_size ? ['col-md-' ~ columns_md_size|split("_")[0]|trim('0', 'left')] : [] %}
-{% set start_column_lg_size = columns_lg_size ? ['col-lg-' ~ columns_lg_size|split("_")[0]|trim('0', 'left')] : [] %}
-{% set start_column_xl_size = columns_xl_size ? ['col-xl-' ~ columns_xl_size|split("_")[0]|trim('0', 'left')] : [] %}
-{% set start_column_xxl_size = columns_xxl_size ? ['col-xxl-' ~ columns_xxl_size|split("_")[0]|trim('0', 'left')] : [] %}
+{% set style_size = style_size|default('fs-6') %}
 
-{# Mapping for the end column with selected column sizes on each brackpoint #}
-{% set end_column_xs_size = columns_xs_size ? ['col-' ~ columns_xs_size|split("_")[1]|trim('0', 'left')] : [] %}
-{% set end_column_sm_size = columns_sm_size ? ['col-sm-' ~ columns_sm_size|split("_")[1]|trim('0', 'left')] : [] %}
-{% set end_column_md_size = columns_md_size ? ['col-md-' ~ columns_md_size|split("_")[1]|trim('0', 'left')] : [] %}
-{% set end_column_lg_size = columns_lg_size ? ['col-lg-' ~ columns_lg_size|split("_")[1]|trim('0', 'left')] : [] %}
-{% set end_column_xl_size = columns_xl_size ? ['col-xl-' ~ columns_xl_size|split("_")[1]|trim('0', 'left')] : [] %}
-{% set end_column_xxl_size = columns_xxl_size ? ['col-xxl-' ~ columns_xxl_size|split("_")[1]|trim('0', 'left')] : [] %}
+{% set card_border = card_border|default(true) %}
+{% set padded = padded|default(false) %}
+{% set content_padding_class = padded ? 'p-4' : 'p-0' %}
 
-{%
-  set card_classes = [
-    'card',
-    'varbase-featured-card',
-  ]|merge(style_size)|merge(card_border)|merge(padded)|merge(equal_height)|merge(anchor_all)|merge(card_featured_utility_classes)
+{% set equal_height = equal_height|default(false) %}
+{% set stretched_link = stretched_link|default(false) %}
+{% set media_position = media_position|default('start') %}
+{% set content_vertical_alignment = content_vertical_alignment|default('justify-content-center') %}
+{% set gutters_between = gutters_between|default('g-2 g-lg-3') %}
+
+{% set media_image = media_image|default({}) %}
+{% set has_media_prop = (media_image.src|default('')|trim) is not empty %}
+
+{% set ratio = ratio|default('ratio-16x9') %}
+{% set fit = fit|default('object-fit-cover') %}
+
+{% set link_url = link_url|default('')|trim %}
+{% set link_target_raw = link_target|default('default') %}
+{% set link_target = (link_target_raw == 'default') ? '_self' : link_target_raw %}
+
+{% set content_slot %}{% block content %}{% endblock %}{% endset %}
+{% set has_content_slot = content_slot|render|trim is not empty %}
+{% set empty_slot_classes = not has_content_slot ? 'd-flex align-items-center justify-content-center text-center' : '' %}
+
+{% set placeholder_src = (component_metadata.path is defined)
+  ? (component_metadata.path ~ '/assets/featured-card-image-placeholder.svg')
+  : 'assets/featured-card-image-placeholder.svg'
 %}
 
-{% set row_gutters_between = gutters_between == 'no' ? ['gx-0'] : [] %}
-{%
-  set row_classes = [
-    'row',
-  ]|merge(media_position_classes|merge(row_gutters_between))
-%}
+{#
+  Breakpoint ratios
+  - Canvas often sends an empty string ("") when "Default (auto)" is selected.
+  - Use default(..., true) so empty strings also fall back to XS.
+#}
+{% set columns_xs_size = columns_xs_size|default('06_06', true) %}
+{% set columns_sm_size = columns_sm_size|default(columns_xs_size, true) %}
+{% set columns_md_size = columns_md_size|default(columns_xs_size, true) %}
+{% set columns_lg_size = columns_lg_size|default(columns_xs_size, true) %}
+{% set columns_xl_size = columns_xl_size|default(columns_xs_size, true) %}
+{% set columns_xxl_size = columns_xxl_size|default(columns_xs_size, true) %}
 
-{% set start_column_gutters_between = gutters_between == 'small-start' ? (media_position_classes == [] ? ['pe-0'] : ['ps-0']) : [] %}
-{%
-  set start_column_classes = []|merge(start_column_xs_size)|merge(start_column_sm_size)|merge(start_column_md_size)|merge(start_column_lg_size)|merge(start_column_xl_size)|merge(start_column_xxl_size)|merge(start_column_gutters_between)
-%}
+{# Mapping for the start (media) column with selected column sizes on each breakpoint #}
+{% set start_column_xs_size = columns_xs_size ? ['col-' ~ columns_xs_size|split('_')[0]|trim('0', 'left')] : [] %}
+{% set start_column_sm_size = columns_sm_size ? ['col-sm-' ~ columns_sm_size|split('_')[0]|trim('0', 'left')] : [] %}
+{% set start_column_md_size = columns_md_size ? ['col-md-' ~ columns_md_size|split('_')[0]|trim('0', 'left')] : [] %}
+{% set start_column_lg_size = columns_lg_size ? ['col-lg-' ~ columns_lg_size|split('_')[0]|trim('0', 'left')] : [] %}
+{% set start_column_xl_size = columns_xl_size ? ['col-xl-' ~ columns_xl_size|split('_')[0]|trim('0', 'left')] : [] %}
+{% set start_column_xxl_size = columns_xxl_size ? ['col-xxl-' ~ columns_xxl_size|split('_')[0]|trim('0', 'left')] : [] %}
 
-{% set end_column_gutters_between = gutters_between == 'small-end' ? (media_position_classes == [] ? ['ps-0'] : ['pe-0']) : [] %}
-{%
-  set end_column_classes = []|merge(end_column_xs_size)|merge(end_column_sm_size)|merge(end_column_md_size)|merge(end_column_lg_size)|merge(end_column_xl_size)|merge(end_column_xxl_size)|merge(end_column_gutters_between)|merge(content_vertical_alignment)
-%}
+{# Mapping for the end (content) column with selected column sizes on each breakpoint #}
+{% set end_column_xs_size = columns_xs_size ? ['col-' ~ columns_xs_size|split('_')[1]|trim('0', 'left')] : [] %}
+{% set end_column_sm_size = columns_sm_size ? ['col-sm-' ~ columns_sm_size|split('_')[1]|trim('0', 'left')] : [] %}
+{% set end_column_md_size = columns_md_size ? ['col-md-' ~ columns_md_size|split('_')[1]|trim('0', 'left')] : [] %}
+{% set end_column_lg_size = columns_lg_size ? ['col-lg-' ~ columns_lg_size|split('_')[1]|trim('0', 'left')] : [] %}
+{% set end_column_xl_size = columns_xl_size ? ['col-xl-' ~ columns_xl_size|split('_')[1]|trim('0', 'left')] : [] %}
+{% set end_column_xxl_size = columns_xxl_size ? ['col-xxl-' ~ columns_xxl_size|split('_')[1]|trim('0', 'left')] : [] %}
 
-{%
-  set media_classes = [
-    'card-img',
-    'card-img-' ~ media_position,
-  ]|merge(card_featured_media_utility_classes)
-%}
+{% set use_stretched_link = stretched_link and (link_url is not empty) %}
+{% set row_order_class = (media_position == 'end') ? 'flex-row-reverse' : '' %}
 
-{%
-  set content_classes = [
-    'featured-card-content',
-    'card-body',
-  ]|merge(card_featured_content_utility_classes)
-%}
+{% set card_class_list = [
+  'card',
+  'card-featured',
+  'overflow-hidden',
+  (equal_height ? 'h-100' : ''),
+  (card_border ? 'border' : 'border-0'),
+  style_size,
+  (use_stretched_link ? 'position-relative' : '')
+]|filter(v => v is not empty) %}
 
-{% if not card_attributes %}
-  {% set card_attributes = create_attribute() %}
-{% endif %}
+{% set row_class_list = [
+  'row',
+  gutters_between,
+  row_order_class,
+  'align-items-stretch',
+  (equal_height ? 'h-100' : '')
+]|filter(v => v is not empty) %}
 
-{% if not row_attributes %}
-  {% set row_attributes = create_attribute() %}
-{% endif %}
+{% set media_col_class_list = (
+  [
+    'col-12',
+    'd-flex',
+    (equal_height ? 'h-100' : '')
+  ]
+  |merge(start_column_xs_size)
+  |merge(start_column_sm_size)
+  |merge(start_column_md_size)
+  |merge(start_column_lg_size)
+  |merge(start_column_xl_size)
+  |merge(start_column_xxl_size)
+)|filter(v => v is not empty) %}
 
-{% if not start_column_attributes %}
-  {% set start_column_attributes = create_attribute() %}
-{% endif %}
+{% set content_col_class_list = (
+  [
+    'col-12',
+    'd-flex',
+    (equal_height ? 'h-100' : '')
+  ]
+  |merge(end_column_xs_size)
+  |merge(end_column_sm_size)
+  |merge(end_column_md_size)
+  |merge(end_column_lg_size)
+  |merge(end_column_xl_size)
+  |merge(end_column_xxl_size)
+)|filter(v => v is not empty) %}
 
-{% if not end_column_attributes %}
-  {% set end_column_attributes = create_attribute() %}
-{% endif %}
+{% set media_wrap_class_list = [
+  'w-100',
+  (equal_height ? 'h-100' : '')
+]|filter(v => v is not empty) %}
 
-{% if not content_attributes %}
-  {% set content_attributes = create_attribute() %}
-{% endif %}
+{% set placeholder_wrap_class_list = [
+  'w-100',
+  'bg-body-tertiary',
+  (equal_height ? 'h-100' : '')
+]|filter(v => v is not empty) %}
 
-{% if not media_attributes %}
-  {% set media_attributes = create_attribute() %}
-{% endif %}
+{% set content_stack_class_list = [
+  'd-flex',
+  'flex-column',
+  'w-100',
+  'flex-grow-1',
+  content_vertical_alignment
+]|filter(v => v is not empty) %}
 
-{% set card_attributes = card_attributes.addClass(card_classes) %}
-{% set row_attributes = row_attributes.addClass(row_classes) %}
-{% set start_column_attributes = start_column_attributes.addClass(start_column_classes) %}
-{% set end_column_attributes = end_column_attributes.addClass(end_column_classes) %}
-{% set content_attributes = content_attributes.addClass(content_classes) %}
-{% set media_attributes = media_attributes.addClass(media_classes) %}
+{% set content_body_class_list = [
+  'card-body',
+  'w-100',
+  'flex-grow-0',
+  content_padding_class,
+  empty_slot_classes
+]|filter(v => v is not empty) %}
+
+{% set placeholder_inner_base_class_list = [
+  'd-flex',
+  'align-items-center',
+  'justify-content-center',
+  'text-body-secondary'
+] %}
+
+{% set placeholder_inner_base = placeholder_inner_base_class_list|join(' ') %}
+
+{% set image_include_props = {
+  media: {
+    src: media_image.src,
+    alt: media_image.alt|default(''),
+    width: media_image.width|default(null),
+    height: media_image.height|default(null)
+  },
+  ratio: ratio,
+  fit: fit,
+  width: 'w-100',
+  extra_classes: 'w-100 h-100',
+  loading: media_image.loading|default('lazy')
+} %}
+
+{% set placeholder_include_props = {
+  media: {
+    src: placeholder_src,
+    alt: ''
+  },
+  width: 'w-100',
+  fit: 'object-fit-contain',
+  loading: 'lazy'
+} %}
+
+{% set card_attributes = create_attribute().addClass(card_class_list) %}
+{% set row_attributes = create_attribute().addClass(row_class_list) %}
+{% set media_col_attributes = create_attribute().addClass(media_col_class_list) %}
+{% set content_col_attributes = create_attribute().addClass(content_col_class_list) %}
+{% set media_wrap_attributes = create_attribute().addClass(media_wrap_class_list) %}
+{% set placeholder_wrap_attributes = create_attribute().addClass(placeholder_wrap_class_list) %}
 
 <div{{ card_attributes }}>
   <div{{ row_attributes }}>
-    <div{{ start_column_attributes }}>
-      {% if media is not empty %}
-        {% if media_classes|length > 0 %}<div{{ media_attributes }}>{% endif %}
-        {{ media }}
-        {% if media_classes|length > 0 %}</div>{% endif %}
+
+    <div{{ media_col_attributes }}>
+      {% if has_media_prop %}
+        <div{{ media_wrap_attributes }}>
+          {% include 'vartheme_bs5:image' ignore missing with image_include_props only %}
+        </div>
+      {% else %}
+        <div{{ placeholder_wrap_attributes }}>
+          {% if ratio != 'ratio-auto' %}
+            <div class="ratio {{ ratio }}">
+              <div class="{{ placeholder_inner_base }}">
+                {% include 'vartheme_bs5:image' ignore missing with placeholder_include_props only %}
+              </div>
+            </div>
+          {% else %}
+            <div class="{{ placeholder_inner_base }} p-3">
+              {% include 'vartheme_bs5:image' ignore missing with placeholder_include_props only %}
+            </div>
+          {% endif %}
+        </div>
       {% endif %}
     </div>
-    <div{{ end_column_attributes }}>
-      <div{{ content_attributes }}>
-        {{ content }}
+
+    <div{{ content_col_attributes }}>
+      <div class="{{ content_stack_class_list|join(' ') }}">
+        <div class="{{ content_body_class_list|join(' ') }}">
+          {{ content_slot }}
+          {% if not has_content_slot %}
+            <div class="text-body-secondary fst-italic mt-2">Drop content here</div>
+          {% endif %}
+        </div>
       </div>
     </div>
+
   </div>
+
+  {% if use_stretched_link %}
+    {% include 'vartheme_bs5:link' with {
+      url: link_url,
+      target: link_target,
+      content: '',
+      link_utility_classes: ['stretched-link']
+    } %}
+  {% endif %}
 </div>
