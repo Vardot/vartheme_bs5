@@ -1,48 +1,88 @@
 # Overlay Card
 
-Overlay card component for a media and a content over the media with sizes.
+A card component that renders an image as the background and places content on top using Bootstrap overlay utilities.
 
-## Properties:
-* `style_size`: Card style size. (xsmall|small|medium|large|xlarge).
-* `card_border`: Add a default border to the card. (true|false)
-* `padded`: Add a default padding to the card. (true|false)
-* `equal_height`: Equal height. (true|false)
-* `anchor_all`: Anchor All. (true|false)
-* `horizontal_alignment`: Horizontal alignment of the content. (start|center|end).
-* `vertical_alignment`: Vertical alignment of the content. (start|center|end).
+## Features
 
-## Attributes:
-* `card_attributes`: Drupal attributes for featured card wrapper.
-* `media_attributes`: Drupal attributes for card media slot region.
-* `content_attributes`: Drupal attributes for card content slot region.
-* `card_overlay_utility_classes`: Use to add extra Bootstrap utility classes for the main Card wrapper.
-                   E.g. `mb-3 shadow-lg` ( Do not add `card`).
-* `card_overlay_media_utility_classes`: Use to add extra Bootstrap utility classes for the Card Media region wrapper.
-                         E.g. `bg-secondary mb-3` ( Do not add `card-img`).
-* `card_overlay_content_utility_classes`: Use to add extra Bootstrap utility classes for the Card Content region wrapper.
-                             E.g. `w-75 mb-3 overflow-y-hidden`  ( Do not add `card-body`)
+- Background image rendered with `vartheme_bs5:image`
+- Optional image ratio and fit controls
+- Optional content padding with `p-4`
+- Overlay color and opacity controls
+- Horizontal and vertical content alignment
+- Optional equal-height card wrapper
+- Optional stretched link for whole-card click behavior
+- Single content slot for text, buttons, and other components
 
-## Slots:
-* `media`: Card Media slot region.
-* `content`: Card Content slot region.
+## Properties
 
-### Options to custom:
-- Full clone/copy the **Overlay Card** component and [customize it in a custom theme](https://docs.varbase.vardot.com/v/10.0.x/developers/theme-development-with-varbase/customize-a-varbase-sdc-component-in-a-custom-theme)
-- Minimal copy of parts of the component and use for targeted selected entity type or bundle, and have the custom changes with styles(`css`) and scripts(`js`), or even with custom props and slots.
+- `media_image`: Image object used as the card background
+- `ratio`: Image ratio utility (`ratio-auto`, `ratio-16x9`, `ratio-4x3`, `ratio-1x1`, `ratio-21x9`)
+- `fit`: Image fit utility for fixed ratios (`object-fit-cover`, `object-fit-contain`)
+- `padded`: Adds `p-4` to the card body when enabled
+- `box_shadow`: Bootstrap shadow utility for the card wrapper
+- `overlay_color`: Bootstrap background color utility for the overlay layer
+- `overlay_opacity`: Bootstrap background opacity utility for the overlay layer
+- `equal_height`: Adds `h-100` to the card wrapper
+- `h_align`: Horizontal text alignment utility
+- `v_align`: Vertical alignment utility for the overlay content wrapper
+- `stretched_link`: Enables a stretched link when `link_url` is provided
+- `link_url`: Optional card link URL
+- `link_target`: Link target for the card link
 
-```
-{% include 'vartheme_bs5:card-overlay' with {
-  style_size: medium,
-  card_border: true,
+## Slots
+
+- `content`: Main overlay content area
+
+## Example
+
+### Basic example
+
+```twig
+{% embed 'vartheme_bs5:card-overlay' with {
+  media_image: {
+    src: 'https://via.placeholder.com/1200x675',
+    alt: 'Overlay card example'
+  },
+  ratio: 'ratio-16x9',
+  fit: 'object-fit-cover',
   padded: true,
-  equal_height: true,
-  anchor_all: true,
-  horizontal_alignment: 'center',
-  vertical_alignment: 'center',
-  card_overlay_utility_classes: [],
-  card_overlay_media_utility_classes: [],
-  card_overlay_content_utility_classes: [],
-  media: media,
-  content: content,
-} only %}
+  overlay_color: 'bg-dark',
+  overlay_opacity: 'bg-opacity-50',
+  h_align: 'text-start',
+  v_align: 'align-items-end'
+} %}
+  {% block content %}
+    <h3 class="card-title mb-2">Overlay card title</h3>
+    <p class="card-text mb-3">Use this component for banners, promotions, and featured content with text on top of media.</p>
+    {% include 'vartheme_bs5:link' with {
+      url: 'https://drupal.org',
+      content: 'Read more',
+      color: 'light'
+    } %}
+  {% endblock %}
+{% endembed %}
+```
+
+### Whole-card link example
+
+```twig
+{% embed 'vartheme_bs5:card-overlay' with {
+  media_image: {
+    src: 'https://via.placeholder.com/1200x675',
+    alt: 'Linked overlay card example'
+  },
+  ratio: 'ratio-21x9',
+  fit: 'object-fit-cover',
+  padded: true,
+  overlay_color: 'bg-primary',
+  overlay_opacity: 'bg-opacity-50',
+  stretched_link: true,
+  link_url: 'https://example.com',
+  link_target: '_blank'
+} %}
+  {% block content %}
+    <h3 class="card-title mb-2">Linked overlay card</h3>
+    <p class="card-text mb-0">The full card becomes clickable when stretched link is enabled.</p>
+  {% endblock %}
+{% endembed %}
 ```
