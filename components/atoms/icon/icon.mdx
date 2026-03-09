@@ -1,0 +1,50 @@
+{/* icon.mdx */}
+
+import { Meta, Title, Subtitle, Description, Primary, Controls, Stories, Source } from '@storybook/blocks';
+import * as comStories from './icon.stories.json';
+import templateSource from './icon.twig?raw';
+
+<Meta of={comStories} name="Docs" />
+
+<Title />
+<Subtitle />
+<Description />
+
+<Primary />
+
+## Properties
+<Controls />
+
+<Stories of={comStories} />
+
+## Notes
+This component inherits icon size and color from the parent element or surrounding Bootstrap context.
+
+## Examples
+
+### Example #1: Default icon
+```twig
+{% include "vartheme_bs5:icon" with {
+  icon: 'people'
+} %}
+```
+
+### Example #2: Inherit size and color from parent
+```twig
+<div class="fs-1 text-primary">
+  {% include "vartheme_bs5:icon" with {
+    icon: 'search'
+  } %}
+</div>
+```
+
+### Example #3: Custom icon override
+```twig
+{% include "vartheme_bs5:icon" with {
+  icon: 'info',
+} %}
+```
+
+## Source code
+[//]: # (Twig Template source code)
+<Source code={templateSource} />

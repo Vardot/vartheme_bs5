@@ -1,75 +1,18 @@
 {#
-  Icon component using SVG icons from Bootstrap Icons (via vartheme_bs5.icons.yml).
+  Icon component.
 
   Props:
-  - icon (string): icon id (default: circle-fill)
-  - icon_size (string): extra-small|small|medium|large|extra-large (default: small)
-  - color (string): Bootstrap text-* dropdown (default: default)
-  - alt (string): accessibility label (empty = decorative)
-  - id (string): optional wrapper id
-  - extra_classes (string): optional wrapper classes (Bootstrap utilities)
+  - icon (string): icon id from dropdown
 #}
 
-{% set size_map = {
-  'extra-small': 20,
-  'small': 24,
-  'medium': 32,
-  'large': 48,
-  'extra-large': 64
-} %}
 
-{% set chosen_size = icon_size|default('small') %}
-{% set resolved_size = size_map[chosen_size]|default(24) %}
-
-{# Bootstrap color class mapping #}
-{% set color_value = color|default('default') %}
-{% set color_map = {
-  default: '',
-  primary: 'text-primary',
-  secondary: 'text-secondary',
-  success: 'text-success',
-  danger: 'text-danger',
-  warning: 'text-warning',
-  info: 'text-info',
-  light: 'text-light',
-  dark: 'text-dark',
-  muted: 'text-muted',
-  white: 'text-white'
-} %}
-{% set color_class = color_map[color_value]|default('') %}
-
-{# Wrapper classes (Bootstrap only) #}
 {% set classes = [
-  'd-inline-flex',
-  'align-items-center',
-  'justify-content-center',
-  'flex-shrink-0',
+  'bi',
+  'bi-' ~ icon,
+  'd-inline-block',
   'lh-1'
 ] %}
 
-{% if color_class %}
-  {% set classes = classes|merge([color_class]) %}
+{% if icon %}
+  <i{{ create_attribute().addClass(classes) }}></i>
 {% endif %}
-
-{% if extra_classes|default('')|trim %}
-  {% set classes = classes|merge(extra_classes|trim|split(' ')) %}
-{% endif %}
-
-{% set attrs = create_attribute().addClass(classes) %}
-{% if id|default('')|trim %}
-  {% set attrs = attrs.setAttribute('id', id|trim) %}
-{% endif %}
-
-<div{{ attrs }}>
-  {{
-    icon(
-      'bootstrap_icons',
-      icon|default('circle-fill'),
-      {
-        size: resolved_size,
-        color: 'currentColor',
-        alt: alt|default('')
-      }
-    )
-  }}
-</div>
