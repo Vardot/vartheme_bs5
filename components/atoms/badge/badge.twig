@@ -1,10 +1,10 @@
 {# Badge component (Bootstrap 5 / VarTheme) #}
 
+{# URL #}
 {% set has_url = url is defined and url is not empty and url != 'No URL' %}
+{% set root_tag = has_url ? 'a' : 'span' %}
 
-{# -----------------------------
-   Variant (Bootstrap utility)
-   ----------------------------- #}
+{# Variant #}
 {% set variant = variant|default('text-bg-primary') %}
 {% set variant_allowed = [
   'text-bg-primary',
@@ -20,9 +20,7 @@
   {% set variant = 'text-bg-primary' %}
 {% endif %}
 
-{# -----------------------------
-   Size (Bootstrap utilities)
-   ----------------------------- #}
+{# Size #}
 {% set size = size|default('fs-6 px-3 py-2') %}
 {% set size_allowed = [
   'fs-6 px-2 py-1',
@@ -41,45 +39,33 @@
   {% set size_modifier = 'badge-large' %}
 {% endif %}
 
-{# Icon sizing (kept Bootstrap/VarTheme friendly) #}
-{% set icon_size = 'extra-small' %}
-{% if size_modifier == 'badge-large' %}
-  {% set icon_size = 'small' %}
-{% endif %}
-
-{# -----------------------------
-   Border radius (Bootstrap utility)
-   ----------------------------- #}
+{# Radius #}
 {% set radius = radius|default('rounded-1') %}
-{% set radius_allowed = ['rounded-1','rounded-pill'] %}
+{% set radius_allowed = ['rounded-1', 'rounded-pill'] %}
 {% if radius not in radius_allowed %}
   {% set radius = 'rounded-1' %}
 {% endif %}
 
-{# -----------------------------
-   Icon options
-   ----------------------------- #}
-{% set icon_value = icon|default('none') %}
-{% set show_icon = (icon_value is not empty and icon_value != 'none') %}
+{# Icon #}
+{% set icon_value = icon|default('')|trim %}
+{% set has_icon = icon_value is not empty and icon_value != 'none' %}
 
 {# Normalize icon_first safely #}
 {% set is_icon_first = icon_first|default(true) %}
 {% if icon_first is defined and icon_first is same as(false) %}
   {% set is_icon_first = false %}
 {% else %}
-  {% set v = (is_icon_first ~ '')|lower|trim %}
-  {% if v in ['false','0','off','no'] %}
+  {% set icon_first_value = (is_icon_first ~ '')|lower|trim %}
+  {% if icon_first_value in ['false', '0', 'off', 'no'] %}
     {% set is_icon_first = false %}
   {% else %}
     {% set is_icon_first = true %}
   {% endif %}
 {% endif %}
 
-{# -----------------------------
-   Notification indicator logic
-   ----------------------------- #}
+{# Indicator #}
 {% set indicator = indicator|default('none') %}
-{% set indicator_allowed = ['none','dot','count'] %}
+{% set indicator_allowed = ['none', 'dot', 'count'] %}
 {% if indicator not in indicator_allowed %}
   {% set indicator = 'none' %}
 {% endif %}
@@ -89,10 +75,10 @@
   {% set indicator_text = '99+' %}
 {% endif %}
 
-{% set has_indicator = (indicator == 'dot' or indicator == 'count') %}
+{% set has_indicator = indicator in ['dot', 'count'] %}
 
-{# Base classes #}
-{% set base_classes = [
+{# Class lists #}
+{% set root_classes = [
   'badge',
   variant,
   radius,
@@ -106,60 +92,69 @@
   'me-3',
   'align-middle'
 ] %}
-
-{# Add position-relative only when indicator enabled #}
 {% if has_indicator %}
-  {% set base_classes = base_classes|merge(['position-relative']) %}
+  {% set root_classes = root_classes|merge(['position-relative']) %}
 {% endif %}
 
-{% set merged_classes = base_classes|join(' ')|trim %}
-{% set merged_classes = merged_classes|replace({'  ':' '}) %}
+{% set icon_wrapper_classes = ['d-inline-flex', 'align-items-center', 'flex-shrink-0'] %}
+{% set icon_after_wrapper_classes = icon_wrapper_classes|merge(['ms-1']) %}
+{% set label_after_icon_classes = ['ms-1'] %}
+{% set count_indicator_classes = [
+  'position-absolute',
+  'top-0',
+  'start-100',
+  'translate-middle',
+  'badge',
+  'rounded-pill',
+  'text-bg-danger',
+  'badge__count'
+] %}
+{% set dot_indicator_classes = [
+  'position-absolute',
+  'top-0',
+  'start-100',
+  'translate-middle',
+  'bg-danger',
+  'border',
+  'border-light',
+  'rounded-circle',
+  'badge__dot'
+] %}
 
+{# Attributes #}
+{% set root_attributes = create_attribute()
+  .addClass(root_classes)
+  .setAttribute('aria-label', label|default('')|e) %}
 {% if has_url %}
-  <a href="{{ url|e }}" class="{{ merged_classes }}" aria-label="{{ label|e }}">
-{% else %}
-  <span class="{{ merged_classes }}" aria-label="{{ label|e }}">
+  {% set root_attributes = root_attributes.setAttribute('href', url|e) %}
 {% endif %}
 
-  {% if show_icon and is_icon_first %}
-    <span class="d-inline-flex align-items-center flex-shrink-0">
-      {{
-        include(
-          '@vartheme_bs5/components/atoms/icon/icon.twig',
-          { icon: icon_value, icon_size: icon_size, weight: 'bold' },
-          with_context: false
-        )
-      }}
+{% set icon_wrapper_attributes = create_attribute().addClass(icon_wrapper_classes) %}
+{% set icon_after_wrapper_attributes = create_attribute().addClass(icon_after_wrapper_classes) %}
+{% set label_after_icon_attributes = create_attribute().addClass(label_after_icon_classes) %}
+{% set count_indicator_attributes = create_attribute().addClass(count_indicator_classes) %}
+{% set dot_indicator_attributes = create_attribute().addClass(dot_indicator_classes) %}
+
+<{{ root_tag }}{{ root_attributes }}>
+  {% if has_icon and is_icon_first %}
+    <span{{ icon_wrapper_attributes }}>
+      {{ include('vartheme_bs5:icon', { icon: icon_value }, with_context = false) }}
     </span>
-    <span class="ms-1">{{ label }}</span>
-  {% elseif show_icon and not is_icon_first %}
+    <span{{ label_after_icon_attributes }}>{{ label }}</span>
+  {% elseif has_icon and not is_icon_first %}
     <span>{{ label }}</span>
-    <span class="ms-1 d-inline-flex align-items-center flex-shrink-0">
-      {{
-        include(
-          '@vartheme_bs5/components/atoms/icon/icon.twig',
-          { icon: icon_value, icon_size: icon_size, weight: 'bold' },
-          with_context: false
-        )
-      }}
+    <span{{ icon_after_wrapper_attributes }}>
+      {{ include('vartheme_bs5:icon', { icon: icon_value }, with_context = false) }}
     </span>
   {% else %}
     <span>{{ label }}</span>
   {% endif %}
 
-  {# Indicator (Bootstrap-only) #}
   {% if has_indicator %}
     {% if indicator == 'count' %}
-      <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill text-bg-danger badge__count">
-        {{ indicator_text }}
-      </span>
+      <span{{ count_indicator_attributes }}>{{ indicator_text }}</span>
     {% elseif indicator == 'dot' %}
-      <span class="position-absolute top-0 start-100 translate-middle bg-danger border border-light rounded-circle badge__dot"></span>
+      <span{{ dot_indicator_attributes }}></span>
     {% endif %}
   {% endif %}
-
-{% if has_url %}
-  </a>
-{% else %}
-  </span>
-{% endif %}
+</{{ root_tag }}>

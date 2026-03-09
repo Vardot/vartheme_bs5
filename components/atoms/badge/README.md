@@ -17,7 +17,7 @@ A Canvas + SDC compatible Badge component built on Bootstrap 5 badges.
 | `url` | string | — | `""` | If set, renders as `<a>` |
 | `variant` | string (select) | ✅ | `text-bg-primary` | Bootstrap badge variant utility (`text-bg-*`) |
 | `size` | string (select) | — | `fs-6 px-3 py-2` | Bootstrap sizing utilities (font-size + padding). Internal SCSS uses a size modifier class to keep indicator sizing consistent. |
-| `icon` | string (select) | — | `none` | Bootstrap Icon name (as supported by your icon component) |
+| `icon` | string (select) | — | `none` | Bootstrap Icon name from the shared icon component enum |
 | `icon_first` | boolean | — | `true` | Icon before label when true |
 | `radius` | string (select) | — | `rounded-1` | Bootstrap border-radius utility |
 | `indicator` | string (select) | — | `none` | `none`, `dot`, `count` |
@@ -42,3 +42,14 @@ Custom styling is intentionally minimal and implemented in `badge.scss` using **
   indicator_text: '3'
 } only %}
 ```
+
+## Custom icon override
+
+```twig
+{% include 'vartheme_bs5:badge' with {
+  label: 'Reminder',
+  icon: 'none',
+} only %}
+```
+
+## Icon component compatibility

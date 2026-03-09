@@ -63,16 +63,24 @@
     },
     "icon": {
       "name": "Icon (optional)",
-      "description": "Bootstrap Icon name (subset shown for convenience).",
+      "description": "Bootstrap Icon name from the shared icon component list. Use Custom icon name to override.",
       "defaultValue": "none",
       "control": "select",
       "options": {
         "None": "none",
         "Check": "check",
-        "Info circle": "info-circle",
-        "Alarm": "alarm",
-        "Inbox": "inbox"
+        "Info": "info",
+        "Search": "search",
+        "Person": "person",
+        "People": "people",
+        "Arrow right": "arrow-right",
+        "Chevron right": "chevron-right"
       }
+    },
+      "name": "Custom icon name (optional)",
+      "description": "Optional. Overrides Icon selection. Use a Bootstrap Icon name with or without the "bi-" prefix. Example: alarm or bi-alarm.",
+      "defaultValue": "",
+      "control": "text"
     },
     "icon_first": {
       "name": "Icon position",
@@ -125,8 +133,8 @@
     "variant": "text-bg-success",
     "size": "fs-6 px-3 py-2",
     "radius": "rounded-pill",
-    "icon": "none",
-    "icon_first": true,
+    "icon": "arrow-right",
+    "icon_first": false,
     "indicator": "none",
     "indicator_text": "99+"
   }
@@ -151,16 +159,16 @@
   {{ include('vartheme_bs5:badge') }}
 {% endstory %}
 
-{% story BadgeWithIconAfter with {
-  "name": "With icon (after)",
+{% story BadgeWithCustomIcon with {
+  "name": "With custom icon",
   "args": {
-    "label": "Info",
+    "label": "Alarm",
     "url": "",
     "variant": "text-bg-secondary",
     "size": "fs-6 px-3 py-2",
     "radius": "rounded-1",
-    "icon": "info-circle",
-    "icon_first": false,
+    "icon": "none",
+    "icon_first": true,
     "indicator": "none",
     "indicator_text": "99+"
   }
@@ -176,7 +184,7 @@
     "variant": "text-bg-warning",
     "size": "fs-6 px-3 py-2",
     "radius": "rounded-pill",
-    "icon": "alarm",
+    "icon": "none",
     "icon_first": true,
     "indicator": "dot",
     "indicator_text": "99+"
@@ -193,7 +201,7 @@
     "variant": "text-bg-dark",
     "size": "fs-6 px-3 py-2",
     "radius": "rounded-pill",
-    "icon": "inbox",
+    "icon": "none",
     "icon_first": true,
     "indicator": "count",
     "indicator_text": "3"
@@ -201,22 +209,3 @@
 } %}
   {{ include('vartheme_bs5:badge') }}
 {% endstory %}
-
-{% story BadgeSizes with {
-  "name": "Sizes",
-  "args": {
-    "label": "Large",
-    "url": "",
-    "variant": "text-bg-danger",
-    "size": "fs-5 px-3 py-2",
-    "radius": "rounded-1",
-    "icon": "none",
-    "icon_first": true,
-    "indicator": "none",
-    "indicator_text": "99+"
-  }
-} %}
-  {{ include('vartheme_bs5:badge') }}
-{% endstory %}
-
-{% endstories %}
