@@ -1,7 +1,6 @@
 {# Button component #}
 
 {% set label = label|default('Button label') %}
-{# Variant and size values are Bootstrap class names so they can be used directly. #}
 {% set variant = variant|default('btn-primary') %}
 {% set is_outline = outline|default(false) %}
 {% set variant_class = (is_outline and variant != 'btn-link') ? (variant|replace({'btn-':'btn-outline-'}) ) : variant %}
@@ -13,29 +12,16 @@
 {% set target_attr = target == 'blank' ? '_blank' : '_self' %}
 {% set rel_attr = target == 'blank' ? 'noopener noreferrer' : null %}
 
-{% set icon = icon|default('none') %}
-{% set icon_custom = icon_custom|default('') %}
-{% set icon_value = icon_custom is not empty ? icon_custom : icon %}
-{# Be tolerant if someone enters full class like "bi-alarm". #}
-{% set icon_value = icon_value|replace({'bi-': ''}) %}
+{% set icon_value = icon|default('')|trim %}
 {% set has_icon = icon_value is not empty and icon_value != 'none' %}
+
 {% set alignment = alignment|default('inline') %}
-{# Radius values are Bootstrap utility class names. #}
 {% set radius = radius|default('rounded') %}
-
 {% set is_icon_first = (icon_first|default(false) ~ '')|lower|trim in ['1','true','yes','on'] %}
-
-{# Size text adjustment (Figma requirement): Large text uses Bootstrap fs-5. #}
 {% set size_text_class = (size == 'btn-lg') ? 'fs-5' : '' %}
-
-{# Width #}
-{# Full-width options removed. Keep natural button width across all breakpoints. #}
 {% set width_class = '' %}
-
-{# Radius class is used directly. #}
 {% set radius_class = radius %}
 
-{# Alignment wrapper #}
 {% set wrapper_class = alignment == 'left' ? 'd-flex justify-content-start'
   : alignment == 'center' ? 'd-flex justify-content-center'
   : alignment == 'right' ? 'd-flex justify-content-end'
@@ -80,9 +66,7 @@
 
 {% if has_icon %}
   {{ include('vartheme_bs5:icon', {
-    icon: icon_value,
-    weight: 'bold',
-    icon_size: 'extra-small'
+    icon: icon_value
   }, with_context = false) }}
 {% endif %}
 

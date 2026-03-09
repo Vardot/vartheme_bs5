@@ -182,10 +182,6 @@ props:
         circle: Circle
         circle-fill: Circle Filled
         record-circle: Record Circle
-    icon_custom:
-      type: string
-      title: Custom icon name (optional)
-      description: 'Optional. Overrides Icon selection. Use a Bootstrap Icon name (with or without "bi-" prefix). Example: alarm or bi-alarm.'
     icon_first:
       type: boolean
       title: Change icon position to left
