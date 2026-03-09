@@ -5,8 +5,6 @@
   - One slot: content (media is a prop)
 #}
 
-{% set style_size = style_size|default('fs-6') %}
-
 {% set card_border = card_border|default(true) %}
 {% set padded = padded|default(false) %}
 {% set content_padding_class = padded ? 'p-4' : 'p-0' %}
@@ -14,6 +12,7 @@
 {% set equal_height = equal_height|default(false) %}
 {% set stretched_link = stretched_link|default(false) %}
 {% set media_position = media_position|default('start') %}
+{% set has_media = media_position != 'no-media' %}
 {% set content_vertical_alignment = content_vertical_alignment|default('justify-content-center') %}
 {% set gutters_between = gutters_between|default('g-2 g-lg-3') %}
 
@@ -73,7 +72,6 @@
   'overflow-hidden',
   (equal_height ? 'h-100' : ''),
   (card_border ? 'border' : 'border-0'),
-  style_size,
   (use_stretched_link ? 'position-relative' : '')
 ]|filter(v => v is not empty) %}
 
@@ -100,17 +98,25 @@
 )|filter(v => v is not empty) %}
 
 {% set content_col_class_list = (
-  [
-    'col-12',
-    'd-flex',
-    (equal_height ? 'h-100' : '')
-  ]
-  |merge(end_column_xs_size)
-  |merge(end_column_sm_size)
-  |merge(end_column_md_size)
-  |merge(end_column_lg_size)
-  |merge(end_column_xl_size)
-  |merge(end_column_xxl_size)
+  has_media
+    ? (
+      [
+        'col-12',
+        'd-flex',
+        (equal_height ? 'h-100' : '')
+      ]
+      |merge(end_column_xs_size)
+      |merge(end_column_sm_size)
+      |merge(end_column_md_size)
+      |merge(end_column_lg_size)
+      |merge(end_column_xl_size)
+      |merge(end_column_xxl_size)
+    )
+    : [
+      'col-12',
+      'd-flex',
+      (equal_height ? 'h-100' : '')
+    ]
 )|filter(v => v is not empty) %}
 
 {% set media_wrap_class_list = [
@@ -183,27 +189,29 @@
 <div{{ card_attributes }}>
   <div{{ row_attributes }}>
 
-    <div{{ media_col_attributes }}>
-      {% if has_media_prop %}
-        <div{{ media_wrap_attributes }}>
-          {% include 'vartheme_bs5:image' ignore missing with image_include_props only %}
-        </div>
-      {% else %}
-        <div{{ placeholder_wrap_attributes }}>
-          {% if ratio != 'ratio-auto' %}
-            <div class="ratio {{ ratio }}">
-              <div class="{{ placeholder_inner_base }}">
+    {% if has_media %}
+      <div{{ media_col_attributes }}>
+        {% if has_media_prop %}
+          <div{{ media_wrap_attributes }}>
+            {% include 'vartheme_bs5:image' ignore missing with image_include_props only %}
+          </div>
+        {% else %}
+          <div{{ placeholder_wrap_attributes }}>
+            {% if ratio != 'ratio-auto' %}
+              <div class="ratio {{ ratio }}">
+                <div class="{{ placeholder_inner_base }}">
+                  {% include 'vartheme_bs5:image' ignore missing with placeholder_include_props only %}
+                </div>
+              </div>
+            {% else %}
+              <div class="{{ placeholder_inner_base }} p-3">
                 {% include 'vartheme_bs5:image' ignore missing with placeholder_include_props only %}
               </div>
-            </div>
-          {% else %}
-            <div class="{{ placeholder_inner_base }} p-3">
-              {% include 'vartheme_bs5:image' ignore missing with placeholder_include_props only %}
-            </div>
-          {% endif %}
-        </div>
-      {% endif %}
-    </div>
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
 
     <div{{ content_col_attributes }}>
       <div class="{{ content_stack_class_list|join(' ') }}">

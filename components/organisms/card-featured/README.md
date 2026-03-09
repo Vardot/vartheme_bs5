@@ -66,7 +66,6 @@ Example:
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `padded` | boolean | `false` | Adds padding to the content column (`p-4`) |
-| `style_size` | string | `fs-6` | Bootstrap font-size utility |
 | `content_vertical_alignment` | string | `justify-content-center` | Bootstrap flex alignment for content column |
 
 #### Size options

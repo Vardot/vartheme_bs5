@@ -7,19 +7,61 @@ description: Featured card (media + content) with Bootstrap 5 grid ratios per br
 props:
   type: object
   properties:
-    style_size:
+    media_position:
       type: string
-      title: Text size
-      description: Bootstrap font-size utility class applied to the card.
-      default: fs-6
+      title: Media position
+      description: Choose the location of the media from (start|end|no-media).
+      default: start
       enum:
-      - fs-6
-      - fs-5
-      - fs-4
+      - start
+      - end
+      - no-media
       meta:enum:
-        fs-6: Default (fs-6)
-        fs-5: Large (fs-5)
-        fs-4: X-Large (fs-4)
+        start: Start
+        end: End
+        no-media: No media
+    media_image:
+      title: Media upload
+      description: Optional image selected from Media Library or uploaded. Used when the media slot is empty.
+      $ref: json-schema-definitions://canvas.module/image
+      type: object
+      examples:
+      - src: assets/featured-card-image-placeholder.svg
+        alt: Featured image
+        width: 800
+        height: 600
+    ratio:
+      type: string
+      title: Image ratio (crop)
+      description: Keeps consistent image shapes.
+      enum:
+      - ratio-auto
+      - ratio-16x9
+      - ratio-4x3
+      - ratio-1x1
+      - ratio-21x9
+      default: ratio-16x9
+      examples:
+      - ratio-auto
+      meta:enum:
+        ratio-auto: Auto (no crop)
+        ratio-16x9: Wide (16:9)
+        ratio-4x3: Standard (4:3)
+        ratio-1x1: Square (1:1)
+        ratio-21x9: Ultra-wide (21:9)
+    fit:
+      type: string
+      title: Image fit
+      description: How the image behaves inside a fixed ratio.
+      enum:
+      - object-fit-cover
+      - object-fit-contain
+      default: object-fit-cover
+      examples:
+      - object-fit-cover
+      meta:enum:
+        object-fit-cover: Fill (crop)
+        object-fit-contain: Fit (no crop)
     card_border:
       type: boolean
       title: Card Border
@@ -64,17 +106,6 @@ props:
         default: Same tab (default)
         _self: Same tab
         _blank: New tab
-    media_position:
-      type: string
-      title: Media position
-      description: Choose the location of the media from (start|end).
-      default: start
-      enum:
-      - start
-      - end
-      meta:enum:
-        start: Start
-        end: End
     content_vertical_alignment:
       type: string
       title: Content Vertical alignment
@@ -242,48 +273,6 @@ props:
         '08_04': '67% - 33%'
         '06_06': '50% - 50%'
         '12_12': '100% - 100%'
-    media_image:
-      title: Media upload
-      description: Optional image selected from Media Library or uploaded. Used when the media slot is empty.
-      $ref: json-schema-definitions://canvas.module/image
-      type: object
-      examples:
-      - src: assets/featured-card-image-placeholder.svg
-        alt: Featured image
-        width: 800
-        height: 600
-    ratio:
-      type: string
-      title: Image ratio (crop)
-      description: Keeps consistent image shapes.
-      enum:
-      - ratio-auto
-      - ratio-16x9
-      - ratio-4x3
-      - ratio-1x1
-      - ratio-21x9
-      default: ratio-16x9
-      examples:
-      - ratio-auto
-      meta:enum:
-        ratio-auto: Auto (no crop)
-        ratio-16x9: Wide (16:9)
-        ratio-4x3: Standard (4:3)
-        ratio-1x1: Square (1:1)
-        ratio-21x9: Ultra-wide (21:9)
-    fit:
-      type: string
-      title: Image fit
-      description: How the image behaves inside a fixed ratio.
-      enum:
-      - object-fit-cover
-      - object-fit-contain
-      default: object-fit-cover
-      examples:
-      - object-fit-cover
-      meta:enum:
-        object-fit-cover: Fill (crop)
-        object-fit-contain: Fit (no crop)
 slots:
   content:
     title: Card content (slot)

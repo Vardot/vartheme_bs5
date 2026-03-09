@@ -12,17 +12,6 @@
     }
   },
   "argTypes": {
-    "style_size": {
-      "name": "Text size",
-      "description": "Bootstrap font-size utility class applied to the card.",
-      "defaultValue": "fs-6",
-      "control": "select",
-      "options": {
-        "Default (fs-6)": "fs-6",
-        "Large (fs-5)": "fs-5",
-        "X-Large (fs-4)": "fs-4"
-      }
-    },
     "card_border": {
       "name": "Card Border",
       "description": "Add a default border for the card.",
@@ -223,7 +212,6 @@
 {% story Default with {
   "name": "Default",
   "args": {
-    "style_size": "fs-6",
     "card_border": true,
     "padded": false,
     "equal_height": false,
@@ -261,7 +249,6 @@
 {% story MediaEnd with {
   "name": "Media on End",
   "args": {
-    "style_size": "fs-6",
     "card_border": true,
     "padded": false,
     "equal_height": false,
@@ -299,7 +286,6 @@
 {% story Padded with {
   "name": "Padded Content",
   "args": {
-    "style_size": "fs-6",
     "card_border": true,
     "padded": true,
     "equal_height": false,
@@ -337,7 +323,6 @@
 {% story NoBorder with {
   "name": "No Border + Tight Gutters",
   "args": {
-    "style_size": "fs-6",
     "card_border": false,
     "padded": false,
     "equal_height": false,
@@ -374,7 +359,6 @@
 {% story EqualHeight with {
   "name": "Equal Height",
   "args": {
-    "style_size": "fs-6",
     "card_border": true,
     "padded": false,
     "equal_height": true,
@@ -412,7 +396,6 @@
 {% story Stacked with {
   "name": "Stacked 100/100",
   "args": {
-    "style_size": "fs-6",
     "card_border": true,
     "padded": false,
     "equal_height": false,
