@@ -1,0 +1,101 @@
+{
+  "title": "Layout/Row",
+  "stories": [
+    {
+      "name": "Default",
+      "args": {
+        "background_color": "none",
+        "bg_edge2edge": false,
+        "container_type": "container",
+        "gutter": "3",
+        "columns_mobile": "1",
+        "columns_desktop": "2",
+        "align_items": "none",
+        "justify_content": "none",
+        "overlay_color": "dark",
+        "overlay_opacity": 50,
+        "padding_block_start": "pt-0",
+        "padding_block_end": "pb-0",
+        "margin_block_start": "mt-0",
+        "margin_block_end": "mb-0"
+      },
+      "parameters": {
+        "server": {
+          "id": "eyJwYXRoIjoidGhlbWVzL2NvbnRyaWIvdmFydGhlbWVfYnM1L2NvbXBvbmVudHMvcm93L3Jvdy5zdG9yaWVzLnR3aWciLCJpZCI6IkRlZmF1bHQifQ=="
+        }
+      }
+    },
+    {
+      "name": "Card Grid",
+      "args": {
+        "background_color": "bg-light",
+        "bg_edge2edge": false,
+        "container_type": "container",
+        "gutter": "4",
+        "columns_mobile": "1",
+        "columns_desktop": "3",
+        "align_items": "align-items-stretch",
+        "justify_content": "justify-content-center",
+        "overlay_color": "dark",
+        "overlay_opacity": 50,
+        "padding_block_start": "pt-5",
+        "padding_block_end": "pb-5",
+        "margin_block_start": "mt-0",
+        "margin_block_end": "mb-0"
+      },
+      "parameters": {
+        "server": {
+          "id": "eyJwYXRoIjoidGhlbWVzL2NvbnRyaWIvdmFydGhlbWVfYnM1L2NvbXBvbmVudHMvcm93L3Jvdy5zdG9yaWVzLnR3aWciLCJpZCI6IkNhcmRHcmlkIn0="
+        }
+      }
+    },
+    {
+      "name": "Centered CTA",
+      "args": {
+        "background_color": "bg-body-tertiary",
+        "bg_edge2edge": false,
+        "container_type": "container",
+        "gutter": "3",
+        "columns_mobile": "1",
+        "columns_desktop": "none",
+        "align_items": "align-items-center",
+        "justify_content": "justify-content-center",
+        "overlay_color": "dark",
+        "overlay_opacity": 50,
+        "padding_block_start": "pt-5",
+        "padding_block_end": "pb-5",
+        "margin_block_start": "mt-0",
+        "margin_block_end": "mb-0"
+      },
+      "parameters": {
+        "server": {
+          "id": "eyJwYXRoIjoidGhlbWVzL2NvbnRyaWIvdmFydGhlbWVfYnM1L2NvbXBvbmVudHMvcm93L3Jvdy5zdG9yaWVzLnR3aWciLCJpZCI6IkNlbnRlcmVkQ1RBIn0="
+        }
+      }
+    },
+    {
+      "name": "Edge To Edge Promo",
+      "args": {
+        "background_color": "bg-dark",
+        "bg_edge2edge": true,
+        "container_type": "container",
+        "gutter": "3",
+        "columns_mobile": "1",
+        "columns_desktop": "2",
+        "align_items": "align-items-center",
+        "justify_content": "justify-content-between",
+        "overlay_color": "dark",
+        "overlay_opacity": 50,
+        "padding_block_start": "pt-5",
+        "padding_block_end": "pb-5",
+        "margin_block_start": "mt-4",
+        "margin_block_end": "mb-4"
+      },
+      "parameters": {
+        "server": {
+          "id": "eyJwYXRoIjoidGhlbWVzL2NvbnRyaWIvdmFydGhlbWVfYnM1L2NvbXBvbmVudHMvcm93L3Jvdy5zdG9yaWVzLnR3aWciLCJpZCI6IkVkZ2VUb0VkZ2VQcm9tbyJ9"
+        }
+      }
+    }
+  ]
+}
