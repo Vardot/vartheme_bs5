@@ -1,6 +1,5 @@
 "$schema": "https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json"
 name: Row
-group: Layout
 description: "Bootstrap .row wrapper with gutters, responsive row-cols presets, alignment controls, background utilities, and spacing utilities."
 props:
   type: object
