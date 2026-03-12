@@ -1,10 +1,10 @@
-{% stories RichText with {
-  "title": "Base/Rich Text",
+{% stories Text with {
+  "title": "Base/Text",
   "parameters": {
-    "componentSubtitle": "Bootstrap Rich Text component (renders trusted HTML)",
+    "componentSubtitle": "Bootstrap Text component with optional smart trim",
     "docs": {
       "description": {
-        "component": "Renders **trusted HTML** (rich text) and lets you control typography using Bootstrap utility classes."
+        "component": "Renders trusted HTML content and supports optional smart trim by characters or words."
       },
       "story": {
         "inline": true
@@ -14,17 +14,18 @@
   "argTypes": {
     "text": {
       "name": "Content (rich text)",
-      "description": "HTML content rendered with `|raw`. Make sure it is already filtered / trusted.",
+      "description": "HTML content. Make sure it is already filtered / trusted.",
       "defaultValue": "<p><strong>Hello</strong> from rich text.</p>",
       "control": "text"
     },
     "text_size": {
       "name": "Text size",
       "description": "Bootstrap font-size utility class.",
-      "defaultValue": "fs-6",
+      "defaultValue": "none",
       "control": "select",
       "options": {
-        "Default (fs-6)": "fs-6",
+        "None": "none",
+        "Small (fs-6)": "fs-6",
         "Medium (fs-5)": "fs-5",
         "Large (fs-4)": "fs-4",
         "Extra large (fs-3)": "fs-3"
@@ -47,6 +48,34 @@
         "Dark (text-dark)": "text-dark",
         "White (text-white)": "text-white"
       }
+    },
+    "trim_length": {
+      "name": "Trim length",
+      "description": "Number of characters or words to keep. Set 0 to disable trimming.",
+      "defaultValue": 0,
+      "control": "number"
+    },
+    "trim_units": {
+      "name": "Trim units",
+      "description": "Choose whether trim length applies to characters or words.",
+      "defaultValue": "characters",
+      "control": "select",
+      "options": {
+        "Characters": "characters",
+        "Words": "words"
+      }
+    },
+    "suffix": {
+      "name": "Suffix",
+      "description": "Text appended when content is trimmed.",
+      "defaultValue": "...",
+      "control": "text"
+    },
+    "strip_html": {
+      "name": "Strip HTML",
+      "description": "Remove HTML tags before trimming.",
+      "defaultValue": false,
+      "control": "boolean"
     }
   }
 } %}
@@ -55,41 +84,42 @@
   "name": "Default",
   "args": {
     "text": "<p><strong>Hello</strong> from rich text.</p>",
-    "text_size": "",
-    "text_color": "text-body"
+    "text_size": "none",
+    "text_color": "text-body",
+    "trim_length": 0,
+    "trim_units": "characters",
+    "suffix": "...",
+    "strip_html": false
   }
 } %}
 {{ include('vartheme_bs5:text') }}
 {% endstory %}
 
-{% story Large with {
-  "name": "Large",
+{% story TrimmedCharacters with {
+  "name": "Trimmed by characters",
   "args": {
-    "text": "<p>This is a <em>larger</em> paragraph using <code>fs-3</code>.</p>",
-    "text_size": "fs-3",
-    "text_color": "text-body"
-  }
-} %}
-{{ include('vartheme_bs5:text') }}
-{% endstory %}
-
-{% story Primary with {
-  "name": "Primary",
-  "args": {
-    "text": "<p>This text uses <code>text-primary</code> color.</p>",
+    "text": "<p>Lorem <strong>ipsum</strong> dolor sit amet, consectetur adipiscing elit.</p>",
     "text_size": "fs-6",
-    "text_color": "text-primary"
+    "text_color": "text-body",
+    "trim_length": 28,
+    "trim_units": "characters",
+    "suffix": "...",
+    "strip_html": true
   }
 } %}
 {{ include('vartheme_bs5:text') }}
 {% endstory %}
 
-{% story MutedMedium with {
-  "name": "Muted + Medium",
+{% story TrimmedWords with {
+  "name": "Trimmed by words",
   "args": {
-    "text": "<p class=\"mb-0\">Muted text with <code>fs-5</code>.</p>",
+    "text": "<p>This is a longer paragraph with several words for smart trimming.</p>",
     "text_size": "fs-5",
-    "text_color": "text-muted"
+    "text_color": "text-primary",
+    "trim_length": 6,
+    "trim_units": "words",
+    "suffix": "...",
+    "strip_html": true
   }
 } %}
 {{ include('vartheme_bs5:text') }}

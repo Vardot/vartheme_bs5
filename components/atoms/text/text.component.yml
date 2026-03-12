@@ -7,26 +7,25 @@ props:
     text:
       type: string
       title: Content (rich text)
-      description: HTML content (e.g. Text). Make sure this content is filtered/safe
-        before rendering.
+      description: HTML content (e.g. Text). Make sure this content is filtered/safe before rendering.
       contentMediaType: text/html
       x-formatting-context: block
       default: <p>Lorem ipsum dolor sit amet.</p>
       examples:
-      - <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        - <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
     text_size:
       type: string
       title: Text size
       description: Bootstrap font-size utility class to apply.
       default: none
       enum:
-      - none
-      - fs-6
-      - fs-5
-      - fs-4
-      - fs-3
+        - none
+        - fs-6
+        - fs-5
+        - fs-4
+        - fs-3
       examples:
-      - none
+        - none
       meta:enum:
         none: None
         fs-6: Small
@@ -39,18 +38,18 @@ props:
       description: Bootstrap text color utility class to apply.
       default: text-body
       enum:
-      - text-body
-      - text-primary
-      - text-secondary
-      - text-success
-      - text-danger
-      - text-warning
-      - text-info
-      - text-muted
-      - text-dark
-      - text-white
+        - text-body
+        - text-primary
+        - text-secondary
+        - text-success
+        - text-danger
+        - text-warning
+        - text-info
+        - text-muted
+        - text-dark
+        - text-white
       examples:
-      - text-body
+        - text-body
       meta:enum:
         text-body: Default
         text-primary: Primary
@@ -62,3 +61,38 @@ props:
         text-muted: Muted
         text-dark: Dark
         text-white: White
+    trim_length:
+      type: number
+      title: Trim length
+      description: Number of characters or words to keep. Set 0 to disable trimming.
+      default: 0
+      examples:
+        - 20
+    trim_units:
+      type: string
+      title: Trim units
+      description: Choose whether trim length applies to characters or words.
+      default: characters
+      enum:
+        - characters
+        - words
+      examples:
+        - characters
+      meta:enum:
+        characters: Characters
+        words: Words
+    suffix:
+      type: string
+      title: Suffix
+      description: Text appended when the content is trimmed.
+      default: '...'
+      examples:
+        - '...'
+        - ' Read more'
+    strip_html:
+      type: boolean
+      title: Strip HTML
+      description: Remove HTML tags before trimming.
+      default: false
+      examples:
+        - false

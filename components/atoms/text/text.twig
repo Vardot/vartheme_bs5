@@ -1,16 +1,43 @@
-{# Rich Text component (SDC / Canvas-friendly, Bootstrap utilities) #}
+{# Text component #}
 
-{# Props are Bootstrap utility class names (e.g. fs-6, text-body) so we can use them directly #}
 {% set classes = [
   'rich-text',
   text_size|default('none'),
   text_color|default('text-body')
-]|filter(v => v is not empty) %}
+]|filter(v => v is not empty and v != 'none') %}
 
 {% set attrs = create_attribute().addClass(classes) %}
 
 {% set content = text|default('') %}
+{% set trim_length_value = trim_length|default(0) %}
+{% set trim_length_number = trim_length_value is same as(false) ? 0 : trim_length_value + 0 %}
+{% set trim_units_value = trim_units|default('characters') %}
+{% set suffix_value = suffix is defined ? suffix : '...' %}
+{% set strip_html_value = strip_html|default(false) %}
+
+{% set processed_content = strip_html_value ? content|striptags : content %}
+{% set is_trimmed = false %}
+
+{% if trim_length_number > 0 %}
+  {% if trim_units_value == 'words' %}
+    {% set normalized_content = processed_content|trim %}
+    {% set words = normalized_content is empty ? [] : normalized_content|split(' ')|filter(word => word is not empty) %}
+    {% if words|length > trim_length_number %}
+      {% set processed_content = words|slice(0, trim_length_number)|join(' ') ~ suffix_value %}
+      {% set is_trimmed = true %}
+    {% endif %}
+  {% else %}
+    {% if processed_content|length > trim_length_number %}
+      {% set processed_content = processed_content|slice(0, trim_length_number) ~ suffix_value %}
+      {% set is_trimmed = true %}
+    {% endif %}
+  {% endif %}
+{% endif %}
 
 <div {{ attrs }}>
-  {{ content|raw }}
+  {% if strip_html_value or is_trimmed %}
+    {{ processed_content }}
+  {% else %}
+    {{ processed_content|raw }}
+  {% endif %}
 </div>

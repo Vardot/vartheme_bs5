@@ -23,7 +23,9 @@ import templateSource from './text.twig?raw';
 <Stories of={comStories} />
 
 ## Notes
-- `text` is rendered using `|raw`. Ensure the content is already filtered / trusted before passing it into the component.
+- `text` is rendered as trusted HTML when trimming is disabled.
+- Use `strip_html` for safer smart-trim output.
+- Smart trim supports both character-based and word-based trimming.
 
 ## Source code
 [//]: # (Twig Template source code)
