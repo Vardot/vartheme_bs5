@@ -1,5 +1,3 @@
-{/* rich-text.mdx */}
-
 import { Meta, Title, Subtitle, Description, Primary, Stories, Controls, Source } from '@storybook/blocks';
 import * as comStories from './rich-text.stories.json';
 import templateSource from './rich-text.twig?raw';
@@ -10,11 +8,6 @@ import templateSource from './rich-text.twig?raw';
 <Subtitle />
 <Description />
 
-> ### Bootstrap documentation
-> * [Typography](https://getbootstrap.com/docs/5.3/content/typography/)
-> * [Colors](https://getbootstrap.com/docs/5.3/utilities/colors/)
-> * [Font size utilities](https://getbootstrap.com/docs/5.3/utilities/text/#font-size)
-
 <Primary />
 
 ## Properties
@@ -22,13 +15,11 @@ import templateSource from './rich-text.twig?raw';
 
 <Stories of={comStories} />
 
-## Notes
-- `text` is rendered using `|raw` only when trimming is disabled and `strip_html` is `false`.
-- `trim_length` controls how many characters or words are kept.
-- `trim_units` supports `characters` and `words`.
-- `suffix` is appended only when the text is actually trimmed.
-- `strip_html` removes tags before trimming and output.
+## Behavior
+- `trim = false` always keeps original rich HTML.
+- `strip_html` only works when `trim = true`.
+- `trim = true` and `strip_html = true` trims plain text.
+- `trim = true` and `strip_html = false` trims while keeping HTML output.
 
 ## Source code
-[//]: # (Twig Template source code)
 <Source code={templateSource} />
