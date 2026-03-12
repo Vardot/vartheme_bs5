@@ -1,0 +1,18 @@
+{
+  "$schema": "https://git.drupalcode.org/project/storybookjs/storybook/blob/8.x-1.x/modules/storybook/storybook.schema.json?raw=1",
+  "title": "Layout/Column",
+  "stories": [
+    {
+      "name": "Default",
+      "args": {
+        "content": "<div class=\"p-3 border rounded bg-light\">Column content</div>"
+      }
+    },
+    {
+      "name": "Card content",
+      "args": {
+        "content": "<div class=\"card\"><div class=\"card-body\"><h3 class=\"h6\">Column card</h3><p class=\"mb-0\">Simple content inside the column slot.</p></div></div>"
+      }
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json"
+name: Column
+group: Layout
+description: "Simple Bootstrap column wrapper for use inside the Row component."
+
+slots:
+  content:
+    title: Content
+    description: Content placed inside the column.

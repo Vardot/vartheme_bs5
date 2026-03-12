@@ -1,0 +1,11 @@
+{#
+  Column (Bootstrap)
+  - Simple .col wrapper for use inside the Row component
+  - No settings, only a content slot
+#}
+
+{% set attributes = attributes|default(create_attribute()) %}
+
+<div {{ attributes.addClass(['col']) }}>
+  {% block content %}{% endblock %}
+</div>

@@ -1,0 +1,15 @@
+<div class="container py-4">
+  <div class="row g-3">
+    {% embed 'column:column' %}
+      {% block content %}
+        {{ content|default('<div class="p-3 border rounded bg-light">Column content</div>')|raw }}
+      {% endblock %}
+    {% endembed %}
+
+    {% embed 'column:column' %}
+      {% block content %}
+        <div class="p-3 border rounded bg-body-secondary">Sibling column</div>
+      {% endblock %}
+    {% endembed %}
+  </div>
+</div>
