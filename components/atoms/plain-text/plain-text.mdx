@@ -1,22 +1,17 @@
-{/* text.mdx */}
-
 import { Title, Subtitle, Meta, Description } from '@storybook/blocks';
-import * as comStories from './text.stories.json';
-import templateSource from './text.twig?raw';
+import * as comStories from './plain-text.stories.json';
+import templateSource from './plain-text.twig?raw';
 
 <Meta of={comStories} name="Docs"/>
 
 <Title />
 <Subtitle />
-<Description />
-
-> ### Bootstrap Documentation
-> * Typography: https://getbootstrap.com/docs/5.3/content/typography/
-> * Text utilities: https://getbootstrap.com/docs/5.3/utilities/text/
+<Description>
+  A minimal plain text component with optional trim behavior.
+</Description>
 
 ## Twig template
 
 ```twig
 {templateSource}
 ```
-
