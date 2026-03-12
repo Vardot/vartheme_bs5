@@ -1,8 +1,39 @@
 {# Rich Text component (SDC / Canvas-friendly, Bootstrap utilities) #}
 
-{# Renders trusted HTML only. The `text` prop is output with `|raw`. #}
 {% set content = text|default('') %}
+{% set trim_length = trim_length|default(0) %}
+{% set trim_units = trim_units|default('characters') %}
+{% set suffix = suffix is defined ? suffix : '...' %}
+{% set strip_html = strip_html|default(false) %}
+
+{% set processed_content = strip_html ? content|striptags : content %}
+{% set output = processed_content %}
+{% set is_trimmed = false %}
+
+{% if trim_length > 0 %}
+  {% if trim_units == 'words' %}
+    {% set normalized_text = processed_content|striptags|trim %}
+    {% set words = normalized_text ? normalized_text|split(' ') : [] %}
+    {% if words|length > trim_length %}
+      {% set output = words|slice(0, trim_length)|join(' ') ~ suffix %}
+      {% set is_trimmed = true %}
+    {% else %}
+      {% set output = strip_html ? processed_content|trim : processed_content %}
+    {% endif %}
+  {% else %}
+    {% set comparable_text = strip_html ? processed_content : processed_content|striptags %}
+    {% if comparable_text|length > trim_length %}
+      {% set base_output = strip_html ? processed_content|slice(0, trim_length) : processed_content|striptags|slice(0, trim_length) %}
+      {% set output = base_output|trim ~ suffix %}
+      {% set is_trimmed = true %}
+    {% endif %}
+  {% endif %}
+{% endif %}
 
 <div>
-  {{ content|raw }}
+  {% if strip_html or is_trimmed %}
+    {{ output }}
+  {% else %}
+    {{ output|raw }}
+  {% endif %}
 </div>

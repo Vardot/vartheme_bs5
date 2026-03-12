@@ -1,10 +1,10 @@
 {
   "title": "Base/Rich Text",
   "parameters": {
-    "componentSubtitle": "Bootstrap Rich Text component (renders trusted HTML)",
+    "componentSubtitle": "Bootstrap Rich Text component with optional smart trimming",
     "docs": {
       "description": {
-        "component": "Renders **trusted HTML** (rich text) via the `text` prop."
+        "component": "Renders **trusted HTML** and supports optional smart trim settings."
       },
       "story": {
         "inline": true
@@ -14,38 +14,69 @@
   "argTypes": {
     "text": {
       "name": "Content (rich text)",
-      "description": "HTML content rendered with `|raw`. Make sure it is already filtered / trusted.",
+      "description": "HTML content rendered with `|raw` when trimming is disabled.",
       "defaultValue": "<p><strong>Hello</strong> from rich text.</p>",
       "control": "text"
+    },
+    "trim_length": {
+      "name": "Trim length",
+      "description": "Number of characters or words to keep. Set 0 to disable trimming.",
+      "defaultValue": 0,
+      "control": { "type": "number", "min": 0 }
+    },
+    "trim_units": {
+      "name": "Trim units",
+      "description": "Choose whether trim length uses characters or words.",
+      "defaultValue": "characters",
+      "control": { "type": "select" },
+      "options": ["characters", "words"]
+    },
+    "suffix": {
+      "name": "Suffix",
+      "description": "Text appended when content is trimmed.",
+      "defaultValue": "...",
+      "control": "text"
+    },
+    "strip_html": {
+      "name": "Strip HTML",
+      "description": "Remove HTML tags before trimming and output.",
+      "defaultValue": false,
+      "control": "boolean"
     }
   },
   "stories": [
     {
       "name": "Default",
       "args": {
-        "text": "<p><strong>Hello</strong> from rich text.</p><p class=\"mb-0\">You can include basic HTML like <em>emphasis</em>, <a href=\"#\">links</a>, and lists.</p>"
+        "text": "<p><strong>Hello</strong> from rich text.</p><p class=\"mb-0\">You can include basic HTML like <em>emphasis</em>, <a href=\"#\">links</a>, and lists.</p>",
+        "trim_length": 0,
+        "trim_units": "characters",
+        "suffix": "...",
+        "strip_html": false
       },
-      "parameters": {
-        "server": {}
-      }
+      "parameters": { "server": {} }
     },
     {
-      "name": "List example",
+      "name": "Trim by characters",
       "args": {
-        "text": "<p class=\"mb-2\">A simple list:</p><ul class=\"mb-0\"><li>First item</li><li>Second item</li><li>Third item</li></ul>"
+        "text": "<p><strong>Hello</strong> from rich text.</p><p class=\"mb-0\">You can include basic HTML like <em>emphasis</em>, <a href=\"#\">links</a>, and lists.</p>",
+        "trim_length": 60,
+        "trim_units": "characters",
+        "suffix": "...",
+        "strip_html": true
       },
-      "parameters": {
-        "server": {}
-      }
+      "parameters": { "server": {} }
     },
     {
-      "name": "Mixed content",
+      "name": "Trim by words",
       "args": {
-        "text": "<h3 class=\"h5\">Small heading</h3><p>Paragraph with <code>inline code</code> and <strong>strong text</strong>.</p><blockquote class=\"blockquote mb-0\"><p class=\"mb-0\">Blockquote example.</p></blockquote>"
+        "text": "<p class=\"mb-0\">A longer paragraph for word trimming. It contains multiple words so you can preview how the smart trimmed output behaves.</p>",
+        "trim_length": 12,
+        "trim_units": "words",
+        "suffix": "...",
+        "strip_html": true
       },
-      "parameters": {
-        "server": {}
-      }
+      "parameters": { "server": {} }
     }
   ]
 }

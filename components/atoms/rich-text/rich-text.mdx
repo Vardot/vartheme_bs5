@@ -23,7 +23,11 @@ import templateSource from './rich-text.twig?raw';
 <Stories of={comStories} />
 
 ## Notes
-- `text` is rendered using `|raw`. Ensure the content is already filtered / trusted before passing it into the component.
+- `text` is rendered using `|raw` only when trimming is disabled and `strip_html` is `false`.
+- `trim_length` controls how many characters or words are kept.
+- `trim_units` supports `characters` and `words`.
+- `suffix` is appended only when the text is actually trimmed.
+- `strip_html` removes tags before trimming and output.
 
 ## Source code
 [//]: # (Twig Template source code)
