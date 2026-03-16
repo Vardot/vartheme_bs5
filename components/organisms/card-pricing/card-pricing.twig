@@ -1,157 +1,143 @@
 {#
-  Bootstrap 5 Pricing Card (Improved SDC)
+  Bootstrap 5 Pricing Card
 
-  Improvements:
-  - Fix symbol_position default bug handling
-  - User-friendly controls: alignment, heading level, price period/note
-  - Button target + secure rel
-  - Optional divider above features
-  - Safer output (escape URL/attrs)
+  Notes:
+  - Select props use Bootstrap utility class names directly where possible.
+  - Multi-class values from props are split before addClass().
+  - All logic and class preparation are kept at the top for cleaner markup.
 #}
 
 {% set is_promoted = promote|default(false) %}
-{% set text_align = text_align|default('start') %}
-{% set align_class = text_align == 'center' ? 'text-center' : 'text-start' %}
+{% set text_align_class = text_align|default('text-start') %}
+{% set shadow_class = shadow|default('shadow') %}
+{% set border_class = border|default('border') %}
+{% set background_classes = background_color|default('bg-body')|split(' ') %}
 
-{% set shadow_map = {
-  'none': '',
-  'sm': 'shadow-sm',
-  'default': 'shadow',
-  'lg': 'shadow-lg'
-} %}
-
-{% set border_value = border|default('default') %}
-{% set border_class = '' %}
-{% if border_value == 'none' %}
-  {% set border_class = 'border-0' %}
-{% elseif border_value == 'default' %}
-  {% set border_class = '' %}
-{% else %}
-  {% set border_class = 'border border-' ~ border_value %}
-{% endif %}
-
-{% set bg_value = background_color|default('default') %}
-{% set bg_map = {
-  'default': 'bg-body',
-  'light': 'bg-light',
-  'dark': 'bg-dark text-white',
-  'primary': 'bg-primary text-white',
-  'secondary': 'bg-secondary text-white',
-  'success': 'bg-success text-white',
-  'danger': 'bg-danger text-white',
-  'warning': 'bg-warning',
-  'info': 'bg-info'
-} %}
-
-{% set button_variant_value = button_variant|default(is_promoted ? 'secondary' : 'primary') %}
-{% set button_class_map = {
-  'primary': 'btn btn-primary',
-  'secondary': 'btn btn-secondary',
-  'outline-primary': 'btn btn-outline-primary',
-  'outline-secondary': 'btn btn-outline-secondary'
-} %}
-
+{% set has_badge = badge_text|default('')|trim is not empty %}
+{% set has_heading = heading_text is not empty %}
+{% set has_description = description is not empty %}
+{% set has_price = price is not empty %}
+{% set has_features = text is not empty %}
 {% set has_button = button_url is not empty and button_url != 'No URL' and button_label is not empty %}
 
 {% set btn_target = button_target|default('self') %}
 {% set btn_target_attr = btn_target == 'blank' ? '_blank' : '_self' %}
 {% set btn_rel_attr = btn_target == 'blank' ? 'noopener noreferrer' : null %}
 
-{% set classes = ['card', 'h-100', 'position-relative'] %}
-{% set classes = classes|merge([bg_map[bg_value]|default('bg-body')]) %}
-
-{% if shadow_map[shadow|default('default')]|default('') %}
-  {% set classes = classes|merge([shadow_map[shadow|default('default')]]) %}
-{% endif %}
-
-{% if border_class %}
-  {% set classes = classes|merge([border_class]) %}
-{% endif %}
-
-{# Promote: emphasize using Bootstrap utilities #}
-{% if is_promoted %}
-  {% set classes = classes|merge(['border-primary', 'shadow-lg']) %}
-{% endif %}
-
-{% if extra_classes|default('')|trim %}
-  {% set classes = classes|merge(extra_classes|trim|split(' ')) %}
-{% endif %}
-
-{% set attrs = create_attribute().addClass(classes) %}
-{% if id|default('')|trim %}
-  {% set attrs = attrs.setAttribute('id', id|trim) %}
-{% endif %}
-
 {% set symbol_pos = symbol_position|default('before') %}
 {% set currency_symbol_value = currency_symbol|default('$') %}
 {% set currency_code_value = currency_code|default('USD') %}
 {% set price_period_value = price_period|default('')|trim %}
 {% set price_note_value = price_note|default('')|trim %}
+{% set has_price_period = price_period_value is not empty %}
+{% set has_price_note = price_note_value is not empty %}
 {% set show_divider = show_features_divider|default(true) %}
 
 {% set heading_level = level|default(3) %}
 {% set heading_tag = heading_level == 2 ? 'h2' : (heading_level == 4 ? 'h4' : 'h3') %}
+{% set button_variant_class = button_variant|default(is_promoted ? 'btn-secondary' : 'btn-primary') %}
+{% set badge_variant = is_promoted ? 'text-bg-primary' : 'text-bg-secondary' %}
+{% set features_wrapper_class = show_divider ? 'border-top pt-3 mb-4' : 'mb-4' %}
 
-<article{{ attrs }}>
-  <div class="card-body d-flex flex-column {{ align_class }}">
-    {% if badge_text|default('')|trim %}
-      <div class="mb-2">
-        <span class="badge {{ is_promoted ? 'text-bg-primary' : 'text-bg-secondary' }}">{{ badge_text|trim }}</span>
+{% set card_classes = [
+  'card',
+  'h-100',
+  'position-relative',
+  text_align_class,
+  shadow_class,
+  border_class,
+]|merge(background_classes) %}
+
+{% if is_promoted %}
+  {% set card_classes = card_classes|merge(['border-primary', 'shadow-lg']) %}
+{% endif %}
+
+{% set article_attributes = create_attribute().addClass(card_classes) %}
+{% set body_attributes = create_attribute().addClass(['card-body', 'd-flex', 'flex-column']) %}
+{% set badge_wrapper_attributes = create_attribute().addClass(['mb-2']) %}
+{% set heading_attributes = create_attribute().addClass(['h5', 'fw-bold', 'mb-1']) %}
+{% set description_attributes = create_attribute().addClass(['mb-3', 'opacity-75']) %}
+{% set price_wrapper_attributes = create_attribute().addClass(['mb-2']) %}
+{% set price_row_attributes = create_attribute().addClass(['d-inline-flex', 'align-items-end', 'gap-2']) %}
+{% set price_heading_attributes = create_attribute().addClass(['display-6', 'fw-semibold', 'mb-0']) %}
+{% set data_attributes = create_attribute()
+  .setAttribute('value', price|default('')|e)
+  .setAttribute('data-currency', currency_code_value|e)
+  .addClass(['d-inline-flex', 'align-items-start', 'gap-1']) %}
+{% set symbol_attributes = create_attribute().addClass(['fs-5']) %}
+{% set period_attributes = create_attribute().addClass(['opacity-75']) %}
+{% set note_attributes = create_attribute().addClass(['small', 'opacity-75', 'mt-1']) %}
+{% set features_wrapper_attributes = create_attribute().addClass(features_wrapper_class|split(' ')) %}
+{% set features_content_attributes = create_attribute().addClass(['small']) %}
+{% set button_label_value = button_label|default('Get started') %}
+{% set button_variant_value = button_variant_class %}
+{% set button_href_value = button_url|default('') %}
+{% set button_wrapper_attributes = create_attribute().addClass(['mt-auto']) %}
+
+<article{{ article_attributes }}>
+  <div{{ body_attributes }}>
+    {% if has_badge %}
+      <div{{ badge_wrapper_attributes }}>
+        {{ include('vartheme_bs5:badge', {
+          label: badge_text|trim,
+          variant: badge_variant,
+          size: 'fs-6 px-2 py-1',
+          radius: 'rounded-1'
+        }, with_context: false) }}
       </div>
     {% endif %}
 
-    {% if heading_text is not empty %}
-      <{{ heading_tag }} class="h5 fw-bold mb-1">{{ heading_text }}</{{ heading_tag }}>
+    {% if has_heading %}
+      <{{ heading_tag }}{{ heading_attributes }}>{{ heading_text }}</{{ heading_tag }}>
     {% endif %}
 
-    {% if description is not empty %}
-      <p class="mb-3 opacity-75">{{ description }}</p>
+    {% if has_description %}
+      <p{{ description_attributes }}>{{ description }}</p>
     {% endif %}
 
-    {% if price is not empty %}
-      <div class="mb-2">
-        <div class="d-inline-flex align-items-end gap-2">
-          <h4 class="display-6 fw-semibold mb-0">
-            <data value="{{ price|e }}" data-currency="{{ currency_code_value|e }}" class="d-inline-flex align-items-start gap-1">
+    {% if has_price %}
+      <div{{ price_wrapper_attributes }}>
+        <div{{ price_row_attributes }}>
+          <h4{{ price_heading_attributes }}>
+            <data{{ data_attributes }}>
               {% if symbol_pos == 'before' %}
-                <span class="fs-5">{{ currency_symbol_value }}</span>
+                <span{{ symbol_attributes }}>{{ currency_symbol_value }}</span>
                 <span>{{ price }}</span>
               {% else %}
                 <span>{{ price }}</span>
-                <span class="fs-5">{{ currency_symbol_value }}</span>
+                <span{{ symbol_attributes }}>{{ currency_symbol_value }}</span>
               {% endif %}
             </data>
           </h4>
 
-          {% if price_period_value %}
-            <span class="opacity-75">{{ price_period_value }}</span>
+          {% if has_price_period %}
+            <span{{ period_attributes }}>{{ price_period_value }}</span>
           {% endif %}
         </div>
 
-        {% if price_note_value %}
-          <div class="small opacity-75 mt-1">{{ price_note_value }}</div>
+        {% if has_price_note %}
+          <div{{ note_attributes }}>{{ price_note_value }}</div>
         {% endif %}
       </div>
     {% endif %}
 
-    {% if text is not empty %}
-      <div class="{{ show_divider ? 'border-top pt-3' : '' }} mb-4">
-        <div class="small">
+    {% if has_features %}
+      <div{{ features_wrapper_attributes }}>
+        <div{{ features_content_attributes }}>
           {{ text|raw }}
         </div>
       </div>
     {% endif %}
 
     {% if has_button %}
-      <div class="mt-auto">
-        <a
-          href="{{ button_url|e }}"
-          class="{{ button_class_map[button_variant_value]|default('btn btn-primary') }} w-100"
-          target="{{ btn_target_attr }}"
-          {% if btn_rel_attr %}rel="{{ btn_rel_attr }}"{% endif %}
-        >
-          {{ button_label }}
-        </a>
+      <div{{ button_wrapper_attributes }}>
+        {{ include('vartheme_bs5:button', {
+          href: button_href_value,
+          label: button_label_value,
+          variant: button_variant_value,
+          size: 'btn-sm',
+          target: btn_target,
+        }, with_context: false) }}
       </div>
     {% endif %}
   </div>
