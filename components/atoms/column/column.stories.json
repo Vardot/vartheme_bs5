@@ -1,18 +1,1 @@
-{
-  "$schema": "https://git.drupalcode.org/project/storybookjs/storybook/blob/8.x-1.x/modules/storybook/storybook.schema.json?raw=1",
-  "title": "Layout/Column",
-  "stories": [
-    {
-      "name": "Default",
-      "args": {
-        "content": "<div class=\"p-3 border rounded bg-light\">Column content</div>"
-      }
-    },
-    {
-      "name": "Card content",
-      "args": {
-        "content": "<div class=\"card\"><div class=\"card-body\"><h3 class=\"h6\">Column card</h3><p class=\"mb-0\">Simple content inside the column slot.</p></div></div>"
-      }
-    }
-  ]
-}
+{"title":"Layout\/Column","parameters":{"componentSubtitle":"Bootstrap Column wrapper for use inside a Row component.","docs":{"description":{"component":"A simple Bootstrap column wrapper. Place it inside a Row component."},"story":{"inline":true}}},"stories":[{"args":[],"parameters":{"server":{"id":"eyJwYXRoIjoidGhlbWVzXC9jb250cmliXC92YXJ0aGVtZV9iczVcL2NvbXBvbmVudHNcL2F0b21zXC9jb2x1bW5cL2NvbHVtbi5zdG9yaWVzLnR3aWciLCJpZCI6IkRlZmF1bHQifQ%3D%3D"}},"name":"Default"}]}
