@@ -1,0 +1,74 @@
+{% stories BootstrapIcon with {
+  "title": "Others/Bootstrap Icon",
+  "parameters": {
+    "componentSubtitle": "Bootstrap icon component using Bootstrap Icons CSS classes",
+    "docs": {
+      "description": {
+        "component": "Use this component to render Bootstrap Icons with rem-based sizing and Bootstrap color utility class values."
+      },
+      "story": {
+        "inline": true
+      }
+    }
+  },
+  "argTypes": {
+    "icon": {
+      "name": "Icon name",
+      "control": "text"
+    },
+    "icon_size": {
+      "name": "Icon size",
+      "control": "text"
+    },
+    "color": {
+      "name": "Color",
+      "control": "select",
+      "options": {
+        "Default": "text-body",
+        "Primary": "text-primary",
+        "Secondary": "text-secondary",
+        "Success": "text-success",
+        "Danger": "text-danger",
+        "Warning": "text-warning",
+        "Info": "text-info",
+        "Light": "text-light",
+        "Dark": "text-dark",
+        "Muted": "text-muted",
+        "White": "text-white"
+      }
+    }
+  }
+} %}
+
+{% story DefaultIcon with {
+  "name": "Default icon",
+  "args": {
+    "icon": "circle-fill",
+    "icon_size": "fs-4",
+    "color": "text-body"
+  }
+} %}
+{{ include('vartheme_bs5:bootstrap-icon') }}
+{% endstory %}
+
+{% story PrimaryIcon with {
+  "name": "Primary icon",
+  "args": {
+    "icon": "arrow-right",
+    "icon_size": "2",
+    "color": "text-primary"
+  }
+} %}
+{{ include('vartheme_bs5:bootstrap-icon') }}
+{% endstory %}
+
+{% story MutedIcon with {
+  "name": "Muted icon",
+  "args": {
+    "icon": "info",
+    "icon_size": "1.25",
+    "color": "text-muted"
+  }
+} %}
+{{ include('vartheme_bs5:bootstrap-icon') }}
+{% endstory %}

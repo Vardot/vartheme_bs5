@@ -1,0 +1,29 @@
+{
+  "title": "Others/Bootstrap Icon",
+  "stories": [
+    {
+      "name": "Default icon",
+      "args": {
+        "icon": "circle-fill",
+        "icon_size": "fs-4",
+        "color": "text-body"
+      }
+    },
+    {
+      "name": "Primary icon",
+      "args": {
+        "icon": "arrow-right",
+        "icon_size": "2",
+        "color": "text-primary"
+      }
+    },
+    {
+      "name": "Muted icon",
+      "args": {
+        "icon": "info",
+        "icon_size": "1.25",
+        "color": "text-muted"
+      }
+    }
+  ]
+}
