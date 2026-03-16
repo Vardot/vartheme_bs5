@@ -1,0 +1,80 @@
+{
+  "title": "Card/Card Icon",
+  "stories": [
+    {
+      "name": "Default card",
+      "args": {
+        "text": "Your heading here",
+        "description": "<p>This is placeholder text for a default card.</p>",
+        "icon": "people",
+        "text_align": "text-center",
+        "background_color": "bg-body",
+        "shadow": "shadow",
+        "has_padding": true,
+        "url": "",
+        "button_label": "",
+        "button_variant": "btn-primary"
+      }
+    },
+    {
+      "name": "Primary background",
+      "args": {
+        "text": "Support services",
+        "description": "<p>Find useful information and key guidance in one place.</p>",
+        "icon": "info",
+        "text_align": "text-center",
+        "background_color": "bg-primary text-white",
+        "shadow": "shadow-lg",
+        "has_padding": true,
+        "url": "",
+        "button_label": "",
+        "button_variant": "btn-primary"
+      }
+    },
+    {
+      "name": "Left aligned content",
+      "args": {
+        "text": "Registration help",
+        "description": "<p>Get started with forms, steps, and support options.</p>",
+        "icon": "person-plus",
+        "text_align": "text-start",
+        "background_color": "bg-light",
+        "shadow": "shadow-sm",
+        "has_padding": true,
+        "url": "",
+        "button_label": "",
+        "button_variant": "btn-primary"
+      }
+    },
+    {
+      "name": "Card with button",
+      "args": {
+        "text": "Create account",
+        "description": "<p>Start your registration process and continue with the next steps.</p>",
+        "icon": "person-check",
+        "text_align": "text-center",
+        "background_color": "bg-body",
+        "shadow": "shadow",
+        "has_padding": true,
+        "url": "https://example.com/register",
+        "button_label": "Get started",
+        "button_variant": "btn-primary"
+      }
+    },
+    {
+      "name": "Full card link",
+      "args": {
+        "text": "Latest updates",
+        "description": "<p>Read recent announcements and follow new updates.</p>",
+        "icon": "arrow-right",
+        "text_align": "text-end",
+        "background_color": "bg-light",
+        "shadow": "shadow",
+        "has_padding": true,
+        "url": "https://example.com/updates",
+        "button_label": "",
+        "button_variant": "btn-primary"
+      }
+    }
+  ]
+}
