@@ -1,0 +1,32 @@
+import { Meta, Canvas, Story, Controls } from '@storybook/blocks';
+import * as SectionStories from './section.stories.json';
+
+<Meta of={SectionStories} />
+
+# Section
+
+Use the Section component to create consistent layout wrappers with Bootstrap containers, spacing utilities, background options, and responsive column presets.
+
+## Highlights
+
+- 1 to 6 column presets
+- optional header and footer regions
+- optional background image with overlay
+- Bootstrap-based spacing, container, color, and shadow utilities
+
+## Preview
+
+<Canvas of={SectionStories.Default} />
+
+## Available stories
+
+- Default
+- Hero With Background
+- Three Columns
+- Asymmetric Split
+- Five Columns
+- Six Columns
+
+## Controls
+
+<Controls of={SectionStories.Default} />
