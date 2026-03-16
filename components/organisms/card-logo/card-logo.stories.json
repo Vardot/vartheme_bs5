@@ -1,0 +1,44 @@
+{
+  "title": "Card/Card Logo",
+  "stories": [
+    {
+      "name": "Default logo card",
+      "args": {
+        "media": {
+          "src": "assets/logo-placeholder.svg",
+          "alt": "Placeholder brand logo",
+          "width": "600",
+          "height": "240"
+        },
+        "url": "",
+        "shadow": "shadow"
+      }
+    },
+    {
+      "name": "Linked logo card",
+      "args": {
+        "media": {
+          "src": "assets/logo-placeholder.svg",
+          "alt": "Partner logo",
+          "width": "600",
+          "height": "240"
+        },
+        "url": "https://example.com",
+        "shadow": "shadow-sm"
+      }
+    },
+    {
+      "name": "Large shadow",
+      "args": {
+        "media": {
+          "src": "assets/logo-placeholder.svg",
+          "alt": "Featured brand logo",
+          "width": "600",
+          "height": "240"
+        },
+        "url": "",
+        "shadow": "shadow-lg"
+      }
+    }
+  ]
+}

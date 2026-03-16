@@ -1,6 +1,6 @@
 $schema: "https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json"
 name: Card Logo
-description: A logo card with optional background, border, and link.
+description: A logo card with an optional link.
 group: Card
 noUI: true
 
@@ -23,143 +23,15 @@ props:
       title: Link URL (optional)
       description: If provided, the whole card becomes clickable.
 
-    target:
-      type: string
-      title: Link target
-      description: Controls how the link opens.
-      enum: [self, blank]
-      default: self
-      examples: [self]
-      meta:enum:
-        self: Same tab
-        blank: New tab
-
-    aria_label:
-      type: string
-      title: Link accessibility label (optional)
-      description: If empty, the logo alt text is used.
-      examples:
-        - "Open partner website"
-
-    tile_ratio:
-      type: string
-      title: Card shape
-      description: Keeps cards consistent and prevents huge/tall logos.
-      enum: [auto, square, "4x3", "16x9"]
-      default: square
-      examples: [square]
-      meta:enum:
-        auto: Auto height
-        square: Square
-        "4x3": Rectangle (4:3)
-        "16x9": Wide (16:9)
-
-    logo_size:
-      type: string
-      title: Logo size
-      description: Controls the logo scale inside the card.
-      enum: [sm, md, lg]
-      default: md
-      examples: [md]
-      meta:enum:
-        sm: Small
-        md: Medium
-        lg: Large
-
-    logo_style:
-      type: string
-      title: Logo style
-      description: Optional visual style for the logo.
-      enum: [default, grayscale]
-      default: default
-      examples: [default]
-      meta:enum:
-        default: Default
-        grayscale: Grayscale
-
-    padding:
-      type: string
-      title: Content spacing
-      description: Padding inside the card.
-      enum: [compact, normal, spacious]
-      default: normal
-      examples: [normal]
-      meta:enum:
-        compact: Compact
-        normal: Normal
-        spacious: Spacious
-
-    background_color:
-      type: string
-      title: Background theme
-      description: Background color style for the card.
-      enum: [default, primary, secondary, success, danger, warning, info, light, dark]
-      default: default
-      examples: [default]
-      meta:enum:
-        default: Default
-        primary: Primary
-        secondary: Secondary
-        success: Success
-        danger: Danger
-        warning: Warning
-        info: Info
-        light: Light
-        dark: Dark
-
     shadow:
       type: string
       title: Shadow
       description: Adds depth to the card.
-      enum: [none, sm, default, lg]
-      default: default
-      examples: [default]
+      enum: [shadow-none, shadow-sm, shadow, shadow-lg]
+      default: shadow
+      examples: [shadow]
       meta:enum:
-        none: No shadow
-        sm: Small shadow
-        default: Default shadow
-        lg: Large shadow
-
-    border:
-      type: string
-      title: Border style
-      description: Adds a border (or removes it).
-      enum: [default, none, primary, secondary, success, danger, warning, info, light, dark]
-      default: default
-      examples: [default]
-      meta:enum:
-        default: Default
-        none: No border
-        primary: Primary
-        secondary: Secondary
-        success: Success
-        danger: Danger
-        warning: Warning
-        info: Info
-        light: Light
-        dark: Dark
-
-    border_radius:
-      type: string
-      title: Corner style
-      description: Controls how rounded the card corners are.
-      enum: [default, "0", "1", "2", "3", pill]
-      default: default
-      examples: [default]
-      meta:enum:
-        default: Default
-        "0": Square corners
-        "1": Slightly rounded
-        "2": Rounded
-        "3": More rounded
-        pill: Fully rounded (pill)
-
-    id:
-      type: string
-      title: HTML ID (optional)
-      description: Optional ID attribute for linking.
-
-    extra_classes:
-      type: string
-      title: Extra CSS classes (optional)
-      description: Space separated classes (Bootstrap utilities allowed).
+        shadow-none: No shadow
+        shadow-sm: Small shadow
+        shadow: Default shadow
+        shadow-lg: Large shadow
