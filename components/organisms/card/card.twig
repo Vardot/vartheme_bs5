@@ -1,199 +1,117 @@
 {#
-  Bootstrap 5 Card (SDC)
-
-  Fixes / improvements:
-  - Better placeholder image (assets/card-placeholder.svg)
-  - Vertical images no longer become too tall (ratio wrapper option)
-  - Button props are now used (button_label + button_variant)
-  - User-friendly options in YAML (meta:enum)
+  Bootstrap 5 Card (SDC / Canvas compatible)
+  - Heading is always rendered as H3
+  - Uses Bootstrap utility classes only
+  - Supports image top / left / right / bottom layouts
 #}
 
-{% set card_orientation = orientation|default('vertical') %}
-{% set card_style = style|default('framed') %}
-{% set bg = background|default('default') %}
-{% set centered = is_text_centered|default(false) %}
+{% set card_layout = orientation|default(layout|default('image-top')) %}
+{% set card_background = background|default('bg-body') %}
+{% set card_shadow = shadow|default('shadow') %}
+{% set body_padding = has_padding is defined ? (has_padding ? 'p-4' : '') : 'p-4' %}
 {% set has_media = media is defined and media and media.src is defined and media.src is not empty %}
 
-{% set has_link = url is not empty and url != 'No URL' %}
+{% set has_link = url is defined and url is not empty and url != 'No URL' %}
 {% set button_label_value = button_label|default('')|trim %}
-{% set show_button = has_link and button_label_value != '' %}
 
-{# Map theme background to Bootstrap utilities #}
-{% set bg_map = {
-  'default': 'bg-body',
-  'accent': 'bg-light',
-  'primary': 'bg-primary text-white',
-  'inverted': 'bg-dark text-white'
-} %}
+{# Normalize button variant #}
+{% set button_variant_value = button_variant|default('')|trim %}
+{% set has_button_variant = button_variant_value != '' and button_variant_value != 'NULL' and button_variant_value != 'none' %}
+{% set show_button = has_link and button_label_value != '' and has_button_variant %}
 
-{% set shadow_map = {
-  'none': '',
-  'sm': 'shadow-sm',
-  'default': 'shadow',
-  'lg': 'shadow-lg'
-} %}
+{% set is_horizontal = card_layout in ['image-left', 'image-right'] %}
+{% set is_vertical = not is_horizontal %}
+{% set media_order = card_layout == 'image-bottom' or card_layout == 'image-right' ? 'order-md-2 order-2' : 'order-md-1 order-1' %}
+{% set body_order = card_layout == 'image-bottom' or card_layout == 'image-right' ? 'order-md-1 order-1' : 'order-md-2 order-2' %}
 
-{% set border_value = border|default('default') %}
-{% set border_class = '' %}
-{% if border_value == 'none' %}
-  {% set border_class = 'border-0' %}
-{% elseif border_value == 'default' %}
-  {% set border_class = '' %}
-{% else %}
-  {% set border_class = 'border border-' ~ border_value %}
-{% endif %}
+{% set media_col_class = is_horizontal ? 'col-12 col-md-5' : 'col-12' %}
+{% set body_col_class = is_horizontal ? 'col-12 col-md-7 d-flex' : 'col-12 d-flex' %}
+{% set media_ratio_class = media_ratio|default('ratio-16x9') %}
+{% set use_ratio = is_vertical and media_ratio_class != 'auto' %}
+{% set content_vertical_class = is_horizontal ? content_vertical|default('justify-content-center') : '' %}
 
-{% set rounded_value = rounded|default('default') %}
-{% set rounded_map = {
-  'default': '',
-  '0': 'rounded-0',
-  '1': 'rounded-1',
-  '2': 'rounded-2',
-  '3': 'rounded-3',
-  'pill': 'rounded-pill'
-} %}
-
-{# Vertical media ratio wrapper #}
-{% set media_ratio = media_ratio|default('16x9') %}
-{% set ratio_class = '' %}
-{% if media_ratio == '16x9' %}
-  {% set ratio_class = 'ratio ratio-16x9' %}
-{% elseif media_ratio == '4x3' %}
-  {% set ratio_class = 'ratio ratio-4x3' %}
-{% elseif media_ratio == '1x1' %}
-  {% set ratio_class = 'ratio ratio-1x1' %}
-{% endif %}
-
-{# Card classes #}
 {% set classes = ['card', 'h-100', 'overflow-hidden'] %}
-{% set classes = classes|merge([bg_map[bg]|default('bg-body')]) %}
-
-{% set shadow_key = shadow|default('default') %}
-{% if shadow_map[shadow_key]|default('') %}
-  {% set classes = classes|merge([shadow_map[shadow_key]]) %}
+{% if card_background|trim %}
+  {% set classes = classes|merge(card_background|split(' ')) %}
 {% endif %}
-
-{% if border_class %}
-  {% set classes = classes|merge([border_class]) %}
+{% if card_shadow|trim %}
+  {% set classes = classes|merge(card_shadow|split(' ')) %}
 {% endif %}
-
-{% if rounded_map[rounded_value]|default('') %}
-  {% set classes = classes|merge([rounded_map[rounded_value]]) %}
-{% endif %}
-
-{# Only make whole card clickable when link exists and no button label is set #}
 {% if has_link and not show_button %}
   {% set classes = classes|merge(['position-relative']) %}
 {% endif %}
 
-{% if extra_classes|default('')|trim %}
-  {% set classes = classes|merge(extra_classes|trim|split(' ')) %}
+{% set row_classes = ['row', 'g-0', 'h-100', 'align-items-stretch'] %}
+{% set media_classes = [media_col_class, media_order] %}
+{% set body_wrapper_classes = [body_col_class, body_order] %}
+{% set card_body_classes = ['card-body', 'd-flex', 'flex-column', 'w-100'] %}
+{% if body_padding %}
+  {% set card_body_classes = card_body_classes|merge([body_padding]) %}
+{% endif %}
+{% if content_vertical_class %}
+  {% set card_body_classes = card_body_classes|merge([content_vertical_class]) %}
 {% endif %}
 
-{% set attrs = create_attribute().addClass(classes) %}
-{% if id|default('')|trim %}
-  {% set attrs = attrs.setAttribute('id', id|trim) %}
-{% endif %}
+{% set vertical_ratio_classes = ['ratio', media_ratio_class] %}
+{% set heading_classes = ['card-title', 'h5', 'mb-2'] %}
+{% set text_classes = ['card-text', 'mb-0'] %}
+{% set button_wrapper_classes = ['mt-3'] %}
+{% set link_classes = ['stretched-link'] %}
 
-{# Heading rendering #}
-{% set heading_level = level|default(3) %}
-{% set heading_tag = 'h3' %}
-{% if heading_level == 2 %}
-  {% set heading_tag = 'h2' %}
-{% elseif heading_level == 4 %}
-  {% set heading_tag = 'h4' %}
-{% endif %}
-
-{# Button class mapping (simple + safe) #}
-{% set button_variant_value = button_variant|default('primary') %}
-{% set btn_class = button_variant_value == 'link' ? 'btn-link' : ('btn-' ~ button_variant_value) %}
-
-{# Horizontal layout #}
-{% if card_orientation == 'horizontal' %}
-  <div{{ attrs }}>
-    <div class="row g-0 h-100">
-      {% if has_media %}
-        <div class="col-md-5">
-          {% block media_horizontal %}
-            {% include 'canvas:image' ignore missing with {
-              src: media.src,
-              alt: media.alt,
-              class: 'img-fluid h-100 w-100 object-fit-cover',
-              width: media.width,
-              height: media.height,
-              sizes: '50vw'
-            } only %}
-          {% endblock %}
-        </div>
-      {% endif %}
-
-      <div class="col-md-7">
-        <div class="card-body {{ card_style == 'full' ? 'p-4 p-lg-5' : 'p-3 p-md-4' }} {{ centered ? 'text-center' : 'text-start' }}">
-          {% if heading_text is not empty %}
-            <{{ heading_tag }} class="card-title h5 mb-2">{{ heading_text }}</{{ heading_tag }}>
-          {% endif %}
-
-          {% if text is not empty %}
-            <p class="card-text mb-0">{{ text }}</p>
-          {% endif %}
-
-          {% if show_button %}
-            <div class="mt-3">
-              <a href="{{ url|e }}" class="btn {{ btn_class }}">{{ button_label_value }}</a>
+<div{{ create_attribute().addClass(classes) }}>
+  <div{{ create_attribute().addClass(row_classes) }}>
+    {% if has_media %}
+      <div{{ create_attribute().addClass(media_classes) }}>
+        {% if is_vertical %}
+          {% if use_ratio %}
+            <div{{ create_attribute().addClass(vertical_ratio_classes) }}>
+              {% include 'vartheme_bs5:image' ignore missing with {
+                media: media,
+                ratio: media_ratio_class,
+                fit: 'object-fit-cover',
+                width: 'w-100'
+              } only %}
             </div>
-          {% elseif has_link %}
-            <a href="{{ url|e }}" class="stretched-link" aria-label="{{ heading_text|default('Open') }}"></a>
+          {% else %}
+            {% include 'vartheme_bs5:image' ignore missing with {
+              media: media,
+              ratio: media_ratio_class,
+              fit: 'object-fit-cover',
+              width: 'w-100'
+            } only %}
           {% endif %}
-        </div>
+        {% else %}
+          {% include 'vartheme_bs5:image' ignore missing with {
+            media: media,
+            ratio: 'ratio-auto',
+            fit: 'object-fit-cover',
+            width: 'w-100'
+          } only %}
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <div{{ create_attribute().addClass(body_wrapper_classes) }}>
+      <div{{ create_attribute().addClass(card_body_classes) }}>
+        {% if heading_text is not empty %}
+          <h3{{ create_attribute().addClass(heading_classes) }}>{{ heading_text }}</h3>
+        {% endif %}
+
+        {% if text is not empty %}
+          <p{{ create_attribute().addClass(text_classes) }}>{{ text }}</p>
+        {% endif %}
+
+        {% if show_button %}
+          <div{{ create_attribute().addClass(button_wrapper_classes) }}>
+            {{ include('vartheme_bs5:button', {
+              url: url,
+              label: button_label_value,
+              variant: button_variant_value,
+              size: 'btn-sm'
+            }, with_context: false) }}
+          </div>
+        {% endif %}
       </div>
     </div>
   </div>
-
-{# Vertical layout #}
-{% else %}
-  <div{{ attrs }}>
-    {% if has_media %}
-      {% block media_vertical %}
-        {% if ratio_class %}
-          <div class="{{ ratio_class }}">
-            {% include 'canvas:image' ignore missing with {
-              src: media.src,
-              alt: media.alt,
-              class: 'w-100 h-100 object-fit-cover',
-              width: media.width,
-              height: media.height,
-              sizes: '100vw'
-            } only %}
-          </div>
-        {% else %}
-          {% include 'canvas:image' ignore missing with {
-            src: media.src,
-            alt: media.alt,
-            class: 'card-img-top object-fit-cover',
-            width: media.width,
-            height: media.height,
-            sizes: '100vw'
-          } only %}
-        {% endif %}
-      {% endblock %}
-    {% endif %}
-
-    <div class="card-body {{ card_style == 'full' ? 'p-4 p-lg-5' : 'p-3 p-md-4' }} {{ centered ? 'text-center' : 'text-start' }}">
-      {% if heading_text is not empty %}
-        <{{ heading_tag }} class="card-title h5 mb-2">{{ heading_text }}</{{ heading_tag }}>
-      {% endif %}
-
-      {% if text is not empty %}
-        <p class="card-text mb-0">{{ text }}</p>
-      {% endif %}
-
-      {% if show_button %}
-        <div class="mt-3">
-          <a href="{{ url|e }}" class="btn {{ btn_class }}">{{ button_label_value }}</a>
-        </div>
-      {% elseif has_link %}
-        <a href="{{ url|e }}" class="stretched-link" aria-label="{{ heading_text|default('Open') }}"></a>
-      {% endif %}
-    </div>
-  </div>
-{% endif %}
+</div>

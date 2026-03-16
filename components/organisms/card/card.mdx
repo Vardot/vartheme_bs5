@@ -1,0 +1,31 @@
+import { Meta, Canvas, Story, Controls } from '@storybook/blocks';
+
+<Meta title="Components/Card" />
+
+# Card
+
+A flexible card component for displaying an image, heading, description, and optional link or button.
+
+## Highlights
+
+- Four image layout options
+- Optional vertical alignment for horizontal layouts
+- Optional body padding with `p-4`
+- Optional full-card link or button link
+- Background and shadow variants using Bootstrap utility classes
+
+## Usage notes
+
+- `content_vertical` is only used for `image-left` and `image-right`
+- `media_ratio` is mainly used for `image-top` and `image-bottom`
+- If `url` is provided without `button_label`, the card uses a stretched link
+
+## Preview
+
+<Canvas>
+  <Story id="components-card--image-top" />
+</Canvas>
+
+## Controls
+
+<Controls />

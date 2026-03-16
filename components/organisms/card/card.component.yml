@@ -7,128 +7,43 @@ props:
   required:
     - heading_text
     - orientation
-    - style
   properties:
-    shadow:
-      type: string
-      title: Shadow
-      description: Adds depth to the card.
-      enum: [none, sm, default, lg]
-      default: default
-      examples: [default]
-      meta:enum:
-        none: No shadow
-        sm: Small shadow
-        default: Default shadow
-        lg: Large shadow
-
-    border:
-      type: string
-      title: Border style
-      description: Adds a border (or removes it).
-      enum: [default, none, primary, secondary, success, danger, warning, info, light, dark]
-      default: default
-      examples: [default]
-      meta:enum:
-        default: Default
-        none: No border
-        primary: Primary
-        secondary: Secondary
-        success: Success
-        danger: Danger
-        warning: Warning
-        info: Info
-        light: Light
-        dark: Dark
-
-    rounded:
-      type: string
-      title: Corner style
-      description: Controls how rounded the card corners are.
-      # Keep enum values as strings because prop type is string.
-      enum: [default, "0", "1", "2", "3", pill]
-      default: default
-      examples: [default]
-      meta:enum:
-        default: Default
-        "0": Square corners
-        "1": Slightly rounded
-        "2": Rounded
-        "3": More rounded
-        pill: Fully rounded (pill)
-
-    background:
-      type: string
-      title: Background theme
-      description: Background color style for the card.
-      enum: [default, accent, primary, inverted]
-      default: default
-      examples: [default]
-      meta:enum:
-        default: Default
-        accent: Light background
-        primary: Primary background
-        inverted: Dark background
-
-    style:
-      type: string
-      title: Padding style
-      description: Controls padding inside the card.
-      enum: [framed, full]
-      default: framed
-      examples: [framed]
-      meta:enum:
-        framed: Normal padding
-        full: Larger padding
-
     orientation:
       type: string
       title: Layout
       description: Controls how image and content are arranged.
-      enum: [vertical, horizontal]
-      default: vertical
-      examples: [vertical]
+      enum: [image-top, image-left, image-right, image-bottom]
+      default: image-top
+      examples: [image-top]
       meta:enum:
-        vertical: Image on top
-        horizontal: Image on left
-
-    media_ratio:
+        image-top: Image on top
+        image-left: Image on start
+        image-right: Image on end
+        image-bottom: Image on bottom
+    content_vertical:
       type: string
-      title: Image size (vertical)
-      description: Controls the image height for vertical cards (prevents very tall images).
-      enum: [auto, "16x9", "4x3", "1x1"]
-      default: "16x9"
-      examples: ["16x9"]
+      title: Content vertical alignment
+      description: Controls vertical alignment of the content for image left and image right layouts.
+      enum: [justify-content-start, justify-content-center, justify-content-end]
+      default: justify-content-center
+      examples: [justify-content-center]
       meta:enum:
-        auto: Auto (no fixed ratio)
-        "16x9": Wide (16:9)
-        "4x3": Standard (4:3)
-        "1x1": Square (1:1)
-
+        justify-content-start: Top
+        justify-content-center: Center
+        justify-content-end: Bottom
     heading_text:
       type: string
       title: Heading
       default: "This is your card title"
       examples:
         - "This is your card title"
-
-    level:
-      type: number
-      title: Heading level
-      description: HTML heading level for the card title.
-      enum: [2, 3, 4]
-      default: 3
-      examples: [3]
-      meta:enum:
-        2: H2
-        3: H3
-        4: H4
-
-    url:
+    text:
       type: string
-      title: Link URL (optional)
-      description: If provided, the whole card can link (or show a button if label is set).
-
+      title: Description
+      description: Short supporting text under the heading.
+      pattern: (.|\r?\n)*
+      examples:
+        - "A short description goes here."
     media:
       $ref: json-schema-definitions://canvas.module/image
       title: Image
@@ -138,21 +53,51 @@ props:
           width: 1200
           height: 900
           alt: "Placeholder card image"
-
-    text:
+    media_ratio:
       type: string
-      title: Description
-      description: Short supporting text under the heading.
-      pattern: "(.|\\r?\\n)*"
-      examples:
-        - "A short description goes here."
-
-    is_text_centered:
+      title: Image ratio
+      description: Controls the image ratio for top and bottom image layouts.
+      enum: [auto, ratio-16x9, ratio-4x3, ratio-1x1]
+      default: ratio-16x9
+      examples: [ratio-16x9]
+      meta:enum:
+        auto: Auto
+        ratio-16x9: Wide (16:9)
+        ratio-4x3: Standard (4:3)
+        ratio-1x1: Square (1:1)
+    background:
+      type: string
+      title: Background theme
+      description: Background color style for the card.
+      enum: [bg-body, bg-light, bg-primary text-white, bg-dark text-white]
+      default: bg-body
+      examples: [bg-body]
+      meta:enum:
+        bg-body: Default
+        bg-light: Light background
+        bg-primary text-white: Primary background
+        bg-dark text-white: Dark background
+    shadow:
+      type: string
+      title: Shadow
+      description: Adds depth to the card.
+      enum: [shadow-sm, shadow, shadow-lg]
+      default: shadow
+      examples: [shadow]
+      meta:enum:
+        shadow-sm: Small shadow
+        shadow: Default shadow
+        shadow-lg: Large shadow
+    has_padding:
       type: boolean
-      title: Center text
-      description: Centers the text content inside the card body.
-      examples: [false]
-
+      title: Add padding
+      description: If enabled, applies Bootstrap p-4 to the card body.
+      default: true
+      examples: [true]
+    url:
+      type: string
+      title: Link URL (optional)
+      description: If provided, the whole card can link or show a button if label is set.
     button_label:
       type: string
       title: Button label (optional)
@@ -160,33 +105,20 @@ props:
       default: ""
       examples:
         - "Learn more"
-
     button_variant:
       type: string
       title: Button style
       description: Style for the optional button.
-      enum: [primary, secondary, success, danger, warning, info, light, dark, link]
-      default: primary
-      examples: [primary]
+      enum: [btn-primary, btn-secondary, btn-success, btn-danger, btn-warning, btn-info, btn-light, btn-dark, btn-link]
+      default: btn-primary
+      examples: [btn-primary]
       meta:enum:
-        primary: Primary
-        secondary: Secondary
-        success: Success
-        danger: Danger
-        warning: Warning
-        info: Info
-        light: Light
-        dark: Dark
-        link: Link style
-
-    id:
-      type: string
-      title: HTML ID (optional)
-      description: Optional ID attribute for linking.
-      default: ""
-
-    extra_classes:
-      type: string
-      title: Extra CSS classes (optional)
-      description: Space separated classes (Bootstrap utilities allowed).
-      default: ""
+        btn-primary: Primary
+        btn-secondary: Secondary
+        btn-success: Success
+        btn-danger: Danger
+        btn-warning: Warning
+        btn-info: Info
+        btn-light: Light
+        btn-dark: Dark
+        btn-link: Link style
