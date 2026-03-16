@@ -1,64 +1,8 @@
-{#
-  Spacer (Bootstrap-only, no inline styles)
-  - Adds spacing using Bootstrap spacing utilities.
-  - Renders a selectable helper box for admins (Canvas/Layout Builder).
-  - Helper visuals are done with Bootstrap classes only.
-#}
-
 {% set attributes = attributes|default(create_attribute()) %}
-
-{% set direction = direction|default('vertical') %}
-{% set size = size|default('3') %}
-{% set breakpoint = breakpoint|default('none') %}
-{% set show_helper = show_helper is defined ? show_helper : true %}
-
-{% set html_id = html_id|default('') %}
-{% set extra_classes = extra_classes|default('') %}
-
-{% set bp = (breakpoint != 'none') ? '-' ~ breakpoint : '' %}
-
-{# Outer spacing class (actual layout spacing) #}
-{% if direction == 'vertical' %}
-  {% set spacing_class = 'my' ~ bp ~ '-' ~ size %}
-{% elseif direction == 'horizontal' %}
-  {% set spacing_class = 'mx' ~ bp ~ '-' ~ size %}
-{% else %}
-  {% set spacing_class = 'm' ~ bp ~ '-' ~ size %}
+{% set size = size|default('py-3') %}
+{% set allowed_sizes = ['py-0', 'py-1', 'py-2', 'py-3', 'py-4', 'py-5'] %}
+{% if size not in allowed_sizes %}
+  {% set size = 'py-3' %}
 {% endif %}
 
-{# Helper sizing via padding (clickable area) #}
-{% if direction == 'vertical' %}
-  {% set helper_space_class = 'py' ~ bp ~ '-' ~ size %}
-  {% set helper_layout_class = 'w-100' %}
-{% elseif direction == 'horizontal' %}
-  {% set helper_space_class = 'px' ~ bp ~ '-' ~ size %}
-  {% set helper_layout_class = 'd-inline-block py-1' %}
-{% else %}
-  {% set helper_space_class = 'p' ~ bp ~ '-' ~ size %}
-  {% set helper_layout_class = 'd-inline-block' %}
-{% endif %}
-
-{# Helper appearance (Bootstrap only) #}
-{% if show_helper %}
-  {% set helper_appearance = 'border border-primary bg-primary bg-opacity-10 rounded' %}
-  {% set label_class = 'small text-primary' %}
-{% else %}
-  {# Keep it clickable/selectable but invisible #}
-  {% set helper_appearance = 'border-0 bg-transparent' %}
-  {% set label_class = 'd-none' %}
-{% endif %}
-
-{% set classes = ['sdc-spacer', spacing_class] %}
-{% if extra_classes|trim %}
-  {% set classes = classes|merge(extra_classes|trim|split(' ')) %}
-{% endif %}
-
-{% if html_id|trim %}
-  {% set attributes = attributes.setAttribute('id', html_id|trim) %}
-{% endif %}
-
-<div {{ attributes.addClass(classes) }} data-direction="{{ direction }}">
-  <div class="d-flex align-items-center justify-content-center {{ helper_layout_class }} {{ helper_space_class }} {{ helper_appearance }}" aria-hidden="true">
-    <span class="{{ label_class }}">Spacer</span>
-  </div>
-</div>
+<div {{ attributes.addClass([size, 'w-100']) }} aria-hidden="true"></div>

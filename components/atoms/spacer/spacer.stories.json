@@ -1,0 +1,19 @@
+{
+  "title": "Layout/Spacer",
+  "argTypes": {
+    "size": {
+      "name": "Spacing size",
+      "control": { "type": "select" },
+      "options": ["py-0", "py-1", "py-2", "py-3", "py-4", "py-5"],
+      "table": {
+        "category": "Props",
+        "type": { "summary": "string" },
+        "defaultValue": { "summary": "py-3" }
+      },
+      "description": "Bootstrap vertical spacing utility class applied directly to the spacer."
+    }
+  },
+  "args": {
+    "size": "py-3"
+  }
+}
