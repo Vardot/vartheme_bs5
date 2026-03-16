@@ -1,20 +1,20 @@
 {#
   Group (Bootstrap)
-  - A simple flex wrapper for stacking items.
-  - Default: vertical stack with gap.
+  Simple flex wrapper for stacking items.
 #}
 
 {% set attributes = attributes|default(create_attribute()) %}
 
-
+{% set background_color = background_color|default('none') %}
 {% set direction = direction|default('vertical') %}
 {% set gap = gap|default('gap-3') %}
 {% set wrap = wrap|default('wrap') %}
 {% set align_items = align_items|default('align-items-stretch') %}
 {% set justify_content = justify_content|default('justify-content-start') %}
-
-{% set html_id = html_id|default('') %}
-{% set extra_classes = extra_classes|default('') %}
+{% set padding_block_start = padding_block_start|default('pt-0') %}
+{% set padding_block_end = padding_block_end|default('pb-0') %}
+{% set margin_block_start = margin_block_start|default('mt-0') %}
+{% set margin_block_end = margin_block_end|default('mb-0') %}
 
 {% set direction_class = (direction == 'horizontal') ? 'flex-row' : 'flex-column' %}
 {% set wrap_class = (direction == 'horizontal')
@@ -23,22 +23,18 @@
 %}
 
 {% set classes = [
-  'sdc-group',
   'd-flex',
   direction_class,
   wrap_class,
   gap,
   align_items,
-  justify_content
+  justify_content,
+  padding_block_start,
+  padding_block_end,
+  margin_block_start,
+  margin_block_end,
+  background_color != 'none' ? background_color : ''
 ] %}
-
-{% if extra_classes|trim %}
-  {% set classes = classes|merge(extra_classes|trim|split(' ')) %}
-{% endif %}
-
-{% if html_id|trim %}
-  {% set attributes = attributes.setAttribute('id', html_id|trim) %}
-{% endif %}
 
 {% set block_content %}{% block content %}{% endblock %}{% endset %}
 

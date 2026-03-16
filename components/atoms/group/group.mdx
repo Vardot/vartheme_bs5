@@ -1,0 +1,31 @@
+import { Meta, Canvas, Story, Controls } from '@storybook/blocks';
+import * as GroupStories from './group.stories.json';
+
+<Meta of={GroupStories} />
+
+# Group
+
+Use the Group component to arrange content in a simple Bootstrap flex wrapper with spacing, alignment, wrapping, and background utilities.
+
+## Highlights
+
+- vertical or horizontal flow
+- Bootstrap gap, alignment, and distribution utilities
+- optional top and bottom spacing utilities
+- optional background color utility
+
+## Preview
+
+<Canvas of={GroupStories.Default} />
+
+## Available stories
+
+- Default
+- Horizontal Actions
+- Wrapped Tags
+- Centered Callout
+- Spaced Stack
+
+## Controls
+
+<Controls of={GroupStories.Default} />
