@@ -1,0 +1,40 @@
+import { Title, Subtitle, Meta, Description, Primary, Stories, Controls, Source } from '@storybook/blocks';
+import * as comStories from './anchor.stories.json';
+import templateSource from './anchor.twig?raw';
+
+<Meta of={comStories} name="Docs"/>
+
+<Title />
+<Subtitle />
+<Description />
+
+<Primary />
+
+## Properties
+<Controls />
+
+<Stories of={comStories} />
+
+## Attributes
+* N/A
+
+## Slots
+* N/A
+
+## Examples
+
+### Example #1: Basic anchor
+```twig
+{% include "vartheme_bs5:anchor" with {
+  id: 'pricing'
+} %}
+```
+
+### Example #2: Linking to the anchor
+```twig
+<a href="#pricing" class="btn btn-primary">Go to pricing</a>
+```
+
+## Source code
+[//]: # (Twig Template source code)
+<Source code={templateSource} />
