@@ -114,6 +114,32 @@
         "XX-Large": "pb-5"
       }
     },
+    "padding_inline_start": {
+      "name": "Padding start",
+      "control": "select",
+      "defaultValue": "ps-0",
+      "options": {
+        "None": "ps-0",
+        "Small": "ps-1",
+        "Medium": "ps-2",
+        "Large": "ps-3",
+        "X-Large": "ps-4",
+        "XX-Large": "ps-5"
+      }
+    },
+    "padding_inline_end": {
+      "name": "Padding end",
+      "control": "select",
+      "defaultValue": "pe-0",
+      "options": {
+        "None": "pe-0",
+        "Small": "pe-1",
+        "Medium": "pe-2",
+        "Large": "pe-3",
+        "X-Large": "pe-4",
+        "XX-Large": "pe-5"
+      }
+    },
     "margin_block_start": {
       "name": "Margin top",
       "control": "select",
@@ -139,6 +165,32 @@
         "X-Large": "mb-4",
         "XX-Large": "mb-5"
       }
+    },
+    "margin_inline_start": {
+      "name": "Margin start",
+      "control": "select",
+      "defaultValue": "ms-0",
+      "options": {
+        "None": "ms-0",
+        "Small": "ms-1",
+        "Medium": "ms-2",
+        "Large": "ms-3",
+        "X-Large": "ms-4",
+        "XX-Large": "ms-5"
+      }
+    },
+    "margin_inline_end": {
+      "name": "Margin end",
+      "control": "select",
+      "defaultValue": "me-0",
+      "options": {
+        "None": "me-0",
+        "Small": "me-1",
+        "Medium": "me-2",
+        "Large": "me-3",
+        "X-Large": "me-4",
+        "XX-Large": "me-5"
+      }
     }
   },
   "stories": [
@@ -154,7 +206,11 @@
         "padding_block_start": "pt-0",
         "padding_block_end": "pb-0",
         "margin_block_start": "mt-0",
-        "margin_block_end": "mb-0"
+        "margin_block_end": "mb-0",
+        "padding_inline_start": "ps-0",
+        "padding_inline_end": "pe-0",
+        "margin_inline_start": "ms-0",
+        "margin_inline_end": "me-0"
       },
       "parameters": {
         "server": {
@@ -174,7 +230,11 @@
         "padding_block_start": "pt-3",
         "padding_block_end": "pb-3",
         "margin_block_start": "mt-0",
-        "margin_block_end": "mb-0"
+        "margin_block_end": "mb-0",
+        "padding_inline_start": "ps-2",
+        "padding_inline_end": "pe-2",
+        "margin_inline_start": "ms-0",
+        "margin_inline_end": "me-0"
       },
       "parameters": {
         "server": {
@@ -194,7 +254,11 @@
         "padding_block_start": "pt-0",
         "padding_block_end": "pb-0",
         "margin_block_start": "mt-0",
-        "margin_block_end": "mb-0"
+        "margin_block_end": "mb-0",
+        "padding_inline_start": "ps-0",
+        "padding_inline_end": "pe-0",
+        "margin_inline_start": "ms-0",
+        "margin_inline_end": "me-0"
       },
       "parameters": {
         "server": {
@@ -214,7 +278,11 @@
         "padding_block_start": "pt-5",
         "padding_block_end": "pb-5",
         "margin_block_start": "mt-0",
-        "margin_block_end": "mb-0"
+        "margin_block_end": "mb-0",
+        "padding_inline_start": "ps-0",
+        "padding_inline_end": "pe-0",
+        "margin_inline_start": "ms-0",
+        "margin_inline_end": "me-0"
       },
       "parameters": {
         "server": {
@@ -234,7 +302,11 @@
         "padding_block_start": "pt-4",
         "padding_block_end": "pb-4",
         "margin_block_start": "mt-4",
-        "margin_block_end": "mb-4"
+        "margin_block_end": "mb-4",
+        "padding_inline_start": "ps-3",
+        "padding_inline_end": "pe-3",
+        "margin_inline_start": "ms-0",
+        "margin_inline_end": "me-0"
       },
       "parameters": {
         "server": {

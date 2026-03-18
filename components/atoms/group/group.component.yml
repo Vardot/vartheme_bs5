@@ -163,6 +163,46 @@ props:
         pb-4: "X-Large"
         pb-5: "XX-Large"
 
+    padding_inline_start:
+      type: string
+      title: "Padding start"
+      description: "Bootstrap padding-start utility class."
+      enum:
+        - "ps-0"
+        - "ps-1"
+        - "ps-2"
+        - "ps-3"
+        - "ps-4"
+        - "ps-5"
+      default: "ps-0"
+      meta:enum:
+        ps-0: "None"
+        ps-1: "Small"
+        ps-2: "Medium"
+        ps-3: "Large"
+        ps-4: "X-Large"
+        ps-5: "XX-Large"
+
+    padding_inline_end:
+      type: string
+      title: "Padding end"
+      description: "Bootstrap padding-end utility class."
+      enum:
+        - "pe-0"
+        - "pe-1"
+        - "pe-2"
+        - "pe-3"
+        - "pe-4"
+        - "pe-5"
+      default: "pe-0"
+      meta:enum:
+        pe-0: "None"
+        pe-1: "Small"
+        pe-2: "Medium"
+        pe-3: "Large"
+        pe-4: "X-Large"
+        pe-5: "XX-Large"
+
     margin_block_start:
       type: string
       title: "Margin top"
@@ -202,6 +242,46 @@ props:
         mb-3: "Large"
         mb-4: "X-Large"
         mb-5: "XX-Large"
+
+    margin_inline_start:
+      type: string
+      title: "Margin start"
+      description: "Bootstrap margin-start utility class."
+      enum:
+        - "ms-0"
+        - "ms-1"
+        - "ms-2"
+        - "ms-3"
+        - "ms-4"
+        - "ms-5"
+      default: "ms-0"
+      meta:enum:
+        ms-0: "None"
+        ms-1: "Small"
+        ms-2: "Medium"
+        ms-3: "Large"
+        ms-4: "X-Large"
+        ms-5: "XX-Large"
+
+    margin_inline_end:
+      type: string
+      title: "Margin end"
+      description: "Bootstrap margin-end utility class."
+      enum:
+        - "me-0"
+        - "me-1"
+        - "me-2"
+        - "me-3"
+        - "me-4"
+        - "me-5"
+      default: "me-0"
+      meta:enum:
+        me-0: "None"
+        me-1: "Small"
+        me-2: "Medium"
+        me-3: "Large"
+        me-4: "X-Large"
+        me-5: "XX-Large"
 
 slots:
   content:
