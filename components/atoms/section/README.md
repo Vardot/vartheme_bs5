@@ -9,7 +9,7 @@ Use this component when you need a reusable section wrapper that can:
 - switch between contained, fluid, or no-container layouts
 - apply Bootstrap background and text utilities
 - display an optional background image with overlay
-- control top and bottom spacing with Bootstrap spacing classes
+- control top, bottom, left, and right spacing with Bootstrap spacing classes
 - render 1 to 6 content columns based on a preset layout
 - optionally show a header and footer region
 
@@ -42,7 +42,9 @@ Use this component when you need a reusable section wrapper that can:
 ### Spacing
 
 - `padding_block_start`, `padding_block_end`
+- `padding_inline_start`, `padding_inline_end`
 - `margin_block_start`, `margin_block_end`
+- `margin_inline_start`, `margin_inline_end`
 
 ### Regions
 
@@ -87,6 +89,8 @@ Use this component when you need a reusable section wrapper that can:
   background_color: 'bg-light',
   padding_block_start: 'pt-5',
   padding_block_end: 'pb-5',
+  padding_inline_start: 'ps-0',
+  padding_inline_end: 'pe-0',
   section_header: true,
   section_footer: false
 } only %}
@@ -116,6 +120,8 @@ Use this component when you need a reusable section wrapper that can:
   background_overlay: 'overlay-50',
   padding_block_start: 'pt-5',
   padding_block_end: 'pb-5',
+  padding_inline_start: 'ps-0',
+  padding_inline_end: 'pe-0',
   background_media: {
     src: '/path/to/image.jpg',
     alt: 'Decorative background',

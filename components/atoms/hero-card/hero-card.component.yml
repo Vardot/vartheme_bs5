@@ -4,40 +4,25 @@ group: Hero
 status: stable
 description: >
   Flexible hero card (overlay/split/stacked/content-media) with Bootstrap 5 utilities.
-  Canvas-friendly controls for title/text + optional raw HTML mode.
-
+  Canvas-friendly controls for title, text, media, layout, and buttons.
 props:
   type: object
   properties:
-
-    html_id:
-      type: string
-      title: HTML ID
-      default: ""
-
-    eyebrow:
-      type: string
-      title: Eyebrow text
-      default: "New release"
-
     title:
       type: string
       title: Title
       default: "Demo title"
-
     heading_tag:
       type: string
       title: Heading tag
-      enum: [h1, h2, h3, h4, h5, h6]
-      default: h1
+      enum: [h2, h3, h4, h5, h6]
+      default: h2
       meta:enum:
-        h1: H1
         h2: H2
         h3: H3
         h4: H4
         h5: H5
         h6: H6
-
     content_text:
       type: string
       title: Content (rich text)
@@ -47,14 +32,6 @@ props:
       default: "<p>Elevate your digital experience with Varbase's dynamic design system, seamlessly blending aesthetic appeal with unparalleled functionality. Unleash the power of intuitive design for a compelling web presence.</p>"
       examples:
         - "<p>Elevate your digital experience with Varbase's dynamic design system, seamlessly blending aesthetic appeal with unparalleled functionality. Unleash the power of intuitive design for a compelling web presence.</p>"
-
-    card_content:
-      type: string
-      title: HTML content (Advanced)
-      default: "<h1>Varbase; better than ever</h1><p>Elevate your digital experiences with Varbase’s dynamic design system. Launch faster, stay consistent, and scale confidently.</p>"
-      meta:ui:
-        widget: textarea
-
     # Canvas image schema (reliable uploader)
     media:
       $ref: json-schema-definitions://canvas.module/image
@@ -65,89 +42,120 @@ props:
           alt: Placeholder image
           width: 1200
           height: 800
-
-    section_padding_y:
+    object_position:
       type: string
-      title: Section vertical padding
-      enum: [py-0, py-3, py-4, py-5]
-      default: py-5
+      title: Media focal position
+      enum: [top, center, bottom]
+      default: center
       meta:enum:
-        py-0: None
-        py-3: Small
-        py-4: Medium
-        py-5: Large
-
-
+        top: Top
+        center: Center
+        bottom: Bottom
+    overlay_image_mode:
+      type: string
+      title: Image fit
+      enum: [object-fit-cover, object-fit-contain]
+      default: object-fit-cover
+      meta:enum:
+        object-fit-cover: Fill area and crop
+        object-fit-contain: Fit entire image
+    overlay_bg:
+      type: string
+      title: Overlay color
+      enum:
+        - bg-dark
+        - bg-black
+        - bg-white
+        - bg-primary
+        - bg-secondary
+        - bg-success
+        - bg-danger
+        - bg-warning
+        - bg-info
+      default: bg-dark
+      meta:enum:
+        bg-dark: Dark
+        bg-black: Black
+        bg-white: White
+        bg-primary: Primary
+        bg-secondary: Secondary
+        bg-success: Success
+        bg-danger: Danger
+        bg-warning: Warning
+        bg-info: Info
+    overlay_opacity:
+      type: string
+      title: Overlay opacity
+      enum: [opacity-10, opacity-25, opacity-50, opacity-75, opacity-100]
+      default: opacity-50
+      meta:enum:
+        opacity-10: 10%
+        opacity-25: 25%
+        opacity-50: 50%
+        opacity-75: 75%
+        opacity-100: 100%
     container_type:
       type: string
       title: Container width
       enum: [container, container-fluid, none]
       default: container
       meta:enum:
-        container: Container
-        container-fluid: Full width (container-fluid)
-        none: No container
-
+        container: Standard container
+        container-fluid: Full width container
+        none: No container wrapper
     bg_edge2edge:
       type: boolean
       title: Edge-to-edge background
       default: false
-
     media_position:
       type: string
       title: Media position
       enum: [overlay, start, end, top, bottom, content, none]
       default: end
       meta:enum:
-        overlay: Overlay background
-        start: Left
-        end: Right
-        top: Top
-        bottom: Bottom
-        content: Inside content
+        overlay: Background overlay
+        start: Start side
+        end: End side
+        top: Above content
+        bottom: Below content
+        content: Inside content area
         none: No media
-
     split_gap:
       type: string
       title: Grid gap (split layout)
-      enum: [none, sm, md, lg]
-      default: md
+      enum: [g-0, g-2, g-4, g-5]
+      default: g-4
       meta:enum:
-        none: No gap
-        sm: Small
-        md: Medium
-        lg: Large
-
+        g-0: No gap
+        g-2: Small gap
+        g-4: Medium gap
+        g-5: Large gap
     card_border:
       type: boolean
       title: Card border
       default: false
-
     padding:
       type: boolean
       title: Add padding
       default: false
-
     horizontal_alignment:
       type: string
       title: Horizontal alignment
-      enum: [start, center, end]
-      default: start
+      enum: [text-start, text-center, text-end]
+      default: text-start
       meta:enum:
-        start: Left
-        center: Center
-        end: Right
-
+        text-start: Align text left
+        text-center: Align text center
+        text-end: Align text right
     vertical_alignment:
       type: string
       title: Vertical alignment
-      enum: [start, center, end]
-      default: center
+      enum: [justify-content-start, justify-content-center, justify-content-end]
+      default: justify-content-center
       meta:enum:
-        start: Top
-        center: Middle
-        end: Bottom
-
+        justify-content-start: Align content top
+        justify-content-center: Align content middle
+        justify-content-end: Align content bottom
     # ✅ Background color dropdown (Canvas shows options now)
     background_color:
       type: string
@@ -175,7 +183,6 @@ props:
         bg-danger: Danger
         bg-warning: Warning
         bg-info: Info
-
     # (Optional but useful) content text color dropdown
     content_color:
       type: string
@@ -185,109 +192,16 @@ props:
       meta:enum:
         text-dark: Dark text
         text-white: White text
-
-    content_text_size:
-      type: string
-      title: Content text font size
-      enum: [default, fs-6, fs-5, fs-4, fs-3]
-      default: default
-      meta:enum:
-        default: Default
-        fs-6: Small
-        fs-5: Normal
-        fs-4: Large
-        fs-3: X-Large
-
-    content_width:
-      type: string
-      title: Content width
-      enum: [default, w-25, w-50, w-75, w-100]
-      default: default
-      meta:enum:
-        default: Auto
-        w-25: 25%
-        w-50: 50%
-        w-75: 75%
-        w-100: 100%
-
     # ✅ Overlay color dropdown too
-    overlay_bg:
-      type: string
-      title: Overlay color
-      enum:
-        - bg-dark
-        - bg-black
-        - bg-white
-        - bg-primary
-        - bg-secondary
-        - bg-success
-        - bg-danger
-        - bg-warning
-        - bg-info
-      default: bg-dark
-      meta:enum:
-        bg-dark: Dark
-        bg-black: Black
-        bg-white: White
-        bg-primary: Primary
-        bg-secondary: Secondary
-        bg-success: Success
-        bg-danger: Danger
-        bg-warning: Warning
-        bg-info: Info
-
-    overlay_opacity:
-      type: string
-      title: Overlay opacity
-      enum: [opacity-10, opacity-25, opacity-50, opacity-75, opacity-100]
-      default: opacity-50
-      meta:enum:
-        opacity-10: 10%
-        opacity-25: 25%
-        opacity-50: 50%
-        opacity-75: 75%
-        opacity-100: 100%
-
-    object_position:
-      type: string
-      title: Media focal position
-      enum: [top, center, bottom]
-      default: center
-      meta:enum:
-        top: Top
-        center: Center
-        bottom: Bottom
-
-    overlay_image_mode:
-      type: string
-      title: Overlay image fit
-      enum: [cover, contain]
-      default: cover
-      meta:enum:
-        cover: Cover
-        contain: Contain
-
-
-    extra_classes:
-      type: string
-      title: Extra classes (wrapper)
-      default: ""
-
-
-
-
-
     button_1_label:
       type: string
       title: Button label
       default: "Learn more"
-
     button_1_url:
       type: string
       title: Button URL
       format: uri-reference
       default: "#"
-
     button_1_style:
       type: string
       title: Button style
@@ -328,32 +242,28 @@ props:
         btn-outline-light: Outline light
         btn-outline-dark: Outline dark
         btn-link: Link
-
     button_1_size:
       type: string
       title: Button size
       enum: [default, btn-sm, btn-lg]
       default: default
       meta:enum:
-        default: Default
-        btn-sm: Small
-        btn-lg: Large
-
+        default: Default size
+        btn-sm: Small button
+        btn-lg: Large button
     button_1_target:
       type: string
       title: Button target
       enum: [default, _self, _blank]
       default: default
       meta:enum:
-        default: Same tab (default)
-        _self: Same tab
+        default: Same tab
+        _self: Same tab (forced)
         _blank: New tab
-
 slots:
   media_slot:
     title: Card media (slot)
     description: Optional override for media (e.g. video).
-
   actions:
     title: Actions (slot)
     description: Optional override for buttons rendering.

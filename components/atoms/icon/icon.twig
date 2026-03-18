@@ -5,14 +5,9 @@
   - icon (string): icon id from dropdown
 #}
 
-
-{% set classes = [
-  'bi',
-  'bi-' ~ icon,
-  'd-inline-block',
-  'lh-1'
-] %}
-
 {% if icon %}
-  <i{{ create_attribute().addClass(classes) }}></i>
+  {{ include('vartheme_bs5:bootstrap-icon', {
+    icon: icon,
+    'icon_size': 'fs-4'
+  }, with_context: false) }}
 {% endif %}

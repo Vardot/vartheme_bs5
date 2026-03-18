@@ -10,7 +10,7 @@ Use this component when you need a reusable layout wrapper that can:
 - control the gap between items with Bootstrap utilities
 - align and distribute items with flex utilities
 - wrap horizontal items onto multiple lines when needed
-- add top and bottom padding or margin with Bootstrap spacing classes
+- add top, bottom, start, and end padding or margin with Bootstrap spacing classes
 - apply Bootstrap background utility classes
 
 ## Files
@@ -40,8 +40,12 @@ Use this component when you need a reusable layout wrapper that can:
 
 - `padding_block_start`
 - `padding_block_end`
+- `padding_inline_start`
+- `padding_inline_end`
 - `margin_block_start`
 - `margin_block_end`
+- `margin_inline_start`
+- `margin_inline_end`
 
 ## Slots
 
@@ -58,8 +62,12 @@ Use this component when you need a reusable layout wrapper that can:
   justify_content: 'justify-content-start',
   padding_block_start: 'pt-4',
   padding_block_end: 'pb-4',
+  padding_inline_start: 'ps-3',
+  padding_inline_end: 'pe-3',
   margin_block_start: 'mt-0',
-  margin_block_end: 'mb-0'
+  margin_block_end: 'mb-0',
+  margin_inline_start: 'ms-0',
+  margin_inline_end: 'me-0'
 } only %}
   {% block content %}
     <div class="p-3 border rounded">Item one</div>
@@ -80,8 +88,12 @@ Use this component when you need a reusable layout wrapper that can:
   justify_content: 'justify-content-between',
   padding_block_start: 'pt-2',
   padding_block_end: 'pb-2',
+  padding_inline_start: 'ps-2',
+  padding_inline_end: 'pe-2',
   margin_block_start: 'mt-3',
-  margin_block_end: 'mb-3'
+  margin_block_end: 'mb-3',
+  margin_inline_start: 'ms-0',
+  margin_inline_end: 'me-0'
 } only %}
   {% block content %}
     <button class="btn btn-primary">Save</button>
@@ -95,4 +107,4 @@ Use this component when you need a reusable layout wrapper that can:
 
 - The component uses Bootstrap flex utilities directly, so the selected values can be used as-is in Twig.
 - `wrap` only affects horizontal layouts.
-- For layout wrappers, spacing utilities are often useful for controlling section rhythm without custom CSS.
+- For layout wrappers, spacing utilities are often useful for controlling section rhythm and horizontal breathing room without custom CSS.

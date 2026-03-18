@@ -13,8 +13,12 @@
 {% set justify_content = justify_content|default('justify-content-start') %}
 {% set padding_block_start = padding_block_start|default('pt-0') %}
 {% set padding_block_end = padding_block_end|default('pb-0') %}
+{% set padding_inline_start = padding_inline_start|default('ps-0') %}
+{% set padding_inline_end = padding_inline_end|default('pe-0') %}
 {% set margin_block_start = margin_block_start|default('mt-0') %}
 {% set margin_block_end = margin_block_end|default('mb-0') %}
+{% set margin_inline_start = margin_inline_start|default('ms-0') %}
+{% set margin_inline_end = margin_inline_end|default('me-0') %}
 
 {% set direction_class = (direction == 'horizontal') ? 'flex-row' : 'flex-column' %}
 {% set wrap_class = (direction == 'horizontal')
@@ -31,8 +35,12 @@
   justify_content,
   padding_block_start,
   padding_block_end,
+  padding_inline_start,
+  padding_inline_end,
   margin_block_start,
   margin_block_end,
+  margin_inline_start,
+  margin_inline_end,
   background_color != 'none' ? background_color : ''
 ] %}
 

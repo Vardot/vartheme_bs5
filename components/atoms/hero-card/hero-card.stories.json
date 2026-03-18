@@ -1,0 +1,376 @@
+{
+  "title": "Hero/Hero Card",
+  "parameters": {
+    "componentSubtitle": "Bootstrap hero card component",
+    "docs": {
+      "description": {
+        "component": "Renders a flexible Bootstrap 5.3 hero card with overlay, split, stacked, content-media, or text-only layouts."
+      },
+      "story": {
+        "inline": true
+      }
+    }
+  },
+  "argTypes": {
+    "title": {
+      "name": "Title",
+      "defaultValue": "Demo title",
+      "control": "text"
+    },
+    "heading_tag": {
+      "name": "Heading tag",
+      "description": "HTML heading tag for the title.",
+      "defaultValue": "h2",
+      "control": "select",
+      "options": {
+        "H2": "h2",
+        "H3": "h3",
+        "H4": "h4",
+        "H5": "h5",
+        "H6": "h6"
+      }
+    },
+    "content_text": {
+      "name": "Content",
+      "description": "Rich text content.",
+      "defaultValue": "<p>Elevate your digital experience with a flexible hero card.</p>",
+      "control": "text"
+    },
+    "media": {
+      "name": "Media image",
+      "description": "Image object with src, alt, width, and height.",
+      "control": "object"
+    },
+    "container_type": {
+      "name": "Container width",
+      "defaultValue": "container",
+      "control": "select",
+      "options": {
+        "Standard container": "container",
+        "Full width container": "container-fluid",
+        "No container wrapper": "none"
+      }
+    },
+    "bg_edge2edge": {
+      "name": "Edge-to-edge background",
+      "defaultValue": false,
+      "control": "boolean"
+    },
+    "media_position": {
+      "name": "Media position",
+      "defaultValue": "end",
+      "control": "select",
+      "options": {
+        "Background overlay": "overlay",
+        "Left side": "start",
+        "Right side": "end",
+        "Above content": "top",
+        "Below content": "bottom",
+        "Inside content area": "content",
+        "No media": "none"
+      }
+    },
+    "split_gap": {
+      "name": "Grid gap",
+      "defaultValue": "g-4",
+      "control": "select",
+      "options": {
+        "No gap": "g-0",
+        "Small gap": "g-2",
+        "Medium gap": "g-4",
+        "Large gap": "g-5"
+      }
+    },
+    "card_border": {
+      "name": "Card border",
+      "defaultValue": false,
+      "control": "boolean"
+    },
+    "padding": {
+      "name": "Add padding",
+      "defaultValue": false,
+      "control": "boolean"
+    },
+    "horizontal_alignment": {
+      "name": "Horizontal alignment",
+      "defaultValue": "text-start",
+      "control": "select",
+      "options": {
+        "Left": "text-start",
+        "Center": "text-center",
+        "Right": "text-end"
+      }
+    },
+    "vertical_alignment": {
+      "name": "Vertical alignment",
+      "defaultValue": "justify-content-center",
+      "control": "select",
+      "options": {
+        "Top": "justify-content-start",
+        "Middle": "justify-content-center",
+        "Bottom": "justify-content-end"
+      }
+    },
+    "background_color": {
+      "name": "Background color",
+      "defaultValue": "bg-transparent",
+      "control": "select",
+      "options": {
+        "Transparent": "bg-transparent",
+        "White": "bg-white",
+        "Light": "bg-light",
+        "Dark": "bg-dark",
+        "Primary": "bg-primary",
+        "Secondary": "bg-secondary",
+        "Success": "bg-success",
+        "Danger": "bg-danger",
+        "Warning": "bg-warning",
+        "Info": "bg-info"
+      }
+    },
+    "content_color": {
+      "name": "Content text color",
+      "defaultValue": "text-dark",
+      "control": "select",
+      "options": {
+        "Dark text": "text-dark",
+        "White text": "text-white"
+      }
+    },
+    "overlay_bg": {
+      "name": "Overlay color",
+      "defaultValue": "bg-dark",
+      "control": "select",
+      "options": {
+        "Dark": "bg-dark",
+        "Black": "bg-black",
+        "White": "bg-white",
+        "Primary": "bg-primary",
+        "Secondary": "bg-secondary",
+        "Success": "bg-success",
+        "Danger": "bg-danger",
+        "Warning": "bg-warning",
+        "Info": "bg-info"
+      }
+    },
+    "overlay_opacity": {
+      "name": "Overlay opacity",
+      "defaultValue": "opacity-50",
+      "control": "select",
+      "options": {
+        "10%": "opacity-10",
+        "25%": "opacity-25",
+        "50%": "opacity-50",
+        "75%": "opacity-75",
+        "100%": "opacity-100"
+      }
+    },
+    "object_position": {
+      "name": "Media focal position",
+      "defaultValue": "center",
+      "control": "select",
+      "options": {
+        "Top": "top",
+        "Center": "center",
+        "Bottom": "bottom"
+      }
+    },
+    "overlay_image_mode": {
+      "name": "Image fit",
+      "defaultValue": "object-fit-cover",
+      "control": "select",
+      "options": {
+        "Fill area and crop": "object-fit-cover",
+        "Fit entire image": "object-fit-contain"
+      }
+    },
+    "button_1_label": {
+      "name": "Button label",
+      "defaultValue": "Learn more",
+      "control": "text"
+    },
+    "button_1_url": {
+      "name": "Button URL",
+      "defaultValue": "#",
+      "control": "text"
+    },
+    "button_1_style": {
+      "name": "Button style",
+      "defaultValue": "btn-primary",
+      "control": "select",
+      "options": {
+        "Primary": "btn-primary",
+        "Secondary": "btn-secondary",
+        "Success": "btn-success",
+        "Danger": "btn-danger",
+        "Warning": "btn-warning",
+        "Info": "btn-info",
+        "Light": "btn-light",
+        "Dark": "btn-dark",
+        "Outline primary": "btn-outline-primary",
+        "Outline secondary": "btn-outline-secondary",
+        "Outline success": "btn-outline-success",
+        "Outline danger": "btn-outline-danger",
+        "Outline warning": "btn-outline-warning",
+        "Outline info": "btn-outline-info",
+        "Outline light": "btn-outline-light",
+        "Outline dark": "btn-outline-dark",
+        "Link": "btn-link"
+      }
+    },
+    "button_1_size": {
+      "name": "Button size",
+      "defaultValue": "default",
+      "control": "select",
+      "options": {
+        "Default size": "default",
+        "Small button": "btn-sm",
+        "Large button": "btn-lg"
+      }
+    },
+    "button_1_target": {
+      "name": "Button target",
+      "defaultValue": "default",
+      "control": "select",
+      "options": {
+        "Same tab": "default",
+        "Same tab (forced)": "_self",
+        "New tab": "_blank"
+      }
+    }
+  },
+  "stories": [
+    {
+      "name": "Default",
+      "args": {
+        "title": "Build faster with reusable components",
+        "heading_tag": "h2",
+        "content_text": "<p>Create polished layouts with a flexible Bootstrap card structure.</p>",
+        "media": {
+          "src": "assets/hero-card-image-placeholder.svg",
+          "alt": "Placeholder image",
+          "width": 1200,
+          "height": 800
+        },
+        "container_type": "container",
+        "bg_edge2edge": false,
+        "media_position": "end",
+        "split_gap": "g-4",
+        "card_border": false,
+        "padding": true,
+        "horizontal_alignment": "text-start",
+        "vertical_alignment": "justify-content-center",
+        "background_color": "bg-white",
+        "content_color": "text-dark",
+        "overlay_bg": "bg-dark",
+        "overlay_opacity": "opacity-50",
+        "object_position": "center",
+        "overlay_image_mode": "object-fit-cover",
+        "button_1_label": "Learn more",
+        "button_1_url": "#",
+        "button_1_style": "btn-primary",
+        "button_1_size": "default",
+        "button_1_target": "default"
+      }
+    },
+    {
+      "name": "Overlay",
+      "args": {
+        "title": "Launch your next campaign",
+        "heading_tag": "h2",
+        "content_text": "<p>Overlay mode places content on top of the media for a strong visual hero.</p>",
+        "media": {
+          "src": "assets/hero-card-image-placeholder.svg",
+          "alt": "Placeholder image",
+          "width": 1200,
+          "height": 800
+        },
+        "container_type": "container",
+        "bg_edge2edge": false,
+        "media_position": "overlay",
+        "split_gap": "g-4",
+        "card_border": false,
+        "padding": true,
+        "horizontal_alignment": "text-start",
+        "vertical_alignment": "justify-content-center",
+        "background_color": "bg-transparent",
+        "content_color": "text-white",
+        "overlay_bg": "bg-dark",
+        "overlay_opacity": "opacity-50",
+        "object_position": "center",
+        "overlay_image_mode": "object-fit-cover",
+        "button_1_label": "Get started",
+        "button_1_url": "#",
+        "button_1_style": "btn-primary",
+        "button_1_size": "default",
+        "button_1_target": "default"
+      }
+    },
+    {
+      "name": "Edge to edge",
+      "args": {
+        "title": "Full-width promotional section",
+        "heading_tag": "h2",
+        "content_text": "<p>Enable edge-to-edge background treatment while keeping content inside the selected container.</p>",
+        "media": {
+          "src": "assets/hero-card-image-placeholder.svg",
+          "alt": "Placeholder image",
+          "width": 1200,
+          "height": 800
+        },
+        "container_type": "container",
+        "bg_edge2edge": true,
+        "media_position": "overlay",
+        "split_gap": "g-4",
+        "card_border": false,
+        "padding": true,
+        "horizontal_alignment": "text-center",
+        "vertical_alignment": "justify-content-center",
+        "background_color": "bg-dark",
+        "content_color": "text-white",
+        "overlay_bg": "bg-black",
+        "overlay_opacity": "opacity-50",
+        "object_position": "center",
+        "overlay_image_mode": "object-fit-cover",
+        "button_1_label": "Explore",
+        "button_1_url": "#",
+        "button_1_style": "btn-light",
+        "button_1_size": "default",
+        "button_1_target": "default"
+      }
+    },
+    {
+      "name": "Text only",
+      "args": {
+        "title": "Simple callout",
+        "heading_tag": "h3",
+        "content_text": "<p>This variation removes media and uses the card as a clean content callout.</p>",
+        "media": {
+          "src": "assets/hero-card-image-placeholder.svg",
+          "alt": "Placeholder image",
+          "width": 1200,
+          "height": 800
+        },
+        "container_type": "container",
+        "bg_edge2edge": false,
+        "media_position": "none",
+        "split_gap": "g-4",
+        "card_border": true,
+        "padding": true,
+        "horizontal_alignment": "text-start",
+        "vertical_alignment": "justify-content-start",
+        "background_color": "bg-light",
+        "content_color": "text-dark",
+        "overlay_bg": "bg-dark",
+        "overlay_opacity": "opacity-50",
+        "object_position": "center",
+        "overlay_image_mode": "object-fit-cover",
+        "button_1_label": "Read more",
+        "button_1_url": "#",
+        "button_1_style": "btn-outline-primary",
+        "button_1_size": "default",
+        "button_1_target": "default"
+      }
+    }
+  ]
+}
