@@ -19,8 +19,12 @@
 
 {% set mt = margin_block_start|default('mt-0') %}
 {% set mb = margin_block_end|default('mb-0') %}
+{% set ms = margin_inline_start|default('ms-0') %}
+{% set me = margin_inline_end|default('me-0') %}
 {% set pt = padding_block_start|default('pt-0') %}
 {% set pb = padding_block_end|default('pb-0') %}
+{% set ps = padding_inline_start|default('ps-0') %}
+{% set pe = padding_inline_end|default('pe-0') %}
 
 {# Background / overlay #}
 {% set has_background_image = background_media is not empty and background_media.src is not empty %}
@@ -43,8 +47,12 @@
 {% set section_classes = [
   mt,
   mb,
+  ms,
+  me,
   pt,
   pb,
+  ps,
+  pe,
   background_color != 'none' ? background_color : '',
   text_class,
   shadow_class,
