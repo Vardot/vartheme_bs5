@@ -199,6 +199,7 @@ props:
     button_url:
       type: string
       title: Button URL (optional)
+      format: uri-reference
       description: Link for the primary button.
       default: ''
       examples:

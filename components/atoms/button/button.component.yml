@@ -67,6 +67,7 @@ props:
     href:
       type: string
       title: Link URL (optional)
+      format: uri-reference
       description: If provided, renders as a link (<a>) instead of a <button>.
     target:
       type: string

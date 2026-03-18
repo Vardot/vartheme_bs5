@@ -92,6 +92,7 @@ props:
     link_url:
       type: string
       title: Card link URL
+      format: uri-reference
       description: URL used for the card link. When Stretched link is enabled, this link covers the whole card.
       default: ''
     link_target:

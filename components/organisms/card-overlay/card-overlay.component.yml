@@ -150,6 +150,7 @@ props:
     link_url:
       type: string
       title: Card link URL
+      format: uri-reference
       description: Optional URL for the card link.
       default: ''
     link_target:

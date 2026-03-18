@@ -97,6 +97,7 @@ props:
     url:
       type: string
       title: Link URL (optional)
+      format: uri-reference
       description: If provided, the whole card can link or show a button if label is set.
     button_label:
       type: string

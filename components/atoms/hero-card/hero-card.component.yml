@@ -285,6 +285,7 @@ props:
     button_1_url:
       type: string
       title: Button URL
+      format: uri-reference
       default: "#"
 
     button_1_style:

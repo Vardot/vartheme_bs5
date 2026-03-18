@@ -7,7 +7,7 @@ props:
   properties:
     url:
       type: string
-      format: uri
+      format: uri-reference
       title: Optional URL
       description: An optional URL the image can be linked to.
     width:

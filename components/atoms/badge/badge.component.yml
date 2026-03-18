@@ -16,6 +16,7 @@ props:
     url:
       type: string
       title: Link (optional)
+      format: uri-reference
       description: "If provided, badge will render as a link."
       default: ""
     variant:

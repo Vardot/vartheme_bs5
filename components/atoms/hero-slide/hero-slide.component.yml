@@ -43,6 +43,7 @@ props:
     button_url:
       type: string
       title: Button URL
+      format: uri-reference
       default: "#"
 
     button_variant:

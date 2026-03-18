@@ -82,6 +82,7 @@ props:
     author_url:
       type: string
       title: "Author link"
+      format: uri-reference
       description: "Optional URL for the author name."
       default: ""
       examples:

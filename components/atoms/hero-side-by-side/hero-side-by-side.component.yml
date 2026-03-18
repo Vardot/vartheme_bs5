@@ -65,6 +65,7 @@ props:
     button_url:
       type: string
       title: Button link (optional)
+      format: uri-reference
     button_variant:
       type: string
       title: Button style

@@ -17,6 +17,7 @@ props:
     link_url:
       type: string
       title: Link URL (optional)
+      format: uri-reference
       description: If provided, the image becomes clickable.
     target:
       type: string

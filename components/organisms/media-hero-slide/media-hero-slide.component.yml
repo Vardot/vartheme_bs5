@@ -46,6 +46,7 @@ props:
     url:
       type: string
       title: URL
+      format: uri-reference
       description: Direct URL of the current node.
     display_submitted:
       type: boolean

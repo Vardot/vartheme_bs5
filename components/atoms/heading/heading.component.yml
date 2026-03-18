@@ -10,7 +10,7 @@ props:
       title: Heading text
       default: "Enter title"
       examples:
-        - "Page title"
+        - "Your heading goes here"
     level:
       type: integer
       title: Heading level
@@ -89,6 +89,7 @@ props:
     url:
       type: string
       title: Link URL
+      format: uri-reference
       description: "Optional. When provided, the heading text will be rendered as a link using the vartheme_bs5:link component."
       default: ""
     target:

@@ -182,6 +182,7 @@ props:
     url:
       type: string
       title: Link URL (optional)
+      format: uri-reference
       description: If provided, the card becomes clickable or shows a button when button label is set.
     button_label:
       type: string

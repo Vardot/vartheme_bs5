@@ -189,6 +189,7 @@ props:
     button_url:
       type: string
       title: Button link (optional)
+      format: uri-reference
     button_target:
       type: string
       title: Button target

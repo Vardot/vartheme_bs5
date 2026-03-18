@@ -6,11 +6,9 @@ props:
   type: object
   properties:
     url:
-      type:
-        - string
-        - object
-        - 'null'
+      type: string
       title: URL Link
+      format: uri-reference
       description: URL link.
       default: ''
     color:
