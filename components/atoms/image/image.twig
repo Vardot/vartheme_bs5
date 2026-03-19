@@ -54,34 +54,34 @@
 {# Pick link attributes based on ratio mode #}
 {% set link_attrs = has_ratio ? link_attrs_ratio : link_attrs_inline %}
 
-{# Build the image once #}
-{% set image_markup %}
-  {% include 'canvas:image' ignore missing with {
-    src: media.src,
-    alt: media.alt,
-    width: media.width,
-    height: media.height,
-    class: img_class_final,
-    loading: loading_value,
-  } only %}
-{% endset %}
-
-{# Build the optional link wrapper once #}
-{% set linked_markup %}
-  {% if has_link %}
-    {% include 'vartheme_bs5:link' ignore missing with {
-      url: link_url,
-      attributes: link_attrs,
-      content: image_markup
-    } only %}
-  {% else %}
-    {{ image_markup }}
-  {% endif %}
-{% endset %}
-
 {# Build the inner markup (no logic in <figure>) #}
 {% set figure_content %}{% endset %}
 {% if media_ok %}
+  {# Render a native <img> — no dependency on canvas:image, handles missing width/height gracefully #}
+  {% set image_markup %}
+    <img
+      src="{{ media.src }}"
+      alt="{{ media.alt|default('')|e }}"
+      {% if media.width is not empty %}width="{{ media.width }}"{% endif %}
+      {% if media.height is not empty %}height="{{ media.height }}"{% endif %}
+      class="{{ img_class_final }}"
+      loading="{{ loading_value }}"
+    >
+  {% endset %}
+
+  {# Build the optional link wrapper once #}
+  {% set linked_markup %}
+    {% if has_link %}
+      {% include 'vartheme_bs5:link' ignore missing with {
+        url: link_url,
+        attributes: link_attrs,
+        content: image_markup
+      } only %}
+    {% else %}
+      {{ image_markup }}
+    {% endif %}
+  {% endset %}
+
   {% set figure_content %}
     {% if has_ratio %}
       <div class="{{ ratio_wrapper_class }}">

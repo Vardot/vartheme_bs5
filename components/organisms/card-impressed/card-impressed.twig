@@ -23,7 +23,7 @@
 {% set ratio = ratio|default('ratio-16x9') %}
 {% set fit = fit|default('object-fit-cover') %}
 {% set has_media = (media_image.src|default('')|trim) is not empty %}
-{% set render_media = true %}
+{% set render_media = has_media %}
 
 {% set card_impressed_media_utility_classes = card_impressed_media_utility_classes|default([]) %}
 {% set content_slot %}{% block content %}{% endblock %}{% endset %}
@@ -65,8 +65,8 @@
 
 {% set image_payload = {
   media: {
-    src: has_media ? media_image.src : placeholder_src,
-    alt: has_media ? (media_image.alt|default('')) : 'Placeholder image',
+    src: media_image.src|default(''),
+    alt: media_image.alt|default(''),
     width: media_image.width|default(null),
     height: media_image.height|default(null)
   },

@@ -1,0 +1,66 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Date
+group: Base
+status: stable
+description: >
+  Displays an ISO 8601 date (YYYY-MM-DD) using the semantic <time> element.
+  The date is rendered as visible text content server-side.
+  The "date" prop uses format: date so Drupal Canvas maps it to a datetime field.
+
+props:
+  type: object
+  properties:
+    date:
+      type: string
+      format: date
+      title: Date
+      description: "ISO 8601 date string (YYYY-MM-DD). Defaults to today's date."
+    text_color:
+      type: string
+      title: Text color
+      description: "Bootstrap text-color utility class applied to the date."
+      default: "text-body"
+      enum:
+        - "text-primary"
+        - "text-secondary"
+        - "text-success"
+        - "text-danger"
+        - "text-warning"
+        - "text-info"
+        - "text-muted"
+        - "text-white"
+        - "text-dark"
+        - "text-body"
+      'meta:enum':
+        "text-primary": "Primary"
+        "text-secondary": "Secondary"
+        "text-success": "Success"
+        "text-danger": "Danger"
+        "text-warning": "Warning"
+        "text-info": "Info"
+        "text-muted": "Muted"
+        "text-white": "White"
+        "text-dark": "Dark"
+        "text-body": "Body text color"
+      examples:
+        - "text-primary"
+    size:
+      type: string
+      title: Font size
+      description: "Bootstrap font-size utility class applied to the date. Defaults to none (inherits from context)."
+      enum:
+        - "fs-6"
+        - "fs-5"
+        - "fs-4"
+        - "fs-3"
+        - "fs-2"
+        - "fs-1"
+      'meta:enum':
+        "fs-6": "Extra small (fs-6)"
+        "fs-5": "Small (fs-5)"
+        "fs-4": "Medium (fs-4)"
+        "fs-3": "Large (fs-3)"
+        "fs-2": "Extra large (fs-2)"
+        "fs-1": "Display (fs-1)"
+      examples:
+        - "fs-4"

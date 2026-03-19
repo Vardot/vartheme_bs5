@@ -98,7 +98,7 @@
 )|filter(v => v is not empty) %}
 
 {% set content_col_class_list = (
-  has_media
+  (has_media and has_media_prop)
     ? (
       [
         'col-12',
@@ -189,27 +189,11 @@
 <div{{ card_attributes }}>
   <div{{ row_attributes }}>
 
-    {% if has_media %}
+    {% if has_media and has_media_prop %}
       <div{{ media_col_attributes }}>
-        {% if has_media_prop %}
-          <div{{ media_wrap_attributes }}>
-            {% include 'vartheme_bs5:image' ignore missing with image_include_props only %}
-          </div>
-        {% else %}
-          <div{{ placeholder_wrap_attributes }}>
-            {% if ratio != 'ratio-auto' %}
-              <div class="ratio {{ ratio }}">
-                <div class="{{ placeholder_inner_base }}">
-                  {% include 'vartheme_bs5:image' ignore missing with placeholder_include_props only %}
-                </div>
-              </div>
-            {% else %}
-              <div class="{{ placeholder_inner_base }} p-3">
-                {% include 'vartheme_bs5:image' ignore missing with placeholder_include_props only %}
-              </div>
-            {% endif %}
-          </div>
-        {% endif %}
+        <div{{ media_wrap_attributes }}>
+          {% include 'vartheme_bs5:image' ignore missing with image_include_props only %}
+        </div>
       </div>
     {% endif %}
 

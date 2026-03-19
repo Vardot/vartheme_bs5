@@ -1,0 +1,47 @@
+{#
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for the Date component.
+ *
+ * Uses the <time> element to embed a machine-readable ISO 8601 date.
+ * The date value is rendered as visible text content server-side.
+ *
+ * Available properties:
+ * - date: ISO 8601 date string for the datetime attribute (e.g. 2025-01-31). Defaults to today's date.
+ * - size: Font size class. (fs-1|fs-2|fs-3|fs-4|fs-5|fs-6) Defaults to none (inherits from context).
+ * - text_color: Bootstrap text color utility class.
+ *              (text-primary|text-secondary|text-success|text-danger|text-warning|
+ *               text-info|text-muted|text-dark|text-body) Defaults to text-body.
+ *
+ * Available attributes:
+ * - attributes: HTML attributes for the time element.
+ *
+ * Available slots:
+ * - N/A
+ *
+ * - MDN <time>: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/time
+ * - JSON Schema "date" format: https://json-schema.org/understanding-json-schema/reference/string.html#dates-and-times
+ * - RFC 3339: https://www.rfc-editor.org/rfc/rfc3339
+ */
+#}
+
+{% set date = date|default('now'|date('Y-m-d')) %}
+
+{% set size_allowed = ['fs-1', 'fs-2', 'fs-3', 'fs-4', 'fs-5', 'fs-6'] %}
+{% set size_classes = size in size_allowed ? [size] : [] %}
+
+{% set text_color = text_color|default('text-body') %}
+{% set text_color_classes = text_color ? [text_color] : [] %}
+
+{% set classes = [
+  'vb-date',
+  'gap-2',
+]|merge(size_classes)|merge(text_color_classes) %}
+
+{% if not attributes %}
+  {% set attributes = create_attribute() %}
+{% endif %}
+{% set attributes = attributes.addClass(classes) %}
+{% set attributes = attributes.setAttribute('datetime', date) %}
+
+<time{{ attributes }}>{{ date|date('M j, Y') }}</time>

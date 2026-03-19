@@ -61,38 +61,3 @@ props:
         text-muted: Muted
         text-dark: Dark
         text-white: White
-    trim_length:
-      type: number
-      title: Trim length
-      description: Number of characters or words to keep. Set 0 to disable trimming.
-      default: 0
-      examples:
-        - 20
-    trim_units:
-      type: string
-      title: Trim units
-      description: Choose whether trim length applies to characters or words.
-      default: characters
-      enum:
-        - characters
-        - words
-      examples:
-        - characters
-      meta:enum:
-        characters: Characters
-        words: Words
-    suffix:
-      type: string
-      title: Suffix
-      description: Text appended when the content is trimmed.
-      default: '...'
-      examples:
-        - '...'
-        - ' Read more'
-    strip_html:
-      type: boolean
-      title: Strip HTML
-      description: Remove HTML tags before trimming.
-      default: false
-      examples:
-        - false

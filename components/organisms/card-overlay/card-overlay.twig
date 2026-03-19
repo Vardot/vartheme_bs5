@@ -73,8 +73,8 @@
 
 {% set image_payload = {
   media: {
-    src: has_media ? media_image.src : placeholder_src,
-    alt: has_media ? (media_image.alt|default('')) : 'Placeholder image',
+    src: media_image.src|default(''),
+    alt: media_image.alt|default(''),
     width: media_image.width|default(null),
     height: media_image.height|default(null)
   },
@@ -87,7 +87,9 @@
 } %}
 
 <div{{ card_attributes }}>
-  {% include 'vartheme_bs5:image' ignore missing with image_payload only %}
+  {% if has_media %}
+    {% include 'vartheme_bs5:image' ignore missing with image_payload only %}
+  {% endif %}
 
   {% if overlay_color != 'bg-transparent' %}
     <div{{ overlay_attributes.setAttribute('aria-hidden', 'true') }}></div>
