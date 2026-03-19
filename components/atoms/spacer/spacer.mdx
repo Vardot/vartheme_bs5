@@ -1,27 +1,51 @@
-import { Meta, Canvas, Story, Controls } from '@storybook/blocks';
-import * as SpacerStories from './spacer.stories.json';
+import { Title, Subtitle, Meta, Description, Primary, Stories, Controls, Source } from '@storybook/blocks';
+import * as comStories from './spacer.stories.json';
+import templateSource from './spacer.twig?raw';
 
-<Meta title="Layout/Spacer" of={SpacerStories} />
+<Meta of={comStories} name="Docs"/>
 
-# Spacer
+<Title />
+<Subtitle />
+<Description />
 
-Use the Spacer component to add vertical breathing room between sections with Bootstrap utility classes.
+<Primary />
 
-## Example
-
-<Canvas>
-  <Story name="Default" args={{ size: 'py-3' }} />
-</Canvas>
-
-## Controls
-
+## Properties
 <Controls />
+
+<Stories of={comStories} />
+
+## Attributes
+* N/A
+
+## Slots
+* N/A
 
 ## Available sizes
 
-- `py-0`
-- `py-1`
-- `py-2`
-- `py-3`
-- `py-4`
-- `py-5`
+- `py-0` — None
+- `py-1` — Extra small
+- `py-2` — Small
+- `py-3` — Medium (default)
+- `py-4` — Large
+- `py-5` — Extra large
+
+## Examples
+
+### Example #1: Default spacer
+```twig
+{% include "vartheme_bs5:spacer" with {
+  size: 'py-3'
+} %}
+```
+
+### Example #2: Large spacer
+```twig
+{% include "vartheme_bs5:spacer" with {
+  size: 'py-5'
+} %}
+```
+
+## Source code
+[//]: # (Twig Template source code)
+<Source code={templateSource} />

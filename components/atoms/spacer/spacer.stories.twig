@@ -1,7 +1,71 @@
+{% stories Spacer with {
+  "title": "Layout/Spacer",
+  "parameters": {
+    "componentSubtitle": "Bootstrap Spacer Component",
+    "docs": {
+      "description": {
+        "component": "Use the Spacer component to add vertical breathing room between sections with Bootstrap utility classes."
+      },
+      "story": {
+        "inline": true
+      }
+    }
+  },
+  "argTypes": {
+    "size": {
+      "name": "Spacing size",
+      "description": "Bootstrap vertical spacing utility class applied directly to the spacer.",
+      "defaultValue": "py-3",
+      "control": "select",
+      "options": {
+        "None": "py-0",
+        "Extra small": "py-1",
+        "Small": "py-2",
+        "Medium": "py-3",
+        "Large": "py-4",
+        "Extra large": "py-5"
+      }
+    }
+  }
+} %}
+
+{% story Default with {
+  "name": "Default",
+  "args": {
+    "size": "py-3"
+  }
+} %}
 <div class="border rounded p-3 bg-light">
   <div class="small text-muted">Content above spacer</div>
-  {% include 'spacer:spacer' with {
-    size: size
-  } only %}
+  {{ include('vartheme_bs5:spacer') }}
   <div class="small text-muted">Content below spacer</div>
 </div>
+{% endstory %}
+
+{% story ExtraSmall with {
+  "name": "Extra small",
+  "args": {
+    "size": "py-1"
+  }
+} %}
+<div class="border rounded p-3 bg-light">
+  <div class="small text-muted">Content above spacer</div>
+  {{ include('vartheme_bs5:spacer') }}
+  <div class="small text-muted">Content below spacer</div>
+</div>
+{% endstory %}
+
+{% story Large with {
+  "name": "Large",
+  "args": {
+    "size": "py-5"
+  }
+} %}
+<div class="border rounded p-3 bg-light">
+  <div class="small text-muted">Content above spacer</div>
+  {{ include('vartheme_bs5:spacer') }}
+  <div class="small text-muted">Content below spacer</div>
+</div>
+{% endstory %}
+
+{% endstories %}
