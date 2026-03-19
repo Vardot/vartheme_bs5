@@ -23,7 +23,6 @@ props:
       description: "Optional Bootstrap typography utility. Leave empty to match the selected heading level."
       default: ""
       enum:
-        - ""
         - h1
         - h2
         - h3
@@ -37,7 +36,6 @@ props:
         - display-5
         - display-6
       'meta:enum':
-        "": "Default (match heading level)"
         h1: "Heading size: H1"
         h2: "Heading size: H2"
         h3: "Heading size: H3"
@@ -56,7 +54,6 @@ props:
       description: "Bootstrap text color utility. Leave empty for theme default."
       default: ""
       enum:
-        - ""
         - text-primary
         - text-secondary
         - text-success
@@ -67,7 +64,6 @@ props:
         - text-white
         - text-dark
       'meta:enum':
-        "": "Default (theme color)"
         text-primary: Primary
         text-secondary: Secondary
         text-success: Success
@@ -83,12 +79,10 @@ props:
       description: "Bootstrap text alignment utility. Leave empty for default alignment."
       default: ""
       enum:
-        - ""
         - text-start
         - text-center
         - text-end
       'meta:enum':
-        "": "Default"
         text-start: Left
         text-center: Center
         text-end: Right
