@@ -1,69 +1,58 @@
-{#
-  Hero Blog (Bootstrap 5)
-  Shows: published date, title, author, and an optional media slot.
-#}
+{# Hero Blog #}
 
-{% set container = container_width|default('container') %}
-{% set extra = extra_classes|default('')|trim %}
-{% set classes = ['hero-blog', 'py-4', 'py-md-5', extra]|filter(v => v is not empty) %}
+{% set heading_size_value = heading_size|default('default') %}
+{% set date_value = date|default('') %}
+{% set author_value = author|default('') %}
+{% set author_url_value = author_url|default('')|trim %}
 
-{# Date is passed as a unix timestamp in the component examples. #}
-{% set date_formatted = date is not empty ? (date|date('M d, Y')) : '' %}
+{% set heading_props = {
+  heading_text: heading_text|default(''),
+  level: level|default(2),
+  url: ''
+} %}
+{% if heading_size_value != 'default' %}
+  {% set heading_props = heading_props|merge({ text_size: heading_size_value }) %}
+{% endif %}
 
-{# Only render media wrapper if slot actually has content. #}
-{% set media_content = block('blog_media')|default('')|trim %}
+{% set author_link_props = {
+  url: author_url_value,
+  content: author_value
+} %}
 
-<section
-  {% if html_id is defined and html_id is not empty %}id="{{ html_id }}"{% endif %}
-  class="{{ classes|join(' ') }}"
->
-  <div class="{{ container }}">
-    <div class="row justify-content-center">
-      <div class="col-12 col-lg-10 col-xl-8">
-        {% if date_formatted %}
-          <p class="text-muted mb-2">
-            <time datetime="{{ date|date('Y-m-d') }}">{{ date_formatted }}</time>
-          </p>
+{% set section_attributes = create_attribute().addClass(['py-4', 'py-md-5']) %}
+{% set container_attributes = create_attribute().addClass(['container']) %}
+{% set inner_row_attributes = create_attribute().addClass(['row', 'justify-content-center']) %}
+{% set content_col_attributes = create_attribute().addClass(['col-12', 'col-lg-10', 'col-xl-8']) %}
+{% set date_attributes = create_attribute().addClass(['text-muted', 'mb-2']) %}
+{% set author_attributes = create_attribute().addClass(['mt-3', 'mb-0']) %}
+{% set author_prefix_attributes = create_attribute().addClass(['text-muted']) %}
+{% set author_name_attributes = create_attribute().addClass(['fw-semibold']) %}
+{% set media_attributes = create_attribute().addClass(['mt-4']) %}
+
+<section{{ section_attributes }}>
+  <div{{ container_attributes }}>
+    <div{{ inner_row_attributes }}>
+      <div{{ content_col_attributes }}>
+        {% if date_value %}
+          <p{{ date_attributes }}>{{ include('vartheme_bs5:date', { date: date_value }, with_context: false) }}</p>
         {% endif %}
 
-        {{
-          include(
-            'vartheme_bs5:heading',
-            {
-              heading_text: heading_text|default(''),
-              level: level|default(1),
-              url: '',
-              text_color: 'default',
-              text_size: heading_size|default('display-4'),
-              align: 'start'
-            },
-            with_context: false
-          )
-        }}
+        {{ include('vartheme_bs5:heading', heading_props, with_context: false) }}
 
-        {% if author is not empty %}
-          <p class="mt-3 mb-0">
-            <span class="text-muted">By</span>
-            {% if author_url is not empty %}
-              <a href="{{ author_url }}" class="link-body-emphasis text-decoration-none">{{ author }}</a>
+        {% if author_value is not empty %}
+          <p{{ author_attributes }}>
+            <span{{ author_prefix_attributes }}>By</span>
+            {% if author_url_value is not empty %}
+              {{ include('vartheme_bs5:link', author_link_props, with_context: false) }}
             {% else %}
-              <span class="fw-semibold">{{ author }}</span>
+              <span{{ author_name_attributes }}>{{ author_value }}</span>
             {% endif %}
           </p>
+        {% endif %}
+        {% if blog_media is defined and blog_media is not empty %}
+          <div{{ media_attributes }}>{{ blog_media }}</div>
         {% endif %}
       </div>
     </div>
   </div>
-
-  {% if media_content %}
-    <div class="mt-4 mt-md-5">
-      <div class="{{ container }}">
-        <div class="row justify-content-center">
-          <div class="col-12 col-lg-10 col-xl-10">
-            {% block blog_media %}{% endblock %}
-          </div>
-        </div>
-      </div>
-    </div>
-  {% endif %}
 </section>

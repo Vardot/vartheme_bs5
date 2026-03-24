@@ -1,12 +1,11 @@
 "$schema": "https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json"
 name: Hero Blog
-description: "Blog hero with published date, title, author, and optional media."
+description: "Blog hero with published date, title, and author."
 group: Hero
 
 props:
   type: object
   properties:
-
     heading_text:
       type: string
       title: "Title"
@@ -17,12 +16,11 @@ props:
     level:
       type: integer
       title: "Heading level"
-      enum: [1, 2, 3, 4, 5, 6]
-      default: 1
+      enum: [2, 3, 4, 5, 6]
+      default: 2
       examples:
-        - 1
+        - 2
       'meta:enum':
-        1: "H1"
         2: "H2"
         3: "H3"
         4: "H4"
@@ -32,10 +30,9 @@ props:
     heading_size:
       type: string
       title: "Heading size"
-      description: "Visual size (Bootstrap heading/display classes)."
+      description: "Visual size. Default follows the selected heading level."
       enum:
         - default
-        - h1
         - h2
         - h3
         - h4
@@ -47,30 +44,26 @@ props:
         - display-4
         - display-5
         - display-6
-      default: display-4
+      default: default
       'meta:enum':
-        default: "Default (inherit)"
-        h1: "Heading 1 (h1)"
-        h2: "Heading 2 (h2)"
-        h3: "Heading 3 (h3)"
-        h4: "Heading 4 (h4)"
-        h5: "Heading 5 (h5)"
-        h6: "Heading 6 (h6)"
-        display-1: "Display 1 (largest)"
+        default: "Default (match heading level)"
+        h2: "Heading size: H2"
+        h3: "Heading size: H3"
+        h4: "Heading size: H4"
+        h5: "Heading size: H5"
+        h6: "Heading size: H6"
+        display-1: "Display 1"
         display-2: "Display 2"
         display-3: "Display 3"
         display-4: "Display 4"
         display-5: "Display 5"
-        display-6: "Display 6 (smallest)"
+        display-6: "Display 6"
 
     date:
-      type: integer
-      title: "Published date (Unix timestamp)"
-      description: "Unix timestamp (seconds). Leave empty to hide."
-      # Example: 2026-02-12
-      default: 1770856866
-      examples:
-        - 1770856866
+      type: string
+      format: date
+      title: "Date"
+      description: "ISO 8601 date string (YYYY-MM-DD). Defaults to today's date."
 
     author:
       type: string
@@ -88,45 +81,8 @@ props:
       examples:
         - "https://example.com/author/john-smith"
 
-    container_width:
-      type: string
-      title: "Container width"
-      enum:
-        - container
-        - container-sm
-        - container-md
-        - container-lg
-        - container-xl
-        - container-xxl
-      default: container
-      'meta:enum':
-        container: "Default container"
-        container-sm: "Small container"
-        container-md: "Medium container"
-        container-lg: "Large container"
-        container-xl: "Extra large container"
-        container-xxl: "2XL container"
-    
-    html_id:
-      type: string
-      title: "HTML ID"
-      description: "Optional ID attribute for the outer section."
-      default: ""
-
-    extra_classes:
-      type: string
-      title: "Extra classes"
-      description: "Space separated classes (Bootstrap utilities allowed)."
-      default: ""
-
-    media:
-      $ref: json-schema-definitions://canvas.module/image
-      title: "Image (optional)"
-      type: object
-      examples:
-        - src: "assets/boliviainteligente-I1rJ9ViO3ik-unsplash.jpg"
-          alt: "Placeholder image"
 
 slots:
   blog_media:
-    title: "Media"
+    title: "Blog media"
+    description: "Optional media slot rendered above the content."

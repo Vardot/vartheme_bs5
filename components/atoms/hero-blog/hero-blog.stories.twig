@@ -1,0 +1,128 @@
+{% stories HeroBlog with {
+  "title": "Hero/Hero Blog",
+  "parameters": {
+    "componentSubtitle": "Blog hero component",
+    "docs": {
+      "description": {
+        "component": "Displays a published date, title, optional author link, and optional media for blog and article pages."
+      },
+      "story": {
+        "inline": true
+      }
+    }
+  },
+  "argTypes": {
+    "heading_text": {
+      "name": "Title",
+      "defaultValue": "Enter the title",
+      "control": "text"
+    },
+    "level": {
+      "name": "Heading level",
+      "description": "HTML heading level for the title.",
+      "defaultValue": 2,
+      "control": "select",
+      "options": {
+        "H2": 2,
+        "H3": 3,
+        "H4": 4,
+        "H5": 5,
+        "H6": 6
+      }
+    },
+    "heading_size": {
+      "name": "Heading size",
+      "description": "Optional Bootstrap heading or display size.",
+      "defaultValue": "default",
+      "control": "select",
+      "options": {
+        "Default (match heading level)": "default",
+        "Heading size: H2": "h2",
+        "Heading size: H3": "h3",
+        "Heading size: H4": "h4",
+        "Heading size: H5": "h5",
+        "Heading size: H6": "h6",
+        "Display 1": "display-1",
+        "Display 2": "display-2",
+        "Display 3": "display-3",
+        "Display 4": "display-4",
+        "Display 5": "display-5",
+        "Display 6": "display-6"
+      }
+    },
+    "date": {
+      "name": "Published date",
+      "description": "ISO 8601 date string in YYYY-MM-DD format.",
+      "defaultValue": "2026-03-24",
+      "control": "text"
+    },
+    "author": {
+      "name": "Author name",
+      "defaultValue": "John Smith",
+      "control": "text"
+    },
+    "author_url": {
+      "name": "Author link",
+      "defaultValue": "",
+      "control": "text"
+    }
+  }
+} %}
+
+{% story Default with {
+  "name": "Default",
+  "args": {
+    "heading_text": "How design systems scale content",
+    "level": 2,
+    "heading_size": "default",
+    "date": "2026-03-24",
+    "author": "John Smith",
+    "author_url": ""
+  }
+} %}
+{% embed 'vartheme_bs5:hero-blog' %}
+  {% block blog_media %}<img src="./assets/boliviainteligente-I1rJ9ViO3ik-unsplash.jpg" alt="Sample blog media" class="img-fluid rounded">{% endblock %}
+{% endembed %}
+{% endstory %}
+
+{% story DisplayTitle with {
+  "name": "Display title",
+  "args": {
+    "heading_text": "Inside the new publishing workflow",
+    "level": 2,
+    "heading_size": "display-4",
+    "date": "2026-03-24",
+    "author": "Jane Doe",
+    "author_url": "https://example.com/authors/jane-doe"
+  }
+} %}
+{{ include('vartheme_bs5:hero-blog') }}
+{% endstory %}
+
+{% story Compact with {
+  "name": "Compact",
+  "args": {
+    "heading_text": "Editorial release notes",
+    "level": 3,
+    "heading_size": "h4",
+    "date": "2026-03-24",
+    "author": "Editorial team",
+    "author_url": ""
+  }
+} %}
+{{ include('vartheme_bs5:hero-blog') }}
+{% endstory %}
+
+{% story WithoutAuthor with {
+  "name": "Without author",
+  "args": {
+    "heading_text": "A title-only article header",
+    "level": 2,
+    "heading_size": "default",
+    "date": "2026-03-24",
+    "author": "",
+    "author_url": ""
+  }
+} %}
+{{ include('vartheme_bs5:hero-blog') }}
+{% endstory %}

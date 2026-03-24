@@ -1,0 +1,74 @@
+import { Title, Subtitle, Meta, Description, Primary, Stories, Controls, Source } from '@storybook/blocks';
+import * as comStories from './hero-blog.stories.json';
+import templateSource from './hero-blog.twig?raw';
+
+<Meta of={comStories} name="Docs" />
+
+<Title />
+<Subtitle />
+<Description />
+
+> ### Bootstrap Documentation
+> * [Layout containers](https://getbootstrap.com/docs/5.3/layout/containers/)
+> * [Typography](https://getbootstrap.com/docs/5.3/content/typography/)
+
+<Primary />
+
+## Properties
+<Controls />
+
+## Date field
+
+The `date` prop accepts an ISO 8601 date string in `YYYY-MM-DD` format.
+
+Example:
+
+```text
+2026-03-24
+```
+
+## Examples
+
+### Example #1: Basic blog hero
+```twig
+{% include "vartheme_bs5:hero-blog" with {
+  heading_text: 'How design systems scale content',
+  level: 2,
+  heading_size: 'default',
+  date: '2026-03-24',
+  author: 'John Smith',
+  author_url: ''
+} only %}
+```
+
+### Example #2: Display title with linked author
+```twig
+{% include "vartheme_bs5:hero-blog" with {
+  heading_text: 'Inside the new publishing workflow',
+  level: 2,
+  heading_size: 'display-4',
+  date: '2026-03-24',
+  author: 'Jane Doe',
+  author_url: 'https://example.com/authors/jane-doe'
+} only %}
+```
+
+### Example #3: With media slot
+```twig
+{% embed "vartheme_bs5:hero-blog" with {
+  heading_text: 'Editorial release notes',
+  level: 3,
+  heading_size: 'h4',
+  date: '2026-03-24',
+  author: 'Editorial team'
+} only %}
+  {% block blog_media %}
+    <img src="/path/to/image.jpg" alt="Blog cover" class="img-fluid rounded">
+  {% endblock %}
+{% endembed %}
+```
+
+<Stories of={comStories} />
+
+## Source code
+<Source code={templateSource} />
