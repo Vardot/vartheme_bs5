@@ -1,0 +1,81 @@
+{
+  "title": "VarTheme BS5/Hero CTA",
+  "stories": [
+    {
+      "name": "Default",
+      "args": {
+        "heading_text": "Build reusable Drupal sections",
+        "level": 2,
+        "heading_size": "display-5",
+        "text": "Create strong calls to action with clean Bootstrap utility classes and shared components.",
+        "text_align": "text-center",
+        "background_color": "bg-light",
+        "content_color": "text-dark",
+        "overlay_opacity": "40%",
+        "bg_edge2edge": false,
+        "button_text": "Learn more",
+        "button_url": "#",
+        "button_variant": "btn-primary"
+      }
+    },
+    {
+      "name": "Dark background image",
+      "args": {
+        "heading_text": "Launch your next campaign",
+        "level": 2,
+        "heading_size": "display-5",
+        "text": "Add a background image and let the component handle overlay and readable content color.",
+        "text_align": "text-center",
+        "background_color": "bg-dark text-white",
+        "content_color": "auto",
+        "overlay_opacity": "60%",
+        "bg_edge2edge": false,
+        "button_text": "Get started",
+        "button_url": "#",
+        "button_variant": "btn-light",
+        "background_image": {
+          "src": "https://picsum.photos/1600/900",
+          "alt": "Background image"
+        }
+      }
+    },
+    {
+      "name": "Edge to edge",
+      "args": {
+        "heading_text": "Full-width promotion",
+        "level": 2,
+        "heading_size": "display-6",
+        "text": "Enable edge-to-edge background mode when the section should visually span the full page width.",
+        "text_align": "text-start",
+        "background_color": "bg-primary text-white",
+        "content_color": "auto",
+        "overlay_opacity": "20%",
+        "bg_edge2edge": true,
+        "button_text": "Explore",
+        "button_url": "#",
+        "button_variant": "btn-outline-light",
+        "background_image": {
+          "src": "https://picsum.photos/1600/800",
+          "alt": "Promotional background"
+        }
+      }
+    },
+    {
+      "name": "Text only",
+      "args": {
+        "heading_text": "Simple content-focused CTA",
+        "level": 3,
+        "heading_size": "h2",
+        "text": "Use the component without a background image for a minimal message block.",
+        "text_align": "text-start",
+        "background_color": "bg-none",
+        "content_color": "text-body",
+        "overlay_opacity": "0%",
+        "bg_edge2edge": false,
+        "button_text": "Contact us",
+        "button_url": "#",
+        "button_variant": "btn-outline-primary"
+      }
+    }
+  ]
+}

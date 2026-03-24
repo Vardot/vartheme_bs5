@@ -1,78 +1,54 @@
-{#
-  Hero CTA (Bootstrap 5)
+{# Hero CTA #}
 
-  Props:
-  - heading_text (string)
-  - level (int 1-6)
-  - heading_size (display-4|display-5|display-6|h1|h2|h3)
-  - text (string)
-  - text_align (center|start|end)
-  - content_width (narrow|normal|wide)
-  - background_color (none|primary|secondary|light|dark|muted|accent)
-  - media (canvas image object) optional
-  - overlay_opacity ("0%"|"20%"|"40%"|"60%"|"75%")
-  - padding_y (py-3|py-4|py-5|py-6)
-  - container_width (container|container-fluid)
-  - bg_edge2edge (bool)
-  - extra_classes (string)
-
-  Slots:
-  - actions (buttons/links)
-#}
-
-
-{% set align_value = text_align|default('center') %}
-{% set align_class = {
-  'start': 'text-start',
-  'center': 'text-center',
-  'end': 'text-end'
-}[align_value]|default('text-center') %}
-
+{% set align_class = text_align|default('text-center') %}
 {% set actions_class = {
-  'start': 'justify-content-start',
-  'center': 'justify-content-center',
-  'end': 'justify-content-end'
-}[align_value]|default('justify-content-center') %}
+  'text-start': 'justify-content-start',
+  'text-center': 'justify-content-center',
+  'text-end': 'justify-content-end'
+}[align_class]|default('justify-content-center') %}
 
-{% set bg_value = background_color|default('none') %}
-{% set bg_class = {
-  'none': '',
-  'primary': 'bg-primary text-white',
-  'secondary': 'bg-secondary text-white',
-  'light': 'bg-light',
-  'dark': 'bg-dark text-white',
-  'muted': 'bg-body-tertiary',
-  'accent': 'bg-info text-white'
-}[bg_value]|default('') %}
+{% set bg_value = background_color|default('bg-none') %}
+{% set bg_class = bg_value == 'bg-none' ? '' : bg_value %}
 
 {% set content_color_value = content_color|default('auto') %}
-{% set auto_content_color = (bg_value in ['primary','secondary','dark','accent']) ? 'white' : 'default' %}
-{% set resolved_content_color = (content_color_value == 'auto') ? auto_content_color : content_color_value %}
-{% set content_text_class = {
-  'default': '',
-  'white': 'text-white',
-  'dark': 'text-dark'
-}[resolved_content_color]|default('') %}
+{% set auto_content_color = ('text-white' in bg_class) ? 'text-white' : 'text-body' %}
+{% set resolved_content_color = content_color_value == 'auto' ? auto_content_color : content_color_value %}
+{% set content_text_class = resolved_content_color in [
+  'text-body',
+  'text-white',
+  'text-dark',
+  'text-primary',
+  'text-secondary',
+  'text-success',
+  'text-danger',
+  'text-warning',
+  'text-info',
+  'text-muted'
+] ? resolved_content_color : '' %}
 
-{# Keep heading component prop values valid; rely on wrapper text classes for "dark". #}
-{% set heading_text_color_prop = (resolved_content_color == 'white') ? 'white' : 'default' %}
-
-{# Bootstrap doesn't ship py-6 by default, normalize safely #}
-{% set pad = padding_y|default('py-5') %}
-{% if pad == 'py-6' %}
-  {% set pad = 'py-5' %}
+{% set heading_props = {
+  heading_text: heading_text|default(''),
+  level: level|default(2),
+  align: align_class,
+  url: ''
+} %}
+{% if heading_size is defined and heading_size is not empty %}
+  {% set heading_props = heading_props|merge({ text_size: heading_size }) %}
+{% endif %}
+{% if resolved_content_color in [
+  'text-primary',
+  'text-secondary',
+  'text-success',
+  'text-danger',
+  'text-warning',
+  'text-info',
+  'text-muted',
+  'text-white',
+  'text-dark'
+] %}
+  {% set heading_props = heading_props|merge({ text_color: resolved_content_color }) %}
 {% endif %}
 
-{% set container = container_width|default('container') %}
-
-{# Optional helper class to allow edge-to-edge background image treatments #}
-{% set is_bg_edge2edge = bg_edge2edge|default(false) %}
-
-{% set extra = extra_classes|default('')|trim %}
-{% set edge_class = is_bg_edge2edge ? 'bg-edge2edge' : '' %}
-{% set section_classes = ['hero-cta', pad, bg_class, edge_class, extra]|filter(v => v is not empty) %}
-
-{# Bootstrap-only overlay (no inline styles) #}
 {% set overlay_class = {
   '0%': '',
   '20%': 'bg-dark bg-opacity-25',
@@ -81,114 +57,104 @@
   '75%': 'bg-dark bg-opacity-75'
 }[overlay_opacity|default('40%')]|default('bg-dark bg-opacity-50') %}
 
-{# Content width presets #}
-{% set width_class = {
-  'narrow': 'col-12 col-lg-8 col-xl-6',
-  'normal': 'col-12 col-lg-10 col-xl-8',
-  'wide': 'col-12 col-xl-10'
-}[content_width|default('normal')]|default('col-12 col-lg-10 col-xl-8') %}
-
-{# Heading size (visual) #}
-{% set heading_size_class = heading_size|default('display-5') %}
-
-{# Optional primary button (in addition to the actions slot) #}
 {% set btn_text = button_text|default('')|trim %}
 {% set btn_url = button_url|default('')|trim %}
-{% set btn_variant = button_variant|default('primary')|trim %}
+{% set btn_variant_value = button_variant|default('btn-primary')|trim %}
 {% set btn_size = button_size|default('default')|trim %}
 {% set btn_new_tab = button_new_tab|default(false) %}
-
-{% set btn_variant_class = '' %}
-{% if btn_variant == 'link' %}
-  {% set btn_variant_class = 'btn-link' %}
-{% elseif btn_variant starts with 'outline-' %}
-  {% set btn_variant_class = 'btn-outline-' ~ (btn_variant|replace({'outline-': ''})) %}
-{% else %}
-  {% set btn_variant_class = 'btn-' ~ btn_variant %}
-{% endif %}
-
-{% set btn_size_class = {
-  'default': '',
+{% set btn_outline = 'btn-outline-' in btn_variant_value %}
+{% set btn_variant = btn_outline ? btn_variant_value|replace({'btn-outline-': 'btn-'}) : btn_variant_value %}
+{% set btn_size_value = {
+  'default': 'btn-md',
+  'btn-md': 'btn-md',
+  'btn-sm': 'btn-sm',
+  'btn-lg': 'btn-lg',
   'sm': 'btn-sm',
   'lg': 'btn-lg'
-}[btn_size]|default('') %}
+}[btn_size]|default('btn-md') %}
+{% set btn_target = btn_new_tab ? 'blank' : 'self' %}
+{% set has_primary_btn = btn_text and btn_url %}
+
+{% set slot_actions = '' %}
+{% if slots is defined and slots.actions is defined %}
+  {% set slot_actions = slots.actions|render %}
+{% endif %}
+{% set has_actions = has_primary_btn or slot_actions|trim %}
 
 {% set bg_image = null %}
 {% if background_image is defined and background_image.src is not empty %}
   {% set bg_image = background_image %}
-{% elseif media is defined and media.src is not empty %}
-  {# Backward compatible: media can still be a Canvas image object #}
-  {% set bg_image = media %}
 {% endif %}
 
-<section class="{{ section_classes|join(' ') }} position-relative overflow-hidden">
+{% set is_bg_edge2edge = bg_edge2edge|default(false) %}
+
+{% set section_classes = [
+  'hero-cta',
+  'position-relative',
+  'overflow-hidden',
+  'py-5',
+  bg_class,
+  is_bg_edge2edge ? 'bg-edge2edge' : ''
+]|filter(v => v is not empty) %}
+{% set section_attributes = create_attribute({ class: section_classes }) %}
+
+{% set background_media_attributes = create_attribute({
+  class: ['position-absolute', 'top-0', 'start-0', 'w-100', 'h-100']
+}) %}
+{% set overlay_attributes = create_attribute({
+  class: ['position-absolute', 'top-0', 'start-0', 'w-100', 'h-100', overlay_class]|filter(v => v is not empty)
+}) %}
+{% set container_attributes = create_attribute({
+  class: ['container', 'position-relative']
+}) %}
+{% set content_attributes = create_attribute({
+  class: ['col-12', 'col-lg-10', 'col-xl-8', 'mx-auto', align_class, content_text_class]|filter(v => v is not empty)
+}) %}
+{% set text_attributes = create_attribute({
+  class: ['lead', 'mt-3', 'mb-0']
+}) %}
+{% set actions_attributes = create_attribute({
+  class: ['d-flex', 'flex-wrap', 'gap-2', 'mt-4', actions_class]
+}) %}
+{% set bg_image_props = {
+  src: bg_image ? bg_image.src : '',
+  alt: bg_image and bg_image.alt is defined ? bg_image.alt : '',
+  width: bg_image and bg_image.width is defined ? bg_image.width : null,
+  height: bg_image and bg_image.height is defined ? bg_image.height : null,
+  class: 'w-100 h-100 object-fit-cover'
+} %}
+
+<section{{ section_attributes }}>
   {% if bg_image %}
-    <div class="position-absolute top-0 start-0 w-100 h-100" aria-hidden="true">
+    <div{{ background_media_attributes }} aria-hidden="true">
       {% if overlay_class %}
-        <div class="position-absolute top-0 start-0 w-100 h-100 {{ overlay_class }}"></div>
+        <div{{ overlay_attributes }}></div>
       {% endif %}
-      {% include 'canvas:image' ignore missing with {
-        src: bg_image.src,
-        alt: bg_image.alt,
-        width: bg_image.width,
-        height: bg_image.height,
-        class: 'w-100 h-100 object-fit-cover'
-      } only %}
-    </div>
-  {% elseif media is defined and media is not empty %}
-    <div class="position-absolute top-0 start-0 w-100 h-100" aria-hidden="true">
-      {% if overlay_class %}
-        <div class="position-absolute top-0 start-0 w-100 h-100 {{ overlay_class }}"></div>
-      {% endif %}
-      <div class="w-100 h-100 object-fit-cover">
-        {{ media }}
-      </div>
+      {% include 'canvas:image' ignore missing with bg_image_props only %}
     </div>
   {% endif %}
 
-  <div class="{{ container }} position-relative">
+  <div{{ container_attributes }}>
     <div class="row">
-      <div class="{{ width_class }} mx-auto {{ align_class }} {{ content_text_class }}">
-        {% if eyebrow|default('')|trim %}
-          <div class="text-uppercase small opacity-75 mb-2">{{ eyebrow|trim }}</div>
-        {% endif %}
-
-        {{
-          include(
-            'vartheme_bs5:heading',
-            {
-              heading_text: heading_text|default(''),
-              level: level|default(2),
-              align: align_value,
-              text_color: heading_text_color_prop,
-              url: '',
-              text_size: heading_size_class
-            },
-            with_context: false
-          )
-        }}
+      <div{{ content_attributes }}>
+        {{ include('vartheme_bs5:heading', heading_props, with_context: false) }}
 
         {% if text is not empty %}
-          <p class="lead mt-3 mb-0">{{ text }}</p>
+          <p{{ text_attributes }}>{{ text }}</p>
         {% endif %}
 
-        {# Actions: optional primary button + actions slot #}
-        {% set has_primary_btn = (btn_text and btn_url) %}
-        {% set slot_actions = '' %}
-        {% if slots is defined and slots.actions is defined %}
-          {% set slot_actions = slots.actions|render %}
-        {% endif %}
-
-        {% if has_primary_btn or slot_actions|trim %}
-          <div class="d-flex flex-wrap gap-2 mt-4 {{ actions_class }}">
+        {% if has_actions %}
+          <div{{ actions_attributes }}>
             {% if has_primary_btn %}
-              <a
-                href="{{ btn_url }}"
-                class="btn {{ btn_variant_class }} {{ btn_size_class }}"
-                {% if btn_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
-              >
-                {{ btn_text }}
-              </a>
+              {{ include('vartheme_bs5:button', {
+                label: btn_text,
+                href: btn_url,
+                variant: btn_variant,
+                outline: btn_outline,
+                size: btn_size_value,
+                target: btn_target,
+                alignment: 'inline'
+              }, with_context: false) }}
             {% endif %}
             {{ slot_actions }}
           </div>

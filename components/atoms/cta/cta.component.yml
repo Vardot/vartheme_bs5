@@ -8,13 +8,11 @@ props:
   - text_align
   - level
   properties:
-    eyebrow:
-      type: string
-      title: Eyebrow (optional)
-      description: Small text shown above the heading.
-      default: ''
-      examples:
-      - Get started
+    bg_edge2edge:
+      type: boolean
+      title: Background edge to edge
+      description: Adds the "bg-edge2edge" class to make the background image span edge to edge.
+      default: false
     heading_text:
       type: string
       title: Heading
@@ -24,7 +22,6 @@ props:
       type: integer
       title: Heading level
       enum:
-      - 1
       - 2
       - 3
       - 4
@@ -33,7 +30,6 @@ props:
       examples:
       - 2
       meta:enum:
-        1: H1
         2: H2
         3: H3
         4: H4
@@ -65,70 +61,10 @@ props:
         h1: Heading 1 size
         h2: Heading 2 size
         h3: Heading 3 size
-    text_align:
-      type: string
-      title: Text alignment
-      enum:
-      - center
-      - start
-      - end
-      meta:enum:
-        center: Center
-        start: Left
-        end: Right
-      default: center
-      examples:
-      - center
-    content_width:
-      type: string
-      title: Content width
-      description: Controls the max width of the text block.
-      enum:
-      - narrow
-      - normal
-      - wide
-      default: normal
-      examples:
-      - normal
-      meta:enum:
-        narrow: Narrow
-        normal: Normal
-        wide: Wide
-    background_color:
-      type: string
-      title: Background color
-      enum:
-      - none
-      - primary
-      - secondary
-      - light
-      - dark
-      - muted
-      - accent
-      meta:enum:
-        none: None
-        primary: Primary
-        secondary: Secondary
-        light: Light
-        dark: Dark
-        muted: Muted
-        accent: Accent
-      default: none
-    content_color:
-      type: string
-      title: Content color
-      description: Controls text/icon color for eyebrow, heading, body text and actions.
-      enum:
-      - auto
-      - default
-      - white
-      - dark
-      default: auto
-      meta:enum:
-        auto: Auto (based on background)
-        default: Default
-        white: White
-        dark: Dark
+    background_image:
+      $ref: json-schema-definitions://canvas.module/image
+      title: Background image
+      type: object
     overlay_opacity:
       type: string
       title: Background image overlay
@@ -148,52 +84,74 @@ props:
         40%: Medium
         60%: Strong
         75%: Very strong
-    background_image:
-      $ref: json-schema-definitions://canvas.module/image
-      title: Background image (preferred)
-      type: object
-    media:
-      $ref: json-schema-definitions://canvas.module/image
-      title: Media (backup)
-      type: object
-      description: Optional Drupal media/renderable output used if Background image
-        is not provided.
-    padding_y:
+    background_color:
       type: string
-      title: Vertical padding
+      title: Background color
       enum:
-      - py-3
-      - py-4
-      - py-5
-      - py-6
+      - bg-none
+      - bg-primary text-white
+      - bg-secondary text-white
+      - bg-light
+      - bg-dark text-white
+      - bg-body-tertiary
+      - bg-info text-white
       meta:enum:
-        py-3: Small
-        py-4: Medium
-        py-5: Large
-        py-6: Extra large
-      default: py-5
-    container_width:
+        bg-none: None
+        bg-primary text-white: Primary
+        bg-secondary text-white: Secondary
+        bg-light: Light
+        bg-dark text-white: Dark
+        bg-body-tertiary: Muted
+        bg-info text-white: Accent
+      default: bg-none
+    content_color:
       type: string
-      title: Container width
+      title: Content color
+      description: Controls text color for heading, body text and actions.
       enum:
-      - container
-      - container-fluid
-      default: container
+      - auto
+      - text-body
+      - text-white
+      - text-dark
+      - text-primary
+      - text-secondary
+      - text-success
+      - text-danger
+      - text-warning
+      - text-info
+      - text-muted
+      default: auto
       meta:enum:
-        container: Normal
-        container-fluid: Full width
-
-    bg_edge2edge:
-      type: boolean
-      title: Background edge to edge
-      description: Adds the "bg-edge2edge" class to make the background image span edge to edge.
-      default: false
-
+        auto: Auto (based on background)
+        text-body: Body
+        text-white: White
+        text-dark: Dark
+        text-primary: Primary
+        text-secondary: Secondary
+        text-success: Success
+        text-danger: Danger
+        text-warning: Warning
+        text-info: Info
+        text-muted: Muted
+    text_align:
+      type: string
+      title: Text alignment
+      enum:
+      - text-center
+      - text-start
+      - text-end
+      meta:enum:
+        text-center: Center
+        text-start: Left
+        text-end: Right
+      default: text-center
+      examples:
+      - text-center
     button_text:
       type: string
       title: Button text (optional)
       description: Optional primary button label. If provided with Button URL, a Bootstrap button is rendered.
-      default: ''
+      default: bg-none
       examples:
       - Learn more
     button_url:
@@ -201,7 +159,7 @@ props:
       title: Button URL (optional)
       format: uri-reference
       description: Link for the primary button.
-      default: ''
+      default: bg-none
       examples:
       - https://example.com
     button_variant:
@@ -209,61 +167,39 @@ props:
       title: Button style
       description: Bootstrap button variant.
       enum:
-      - primary
-      - secondary
-      - success
-      - danger
-      - warning
-      - info
-      - light
-      - dark
-      - outline-primary
-      - outline-secondary
-      - outline-success
-      - outline-danger
-      - outline-warning
-      - outline-info
-      - outline-light
-      - outline-dark
-      - link
-      default: primary
+      - btn-primary
+      - btn-secondary
+      - btn-success
+      - btn-danger
+      - btn-warning
+      - btn-info
+      - btn-light
+      - btn-dark
+      - btn-outline-primary
+      - btn-outline-secondary
+      - btn-outline-success
+      - btn-outline-danger
+      - btn-outline-warning
+      - btn-outline-info
+      - btn-outline-light
+      - btn-outline-dark
+      - btn-link
+      default: btn-primary
       meta:enum:
-        primary: Primary
-        secondary: Secondary
-        success: Success
-        danger: Danger
-        warning: Warning
-        info: Info
-        light: Light
-        dark: Dark
-        outline-primary: Outline - Primary
-        outline-secondary: Outline - Secondary
-        outline-success: Outline - Success
-        outline-danger: Outline - Danger
-        outline-warning: Outline - Warning
-        outline-info: Outline - Info
-        outline-light: Outline - Light
-        outline-dark: Outline - Dark
-        link: Link
-    button_size:
-      type: string
-      title: Button size
-      description: Bootstrap button size.
-      enum: [default, sm, lg]
-      default: default
-      meta:enum:
-        default: Default
-        sm: Small
-        lg: Large
-    button_new_tab:
-      type: boolean
-      title: Open button in new tab
-      default: false
-    extra_classes:
-      type: string
-      title: Extra classes
-      description: Space separated classes (Bootstrap utilities allowed).
-      default: ''
-slots:
-  actions:
-    title: Buttons
+        btn-primary: Primary
+        btn-secondary: Secondary
+        btn-success: Success
+        btn-danger: Danger
+        btn-warning: Warning
+        btn-info: Info
+        btn-light: Light
+        btn-dark: Dark
+        btn-outline-primary: Outline primary
+        btn-outline-secondary: Outline secondary
+        btn-outline-success: Outline success
+        btn-outline-danger: Outline danger
+        btn-outline-warning: Outline warning
+        btn-outline-info: Outline info
+        btn-outline-light: Outline light
+        btn-outline-dark: Outline dark
+        btn-link: Link
