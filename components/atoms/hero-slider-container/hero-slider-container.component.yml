@@ -9,50 +9,11 @@ description: >
 props:
   type: object
   properties:
-    html_id:
-      type: string
-      title: HTML ID
-      description: Leave empty to auto-generate.
-      default: ""
-
-    section_padding_y:
-      type: string
-      title: Section vertical padding
-      enum: [py-0, py-3, py-4, py-5]
-      default: py-0
-      meta:enum:
-        py-0: None
-        py-3: Small
-        py-4: Medium
-        py-5: Large
-
-    container_type:
-      type: string
-      title: Container width
-      enum: [container, container-fluid, none]
-      default: none
-      meta:enum:
-        container: Container
-        container-fluid: Full width (container-fluid)
-        none: No container
-
     bg_edge2edge:
       type: boolean
       title: Edge-to-edge background
       examples: [true]
       default: true
-
-    media_position:
-      type: string
-      title: Media position
-      description: Default media position for slides (slides can override).
-      enum: [overlay, start, end, none]
-      default: overlay
-      meta:enum:
-        overlay: Overlay background
-        start: Image left
-        end: Image right
-        none: No media (text only)
 
     transition:
       type: string
@@ -105,16 +66,6 @@ props:
         '700': 700px
         '900': 900px
 
-    controller_shape:
-      type: string
-      title: Controller shape
-      enum: [round, square, pill]
-      default: round
-      meta:enum:
-        round: Round
-        square: Square
-        pill: Pill
-
     controller_color:
       type: string
       title: Controller color
@@ -125,12 +76,6 @@ props:
         light: Light
         dark: Dark
         white: White
-
-    extra_classes:
-      type: string
-      title: Extra classes
-      description: Space separated classes (Bootstrap utilities allowed).
-      default: ""
 
 slots:
   slides:

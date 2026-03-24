@@ -90,7 +90,7 @@
       // - start => image left, content right => offset the nav to the right.
       // - end   => image right, content left  => no offset.
       if (layout === 'start') {
-        navCol.className = 'col-12 col-lg-6 offset-lg-6 add-custom-px-4';
+        navCol.className = 'col-12 col-lg-6 offset-lg-6 hero-slider__nav-col--offset';
       } else if (layout === 'end') {
         navCol.className = 'col-12 col-lg-6';
       } else {

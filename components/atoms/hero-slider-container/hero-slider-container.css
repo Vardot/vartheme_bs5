@@ -1,231 +1,196 @@
-/* Hero Slider styles (compiled from scss/hero-slider.scss) */
-.hero-slider .carousel-control-prev,
-.hero-slider .carousel-control-next{width:auto;opacity:1}
-.hero-slider .hero-slider__control-btn{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;border:2px solid rgba(255,255,255,.6);background:transparent;color:var(--hero-controller-color,#fff);line-height:1;transition:transform 120ms ease,border-color 120ms ease,opacity 120ms ease;user-select:none}
-.hero-slider .hero-slider__control-btn:hover{transform:scale(1.04);border-color:rgba(255,255,255,.85)}
-.hero-slider .carousel-indicators [data-bs-target]{width:10px;height:10px;border-radius:999px;border:1px solid currentColor;background:transparent;color:var(--hero-controller-color,#fff);opacity:.85;margin:0 6px}
-.hero-slider .carousel-indicators .active{background:currentColor;opacity:1}
-.hero-slider img{max-width:100%;height:auto;display:block}
-
-.hero-slider [data-hero-layout="none"] .hero-slider__caption{color:var(--bs-body-color)}
-
-.hero-slider .hero-slider__nav{position:relative;margin-top:-3.25rem;pointer-events:none}
-.hero-slider .hero-slider__nav .hero-slider__nav-inner{pointer-events:auto;display:flex;align-items:center;gap:.75rem}
-
-/* Controller color modifiers */
-.hero-slider.hero-slider--controller-primary{--hero-controller-color:var(--bs-primary)}
-.hero-slider.hero-slider--controller-light{--hero-controller-color:var(--bs-light)}
-.hero-slider.hero-slider--controller-dark{--hero-controller-color:var(--bs-dark)}
-.hero-slider.hero-slider--controller-white{--hero-controller-color:var(--bs-white)}
-/* Height presets */
-.hero-slider.hero-slider--h-500 .hero-slider__item{height:500px;min-height:500px}
-.hero-slider.hero-slider--h-700 .hero-slider__item{height:700px;min-height:700px}
-.hero-slider.hero-slider--h-900 .hero-slider__item{height:900px;min-height:900px}
-/* Image fit/position modifiers */
-.hero-slider .hero-slider__img-fit-cover{object-fit:cover}
-.hero-slider .hero-slider__img-fit-contain{object-fit:contain}
-.hero-slider .hero-slider__img-pos-top{object-position:top}
-.hero-slider .hero-slider__img-pos-center{object-position:center}
-.hero-slider .hero-slider__img-pos-bottom{object-position:bottom}
-
-
-/*
-  IMPORTANT (responsive fix):
-  Keep the same desktop structure, but on small screens for split layouts (start/end)
-  the nav (indicators + arrows) must appear AFTER the slide content/media.
-
-  We achieve this without changing Bootstrap markup expectations by making the
-  carousel a flex-column container and ordering:
-  - .carousel-inner first
-  - .hero-slider__nav second
-
-  On desktop, the nav is absolutely positioned, so this ordering does not
-  affect layout.
-*/
+/**
+ * Hero Slider styles (source SCSS)
+ * Canvas + SDC compliant.
+ *
+ * Notes:
+ * - Scoped to `.hero-slider`.
+ * - Uses CSS logical properties where practical.
+ * - Keeps existing visual behaviour intact.
+ */
 .hero-slider {
   display: flex;
   flex-direction: column;
 }
-.hero-slider .carousel-inner { order: 1; }
-.hero-slider .hero-slider__nav { order: 2; }
-@media (min-width: 992px) {
+.hero-slider.hero-slider--controller-primary {
+  --hero-controller-color: var(--bs-primary);
 }
-
-@media (max-width: 991.98px) {
-.hero-slider .hero-slider__item { min-height: auto !important; height: auto !important; }
+.hero-slider.hero-slider--controller-light {
+  --hero-controller-color: var(--bs-light);
 }
-/* Overlay gradient (design match) */
-.hero-slider .hero-slider__overlay-gradient {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, rgba(0,0,0,.75) 0%, rgba(0,0,0,.45) 42%, rgba(0,0,0,0) 75%);
-  pointer-events: none;
+.hero-slider.hero-slider--controller-dark {
+  --hero-controller-color: var(--bs-dark);
 }
-
-/* Bottom nav (indicators + controls)
-    - Overlay slides: nav aligns to the content container (not full-bleed).
-    - Split slides: nav aligns under the content column (right side for image-left; left side for image-right).
-*/
+.hero-slider.hero-slider--controller-white {
+  --hero-controller-color: var(--bs-white);
+}
+.hero-slider.hero-slider--h-500 .hero-slider__item {
+  height: 500px;
+  min-height: 500px;
+}
+.hero-slider.hero-slider--h-700 .hero-slider__item {
+  height: 700px;
+  min-height: 700px;
+}
+.hero-slider.hero-slider--h-900 .hero-slider__item {
+  height: 900px;
+  min-height: 900px;
+}
+.hero-slider .hero-slider__img-fit-cover {
+  object-fit: cover;
+}
+.hero-slider .hero-slider__img-pos-center {
+    object-position: center;
+}
+.hero-slider .carousel-inner {
+  order: 1;
+}
 .hero-slider .hero-slider__nav {
+  order: 2;
   position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 2.5rem;
+  inset-inline: 0;
+  inset-block-end: 2.5rem;
   z-index: 5;
   pointer-events: none;
 }
-.hero-slider .hero-slider__nav * { pointer-events: auto; }
+.hero-slider .hero-slider__nav * {
+  pointer-events: auto;
+}
 .hero-slider .hero-slider__nav-inner {
-  /* Use CSS grid to prevent indicators/controls overlap on tight widths */
   display: grid;
   grid-template-columns: 1fr auto;
   align-items: center;
   column-gap: 1.25rem;
-  row-gap: .75rem;
+  row-gap: 0.75rem;
 }
-
-/* Indicators + controls placement inside the grid */
-.hero-slider .carousel-indicators { justify-content: flex-start; }
-.hero-slider .hero-slider__controls { justify-content: flex-end; }
-
-/* Split layouts (image left/right): on mobile, nav should sit BELOW the slider,
-    not overlay the media/content (prevents arrows/indicators overlap issues).
-    NOTE: The active layout is set by JS via data-hero-active-layout. */
-@media (max-width: 991.98px) {
-  /* Responsive height behavior:
-      Desktop uses fixed heights (500/700/900). On smaller screens that becomes too tall.
-      Override to auto height and add consistent vertical padding.
-      Also remove h-100 constraints used by split layouts so stacked mobile layout can size naturally.
-  */
-  .hero-slider .hero-slider__item { height: auto !important; }
-
-  /* Add standard vertical breathing room for split layouts on mobile without
-      insetting full-bleed overlay images. */
-  .hero-slider[data-hero-active-layout="start"] .hero-slider__item .container,
-  .hero-slider[data-hero-active-layout="end"] .hero-slider__item .container {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-  }
-  .hero-slider .hero-slider__item > .h-100,
-  .hero-slider .hero-slider__item .container.h-100,
-  .hero-slider .hero-slider__item .row.h-100 {
-    height: auto !important;
-  }
-  .hero-slider .hero-slider__img {
-    height: auto !important;
-  }
-
-  .hero-slider[data-hero-active-layout="start"] .hero-slider__nav,
-  .hero-slider[data-hero-active-layout="end"] .hero-slider__nav,
-  .hero-slider[data-hero-active-layout="none"] .hero-slider__nav {
-    position: relative;
-    left: auto;
-    right: auto;
-    bottom: auto;
-    margin-top: 1rem;
-    pointer-events: auto;
-  }
-
-  /* Keep desktop alignment on responsive too:
-      - indicators on the left
-      - arrows on the right
-  */
-  .hero-slider[data-hero-active-layout="start"] .hero-slider__nav-inner,
-  .hero-slider[data-hero-active-layout="end"] .hero-slider__nav-inner,
-  .hero-slider[data-hero-active-layout="none"] .hero-slider__nav-inner {
-    grid-template-columns: 1fr auto;
-  }
-
-  /* Hide pause icon on responsive (as per design). */
-  .hero-slider .hero-slider__control--pause {
-    display: none !important;
+@media (min-width: 992px) {
+  .hero-slider .hero-slider__nav-col--offset {
+    padding-inline-start: 1.8rem !important;
   }
 }
-
-/* Controls should follow the controller color variable (not the Bootstrap text-* class). */
-.hero-slider .hero-slider__controls .hero-slider__control {
-  color: var(--hero-controller-color) !important;
+.hero-slider .carousel-control-prev,
+.hero-slider .carousel-control-next {
+  width: auto;
+  opacity: 1;
+  display: none;
 }
-
-/* Indicators (requested):
-    - inactive: controller color ROUND border
-    - active: controller color FILLED (still round)
-*/
-.hero-slider .carousel-indicators { position: static; margin: 0; gap: .5rem; }
-.hero-slider .carousel-indicators [data-bs-target]{
-  width: 10px;
-  height: 10px;
+.hero-slider .carousel-indicators {
+  position: static;
+  justify-content: flex-start;
+  margin: 0;
+  gap: 0.5rem;
+}
+.hero-slider .carousel-indicators [data-bs-target] {
+  inline-size: 10px;
+  block-size: 10px;
   border-radius: 999px !important;
   border: 1px solid var(--hero-controller-color) !important;
   background-color: transparent !important;
+  color: var(--hero-controller-color, #fff);
   opacity: 1 !important;
   margin: 0;
 }
-.hero-slider .carousel-indicators [data-bs-target].active {
-  border-radius: 999px !important;
+.hero-slider .carousel-indicators .active {
+  background: currentColor;
   background-color: var(--hero-controller-color) !important;
   border-color: var(--hero-controller-color) !important;
+  opacity: 1;
 }
-
-/* Controls */
-/* Tight spacing between prev / pause / next (design match) */
-.hero-slider .hero-slider__controls { display: flex; align-items: center; gap: .35rem; }
-
+.hero-slider .hero-slider__controls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.35rem;
+}
 .hero-slider .hero-slider__control {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: auto;
-  height: 48px;
+  inline-size: auto;
+  block-size: 48px;
   border: 0;
   padding: 0;
   text-decoration: none;
-  /* Arrows use circle-fill icons, so the button itself stays transparent. */
   background: transparent;
   border-radius: 999px;
   box-shadow: none;
+  color: var(--hero-controller-color) !important;
 }
-.hero-slider .hero-slider__control:hover { opacity: .92; }
-/* Bigger arrow icons (design match) */
-.hero-slider .hero-slider__control svg { width: 34px; height: 34px; }
-
-/* Pause button: no background per requirement */
-.hero-slider .hero-slider__control--pause { background: transparent; box-shadow: none; }
-/* Bigger pause/play icon (design match) */
-.hero-slider .hero-slider__control--pause svg { width: 24px; height: 24px; }
-
-/* Icon color: inherited from the chosen controller color (text-* class). */
-.hero-slider .hero-slider__control svg path { fill: currentColor; }
-
-/* Play/Pause toggling */
-.hero-slider [data-hero-toggle="pause"] .icon-play { display: none; }
-.hero-slider [data-hero-toggle="pause"][data-paused="true"] .icon-pause { display: none; }
-.hero-slider [data-hero-toggle="pause"][data-paused="true"] .icon-play { display: inline; }
-
-/* Hide default bootstrap controls */
-.hero-slider .carousel-control-prev,
-.hero-slider .carousel-control-next { display: none; }
-/* Only apply the extra left padding on lg+ where the nav is offset under content */
-@media (min-width: 992px) {
-  .hero-slider .add-custom-px-4 { padding-left: 1.8rem !important; }
+.hero-slider .hero-slider__control:hover {
+  opacity: 0.92;
 }
-
-/* Responsive: No-media (text-only) must never have nav overlaying content.
-    We key off JS-managed data-hero-active-layout so per-slide overrides also work. */
+.hero-slider .hero-slider__control svg {
+  inline-size: 34px;
+  block-size: 34px;
+}
+.hero-slider .hero-slider__control svg path {
+  fill: currentColor;
+}
+.hero-slider .hero-slider__control--pause {
+  background: transparent;
+  box-shadow: none;
+}
+.hero-slider .hero-slider__control--pause svg {
+  inline-size: 24px;
+  block-size: 24px;
+}
+.hero-slider [data-hero-toggle=pause] .icon-play {
+  display: none;
+}
+.hero-slider [data-hero-toggle=pause][data-paused=true] .icon-pause {
+  display: none;
+}
+.hero-slider [data-hero-toggle=pause][data-paused=true] .icon-play {
+  display: inline;
+}
+.hero-slider img {
+  display: block;
+  max-inline-size: 100%;
+  block-size: auto;
+}
+.hero-slider [data-hero-layout=none] .hero-slider__caption {
+  color: var(--bs-body-color);
+}
+.hero-slider .hero-slider__overlay-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.45) 42%, rgba(0, 0, 0, 0) 75%);
+  pointer-events: none;
+}
 @media (max-width: 991.98px) {
-  .hero-slider[data-hero-active-layout="none"] .hero-slider__nav {
+  .hero-slider .hero-slider__item {
+    min-height: auto !important;
+    height: auto !important;
+  }
+  .hero-slider .hero-slider__item > .h-100,
+  .hero-slider .hero-slider__item .container.h-100,
+  .hero-slider .hero-slider__item .row.h-100,
+  .hero-slider .hero-slider__img {
+    height: auto !important;
+  }
+  .hero-slider[data-hero-active-layout=start] .hero-slider__item .container, .hero-slider[data-hero-active-layout=end] .hero-slider__item .container {
+    padding-block: 2rem;
+  }
+  .hero-slider[data-hero-active-layout=start] .hero-slider__nav, .hero-slider[data-hero-active-layout=end] .hero-slider__nav, .hero-slider[data-hero-active-layout=none] .hero-slider__nav {
+    position: relative;
+    inset: auto;
+    margin-block-start: 1rem;
+    pointer-events: auto;
+  }
+  .hero-slider[data-hero-active-layout=start] .hero-slider__nav-inner, .hero-slider[data-hero-active-layout=end] .hero-slider__nav-inner, .hero-slider[data-hero-active-layout=none] .hero-slider__nav-inner {
+    grid-template-columns: 1fr auto;
+  }
+  .hero-slider .hero-slider__control--pause {
+    display: none !important;
+  }
+}
+@media (max-width: 991.98px) {
+  .hero-slider[data-hero-active-layout=none] .hero-slider__nav {
     position: relative !important;
     inset: auto !important;
-    top: auto !important;
-    right: auto !important;
-    bottom: auto !important;
-    left: auto !important;
-    margin-top: 1rem !important;
-    padding-top: .25rem;
+    margin-block-start: 1rem !important;
+    padding-block-start: 0.25rem;
   }
-  .hero-slider[data-hero-active-layout="none"] .hero-slider__nav-inner {
-    width: 100%;
+  .hero-slider[data-hero-active-layout=none] .hero-slider__nav-inner {
+    inline-size: 100%;
   }
 }
-
-    

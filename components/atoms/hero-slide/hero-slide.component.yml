@@ -35,30 +35,6 @@ props:
       examples:
         - "<p>Elevate your digital experience with Varbase's dynamic design system, seamlessly blending aesthetic appeal with unparalleled functionality. Unleash the power of intuitive design for a compelling web presence.</p>"
 
-    button_text:
-      type: string
-      title: Button text
-      default: "Learn more"
-
-    button_url:
-      type: string
-      title: Button URL
-      format: uri-reference
-      default: "#"
-
-    button_variant:
-      type: string
-      title: Button style
-      enum: [btn-primary, btn-secondary, btn-light, btn-dark, btn-outline-light, btn-outline-dark]
-      default: btn-primary
-      meta:enum:
-        btn-primary: Primary
-        btn-secondary: Secondary
-        btn-light: Light
-        btn-dark: Dark
-        btn-outline-light: Outline light
-        btn-outline-dark: Outline dark
-
     media:
       $ref: json-schema-definitions://canvas.module/image
       type: object
@@ -69,12 +45,6 @@ props:
           width: 1600
           height: 700
 
-    extra_classes:
-      type: string
-      title: Extra classes
-      description: Space separated classes (Bootstrap utilities allowed).
-      default: ""
-
     media_position:
       type: string
       title: Media position (per slide)
@@ -84,18 +54,17 @@ props:
       meta:enum:
         inherit: Inherit from container
         overlay: Overlay background
-        start: Image left
-        end: Image right
+        start: Image start
+        end: Image end
         none: No media (text only)
 
     # --- Presentation settings (per slide) ---
     title_tag:
       type: string
       title: Title tag
-      enum: [h1, h2, h3, h4, h5, h6]
+      enum: [h2, h3, h4, h5, h6]
       default: h2
       meta:enum:
-        h1: H1
         h2: H2
         h3: H3
         h4: H4
@@ -115,41 +84,6 @@ props:
         h2: Heading 2
         h3: Heading 3
 
-    content_size:
-      type: string
-      title: Content text size
-      enum: [lead, fs-5, fs-6, small]
-      default: fs-6
-      meta:enum:
-        lead: Lead
-        fs-5: Large
-        fs-6: Normal
-        small: Small
-
-    content_padding_x:
-      type: string
-      title: Content horizontal padding
-      enum: [px-0, px-2, px-3, px-4, px-5]
-      default: px-0
-      meta:enum:
-        px-0: None
-        px-2: Small
-        px-3: Medium
-        px-4: Large
-        px-5: Extra large
-
-    content_padding_y:
-      type: string
-      title: Content vertical padding
-      enum: [py-0, py-2, py-3, py-4, py-5]
-      default: py-0
-      meta:enum:
-        py-0: None
-        py-2: Small
-        py-3: Medium
-        py-4: Large
-        py-5: Extra large
-
     content_max_width:
       type: string
       title: Content max width
@@ -159,16 +93,6 @@ props:
         narrow: Narrow
         normal: Normal
         wide: Wide
-
-    horizontal_alignment:
-      type: string
-      title: Horizontal alignment
-      enum: [start, center, end]
-      default: start
-      meta:enum:
-        start: Left
-        center: Center
-        end: Right
 
     vertical_alignment:
       type: string
@@ -227,25 +151,27 @@ props:
       title: Overlay opacity
       enum: [opacity-10, opacity-25, opacity-50, opacity-75, opacity-100]
       default: opacity-50
-
-    object_position:
+    
+    button_text:
       type: string
-      title: Image focal position
-      enum: [top, center, bottom]
-      default: center
-      meta:enum:
-        top: Top
-        center: Center
-        bottom: Bottom
+      title: Button text
+      default: "Learn more"
 
-    image_fit:
+    button_url:
       type: string
-      title: Image fit
-      enum: [cover, contain]
-      default: cover
+      title: Button URL
+      default: "#"
+
+    button_variant:
+      type: string
+      title: Button style
+      enum: [btn-primary, btn-secondary, btn-light, btn-dark]
+      default: btn-primary
       meta:enum:
-        cover: Cover
-        contain: Contain
+        btn-primary: Primary
+        btn-secondary: Secondary
+        btn-light: Light
+        btn-dark: Dark
 
 libraryOverrides:
   dependencies:
