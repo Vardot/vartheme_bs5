@@ -1,0 +1,22 @@
+import { Canvas, Meta, Story } from '@storybook/blocks';
+import * as HeroBillboardStories from './hero-billboard.stories.json';
+
+<Meta title="Components/Hero/Hero billboard" of={HeroBillboardStories} />
+
+# Hero billboard
+
+Hero billboard displays content over a background image with overlay controls and flexible content positioning.
+
+## Examples
+
+<Canvas>
+  <Story of={HeroBillboardStories.Default} />
+</Canvas>
+
+<Canvas>
+  <Story of={HeroBillboardStories.Centered} />
+</Canvas>
+
+<Canvas>
+  <Story of={HeroBillboardStories.EdgeToEdge} />
+</Canvas>

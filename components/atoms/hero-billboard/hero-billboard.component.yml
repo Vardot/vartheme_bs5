@@ -1,8 +1,7 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: Hero billboard
 group: Hero
-description: Bootstrap hero billboard with background image, overlay, and flexible
-  content positioning.
+description: Bootstrap hero billboard with background image, overlay, and flexible content positioning.
 props:
   type: object
   properties:
@@ -11,58 +10,57 @@ props:
       title: Container style
       description: Choose how the content is wrapped.
       enum:
-      - container
-      - container-fluid
-      - container-sm
-      - container-md
-      - container-lg
-      - container-xl
-      - container-xxl
-      - none
+        - container
+        - container-fluid
+        - container-sm
+        - container-md
+        - container-lg
+        - container-xl
+        - container-xxl
+        - none
       default: container
       examples:
-      - container
+        - container
       meta:enum:
         container: Container (default)
         container-fluid: Full width
-        container-sm: Container sm
-        container-md: Container md
-        container-lg: Container lg
-        container-xl: Container xl
-        container-xxl: Container xxl
-        none: No container (full width content)
+        container-sm: Small container
+        container-md: Medium container
+        container-lg: Large container
+        container-xl: Extra large container
+        container-xxl: Extra extra large container
+        none: No container
     bg_edge2edge:
       type: boolean
       title: Background edge-to-edge
-      description: If enabled, adds the bg-edge2edge class to the outer section so
-        the background image can extend full width.
+      description: If enabled, adds the bg-edge2edge class to the outer section so the background image can extend full width.
       default: false
       examples:
-      - false
+        - false
     height:
       type: string
       title: Hero height
+      description: Choose the vertical size of the hero.
       enum:
-      - ribbon
-      - large
+        - ribbon
+        - large
       default: ribbon
       examples:
-      - ribbon
+        - ribbon
       meta:enum:
         ribbon: Ribbon (default)
         large: Large
-      description: Choose the vertical size of the hero (Ribbon is the default).
     flex_position:
       type: string
       title: Content position
       enum:
-      - top-left
-      - center-left
-      - bottom-left
-      - hero-center
+        - top-left
+        - center-left
+        - bottom-left
+        - hero-center
       default: center-left
       examples:
-      - center-left
+        - center-left
       meta:enum:
         top-left: Top left
         center-left: Center left
@@ -74,15 +72,15 @@ props:
       description: Bootstrap background utility class.
       default: bg-dark
       enum:
-      - bg-dark
-      - bg-black
-      - bg-primary
-      - bg-secondary
-      - bg-success
-      - bg-danger
-      - bg-warning
-      - bg-info
-      - bg-white
+        - bg-dark
+        - bg-black
+        - bg-primary
+        - bg-secondary
+        - bg-success
+        - bg-danger
+        - bg-warning
+        - bg-info
+        - bg-white
       meta:enum:
         bg-dark: Dark
         bg-black: Black
@@ -99,11 +97,11 @@ props:
       description: Bootstrap opacity utility class.
       default: opacity-50
       enum:
-      - opacity-0
-      - opacity-25
-      - opacity-50
-      - opacity-75
-      - opacity-100
+        - opacity-0
+        - opacity-25
+        - opacity-50
+        - opacity-75
+        - opacity-100
       meta:enum:
         opacity-0: 0% (none)
         opacity-25: 25%
@@ -116,10 +114,10 @@ props:
       description: Bootstrap width utility class.
       default: w-100
       enum:
-      - w-100
-      - w-75
-      - w-50
-      - w-25
+        - w-100
+        - w-75
+        - w-50
+        - w-25
       meta:enum:
         w-100: 100% (full)
         w-75: 75%
@@ -129,12 +127,12 @@ props:
       type: string
       title: Background image position
       enum:
-      - top
-      - center
-      - bottom
+        - top
+        - center
+        - bottom
       default: center
       examples:
-      - center
+        - center
       meta:enum:
         top: Top
         center: Center
@@ -144,20 +142,10 @@ props:
       title: Background image
       type: object
       examples:
-      - src: assets/hero-bg-placeholder.svg
-        alt: Placeholder image
-        width: 1920
-        height: 1075
-    html_id:
-      type: string
-      title: HTML ID
-      description: Optional ID attribute for the outer section.
-      default: ''
-    extra_classes:
-      type: string
-      title: Extra CSS classes
-      description: Additional Bootstrap/utility classes (space separated).
-      default: ''
+        - src: assets/hero-bg-placeholder.svg
+          alt: Placeholder image
+          width: 1920
+          height: 1075
 slots:
   hero_slot:
     title: Hero content

@@ -1,0 +1,15 @@
+{% embed 'vartheme_bs5:hero-billboard' with {
+  container_type: container_type,
+  bg_edge2edge: bg_edge2edge,
+  height: height,
+  flex_position: flex_position,
+  overlay_bg: overlay_bg,
+  overlay_opacity: overlay_opacity,
+  content_width: content_width,
+  object_position: object_position,
+  media: media
+} %}
+  {% block hero_slot %}
+    {{ hero_slot|raw }}
+  {% endblock %}
+{% endembed %}

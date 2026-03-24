@@ -1,89 +1,12 @@
-{#
-  Hero Billboard (Bootstrap 5)
-
-  Props:
-  - container_type
-  - height: ribbon|large
-  - flex_position: top-left|center-left|bottom-left|hero-center
-  - overlay_bg: Bootstrap bg-* class
-  - overlay_opacity: Bootstrap opacity-* class
-  - content_width: Bootstrap w-* class
-  - object_position: top|center|bottom
-  - bg_edge2edge: add bg-edge2edge class
-  - media: background image (optional)
-  - html_id
-  - extra_classes
-
-  Slot:
-  - hero_slot: content
-#}
-
 {% set hero_height = height|default('ribbon') %}
 {% set hero_position = flex_position|default('center-left') %}
 {% set hero_object_position = object_position|default('center') %}
 {% set container_class = container_type|default('container') %}
-
 {% set overlay_bg_class = overlay_bg|default('bg-dark') %}
 {% set overlay_opacity_class = overlay_opacity|default('opacity-50') %}
 {% set content_width_class = content_width|default('w-100') %}
 
-{#
-  Canvas/preview environments often auto-resize an iFrame to match its content.
-  Using viewport units (vh/svh/dvh) inside an auto-resizing iFrame can create a
-  feedback loop where the iFrame keeps growing ("infinite scroll").
-
-  Drupal exposes an `in_preview` Twig variable in various preview contexts.
-  When previewing in Canvas, we avoid viewport height units to prevent iFrame auto-resize loops.
-#}
-{% set _route = (app is defined and app.request is defined) ? (app.request.attributes.get('_route')|default('')) : '' %}
-{% set _path = (app is defined and app.request is defined) ? (app.request.pathinfo|default('')) : '' %}
-{% set _uri  = (app is defined and app.request is defined) ? (app.request.uri|default('')) : '' %}
-{% set _canvas_q = (app is defined and app.request is defined) ? (app.request.query.get('canvas')|default('')) : '' %}
-
-{# Canvas route names and paths can vary by setup; detect both route + URL/path clues. #}
-{% set is_canvas_route = (_route matches '/^canvas[._]/') or (_route matches '/canvas/i') %}
-{% set is_canvas_path  = (_path matches '#/canvas(/|$)#') or (_uri matches '#/canvas(/|$)#') %}
-{% set is_sdc_library = (_route matches '/sdc_component_library/i') or (_path matches '/sdc_component_library/i') %}
-
-{% set is_preview = in_preview|default(false) or is_canvas_route or is_canvas_path or is_sdc_library or _canvas_q %}
-
-{# Build classes safely #}
-{% set class_list = [
-  'hero-billboard',
-  'position-relative',
-  (is_preview ? 'overflow-auto' : 'overflow-hidden'),
-  'd-flex'
-] %}
-
-{% if bg_edge2edge|default(false) %}
-  {% set class_list = class_list|merge(['bg-edge2edge']) %}
-{% endif %}
-
-{% if extra_classes is defined and extra_classes is not empty %}
-  {% set class_list = class_list|merge(extra_classes|split(' ')) %}
-{% endif %}
-
-{# Height strategy:
-  Canvas/preview iFrames commonly auto-resize to match content height.
-  Using viewport units (vh/svh/dvh) inside an auto-resizing iFrame can
-  create a feedback loop that grows the iFrame forever ("infinite scrolling").
-
-  So:
-  - In preview: use fixed pixel min-heights (stable, no viewport dependency)
-  - On the real page: use viewport units for the intended design
-#}
-{% set hero_size_style = is_preview
-  ? (hero_height == 'large'
-      ? 'min-height: 300px; max-height: 640px; overscroll-behavior: contain;'
-      : 'max-height: 640px; overscroll-behavior: contain;'
-    )
-  : (hero_height == 'large'
-      ? 'min-height: 70vh;'
-      : 'min-height: 45vh;'
-    )
-%}
-
-{% set v_align = {
+{% set vertical_align_class = {
   'top-left': 'justify-content-start',
   'center-left': 'justify-content-center',
   'bottom-left': 'justify-content-end',
@@ -91,17 +14,24 @@
 }[hero_position]|default('justify-content-center') %}
 
 {% set center_mode = hero_position == 'hero-center' %}
-{% set text_align = center_mode ? 'text-center' : 'text-start' %}
-{% set content_align = center_mode ? 'align-items-center' : 'align-items-start' %}
+{% set text_align_class = center_mode ? 'text-center' : 'text-start' %}
+{% set content_align_class = center_mode ? 'align-items-center' : 'align-items-start' %}
 
-{% set object_pos = {
-  'top': '50% 0%',
-  'center': '50% 50%',
-  'bottom': '50% 100%'
-}[hero_object_position]|default('50% 50%') %}
+{% set hero_spacing_classes = hero_height == 'large'
+  ? ['py-5', 'py-lg-6']
+  : ['py-4', 'py-lg-5']
+%}
 
-{# Normalize Canvas media value: can be a string URL or an object/array (first render) #}
+{% set image_alignment_class = {
+  'top': 'align-self-start',
+  'center': 'align-self-center',
+  'bottom': 'align-self-end'
+}[hero_object_position]|default('align-self-center') %}
+
 {% set media_src = '' %}
+{% set media_alt = '' %}
+{% set media_width = '' %}
+{% set media_height = '' %}
 {% if media is defined %}
   {% if media.src is defined and media.src is not empty %}
     {% if media.src is iterable %}
@@ -112,38 +42,89 @@
   {% elseif media.url is defined and media.url is not empty %}
     {% set media_src = media.url %}
   {% endif %}
+  {% set media_alt = media.alt|default('') %}
+  {% set media_width = media.width|default('') %}
+  {% set media_height = media.height|default('') %}
 {% endif %}
 
+{% set section_attributes = create_attribute().addClass([
+  'position-relative',
+  'overflow-hidden',
+  'px-0',
+  'text-bg-dark',
+  bg_edge2edge|default(false) ? 'bg-edge2edge' : ''
+]|merge(hero_spacing_classes)) %}
 
+{% set media_layer_attributes = create_attribute().addClass([
+  'position-absolute',
+  'top-0',
+  'start-0',
+  'w-100',
+  'h-100',
+  'd-flex'
+]) %}
 
-<section
-  {% if html_id is defined and html_id is not empty %}id="{{ html_id }}"{% endif %}
-  class="{{ class_list|join(' ') }}"
-  style="{{ hero_size_style }}"
->
+{% set media_inner_attributes = create_attribute().addClass([
+  'w-100',
+  'h-100',
+  'd-flex',
+  image_alignment_class
+]) %}
+
+{% set overlay_attributes = create_attribute().addClass([
+  'position-absolute',
+  'top-0',
+  'start-0',
+  'w-100',
+  'h-100',
+  overlay_bg_class,
+  overlay_opacity_class
+]) %}
+
+{% set container_attributes = create_attribute().addClass([
+  container_class != 'none' ? container_class : '',
+  'position-relative'
+]) %}
+
+{% set content_outer_attributes = create_attribute().addClass([
+  'd-flex',
+  'w-100',
+  vertical_align_class,
+  content_align_class,
+  text_align_class
+]) %}
+
+{% set content_width_attributes = create_attribute().addClass([
+  content_width_class
+]) %}
+
+<section{{ section_attributes }}>
   {% if media_src is not empty %}
-    <div class="position-absolute top-0 start-0 end-0 bottom-0" aria-hidden="true">
-      <div class="position-absolute top-0 start-0 end-0 bottom-0 {{ overlay_bg_class }} {{ overlay_opacity_class }}"></div>
-
-      {% include 'canvas:image' ignore missing with {
-        src: media_src,
-        alt: media.alt,
-        width: media.width,
-        height: media.height,
-        class: 'w-100 h-100 object-fit-cover d-block',
-        attributes: create_attribute().setAttribute('style', 'object-position: ' ~ object_pos ~ ';')
-      } only %}
+    <div{{ media_layer_attributes }} aria-hidden="true">
+      <div{{ media_inner_attributes }}>
+        {% include 'vartheme_bs5:image' ignore missing with {
+          media: {
+            src: media_src,
+            alt: media_alt,
+            width: media_width,
+            height: media_height
+          },
+          width: 'w-100',
+          fit: 'object-fit-cover',
+          align: 'me-auto',
+          rounded: 'rounded-0',
+          ratio: 'ratio-auto',
+          loading: 'eager'
+        } only %}
+      </div>
+      <div{{ overlay_attributes }}></div>
     </div>
   {% endif %}
 
-  {# Content layer #}
-  <div class="{{ container_class != 'none' ? container_class : '' }} position-relative d-flex flex-grow-1">
-    <div class="d-flex flex-grow-1 {{ v_align }} {{ content_align }} {{ text_align }}">
-      {# Full hero should NOT push page height; allow internal scroll if needed #}
-      <div class="{{ content_width_class }}">
-        <div class="{{ hero_height == 'ribbon' ? 'py-4' : 'py-5' }}">
-          {% block hero_slot %}{% endblock %}
-        </div>
+  <div{{ container_attributes }}>
+    <div{{ content_outer_attributes }}>
+      <div{{ content_width_attributes }}>
+        {% block hero_slot %}{% endblock %}
       </div>
     </div>
   </div>
