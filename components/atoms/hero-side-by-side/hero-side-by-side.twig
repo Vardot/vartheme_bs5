@@ -1,159 +1,116 @@
 {#
-  Hero Side-by-Side (Bootstrap-only)
-
-  Canvas media values can arrive in different shapes on first render (string vs object/array).
-  This template normalizes both the main image and background image so the media shows
-  immediately after upload.
+  Hero Side by Side
 #}
 
-{# ---- Defaults / normalization ---- #}
 {% set bg_edge2edge = bg_edge2edge|default(false) %}
-{% set background_color = background_color|default('white') %}
-{% set content_color = content_color|default('dark') %}
-{% set background_image = background_image|default({}) %}
-{% set background_overlay_color = background_overlay_color|default('none') %}
+{% set heading_level = heading_level|default(2) %}
+{% set image_position = image_position|default('right') %}
+{% set align = align|default('text-start') %}
+{% set background_color = background_color|default('bg-white') %}
+{% set content_color = content_color|default('text-dark') %}
+{% set background_overlay_color = background_overlay_color|default('bg-none') %}
 {% set background_overlay_opacity = background_overlay_opacity|default(50) %}
-{% set button_variant = button_variant|default('primary') %}
-{% set button_size = button_size|default('default') %}
-{% set vertical_padding = vertical_padding|default('md') %}
+{% set button_variant = button_variant|default('btn-primary') %}
+{% set button_outline = button_outline|default(false) %}
+{% set button_size = button_size|default('btn-md') %}
+{% set vertical_padding = vertical_padding|default('py-4') %}
 
-{% set heading_tag = heading_level == 2 ? 'h2' : (heading_level == 3 ? 'h3' : 'h1') %}
 {% set image_on_left = image_position == 'left' %}
-{% set text_align_class = align == 'center' ? 'text-center' : 'text-start' %}
+{% set has_background_image = background_image is defined and background_image is not empty %}
+{% set has_button = button_label is defined and button_label and button_url is defined and button_url %}
 
-{% set padding_class = vertical_padding == 'none' ? 'py-0' : (vertical_padding == 'sm' ? 'py-3' : (vertical_padding == 'lg' ? 'py-5' : 'py-4')) %}
-
-{#
-  Background image style (optional)
-  Canvas image objects can vary (string vs object/array). Also handle public:// style URIs.
-#}
-{% set bg_style = '' %}
-{% set bg_src = '' %}
-
-{# Resolve background_image into a string URL/URI #}
-{% set _bg = background_image|default('') %}
-
-{% if _bg is not empty %}
-  {# Allow background_image to be a direct string #}
-  {% if _bg is not iterable and _bg is not same as(false) %}
-    {% set bg_src = _bg %}
-  {% else %}
-    {# Try common keys: src/url/uri/value/path #}
-    {% set _bg_raw = _bg.src|default(_bg.url|default(_bg.uri|default(_bg.value|default(_bg.path|default(''))))) %}
-
-    {% if _bg_raw is iterable %}
-      {% set bg_src = _bg_raw.url|default(_bg_raw.uri|default(_bg_raw.value|default(_bg_raw.path|default(_bg_raw.0|default(''))))) %}
-    {% else %}
-      {% set bg_src = _bg_raw %}
-    {% endif %}
-  {% endif %}
+{% set heading_props = {
+  heading_text: heading|default(''),
+  level: heading_level,
+  align: align
+} %}
+{% if content_color in ['text-primary', 'text-secondary', 'text-success', 'text-danger', 'text-warning', 'text-info', 'text-muted', 'text-white', 'text-dark'] %}
+  {% set heading_props = heading_props|merge({ text_color: content_color }) %}
 {% endif %}
 
-{% if bg_src %}
-  {# Convert stream wrappers to real URLs when needed. #}
-  {% if bg_src starts with 'public://' or bg_src starts with 'private://' %}
-    {% set bg_src = file_url(bg_src) %}
-  {% endif %}
-
-  {#
-    IMPORTANT:
-    - Do NOT escape as html_attr here, or Twig/Drupal will entity-encode the URL
-      (e.g. / becomes &#x2F;), which breaks CSS background-image.
-    - Escape for CSS context, and mark the final style attribute as safe.
-  #}
-  {% set bg_style = "background-image: url('" ~ bg_src|e('css') ~ "'); background-size: cover; background-position: center;" %}
+{% set resolved_button_variant = button_variant %}
+{% if button_outline and button_variant != 'btn-link' %}
+  {% set resolved_button_variant = button_variant|replace({'btn-': 'btn-outline-'}) %}
 {% endif %}
 
-{# Section attributes #}
 {% set section_classes = [
   'hero-side-by-side',
-  padding_class,
   'position-relative',
   'overflow-hidden',
-  bg_edge2edge ? 'bg-edge2edge' : '',
-  background_color != 'none' ? 'bg-' ~ background_color : '',
-  content_color == 'light' ? 'text-light' : 'text-dark',
-  extra_classes|default('')
+  vertical_padding,
+  bg_edge2edge ? 'bg-edge2edge',
+  background_color != 'bg-none' ? background_color,
+  content_color
 ] %}
+{% set section_attributes = create_attribute().addClass(section_classes) %}
 
-{% set attrs = create_attribute().addClass(section_classes) %}
+{% set overlay_attributes = create_attribute().addClass([
+  'position-absolute', 'top-0', 'start-0', 'w-100', 'h-100',
+  background_overlay_color != 'bg-none' ? background_overlay_color,
+  'opacity-' ~ background_overlay_opacity
+]) %}
 
-{% if id is defined and id|trim %}
-  {% set attrs = attrs.setAttribute('id', id|trim) %}
-{% endif %}
+{% set container_attributes = create_attribute().addClass(['container', 'position-relative', 'z-1']) %}
+{% set row_attributes = create_attribute().addClass(['row', 'align-items-center', 'g-4', 'g-lg-5']) %}
+{% set text_col_attributes = create_attribute().addClass([
+  'col-lg-6',
+  image_on_left ? 'order-lg-2',
+  align,
+  'd-flex',
+  'flex-column',
+  'justify-content-center'
+]) %}
+{% set image_col_attributes = create_attribute().addClass([
+  'col-lg-6',
+  image_on_left ? 'order-lg-1'
+]) %}
+{% set text_wrap_attributes = create_attribute().addClass(['w-100']) %}
+{% set body_attributes = create_attribute().addClass(['mb-4', 'lead']) %}
 
-{% if bg_style %}
-  {% set attrs = attrs.setAttribute('style', bg_style|raw) %}
-{% endif %}
-
-<section{{ attrs }}>
-  {# Background overlay (optional) #}
-  {% if background_overlay_color != 'none' and bg_style %}
-    <div class="position-absolute top-0 start-0 w-100 h-100 bg-{{ background_overlay_color }} opacity-{{ background_overlay_opacity }}"></div>
+<section{{ section_attributes }}>
+  {% if background_overlay_color != 'bg-none' and has_background_image %}
+    <div{{ overlay_attributes }}></div>
   {% endif %}
 
-  <div class="container position-relative z-1">
-    <div class="row align-items-center g-4 g-lg-5">
+  <div{{ container_attributes }}>
+    <div{{ row_attributes }}>
+      <div{{ text_col_attributes }}>
+        <div{{ text_wrap_attributes }}>
+          {% if heading %}
+            {% include 'vartheme_bs5:heading' with heading_props only %}
+          {% endif %}
 
-      {# Text column #}
-      <div class="col-lg-6 {{ image_on_left ? 'order-lg-2' : '' }} {{ text_align_class }}">
-        {% if heading %}
-          <{{ heading_tag }} class="fw-bold mb-3">{{ heading }}</{{ heading_tag }}>
-        {% endif %}
+          {% if text %}
+            <div{{ body_attributes }}>{{ text|raw }}</div>
+          {% endif %}
 
-        {% if text %}
-          <div class="lead mb-4">{{ text|raw }}</div>
-        {% endif %}
-
-        {% if button_label and button_url %}
-          <a
-            href="{{ button_url|e }}"
-            class="btn btn-{{ button_variant }} {{ button_size == 'sm' ? 'btn-sm' : (button_size == 'lg' ? 'btn-lg' : '') }}"
-            target="{{ button_target == 'blank' ? '_blank' : '_self' }}"
-            {% if button_target == 'blank' %}rel="noopener noreferrer"{% endif %}
-          >
-            {{ button_label }}
-          </a>
-        {% endif %}
+          {% if has_button %}
+            {% include 'vartheme_bs5:button' with {
+              label: button_label,
+              href: button_url,
+              target: button_target|default('self'),
+              variant: button_variant,
+              outline: button_outline,
+              size: button_size,
+              alignment: align == 'text-center' ? 'center' : 'left'
+            } only %}
+          {% endif %}
+        </div>
       </div>
 
-      {# Image column #}
-      <div class="col-lg-6 {{ image_on_left ? 'order-lg-1' : '' }}">
-        {# Normalize image src from Canvas (string vs object/array) #}
-        {% set image_src = '' %}
-        {% set _img = image|default('') %}
-
-        {% if _img is not empty %}
-          {# Allow image to be a direct string #}
-          {% if _img is not iterable and _img is not same as(false) %}
-            {% set image_src = _img %}
-          {% else %}
-            {# Try common keys: src/url/uri/value/path #}
-            {% set _img_raw = _img.src|default(_img.url|default(_img.uri|default(_img.value|default(_img.path|default(''))))) %}
-
-            {% if _img_raw is iterable %}
-              {% set image_src = _img_raw.url|default(_img_raw.uri|default(_img_raw.value|default(_img_raw.path|default(_img_raw.0|default(''))))) %}
-            {% else %}
-              {% set image_src = _img_raw %}
-            {% endif %}
-          {% endif %}
-        {% endif %}
-
-        {% if image_src %}
-          {% if image_src starts with 'public://' or image_src starts with 'private://' %}
-            {% set image_src = file_url(image_src) %}
-          {% endif %}
-
-          {% include 'canvas:image' ignore missing with {
-            src: image_src,
-            alt: _img.alt|default(''),
-            width: _img.width|default(null),
-            height: _img.height|default(null),
-            class: 'img-fluid rounded'
+      <div{{ image_col_attributes }}>
+        {% if image is defined and image is not empty %}
+          {% include 'vartheme_bs5:image' with {
+            media: image,
+            ratio: 'ratio-auto',
+            fit: 'object-fit-cover',
+            align: 'me-auto',
+            width: 'w-100',
+            rounded: 'rounded-3',
+            loading: 'lazy'
           } only %}
         {% endif %}
       </div>
-
     </div>
   </div>
 </section>
