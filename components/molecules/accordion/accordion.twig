@@ -39,8 +39,6 @@
 {% set expanded_item_index = expanded_item_index ? expanded_item_index : 0 %}
 {% set accordion_utility_classes = accordion_utility_classes ? accordion_utility_classes : [] %}
 
-
-
 {# Accordion wrapper #}
 {%
   set classes = [
@@ -75,11 +73,11 @@
 
       {% set title_attributes = title_attributes.addClass(title_classes) %}
 
-      {% include "vartheme_bs5:heading" with {
+      {{ include('vartheme_bs5:heading', {
           html_tag: title_tag,
           content: title,
-          attributes: title_attributes
-       } only %}
+          attributes: title_attributes,
+       }, false) }}
 
     {% endif %}
 
@@ -99,7 +97,7 @@
 {% if items is not empty %}
   <div{{ attributes }}>
     {% for item in items %}
-      {% include "vartheme_bs5:accordion-item" with {
+      {{ include('vartheme_bs5:accordion-item', {
         item_id: item.id ? item.id : '',
         accordion_id: accordion_id,
         header_tag: header_tag,
@@ -107,7 +105,7 @@
         expanded: (loop.index == expanded_item_index or item.expanded) ? true : false,
         header: item.header ? item.header : '',
         body: item.body ? item.body : '',
-      } only %}
+      }, false) }}
     {% endfor %}
   </div>
 {% endif %}

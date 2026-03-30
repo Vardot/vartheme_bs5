@@ -24,13 +24,13 @@
   {% if title_prefix %}
     {{ title_prefix }}
   {% endif %}
-  {% include "vartheme_bs5:accordion" with {
+  {{ include('vartheme_bs5:accordion', {
     title_tag: title_tag,
     title: heading,
     header_tag: 'h4',
     items: items,
     toggle_all: toggle_all,
-  } only %}
+  }, false) }}
   {% if title_suffix %}
     {{ title_suffix }}
   {% endif %}

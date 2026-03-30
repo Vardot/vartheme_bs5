@@ -14,7 +14,7 @@
   'text-bg-warning',
   'text-bg-info',
   'text-bg-light',
-  'text-bg-dark'
+  'text-bg-dark',
 ] %}
 {% if variant not in variant_allowed %}
   {% set variant = 'text-bg-primary' %}
@@ -25,7 +25,7 @@
 {% set size_allowed = [
   'fs-6 px-2 py-1',
   'fs-6 px-3 py-2',
-  'fs-5 px-3 py-2'
+  'fs-5 px-3 py-2',
 ] %}
 {% if size not in size_allowed %}
   {% set size = 'fs-6 px-3 py-2' %}
@@ -90,7 +90,7 @@
   'text-nowrap',
   'lh-1',
   'me-3',
-  'align-middle'
+  'align-middle',
 ] %}
 {% if has_indicator %}
   {% set root_classes = root_classes|merge(['position-relative']) %}
@@ -107,7 +107,7 @@
   'badge',
   'rounded-pill',
   'text-bg-danger',
-  'badge__count'
+  'badge__count',
 ] %}
 {% set dot_indicator_classes = [
   'position-absolute',
@@ -118,7 +118,7 @@
   'border',
   'border-light',
   'rounded-circle',
-  'badge__dot'
+  'badge__dot',
 ] %}
 
 {# Attributes #}
@@ -138,13 +138,13 @@
 <{{ root_tag }}{{ root_attributes }}>
   {% if has_icon and is_icon_first %}
     <span{{ icon_wrapper_attributes }}>
-      {{ include('vartheme_bs5:icon', { icon: icon_value }, with_context = false) }}
+      {{ include('vartheme_bs5:icon', {icon: icon_value}, with_context: false) }}
     </span>
     <span{{ label_after_icon_attributes }}>{{ label }}</span>
   {% elseif has_icon and not is_icon_first %}
     <span>{{ label }}</span>
     <span{{ icon_after_wrapper_attributes }}>
-      {{ include('vartheme_bs5:icon', { icon: icon_value }, with_context = false) }}
+      {{ include('vartheme_bs5:icon', {icon: icon_value}, with_context: false) }}
     </span>
   {% else %}
     <span>{{ label }}</span>

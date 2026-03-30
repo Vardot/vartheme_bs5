@@ -33,11 +33,11 @@
 <div{{ attributes.addClass(classes) }}>
   {{ title_prefix }}
   {% if title %}
-    {% include "vartheme_bs5:heading" with {
+    {{ include('vartheme_bs5:heading', {
       attributes: title_attributes,
       content: title,
-      html_tag: title_tag
-    } only %}
+      html_tag: title_tag,
+    }, false) }}
   {% endif %}
   {{ title_suffix }}
   {% block content %}

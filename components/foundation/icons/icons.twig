@@ -13,7 +13,7 @@
   small: 24,
   medium: 32,
   large: 48,
-  'extra-large': 64
+  'extra-large': 64,
 } %}
 
 {% set resolved_size = size_map[icon_size]|default(size_map['small']) %}
@@ -26,8 +26,8 @@
       {
         size: resolved_size,
         color: icon_color|default('currentColor'),
-        alt: alt|default('')
-      }
+        alt: alt|default(''),
+      },
     )
   }}
 </div>

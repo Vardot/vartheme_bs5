@@ -88,23 +88,23 @@
   {% set justify_map = {
     start: 'justify-content-start',
     center: 'justify-content-center',
-    end: 'justify-content-end'
+    end: 'justify-content-end',
   } %}
   {% set align_map = {
     start: 'align-items-start',
     center: 'align-items-center',
-    end: 'align-items-end'
+    end: 'align-items-end',
   } %}
   {% set width_map = {
     narrow: 'col-lg-5',
     normal: 'col-lg-6',
-    wide: 'col-lg-7'
+    wide: 'col-lg-7',
   } %}
   {% set gap_map = {
     none: 'g-0',
     sm: 'g-2',
     md: 'g-3',
-    lg: 'g-4'
+    lg: 'g-4',
   } %}
 
   {% set content_wrap_class = mp == 'none' ? 'position-relative w-100 h-100' : 'position-absolute top-0 start-0 w-100 h-100' %}
@@ -142,11 +142,11 @@
     label: button_text_final,
     href: button_url_final,
     variant: button_variant|default('btn-primary'),
-    size: 'btn-md'
+    size: 'btn-md',
   } %}
 
   {% set item_attributes = create_attribute({
-    class: ['carousel-item']
+    class: ['carousel-item'],
   }) %}
   {% if active %}
     {% set item_attributes = item_attributes.addClass('active') %}
@@ -156,7 +156,7 @@
     .setAttribute('data-hero-layout', mp) %}
 
   {% set slide_item_attributes = create_attribute({
-    class: ['hero-slider__item', 'position-relative', 'w-100']
+    class: ['hero-slider__item', 'position-relative', 'w-100'],
   }) %}
   {% if mp != 'overlay' and bg_color %}
     {% set slide_item_attributes = slide_item_attributes.addClass(bg_color) %}
@@ -169,22 +169,22 @@
       'hero-slider__img-fit-' ~ img_fit,
       'hero-slider__img-pos-' ~ object_pos,
       'h-100',
-      'w-100'
+      'w-100',
     ],
     src: src_final,
     alt: alt_final,
     loading: 'lazy',
-    decoding: 'async'
+    decoding: 'async',
   }) %}
 
   {% set overlay_gradient_attributes = create_attribute({
     class: ['hero-slider__overlay-gradient'],
-    'aria-hidden': 'true'
+    'aria-hidden': 'true',
   }) %}
 
   {% set overlay_layer_attributes = create_attribute({
     class: ['position-absolute', 'top-0', 'start-0', 'w-100', 'h-100'],
-    'aria-hidden': 'true'
+    'aria-hidden': 'true',
   }) %}
   {% if overlay_classes %}
     {% set overlay_layer_attributes = overlay_layer_attributes.addClass(overlay_classes) %}
@@ -192,48 +192,48 @@
 
   {% set fallback_overlay_attributes = create_attribute({
     class: ['position-absolute', 'top-0', 'start-0', 'w-100', 'h-100', 'bg-black'],
-    'aria-hidden': 'true'
+    'aria-hidden': 'true',
   }) %}
 
   {% set split_fallback_attributes = create_attribute({
     class: ['w-100', 'h-100', 'bg-black'],
-    'aria-hidden': 'true'
+    'aria-hidden': 'true',
   }) %}
 
   {% set content_wrap_attributes = create_attribute({
-    class: [content_wrap_class, 'd-flex', justify_map[h_align], align_map[v_align], 'hero-slider__content-wrap']
+    class: [content_wrap_class, 'd-flex', justify_map[h_align], align_map[v_align], 'hero-slider__content-wrap'],
   }) %}
 
   {% set content_inner_attributes = create_attribute({
-    class: ['w-100', pad_y]
+    class: ['w-100', pad_y],
   }) %}
 
   {% set caption_attributes = create_attribute({
-    class: ['hero-slider__caption', text_align_res, text_color_res]
+    class: ['hero-slider__caption', text_align_res, text_color_res],
   }) %}
 
   {% set title_attributes = create_attribute({
-    class: ['hero-slider__title', title_size_res, 'mb-3']
+    class: ['hero-slider__title', title_size_res, 'mb-3'],
   }) %}
 
   {% set text_attributes = create_attribute({
-    class: ['hero-slider__text', content_size_res]
+    class: ['hero-slider__text', content_size_res],
   }) %}
 
   {% set cta_wrap_attributes = create_attribute({
-    class: ['mt-3']
+    class: ['mt-3'],
   }) %}
 
   {% set split_row_attributes = create_attribute({
-    class: ['row', 'h-100', 'align-items-stretch', gap_map[gap]]
+    class: ['row', 'h-100', 'align-items-stretch', gap_map[gap]],
   }) %}
 
   {% set media_frame_attributes = create_attribute({
-    class: ['h-100', 'w-100', 'position-relative']
+    class: ['h-100', 'w-100', 'position-relative'],
   }) %}
 
   {% set split_text_wrap_attributes = create_attribute({
-    class: ['w-100', 'd-flex', justify_map[h_align], align_map[v_align]]
+    class: ['w-100', 'd-flex', justify_map[h_align], align_map[v_align]],
   }) %}
 
   {% set content_col_class = width_map[max_w] %}
@@ -256,7 +256,7 @@
                 {% endif %}
                 {% if has_cta %}
                   <div{{ cta_wrap_attributes }}>
-                    {{ include('vartheme_bs5:button', cta_button_props, with_context = false) }}
+                    {{ include('vartheme_bs5:button', cta_button_props, with_context: false) }}
                   </div>
                 {% endif %}
               </div>
@@ -282,7 +282,7 @@
                 {% endif %}
                 {% if has_cta %}
                   <div{{ cta_wrap_attributes }}>
-                    {{ include('vartheme_bs5:button', cta_button_props, with_context = false) }}
+                    {{ include('vartheme_bs5:button', cta_button_props, with_context: false) }}
                   </div>
                 {% endif %}
               </div>

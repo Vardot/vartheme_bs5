@@ -22,7 +22,6 @@
 {{ attach_library('vartheme_bs5/accordion-scripts') }}
 {{ attach_library('vartheme_bs5/accordion-canvas-modules') }}
 
-
 {% set accordion_id = id|default('')|trim %}
 {% if accordion_id is empty %}
   {% set accordion_id = 'accordion-' ~ random(1000000) %}

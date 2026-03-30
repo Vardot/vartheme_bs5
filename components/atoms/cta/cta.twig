@@ -4,7 +4,7 @@
 {% set actions_class = {
   'text-start': 'justify-content-start',
   'text-center': 'justify-content-center',
-  'text-end': 'justify-content-end'
+  'text-end': 'justify-content-end',
 }[align_class]|default('justify-content-center') %}
 
 {% set bg_value = background_color|default('bg-none') %}
@@ -23,17 +23,17 @@
   'text-danger',
   'text-warning',
   'text-info',
-  'text-muted'
+  'text-muted',
 ] ? resolved_content_color : '' %}
 
 {% set heading_props = {
   heading_text: heading_text|default(''),
   level: level|default(2),
   align: align_class,
-  url: ''
+  url: '',
 } %}
 {% if heading_size is defined and heading_size is not empty %}
-  {% set heading_props = heading_props|merge({ text_size: heading_size }) %}
+  {% set heading_props = heading_props|merge({text_size: heading_size}) %}
 {% endif %}
 {% if resolved_content_color in [
   'text-primary',
@@ -44,9 +44,9 @@
   'text-info',
   'text-muted',
   'text-white',
-  'text-dark'
+  'text-dark',
 ] %}
-  {% set heading_props = heading_props|merge({ text_color: resolved_content_color }) %}
+  {% set heading_props = heading_props|merge({text_color: resolved_content_color}) %}
 {% endif %}
 
 {% set overlay_class = {
@@ -54,7 +54,7 @@
   '20%': 'bg-dark bg-opacity-25',
   '40%': 'bg-dark bg-opacity-50',
   '60%': 'bg-dark bg-opacity-75',
-  '75%': 'bg-dark bg-opacity-75'
+  '75%': 'bg-dark bg-opacity-75',
 }[overlay_opacity|default('40%')]|default('bg-dark bg-opacity-50') %}
 
 {% set btn_text = button_text|default('')|trim %}
@@ -65,12 +65,12 @@
 {% set btn_outline = 'btn-outline-' in btn_variant_value %}
 {% set btn_variant = btn_outline ? btn_variant_value|replace({'btn-outline-': 'btn-'}) : btn_variant_value %}
 {% set btn_size_value = {
-  'default': 'btn-md',
+  default: 'btn-md',
   'btn-md': 'btn-md',
   'btn-sm': 'btn-sm',
   'btn-lg': 'btn-lg',
-  'sm': 'btn-sm',
-  'lg': 'btn-lg'
+  sm: 'btn-sm',
+  lg: 'btn-lg',
 }[btn_size]|default('btn-md') %}
 {% set btn_target = btn_new_tab ? 'blank' : 'self' %}
 {% set has_primary_btn = btn_text and btn_url %}
@@ -94,34 +94,34 @@
   'overflow-hidden',
   'py-5',
   bg_class,
-  is_bg_edge2edge ? 'bg-edge2edge' : ''
+  is_bg_edge2edge ? 'bg-edge2edge' : '',
 ]|filter(v => v is not empty) %}
-{% set section_attributes = create_attribute({ class: section_classes }) %}
+{% set section_attributes = create_attribute({class: section_classes}) %}
 
 {% set background_media_attributes = create_attribute({
-  class: ['position-absolute', 'top-0', 'start-0', 'w-100', 'h-100']
+  class: ['position-absolute', 'top-0', 'start-0', 'w-100', 'h-100'],
 }) %}
 {% set overlay_attributes = create_attribute({
-  class: ['position-absolute', 'top-0', 'start-0', 'w-100', 'h-100', overlay_class]|filter(v => v is not empty)
+  class: ['position-absolute', 'top-0', 'start-0', 'w-100', 'h-100', overlay_class]|filter(v => v is not empty),
 }) %}
 {% set container_attributes = create_attribute({
-  class: ['container', 'position-relative']
+  class: ['container', 'position-relative'],
 }) %}
 {% set content_attributes = create_attribute({
-  class: ['col-12', 'col-lg-10', 'col-xl-8', 'mx-auto', align_class, content_text_class]|filter(v => v is not empty)
+  class: ['col-12', 'col-lg-10', 'col-xl-8', 'mx-auto', align_class, content_text_class]|filter(v => v is not empty),
 }) %}
 {% set text_attributes = create_attribute({
-  class: ['lead', 'mt-3', 'mb-0']
+  class: ['lead', 'mt-3', 'mb-0'],
 }) %}
 {% set actions_attributes = create_attribute({
-  class: ['d-flex', 'flex-wrap', 'gap-2', 'mt-4', actions_class]
+  class: ['d-flex', 'flex-wrap', 'gap-2', 'mt-4', actions_class],
 }) %}
 {% set bg_image_props = {
   src: bg_image ? bg_image.src : '',
   alt: bg_image and bg_image.alt is defined ? bg_image.alt : '',
   width: bg_image and bg_image.width is defined ? bg_image.width : null,
   height: bg_image and bg_image.height is defined ? bg_image.height : null,
-  class: 'w-100 h-100 object-fit-cover'
+  class: 'w-100 h-100 object-fit-cover',
 } %}
 
 <section{{ section_attributes }}>
@@ -130,7 +130,7 @@
       {% if overlay_class %}
         <div{{ overlay_attributes }}></div>
       {% endif %}
-      {% include 'canvas:image' ignore missing with bg_image_props only %}
+      {{ include('canvas:image', bg_image_props, false, true) }}
     </div>
   {% endif %}
 
@@ -153,7 +153,7 @@
                 outline: btn_outline,
                 size: btn_size_value,
                 target: btn_target,
-                alignment: 'inline'
+                alignment: 'inline',
               }, with_context: false) }}
             {% endif %}
             {{ slot_actions }}

@@ -1,342 +1,338 @@
 {% stories Pagination with {
-  "title": "Molecules/Pagination",
-  "parameters": {
-    "componentSubtitle": "Pagination",
-    "docs": {
-      "description": {
-        "component": "Show pagination to indicate a series of related content exists across multiple pages."
+  title: 'Molecules/Pagination',
+  parameters: {
+    componentSubtitle: 'Pagination',
+    docs: {
+      description: {
+        component: 'Show pagination to indicate a series of related content exists across multiple pages.',
       },
-      "story": {
-        "inline": true
-      }
-    }
+      story: {
+        inline: true,
+      },
+    },
   },
-  "argTypes": {
-    "size": {
-      "name": "Size",
-      "description": "Fancy larger or smaller pagination? Add .pagination-lg or .pagination-sm for additional sizes.",
-      "defaultValue": "",
-      "control": "select",
-      "options": {
-        "'- none -'": "",
-        "Small": "sm",
-        "Large": "lg"
-      }
+  argTypes: {
+    size: {
+      name: 'Size',
+      description: 'Fancy larger or smaller pagination? Add .pagination-lg or .pagination-sm for additional sizes.',
+      defaultValue: '',
+      control: 'select',
+      options: {
+        "'- none -'": '',
+        Small: 'sm',
+        Large: 'lg',
+      },
     },
-    "alignment": {
-      "name": "Alignment",
-      "description": "Change the alignment of pagination components with flex box utilities. For example, with .justify-content-center",
-      "defaultValue": "",
-      "control": "select",
-      "options": {
-        "'- none -'": "",
-        "Start": "start",
-        "End": "end",
-        "Center": "center",
-        "vertical": "vertical"
-      }
+    alignment: {
+      name: 'Alignment',
+      description: 'Change the alignment of pagination components with flex box utilities. For example, with .justify-content-center',
+      defaultValue: '',
+      control: 'select',
+      options: {
+        "'- none -'": '',
+        Start: 'start',
+        End: 'end',
+        Center: 'center',
+        vertical: 'vertical',
+      },
     },
-    "heading_id": {
-      "name": "Pagination heading ID.",
-      "defaultValue": "",
-      "control": "text"
+    heading_id: {
+      name: 'Pagination heading ID.',
+      defaultValue: '',
+      control: 'text',
     },
-    "items": {
-      "name": "List of pager items",
-      "description": "The list is keyed by the following elements (first, previous, next, last, pages) which they have href, attributes, text)",
-      "control": "object",
-      "defaultValue": {}
+    items: {
+      name: 'List of pager items',
+      description: 'The list is keyed by the following elements (first, previous, next, last, pages) which they have href, attributes, text)',
+      control: 'object',
+      defaultValue: {},
     },
-    "current": {
-      "name": "Current page",
-      "description": "The page number of the current page.",
-      "defaultValue": "",
-      "control": "text"
+    current: {
+      name: 'Current page',
+      description: 'The page number of the current page.',
+      defaultValue: '',
+      control: 'text',
     },
-    "ellipses": {
-      "name": "Ellipses",
-      "description": "If there are more pages than the quantity allows, then an ellipsis before or after the listed pages may be present. (previous, next)",
-      "control": "object",
-      "defaultValue": []
+    ellipses: {
+      name: 'Ellipses',
+      description: 'If there are more pages than the quantity allows, then an ellipsis before or after the listed pages may be present. (previous, next)',
+      control: 'object',
+      defaultValue: [],
     },
-    "pagination_utility_classes": {
-      "name": "Utility Classes",
-      "description": "An array of utility classes. Use to add extra Bootstrap utility classes or custom CSS classes over to this to this component.",
-      "control": "object",
-      "defaultValue": []
+    pagination_utility_classes: {
+      name: 'Utility Classes',
+      description: 'An array of utility classes. Use to add extra Bootstrap utility classes or custom CSS classes over to this to this component.',
+      control: 'object',
+      defaultValue: [],
     },
-    "attributes": {
-      "name": "Title Attributes",
-      "description": "HTML attributes for the title element.",
-      "control": "object",
-      "defaultValue": {}
-    }
-  }
+    attributes: {
+      name: 'Title Attributes',
+      description: 'HTML attributes for the title element.',
+      control: 'object',
+      defaultValue: {},
+    },
+  },
 } %}
-
 
 {% story Pagination with {
-  "name": "Pagination",
-  "args": {
-    "size": "",
-    "alignment": "center",
-    "items": {
-      "first": [
+  name: 'Pagination',
+  args: {
+    size: '',
+    alignment: 'center',
+    items: {
+      first: [
           {
-            "text": "First",
-            "href": "#",
-            "attributes": [
+            text: 'First',
+            href: '#',
+            attributes: [
               {
-                "title": "First",
-                "href": "#"
-              }
-            ]
-          }
+                title: 'First',
+                href: '#',
+              },
+            ],
+          },
       ],
-      "previous": [
+      previous: [
         {
-          "text": "Previous",
-          "href": "#",
-          "attributes": [
+          text: 'Previous',
+          href: '#',
+          attributes: [
             {
-              "title": "Previous",
-              "href": "#"
-            }
-          ]
-        }
+              title: 'Previous',
+              href: '#',
+            },
+          ],
+        },
       ],
-      "pages": {
-        "1": {
-          "text": "1",
-          "href": "#"
+      pages: {
+        1: {
+          text: '1',
+          href: '#',
         },
-        "2": {
-          "text": "2",
-          "href": "#"
+        2: {
+          text: '2',
+          href: '#',
         },
-        "3": {
-          "text": "3",
-          "href": "#"
+        3: {
+          text: '3',
+          href: '#',
         },
-        "4": {
-          "text": "4",
-          "href": "#"
+        4: {
+          text: '4',
+          href: '#',
         },
-        "5": {
-          "text": "5",
-          "href": "#"
-        }
+        5: {
+          text: '5',
+          href: '#',
+        },
       },
-      "next": [
+      next: [
         {
-          "text": "Next",
-          "href": "#",
-          "attributes": [
+          text: 'Next',
+          href: '#',
+          attributes: [
             {
-              "title": "Next",
-              "href": "#"
-            }
-          ]
-        }
+              title: 'Next',
+              href: '#',
+            },
+          ],
+        },
       ],
-      "last": [
+      last: [
         {
-          "text": "Last",
-          "href": "#",
-          "attributes": [
+          text: 'Last',
+          href: '#',
+          attributes: [
             {
-              "title": "Last",
-              "href": "#"
-            }
-          ]
-        }
-      ]
+              title: 'Last',
+              href: '#',
+            },
+          ],
+        },
+      ],
     },
-    "current": "2",
-    "ellipses": {
-      "next": true
+    current: '2',
+    ellipses: {
+      next: true,
     },
-    "pagination_utility_classes": []
-  }
+    pagination_utility_classes: [],
+  },
 } %}
 {{ include('vartheme_bs5:pagination') }}
 {% endstory %}
-
 
 {% story Small with {
-  "name": "Small",
-  "args": {
-    "size": "sm",
-    "alignment": "center",
-    "items": {
-      "first": [
+  name: 'Small',
+  args: {
+    size: 'sm',
+    alignment: 'center',
+    items: {
+      first: [
           {
-            "text": "First",
-            "href": "#",
-            "attributes": [
+            text: 'First',
+            href: '#',
+            attributes: [
                 {
-                  "title": "First",
-                  "href": "#"
-                }
-            ]
-          }
+                  title: 'First',
+                  href: '#',
+                },
+            ],
+          },
       ],
-      "previous": [
+      previous: [
           {
-            "text": "Previous",
-            "href": "#",
-            "attributes": [
+            text: 'Previous',
+            href: '#',
+            attributes: [
                 {
-                  "title": "Previous",
-                  "href": "#"
-                }
-            ]
-          }
+                  title: 'Previous',
+                  href: '#',
+                },
+            ],
+          },
       ],
-      "pages": {
-        "1": {
-          "text": "1",
-          "href": "#"
+      pages: {
+        1: {
+          text: '1',
+          href: '#',
         },
-        "2": {
-          "text": "2",
-          "href": "#"
+        2: {
+          text: '2',
+          href: '#',
         },
-        "3": {
-          "text": "3",
-          "href": "#"
+        3: {
+          text: '3',
+          href: '#',
         },
-        "4": {
-          "text": "4",
-          "href": "#"
+        4: {
+          text: '4',
+          href: '#',
         },
-        "5": {
-          "text": "5",
-          "href": "#"
-        }
+        5: {
+          text: '5',
+          href: '#',
+        },
       },
-      "next": [
+      next: [
           {
-            "text": "Next",
-            "href": "#",
-            "attributes": [
+            text: 'Next',
+            href: '#',
+            attributes: [
                 {
-                  "title": "Next",
-                  "href": "#"
-                }
-            ]
-          }
+                  title: 'Next',
+                  href: '#',
+                },
+            ],
+          },
       ],
-      "last": [
+      last: [
           {
-            "text": "Last",
-            "href": "#",
-            "attributes": [
+            text: 'Last',
+            href: '#',
+            attributes: [
                 {
-                  "title": "Last",
-                  "href": "#"
-                }
-            ]
-          }
-      ]
+                  title: 'Last',
+                  href: '#',
+                },
+            ],
+          },
+      ],
     },
-    "current": "2",
-    "ellipses": {
-      "next": true
+    current: '2',
+    ellipses: {
+      next: true,
     },
-    "pagination_utility_classes": []
-  }
+    pagination_utility_classes: [],
+  },
 } %}
 {{ include('vartheme_bs5:pagination') }}
 {% endstory %}
-
 
 {% story Large with {
-  "name": "Large",
-  "args": {
-    "size": "lg",
-    "alignment": "center",
-    "items": {
-      "first": [
+  name: 'Large',
+  args: {
+    size: 'lg',
+    alignment: 'center',
+    items: {
+      first: [
           {
-            "text": "First",
-            "href": "#",
-            "attributes": [
+            text: 'First',
+            href: '#',
+            attributes: [
                 {
-                  "title": "First",
-                  "href": "#"
-                }
-            ]
-          }
+                  title: 'First',
+                  href: '#',
+                },
+            ],
+          },
       ],
-      "previous": [
+      previous: [
           {
-            "text": "Previous",
-            "href": "#",
-            "attributes": [
+            text: 'Previous',
+            href: '#',
+            attributes: [
                 {
-                  "title": "Previous",
-                  "href": "#"
-                }
-            ]
-          }
+                  title: 'Previous',
+                  href: '#',
+                },
+            ],
+          },
       ],
-      "pages": {
-        "1": {
-          "text": "1",
-          "href": "#"
+      pages: {
+        1: {
+          text: '1',
+          href: '#',
         },
-        "2": {
-          "text": "2",
-          "href": "#"
+        2: {
+          text: '2',
+          href: '#',
         },
-        "3": {
-          "text": "3",
-          "href": "#"
+        3: {
+          text: '3',
+          href: '#',
         },
-        "4": {
-          "text": "4",
-          "href": "#"
+        4: {
+          text: '4',
+          href: '#',
         },
-        "5": {
-          "text": "5",
-          "href": "#"
-        }
+        5: {
+          text: '5',
+          href: '#',
+        },
       },
-      "next": [
+      next: [
           {
-            "text": "Next",
-            "href": "#",
-            "attributes": [
+            text: 'Next',
+            href: '#',
+            attributes: [
                 {
-                  "title": "Next",
-                  "href": "#"
-                }
-            ]
-          }
+                  title: 'Next',
+                  href: '#',
+                },
+            ],
+          },
       ],
-      "last": [
+      last: [
           {
-            "text": "Last",
-            "href": "#",
-            "attributes": [
+            text: 'Last',
+            href: '#',
+            attributes: [
                 {
-                  "title": "Last",
-                  "href": "#"
-                }
-            ]
-          }
-      ]
+                  title: 'Last',
+                  href: '#',
+                },
+            ],
+          },
+      ],
     },
-    "current": "2",
-    "ellipses": {
-      "next": true
+    current: '2',
+    ellipses: {
+      next: true,
     },
-    "pagination_utility_classes": []
-  }
+    pagination_utility_classes: [],
+  },
 } %}
 {{ include('vartheme_bs5:pagination') }}
 {% endstory %}
-
 
 {% endstories %}

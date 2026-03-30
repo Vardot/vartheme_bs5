@@ -4,8 +4,8 @@
     {{
       include('vartheme_bs5:heading', {
         html_tag: 'h3',
-        content: title
-      }, with_context = false)
+        content: title,
+      }, with_context: false)
     }}
   {% endif %}
 
@@ -15,8 +15,8 @@
       attributes: attributes,
       items: rows,
       list_utility_classes: list_utility_classes,
-      list_item_utility_classes: list_item_utility_classes
-    }, with_context = false)
+      list_item_utility_classes: list_item_utility_classes,
+    }, with_context: false)
   }}
 {% endif %}
 {% endapply %}

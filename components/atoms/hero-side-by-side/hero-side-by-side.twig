@@ -22,10 +22,10 @@
 {% set heading_props = {
   heading_text: heading|default(''),
   level: heading_level,
-  align: align
+  align: align,
 } %}
 {% if content_color in ['text-primary', 'text-secondary', 'text-success', 'text-danger', 'text-warning', 'text-info', 'text-muted', 'text-white', 'text-dark'] %}
-  {% set heading_props = heading_props|merge({ text_color: content_color }) %}
+  {% set heading_props = heading_props|merge({text_color: content_color}) %}
 {% endif %}
 
 {% set resolved_button_variant = button_variant %}
@@ -40,14 +40,14 @@
   vertical_padding,
   bg_edge2edge ? 'bg-edge2edge',
   background_color != 'bg-none' ? background_color,
-  content_color
+  content_color,
 ] %}
 {% set section_attributes = create_attribute().addClass(section_classes) %}
 
 {% set overlay_attributes = create_attribute().addClass([
   'position-absolute', 'top-0', 'start-0', 'w-100', 'h-100',
   background_overlay_color != 'bg-none' ? background_overlay_color,
-  'opacity-' ~ background_overlay_opacity
+  'opacity-' ~ background_overlay_opacity,
 ]) %}
 
 {% set container_attributes = create_attribute().addClass(['container', 'position-relative', 'z-1']) %}
@@ -58,11 +58,11 @@
   align,
   'd-flex',
   'flex-column',
-  'justify-content-center'
+  'justify-content-center',
 ]) %}
 {% set image_col_attributes = create_attribute().addClass([
   'col-lg-6',
-  image_on_left ? 'order-lg-1'
+  image_on_left ? 'order-lg-1',
 ]) %}
 {% set text_wrap_attributes = create_attribute().addClass(['w-100']) %}
 {% set body_attributes = create_attribute().addClass(['mb-4', 'lead']) %}
@@ -77,7 +77,7 @@
       <div{{ text_col_attributes }}>
         <div{{ text_wrap_attributes }}>
           {% if heading %}
-            {% include 'vartheme_bs5:heading' with heading_props only %}
+            {{ include('vartheme_bs5:heading', heading_props, false) }}
           {% endif %}
 
           {% if text %}
@@ -85,30 +85,30 @@
           {% endif %}
 
           {% if has_button %}
-            {% include 'vartheme_bs5:button' with {
+            {{ include('vartheme_bs5:button', {
               label: button_label,
               href: button_url,
               target: button_target|default('self'),
               variant: button_variant,
               outline: button_outline,
               size: button_size,
-              alignment: align == 'text-center' ? 'center' : 'left'
-            } only %}
+              alignment: align == 'text-center' ? 'center' : 'left',
+            }, false) }}
           {% endif %}
         </div>
       </div>
 
       <div{{ image_col_attributes }}>
         {% if image is defined and image is not empty %}
-          {% include 'vartheme_bs5:image' with {
+          {{ include('vartheme_bs5:image', {
             media: image,
             ratio: 'ratio-auto',
             fit: 'object-fit-cover',
             align: 'me-auto',
             width: 'w-100',
             rounded: 'rounded-3',
-            loading: 'lazy'
-          } only %}
+            loading: 'lazy',
+          }, false) }}
         {% endif %}
       </div>
     </div>

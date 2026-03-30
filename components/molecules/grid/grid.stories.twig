@@ -1,627 +1,627 @@
 {% stories Grid with {
-  "title": "Molecules/Grid",
-  "parameters": {
-    "componentSubtitle": "Standalone Bootstrap Grid component using responsive column utilities.",
-    "docs": {
-      "description": {
-        "component": "Component implementation for a grid using Bootstrap ~5.3.0 methods."
+  title: 'Molecules/Grid',
+  parameters: {
+    componentSubtitle: 'Standalone Bootstrap Grid component using responsive column utilities.',
+    docs: {
+      description: {
+        component: 'Component implementation for a grid using Bootstrap ~5.3.0 methods.',
       },
-      "story": {
-        "inline": true
-      }
-    }
+      story: {
+        inline: true,
+      },
+    },
   },
-  "argTypes": {
-    "items": {
-      "name": "Items",
-      "description": "An array of items to display in the Grid.",
-      "control": "object",
-      "defaultValue": []
+  argTypes: {
+    items: {
+      name: 'Items',
+      description: 'An array of items to display in the Grid.',
+      control: 'object',
+      defaultValue: [],
     },
-    "grid_utility_classes": {
-      "name": "Grid Row Utility Classes",
-      "description": "Use to add extra Bootstrap utility classes for the grid `row`. E.g. `row-cols-1 row-cols-sm-2 row-cols-md-4`. ( Do not add `grid`, or `row`).",
-      "control": "object",
-      "defaultValue": []
+    grid_utility_classes: {
+      name: 'Grid Row Utility Classes',
+      description: 'Use to add extra Bootstrap utility classes for the grid `row`. E.g. `row-cols-1 row-cols-sm-2 row-cols-md-4`. ( Do not add `grid`, or `row`).',
+      control: 'object',
+      defaultValue: [],
     },
-    "column_utility_classes": {
-      "name": "Column Utility Classes",
-      "description": "Use to add extra Bootstrap utility classes for the column `col`. E.g. `gy-4 g-sm-4` or `mb-4`. ( Do not add `col` or `col-[*]`).",
-      "control": "object",
-      "defaultValue": []
+    column_utility_classes: {
+      name: 'Column Utility Classes',
+      description: 'Use to add extra Bootstrap utility classes for the column `col`. E.g. `gy-4 g-sm-4` or `mb-4`. ( Do not add `col` or `col-[*]`).',
+      control: 'object',
+      defaultValue: [],
     },
-    "col_xs": {
-      "name": "Column width of items at xs breakpoint",
-      "description": "Set the number of columns each item should take up at the xs breakpoint and higher.",
-      "control": "select",
-      "options": {
-        "'None (or inherit from previous)'": "none",
-        "col": "col",
-        "'col-auto'": "col-auto",
-        "'col-1'": "col-1",
-        "'col-2'": "col-2",
-        "'col-3'": "col-3",
-        "'col-4'": "col-4",
-        "'col-5'": "col-5",
-        "'col-6'": "col-6",
-        "'col-7'": "col-7",
-        "'col-8'": "col-8",
-        "'col-9'": "col-9",
-        "'col-10'": "col-10",
-        "'col-11'": "col-11",
-        "'col-12'": "col-12"
+    col_xs: {
+      name: 'Column width of items at xs breakpoint',
+      description: 'Set the number of columns each item should take up at the xs breakpoint and higher.',
+      control: 'select',
+      options: {
+        "'None (or inherit from previous)'": 'none',
+        col: 'col',
+        "'col-auto'": 'col-auto',
+        "'col-1'": 'col-1',
+        "'col-2'": 'col-2',
+        "'col-3'": 'col-3',
+        "'col-4'": 'col-4',
+        "'col-5'": 'col-5',
+        "'col-6'": 'col-6',
+        "'col-7'": 'col-7',
+        "'col-8'": 'col-8',
+        "'col-9'": 'col-9',
+        "'col-10'": 'col-10',
+        "'col-11'": 'col-11',
+        "'col-12'": 'col-12',
       },
-      "defaultValue": "none"
+      defaultValue: 'none',
     },
-    "col_sm": {
-      "name": "Column width of items at sm breakpoint",
-      "description": "Set the number of columns each item should take up at the sm breakpoint and higher.",
-      "control": "select",
-      "options": {
-        "'None (or inherit from previous)'": "none",
-        "'col-sm'": "col-sm",
-        "'col-sm-auto'": "col-sm-auto",
-        "'col-sm-1'": "col-sm-1",
-        "'col-sm-2'": "col-sm-2",
-        "'col-sm-3'": "col-sm-3",
-        "'col-sm-4'": "col-sm-4",
-        "'col-sm-5'": "col-sm-5",
-        "'col-sm-6'": "col-sm-6",
-        "'col-sm-7'": "col-sm-7",
-        "'col-sm-8'": "col-sm-8",
-        "'col-sm-9'": "col-sm-9",
-        "'col-sm-10'": "col-sm-10",
-        "'col-sm-11'": "col-sm-11",
-        "'col-sm-12'": "col-sm-12"
+    col_sm: {
+      name: 'Column width of items at sm breakpoint',
+      description: 'Set the number of columns each item should take up at the sm breakpoint and higher.',
+      control: 'select',
+      options: {
+        "'None (or inherit from previous)'": 'none',
+        "'col-sm'": 'col-sm',
+        "'col-sm-auto'": 'col-sm-auto',
+        "'col-sm-1'": 'col-sm-1',
+        "'col-sm-2'": 'col-sm-2',
+        "'col-sm-3'": 'col-sm-3',
+        "'col-sm-4'": 'col-sm-4',
+        "'col-sm-5'": 'col-sm-5',
+        "'col-sm-6'": 'col-sm-6',
+        "'col-sm-7'": 'col-sm-7',
+        "'col-sm-8'": 'col-sm-8',
+        "'col-sm-9'": 'col-sm-9',
+        "'col-sm-10'": 'col-sm-10',
+        "'col-sm-11'": 'col-sm-11',
+        "'col-sm-12'": 'col-sm-12',
       },
-      "defaultValue": "none"
+      defaultValue: 'none',
     },
-    "col_md": {
-      "name": "Column width of items at md breakpoint",
-      "description": "Set the number of columns each item should take up at the md breakpoint and higher.",
-      "control": "select",
-      "options": {
-        "'None (or inherit from previous)'": "none",
-        "'col-md'": "col-md",
-        "'col-md-auto'": "col-md-auto",
-        "'col-md-1'": "col-md-1",
-        "'col-md-2'": "col-md-2",
-        "'col-md-3'": "col-md-3",
-        "'col-md-4'": "col-md-4",
-        "'col-md-5'": "col-md-5",
-        "'col-md-6'": "col-md-6",
-        "'col-md-7'": "col-md-7",
-        "'col-md-8'": "col-md-8",
-        "'col-md-9'": "col-md-9",
-        "'col-md-10'": "col-md-10",
-        "'col-md-11'": "col-md-11",
-        "'col-md-12'": "col-md-12"
+    col_md: {
+      name: 'Column width of items at md breakpoint',
+      description: 'Set the number of columns each item should take up at the md breakpoint and higher.',
+      control: 'select',
+      options: {
+        "'None (or inherit from previous)'": 'none',
+        "'col-md'": 'col-md',
+        "'col-md-auto'": 'col-md-auto',
+        "'col-md-1'": 'col-md-1',
+        "'col-md-2'": 'col-md-2',
+        "'col-md-3'": 'col-md-3',
+        "'col-md-4'": 'col-md-4',
+        "'col-md-5'": 'col-md-5',
+        "'col-md-6'": 'col-md-6',
+        "'col-md-7'": 'col-md-7',
+        "'col-md-8'": 'col-md-8',
+        "'col-md-9'": 'col-md-9',
+        "'col-md-10'": 'col-md-10',
+        "'col-md-11'": 'col-md-11',
+        "'col-md-12'": 'col-md-12',
       },
-      "defaultValue": "none"
+      defaultValue: 'none',
     },
-    "col_lg": {
-      "name": "Column width of items at lg breakpoint",
-      "description": "Set the number of columns each item should take up at the lg breakpoint and higher.",
-      "control": "select",
-      "options": {
-        "'None (or inherit from previous)'": "none",
-        "'col-lg'": "col-lg",
-        "'col-lg-auto'": "col-lg-auto",
-        "'col-lg-1'": "col-lg-1",
-        "'col-lg-2'": "col-lg-2",
-        "'col-lg-3'": "col-lg-3",
-        "'col-lg-4'": "col-lg-4",
-        "'col-lg-5'": "col-lg-5",
-        "'col-lg-6'": "col-lg-6",
-        "'col-lg-7'": "col-lg-7",
-        "'col-lg-8'": "col-lg-8",
-        "'col-lg-9'": "col-lg-9",
-        "'col-lg-10'": "col-lg-10",
-        "'col-lg-11'": "col-lg-11",
-        "'col-lg-12'": "col-lg-12"
+    col_lg: {
+      name: 'Column width of items at lg breakpoint',
+      description: 'Set the number of columns each item should take up at the lg breakpoint and higher.',
+      control: 'select',
+      options: {
+        "'None (or inherit from previous)'": 'none',
+        "'col-lg'": 'col-lg',
+        "'col-lg-auto'": 'col-lg-auto',
+        "'col-lg-1'": 'col-lg-1',
+        "'col-lg-2'": 'col-lg-2',
+        "'col-lg-3'": 'col-lg-3',
+        "'col-lg-4'": 'col-lg-4',
+        "'col-lg-5'": 'col-lg-5',
+        "'col-lg-6'": 'col-lg-6',
+        "'col-lg-7'": 'col-lg-7',
+        "'col-lg-8'": 'col-lg-8',
+        "'col-lg-9'": 'col-lg-9',
+        "'col-lg-10'": 'col-lg-10',
+        "'col-lg-11'": 'col-lg-11',
+        "'col-lg-12'": 'col-lg-12',
       },
-      "defaultValue": "none"
+      defaultValue: 'none',
     },
-    "col_xl": {
-      "name": "Column width of items at xl breakpoint",
-      "description": "Set the number of columns each item should take up at the xl breakpoint and higher.",
-      "control": "select",
-      "options": {
-        "'None (or inherit from previous)'": "none",
-        "'col-xl'": "col-xl",
-        "'col-xl-auto'": "col-xl-auto",
-        "'col-xl-1'": "col-xl-1",
-        "'col-xl-2'": "col-xl-2",
-        "'col-xl-3'": "col-xl-3",
-        "'col-xl-4'": "col-xl-4",
-        "'col-xl-5'": "col-xl-5",
-        "'col-xl-6'": "col-xl-6",
-        "'col-xl-7'": "col-xl-7",
-        "'col-xl-8'": "col-xl-8",
-        "'col-xl-9'": "col-xl-9",
-        "'col-xl-10'": "col-xl-10",
-        "'col-xl-11'": "col-xl-11",
-        "'col-xl-12'": "col-xl-12"
+    col_xl: {
+      name: 'Column width of items at xl breakpoint',
+      description: 'Set the number of columns each item should take up at the xl breakpoint and higher.',
+      control: 'select',
+      options: {
+        "'None (or inherit from previous)'": 'none',
+        "'col-xl'": 'col-xl',
+        "'col-xl-auto'": 'col-xl-auto',
+        "'col-xl-1'": 'col-xl-1',
+        "'col-xl-2'": 'col-xl-2',
+        "'col-xl-3'": 'col-xl-3',
+        "'col-xl-4'": 'col-xl-4',
+        "'col-xl-5'": 'col-xl-5',
+        "'col-xl-6'": 'col-xl-6',
+        "'col-xl-7'": 'col-xl-7',
+        "'col-xl-8'": 'col-xl-8',
+        "'col-xl-9'": 'col-xl-9',
+        "'col-xl-10'": 'col-xl-10',
+        "'col-xl-11'": 'col-xl-11',
+        "'col-xl-12'": 'col-xl-12',
       },
-      "defaultValue": "none"
+      defaultValue: 'none',
     },
-    "col_xxl": {
-      "name": "Column width of items at xxl breakpoint",
-      "description": "Set the number of columns each item should take up at the xl breakpoint and higher.",
-      "control": "select",
-      "options": {
-        "'None (or inherit from previous)'": "none",
-        "'col-xxl'": "col-xxl",
-        "'col-xxl-auto'": "col-xxl-auto",
-        "'col-xxl-1'": "col-xxl-1",
-        "'col-xxl-2'": "col-xxl-2",
-        "'col-xxl-3'": "col-xxl-3",
-        "'col-xxl-4'": "col-xxl-4",
-        "'col-xxl-5'": "col-xxl-5",
-        "'col-xxl-6'": "col-xxl-6",
-        "'col-xxl-7'": "col-xxl-7",
-        "'col-xxl-8'": "col-xxl-8",
-        "'col-xxl-9'": "col-xxl-9",
-        "'col-xxl-10'": "col-xxl-10",
-        "'col-xxl-11'": "col-xxl-11",
-        "'col-xxl-12'": "col-xxl-12"
+    col_xxl: {
+      name: 'Column width of items at xxl breakpoint',
+      description: 'Set the number of columns each item should take up at the xl breakpoint and higher.',
+      control: 'select',
+      options: {
+        "'None (or inherit from previous)'": 'none',
+        "'col-xxl'": 'col-xxl',
+        "'col-xxl-auto'": 'col-xxl-auto',
+        "'col-xxl-1'": 'col-xxl-1',
+        "'col-xxl-2'": 'col-xxl-2',
+        "'col-xxl-3'": 'col-xxl-3',
+        "'col-xxl-4'": 'col-xxl-4',
+        "'col-xxl-5'": 'col-xxl-5',
+        "'col-xxl-6'": 'col-xxl-6',
+        "'col-xxl-7'": 'col-xxl-7',
+        "'col-xxl-8'": 'col-xxl-8',
+        "'col-xxl-9'": 'col-xxl-9',
+        "'col-xxl-10'": 'col-xxl-10',
+        "'col-xxl-11'": 'col-xxl-11',
+        "'col-xxl-12'": 'col-xxl-12',
       },
-      "defaultValue": "none"
+      defaultValue: 'none',
     },
-    "attributes": {
-      "name": "Attributes",
-      "description": "HTML attributes to apply to the outer grid container.",
-      "control": "object",
-      "defaultValue": {}
-    }
-  }
+    attributes: {
+      name: 'Attributes',
+      description: 'HTML attributes to apply to the outer grid container.',
+      control: 'object',
+      defaultValue: {},
+    },
+  },
 } %}
 
 {% story GridEqualWidth3Cols with {
-  "name": "Equal-width - 3 Columns",
-  "args": {
-    "grid_utility_classes": ["g-3"],
-    "column_utility_classes": [],
-    "col_xs": "col",
-    "col_sm": "none",
-    "col_md": "none",
-    "col_lg": "none",
-    "col_xl": "none",
-    "col_xxl": "none"
-  }
+  name: 'Equal-width - 3 Columns',
+  args: {
+    grid_utility_classes: ['g-3'],
+    column_utility_classes: [],
+    col_xs: 'col',
+    col_sm: 'none',
+    col_md: 'none',
+    col_lg: 'none',
+    col_xl: 'none',
+    col_xxl: 'none',
+  },
 } %}
   {{ include('vartheme_bs5:grid', {
-      "items": [
-        {"#markup": "<div class='p-3 bg-light border text-center'>Column</div>"},
-        {"#markup": "<div class='p-3 bg-light border text-center'>Column</div>"},
-        {"#markup": "<div class='p-3 bg-light border text-center'>Column</div>"}
-      ]
+      items: [
+        {'#markup': "<div class='p-3 bg-light border text-center'>Column</div>"},
+        {'#markup': "<div class='p-3 bg-light border text-center'>Column</div>"},
+        {'#markup': "<div class='p-3 bg-light border text-center'>Column</div>"},
+      ],
     })
   }}
 {% endstory %}
 
 {% story GridEqualWidth2Cols with {
-  "name": "Equal-width - 2 Columns",
-  "args": {
-    "grid_utility_classes": ["g-3"],
-    "column_utility_classes": [],
-    "col_xs": "col",
-    "col_sm": "none",
-    "col_md": "none",
-    "col_lg": "none",
-    "col_xl": "none",
-    "col_xxl": "none"
-  }
+  name: 'Equal-width - 2 Columns',
+  args: {
+    grid_utility_classes: ['g-3'],
+    column_utility_classes: [],
+    col_xs: 'col',
+    col_sm: 'none',
+    col_md: 'none',
+    col_lg: 'none',
+    col_xl: 'none',
+    col_xxl: 'none',
+  },
 } %}
   {{ include('vartheme_bs5:grid', {
-      "items": [
-        {"#markup": "<div class='p-3 bg-light border text-center'>1 of 2</div>"},
-        {"#markup": "<div class='p-3 bg-light border text-center'>2 of 2</div>"}
-      ]
+      items: [
+        {'#markup': "<div class='p-3 bg-light border text-center'>1 of 2</div>"},
+        {'#markup': "<div class='p-3 bg-light border text-center'>2 of 2</div>"},
+      ],
     })
   }}
 {% endstory %}
 
 {% story GridEqualWidth4Cols with {
-  "name": "Equal-width - 4 Columns",
-  "args": {
-    "grid_utility_classes": ["g-3"],
-    "column_utility_classes": [],
-    "col_xs": "col",
-    "col_sm": "none",
-    "col_md": "none",
-    "col_lg": "none",
-    "col_xl": "none",
-    "col_xxl": "none"
-  }
+  name: 'Equal-width - 4 Columns',
+  args: {
+    grid_utility_classes: ['g-3'],
+    column_utility_classes: [],
+    col_xs: 'col',
+    col_sm: 'none',
+    col_md: 'none',
+    col_lg: 'none',
+    col_xl: 'none',
+    col_xxl: 'none',
+  },
 } %}
   {{ include('vartheme_bs5:grid', {
-      "items": [
-        {"#markup": "<div class='p-3 bg-light border text-center'>1 of 4</div>"},
-        {"#markup": "<div class='p-3 bg-light border text-center'>2 of 4</div>"},
-        {"#markup": "<div class='p-3 bg-light border text-center'>3 of 4</div>"},
-        {"#markup": "<div class='p-3 bg-light border text-center'>4 of 4</div>"}
-      ]
+      items: [
+        {'#markup': "<div class='p-3 bg-light border text-center'>1 of 4</div>"},
+        {'#markup': "<div class='p-3 bg-light border text-center'>2 of 4</div>"},
+        {'#markup': "<div class='p-3 bg-light border text-center'>3 of 4</div>"},
+        {'#markup': "<div class='p-3 bg-light border text-center'>4 of 4</div>"},
+      ],
     })
   }}
 {% endstory %}
 
 {% story GridOneColWidth with {
-  "name": "Setting one column width",
-  "args": {
-    "grid_utility_classes": ["g-3"],
-    "column_utility_classes": [],
-    "col_xs": "col",
-    "col_sm": "none",
-    "col_md": "none",
-    "col_lg": "none",
-    "col_xl": "none",
-    "col_xxl": "none"
-  }
+  name: 'Setting one column width',
+  args: {
+    grid_utility_classes: ['g-3'],
+    column_utility_classes: [],
+    col_xs: 'col',
+    col_sm: 'none',
+    col_md: 'none',
+    col_lg: 'none',
+    col_xl: 'none',
+    col_xxl: 'none',
+  },
 } %}
   {{ include('vartheme_bs5:grid', {
-      "items": [
-        {"#markup": "<div class='p-3 bg-light border text-center'>1 of 3</div>"},
-        {"#markup": "<div class='p-3 bg-light border text-center'>2 of 3 (wider)</div>"},
-        {"#markup": "<div class='p-3 bg-light border text-center'>3 of 3</div>"}
-      ]
+      items: [
+        {'#markup': "<div class='p-3 bg-light border text-center'>1 of 3</div>"},
+        {'#markup': "<div class='p-3 bg-light border text-center'>2 of 3 (wider)</div>"},
+        {'#markup': "<div class='p-3 bg-light border text-center'>3 of 3</div>"},
+      ],
     })
   }}
 {% endstory %}
 
 {% story GridVariableWidthContent with {
-  "name": "Variable width content",
-  "args": {
-    "grid_utility_classes": ["g-3"],
-    "column_utility_classes": [],
-    "col_xs": "none",
-    "col_sm": "none",
-    "col_md": "none",
-    "col_lg": "none",
-    "col_xl": "none",
-    "col_xxl": "none"
-  }
+  name: 'Variable width content',
+  args: {
+    grid_utility_classes: ['g-3'],
+    column_utility_classes: [],
+    col_xs: 'none',
+    col_sm: 'none',
+    col_md: 'none',
+    col_lg: 'none',
+    col_xl: 'none',
+    col_xxl: 'none',
+  },
 } %}
   {{ include('vartheme_bs5:grid', {
-      "items": [
-        {"#markup": "<div class='p-3 bg-light border text-center'>1 of 3</div>"},
-        {"#markup": "<div class='p-3 bg-light border text-center'>Variable width content</div>"},
-        {"#markup": "<div class='p-3 bg-light border text-center'>3 of 3</div>"}
-      ]
+      items: [
+        {'#markup': "<div class='p-3 bg-light border text-center'>1 of 3</div>"},
+        {'#markup': "<div class='p-3 bg-light border text-center'>Variable width content</div>"},
+        {'#markup': "<div class='p-3 bg-light border text-center'>3 of 3</div>"},
+      ],
     })
   }}
 {% endstory %}
 
 {% story GridAllBreakpoints with {
-  "name": "All breakpoints - Equal Columns",
-  "args": {
-    "grid_utility_classes": ["g-3"],
-    "column_utility_classes": [],
-    "col_xs": "col",
-    "col_sm": "none",
-    "col_md": "none",
-    "col_lg": "none",
-    "col_xl": "none",
-    "col_xxl": "none"
-  }
+  name: 'All breakpoints - Equal Columns',
+  args: {
+    grid_utility_classes: ['g-3'],
+    column_utility_classes: [],
+    col_xs: 'col',
+    col_sm: 'none',
+    col_md: 'none',
+    col_lg: 'none',
+    col_xl: 'none',
+    col_xxl: 'none',
+  },
 } %}
   {{ include('vartheme_bs5:grid', {
-      "items": [
-        {"#markup": "<div class='p-3 bg-light border text-center'>col</div>"},
-        {"#markup": "<div class='p-3 bg-light border text-center'>col</div>"},
-        {"#markup": "<div class='p-3 bg-light border text-center'>col</div>"},
-        {"#markup": "<div class='p-3 bg-light border text-center'>col</div>"}
-      ]
+      items: [
+        {'#markup': "<div class='p-3 bg-light border text-center'>col</div>"},
+        {'#markup': "<div class='p-3 bg-light border text-center'>col</div>"},
+        {'#markup': "<div class='p-3 bg-light border text-center'>col</div>"},
+        {'#markup': "<div class='p-3 bg-light border text-center'>col</div>"},
+      ],
     })
   }}
 {% endstory %}
 
 {% story GridAllBreakpointsStacked with {
-  "name": "All breakpoints - Stacked to horizontal",
-  "args": {
-    "grid_utility_classes": ["g-3"],
-    "column_utility_classes": [],
-    "col_xs": "none",
-    "col_sm": "none",
-    "col_md": "none",
-    "col_lg": "none",
-    "col_xl": "none",
-    "col_xxl": "none"
-  }
+  name: 'All breakpoints - Stacked to horizontal',
+  args: {
+    grid_utility_classes: ['g-3'],
+    column_utility_classes: [],
+    col_xs: 'none',
+    col_sm: 'none',
+    col_md: 'none',
+    col_lg: 'none',
+    col_xl: 'none',
+    col_xxl: 'none',
+  },
 } %}
   {{ include('vartheme_bs5:grid', {
-      "items": [
-        {"#markup": "<div class='p-3 bg-light border text-center'>col-sm-8</div>"},
-        {"#markup": "<div class='p-3 bg-light border text-center'>col-sm-4</div>"}
-      ]
+      items: [
+        {'#markup': "<div class='p-3 bg-light border text-center'>col-sm-8</div>"},
+        {'#markup': "<div class='p-3 bg-light border text-center'>col-sm-4</div>"},
+      ],
     })
   }}
 {% endstory %}
 
 {% story GridStackedToHorizontal with {
-  "name": "Stacked to horizontal",
-  "args": {
-    "grid_utility_classes": ["g-3"],
-    "column_utility_classes": [],
-    "col_xs": "none",
-    "col_sm": "none",
-    "col_md": "none",
-    "col_lg": "none",
-    "col_xl": "none",
-    "col_xxl": "none"
-  }
+  name: 'Stacked to horizontal',
+  args: {
+    grid_utility_classes: ['g-3'],
+    column_utility_classes: [],
+    col_xs: 'none',
+    col_sm: 'none',
+    col_md: 'none',
+    col_lg: 'none',
+    col_xl: 'none',
+    col_xxl: 'none',
+  },
 } %}
   {{ include('vartheme_bs5:grid', {
-      "items": [
-        {"#markup": "<div class='p-3 bg-light border text-center'>col-sm-8</div>"},
-        {"#markup": "<div class='p-3 bg-light border text-center'>col-sm-4</div>"}
-      ]
+      items: [
+        {'#markup': "<div class='p-3 bg-light border text-center'>col-sm-8</div>"},
+        {'#markup': "<div class='p-3 bg-light border text-center'>col-sm-4</div>"},
+      ],
     })
   }}
 {% endstory %}
 
 {% story GridRowColumns with {
-  "name": "Row columns",
-  "args": {
-    "grid_utility_classes": ["row-cols-2", "g-3"],
-    "column_utility_classes": [],
-    "col_xs": "none",
-    "col_sm": "none",
-    "col_md": "none",
-    "col_lg": "none",
-    "col_xl": "none",
-    "col_xxl": "none"
-  }
+  name: 'Row columns',
+  args: {
+    grid_utility_classes: ['row-cols-2', 'g-3'],
+    column_utility_classes: [],
+    col_xs: 'none',
+    col_sm: 'none',
+    col_md: 'none',
+    col_lg: 'none',
+    col_xl: 'none',
+    col_xxl: 'none',
+  },
 } %}
   {{ include('vartheme_bs5:grid', {
-      "items": [
-        {"#markup": "<div class='p-3 bg-light border text-center'>Column</div>"},
-        {"#markup": "<div class='p-3 bg-light border text-center'>Column</div>"},
-        {"#markup": "<div class='p-3 bg-light border text-center'>Column</div>"},
-        {"#markup": "<div class='p-3 bg-light border text-center'>Column</div>"}
-      ]
+      items: [
+        {'#markup': "<div class='p-3 bg-light border text-center'>Column</div>"},
+        {'#markup': "<div class='p-3 bg-light border text-center'>Column</div>"},
+        {'#markup': "<div class='p-3 bg-light border text-center'>Column</div>"},
+        {'#markup': "<div class='p-3 bg-light border text-center'>Column</div>"},
+      ],
     })
   }}
 {% endstory %}
 
 {% story GridRowColumnsResponsive with {
-  "name": "Row columns - Responsive",
-  "args": {
-    "grid_utility_classes": ["row-cols-1", "row-cols-sm-2", "row-cols-md-4", "g-3"],
-    "column_utility_classes": [],
-    "col_xs": "none",
-    "col_sm": "none",
-    "col_md": "none",
-    "col_lg": "none",
-    "col_xl": "none",
-    "col_xxl": "none"
-  }
+  name: 'Row columns - Responsive',
+  args: {
+    grid_utility_classes: ['row-cols-1', 'row-cols-sm-2', 'row-cols-md-4', 'g-3'],
+    column_utility_classes: [],
+    col_xs: 'none',
+    col_sm: 'none',
+    col_md: 'none',
+    col_lg: 'none',
+    col_xl: 'none',
+    col_xxl: 'none',
+  },
 } %}
   {{ include('vartheme_bs5:grid', {
-      "items": [
-        {"#markup": "<div class='p-3 bg-light border text-center'>Column</div>"},
-        {"#markup": "<div class='p-3 bg-light border text-center'>Column</div>"},
-        {"#markup": "<div class='p-3 bg-light border text-center'>Column</div>"},
-        {"#markup": "<div class='p-3 bg-light border text-center'>Column</div>"}
-      ]
+      items: [
+        {'#markup': "<div class='p-3 bg-light border text-center'>Column</div>"},
+        {'#markup': "<div class='p-3 bg-light border text-center'>Column</div>"},
+        {'#markup': "<div class='p-3 bg-light border text-center'>Column</div>"},
+        {'#markup': "<div class='p-3 bg-light border text-center'>Column</div>"},
+      ],
     })
   }}
 {% endstory %}
 
 {% story GridBasic3Cols with {
-  "name": "Basic Grid - 3 Columns (md)",
-  "args": {
-    "grid_utility_classes": ["g-3"],
-    "column_utility_classes": [],
-    "col_xs": "none",
-    "col_sm": "none",
-    "col_md": "col-md-4",
-    "col_lg": "none",
-    "col_xl": "none",
-    "col_xxl": "none"
-  }
+  name: 'Basic Grid - 3 Columns (md)',
+  args: {
+    grid_utility_classes: ['g-3'],
+    column_utility_classes: [],
+    col_xs: 'none',
+    col_sm: 'none',
+    col_md: 'col-md-4',
+    col_lg: 'none',
+    col_xl: 'none',
+    col_xxl: 'none',
+  },
 } %}
   {{ include('vartheme_bs5:grid', {
-      "items": [
-        {"#markup": "<div class='p-3 bg-light border'>Item 1</div>"},
-        {"#markup": "<div class='p-3 bg-light border'>Item 2</div>"},
-        {"#markup": "<div class='p-3 bg-light border'>Item 3</div>"},
-        {"#markup": "<div class='p-3 bg-light border'>Item 4</div>"},
-        {"#markup": "<div class='p-3 bg-light border'>Item 5</div>"}
+      items: [
+        {'#markup': "<div class='p-3 bg-light border'>Item 1</div>"},
+        {'#markup': "<div class='p-3 bg-light border'>Item 2</div>"},
+        {'#markup': "<div class='p-3 bg-light border'>Item 3</div>"},
+        {'#markup': "<div class='p-3 bg-light border'>Item 4</div>"},
+        {'#markup': "<div class='p-3 bg-light border'>Item 5</div>"},
       ],
     })
   }}
 {% endstory %}
 
 {% story GridFixedCol3 with {
-  "name": "Fixed Width Columns (col-3)",
-  "args": {
-    "grid_utility_classes": ["g-4"],
-    "column_utility_classes": [],
-    "col_xs": "none",
-    "col_sm": "none",
-    "col_md": "col-md-3",
-    "col_lg": "none",
-    "col_xl": "none",
-    "col_xxl": "none"
-  }
+  name: 'Fixed Width Columns (col-3)',
+  args: {
+    grid_utility_classes: ['g-4'],
+    column_utility_classes: [],
+    col_xs: 'none',
+    col_sm: 'none',
+    col_md: 'col-md-3',
+    col_lg: 'none',
+    col_xl: 'none',
+    col_xxl: 'none',
+  },
 } %}
   {{ include('vartheme_bs5:grid', {
-      "items": [
-        {"#markup": "<div class='p-3 bg-light border'>Box A</div>"},
-        {"#markup": "<div class='p-3 bg-light border'>Box B</div>"},
-        {"#markup": "<div class='p-3 bg-light border'>Box C</div>"},
-        {"#markup": "<div class='p-3 bg-light border'>Box D</div>"}
-      ]
+      items: [
+        {'#markup': "<div class='p-3 bg-light border'>Box A</div>"},
+        {'#markup': "<div class='p-3 bg-light border'>Box B</div>"},
+        {'#markup': "<div class='p-3 bg-light border'>Box C</div>"},
+        {'#markup': "<div class='p-3 bg-light border'>Box D</div>"},
+      ],
     })
   }}
 {% endstory %}
 
 {% story GridAutoWidthCols with {
-  "name": "Auto Width Columns",
-  "args": {
-    "grid_utility_classes": ["g-2"],
-    "column_utility_classes": [],
-    "col_xs": "col-auto",
-    "col_sm": "col-sm-auto",
-    "col_md": "col-md-auto",
-    "col_lg": "none",
-    "col_xl": "none",
-    "col_xxl": "none"
-  }
+  name: 'Auto Width Columns',
+  args: {
+    grid_utility_classes: ['g-2'],
+    column_utility_classes: [],
+    col_xs: 'col-auto',
+    col_sm: 'col-sm-auto',
+    col_md: 'col-md-auto',
+    col_lg: 'none',
+    col_xl: 'none',
+    col_xxl: 'none',
+  },
 } %}
   {{ include('vartheme_bs5:grid', {
-      "items": [
-        {"#markup": "<div class='p-3 bg-light border'>Auto 1</div>"},
-        {"#markup": "<div class='p-3 bg-light border'>Auto 2</div>"},
-        {"#markup": "<div class='p-3 bg-light border'>Auto 3</div>"}
-      ]
+      items: [
+        {'#markup': "<div class='p-3 bg-light border'>Auto 1</div>"},
+        {'#markup': "<div class='p-3 bg-light border'>Auto 2</div>"},
+        {'#markup': "<div class='p-3 bg-light border'>Auto 3</div>"},
+      ],
     })
   }}
 {% endstory %}
 
 {% story GridResponsiveStacking with {
-  "name": "Responsive 2-3-4 Layout",
-  "args": {
-    "grid_utility_classes": ["g-3"],
-    "column_utility_classes": [],
-    "col_xs": "col-12",
-    "col_sm": "col-sm-6",
-    "col_md": "col-md-4",
-    "col_lg": "col-lg-3",
-    "col_xl": "none",
-    "col_xxl": "none"
-  }
+  name: 'Responsive 2-3-4 Layout',
+  args: {
+    grid_utility_classes: ['g-3'],
+    column_utility_classes: [],
+    col_xs: 'col-12',
+    col_sm: 'col-sm-6',
+    col_md: 'col-md-4',
+    col_lg: 'col-lg-3',
+    col_xl: 'none',
+    col_xxl: 'none',
+  },
 } %}
   {{ include('vartheme_bs5:grid', {
-      "items": [
-        {"#markup": "<div class='p-3 bg-light border'>R1</div>"},
-        {"#markup": "<div class='p-3 bg-light border'>R2</div>"},
-        {"#markup": "<div class='p-3 bg-light border'>R3</div>"},
-        {"#markup": "<div class='p-3 bg-light border'>R4</div>"},
-        {"#markup": "<div class='p-3 bg-light border'>R5</div>"},
-        {"#markup": "<div class='p-3 bg-light border'>R6</div>"}
-      ]
+      items: [
+        {'#markup': "<div class='p-3 bg-light border'>R1</div>"},
+        {'#markup': "<div class='p-3 bg-light border'>R2</div>"},
+        {'#markup': "<div class='p-3 bg-light border'>R3</div>"},
+        {'#markup': "<div class='p-3 bg-light border'>R4</div>"},
+        {'#markup': "<div class='p-3 bg-light border'>R5</div>"},
+        {'#markup': "<div class='p-3 bg-light border'>R6</div>"},
+      ],
     })
   }}
 {% endstory %}
 
 {% story GridNoGutters with {
-  "name": "No Gutters (g-0)",
-  "args": {
-    "grid_utility_classes": ["g-0"],
-    "column_utility_classes": [],
-    "col_xs": "none",
-    "col_sm": "col-sm-6",
-    "col_md": "none",
-    "col_lg": "none",
-    "col_xl": "none",
-    "col_xxl": "none"
-  }
+  name: 'No Gutters (g-0)',
+  args: {
+    grid_utility_classes: ['g-0'],
+    column_utility_classes: [],
+    col_xs: 'none',
+    col_sm: 'col-sm-6',
+    col_md: 'none',
+    col_lg: 'none',
+    col_xl: 'none',
+    col_xxl: 'none',
+  },
 } %}
   {{ include('vartheme_bs5:grid', {
-      "items": [
-        {"#markup": "<div class='p-3 bg-light border'>No Gutter 1</div>"},
-        {"#markup": "<div class='p-3 bg-light border'>No Gutter 2</div>"},
-        {"#markup": "<div class='p-3 bg-light border'>No Gutter 3</div>"}
-      ]
+      items: [
+        {'#markup': "<div class='p-3 bg-light border'>No Gutter 1</div>"},
+        {'#markup': "<div class='p-3 bg-light border'>No Gutter 2</div>"},
+        {'#markup': "<div class='p-3 bg-light border'>No Gutter 3</div>"},
+      ],
     })
   }}
 {% endstory %}
 
 {% story GridTwoColsFixed with {
-  "name": "2 Columns Always (col-6)",
-  "args": {
-    "grid_utility_classes": [],
-    "column_utility_classes": [],
-    "col_xs": "col-6",
-    "col_sm": "none",
-    "col_md": "none",
-    "col_lg": "none",
-    "col_xl": "none",
-    "col_xxl": "none"
-  }
+  name: '2 Columns Always (col-6)',
+  args: {
+    grid_utility_classes: [],
+    column_utility_classes: [],
+    col_xs: 'col-6',
+    col_sm: 'none',
+    col_md: 'none',
+    col_lg: 'none',
+    col_xl: 'none',
+    col_xxl: 'none',
+  },
 } %}
   {{ include('vartheme_bs5:grid', {
-      "items": [
-        {"#markup": "<div class='p-3 bg-light border'>Half A</div>"},
-        {"#markup": "<div class='p-3 bg-light border'>Half B</div>"},
-        {"#markup": "<div class='p-3 bg-light border'>Half C</div>"},
-        {"#markup": "<div class='p-3 bg-light border'>Half D</div>"}
-      ]
+      items: [
+        {'#markup': "<div class='p-3 bg-light border'>Half A</div>"},
+        {'#markup': "<div class='p-3 bg-light border'>Half B</div>"},
+        {'#markup': "<div class='p-3 bg-light border'>Half C</div>"},
+        {'#markup': "<div class='p-3 bg-light border'>Half D</div>"},
+      ],
     })
   }}
 {% endstory %}
 
 {% story GridSixColsGrid with {
-  "name": "6 Columns (col-2)",
-  "args": {
-    "column_utility_classes": [],
-    "grid_utility_classes": [],
-    "col_xs": "none",
-    "col_sm": "none",
-    "col_md": "col-md-2",
-    "col_lg": "none",
-    "col_xl": "none",
-    "col_xxl": "none"
-  }
+  name: '6 Columns (col-2)',
+  args: {
+    column_utility_classes: [],
+    grid_utility_classes: [],
+    col_xs: 'none',
+    col_sm: 'none',
+    col_md: 'col-md-2',
+    col_lg: 'none',
+    col_xl: 'none',
+    col_xxl: 'none',
+  },
 } %}
   {{ include('vartheme_bs5:grid', {
-      "items": [
-        {"#markup": "<div class='p-3 bg-light'>S1</div>"},
-        {"#markup": "<div class='p-3 bg-light'>S2</div>"},
-        {"#markup": "<div class='p-3 bg-light'>S3</div>"},
-        {"#markup": "<div class='p-3 bg-light'>S4</div>"},
-        {"#markup": "<div class='p-3 bg-light'>S5</div>"},
-        {"#markup": "<div class='p-3 bg-light'>S6</div>"}
-      ]
+      items: [
+        {'#markup': "<div class='p-3 bg-light'>S1</div>"},
+        {'#markup': "<div class='p-3 bg-light'>S2</div>"},
+        {'#markup': "<div class='p-3 bg-light'>S3</div>"},
+        {'#markup': "<div class='p-3 bg-light'>S4</div>"},
+        {'#markup': "<div class='p-3 bg-light'>S5</div>"},
+        {'#markup': "<div class='p-3 bg-light'>S6</div>"},
+      ],
     })
   }}
 {% endstory %}
 
 {% story GridRowCustomClass with {
-  "name": "Custom Row Class (shadow + bg)",
-  "args": {
-    "column_utility_classes": ["shadow-sm", "bg-white"],
-    "grid_utility_classes": ["g-3"],
-    "col_xs": "none",
-    "col_sm": "none",
-    "col_md": "col-md-4",
-    "col_lg": "none",
-    "col_xl": "none",
-    "col_xxl": "none"
-  }
+  name: 'Custom Row Class (shadow + bg)',
+  args: {
+    column_utility_classes: ['shadow-sm', 'bg-white'],
+    grid_utility_classes: ['g-3'],
+    col_xs: 'none',
+    col_sm: 'none',
+    col_md: 'col-md-4',
+    col_lg: 'none',
+    col_xl: 'none',
+    col_xxl: 'none',
+  },
 } %}
   {{ include('vartheme_bs5:grid', {
-      "items": [
-        { "#markup": "<div class='p-3'>Styled 1</div>"},
-        { "#markup": "<div class='p-3'>Styled 2</div>"},
-        { "#markup": "<div class='p-3'>Styled 3</div>"}
-      ]
+      items: [
+        {'#markup': "<div class='p-3'>Styled 1</div>"},
+        {'#markup': "<div class='p-3'>Styled 2</div>"},
+        {'#markup': "<div class='p-3'>Styled 3</div>"},
+      ],
     })
   }}
 {% endstory %}
 
 {% story GridXLXXLResponsive with {
-  "name": "Responsive XL/XXL Only",
-  "args": {
-    "grid_utility_classes": ["g-4"],
-    "column_utility_classes": [],
-    "col_xs": "col-12",
-    "col_sm": "none",
-    "col_md": "none",
-    "col_lg": "none",
-    "col_xl": "col-xl-6",
-    "col_xxl": "col-xxl-3"
-  }
+  name: 'Responsive XL/XXL Only',
+  args: {
+    grid_utility_classes: ['g-4'],
+    column_utility_classes: [],
+    col_xs: 'col-12',
+    col_sm: 'none',
+    col_md: 'none',
+    col_lg: 'none',
+    col_xl: 'col-xl-6',
+    col_xxl: 'col-xxl-3',
+  },
 } %}
   {{ include('vartheme_bs5:grid', {
-      "items": [
-        {"#markup": "<div class='p-3 bg-light border'>XL 1</div>"},
-        {"#markup": "<div class='p-3 bg-light border'>XL 2</div>"},
-        {"#markup": "<div class='p-3 bg-light border'>XL 3</div>"},
-        {"#markup": "<div class='p-3 bg-light border'>XL 4</div>"}
-      ]
+      items: [
+        {'#markup': "<div class='p-3 bg-light border'>XL 1</div>"},
+        {'#markup': "<div class='p-3 bg-light border'>XL 2</div>"},
+        {'#markup': "<div class='p-3 bg-light border'>XL 3</div>"},
+        {'#markup': "<div class='p-3 bg-light border'>XL 4</div>"},
+      ],
     })
   }}
 {% endstory %}

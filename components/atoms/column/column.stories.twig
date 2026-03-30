@@ -1,15 +1,36 @@
+{% stories Column with {
+  title: 'Layout/Column',
+  parameters: {
+    componentSubtitle: 'Bootstrap Column wrapper for use inside a Row component.',
+    docs: {
+      description: {
+        component: 'A simple Bootstrap column wrapper. Place it inside a Row component.',
+      },
+      story: {
+        inline: true,
+      },
+    },
+  },
+} %}
+
+{% story Default with {
+  name: 'Default',
+} %}
 <div class="container py-4">
   <div class="row g-3">
-    {% embed 'column:column' %}
+    {% embed 'vartheme_bs5:column' %}
       {% block content %}
-        {{ content|default('<div class="p-3 border rounded bg-light">Column content</div>')|raw }}
+        <div class="p-3 border rounded bg-light">Column content</div>
       {% endblock %}
     {% endembed %}
 
-    {% embed 'column:column' %}
+    {% embed 'vartheme_bs5:column' %}
       {% block content %}
         <div class="p-3 border rounded bg-body-secondary">Sibling column</div>
       {% endblock %}
     {% endembed %}
   </div>
 </div>
+{% endstory %}
+
+{% endstories %}

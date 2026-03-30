@@ -11,10 +11,9 @@
  */
 #}
 
-
 {% set input_submit_utility_classes = input_submit_utility_classes ? input_submit_utility_classes : [] %}
 
-{% include "vartheme_bs5:input" with {
+{{ include('vartheme_bs5:input', {
   type: 'submit',
   input_utility_classes: input_submit_utility_classes,
-} %}
+}) }}

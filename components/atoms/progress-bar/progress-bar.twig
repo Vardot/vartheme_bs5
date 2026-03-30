@@ -28,7 +28,7 @@
  * - message_attributes: HTML attributes for the Progress Bar message element.
  *
  * Available slots:
- * - N/A 
+ * - N/A
  */
 #}
 
@@ -40,7 +40,7 @@
 {# Progress Bar wrapper #}
 {%
   set wrapper_classes = [
-    'progress'
+    'progress',
   ]
 %}
 {% if not wrapper_attributes %}
@@ -49,11 +49,10 @@
 {% set wrapper_attributes = wrapper_attributes.addClass(wrapper_classes) %}
 {% set wrapper_attributes = wrapper_attributes.setAttribute('data-drupal-progress', true) %}
 
-
 {# Progress Bar indicator #}
 {%
   set indicator_classes = [
-    'progress-bar'
+    'progress-bar',
   ]|merge(color)|merge(striped)|merge(animated)|merge(progress_bar_utility_classes)
 %}
 {% if not indicator_attributes %}
@@ -72,7 +71,7 @@
   {# Progress Bar label #}
   {%
     set label_classes = [
-      'progress-bar-label'
+      'progress-bar-label',
     ]
   %}
 
@@ -87,7 +86,7 @@
     set message_classes = [
       'form-textl',
       'text-muted',
-      'rogress-bar-message'
+      'rogress-bar-message',
     ]
   %}
   {% if not message_attributes %}

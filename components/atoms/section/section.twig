@@ -34,7 +34,7 @@
   'overlay-10': '0.10',
   'overlay-25': '0.25',
   'overlay-50': '0.50',
-  'overlay-75': '0.75'
+  'overlay-75': '0.75',
 } %}
 {% set overlay_style = has_overlay ? ('opacity: ' ~ (overlay_opacity_map[overlay_variant]|default('0.25')) ~ ';') : '' %}
 
@@ -57,7 +57,7 @@
   text_class,
   shadow_class,
   bg_edge2edge ? 'bg-edge2edge' : '',
-  (has_background_image or has_overlay) ? 'position-relative overflow-hidden' : ''
+  (has_background_image or has_overlay) ? 'position-relative overflow-hidden' : '',
 ] %}
 
 {# Structural classes #}
@@ -71,7 +71,7 @@
 
 {# Layout presets -> md widths #}
 {% set preset_map = {
-  '100': [12],
+  100: [12],
   '50-50': [6, 6],
   '33-33-33': [4, 4, 4],
   '75-25': [9, 3],
@@ -80,7 +80,7 @@
   '33-67': [4, 8],
   '50-25-25': [6, 3, 3],
   '25-25-50': [3, 3, 6],
-  '25-25-25-25': [3, 3, 3, 3]
+  '25-25-25-25': [3, 3, 3, 3],
 } %}
 
 {% set cols_key = columns|default('50-50') %}
@@ -124,13 +124,13 @@
 <section {{ attributes.addClass(section_classes) }}>
   {% if has_background_image %}
     <div class="{{ media_wrap_classes|join(' ') }}" aria-hidden="true">
-      {% include 'canvas:image' ignore missing with {
+      {{ include('canvas:image', {
         src: background_media.src,
         alt: background_media.alt,
         class: 'w-100 h-100 object-fit-cover',
         width: background_media.width,
-        height: background_media.height
-      } only %}
+        height: background_media.height,
+      }, false, true) }}
     </div>
   {% endif %}
 

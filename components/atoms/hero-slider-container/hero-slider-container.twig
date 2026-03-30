@@ -106,8 +106,8 @@
 {% set fallback_text_classes = ['hero-slider__text', 'fs-6'] %}
 
 {# Prepared attributes for cleaner HTML. #}
-{% set section_attributes = create_attribute({ class: section_classes }) %}
-{% set outer_container_attributes = outer_container_class ? create_attribute({ class: [outer_container_class] }) : null %}
+{% set section_attributes = create_attribute({class: section_classes}) %}
+{% set outer_container_attributes = outer_container_class ? create_attribute({class: [outer_container_class]}) : null %}
 {% set carousel_attributes = create_attribute({
   id: carousel_id,
   class: carousel_classes,
@@ -122,28 +122,28 @@
   {% set carousel_attributes = carousel_attributes.setAttribute('data-bs-interval', 'false') %}
 {% endif %}
 
-{% set carousel_inner_attributes = create_attribute({ class: ['carousel-inner'] }) %}
-{% set nav_attributes = create_attribute({ class: ['hero-slider__nav'], 'aria-hidden': 'false' }) %}
-{% set content_container_attributes = create_attribute({ class: [content_container_class] }) %}
-{% set nav_row_attributes = create_attribute({ class: ['row'] }) %}
-{% set nav_col_attributes = create_attribute({ class: nav_col_class|split(' '), 'data-hero-nav-col': true }) %}
-{% set nav_inner_attributes = create_attribute({ class: nav_inner_classes }) %}
-{% set indicators_attributes = create_attribute({ class: ['carousel-indicators', 'position-static', 'justify-content-start', 'm-0'], 'data-hero-indicators': true }) %}
-{% set controls_attributes = create_attribute({ class: ['hero-slider__controls', 'd-flex', 'align-items-center', 'gap-2'], role: 'group', 'aria-label': 'Carousel controls' }) %}
-{% set prev_button_attributes = create_attribute({ class: prev_control_classes, type: 'button', 'data-bs-target': '#' ~ carousel_id, 'data-bs-slide': 'prev' }) %}
-{% set pause_button_attributes = create_attribute({ class: pause_control_classes, type: 'button', 'data-hero-toggle': 'pause', 'data-paused': hero_slider_autoplay ? 'false' : 'true', 'aria-label': hero_slider_autoplay ? 'Pause' : 'Play' }) %}
-{% set next_button_attributes = create_attribute({ class: next_control_classes, type: 'button', 'data-bs-target': '#' ~ carousel_id, 'data-bs-slide': 'next' }) %}
+{% set carousel_inner_attributes = create_attribute({class: ['carousel-inner']}) %}
+{% set nav_attributes = create_attribute({class: ['hero-slider__nav'], 'aria-hidden': 'false'}) %}
+{% set content_container_attributes = create_attribute({class: [content_container_class]}) %}
+{% set nav_row_attributes = create_attribute({class: ['row']}) %}
+{% set nav_col_attributes = create_attribute({class: nav_col_class|split(' '), 'data-hero-nav-col': true}) %}
+{% set nav_inner_attributes = create_attribute({class: nav_inner_classes}) %}
+{% set indicators_attributes = create_attribute({class: ['carousel-indicators', 'position-static', 'justify-content-start', 'm-0'], 'data-hero-indicators': true}) %}
+{% set controls_attributes = create_attribute({class: ['hero-slider__controls', 'd-flex', 'align-items-center', 'gap-2'], role: 'group', 'aria-label': 'Carousel controls'}) %}
+{% set prev_button_attributes = create_attribute({class: prev_control_classes, type: 'button', 'data-bs-target': '#' ~ carousel_id, 'data-bs-slide': 'prev'}) %}
+{% set pause_button_attributes = create_attribute({class: pause_control_classes, type: 'button', 'data-hero-toggle': 'pause', 'data-paused': hero_slider_autoplay ? 'false' : 'true', 'aria-label': hero_slider_autoplay ? 'Pause' : 'Play'}) %}
+{% set next_button_attributes = create_attribute({class: next_control_classes, type: 'button', 'data-bs-target': '#' ~ carousel_id, 'data-bs-slide': 'next'}) %}
 
-{% set fallback_carousel_item_attributes = create_attribute({ class: ['carousel-item', 'active'], 'data-hero-slide': true }) %}
-{% set fallback_item_attributes = create_attribute({ class: fallback_item_classes }) %}
-{% set fallback_overlay_attributes = create_attribute({ class: fallback_overlay_classes, 'aria-hidden': 'true' }) %}
-{% set fallback_layout_attributes = create_attribute({ class: fallback_layout_classes }) %}
-{% set fallback_inner_wrap_attributes = create_attribute({ class: fallback_inner_wrap_classes }) %}
-{% set fallback_row_attributes = create_attribute({ class: fallback_row_classes }) %}
-{% set fallback_col_attributes = create_attribute({ class: fallback_col_classes }) %}
-{% set fallback_caption_attributes = create_attribute({ class: fallback_caption_classes }) %}
-{% set fallback_title_attributes = create_attribute({ class: fallback_title_classes }) %}
-{% set fallback_text_attributes = create_attribute({ class: fallback_text_classes }) %}
+{% set fallback_carousel_item_attributes = create_attribute({class: ['carousel-item', 'active'], 'data-hero-slide': true}) %}
+{% set fallback_item_attributes = create_attribute({class: fallback_item_classes}) %}
+{% set fallback_overlay_attributes = create_attribute({class: fallback_overlay_classes, 'aria-hidden': 'true'}) %}
+{% set fallback_layout_attributes = create_attribute({class: fallback_layout_classes}) %}
+{% set fallback_inner_wrap_attributes = create_attribute({class: fallback_inner_wrap_classes}) %}
+{% set fallback_row_attributes = create_attribute({class: fallback_row_classes}) %}
+{% set fallback_col_attributes = create_attribute({class: fallback_col_classes}) %}
+{% set fallback_caption_attributes = create_attribute({class: fallback_caption_classes}) %}
+{% set fallback_title_attributes = create_attribute({class: fallback_title_classes}) %}
+{% set fallback_text_attributes = create_attribute({class: fallback_text_classes}) %}
 
 <section{{ section_attributes }}>
   {% if outer_container_attributes %}

@@ -65,28 +65,28 @@
         {% if is_vertical %}
           {% if use_ratio %}
             <div{{ create_attribute().addClass(vertical_ratio_classes) }}>
-              {% include 'vartheme_bs5:image' ignore missing with {
+              {{ include('vartheme_bs5:image', {
                 media: media,
                 ratio: media_ratio_class,
                 fit: 'object-fit-cover',
-                width: 'w-100'
-              } only %}
+                width: 'w-100',
+              }, false, true) }}
             </div>
           {% else %}
-            {% include 'vartheme_bs5:image' ignore missing with {
+            {{ include('vartheme_bs5:image', {
               media: media,
               ratio: media_ratio_class,
               fit: 'object-fit-cover',
-              width: 'w-100'
-            } only %}
+              width: 'w-100',
+            }, false, true) }}
           {% endif %}
         {% else %}
-          {% include 'vartheme_bs5:image' ignore missing with {
+          {{ include('vartheme_bs5:image', {
             media: media,
             ratio: 'ratio-auto',
             fit: 'object-fit-cover',
-            width: 'w-100'
-          } only %}
+            width: 'w-100',
+          }, false, true) }}
         {% endif %}
       </div>
     {% endif %}
@@ -107,7 +107,7 @@
               href: url,
               label: button_label_value,
               variant: button_variant_value,
-              size: 'btn-sm'
+              size: 'btn-sm',
             }, with_context: false) }}
           </div>
         {% endif %}

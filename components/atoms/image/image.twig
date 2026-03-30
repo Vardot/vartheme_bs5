@@ -14,7 +14,7 @@
 {% set rel_attr = target_value == 'blank' ? 'noopener noreferrer' : null %}
 
 {# Link attributes for vartheme_bs5:link #}
-{% set link_attrs_ratio = create_attribute().addClass(['d-block','w-100','h-100']) %}
+{% set link_attrs_ratio = create_attribute().addClass(['d-block', 'w-100', 'h-100']) %}
 {% set link_attrs_inline = create_attribute().addClass(['d-inline-block']) %}
 {% if target_attr %}
   {% set link_attrs_ratio = link_attrs_ratio.setAttribute('target', target_attr) %}
@@ -48,7 +48,7 @@
 
 {# Image classes #}
 {% set img_classes = (['img-fluid', fit_class, rounded_class]|filter(v => v is not empty)) %}
-{% set img_classes_final = (has_ratio ? ['w-100','h-100'] : [])|merge(img_classes) %}
+{% set img_classes_final = (has_ratio ? ['w-100', 'h-100'] : [])|merge(img_classes) %}
 {% set img_class_final = img_classes_final|join(' ') %}
 
 {# Pick link attributes based on ratio mode #}
@@ -72,11 +72,11 @@
   {# Build the optional link wrapper once #}
   {% set linked_markup %}
     {% if has_link %}
-      {% include 'vartheme_bs5:link' ignore missing with {
+      {{ include('vartheme_bs5:link', {
         url: link_url,
         attributes: link_attrs,
-        content: image_markup
-      } only %}
+        content: image_markup,
+      }, false, true) }}
     {% else %}
       {{ image_markup }}
     {% endif %}

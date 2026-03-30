@@ -1,100 +1,100 @@
-{% stories HeroSliderContainer with {
-  "title": "Hero/Hero Slider Container",
-  "parameters": {
-    "componentSubtitle": "Bootstrap carousel wrapper for hero slides",
-    "docs": {
-      "description": {
-        "component": "Wraps one or more hero slides and controls autoplay, transition style, navigation, and indicators."
-      },
-      "story": {
-        "inline": true
-      }
-    }
-  },
-  "argTypes": {
-    "bg_edge2edge": {
-      "name": "Edge-to-edge background",
-      "control": "boolean",
-      "defaultValue": true
-    },
-    "transition": {
-      "name": "Transition",
-      "control": "select",
-      "defaultValue": "slide",
-      "options": {
-        "Slide": "slide",
-        "Fade": "fade"
-      }
-    },
-    "autoplay": {
-      "name": "Autoplay",
-      "control": "boolean",
-      "defaultValue": true
-    },
-    "interval_ms": {
-      "name": "Autoplay interval (ms)",
-      "control": "number",
-      "defaultValue": 5000
-    },
-    "pause_on_hover": {
-      "name": "Pause on hover",
-      "control": "boolean",
-      "defaultValue": true
-    },
-    "show_indicators": {
-      "name": "Show indicators",
-      "control": "boolean",
-      "defaultValue": true
-    },
-    "show_controls": {
-      "name": "Show controls",
-      "control": "boolean",
-      "defaultValue": true
-    },
-    "slider_height": {
-      "name": "Slider height",
-      "control": "select",
-      "defaultValue": "700",
-      "options": {
-        "500px": "500",
-        "700px": "700",
-        "900px": "900"
-      }
-    },
-    "controller_color": {
-      "name": "Controller color",
-      "control": "select",
-      "defaultValue": "primary",
-      "options": {
-        "Primary": "primary",
-        "Light": "light",
-        "Dark": "dark",
-        "White": "white"
-      }
-    }
-  }
-} %}
-
 {% set demo_media = {
   src: 'assets/hero-slider-image.webp',
   alt: 'Hero image',
   width: 1600,
-  height: 900
+  height: 900,
+} %}
+
+{% stories HeroSliderContainer with {
+  title: 'Hero/Hero Slider Container',
+  parameters: {
+    componentSubtitle: 'Bootstrap carousel wrapper for hero slides',
+    docs: {
+      description: {
+        component: 'Wraps one or more hero slides and controls autoplay, transition style, navigation, and indicators.',
+      },
+      story: {
+        inline: true,
+      },
+    },
+  },
+  argTypes: {
+    bg_edge2edge: {
+      name: 'Edge-to-edge background',
+      control: 'boolean',
+      defaultValue: true,
+    },
+    transition: {
+      name: 'Transition',
+      control: 'select',
+      defaultValue: 'slide',
+      options: {
+        Slide: 'slide',
+        Fade: 'fade',
+      },
+    },
+    autoplay: {
+      name: 'Autoplay',
+      control: 'boolean',
+      defaultValue: true,
+    },
+    interval_ms: {
+      name: 'Autoplay interval (ms)',
+      control: 'number',
+      defaultValue: 5000,
+    },
+    pause_on_hover: {
+      name: 'Pause on hover',
+      control: 'boolean',
+      defaultValue: true,
+    },
+    show_indicators: {
+      name: 'Show indicators',
+      control: 'boolean',
+      defaultValue: true,
+    },
+    show_controls: {
+      name: 'Show controls',
+      control: 'boolean',
+      defaultValue: true,
+    },
+    slider_height: {
+      name: 'Slider height',
+      control: 'select',
+      defaultValue: '700',
+      options: {
+        "'500px'": '500',
+        "'700px'": '700',
+        "'900px'": '900',
+      },
+    },
+    controller_color: {
+      name: 'Controller color',
+      control: 'select',
+      defaultValue: 'primary',
+      options: {
+        Primary: 'primary',
+        Light: 'light',
+        Dark: 'dark',
+        White: 'white',
+      },
+    },
+  },
 } %}
 
 {% story Default with {
-  "name": "Default",
-  "args": {
-    "bg_edge2edge": true,
-    "transition": "slide",
-    "autoplay": true,
-    "interval_ms": 5000,
-    "pause_on_hover": true,
-    "show_indicators": true,
-    "show_controls": true,
-    "slider_height": "700",
-    "controller_color": "primary"
-  }
+  name: 'Default',
+  args: {
+    bg_edge2edge: true,
+    transition: 'slide',
+    autoplay: true,
+    interval_ms: 5000,
+    pause_on_hover: true,
+    show_indicators: true,
+    show_controls: true,
+    slider_height: '700',
+    controller_color: 'primary',
+  },
 } %}
 {% embed 'vartheme_bs5:hero-slider-container' with {
   bg_edge2edge: bg_edge2edge,
@@ -105,7 +105,7 @@
   show_indicators: show_indicators,
   show_controls: show_controls,
   slider_height: slider_height,
-  controller_color: controller_color
+  controller_color: controller_color,
 } only %}
   {% block slides %}
     {{ include('vartheme_bs5:hero-slide', {
@@ -126,8 +126,8 @@
       split_gap: 'md',
       background_color: 'bg-black',
       overlay_bg: 'bg-dark',
-      overlay_opacity: 'opacity-50'
-    }, with_context = false) }}
+      overlay_opacity: 'opacity-50',
+    }, with_context: false) }}
 
     {{ include('vartheme_bs5:hero-slide', {
       active: false,
@@ -147,25 +147,25 @@
       split_gap: 'md',
       background_color: 'bg-black',
       overlay_bg: 'bg-dark',
-      overlay_opacity: 'opacity-50'
-    }, with_context = false) }}
+      overlay_opacity: 'opacity-50',
+    }, with_context: false) }}
   {% endblock %}
 {% endembed %}
 {% endstory %}
 
 {% story FadeManual with {
-  "name": "Fade transition, manual",
-  "args": {
-    "bg_edge2edge": true,
-    "transition": "fade",
-    "autoplay": false,
-    "interval_ms": 5000,
-    "pause_on_hover": false,
-    "show_indicators": true,
-    "show_controls": true,
-    "slider_height": "500",
-    "controller_color": "white"
-  }
+  name: 'Fade transition, manual',
+  args: {
+    bg_edge2edge: true,
+    transition: 'fade',
+    autoplay: false,
+    interval_ms: 5000,
+    pause_on_hover: false,
+    show_indicators: true,
+    show_controls: true,
+    slider_height: '500',
+    controller_color: 'white',
+  },
 } %}
 {% embed 'vartheme_bs5:hero-slider-container' with {
   bg_edge2edge: bg_edge2edge,
@@ -176,7 +176,7 @@
   show_indicators: show_indicators,
   show_controls: show_controls,
   slider_height: slider_height,
-  controller_color: controller_color
+  controller_color: controller_color,
 } only %}
   {% block slides %}
     {{ include('vartheme_bs5:hero-slide', {
@@ -197,25 +197,25 @@
       split_gap: 'md',
       background_color: 'bg-black',
       overlay_bg: 'bg-dark',
-      overlay_opacity: 'opacity-50'
-    }, with_context = false) }}
+      overlay_opacity: 'opacity-50',
+    }, with_context: false) }}
   {% endblock %}
 {% endembed %}
 {% endstory %}
 
 {% story ControlsOnly with {
-  "name": "Controls only",
-  "args": {
-    "bg_edge2edge": true,
-    "transition": "slide",
-    "autoplay": true,
-    "interval_ms": 4000,
-    "pause_on_hover": true,
-    "show_indicators": false,
-    "show_controls": true,
-    "slider_height": "900",
-    "controller_color": "light"
-  }
+  name: 'Controls only',
+  args: {
+    bg_edge2edge: true,
+    transition: 'slide',
+    autoplay: true,
+    interval_ms: 4000,
+    pause_on_hover: true,
+    show_indicators: false,
+    show_controls: true,
+    slider_height: '900',
+    controller_color: 'light',
+  },
 } %}
 {% embed 'vartheme_bs5:hero-slider-container' with {
   bg_edge2edge: bg_edge2edge,
@@ -226,7 +226,7 @@
   show_indicators: show_indicators,
   show_controls: show_controls,
   slider_height: slider_height,
-  controller_color: controller_color
+  controller_color: controller_color,
 } only %}
   {% block slides %}
     {{ include('vartheme_bs5:hero-slide', {
@@ -247,25 +247,25 @@
       split_gap: 'md',
       background_color: 'bg-black',
       overlay_bg: 'bg-dark',
-      overlay_opacity: 'opacity-50'
-    }, with_context = false) }}
+      overlay_opacity: 'opacity-50',
+    }, with_context: false) }}
   {% endblock %}
 {% endembed %}
 {% endstory %}
 
 {% story FallbackState with {
-  "name": "Fallback state",
-  "args": {
-    "bg_edge2edge": true,
-    "transition": "slide",
-    "autoplay": true,
-    "interval_ms": 5000,
-    "pause_on_hover": true,
-    "show_indicators": true,
-    "show_controls": true,
-    "slider_height": "700",
-    "controller_color": "primary"
-  }
+  name: 'Fallback state',
+  args: {
+    bg_edge2edge: true,
+    transition: 'slide',
+    autoplay: true,
+    interval_ms: 5000,
+    pause_on_hover: true,
+    show_indicators: true,
+    show_controls: true,
+    slider_height: '700',
+    controller_color: 'primary',
+  },
 } %}
 {{ include('vartheme_bs5:hero-slider-container') }}
 {% endstory %}

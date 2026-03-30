@@ -20,7 +20,6 @@
 {{ attach_library('vartheme_bs5/accordion-scripts') }}
 {{ attach_library('vartheme_bs5/accordion-canvas-modules') }}
 
-
 {% set parent_from_context = accordion_parent_id|default('') %}
 {% set bound_parent = parent_id|default('')|trim %}
 {% if bound_parent is empty %}
@@ -34,10 +33,9 @@
   {% set resolved_color = inherited_color %}
 {% endif %}
 
-
 {% set uid = item_id|default('')|trim %}
 {% if uid is empty %}
-  {% set uid = (random(1000000) ~ '-' ~ "now"|date('U')) %}
+  {% set uid = (random(1000000) ~ '-' ~ 'now'|date('U')) %}
 {% endif %}
 
 {% set heading_id = 'heading-' ~ uid %}
@@ -97,7 +95,7 @@
     If no slot content is provided, render the Text component so users can edit content later.
   #}
   {% set default_body = '<p class="mb-0">Accordion body content…</p>' %}
-  {{ include('vartheme_bs5:text', { text: default_body, element: 'div' }, with_context = false) }}
+  {{ include('vartheme_bs5:text', {text: default_body, element: 'div'}, with_context: false) }}
 {% endif %}
     </div>
   </div>

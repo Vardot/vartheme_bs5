@@ -10,7 +10,7 @@
   'top-left': 'justify-content-start',
   'center-left': 'justify-content-center',
   'bottom-left': 'justify-content-end',
-  'hero-center': 'justify-content-center'
+  'hero-center': 'justify-content-center',
 }[hero_position]|default('justify-content-center') %}
 
 {% set center_mode = hero_position == 'hero-center' %}
@@ -23,9 +23,9 @@
 %}
 
 {% set image_alignment_class = {
-  'top': 'align-self-start',
-  'center': 'align-self-center',
-  'bottom': 'align-self-end'
+  top: 'align-self-start',
+  center: 'align-self-center',
+  bottom: 'align-self-end',
 }[hero_object_position]|default('align-self-center') %}
 
 {% set media_src = '' %}
@@ -52,7 +52,7 @@
   'overflow-hidden',
   'px-0',
   'text-bg-dark',
-  bg_edge2edge|default(false) ? 'bg-edge2edge' : ''
+  bg_edge2edge|default(false) ? 'bg-edge2edge' : '',
 ]|merge(hero_spacing_classes)) %}
 
 {% set media_layer_attributes = create_attribute().addClass([
@@ -61,14 +61,14 @@
   'start-0',
   'w-100',
   'h-100',
-  'd-flex'
+  'd-flex',
 ]) %}
 
 {% set media_inner_attributes = create_attribute().addClass([
   'w-100',
   'h-100',
   'd-flex',
-  image_alignment_class
+  image_alignment_class,
 ]) %}
 
 {% set overlay_attributes = create_attribute().addClass([
@@ -78,12 +78,12 @@
   'w-100',
   'h-100',
   overlay_bg_class,
-  overlay_opacity_class
+  overlay_opacity_class,
 ]) %}
 
 {% set container_attributes = create_attribute().addClass([
   container_class != 'none' ? container_class : '',
-  'position-relative'
+  'position-relative',
 ]) %}
 
 {% set content_outer_attributes = create_attribute().addClass([
@@ -91,31 +91,31 @@
   'w-100',
   vertical_align_class,
   content_align_class,
-  text_align_class
+  text_align_class,
 ]) %}
 
 {% set content_width_attributes = create_attribute().addClass([
-  content_width_class
+  content_width_class,
 ]) %}
 
 <section{{ section_attributes }}>
   {% if media_src is not empty %}
     <div{{ media_layer_attributes }} aria-hidden="true">
       <div{{ media_inner_attributes }}>
-        {% include 'vartheme_bs5:image' ignore missing with {
+        {{ include('vartheme_bs5:image', {
           media: {
             src: media_src,
             alt: media_alt,
             width: media_width,
-            height: media_height
+            height: media_height,
           },
           width: 'w-100',
           fit: 'object-fit-cover',
           align: 'me-auto',
           rounded: 'rounded-0',
           ratio: 'ratio-auto',
-          loading: 'eager'
-        } only %}
+          loading: 'eager',
+        }, false, true) }}
       </div>
       <div{{ overlay_attributes }}></div>
     </div>

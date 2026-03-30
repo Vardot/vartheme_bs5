@@ -25,11 +25,11 @@
 
   {{ title_prefix }}
   {% if label|render|striptags|trim %}
-  {% include 'vartheme_bs5:heading' with {
+  {{ include('vartheme_bs5:heading', {
       html_tag: title_tag,
       content: label,
       block_cta_utility_classes: ['cta-heading', 'mb-2'],
-    } only %}
+    }, false) }}
   {% endif %}
   {{ title_suffix }}
 

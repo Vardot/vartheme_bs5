@@ -73,10 +73,10 @@
   {% set media_entity_type = node.field_media_single.entity.bundle() %}
 
   {# If the media type is local video #}
-  {% if media_entity_type == "video" %}
+  {% if media_entity_type == 'video' %}
     {{ attach_library('varbase_heroslider_media/local_video_slider') }}
   {# If the media type is remote video with oembed #}
-  {% elseif media_entity_type == "remote_video" and provider %}
+  {% elseif media_entity_type == 'remote_video' and provider %}
     {{ attach_library('varbase_heroslider_media/' ~ provider ~ '_video_slider') }}
   {% endif %}
 {% endif %}

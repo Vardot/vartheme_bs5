@@ -37,8 +37,8 @@
     'block-' ~ configuration.provider|clean_class,
     'block-' ~ plugin_id|clean_class,
     layout ? 'layout--' ~ layout|clean_class,
-    bundle ? 'block--' ~ bundle|clean_class : "",
-    id ? 'block--' ~ id|replace({"_": "-"})|clean_class : "",
+    bundle ? 'block--' ~ bundle|clean_class : '',
+    id ? 'block--' ~ id|replace({_: '-'})|clean_class : '',
   ]
 %}
 
@@ -47,9 +47,8 @@
     {% set attributes = create_attribute() %}
   {% elseif attributes is not iterable %}
     {# If attributes is a non-empty string, treat it as a class list #}
-    {% set attributes = create_attribute({'class': [attributes]}) %}
+    {% set attributes = create_attribute({class: [attributes]}) %}
   {% endif %}
-
 
 {% if html_tag %}
   <{{ html_tag }}{{ attributes.addClass(classes) }}>
@@ -57,13 +56,13 @@
 
   {{ title_prefix }}
   {% if label %}
-  {% include 'vartheme_bs5:heading' with {
+  {{ include('vartheme_bs5:heading', {
       html_tag: 'h2',
       content: label,
       attributes: title_attributes,
-      heading_utility_classes: ['block__title']
-    }
-  %}
+      heading_utility_classes: ['block__title'],
+    },
+  ) }}
   {% endif %}
   {{ title_suffix }}
   {% block content %}

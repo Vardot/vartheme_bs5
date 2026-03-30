@@ -1,87 +1,87 @@
 {% stories ImpressedCard with {
-  "title": "Cards/Impressed Card",
-  "parameters": {
-    "componentSubtitle": "Stacked card with optional media (top/bottom) and a single content slot.",
-    "docs": {
-      "description": {
-        "component": "Impressed Card is a Bootstrap 5 card layout with an optional media area rendered through the image component. Use utility-class props to control border, padding, background, rounding, and shadows."
+  title: 'Cards/Impressed Card',
+  parameters: {
+    componentSubtitle: 'Stacked card with optional media (top/bottom) and a single content slot.',
+    docs: {
+      description: {
+        component: 'Impressed Card is a Bootstrap 5 card layout with an optional media area rendered through the image component. Use utility-class props to control border, padding, background, rounding, and shadows.',
       },
-      "story": { "inline": true }
-    }
+      story: {inline: true},
+    },
   },
-  "argTypes": {
-    "media_position": {
-      "name": "Media position",
-      "control": { "type": "select" },
-      "options": ["top", "bottom"]
+  argTypes: {
+    media_position: {
+      name: 'Media position',
+      control: {type: 'select'},
+      options: ['top', 'bottom'],
     },
-    "media_image": {
-      "name": "Media upload",
-      "control": { "type": "object" }
+    media_image: {
+      name: 'Media upload',
+      control: {type: 'object'},
     },
-    "ratio": {
-      "name": "Image ratio (crop)",
-      "control": { "type": "select" },
-      "options": ["ratio-auto", "ratio-16x9", "ratio-4x3", "ratio-1x1", "ratio-21x9"]
+    ratio: {
+      name: 'Image ratio (crop)',
+      control: {type: 'select'},
+      options: ['ratio-auto', 'ratio-16x9', 'ratio-4x3', 'ratio-1x1', 'ratio-21x9'],
     },
-    "fit": {
-      "name": "Image fit",
-      "control": { "type": "select" },
-      "options": ["object-fit-cover", "object-fit-contain"]
+    fit: {
+      name: 'Image fit',
+      control: {type: 'select'},
+      options: ['object-fit-cover', 'object-fit-contain'],
     },
-    "card_border": {
-      "name": "Card border",
-      "control": { "type": "boolean" }
+    card_border: {
+      name: 'Card border',
+      control: {type: 'boolean'},
     },
-    "background_color": {
-      "name": "Background",
-      "control": { "type": "select" },
-      "options": ["bg-transparent","bg-body","bg-body-tertiary","bg-white","bg-light","bg-dark","bg-primary","bg-secondary","bg-success","bg-danger","bg-warning","bg-info"]
+    background_color: {
+      name: 'Background',
+      control: {type: 'select'},
+      options: ['bg-transparent', 'bg-body', 'bg-body-tertiary', 'bg-white', 'bg-light', 'bg-dark', 'bg-primary', 'bg-secondary', 'bg-success', 'bg-danger', 'bg-warning', 'bg-info'],
     },
-    "padded": {
-      "name": "Padded",
-      "control": { "type": "boolean" }
+    padded: {
+      name: 'Padded',
+      control: {type: 'boolean'},
     },
-    "box_shadow": {
-      "name": "Shadow",
-      "control": { "type": "select" },
-      "options": ["shadow-none","shadow-sm","shadow","shadow-lg"]
+    box_shadow: {
+      name: 'Shadow',
+      control: {type: 'select'},
+      options: ['shadow-none', 'shadow-sm', 'shadow', 'shadow-lg'],
     },
-    "corner_style": {
-      "name": "Corner style",
-      "control": { "type": "select" },
-      "options": ["rounded-0","rounded-1","rounded-3","rounded-pill"]
+    corner_style: {
+      name: 'Corner style',
+      control: {type: 'select'},
+      options: ['rounded-0', 'rounded-1', 'rounded-3', 'rounded-pill'],
     },
-    "equal_height": {
-      "name": "Equal height",
-      "control": { "type": "boolean" }
-    }},
-    "link_url": {
-      "name": "Link URL",
-      "control": { "type": "text" }
+    equal_height: {
+      name: 'Equal height',
+      control: {type: 'boolean'},
     },
-    "link_target": {
-      "name": "Link target",
-      "control": { "type": "select" },
-      "options": ["default","_self","_blank"]
-    }
-  }
+    link_url: {
+      name: 'Link URL',
+      control: {type: 'text'},
+    },
+    link_target: {
+      name: 'Link target',
+      control: {type: 'select'},
+      options: ['default', '_self', '_blank'],
+    },
+  },
 } %}
 
-{% story 'Default' with {
-  "args": {
-    "media_position": "top",
-    "ratio": "ratio-16x9",
-    "fit": "object-fit-cover",
-    "card_border": true,
-    "background_color": "bg-white",
-    "padded": false,
-    "box_shadow": "shadow-sm",
-    "corner_style": "rounded-3",
-    "equal_height": false,
-    "link_url": "",
-    "link_target": "default"
-  }
+{% story Default with {
+  args: {
+    media_position: 'top',
+    ratio: 'ratio-16x9',
+    fit: 'object-fit-cover',
+    card_border: true,
+    background_color: 'bg-white',
+    padded: false,
+    box_shadow: 'shadow-sm',
+    corner_style: 'rounded-3',
+    equal_height: false,
+    link_url: '',
+    link_target: 'default',
+  },
 } %}
 {% embed 'vartheme_bs5:card-impressed' %}
   {% block content %}
@@ -97,20 +97,20 @@
 {% endembed %}
 {% endstory %}
 
-{% story 'Padded content' with {
-  "args": {
-    "media_position": "top",
-    "ratio": "ratio-16x9",
-    "fit": "object-fit-cover",
-    "card_border": true,
-    "background_color": "bg-body",
-    "padded": true,
-    "box_shadow": "shadow",
-    "corner_style": "rounded-3",
-    "equal_height": false,
-    "link_url": "",
-    "link_target": "default"
-  }
+{% story PaddedContent with {
+  args: {
+    media_position: 'top',
+    ratio: 'ratio-16x9',
+    fit: 'object-fit-cover',
+    card_border: true,
+    background_color: 'bg-body',
+    padded: true,
+    box_shadow: 'shadow',
+    corner_style: 'rounded-3',
+    equal_height: false,
+    link_url: '',
+    link_target: 'default',
+  },
 } %}
 {% embed 'vartheme_bs5:card-impressed' %}
   {% block content %}
@@ -120,20 +120,20 @@
 {% endembed %}
 {% endstory %}
 
-{% story 'Media bottom' with {
-  "args": {
-    "media_position": "bottom",
-    "ratio": "ratio-4x3",
-    "fit": "object-fit-cover",
-    "card_border": true,
-    "background_color": "bg-white",
-    "padded": true,
-    "box_shadow": "shadow-sm",
-    "corner_style": "rounded-3",
-    "equal_height": false,
-    "link_url": "",
-    "link_target": "default"
-  }
+{% story MediaBottom with {
+  args: {
+    media_position: 'bottom',
+    ratio: 'ratio-4x3',
+    fit: 'object-fit-cover',
+    card_border: true,
+    background_color: 'bg-white',
+    padded: true,
+    box_shadow: 'shadow-sm',
+    corner_style: 'rounded-3',
+    equal_height: false,
+    link_url: '',
+    link_target: 'default',
+  },
 } %}
 {% embed 'vartheme_bs5:card-impressed' %}
   {% block content %}
@@ -143,20 +143,20 @@
 {% endembed %}
 {% endstory %}
 
-{% story 'Contain fit' with {
-  "args": {
-    "media_position": "top",
-    "ratio": "ratio-1x1",
-    "fit": "object-fit-contain",
-    "card_border": true,
-    "background_color": "bg-white",
-    "padded": true,
-    "box_shadow": "shadow-none",
-    "corner_style": "rounded-0",
-    "equal_height": false,
-    "link_url": "",
-    "link_target": "default"
-  }
+{% story ContainFit with {
+  args: {
+    media_position: 'top',
+    ratio: 'ratio-1x1',
+    fit: 'object-fit-contain',
+    card_border: true,
+    background_color: 'bg-white',
+    padded: true,
+    box_shadow: 'shadow-none',
+    corner_style: 'rounded-0',
+    equal_height: false,
+    link_url: '',
+    link_target: 'default',
+  },
 } %}
 {% embed 'vartheme_bs5:card-impressed' %}
   {% block content %}
@@ -166,21 +166,21 @@
 {% endembed %}
 {% endstory %}
 
-{% story 'Linked card' with {
-  "args": {
-    "media_position": "top",
-    "ratio": "ratio-21x9",
-    "fit": "object-fit-cover",
-    "card_border": true,
-    "background_color": "bg-white",
-    "padded": true,
-    "box_shadow": "shadow-lg",
-    "corner_style": "rounded-3",
-    "equal_height": false,
-    "stretched_link": true,
-    "link_url": "https://example.com",
-    "link_target": "_blank"
-  }
+{% story LinkedCard with {
+  args: {
+    media_position: 'top',
+    ratio: 'ratio-21x9',
+    fit: 'object-fit-cover',
+    card_border: true,
+    background_color: 'bg-white',
+    padded: true,
+    box_shadow: 'shadow-lg',
+    corner_style: 'rounded-3',
+    equal_height: false,
+    stretched_link: true,
+    link_url: 'https://example.com',
+    link_target: '_blank',
+  },
 } %}
 {% embed 'vartheme_bs5:card-impressed' %}
   {% block content %}

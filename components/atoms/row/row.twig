@@ -26,7 +26,7 @@
 
 {% set row_classes = [
   'row',
-  'g-' ~ gutter
+  'g-' ~ gutter,
 ] %}
 
 {% if columns_mobile != 'none' %}
@@ -46,7 +46,7 @@
   padding_block_start,
   padding_block_end,
   margin_block_start,
-  margin_block_end
+  margin_block_end,
 ] %}
 
 {% if background_color != 'none' %}
@@ -78,10 +78,10 @@
   {% if has_overlay %}
     {% set alpha = (overlay_opacity + 0) / 100 %}
     {% set rgb = overlay_color == 'light' ? '255,255,255' : '0,0,0' %}
-    {% set overlay = "linear-gradient(rgba(" ~ rgb ~ "," ~ alpha ~ "), rgba(" ~ rgb ~ "," ~ alpha ~ "))" %}
-    {% set wrapper_style = "background-image: " ~ overlay ~ ", " ~ base_bg ~ "; background-size: cover; background-position: center;" %}
+    {% set overlay = 'linear-gradient(rgba(' ~ rgb ~ ',' ~ alpha ~ '), rgba(' ~ rgb ~ ',' ~ alpha ~ '))' %}
+    {% set wrapper_style = 'background-image: ' ~ overlay ~ ', ' ~ base_bg ~ '; background-size: cover; background-position: center;' %}
   {% else %}
-    {% set wrapper_style = "background-image: " ~ base_bg ~ "; background-size: cover; background-position: center;" %}
+    {% set wrapper_style = 'background-image: ' ~ base_bg ~ '; background-size: cover; background-position: center;' %}
   {% endif %}
 {% endif %}
 

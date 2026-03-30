@@ -8,15 +8,15 @@
 {% set heading_props = {
   heading_text: heading_text|default(''),
   level: level|default(2),
-  url: ''
+  url: '',
 } %}
 {% if heading_size_value != 'default' %}
-  {% set heading_props = heading_props|merge({ text_size: heading_size_value }) %}
+  {% set heading_props = heading_props|merge({text_size: heading_size_value}) %}
 {% endif %}
 
 {% set author_link_props = {
   url: author_url_value,
-  content: author_value
+  content: author_value,
 } %}
 
 {% set section_attributes = create_attribute().addClass(['py-4', 'py-md-5']) %}
@@ -34,7 +34,7 @@
     <div{{ inner_row_attributes }}>
       <div{{ content_col_attributes }}>
         {% if date_value %}
-          <p{{ date_attributes }}>{{ include('vartheme_bs5:date', { date: date_value }, with_context: false) }}</p>
+          <p{{ date_attributes }}>{{ include('vartheme_bs5:date', {date: date_value}, with_context: false) }}</p>
         {% endif %}
 
         {{ include('vartheme_bs5:heading', heading_props, with_context: false) }}

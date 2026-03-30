@@ -44,7 +44,7 @@
   src: media.src|default(''),
   alt: media.alt|default(cite_name|default('Avatar')),
   width: media.width|default(60),
-  height: media.height|default(60)
+  height: media.height|default(60),
 } %}
 
 <div{{ card_attributes }}>
@@ -66,13 +66,13 @@
         <footer{{ footer_attributes }}>
           {% if has_media %}
             <div{{ avatar_wrapper_attributes }}>
-              {% include 'vartheme_bs5:image' ignore missing with {
+              {{ include('vartheme_bs5:image', {
                 media: image_media,
                 ratio: 'ratio-auto',
                 fit: 'object-fit-contain',
                 width: 'w-100',
-                align: 'mx-auto'
-              } only %}
+                align: 'mx-auto',
+              }, false, true) }}
             </div>
           {% endif %}
 

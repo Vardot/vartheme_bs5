@@ -28,11 +28,11 @@
 
 <div{{ attributes }}>
   {% if heading|render|striptags|trim is not empty %}
-    {% include "vartheme_bs5:heading" with {
+    {{ include('vartheme_bs5:heading', {
       heading_text: heading|render|striptags|trim,
       level: 4,
       extra_classes: 'alert-heading',
-    } only %}
+    }, false) }}
   {% endif %}
 
   {% block content %}

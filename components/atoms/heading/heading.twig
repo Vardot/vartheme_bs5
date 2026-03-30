@@ -7,7 +7,6 @@
 {% set url = url|default('')|trim %}
 {% set target = target|default('_self') %}
 
-
 {% set text_size = text_size|default('') %}
 {% set text_color = text_color|default('') %}
 {% set align = align|default('') %}
@@ -20,14 +19,14 @@
 {% endif %}
 
 {# Link props for vartheme_bs5:link #}
-{% set link_props = url ? { url: url, content: heading_text } : {} %}
+{% set link_props = url ? {url: url, content: heading_text} : {} %}
 {% if url and target and target != '_self' %}
-  {% set link_props = link_props|merge({ target: target }) %}
+  {% set link_props = link_props|merge({target: target}) %}
 {% endif %}
 
 <{{ tag }}{{ heading_attributes }}>
   {% if url %}
-    {% include 'vartheme_bs5:link' with link_props only %}
+    {{ include('vartheme_bs5:link', link_props, false) }}
   {% else %}
     {{ heading_text }}
   {% endif %}

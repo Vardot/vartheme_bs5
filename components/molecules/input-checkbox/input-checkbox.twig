@@ -11,10 +11,10 @@
  */
 #}
 
-{% include "vartheme_bs5:input" with {
+{{ include('vartheme_bs5:input', {
   type: 'checkbox',
   bs_form_control: false,
   bs_size: '',
   input_checkbox_utility_classes: ['form-check-input'],
-  attributes: attributes
-} %}
+  attributes: attributes,
+}) }}

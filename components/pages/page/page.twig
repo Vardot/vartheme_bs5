@@ -38,7 +38,7 @@
  * - navbar_top_attributes: Items for the header region.
  * - navbar_attributes: Items for the header region.
  * - content_attributes: Items for the header region.
- * - secondary_sidebar_attributes: Items for the secondary sidebar region. 
+ * - secondary_sidebar_attributes: Items for the secondary sidebar region.
  * - sidebar_second_attributes: Items for the primary menu region.
  * - sidebar_collapse: If the sidebar_first will collapse.
  * - logo_print: Print logo.
@@ -54,7 +54,7 @@
 #}
 <div id="page" class="page d-flex flex-column">
 
-  {% include "vartheme_bs5:page-header" %}
+  {{ include('vartheme_bs5:page-header') }}
 
   <main class="mb-3">
     <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
@@ -114,6 +114,6 @@
     {% endif %}
   </main>
 
-  {% include "vartheme_bs5:page-footer" %}
+  {{ include('vartheme_bs5:page-footer') }}
 
 </div>

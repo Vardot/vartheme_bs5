@@ -39,7 +39,7 @@
   'overflow-hidden',
   'position-relative',
   box_shadow,
-  (equal_height ? 'h-100' : '')
+  (equal_height ? 'h-100' : ''),
 ]|filter(v => v is not empty)) %}
 
 {% set overlay_attributes = create_attribute().addClass([
@@ -47,7 +47,7 @@
   overlay_color,
   (overlay_color != 'bg-transparent' ? overlay_opacity : ''),
   'p-0',
-  'pointer-events-none'
+  'pointer-events-none',
 ]|filter(v => v is not empty)) %}
 
 {% set content_overlay_attributes = create_attribute().addClass([
@@ -55,7 +55,7 @@
   'd-flex',
   v_align,
   'p-0',
-  'text-white'
+  'text-white',
 ]|filter(v => v is not empty)) %}
 
 {% set card_body_attributes = create_attribute().addClass([
@@ -63,12 +63,12 @@
   'w-100',
   h_align,
   (padded ? 'p-4' : 'p-0'),
-  ((not has_content_slot) and (not padded) ? 'py-4' : '')
+  ((not has_content_slot) and (not padded) ? 'py-4' : ''),
 ]|filter(v => v is not empty)) %}
 
 {% set empty_state_attributes = create_attribute().addClass([
   'small',
-  'pe-none'
+  'pe-none',
 ]|filter(v => v is not empty)) %}
 
 {% set image_payload = {
@@ -76,19 +76,19 @@
     src: media_image.src|default(''),
     alt: media_image.alt|default(''),
     width: media_image.width|default(null),
-    height: media_image.height|default(null)
+    height: media_image.height|default(null),
   },
   ratio: ratio,
   width: 'w-100',
   fit: fit,
   extra_classes: ['d-block', 'img-fluid', 'w-100', 'card-img']|join(' '),
   loading: media_image.loading|default('lazy'),
-  sizes: media_image.sizes|default('')
+  sizes: media_image.sizes|default(''),
 } %}
 
 <div{{ card_attributes }}>
   {% if has_media %}
-    {% include 'vartheme_bs5:image' ignore missing with image_payload only %}
+    {{ include('vartheme_bs5:image', image_payload, false, true) }}
   {% endif %}
 
   {% if overlay_color != 'bg-transparent' %}
@@ -106,11 +106,11 @@
   </div>
 
   {% if use_stretched_link %}
-    {% include 'vartheme_bs5:link' with {
+    {{ include('vartheme_bs5:link', {
       url: link_url,
       target: link_target,
       content: '',
-      link_utility_classes: ['stretched-link']
-    } %}
+      link_utility_classes: ['stretched-link'],
+    }) }}
   {% endif %}
 </div>

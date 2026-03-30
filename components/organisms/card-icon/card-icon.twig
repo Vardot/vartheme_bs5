@@ -18,7 +18,7 @@
 {% set icon_justify_map = {
   'text-start': 'justify-content-start',
   'text-center': 'justify-content-center',
-  'text-end': 'justify-content-end'
+  'text-end': 'justify-content-end',
 } %}
 
 {% set icon_justify_class = icon_justify_map[text_align_class]|default('justify-content-center') %}
@@ -56,7 +56,7 @@
       <div{{ icon_row_attributes }}>
         {{ include('vartheme_bs5:bootstrap-icon', {
           icon: icon_name,
-          icon_size: icon_size_value
+          icon_size: icon_size_value,
         }, with_context: false) }}
       </div>
     {% endif %}
@@ -77,7 +77,7 @@
           href: url,
           label: button_label_value,
           variant: button_variant_value,
-          size: 'btn-sm'
+          size: 'btn-sm',
         }, with_context: false) }}
       </div>
     {% endif %}

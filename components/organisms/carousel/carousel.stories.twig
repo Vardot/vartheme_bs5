@@ -1,126 +1,124 @@
 {% stories Carousel with {
-  "title": "Organisms/Carousel",
-  "parameters": {
-    "componentSubtitle": "Bootstrap Carousel component",
-    "docs": {
-      "description": {
-        "component": " A slideshow component for cycling through elements images/media or slides of text—like a carousel."
+  title: 'Organisms/Carousel',
+  parameters: {
+    componentSubtitle: 'Bootstrap Carousel component',
+    docs: {
+      description: {
+        component: ' A slideshow component for cycling through elements images/media or slides of text—like a carousel.',
       },
-      "story": {
-        "inline": true
-      }
-    }
+      story: {
+        inline: true,
+      },
+    },
   },
-  "argTypes": {
-    "id": {
-      "name": "Carousel ID",
-      "description": "Set a unique id on the carousel for optional controls, especially if you’re using multiple carousels on a single page.",
-      "control": "text",
-      "defaultValue": ""
+  argTypes: {
+    id: {
+      name: 'Carousel ID',
+      description: 'Set a unique id on the carousel for optional controls, especially if you’re using multiple carousels on a single page.',
+      control: 'text',
+      defaultValue: '',
     },
-    "slide_component": {
-      "name": "Slide component",
-      "description": "A component name to render a slide",
-      "control": "text",
-      "defaultValue": "vartheme_bs5:card-hero"
+    slide_component: {
+      name: 'Slide component',
+      description: 'A component name to render a slide',
+      control: 'text',
+      defaultValue: 'vartheme_bs5:card-hero',
     },
-    "items": {
-      "name": "Carousel items",
-      "description": "An array of slider items, Each item has (caption, slide, text)",
-      "control": "object",
-      "defaultValue": []
+    items: {
+      name: 'Carousel items',
+      description: 'An array of slider items, Each item has (caption, slide, text)',
+      control: 'object',
+      defaultValue: [],
     },
-    "controls": {
-      "name": "Controls",
-      "description": "Add the previous/next controls.",
-      "control": "boolean",
-      "defaultValue": true
+    controls: {
+      name: 'Controls',
+      description: 'Add the previous/next controls.',
+      control: 'boolean',
+      defaultValue: true,
     },
-    "indicators": {
-      "name": "Indicators",
-      "description": "Add indicators to the carousel, alongside the previous/next controls.",
-      "control": "boolean",
-      "defaultValue": true
-    }
-  }
+    indicators: {
+      name: 'Indicators',
+      description: 'Add indicators to the carousel, alongside the previous/next controls.',
+      control: 'boolean',
+      defaultValue: true,
+    },
+  },
 } %}
 
-
 {% story Carousel with {
-  "name": "Carousel",
-  "args": {
-    "id": "test-carousel-1",
-    "slide_component": "vartheme_bs5:card-hero",
-    "controls": true,
-    "indicators": true,
-    "items": {
-      "0": {
-        "id": "slide1-1",
-        "indicator_label": "Slide #1",
-        "media": "<picture class=\"card-img img-fluid \"><img class=\"card-img img-fluid\" src=\"https://raw.githubusercontent.com/Vardot/varbase_media_demo/10.0.0/content/file/coworking-1.jpg\"></picture>",
-        "content": "<div data-component-id=\"vartheme_bs5:field\" class=\"field field--name-node-title field--type-ds field--label-hidden field__item\"><h3 class=\"card-title\"><a href=\"#\" hreflang=\"en\">Amet Brevitas Dolore Jugis Pertineo</a></h3></div><div class=\"field field--name-body field--type-text-with-summary field--label-hidden field__item\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pharetra arcu risus, id tempus risus elementum at. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas ...</div>"
+  name: 'Carousel',
+  args: {
+    id: 'test-carousel-1',
+    slide_component: 'vartheme_bs5:card-hero',
+    controls: true,
+    indicators: true,
+    items: {
+      0: {
+        id: 'slide1-1',
+        indicator_label: 'Slide #1',
+        media: '<picture class="card-img img-fluid "><img class="card-img img-fluid" src="https://raw.githubusercontent.com/Vardot/varbase_media_demo/10.0.0/content/file/coworking-1.jpg"></picture>',
+        content: '<div data-component-id="vartheme_bs5:field" class="field field--name-node-title field--type-ds field--label-hidden field__item"><h3 class="card-title"><a href="#" hreflang="en">Amet Brevitas Dolore Jugis Pertineo</a></h3></div><div class="field field--name-body field--type-text-with-summary field--label-hidden field__item">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pharetra arcu risus, id tempus risus elementum at. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas ...</div>',
       },
-      "1": {
-        "id": "slide1-2",
-        "indicator_label": "Slide #2",
-        "media": "<picture class=\"card-img img-fluid \"><img class=\"card-img img-fluid\" src=\"https://raw.githubusercontent.com/Vardot/varbase_media_demo/10.0.0/content/file/coworking-2.jpg\"></picture>",
-        "content": "<div data-component-id=\"vartheme_bs5:field\" class=\"field field--name-node-title field--type-ds field--label-hidden field__item\"><h3 class=\"card-title\"><a href=\"#\" hreflang=\"en\">Pneum Ratis Refoveo Scisco Sed Sino Validus</a></h3></div><div class=\"field field--name-body field--type-text-with-summary field--label-hidden field__item\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pharetra arcu risus, id tempus risus elementum at. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas ...</div>"
+      1: {
+        id: 'slide1-2',
+        indicator_label: 'Slide #2',
+        media: '<picture class="card-img img-fluid "><img class="card-img img-fluid" src="https://raw.githubusercontent.com/Vardot/varbase_media_demo/10.0.0/content/file/coworking-2.jpg"></picture>',
+        content: '<div data-component-id="vartheme_bs5:field" class="field field--name-node-title field--type-ds field--label-hidden field__item"><h3 class="card-title"><a href="#" hreflang="en">Pneum Ratis Refoveo Scisco Sed Sino Validus</a></h3></div><div class="field field--name-body field--type-text-with-summary field--label-hidden field__item">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pharetra arcu risus, id tempus risus elementum at. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas ...</div>',
       },
-      "2": {
-        "id": "slide1-3",
-        "indicator_label": "Slide #3",
-        "media": "<picture class=\"card-img img-fluid \"><img class=\"card-img img-fluid\" src=\"https://raw.githubusercontent.com/Vardot/varbase_media_demo/10.0.0/content/file/saas-1.jpg\"></picture>",
-        "content": "<div data-component-id=\"vartheme_bs5:field\" class=\"field field--name-node-title field--type-ds field--label-hidden field__item\"><h3 class=\"card-title\"><a href=\"#\" hreflang=\"en\">Dolore Jugis Pertineo Pneum Ratis</a></h3></div><div class=\"field field--name-body field--type-text-with-summary field--label-hidden field__item\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pharetra arcu risus, id tempus risus elementum at. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas ...</div>"
-      }
-    }
-  }
+      2: {
+        id: 'slide1-3',
+        indicator_label: 'Slide #3',
+        media: '<picture class="card-img img-fluid "><img class="card-img img-fluid" src="https://raw.githubusercontent.com/Vardot/varbase_media_demo/10.0.0/content/file/saas-1.jpg"></picture>',
+        content: '<div data-component-id="vartheme_bs5:field" class="field field--name-node-title field--type-ds field--label-hidden field__item"><h3 class="card-title"><a href="#" hreflang="en">Dolore Jugis Pertineo Pneum Ratis</a></h3></div><div class="field field--name-body field--type-text-with-summary field--label-hidden field__item">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pharetra arcu risus, id tempus risus elementum at. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas ...</div>',
+      },
+    },
+  },
 } %}
 {{ include('vartheme_bs5:carousel') }}
 {% endstory %}
 
 {% story CarouselMedia with {
-  "name": "Carousel Media",
-  "args": {
-    "id": "test-carousel-2",
-    "slide_component": "vartheme_bs5:card-hero",
-    "controls": true,
-    "indicators": true,
-    "items": {
-      "0": {
-        "id": "slide2-1",
-        "indicator_label": "Slide #1 - Local Video",
-        "media": "<div class=\"varbase-video-player ratio ratio-16x9\"><video autoplay=\"autoplay\" loop=\"loop\" muted=\"muted\" width=\"1600\" height=\"900\"><source src=\"https://github.com/Vardot/varbase_media_demo/raw/10.0.0/content/file/business-meeting.mp4\" type=\"video/mp4\"></video></div>",
-        "content": "<div data-component-id=\"vartheme_bs5:field\" class=\"field field--name-node-title field--type-ds field--label-hidden field__item\"><h3 class=\"card-title\"><a href=\"#\" hreflang=\"en\">Slide #1 - Local Video</a></h3></div><div class=\"field field--name-body field--type-text-with-summary field--label-hidden field__item\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pharetra arcu risus, id tempus risus elementum at. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas ...</div>"
+  name: 'Carousel Media',
+  args: {
+    id: 'test-carousel-2',
+    slide_component: 'vartheme_bs5:card-hero',
+    controls: true,
+    indicators: true,
+    items: {
+      0: {
+        id: 'slide2-1',
+        indicator_label: 'Slide #1 - Local Video',
+        media: '<div class="varbase-video-player ratio ratio-16x9"><video autoplay="autoplay" loop="loop" muted="muted" width="1600" height="900"><source src="https://github.com/Vardot/varbase_media_demo/raw/10.0.0/content/file/business-meeting.mp4" type="video/mp4"></video></div>',
+        content: '<div data-component-id="vartheme_bs5:field" class="field field--name-node-title field--type-ds field--label-hidden field__item"><h3 class="card-title"><a href="#" hreflang="en">Slide #1 - Local Video</a></h3></div><div class="field field--name-body field--type-text-with-summary field--label-hidden field__item">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pharetra arcu risus, id tempus risus elementum at. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas ...</div>',
       },
-      "1": {
-        "id": "slide2-2",
-        "indicator_label": "Slide #2 - YouTube",
-        "media": "<div class=\"varbase-video-player ratio ratio-16x9\"><iframe src=\"https://youtube.com/embed/bTqVqk7FSmY?autoplay=1&mute=1\" frameborder=\"0\" allowtransparency=\"\" width=\"1600\" height=\"900\" loading=\"lazy\" ></iframe></div>",
-        "content": "<div data-component-id=\"vartheme_bs5:field\" class=\"field field--name-node-title field--type-ds field--label-hidden field__item\"><h3 class=\"card-title\"><a href=\"#\" hreflang=\"en\">Slide #2 - YouTube</a></h3></div><div class=\"field field--name-body field--type-text-with-summary field--label-hidden field__item\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pharetra arcu risus, id tempus risus elementum at. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas ...</div>"
+      1: {
+        id: 'slide2-2',
+        indicator_label: 'Slide #2 - YouTube',
+        media: '<div class="varbase-video-player ratio ratio-16x9"><iframe src="https://youtube.com/embed/bTqVqk7FSmY?autoplay=1&mute=1" frameborder="0" allowtransparency="" width="1600" height="900" loading="lazy" ></iframe></div>',
+        content: '<div data-component-id="vartheme_bs5:field" class="field field--name-node-title field--type-ds field--label-hidden field__item"><h3 class="card-title"><a href="#" hreflang="en">Slide #2 - YouTube</a></h3></div><div class="field field--name-body field--type-text-with-summary field--label-hidden field__item">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pharetra arcu risus, id tempus risus elementum at. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas ...</div>',
       },
-      "2": {
-        "id": "slide2-3",
-        "indicator_label": "Slide #3 - Vimeo",
-        "media": "<div class=\"varbase-video-player ratio ratio-16x9\"><iframe src=\"https://player.vimeo.com/video/76979871?autoplay=1&background=1\" frameborder=\"0\" allow=\"autoplay; encrypted-media\" allowfullscreen=\"\" allowtransparency=\"\" width=\"1600\" height=\"900\" loading=\"lazy\"></iframe></div>",
-        "content": "<div data-component-id=\"vartheme_bs5:field\" class=\"field field--name-node-title field--type-ds field--label-hidden field__item\"><h3 class=\"card-title\"><a href=\"#\" hreflang=\"en\">Slide #3 - Vimeo</a></h3></div><div class=\"field field--name-body field--type-text-with-summary field--label-hidden field__item\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pharetra arcu risus, id tempus risus elementum at. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas ...</div>"
+      2: {
+        id: 'slide2-3',
+        indicator_label: 'Slide #3 - Vimeo',
+        media: '<div class="varbase-video-player ratio ratio-16x9"><iframe src="https://player.vimeo.com/video/76979871?autoplay=1&background=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen="" allowtransparency="" width="1600" height="900" loading="lazy"></iframe></div>',
+        content: '<div data-component-id="vartheme_bs5:field" class="field field--name-node-title field--type-ds field--label-hidden field__item"><h3 class="card-title"><a href="#" hreflang="en">Slide #3 - Vimeo</a></h3></div><div class="field field--name-body field--type-text-with-summary field--label-hidden field__item">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pharetra arcu risus, id tempus risus elementum at. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas ...</div>',
       },
-      "3": {
-        "id": "slide2-4",
-        "indicator_label": "Slide #4 - Image",
-        "media": "<picture class=\"card-img img-fluid \"><img class=\"card-img img-fluid\" src=\"https://raw.githubusercontent.com/Vardot/varbase_media_demo/10.0.0/content/file/coworking-2.jpg\"></picture>",
-        "content": "<div data-component-id=\"vartheme_bs5:field\" class=\"field field--name-node-title field--type-ds field--label-hidden field__item\"><h3 class=\"card-title\"><a href=\"#\" hreflang=\"en\">Slide #4 - Image</a></h3></div><div class=\"field field--name-body field--type-text-with-summary field--label-hidden field__item\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pharetra arcu risus, id tempus risus elementum at. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas ...</div>"
+      3: {
+        id: 'slide2-4',
+        indicator_label: 'Slide #4 - Image',
+        media: '<picture class="card-img img-fluid "><img class="card-img img-fluid" src="https://raw.githubusercontent.com/Vardot/varbase_media_demo/10.0.0/content/file/coworking-2.jpg"></picture>',
+        content: '<div data-component-id="vartheme_bs5:field" class="field field--name-node-title field--type-ds field--label-hidden field__item"><h3 class="card-title"><a href="#" hreflang="en">Slide #4 - Image</a></h3></div><div class="field field--name-body field--type-text-with-summary field--label-hidden field__item">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pharetra arcu risus, id tempus risus elementum at. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas ...</div>',
       },
-      "4": {
-        "id": "slide2-4",
-        "indicator_label": "Slide #4 - Image",
-        "media": "<picture class=\"card-img img-fluid \"><img class=\"card-img img-fluid\" src=\"https://raw.githubusercontent.com/Vardot/varbase_media_demo/10.0.0/content/file/saas-1.jpg\"></picture>",
-        "content": "<div data-component-id=\"vartheme_bs5:field\" class=\"field field--name-node-title field--type-ds field--label-hidden field__item\"><h3 class=\"card-title\"><a href=\"#\" hreflang=\"en\">Slide #4 - Image</a></h3></div><div class=\"field field--name-body field--type-text-with-summary field--label-hidden field__item\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pharetra arcu risus, id tempus risus elementum at. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas ...</div>"
-      }
-    }
-  }
+      4: {
+        id: 'slide2-4',
+        indicator_label: 'Slide #4 - Image',
+        media: '<picture class="card-img img-fluid "><img class="card-img img-fluid" src="https://raw.githubusercontent.com/Vardot/varbase_media_demo/10.0.0/content/file/saas-1.jpg"></picture>',
+        content: '<div data-component-id="vartheme_bs5:field" class="field field--name-node-title field--type-ds field--label-hidden field__item"><h3 class="card-title"><a href="#" hreflang="en">Slide #4 - Image</a></h3></div><div class="field field--name-body field--type-text-with-summary field--label-hidden field__item">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pharetra arcu risus, id tempus risus elementum at. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas ...</div>',
+      },
+    },
+  },
 } %}
 {{ include('vartheme_bs5:carousel') }}
 {% endstory %}
-
 
 {% endstories %}

@@ -8,11 +8,11 @@
 {% set title = title|default('Demo title') %}
 {% set heading_tag = heading_tag|default('h2') %}
 {% set heading_level_map = {
-  'h2': 2,
-  'h3': 3,
-  'h4': 4,
-  'h5': 5,
-  'h6': 6
+  h2: 2,
+  h3: 3,
+  h4: 4,
+  h5: 5,
+  h6: 6,
 } %}
 {% set heading_level = heading_level_map[heading_tag]|default(1) %}
 {% set content_text = content_text|default('Demo content text goes here. You can edit this in Canvas.') %}
@@ -151,7 +151,6 @@
   {% set content_column_classes = content_column_classes|merge(['align-items-start', 'text-start']) %}
 {% endif %}
 
-
 {% set split_media_wrapper_classes = ['w-100', 'h-100', 'overflow-hidden'] %}
 {% if merge_media %}
   {% if media_position == 'start' %}
@@ -219,12 +218,12 @@
 {% set heading_markup %}
   {% if title %}
     <div {{ title_wrapper_attributes }}>
-      {% include 'vartheme_bs5:heading' with {
+      {{ include('vartheme_bs5:heading', {
         heading_text: title,
         level: heading_level,
         text_color: content_color,
-        align: horizontal_alignment
-      } only %}
+        align: horizontal_alignment,
+      }, false) }}
     </div>
   {% endif %}
 {% endset %}
@@ -240,7 +239,7 @@
     {{ actions_slot|raw }}
   {% elseif (button_1_label|default('')|trim) and (button_1_url|default('')|trim) %}
     <div {{ button_wrapper_attributes }}>
-      {% include 'vartheme_bs5:button' with {
+      {{ include('vartheme_bs5:button', {
         label: button_1_label,
         href: button_1_url,
         variant: button_variant,
@@ -248,8 +247,8 @@
         size: button_size,
         target: button_target,
         alignment: 'inline',
-        radius: 'rounded'
-      } only %}
+        radius: 'rounded',
+      }, false) }}
     </div>
   {% endif %}
 {% endset %}
@@ -259,24 +258,24 @@
     src: media_src,
     alt: media_alt,
     width: media_width,
-    height: media_height
+    height: media_height,
   },
   fit: overlay_image_mode,
-  loading: 'lazy'
+  loading: 'lazy',
 } %}
 
 {% set standard_image_props = image_component_props|merge({
   width: 'w-100',
   align: 'me-auto',
   rounded: media_position == 'content' ? 'rounded-3' : 'rounded-0',
-  ratio: 'ratio-auto'
+  ratio: 'ratio-auto',
 }) %}
 
 {% set overlay_image_props = image_component_props|merge({
   width: 'w-100',
   align: 'me-auto',
   rounded: 'rounded-0',
-  ratio: 'ratio-auto'
+  ratio: 'ratio-auto',
 }) %}
 
 {% set standard_media_markup %}
@@ -284,7 +283,7 @@
     {{ media_slot_override|raw }}
   {% elseif media_src %}
     <div style="{{ media_style }}">
-      {% include 'vartheme_bs5:image' with standard_image_props only %}
+      {{ include('vartheme_bs5:image', standard_image_props, false) }}
     </div>
   {% endif %}
 {% endset %}
@@ -294,14 +293,14 @@
     <div {{ split_background_media_attributes }}>{{ media_slot_override|raw }}</div>
   {% elseif media_src %}
     <div {{ split_background_media_attributes }}>
-      {% include 'canvas:image' ignore missing with {
+      {{ include('canvas:image', {
         src: media_src,
         alt: media_alt,
         width: media_width,
         height: media_height,
         class: split_background_media_class,
-        loading: 'lazy'
-      } only %}
+        loading: 'lazy',
+      }, false, true) }}
     </div>
   {% endif %}
 {% endset %}
@@ -311,7 +310,7 @@
     {{ media_slot_override|raw }}
   {% elseif media_src %}
     <div style="{{ media_style }}">
-      {% include 'vartheme_bs5:image' with standard_image_props only %}
+      {{ include('vartheme_bs5:image', standard_image_props, false) }}
     </div>
   {% endif %}
 {% endset %}
@@ -321,14 +320,14 @@
     <div {{ overlay_background_media_attributes }}>{{ media_slot_override|raw }}</div>
   {% elseif media_src %}
     <div {{ overlay_background_media_attributes }}>
-      {% include 'canvas:image' ignore missing with {
+      {{ include('canvas:image', {
         src: media_src,
         alt: media_alt,
         width: media_width,
         height: media_height,
         class: 'w-100 h-100 img-fluid ' ~ overlay_image_mode,
-        loading: 'lazy'
-      } only %}
+        loading: 'lazy',
+      }, false, true) }}
     </div>
   {% endif %}
 {% endset %}
@@ -338,7 +337,7 @@
     {{ media_slot_override|raw }}
   {% elseif media_src %}
     <div {{ overlay_media_wrapper_attributes }} style="{{ media_style }}">
-      {% include 'vartheme_bs5:image' with overlay_image_props only %}
+      {{ include('vartheme_bs5:image', overlay_image_props, false) }}
     </div>
   {% endif %}
 {% endset %}

@@ -1,72 +1,74 @@
 ---
 {% stories Blockquote with {
-  "title": "Base/Blockquote",
-  "parameters": {
-    "componentSubtitle": "Bootstrap Blockquote component",
-    "docs": {
-      "description": {
-        "component": "Blockquote component with light/dark variants using Bootstrap utilities."
+  title: 'Base/Blockquote',
+  parameters: {
+    componentSubtitle: 'Bootstrap Blockquote component',
+    docs: {
+      description: {
+        component: 'Blockquote component with light/dark variants using Bootstrap utilities.',
       },
-      "story": {
-        "inline": true
-      }
-    }
+      story: {
+        inline: true,
+      },
+    },
   },
-  "argTypes": {
-    "type": {
-      "name": "Type",
-      "description": "Color style of the blockquote.",
-      "defaultValue": "dark",
-      "control": "select",
-      "options": {
-        "Dark": "dark",
-        "Light": "light"
-      }
+  argTypes: {
+    type: {
+      name: 'Type',
+      description: 'Color style of the blockquote.',
+      defaultValue: 'dark',
+      control: 'select',
+      options: {
+        Dark: 'dark',
+        Light: 'light',
+      },
     },
-    "text": {
-      "name": "Quote text",
-      "description": "The main content of the blockquote.",
-      "defaultValue": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      "control": "text"
+    text: {
+      name: 'Quote text',
+      description: 'The main content of the blockquote.',
+      defaultValue: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      control: 'text',
     },
-    "cite_text": {
-      "name": "Quotee Name and Position",
-      "description": "Name and role, organization, or source of the quote.",
-      "defaultValue": "Quotee Name and Position",
-      "control": "text"
-    }
-  }
+    cite_text: {
+      name: 'Quotee Name and Position',
+      description: 'Name and role, organization, or source of the quote.',
+      defaultValue: 'Quotee Name and Position',
+      control: 'text',
+    },
+  },
 } %}
 
 {% story DefaultDark with {
-  "name": "Default (Dark)",
-  "args": {
-    "type": "dark",
-    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc non sapien lacinia, pellentesque elit sit amet, tempor orci.",
-    "cite_text": "Quotee Name and Position"
-  }
+  name: 'Default (Dark)',
+  args: {
+    type: 'dark',
+    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc non sapien lacinia, pellentesque elit sit amet, tempor orci.',
+    cite_text: 'Quotee Name and Position',
+  },
 } %}
 {{ include('vartheme_bs5:blockquote') }}
 {% endstory %}
 
 {% story DefaultLight with {
-  "name": "Default (Light)",
-  "args": {
-    "type": "light",
-    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc non sapien lacinia, pellentesque elit sit amet, tempor orci.",
-    "cite_text": "Quotee Name and Position"
-  }
+  name: 'Default (Light)',
+  args: {
+    type: 'light',
+    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc non sapien lacinia, pellentesque elit sit amet, tempor orci.',
+    cite_text: 'Quotee Name and Position',
+  },
 } %}
 {{ include('vartheme_bs5:blockquote') }}
 {% endstory %}
 
 {% story WithoutCite with {
-  "name": "Without cite",
-  "args": {
-    "type": "dark",
-    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc non sapien lacinia, pellentesque elit sit amet, tempor orci.",
-    "cite_text": ""
-  }
+  name: 'Without cite',
+  args: {
+    type: 'dark',
+    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc non sapien lacinia, pellentesque elit sit amet, tempor orci.',
+    cite_text: '',
+  },
 } %}
 {{ include('vartheme_bs5:blockquote') }}
 {% endstory %}
+
+{% endstories %}

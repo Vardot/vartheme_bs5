@@ -49,7 +49,7 @@
   (card_border ? 'border' : 'border-0'),
   box_shadow,
   (use_stretched_link ? 'position-relative' : ''),
-  (equal_height ? 'h-100' : '')
+  (equal_height ? 'h-100' : ''),
 ]|merge(media_position_classes)|filter(v => v is not empty)) %}
 
 {% set media_attributes = create_attribute().addClass([
@@ -60,7 +60,7 @@
 {% set card_body_attributes = create_attribute().addClass([
   'card-body',
   (padded ? 'p-4' : 'p-0'),
-  ((not has_content_slot) and (not padded) ? 'py-4' : '')
+  ((not has_content_slot) and (not padded) ? 'py-4' : ''),
 ]|filter(v => v is not empty)) %}
 
 {% set image_payload = {
@@ -68,20 +68,20 @@
     src: media_image.src|default(''),
     alt: media_image.alt|default(''),
     width: media_image.width|default(null),
-    height: media_image.height|default(null)
+    height: media_image.height|default(null),
   },
   ratio: ratio,
   width: 'w-100',
   fit: fit,
-  extra_classes: ['d-block','img-fluid','w-100',('card-img-' ~ media_position)]|join(' '),
+  extra_classes: ['d-block', 'img-fluid', 'w-100', ('card-img-' ~ media_position)]|join(' '),
   loading: media_image.loading|default('lazy'),
-  sizes: media_image.sizes|default('')
+  sizes: media_image.sizes|default(''),
 } %}
 
 {% set media_markup %}
   {% if render_media %}
     <div{{ media_attributes }}>
-      {% include 'vartheme_bs5:image' ignore missing with image_payload only %}
+      {{ include('vartheme_bs5:image', image_payload, false, true) }}
     </div>
   {% endif %}
 {% endset %}
@@ -101,11 +101,11 @@
   {{ content_markup }}
 
   {% if use_stretched_link %}
-    {% include 'vartheme_bs5:link' with {
+    {{ include('vartheme_bs5:link', {
       url: link_url,
       target: link_target,
       content: '',
-      link_utility_classes: ['stretched-link']
-    } %}
+      link_utility_classes: ['stretched-link'],
+    }) }}
   {% endif %}
 </div>

@@ -1,211 +1,208 @@
 {% stories Badge with {
-  "title": "Base/Badge",
-  "parameters": {
-    "componentSubtitle": "Bootstrap Badge component",
-    "docs": {
-      "description": {
-        "component": "Badges scale to match the size of the immediate parent element and can include optional links, icons, and indicators."
+  title: 'Base/Badge',
+  parameters: {
+    componentSubtitle: 'Bootstrap Badge component',
+    docs: {
+      description: {
+        component: 'Badges scale to match the size of the immediate parent element and can include optional links, icons, and indicators.',
       },
-      "story": {
-        "inline": true
-      }
-    }
+      story: {
+        inline: true,
+      },
+    },
   },
-  "argTypes": {
-    "label": {
-      "name": "Label",
-      "description": "Text shown inside the badge.",
-      "defaultValue": "Badge",
-      "control": "text"
+  argTypes: {
+    label: {
+      name: 'Label',
+      description: 'Text shown inside the badge.',
+      defaultValue: 'Badge',
+      control: 'text',
     },
-    "url": {
-      "name": "Link (optional)",
-      "description": "If provided, badge will render as a link.",
-      "defaultValue": "",
-      "control": "text"
+    url: {
+      name: 'Link (optional)',
+      description: 'If provided, badge will render as a link.',
+      defaultValue: '',
+      control: 'text',
     },
-    "variant": {
-      "name": "Variant",
-      "description": "Bootstrap contextual color utility for badges.",
-      "defaultValue": "text-bg-primary",
-      "control": "select",
-      "options": {
-        "Primary": "text-bg-primary",
-        "Secondary": "text-bg-secondary",
-        "Success": "text-bg-success",
-        "Danger": "text-bg-danger",
-        "Warning": "text-bg-warning",
-        "Info": "text-bg-info",
-        "Light": "text-bg-light",
-        "Dark": "text-bg-dark"
-      }
+    variant: {
+      name: 'Variant',
+      description: 'Bootstrap contextual color utility for badges.',
+      defaultValue: 'text-bg-primary',
+      control: 'select',
+      options: {
+        Primary: 'text-bg-primary',
+        Secondary: 'text-bg-secondary',
+        Success: 'text-bg-success',
+        Danger: 'text-bg-danger',
+        Warning: 'text-bg-warning',
+        Info: 'text-bg-info',
+        Light: 'text-bg-light',
+        Dark: 'text-bg-dark',
+      },
     },
-    "size": {
-      "name": "Size",
-      "description": "Bootstrap utility classes for sizing (font-size + padding).",
-      "defaultValue": "fs-6 px-3 py-2",
-      "control": "select",
-      "options": {
-        "Small": "fs-6 px-2 py-1",
-        "Medium (default)": "fs-6 px-3 py-2",
-        "Large": "fs-5 px-3 py-2"
-      }
+    size: {
+      name: 'Size',
+      description: 'Bootstrap utility classes for sizing (font-size + padding).',
+      defaultValue: 'fs-6 px-3 py-2',
+      control: 'select',
+      options: {
+        Small: 'fs-6 px-2 py-1',
+        "'Medium (default)'": 'fs-6 px-3 py-2',
+        Large: 'fs-5 px-3 py-2',
+      },
     },
-    "radius": {
-      "name": "Border radius",
-      "description": "Bootstrap border-radius utility class.",
-      "defaultValue": "rounded-1",
-      "control": "select",
-      "options": {
-        "Rounded (default)": "rounded-1",
-        "Rounded pill": "rounded-pill"
-      }
+    radius: {
+      name: 'Border radius',
+      description: 'Bootstrap border-radius utility class.',
+      defaultValue: 'rounded-1',
+      control: 'select',
+      options: {
+        "'Rounded (default)'": 'rounded-1',
+        "'Rounded pill'": 'rounded-pill',
+      },
     },
-    "icon": {
-      "name": "Icon (optional)",
-      "description": "Bootstrap Icon name from the shared icon component list. Use Custom icon name to override.",
-      "defaultValue": "none",
-      "control": "select",
-      "options": {
-        "None": "none",
-        "Check": "check",
-        "Info": "info",
-        "Search": "search",
-        "Person": "person",
-        "People": "people",
-        "Arrow right": "arrow-right",
-        "Chevron right": "chevron-right"
-      }
+    icon: {
+      name: 'Icon (optional)',
+      description: 'Bootstrap Icon name from the shared icon component list. Use Custom icon name to override.',
+      defaultValue: 'none',
+      control: 'select',
+      options: {
+        None: 'none',
+        Check: 'check',
+        Info: 'info',
+        Search: 'search',
+        Person: 'person',
+        People: 'people',
+        "'Arrow right'": 'arrow-right',
+        "'Chevron right'": 'chevron-right',
+      },
     },
-      "name": "Custom icon name (optional)",
-      "description": "Optional. Overrides Icon selection. Use a Bootstrap Icon name with or without the "bi-" prefix. Example: alarm or bi-alarm.",
-      "defaultValue": "",
-      "control": "text"
+    icon_first: {
+      name: 'Icon position',
+      description: 'If enabled, icon shows before the label. If disabled, icon shows after.',
+      defaultValue: true,
+      control: 'boolean',
     },
-    "icon_first": {
-      "name": "Icon position",
-      "description": "If enabled, icon shows before the label. If disabled, icon shows after.",
-      "defaultValue": true,
-      "control": "boolean"
+    indicator: {
+      name: 'Notification indicator',
+      description: 'Show a dot or a count bubble on the badge.',
+      defaultValue: 'none',
+      control: 'select',
+      options: {
+        None: 'none',
+        Dot: 'dot',
+        Count: 'count',
+      },
     },
-    "indicator": {
-      "name": "Notification indicator",
-      "description": "Show a dot or a count bubble on the badge.",
-      "defaultValue": "none",
-      "control": "select",
-      "options": {
-        "None": "none",
-        "Dot": "dot",
-        "Count": "count"
-      }
+    indicator_text: {
+      name: 'Indicator count text',
+      description: 'Text shown in count bubble (e.g. 1, 9, 99+). Used only when indicator=count.',
+      defaultValue: '99+',
+      control: 'text',
     },
-    "indicator_text": {
-      "name": "Indicator count text",
-      "description": "Text shown in count bubble (e.g. 1, 9, 99+). Used only when indicator=count.",
-      "defaultValue": "99+",
-      "control": "text"
-    }
-  }
+  },
 } %}
 
 {% story BadgeDefault with {
-  "name": "Default",
-  "args": {
-    "label": "Badge",
-    "url": "",
-    "variant": "text-bg-primary",
-    "size": "fs-6 px-3 py-2",
-    "radius": "rounded-1",
-    "icon": "none",
-    "icon_first": true,
-    "indicator": "none",
-    "indicator_text": "99+"
-  }
+  name: 'Default',
+  args: {
+    label: 'Badge',
+    url: '',
+    variant: 'text-bg-primary',
+    size: 'fs-6 px-3 py-2',
+    radius: 'rounded-1',
+    icon: 'none',
+    icon_first: true,
+    indicator: 'none',
+    indicator_text: '99+',
+  },
 } %}
   {{ include('vartheme_bs5:badge') }}
 {% endstory %}
 
 {% story BadgeAsLink with {
-  "name": "As link",
-  "args": {
-    "label": "Open",
-    "url": "https://example.com",
-    "variant": "text-bg-success",
-    "size": "fs-6 px-3 py-2",
-    "radius": "rounded-pill",
-    "icon": "arrow-right",
-    "icon_first": false,
-    "indicator": "none",
-    "indicator_text": "99+"
-  }
+  name: 'As link',
+  args: {
+    label: 'Open',
+    url: 'https://example.com',
+    variant: 'text-bg-success',
+    size: 'fs-6 px-3 py-2',
+    radius: 'rounded-pill',
+    icon: 'arrow-right',
+    icon_first: false,
+    indicator: 'none',
+    indicator_text: '99+',
+  },
 } %}
   {{ include('vartheme_bs5:badge') }}
 {% endstory %}
 
 {% story BadgeWithIconBefore with {
-  "name": "With icon (before)",
-  "args": {
-    "label": "Verified",
-    "url": "",
-    "variant": "text-bg-info",
-    "size": "fs-6 px-3 py-2",
-    "radius": "rounded-1",
-    "icon": "check",
-    "icon_first": true,
-    "indicator": "none",
-    "indicator_text": "99+"
-  }
+  name: 'With icon (before)',
+  args: {
+    label: 'Verified',
+    url: '',
+    variant: 'text-bg-info',
+    size: 'fs-6 px-3 py-2',
+    radius: 'rounded-1',
+    icon: 'check',
+    icon_first: true,
+    indicator: 'none',
+    indicator_text: '99+',
+  },
 } %}
   {{ include('vartheme_bs5:badge') }}
 {% endstory %}
 
 {% story BadgeWithCustomIcon with {
-  "name": "With custom icon",
-  "args": {
-    "label": "Alarm",
-    "url": "",
-    "variant": "text-bg-secondary",
-    "size": "fs-6 px-3 py-2",
-    "radius": "rounded-1",
-    "icon": "none",
-    "icon_first": true,
-    "indicator": "none",
-    "indicator_text": "99+"
-  }
+  name: 'With custom icon',
+  args: {
+    label: 'Alarm',
+    url: '',
+    variant: 'text-bg-secondary',
+    size: 'fs-6 px-3 py-2',
+    radius: 'rounded-1',
+    icon: 'none',
+    icon_first: true,
+    indicator: 'none',
+    indicator_text: '99+',
+  },
 } %}
   {{ include('vartheme_bs5:badge') }}
 {% endstory %}
 
 {% story BadgeIndicatorDot with {
-  "name": "Indicator dot",
-  "args": {
-    "label": "Alerts",
-    "url": "",
-    "variant": "text-bg-warning",
-    "size": "fs-6 px-3 py-2",
-    "radius": "rounded-pill",
-    "icon": "none",
-    "icon_first": true,
-    "indicator": "dot",
-    "indicator_text": "99+"
-  }
+  name: 'Indicator dot',
+  args: {
+    label: 'Alerts',
+    url: '',
+    variant: 'text-bg-warning',
+    size: 'fs-6 px-3 py-2',
+    radius: 'rounded-pill',
+    icon: 'none',
+    icon_first: true,
+    indicator: 'dot',
+    indicator_text: '99+',
+  },
 } %}
   {{ include('vartheme_bs5:badge') }}
 {% endstory %}
 
 {% story BadgeIndicatorCount with {
-  "name": "Indicator count",
-  "args": {
-    "label": "Inbox",
-    "url": "",
-    "variant": "text-bg-dark",
-    "size": "fs-6 px-3 py-2",
-    "radius": "rounded-pill",
-    "icon": "none",
-    "icon_first": true,
-    "indicator": "count",
-    "indicator_text": "3"
-  }
+  name: 'Indicator count',
+  args: {
+    label: 'Inbox',
+    url: '',
+    variant: 'text-bg-dark',
+    size: 'fs-6 px-3 py-2',
+    radius: 'rounded-pill',
+    icon: 'none',
+    icon_first: true,
+    indicator: 'count',
+    indicator_text: '3',
+  },
 } %}
   {{ include('vartheme_bs5:badge') }}
 {% endstory %}
+
+{% endstories %}

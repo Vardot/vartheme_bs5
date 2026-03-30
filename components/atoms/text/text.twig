@@ -3,7 +3,7 @@
 {% set classes = [
   'rich-text',
   text_size|default('none'),
-  text_color|default('text-body')
+  text_color|default('text-body'),
 ]|filter(v => v is not empty and v != 'none') %}
 
 {% set attrs = create_attribute().addClass(classes) %}

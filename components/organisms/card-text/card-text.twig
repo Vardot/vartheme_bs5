@@ -34,13 +34,13 @@
   (card_border ? 'border' : 'border-0'),
   box_shadow,
   (use_stretched_link ? 'position-relative' : ''),
-  (equal_height ? 'h-100' : '')
+  (equal_height ? 'h-100' : ''),
 ]|filter(v => v is not empty)) %}
 
 {% set card_body_attributes = create_attribute().addClass([
   'card-body',
   (padded ? 'p-4' : 'p-0'),
-  ((not has_content_slot) and (not padded) ? 'py-4' : '')
+  ((not has_content_slot) and (not padded) ? 'py-4' : ''),
 ]|filter(v => v is not empty)) %}
 
 <div{{ card_attributes }}>
@@ -53,11 +53,11 @@
   </div>
 
   {% if use_stretched_link %}
-    {% include 'vartheme_bs5:link' with {
+    {{ include('vartheme_bs5:link', {
       url: link_url,
       target: link_target,
       content: '',
-      link_utility_classes: ['stretched-link']
-    } %}
+      link_utility_classes: ['stretched-link'],
+    }) }}
   {% endif %}
 </div>

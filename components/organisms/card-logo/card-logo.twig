@@ -23,7 +23,7 @@
   src: src_value,
   alt: media.alt|default(''),
   width: media.width|default(''),
-  height: media.height|default('')
+  height: media.height|default(''),
 } %}
 
 {% set card_classes = ['card', 'overflow-hidden'] %}
@@ -43,13 +43,13 @@
 {% set image_wrapper_attributes = create_attribute().addClass(image_wrapper_classes) %}
 
 {% set image_markup %}
-  {% include 'vartheme_bs5:image' ignore missing with {
+  {{ include('vartheme_bs5:image', {
     media: image_media,
     ratio: 'ratio-auto',
     fit: 'object-fit-contain',
     width: 'w-100',
-    align: 'mx-auto'
-  } only %}
+    align: 'mx-auto',
+  }, false, true) }}
 {% endset %}
 
 <div{{ card_attributes }}>
@@ -58,7 +58,7 @@
       {{ include('vartheme_bs5:link', {
         url: url,
         attributes: create_attribute().addClass(link_classes),
-        content: ''
+        content: '',
       }, with_context: false) }}
     {% endif %}
 
