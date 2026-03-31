@@ -3,7 +3,7 @@
 {% set label = label|default('Button label') %}
 {% set variant = variant|default('btn-primary') %}
 {% set is_outline = outline|default(false) %}
-{% set variant_class = (is_outline and variant != 'btn-link') ? (variant|replace({'btn-': 'btn-outline-'})) : variant %}
+{% set variant_class = (is_outline and variant != 'btn-link') ? (variant|replace({'btn-':'btn-outline-'}) ) : variant %}
 {% set size = size|default('btn') %}
 {% set is_disabled = disabled|default(false) %}
 {% set href_value = (href is defined and href is not empty) ? href : null %}
@@ -16,11 +16,14 @@
 {% set has_icon = icon_value is not empty and icon_value != 'none' %}
 
 {% set alignment = alignment|default('inline') %}
+{% set full_width = full_width|default(false) %}
 {% set radius = radius|default('rounded') %}
-{% set is_icon_first = (icon_first|default(false) ~ '')|lower|trim in ['1', 'true', 'yes', 'on'] %}
+{% set is_icon_first = (icon_first|default(false) ~ '')|lower|trim in ['1','true','yes','on'] %}
 {% set size_text_class = (size == 'btn-lg') ? 'fs-5' : '' %}
-{% set width_class = '' %}
+{% set width_class = full_width ? 'w-100' : '' %}
 {% set radius_class = radius %}
+{% set is_link_variant = variant_class == 'btn-link' %}
+{% set padding_class = is_link_variant ? 'p-0' : '' %}
 
 {% set wrapper_class = alignment == 'left' ? 'd-flex justify-content-start'
   : alignment == 'center' ? 'd-flex justify-content-center'
@@ -34,11 +37,12 @@
   size_text_class,
   width_class,
   radius_class,
+  padding_class,
   'd-inline-flex',
   'align-items-center',
   'justify-content-center',
   'gap-2',
-  'fw-bold',
+  'fw-bold'
 ] %}
 
 {% if has_icon and not is_icon_first %}
@@ -46,7 +50,7 @@
 {% endif %}
 
 {% set class_attr = (classes|join(' '))|trim %}
-{% set class_attr = class_attr|replace({'  ': ' '}) %}
+{% set class_attr = class_attr|replace({'  ':' '}) %}
 
 {% if is_disabled %}
   {% set href_value = null %}
@@ -65,9 +69,9 @@
 {% endif %}
 
 {% if has_icon %}
-  {{ include('vartheme_bs5:icon', {
-    icon: icon_value,
-  }, with_context: false) }}
+  {{ include('vartheme_bs5:bootstrap-icon', {
+    icon: icon_value
+  }, with_context = false) }}
 {% endif %}
 
 <span>{{ label }}</span>

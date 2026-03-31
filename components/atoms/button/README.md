@@ -171,6 +171,25 @@ inline
 
 ---
 
+### `full_width`
+
+Makes the button full width using Bootstrap's `w-100` utility class.
+
+```
+true  → full width
+false → normal width
+```
+
+
+---
+
+### Link variant behavior
+
+When `variant` is set to `btn-link`, the component now removes all button padding automatically using Bootstrap's `p-0` utility. This keeps the text aligned more naturally with surrounding content without adding extra configuration.
+
+
+---
+
 ### `radius`
 
 Bootstrap border radius utility.
@@ -215,6 +234,19 @@ rounded
   target: 'blank',
   variant: 'btn-primary',
   size: 'btn-lg'
+} %}
+```
+
+---
+
+## Full Width Button
+
+```twig
+{% include 'vartheme_bs5:button' with {
+  label: 'Submit',
+  variant: 'btn-primary',
+  size: 'btn-md',
+  full_width: true
 } %}
 ```
 

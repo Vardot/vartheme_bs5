@@ -136,6 +136,14 @@ props:
       - circle
       - circle-fill
       - record-circle
+      - arrow-right-circle-fill
+      - arrow-left-circle-fill
+      - arrow-up-circle-fill
+      - arrow-down-circle-fill
+      - caret-right-fill
+      - caret-left-fill
+      - caret-up-fill
+      - caret-down-fill
       default: none
       examples:
       - none
@@ -183,6 +191,14 @@ props:
         circle: Circle
         circle-fill: Circle Filled
         record-circle: Record Circle
+        arrow-right-circle-fill: Arrow Right Circle Filled
+        arrow-left-circle-fill: Arrow Left Circle Filled
+        arrow-up-circle-fill: Arrow Up Circle Filled
+        arrow-down-circle-fill: Arrow Down Circle Filled
+        caret-right-fill: Caret Right Filled
+        caret-left-fill: Caret Left Filled
+        caret-up-fill: Caret Up Filled
+        caret-down-fill: Caret Down Filled
     icon_first:
       type: boolean
       title: Change icon position to left
@@ -206,6 +222,13 @@ props:
         left: Left
         center: Center
         right: Right
+    full_width:
+      type: boolean
+      title: Full width
+      description: Make the button full width using the Bootstrap w-100 utility class.
+      default: false
+      examples:
+      - false
     radius:
       type: string
       title: Border radius

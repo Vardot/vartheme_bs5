@@ -82,6 +82,12 @@
         None: 'none',
         "'Arrow right'": 'arrow-right',
         "'Arrow left'": 'arrow-left',
+        "'Arrow right fill'": 'arrow-right-circle-fill',
+        "'Arrow left fill'": 'arrow-left-circle-fill',
+        "'Arrow up fill'": 'arrow-up-circle-fill',
+        "'Arrow down fill'": 'arrow-down-circle-fill',
+        "'Caret right fill'": 'caret-right-fill',
+        "'Caret left fill'": 'caret-left-fill',
         Plus: 'plus-lg',
         Download: 'download',
         "'External link'": 'box-arrow-up-right',
@@ -142,8 +148,8 @@
 {% story Link with {
   name: 'Link (as <a>)',
   args: {
-    variant: 'btn-primary',
-    outline: true,
+    variant: 'btn-link',
+    outline: false,
     size: 'btn-md',
     label: 'Visit site',
     href: 'https://example.com',

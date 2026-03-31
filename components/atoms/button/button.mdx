@@ -42,6 +42,7 @@ import templateSource from './button.twig?raw';
   icon: 'box-arrow-up-right',
   icon_first: false,
   alignment: 'inline',
+  full_width: false,
   radius: 'rounded'
 } %}
 ```
@@ -54,7 +55,19 @@ import templateSource from './button.twig?raw';
   label: 'Download',
   icon: 'download',
   icon_first: true,
+  full_width: false,
   radius: 'rounded-pill'
+} %}
+```
+
+### Example #3: Full width button
+```
+{% include "vartheme_bs5:button" with {
+  variant: 'btn-primary',
+  size: 'btn-md',
+  label: 'Submit',
+  full_width: true,
+  radius: 'rounded'
 } %}
 ```
 
