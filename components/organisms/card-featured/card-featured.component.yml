@@ -66,9 +66,9 @@ props:
       type: boolean
       title: Card Border
       description: Add a default border for the card.
-      default: true
+      default: false
       examples:
-      - true
+      - false
     padded:
       type: boolean
       title: Padded

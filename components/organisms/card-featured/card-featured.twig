@@ -5,7 +5,7 @@
   - One slot: content (media is a prop)
 #}
 
-{% set card_border = card_border|default(true) %}
+{% set card_border = card_border|default(false) %}
 {% set padded = padded|default(false) %}
 {% set content_padding_class = padded ? 'p-4' : 'p-0' %}
 
@@ -68,11 +68,10 @@
 
 {% set card_class_list = [
   'card',
-  'card-featured',
   'overflow-hidden',
   (equal_height ? 'h-100' : ''),
   (card_border ? 'border' : 'border-0'),
-  (use_stretched_link ? 'position-relative' : ''),
+  (use_stretched_link ? 'position-relative' : '')
 ]|filter(v => v is not empty) %}
 
 {% set row_class_list = [
@@ -80,14 +79,14 @@
   gutters_between,
   row_order_class,
   'align-items-stretch',
-  (equal_height ? 'h-100' : ''),
+  (equal_height ? 'h-100' : '')
 ]|filter(v => v is not empty) %}
 
 {% set media_col_class_list = (
   [
     'col-12',
     'd-flex',
-    (equal_height ? 'h-100' : ''),
+    (equal_height ? 'h-100' : '')
   ]
   |merge(start_column_xs_size)
   |merge(start_column_sm_size)
@@ -103,7 +102,7 @@
       [
         'col-12',
         'd-flex',
-        (equal_height ? 'h-100' : ''),
+        (equal_height ? 'h-100' : '')
       ]
       |merge(end_column_xs_size)
       |merge(end_column_sm_size)
@@ -115,19 +114,19 @@
     : [
       'col-12',
       'd-flex',
-      (equal_height ? 'h-100' : ''),
+      (equal_height ? 'h-100' : '')
     ]
 )|filter(v => v is not empty) %}
 
 {% set media_wrap_class_list = [
   'w-100',
-  (equal_height ? 'h-100' : ''),
+  (equal_height ? 'h-100' : '')
 ]|filter(v => v is not empty) %}
 
 {% set placeholder_wrap_class_list = [
   'w-100',
   'bg-body-tertiary',
-  (equal_height ? 'h-100' : ''),
+  (equal_height ? 'h-100' : '')
 ]|filter(v => v is not empty) %}
 
 {% set content_stack_class_list = [
@@ -135,7 +134,7 @@
   'flex-column',
   'w-100',
   'flex-grow-1',
-  content_vertical_alignment,
+  content_vertical_alignment
 ]|filter(v => v is not empty) %}
 
 {% set content_body_class_list = [
@@ -144,13 +143,14 @@
   'flex-grow-0',
   content_padding_class,
   empty_slot_classes,
+  (card_border ? '' : 'border-0')
 ]|filter(v => v is not empty) %}
 
 {% set placeholder_inner_base_class_list = [
   'd-flex',
   'align-items-center',
   'justify-content-center',
-  'text-body-secondary',
+  'text-body-secondary'
 ] %}
 
 {% set placeholder_inner_base = placeholder_inner_base_class_list|join(' ') %}
@@ -160,23 +160,23 @@
     src: media_image.src,
     alt: media_image.alt|default(''),
     width: media_image.width|default(null),
-    height: media_image.height|default(null),
+    height: media_image.height|default(null)
   },
   ratio: ratio,
   fit: fit,
   width: 'w-100',
   extra_classes: 'w-100 h-100',
-  loading: media_image.loading|default('lazy'),
+  loading: media_image.loading|default('lazy')
 } %}
 
 {% set placeholder_include_props = {
   media: {
     src: placeholder_src,
-    alt: '',
+    alt: ''
   },
   width: 'w-100',
   fit: 'object-fit-contain',
-  loading: 'lazy',
+  loading: 'lazy'
 } %}
 
 {% set card_attributes = create_attribute().addClass(card_class_list) %}
@@ -192,7 +192,7 @@
     {% if has_media and has_media_prop %}
       <div{{ media_col_attributes }}>
         <div{{ media_wrap_attributes }}>
-          {{ include('vartheme_bs5:image', image_include_props, false, true) }}
+          {% include 'vartheme_bs5:image' ignore missing with image_include_props only %}
         </div>
       </div>
     {% endif %}
@@ -211,11 +211,11 @@
   </div>
 
   {% if use_stretched_link %}
-    {{ include('vartheme_bs5:link', {
+    {% include 'vartheme_bs5:link' with {
       url: link_url,
       target: link_target,
       content: '',
-      link_utility_classes: ['stretched-link'],
-    }) }}
+      link_utility_classes: ['stretched-link']
+    } %}
   {% endif %}
 </div>
