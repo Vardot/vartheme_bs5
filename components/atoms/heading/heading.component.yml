@@ -86,6 +86,33 @@ props:
         text-start: Left
         text-center: Center
         text-end: Right
+
+    font_weight:
+      type: string
+      title: Font weight
+      description: "Bootstrap font weight utility. Leave empty for default weight."
+      default: ""
+      enum:
+        - fw-light
+        - fw-normal
+        - fw-medium
+        - fw-semibold
+        - fw-bold
+      'meta:enum':
+        fw-light: Light
+        fw-normal: Normal
+        fw-medium: Medium
+        fw-semibold: Semibold
+        fw-bold: Bold
+    font_style:
+      type: string
+      title: Font style
+      description: "Bootstrap font style utility. Leave empty for default style."
+      default: ""
+      enum:
+        - fst-italic
+      'meta:enum':
+        fst-italic: Italic
     url:
       type: string
       title: Link URL

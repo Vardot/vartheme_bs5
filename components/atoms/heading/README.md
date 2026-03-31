@@ -9,7 +9,7 @@ A flexible heading component that renders **h1–h6** with optional link support
 - ✅ Renders **h1–h6** via `level`
 - ✅ Optional **linked heading** via `url`
 - ✅ Optional **link target** via `target` (adds safe `rel` for `_blank`)
-- ✅ Uses **Bootstrap utility classes** for color/alignment/weight
+- ✅ Uses **Bootstrap utility classes** for color/alignment/weight/style
 
 ---
 
@@ -23,6 +23,8 @@ A flexible heading component that renders **h1–h6** with optional link support
 | `target` | string | `default` | Link target: `default`, `_self`, `_blank`, `_parent`, `_top`. |
 | `text_color` | string | `text-body` | Bootstrap text utility class (enum keys match class names). |
 | `text_align` | string | `text-start` | Bootstrap alignment class (enum keys match class names). |
+| `font_weight` | string | *(empty)* | Bootstrap font weight utility class. |
+| `font_style` | string | *(empty)* | Bootstrap font style utility class. |
 
 ### Bootstrap enum keys
 
@@ -50,6 +52,7 @@ This means the Twig template can apply them directly without mapping.
 - `text`: `Highlights`
 - `text_align`: `text-center`
 - `font_weight`: `fw-semibold`
+- `font_style`: `fst-italic`
 
 ### 4) Linked heading (same tab)
 
@@ -78,6 +81,7 @@ This means the Twig template can apply them directly without mapping.
   text_color: 'text-primary',
   text_align: 'text-start',
   font_weight: 'fw-bold',
+  font_style: 'fst-italic',
   url: 'https://example.com',
   target: '_blank'
 } only %}
