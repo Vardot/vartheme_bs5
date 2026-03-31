@@ -144,3 +144,11 @@ Use this component when you need a reusable section wrapper that can:
 - Empty column slots are skipped.
 - For dark backgrounds or overlays, `text_color: auto` will switch to white text for supported dark background utilities.
 - For 5- and 6-column layouts, the component uses responsive `row-cols-*` classes.
+
+
+## Alignment
+
+- `vertical_alignment`: Top, Center, Bottom
+- `horizontal_alignment`: Left, Center, Right
+
+Horizontal alignment uses Bootstrap text alignment classes on each column. Vertical alignment uses Bootstrap align-items classes on the row.

@@ -12,6 +12,8 @@
 {% set bg_edge2edge = bg_edge2edge|default(false) %}
 {% set container_type = container_type|default('none') %}
 {% set gutter_class = gutter|default('gx-3 gy-3') %}
+{% set vertical_alignment = vertical_alignment|default('align-items-start') %}
+{% set horizontal_alignment = horizontal_alignment|default('text-start') %}
 {% set background_color = background_color|default('none') %}
 {% set text_color = text_color|default('auto') %}
 {% set shadow = shadow|default('none') %}
@@ -31,12 +33,12 @@
 {% set has_overlay = has_background_image and overlay_variant != 'none' %}
 
 {% set overlay_opacity_map = {
-  'overlay-10': '0.10',
-  'overlay-25': '0.25',
-  'overlay-50': '0.50',
-  'overlay-75': '0.75',
+  'overlay-10': 'opacity-10',
+  'overlay-25': 'opacity-25',
+  'overlay-50': 'opacity-50',
+  'overlay-75': 'opacity-75'
 } %}
-{% set overlay_style = has_overlay ? ('opacity: ' ~ (overlay_opacity_map[overlay_variant]|default('0.25')) ~ ';') : '' %}
+{% set overlay_opacity_class = has_overlay ? overlay_opacity_map[overlay_variant]|default('opacity-25') : '' %}
 
 {# Text / utility classes #}
 {% set auto_text = background_color in ['bg-primary', 'bg-secondary', 'bg-dark'] ? 'text-white' : '' %}
@@ -57,21 +59,21 @@
   text_class,
   shadow_class,
   bg_edge2edge ? 'bg-edge2edge' : '',
-  (has_background_image or has_overlay) ? 'position-relative overflow-hidden' : '',
+  (has_background_image or has_overlay) ? 'position-relative overflow-hidden' : ''
 ] %}
 
 {# Structural classes #}
 {% set container_classes = container_type != 'none' ? [container_type] : [] %}
 {% set inner_classes = ['sdc-section__inner'] %}
 {% set media_wrap_classes = ['position-absolute', 'top-0', 'start-0', 'w-100', 'h-100', 'z-0'] %}
-{% set overlay_classes = ['position-absolute', 'top-0', 'start-0', 'w-100', 'h-100', 'bg-dark', 'z-1'] %}
+{% set overlay_classes = ['position-absolute', 'top-0', 'start-0', 'w-100', 'h-100', 'bg-dark', 'z-1', overlay_opacity_class] %}
 {% set content_wrap_classes = ['position-relative', 'z-2'] %}
 {% set header_classes = ['sdc-section__header', 'mb-4'] %}
 {% set footer_classes = ['sdc-section__footer', 'mt-4'] %}
 
 {# Layout presets -> md widths #}
 {% set preset_map = {
-  100: [12],
+  '100': [12],
   '50-50': [6, 6],
   '33-33-33': [4, 4, 4],
   '75-25': [9, 3],
@@ -80,7 +82,7 @@
   '33-67': [4, 8],
   '50-25-25': [6, 3, 3],
   '25-25-50': [3, 3, 6],
-  '25-25-25-25': [3, 3, 3, 3],
+  '25-25-25-25': [3, 3, 3, 3]
 } %}
 
 {% set cols_key = columns|default('50-50') %}
@@ -99,7 +101,7 @@
 {% endif %}
 
 {# Row classes #}
-{% set row_classes = ['row', gutter_class] %}
+{% set row_classes = ['row', gutter_class, vertical_alignment] %}
 {% if is_five %}
   {% set row_classes = row_classes|merge(['row-cols-1', 'row-cols-md-5']) %}
 {% elseif is_six %}
@@ -124,18 +126,18 @@
 <section {{ attributes.addClass(section_classes) }}>
   {% if has_background_image %}
     <div class="{{ media_wrap_classes|join(' ') }}" aria-hidden="true">
-      {{ include('canvas:image', {
+      {% include 'canvas:image' ignore missing with {
         src: background_media.src,
         alt: background_media.alt,
         class: 'w-100 h-100 object-fit-cover',
         width: background_media.width,
-        height: background_media.height,
-      }, false, true) }}
+        height: background_media.height
+      } only %}
     </div>
   {% endif %}
 
   {% if has_overlay %}
-    <div class="{{ overlay_classes|join(' ') }}" aria-hidden="true" style="{{ overlay_style }}"></div>
+    <div class="{{ overlay_classes|join(' ') }}" aria-hidden="true"></div>
   {% endif %}
 
   <div class="{{ content_wrap_classes|join(' ') }}">
@@ -153,10 +155,10 @@
 
             {% if content|trim is not empty %}
               {% if is_five or is_six %}
-                {% set column_classes = ['col'] %}
+                {% set column_classes = ['col', horizontal_alignment] %}
               {% else %}
                 {% set md = md_widths[i % pattern_len] %}
-                {% set column_classes = ['col-12', 'col-md-' ~ md] %}
+                {% set column_classes = ['col-12', 'col-md-' ~ md, horizontal_alignment] %}
               {% endif %}
 
               <div class="{{ column_classes|join(' ') }}">

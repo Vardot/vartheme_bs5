@@ -300,6 +300,32 @@ props:
         shadow-sm: Small
         shadow: Medium
         shadow-lg: Large
+    vertical_alignment:
+      type: string
+      title: Vertical alignment
+      description: Vertical alignment for the row.
+      enum:
+      - align-items-start
+      - align-items-center
+      - align-items-end
+      default: align-items-start
+      meta:enum:
+        align-items-start: Top
+        align-items-center: Center
+        align-items-end: Bottom
+    horizontal_alignment:
+      type: string
+      title: Horizontal alignment
+      description: Text alignment applied to each column.
+      enum:
+      - text-start
+      - text-center
+      - text-end
+      default: text-start
+      meta:enum:
+        text-start: Left
+        text-center: Center
+        text-end: Right
     section_header:
       type: boolean
       title: Show header region
