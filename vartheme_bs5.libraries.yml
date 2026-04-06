@@ -14,13 +14,6 @@ bootstrap-styles:
     base:
       css/base/bootstrap.base.css: {}
 
-# Minimal accordion styles (and the toggle icon) extracted from Bootstrap.
-# This theme's base Bootstrap build intentionally omits accordion styles.
-accordion-styles:
-  css:
-    component:
-      components/atoms/accordion-block/accordion-item.css: {}
-
 # Bootstrap 5 global scripts library.
 bootstrap-scripts:
   dependencies:
