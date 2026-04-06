@@ -1,100 +1,100 @@
 {% stories Horizontal with {
-  "title": "Layout/Horizontal Ruler",
-  "parameters": {
-    "componentSubtitle": "Bootstrap 5.3 horizontal ruler divider component",
-    "docs": {
-      "description": {
-        "component": "A Bootstrap 5.3-compatible divider using the native hr element."
+  title: 'Layout/Horizontal Ruler',
+  parameters: {
+    componentSubtitle: 'Bootstrap 5.3 horizontal ruler divider component',
+    docs: {
+      description: {
+        component: 'A Bootstrap 5.3-compatible divider using the native hr element.',
       },
-      "story": {
-        "inline": true
-      }
-    }
+      story: {
+        inline: true,
+      },
+    },
   },
-  "argTypes": {
-    "border_width": {
-      "name": "Border width",
-      "description": "Bootstrap border width utility class.",
-      "defaultValue": "border-1",
-      "control": "select",
-      "options": {
-        "Thin": "border-1",
-        "Medium": "border-2",
-        "Thick": "border-3",
-        "Extra thick": "border-4",
-        "Maximum": "border-5"
-      }
+  argTypes: {
+    border_width: {
+      name: 'Border width',
+      description: 'Bootstrap border width utility class.',
+      defaultValue: 'border-1',
+      control: 'select',
+      options: {
+        Thin: 'border-1',
+        Medium: 'border-2',
+        Thick: 'border-3',
+        "'Extra thick'": 'border-4',
+        Maximum: 'border-5',
+      },
     },
-    "border_color": {
-      "name": "Border color",
-      "description": "Bootstrap border color utility class.",
-      "defaultValue": "border-secondary",
-      "control": "select",
-      "options": {
-        "Secondary": "border-secondary",
-        "Light": "border-light",
-        "Dark": "border-dark",
-        "Primary": "border-primary",
-        "Success": "border-success",
-        "Danger": "border-danger",
-        "Warning": "border-warning",
-        "Info": "border-info",
-        "White": "border-white",
-        "Black": "border-black"
-      }
+    border_color: {
+      name: 'Border color',
+      description: 'Bootstrap border color utility class.',
+      defaultValue: 'border-secondary',
+      control: 'select',
+      options: {
+        Secondary: 'border-secondary',
+        Light: 'border-light',
+        Dark: 'border-dark',
+        Primary: 'border-primary',
+        Success: 'border-success',
+        Danger: 'border-danger',
+        Warning: 'border-warning',
+        Info: 'border-info',
+        White: 'border-white',
+        Black: 'border-black',
+      },
     },
-    "opacity": {
-      "name": "Opacity",
-      "description": "Bootstrap opacity utility class.",
-      "defaultValue": "opacity-25",
-      "control": "select",
-      "options": {
-        "Subtle": "opacity-25",
-        "Soft": "opacity-50",
-        "Strong": "opacity-75",
-        "Solid": "opacity-100"
-      }
+    opacity: {
+      name: 'Opacity',
+      description: 'Bootstrap opacity utility class.',
+      defaultValue: 'opacity-25',
+      control: 'select',
+      options: {
+        Subtle: 'opacity-25',
+        Soft: 'opacity-50',
+        Strong: 'opacity-75',
+        Solid: 'opacity-100',
+      },
     },
-    "margin_top": {
-      "name": "Top spacing",
-      "description": "Bootstrap margin-top utility class.",
-      "defaultValue": "mt-3",
-      "control": "select",
-      "options": {
-        "None": "mt-0",
-        "Small": "mt-1",
-        "Medium": "mt-2",
-        "Default": "mt-3",
-        "Large": "mt-4",
-        "Extra large": "mt-5"
-      }
+    margin_top: {
+      name: 'Top spacing',
+      description: 'Bootstrap margin-top utility class.',
+      defaultValue: 'mt-3',
+      control: 'select',
+      options: {
+        None: 'mt-0',
+        Small: 'mt-1',
+        Medium: 'mt-2',
+        Default: 'mt-3',
+        Large: 'mt-4',
+        "'Extra large'": 'mt-5',
+      },
     },
-    "margin_bottom": {
-      "name": "Bottom spacing",
-      "description": "Bootstrap margin-bottom utility class.",
-      "defaultValue": "mb-3",
-      "control": "select",
-      "options": {
-        "None": "mb-0",
-        "Small": "mb-1",
-        "Medium": "mb-2",
-        "Default": "mb-3",
-        "Large": "mb-4",
-        "Extra large": "mb-5"
-      }
-    }
-  }
+    margin_bottom: {
+      name: 'Bottom spacing',
+      description: 'Bootstrap margin-bottom utility class.',
+      defaultValue: 'mb-3',
+      control: 'select',
+      options: {
+        None: 'mb-0',
+        Small: 'mb-1',
+        Medium: 'mb-2',
+        Default: 'mb-3',
+        Large: 'mb-4',
+        "'Extra large'": 'mb-5',
+      },
+    },
+  },
 } %}
 
 {% story Default with {
-  "name": "Default",
-  "args": {
-    "border_width": "border-1",
-    "border_color": "border-secondary",
-    "opacity": "opacity-25",
-    "margin_top": "mt-3",
-    "margin_bottom": "mb-3"
-  }
+  name: 'Default',
+  args: {
+    border_width: 'border-1',
+    border_color: 'border-secondary',
+    opacity: 'opacity-25',
+    margin_top: 'mt-3',
+    margin_bottom: 'mb-3',
+  },
 } %}
 {% include 'vartheme_bs5:horizontal-ruler' with {
   border_width: border_width,
@@ -106,14 +106,14 @@
 {% endstory %}
 
 {% story PrimaryStrong with {
-  "name": "Primary Strong",
-  "args": {
-    "border_width": "border-2",
-    "border_color": "border-primary",
-    "opacity": "opacity-75",
-    "margin_top": "mt-4",
-    "margin_bottom": "mb-4"
-  }
+  name: 'Primary Strong',
+  args: {
+    border_width: 'border-2',
+    border_color: 'border-primary',
+    opacity: 'opacity-75',
+    margin_top: 'mt-4',
+    margin_bottom: 'mb-4',
+  },
 } %}
 {% include 'vartheme_bs5:horizontal-ruler' with {
   border_width: border_width,
@@ -125,14 +125,14 @@
 {% endstory %}
 
 {% story MutedDivider with {
-  "name": "Muted Divider",
-  "args": {
-    "border_width": "border-1",
-    "border_color": "border-dark",
-    "opacity": "opacity-50",
-    "margin_top": "mt-2",
-    "margin_bottom": "mb-2"
-  }
+  name: 'Muted Divider',
+  args: {
+    border_width: 'border-1',
+    border_color: 'border-dark',
+    opacity: 'opacity-50',
+    margin_top: 'mt-2',
+    margin_bottom: 'mb-2',
+  },
 } %}
 {% include 'vartheme_bs5:horizontal-ruler' with {
   border_width: border_width,
