@@ -103,3 +103,318 @@ a {
   text-underline-offset: 0.25em;
 }
 
+// Header menu uses Bootstrap 5.3 navbar + navbar-expand-lg + navbar-toggler
+// (the wrapper lives in templates/menu/menu--main.html.twig). At lg+ the
+// items render inline horizontally; below lg they stack inside the
+// collapse panel and the hamburger toggles visibility — all handled by
+// stock Bootstrap classes rather than custom media queries.
+
+// Default stacked gap inside the collapsed navbar (< lg).
+header[role="banner"] .navbar-nav {
+  gap: 0.25rem;
+}
+
+// At lg+ the Figma spec calls for a 30px gap between inline items.
+@include media-breakpoint-up(lg) {
+  header[role="banner"] .navbar-nav {
+    gap: 1.875rem;
+  }
+}
+
+// Header menu link styling (Figma: bold 16px, #212529 default, primary on hover).
+header[role="banner"] .nav-link {
+  position: relative;
+  padding: 0.625rem 0;
+  color: #212529;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.4;
+  text-decoration: none;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: var(--bs-primary) !important;
+    text-decoration: none;
+  }
+}
+
+// Dropdown chevron inherits the link color so it also turns primary on hover.
+header[role="banner"] .nav-link.dropdown-toggle::after {
+  border-top-color: currentColor;
+  vertical-align: 0.15em;
+}
+
+// Hover underline indicator — lg+ only (pointer-hover context). Uses ::before
+// so it doesn't collide with Bootstrap's ::after dropdown chevron.
+@include media-breakpoint-up(lg) {
+  header[role="banner"] .nav-link::before {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0.25rem;
+    left: 0;
+    height: 0.125rem;
+    background-color: var(--bs-primary);
+    opacity: 0;
+    transition: opacity 0.15s ease-in-out;
+  }
+
+  header[role="banner"] .nav-link:hover::before,
+  header[role="banner"] .nav-link:focus::before,
+  header[role="banner"] .nav-link:active::before {
+    opacity: 1;
+  }
+}
+
+// Header dropdown panel for child menu links (desktop floating panel).
+header[role="banner"] .dropdown-menu {
+  margin-top: 0.25rem;
+  padding: 0.5rem 0;
+  border: 0;
+  border-radius: 0.375rem;
+  background-color: var(--bs-white);
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.12);
+
+  // Child menu link styling - matches the parent (bold, dark) with the same
+  // primary-blue hover treatment but no underline (panel rows already separate).
+  .dropdown-item {
+    padding: 0.5rem 1.25rem;
+    color: #212529;
+    font-weight: 700;
+    font-size: 0.9375rem;
+    line-height: 1.4;
+
+    &:hover,
+    &:focus,
+    &.active,
+    &:active {
+      color: var(--bs-primary);
+      background-color: transparent;
+    }
+  }
+}
+
+// Below lg the dropdown-menu sits inside the collapsed navbar panel — reveal
+// its children inline (no second click required) and drop the panel chrome
+// so it reads as a nested sub-list.
+@include media-breakpoint-down(lg) {
+  header[role="banner"] .dropdown-menu {
+    display: block;
+    position: static;
+    margin: 0 0 0 1rem;
+    padding: 0.25rem 0;
+    border: 0;
+    border-radius: 0;
+    background-color: transparent;
+    box-shadow: none;
+  }
+
+  header[role="banner"] .dropdown-menu .dropdown-item {
+    padding: 0.25rem 0;
+    font-size: 0.9375rem;
+    font-weight: 400;
+  }
+}
+
+// Footer styling - layout + colors are driven by canvas section/group components
+// (bg-primary + text-white via page_region YAML). Override --bs-primary-rgb here
+// so the section's `bg-primary` paints in the Vardot dark blue per Figma.
+footer.footer {
+
+  // The main-menu template wraps in <nav class="navbar navbar-expand-lg">
+  // for the header's hamburger behavior. In the footer we never want a
+  // toggler or collapsed state — neutralize the wrapper so the menu is
+  // always visible and the navbar chrome doesn't add padding/flex of its own.
+  .navbar {
+    padding: 0;
+  }
+
+  .navbar-toggler {
+    display: none;
+  }
+
+  .navbar-collapse {
+    display: block !important;
+  }
+
+  a {
+    color: var(--bs-white);
+    text-decoration: none;
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: var(--bs-white);
+      text-decoration: underline;
+    }
+  }
+
+  .footer-tagline {
+    font-size: 1.125rem;
+    line-height: 1.7;
+  }
+
+  .footer-tagline a {
+    text-decoration: underline;
+
+    &:hover,
+    &:focus,
+    &:active {
+      text-decoration: none;
+    }
+  }
+
+  // Invert the white logo image sitting inside the html-code block.
+  .footer-logo-image {
+    width: auto;
+    height: 1.875rem;
+    filter: brightness(0) invert(1);
+  }
+
+  // Sitemap menu: stacked vertical list, right-aligned column (matches
+  // main-bvxea6i-wpafon4fgqxwm.eu.platformsh.site reference layout where
+  // .sitemap-menu sits in an ms-lg-auto column and items stack top-to-bottom).
+  .block-system-menu-blockmain {
+    margin-inline-start: auto;
+  }
+
+  .block-system-menu-blockmain .navbar-nav,
+  .block-system-menu-blockmain ul.nav {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    gap: 0.75rem;
+    min-width: 0;
+  }
+
+  .block-system-menu-blockmain .nav-item {
+    min-width: 0;
+  }
+
+  .block-system-menu-blockmain .nav-item a.nav-link {
+    position: relative;
+    padding: 0;
+    color: var(--bs-white);
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.4;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  // Short left-aligned underline tick under hovered/active item (reference
+  // site uses 2.4rem tick on hover, 1.3rem tick on is-active, at top:80%).
+  .block-system-menu-blockmain .nav-item a.nav-link.is-active::after {
+    content: "";
+    position: absolute;
+    top: 80%;
+    left: 0;
+    width: 1.3rem;
+    height: 0.0625rem;
+    background-color: var(--bs-white);
+  }
+
+  .block-system-menu-blockmain .nav-item a.nav-link:hover::after,
+  .block-system-menu-blockmain .nav-item a.nav-link:focus::after {
+    content: "";
+    position: absolute;
+    top: 80%;
+    left: 0;
+    width: 2.4rem;
+    height: 0.0625rem;
+    background-color: var(--bs-white);
+    transition: width 0.3s;
+  }
+
+  // Remove the dropdown chevron on parent items in footer (no dropdown behavior here).
+  .block-system-menu-blockmain .nav-link.dropdown-toggle::after {
+    display: none;
+  }
+
+  // Footer does not expose child menu items - keep it a flat link row.
+  .block-system-menu-blockmain .dropdown-menu {
+    display: none;
+  }
+
+  // Bottom-row secondary menu: small body font, horizontal at right edge.
+  .block-system-menu-blockfooter .navbar-nav,
+  .block-system-menu-blockfooter ul.nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.9375rem;
+  }
+
+  .block-system-menu-blockfooter .nav-item a.nav-link {
+    padding: 0;
+    color: var(--bs-white);
+    font-weight: 400;
+    font-size: 0.875rem;
+    line-height: 1.4;
+    text-decoration: none;
+  }
+
+  .block-system-menu-blockfooter .nav-item a.nav-link:hover,
+  .block-system-menu-blockfooter .nav-item a.nav-link:focus,
+  .block-system-menu-blockfooter .nav-item a.nav-link:active {
+    text-decoration: underline;
+  }
+
+  // Social media menu - 30px rounded icon targets.
+  .block-system-menu-blocksocial-media-menu {
+    .navbar-nav,
+    ul.nav {
+      flex-direction: row;
+      gap: 0.9375rem;
+    }
+
+    li.nav-item > a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.875rem;
+      height: 1.875rem;
+      color: var(--bs-white);
+      font-size: 0 !important;
+      line-height: 0 !important;
+      letter-spacing: -9999px !important;
+      text-decoration: none;
+
+      &::before {
+        display: inline-block;
+        margin: 0;
+        color: var(--bs-white);
+        font-size: 1.125rem;
+        letter-spacing: normal;
+      }
+
+      &:hover,
+      &:focus,
+      &:active {
+        text-decoration: none;
+
+        &::before {
+          opacity: 0.85;
+        }
+      }
+    }
+  }
+
+  // Copyright line - small body font at bottom right.
+  .copyright-text {
+    color: var(--bs-white);
+    font-size: 0.875rem;
+    line-height: 1.4;
+  }
+
+  // Separator between top and bottom footer rows is rendered by a dedicated
+  // html-code section containing an <hr>, so it sits inside the container.
+  hr {
+    margin: 0;
+    border: 0;
+    border-top: 0.0625rem solid rgba(255, 255, 255, 0.6);
+    opacity: 1;
+  }
+}
+

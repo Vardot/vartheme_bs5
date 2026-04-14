@@ -1,7 +1,7 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: Navbar
 description: Navbar component
-noUi: true
+group: Layout
 props:
   type: object
   properties:
@@ -9,11 +9,10 @@ props:
       type:
       - string
       - 'null'
-      title: Container
+      title: Container type
       description: Container type
-      default: ''
+      default: null
       enum:
-      - ''
       - no-container
       - container-sm
       - container
@@ -25,14 +24,15 @@ props:
       - null
     color_mode:
       type: string
-      default: ''
+      title: Color mode
+      default: light
       enum:
-      - ''
       - light
       - dark
     color:
       type: string
-      default: ''
+      title: Background color
+      default: white
       enum:
       - transparent
       - light
@@ -47,23 +47,24 @@ props:
       - info
     placement:
       type: string
+      title: Placement
       default: ''
       enum:
-      - ''
       - fixed-top
       - fixed-bottom
       - sticky-top
     navbar_expand:
       type: string
-      default: ''
+      title: Navbar expand breakpoint
+      default: lg
       enum:
-      - ''
       - sm
       - md
       - lg
       - xl
     navbar_utility_classes:
       type: array
+      title: Utility Classes
       items:
         type: string
       default: []
@@ -73,9 +74,9 @@ props:
       description: HTML attributes for the navbar element
 slots:
   branding:
-    title: Branding
+    title: Site branding
   navigation:
-    title: Navigation
+    title: Navigation menu
 libraryOverrides:
   dependencies:
   - vartheme_bs5/bs-dropdown-script

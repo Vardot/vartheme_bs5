@@ -58,9 +58,11 @@
   </button>
 
   <div class="collapse navbar-collapse">
-    {% block navigation %}
-      {{ navigation }}
-    {% endblock %}
+    <div class="ms-auto">
+      {% block navigation %}
+        {{ navigation }}
+      {% endblock %}
+    </div>
   </div>
 
   {% if container %}

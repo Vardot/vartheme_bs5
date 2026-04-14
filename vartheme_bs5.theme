@@ -122,17 +122,9 @@ function vartheme_bs5_preprocess_page(&$variables) {
   $variables['site_slogan'] = \Drupal::config('system.site')->get('slogan');
 
   $vartheme_bs5_contained_regions = [
-    'container_top_bar',
-    // 'container_navbar_branding',
-    // 'container_navigation',
-    // 'container_highlighted',
-    'container_content_above',
-    // 'container_primary_sidebar',
+    'container_header',
     'container_content',
-    // 'container_secondary_sidebar',
-    'container_content_below',
-    'container_footer_top',
-    'container_footer_bottom',
+    'container_footer',
   ];
 
   foreach ($vartheme_bs5_contained_regions as $contained_region) {
