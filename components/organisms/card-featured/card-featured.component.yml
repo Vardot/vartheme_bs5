@@ -13,9 +13,9 @@ props:
       description: Choose the location of the media from (start|end|no-media).
       default: start
       enum:
-      - start
-      - end
-      - no-media
+        - start
+        - end
+        - no-media
       meta:enum:
         start: Start
         end: End
@@ -26,23 +26,23 @@ props:
       $ref: json-schema-definitions://canvas.module/image
       type: object
       examples:
-      - src: assets/featured-card-image-placeholder.svg
-        alt: Featured image
-        width: 800
-        height: 600
+        - src: assets/featured-card-image-placeholder.svg
+          alt: Featured image
+          width: 800
+          height: 600
     ratio:
       type: string
       title: Image ratio (crop)
       description: Keeps consistent image shapes.
       enum:
-      - ratio-auto
-      - ratio-16x9
-      - ratio-4x3
-      - ratio-1x1
-      - ratio-21x9
+        - ratio-auto
+        - ratio-16x9
+        - ratio-4x3
+        - ratio-1x1
+        - ratio-21x9
       default: ratio-16x9
       examples:
-      - ratio-auto
+        - ratio-auto
       meta:enum:
         ratio-auto: Auto (no crop)
         ratio-16x9: Wide (16:9)
@@ -54,11 +54,11 @@ props:
       title: Image fit
       description: How the image behaves inside a fixed ratio.
       enum:
-      - object-fit-cover
-      - object-fit-contain
+        - object-fit-cover
+        - object-fit-contain
       default: object-fit-cover
       examples:
-      - object-fit-cover
+        - object-fit-cover
       meta:enum:
         object-fit-cover: Fill (crop)
         object-fit-contain: Fit (no crop)
@@ -68,27 +68,27 @@ props:
       description: Add a default border for the card.
       default: false
       examples:
-      - false
+        - false
     padded:
       type: boolean
       title: Padded
       description: When enabled, adds p-4 padding to the content area.
       default: false
       examples:
-      - false
+        - false
     equal_height:
       type: boolean
       title: Equal height
       default: false
       examples:
-      - false
+        - false
     stretched_link:
       type: boolean
       title: Stretched link
       description: Makes the whole card clickable using Bootstrap's stretched-link (requires Card link URL).
       default: false
       examples:
-      - false
+        - false
     link_url:
       type: string
       title: Card link URL
@@ -99,9 +99,9 @@ props:
       type: string
       title: Link target
       enum:
-      - default
-      - _self
-      - _blank
+        - default
+        - _self
+        - _blank
       default: default
       meta:enum:
         default: Same tab (default)
@@ -113,9 +113,9 @@ props:
       description: Vertical alignment of the content.
       default: justify-content-center
       enum:
-      - justify-content-start
-      - justify-content-center
-      - justify-content-end
+        - justify-content-start
+        - justify-content-center
+        - justify-content-end
       meta:enum:
         justify-content-start: Start
         justify-content-center: Center
@@ -126,10 +126,10 @@ props:
       description: Bootstrap gutter utility classes applied to the inner row.
       default: g-2 g-lg-3
       enum:
-      - g-0
-      - g-2 g-lg-3
-      - g-4
-      - g-4 g-lg-5
+        - g-0
+        - g-2 g-lg-3
+        - g-4
+        - g-4 g-lg-5
       meta:enum:
         g-0: None (g-0)
         g-2 g-lg-3: Small (g-2 g-lg-3)
@@ -141,16 +141,16 @@ props:
       description: Size of two columns for all devices. Starting from (Extra small and up).
       default: '06_06'
       enum:
-      - '02_10'
-      - '10_02'
-      - '03_09'
-      - '09_03'
-      - '04_08'
-      - '08_04'
-      - '05_07'
-      - '07_05'
-      - '06_06'
-      - '12_12'
+        - '02_10'
+        - '10_02'
+        - '03_09'
+        - '09_03'
+        - '04_08'
+        - '08_04'
+        - '05_07'
+        - '07_05'
+        - '06_06'
+        - '12_12'
       meta:enum:
         '02_10': '17% - 83%'
         '10_02': '83% - 17%'
@@ -168,16 +168,16 @@ props:
       description: Size of two columns for Small devices (landscape phones, 576px and up).
       default: '06_06'
       enum:
-      - '02_10'
-      - '10_02'
-      - '03_09'
-      - '09_03'
-      - '04_08'
-      - '08_04'
-      - '05_07'
-      - '07_05'
-      - '06_06'
-      - '12_12'
+        - '02_10'
+        - '10_02'
+        - '03_09'
+        - '09_03'
+        - '04_08'
+        - '08_04'
+        - '05_07'
+        - '07_05'
+        - '06_06'
+        - '12_12'
       meta:enum:
         "": "Default (auto)"
         '02_10': '17% - 83%'
@@ -196,16 +196,16 @@ props:
       description: Size of two columns for Medium devices (tablets, 768px and up).
       default: '06_06'
       enum:
-      - '02_10'
-      - '10_02'
-      - '03_09'
-      - '09_03'
-      - '04_08'
-      - '08_04'
-      - '05_07'
-      - '07_05'
-      - '06_06'
-      - '12_12'
+        - '02_10'
+        - '10_02'
+        - '03_09'
+        - '09_03'
+        - '04_08'
+        - '08_04'
+        - '05_07'
+        - '07_05'
+        - '06_06'
+        - '12_12'
       meta:enum:
         '02_10': '17% - 83%'
         '10_02': '83% - 17%'
@@ -223,16 +223,16 @@ props:
       description: Size of two columns for Large devices (desktops, 992px and up).
       default: '06_06'
       enum:
-      - '02_10'
-      - '10_02'
-      - '03_09'
-      - '09_03'
-      - '04_08'
-      - '08_04'
-      - '05_07'
-      - '07_05'
-      - '06_06'
-      - '12_12'
+        - '02_10'
+        - '10_02'
+        - '03_09'
+        - '09_03'
+        - '04_08'
+        - '08_04'
+        - '05_07'
+        - '07_05'
+        - '06_06'
+        - '12_12'
       meta:enum:
         '02_10': '17% - 83%'
         '10_02': '83% - 17%'
@@ -250,16 +250,16 @@ props:
       description: Size of two columns for X-Large devices (large desktops, 1200px and up).
       default: '06_06'
       enum:
-      - '02_10'
-      - '10_02'
-      - '03_09'
-      - '09_03'
-      - '04_08'
-      - '08_04'
-      - '05_07'
-      - '07_05'
-      - '06_06'
-      - '12_12'
+        - '02_10'
+        - '10_02'
+        - '03_09'
+        - '09_03'
+        - '04_08'
+        - '08_04'
+        - '05_07'
+        - '07_05'
+        - '06_06'
+        - '12_12'
       meta:enum:
         '02_10': '17% - 83%'
         '10_02': '83% - 17%'
@@ -277,16 +277,16 @@ props:
       description: Size of two columns for XX-Large devices (larger desktops, 1400px and up).
       default: '06_06'
       enum:
-      - '02_10'
-      - '10_02'
-      - '03_09'
-      - '09_03'
-      - '04_08'
-      - '08_04'
-      - '05_07'
-      - '07_05'
-      - '06_06'
-      - '12_12'
+        - '02_10'
+        - '10_02'
+        - '03_09'
+        - '09_03'
+        - '04_08'
+        - '08_04'
+        - '05_07'
+        - '07_05'
+        - '06_06'
+        - '12_12'
       meta:enum:
         '02_10': '17% - 83%'
         '10_02': '83% - 17%'

@@ -16,9 +16,9 @@ props:
       title: Container style
       description: Choose how the content is contained.
       enum:
-      - container
-      - container-fluid
-      - none
+        - container
+        - container-fluid
+        - none
       default: none
       meta:enum:
         container: Container
@@ -29,13 +29,13 @@ props:
       title: Background color
       description: Background color utility (Bootstrap).
       enum:
-      - none
-      - bg-light
-      - bg-body-tertiary
-      - bg-primary
-      - bg-secondary
-      - bg-dark
-      - bg-info
+        - none
+        - bg-light
+        - bg-body-tertiary
+        - bg-primary
+        - bg-secondary
+        - bg-dark
+        - bg-info
       default: none
       meta:enum:
         none: None
@@ -50,11 +50,11 @@ props:
       title: Text color
       description: Text color utility. Auto uses white on dark backgrounds.
       enum:
-      - auto
-      - text-body
-      - text-dark
-      - text-white
-      - text-muted
+        - auto
+        - text-body
+        - text-dark
+        - text-white
+        - text-muted
       default: auto
       meta:enum:
         auto: Auto (recommended)
@@ -71,11 +71,11 @@ props:
       title: Image overlay
       description: Dark overlay on top of the background image.
       enum:
-      - none
-      - overlay-10
-      - overlay-25
-      - overlay-50
-      - overlay-75
+        - none
+        - overlay-10
+        - overlay-25
+        - overlay-50
+        - overlay-75
       default: none
       meta:enum:
         none: None
@@ -88,18 +88,18 @@ props:
       title: Grid layout (tablet/desktop)
       description: Shows ONLY the selected number of columns.
       enum:
-      - '100'
-      - 50-50
-      - 33-33-33
-      - 75-25
-      - 25-75
-      - 67-33
-      - 33-67
-      - 50-25-25
-      - 25-25-50
-      - 25-25-25-25
-      - 20-20-20-20-20
-      - 16-16-16-16-16-16
+        - '100'
+        - 50-50
+        - 33-33-33
+        - 75-25
+        - 25-75
+        - 67-33
+        - 33-67
+        - 50-25-25
+        - 25-25-50
+        - 25-25-25-25
+        - 20-20-20-20-20
+        - 16-16-16-16-16-16
       default: 50-50
       meta:enum:
         '100': 1 column (100%)
@@ -119,12 +119,12 @@ props:
       title: Grid gap
       description: Space between columns (Bootstrap gutters).
       enum:
-      - gx-0 gy-0
-      - gx-1 gy-1
-      - gx-2 gy-2
-      - gx-3 gy-3
-      - gx-4 gy-4
-      - gx-5 gy-5
+        - gx-0 gy-0
+        - gx-1 gy-1
+        - gx-2 gy-2
+        - gx-3 gy-3
+        - gx-4 gy-4
+        - gx-5 gy-5
       default: gx-3 gy-3
       meta:enum:
         gx-0 gy-0: None
@@ -138,12 +138,12 @@ props:
       title: Padding top
       description: Space inside the section at the top.
       enum:
-      - pt-0
-      - pt-1
-      - pt-2
-      - pt-3
-      - pt-4
-      - pt-5
+        - pt-0
+        - pt-1
+        - pt-2
+        - pt-3
+        - pt-4
+        - pt-5
       default: pt-0
       meta:enum:
         pt-0: None
@@ -157,12 +157,12 @@ props:
       title: Padding bottom
       description: Space inside the section at the bottom.
       enum:
-      - pb-0
-      - pb-1
-      - pb-2
-      - pb-3
-      - pb-4
-      - pb-5
+        - pb-0
+        - pb-1
+        - pb-2
+        - pb-3
+        - pb-4
+        - pb-5
       default: pb-0
       meta:enum:
         pb-0: None
@@ -176,12 +176,12 @@ props:
       title: Padding start
       description: Space inside the section at the start side.
       enum:
-      - ps-0
-      - ps-1
-      - ps-2
-      - ps-3
-      - ps-4
-      - ps-5
+        - ps-0
+        - ps-1
+        - ps-2
+        - ps-3
+        - ps-4
+        - ps-5
       default: ps-0
       meta:enum:
         ps-0: None
@@ -195,12 +195,12 @@ props:
       title: Padding end
       description: Space inside the section at the end side.
       enum:
-      - pe-0
-      - pe-1
-      - pe-2
-      - pe-3
-      - pe-4
-      - pe-5
+        - pe-0
+        - pe-1
+        - pe-2
+        - pe-3
+        - pe-4
+        - pe-5
       default: pe-0
       meta:enum:
         pe-0: None
@@ -214,12 +214,12 @@ props:
       title: Margin top
       description: Space outside the section at the top.
       enum:
-      - mt-0
-      - mt-1
-      - mt-2
-      - mt-3
-      - mt-4
-      - mt-5
+        - mt-0
+        - mt-1
+        - mt-2
+        - mt-3
+        - mt-4
+        - mt-5
       default: mt-0
       meta:enum:
         mt-0: None
@@ -233,12 +233,12 @@ props:
       title: Margin bottom
       description: Space outside the section at the bottom.
       enum:
-      - mb-0
-      - mb-1
-      - mb-2
-      - mb-3
-      - mb-4
-      - mb-5
+        - mb-0
+        - mb-1
+        - mb-2
+        - mb-3
+        - mb-4
+        - mb-5
       default: mb-0
       meta:enum:
         mb-0: None
@@ -252,12 +252,12 @@ props:
       title: Margin start
       description: Space outside the section at the start side.
       enum:
-      - ms-0
-      - ms-1
-      - ms-2
-      - ms-3
-      - ms-4
-      - ms-5
+        - ms-0
+        - ms-1
+        - ms-2
+        - ms-3
+        - ms-4
+        - ms-5
       default: ms-0
       meta:enum:
         ms-0: None
@@ -271,12 +271,12 @@ props:
       title: Margin end
       description: Space outside the section at the end side.
       enum:
-      - me-0
-      - me-1
-      - me-2
-      - me-3
-      - me-4
-      - me-5
+        - me-0
+        - me-1
+        - me-2
+        - me-3
+        - me-4
+        - me-5
       default: me-0
       meta:enum:
         me-0: None
@@ -290,10 +290,10 @@ props:
       title: Shadow
       description: Optional shadow (Bootstrap).
       enum:
-      - none
-      - shadow-sm
-      - shadow
-      - shadow-lg
+        - none
+        - shadow-sm
+        - shadow
+        - shadow-lg
       default: none
       meta:enum:
         none: None
@@ -305,9 +305,9 @@ props:
       title: Vertical alignment
       description: Vertical alignment for the row.
       enum:
-      - align-items-start
-      - align-items-center
-      - align-items-end
+        - align-items-start
+        - align-items-center
+        - align-items-end
       default: align-items-start
       meta:enum:
         align-items-start: Top
@@ -318,9 +318,9 @@ props:
       title: Horizontal alignment
       description: Text alignment applied to each column.
       enum:
-      - text-start
-      - text-center
-      - text-end
+        - text-start
+        - text-center
+        - text-end
       default: text-start
       meta:enum:
         text-start: Left

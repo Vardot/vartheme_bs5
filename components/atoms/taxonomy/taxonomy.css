@@ -1,21 +1,18 @@
-
-/* Taxonomy component: minimal styles not covered by Bootstrap utilities */
 .taxonomy {
+  letter-spacing: 0.125rem;
+  border-radius: 0.125rem;
   padding-block: 0.125rem;
   padding-inline: 0.25rem;
-  border-radius: 0.125rem;
-  letter-spacing: 0.125rem;
 }
 
-/* Hover state (matches Figma hover) */
 .taxonomy:hover {
-  background-color: var(--bs-secondary) !important;
-  color: var(--bs-white) !important;
+  color: var(--bs-white);
+  background-color: var(--bs-secondary);
 }
 
-/* Focus-visible for keyboard accessibility */
 .taxonomy:focus-visible {
   outline: 0;
+  box-shadow: 0 0 0 0.125rem rgba(var(--bs-secondary-rgb), 0.4);
 }
 
 .taxonomy-lg {

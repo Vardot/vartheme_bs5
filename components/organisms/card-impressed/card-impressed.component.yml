@@ -12,8 +12,8 @@ props:
       title: Media position
       default: top
       enum:
-      - top
-      - bottom
+        - top
+        - bottom
       meta:enum:
         top: Top
         bottom: Bottom
@@ -23,23 +23,23 @@ props:
       $ref: json-schema-definitions://canvas.module/image
       type: object
       examples:
-      - src: assets/impressed-card-image-placeholder.svg
-        alt: Impressed image
-        width: 800
-        height: 600
+        - src: assets/impressed-card-image-placeholder.svg
+          alt: Impressed image
+          width: 800
+          height: 600
     ratio:
       type: string
       title: Image ratio (crop)
       description: Keeps consistent image shapes.
       enum:
-      - ratio-auto
-      - ratio-16x9
-      - ratio-4x3
-      - ratio-1x1
-      - ratio-21x9
+        - ratio-auto
+        - ratio-16x9
+        - ratio-4x3
+        - ratio-1x1
+        - ratio-21x9
       default: ratio-16x9
       examples:
-      - ratio-16x9
+        - ratio-16x9
       meta:enum:
         ratio-auto: Auto (no crop)
         ratio-16x9: Wide (16:9)
@@ -51,11 +51,11 @@ props:
       title: Image fit
       description: How the image behaves inside a fixed ratio.
       enum:
-      - object-fit-cover
-      - object-fit-contain
+        - object-fit-cover
+        - object-fit-contain
       default: object-fit-cover
       examples:
-      - object-fit-cover
+        - object-fit-cover
       meta:enum:
         object-fit-cover: Fill (crop)
         object-fit-contain: Fit (no crop)
@@ -70,18 +70,18 @@ props:
       description: Bootstrap background utility applied to the card.
       default: bg-transparent
       enum:
-      - bg-transparent
-      - bg-body
-      - bg-body-tertiary
-      - bg-white
-      - bg-light
-      - bg-dark
-      - bg-primary
-      - bg-secondary
-      - bg-success
-      - bg-danger
-      - bg-warning
-      - bg-info
+        - bg-transparent
+        - bg-body
+        - bg-body-tertiary
+        - bg-white
+        - bg-light
+        - bg-dark
+        - bg-primary
+        - bg-secondary
+        - bg-success
+        - bg-danger
+        - bg-warning
+        - bg-info
       meta:enum:
         bg-transparent: Transparent
         bg-body: Body
@@ -106,10 +106,10 @@ props:
       description: Bootstrap shadow utility applied to the card.
       default: shadow-none
       enum:
-      - shadow-none
-      - shadow-sm
-      - shadow
-      - shadow-lg
+        - shadow-none
+        - shadow-sm
+        - shadow
+        - shadow-lg
       meta:enum:
         shadow-none: None
         shadow-sm: Small
@@ -121,10 +121,10 @@ props:
       description: Bootstrap rounded utility applied to the card.
       default: rounded-0
       enum:
-      - rounded-0
-      - rounded-1
-      - rounded-3
-      - rounded-pill
+        - rounded-0
+        - rounded-1
+        - rounded-3
+        - rounded-pill
       meta:enum:
         rounded-0: None (square)
         rounded-1: Small
@@ -150,9 +150,9 @@ props:
       type: string
       title: Link target
       enum:
-      - default
-      - _self
-      - _blank
+        - default
+        - _self
+        - _blank
       default: default
       meta:enum:
         default: Default (same tab)

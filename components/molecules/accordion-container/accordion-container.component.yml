@@ -31,15 +31,15 @@ props:
       title: Header color
       description: Applies Bootstrap color utilities to accordion headers (buttons).
       enum:
-      - default
-      - primary
-      - secondary
-      - success
-      - danger
-      - warning
-      - info
-      - light
-      - dark
+        - default
+        - primary
+        - secondary
+        - success
+        - danger
+        - warning
+        - info
+        - light
+        - dark
       meta:
         enum:
           default: Default
@@ -58,4 +58,4 @@ slots:
     description: Only one of collapsible sections added can be open at a time.
 libraryOverrides:
   dependencies:
-  - vartheme_bs5/bs-collapse-script
+    - vartheme_bs5/bs-collapse-script

@@ -34,25 +34,25 @@ props:
       type: string
       name: Alignment
       enum:
-      - ''
-      - left
-      - right
-      - center
-      - vertical
+        - ''
+        - left
+        - right
+        - center
+        - vertical
     style:
       type: string
       name: Style
       enum:
-      - ''
-      - tabs
-      - pills
+        - ''
+        - tabs
+        - pills
     fill:
       type: string
       name: Fill
       enum:
-      - ''
-      - fill
-      - justify
+        - ''
+        - fill
+        - justify
     nav_menu_utility_classes:
       type: array
       title: Utility Classes
@@ -67,4 +67,4 @@ props:
       description: HTML attributes for the containing element.
 libraryOverrides:
   dependencies:
-  - vartheme_bs5/bs-dropdown-script
+    - vartheme_bs5/bs-dropdown-script

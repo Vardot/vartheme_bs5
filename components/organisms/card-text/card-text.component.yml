@@ -18,18 +18,18 @@ props:
       description: Bootstrap background utility applied to the card.
       default: bg-transparent
       enum:
-      - bg-transparent
-      - bg-body
-      - bg-body-tertiary
-      - bg-white
-      - bg-light
-      - bg-dark
-      - bg-primary
-      - bg-secondary
-      - bg-success
-      - bg-danger
-      - bg-warning
-      - bg-info
+        - bg-transparent
+        - bg-body
+        - bg-body-tertiary
+        - bg-white
+        - bg-light
+        - bg-dark
+        - bg-primary
+        - bg-secondary
+        - bg-success
+        - bg-danger
+        - bg-warning
+        - bg-info
       meta:enum:
         bg-transparent: Transparent
         bg-body: Body
@@ -54,10 +54,10 @@ props:
       description: Bootstrap shadow utility applied to the card.
       default: shadow-none
       enum:
-      - shadow-none
-      - shadow-sm
-      - shadow
-      - shadow-lg
+        - shadow-none
+        - shadow-sm
+        - shadow
+        - shadow-lg
       meta:enum:
         shadow-none: None
         shadow-sm: Small
@@ -69,10 +69,10 @@ props:
       description: Bootstrap rounded utility applied to the card.
       default: rounded-0
       enum:
-      - rounded-0
-      - rounded-1
-      - rounded-3
-      - rounded-pill
+        - rounded-0
+        - rounded-1
+        - rounded-3
+        - rounded-pill
       meta:enum:
         rounded-0: None (square)
         rounded-1: Small
@@ -98,9 +98,9 @@ props:
       type: string
       title: Link target
       enum:
-      - default
-      - _self
-      - _blank
+        - default
+        - _self
+        - _blank
       default: default
       meta:enum:
         default: Default (same tab)

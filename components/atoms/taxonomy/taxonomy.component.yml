@@ -5,14 +5,14 @@ status: stable
 props:
   type: object
   required:
-  - label
+    - label
   properties:
     label:
       type: string
       title: Label
       description: Text shown inside the taxonomy badge.
       examples:
-      - Taxonomy
+        - Taxonomy
     url:
       type: string
       title: Link (optional)
@@ -24,8 +24,8 @@ props:
       title: Link target
       description: Where to open the link (only used when Link is provided).
       enum:
-      - _self
-      - _blank
+        - _self
+        - _blank
       default: _self
       meta:enum:
         _self: Same tab
@@ -35,8 +35,8 @@ props:
       title: Size
       description: Controls the typography size (taxonomy modifier class).
       enum:
-      - taxonomy-lg
-      - taxonomy-sm
+        - taxonomy-lg
+        - taxonomy-sm
       default: taxonomy-lg
       meta:enum:
         taxonomy-lg: Large

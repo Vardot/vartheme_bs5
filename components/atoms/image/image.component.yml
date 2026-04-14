@@ -10,10 +10,10 @@ props:
       title: Image
       description: Main image source.
       examples:
-      - src: assets/image-placeholder.svg
-        alt: Placeholder image
-        width: 1200
-        height: 800
+        - src: assets/image-placeholder.svg
+          alt: Placeholder image
+          width: 1200
+          height: 800
     link_url:
       type: string
       title: Link URL (optional)
@@ -23,11 +23,11 @@ props:
       type: string
       title: Link target
       enum:
-      - self
-      - blank
+        - self
+        - blank
       default: self
       examples:
-      - self
+        - self
       meta:enum:
         self: Same tab
         blank: New tab
@@ -36,14 +36,14 @@ props:
       title: Image ratio (crop)
       description: Keeps consistent image shapes.
       enum:
-      - ratio-auto
-      - ratio-16x9
-      - ratio-4x3
-      - ratio-1x1
-      - ratio-21x9
+        - ratio-auto
+        - ratio-16x9
+        - ratio-4x3
+        - ratio-1x1
+        - ratio-21x9
       default: ratio-auto
       examples:
-      - ratio-auto
+        - ratio-auto
       meta:enum:
         ratio-auto: Auto (no crop)
         ratio-16x9: Wide (16:9)
@@ -55,11 +55,11 @@ props:
       title: Image fit
       description: How the image behaves inside a fixed ratio.
       enum:
-      - object-fit-cover
-      - object-fit-contain
+        - object-fit-cover
+        - object-fit-contain
       default: object-fit-cover
       examples:
-      - object-fit-cover
+        - object-fit-cover
       meta:enum:
         object-fit-cover: Fill (crop)
         object-fit-contain: Fit (no crop)
@@ -68,12 +68,12 @@ props:
       title: Alignment
       description: Alignment of the whole image block.
       enum:
-      - me-auto
-      - mx-auto
-      - ms-auto
+        - me-auto
+        - mx-auto
+        - ms-auto
       default: me-auto
       examples:
-      - me-auto
+        - me-auto
       meta:enum:
         me-auto: Left
         mx-auto: Center
@@ -83,14 +83,14 @@ props:
       title: Width
       description: Controls the visual width of the image container.
       enum:
-      - w-auto
-      - w-25
-      - w-50
-      - w-75
-      - w-100
+        - w-auto
+        - w-25
+        - w-50
+        - w-75
+        - w-100
       default: w-auto
       examples:
-      - w-auto
+        - w-auto
       meta:enum:
         w-auto: Auto
         w-25: 25%
@@ -102,13 +102,13 @@ props:
       title: Corner style
       description: Controls how rounded the image corners are.
       enum:
-      - rounded-0
-      - rounded-1
-      - rounded-3
-      - rounded-pill
+        - rounded-0
+        - rounded-1
+        - rounded-3
+        - rounded-pill
       default: rounded-0
       examples:
-      - rounded-0
+        - rounded-0
       meta:enum:
         rounded-0: None
         rounded-1: Slightly rounded
@@ -119,11 +119,11 @@ props:
       title: Loading behavior
       description: Controls browser loading strategy.
       enum:
-      - lazy
-      - eager
+        - lazy
+        - eager
       default: lazy
       examples:
-      - lazy
+        - lazy
       meta:enum:
         lazy: Lazy load
         eager: Load immediately

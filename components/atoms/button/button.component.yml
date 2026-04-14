@@ -4,26 +4,26 @@ group: Base
 props:
   type: object
   required:
-  - variant
-  - size
+    - variant
+    - size
   properties:
     variant:
       type: string
       title: Variant
       description: Bootstrap button style class.
       enum:
-      - btn-primary
-      - btn-secondary
-      - btn-success
-      - btn-danger
-      - btn-warning
-      - btn-info
-      - btn-light
-      - btn-dark
-      - btn-link
+        - btn-primary
+        - btn-secondary
+        - btn-success
+        - btn-danger
+        - btn-warning
+        - btn-info
+        - btn-light
+        - btn-dark
+        - btn-link
       default: btn-primary
       examples:
-      - btn-primary
+        - btn-primary
       meta:enum:
         btn-primary: Primary
         btn-secondary: Secondary
@@ -41,18 +41,18 @@ props:
         to btn-link).
       default: false
       examples:
-      - false
+        - false
     size:
       type: string
       title: Size
       description: Bootstrap button size class.
       enum:
-      - btn-md
-      - btn-sm
-      - btn-lg
+        - btn-md
+        - btn-sm
+        - btn-lg
       default: btn
       examples:
-      - btn-md
+        - btn-md
       meta:enum:
         btn-md: Medium (default)
         btn-sm: Small
@@ -62,7 +62,7 @@ props:
       title: Label
       default: Button label
       examples:
-      - Read more
+        - Read more
       description: Button text.
     href:
       type: string
@@ -74,11 +74,11 @@ props:
       title: Link target
       description: Where to open the link (used only when Link URL is provided).
       enum:
-      - self
-      - blank
+        - self
+        - blank
       default: self
       examples:
-      - self
+        - self
       meta:enum:
         self: Same tab (default)
         blank: New tab
@@ -87,66 +87,66 @@ props:
       title: Disabled
       default: false
       examples:
-      - false
+        - false
     icon:
       type: string
       title: Icon (optional)
       description: Optional Bootstrap Icon name (without the "bi-" prefix). Use "none" to disable.
       enum:
-      - none
-      - facebook
-      - twitter-x
-      - instagram
-      - linkedin
-      - x
-      - plus
-      - exclamation
-      - check
-      - dash
-      - question
-      - info
-      - search
-      - person
-      - people
-      - person-plus
-      - person-check
-      - chevron-up
-      - chevron-down
-      - chevron-left
-      - chevron-right
-      - chevron-double-up
-      - chevron-double-down
-      - chevron-double-left
-      - chevron-double-right
-      - arrow-up
-      - arrow-down
-      - arrow-left
-      - arrow-right
-      - arrow-up-right
-      - arrow-up-left
-      - arrow-down-right
-      - arrow-down-left
-      - arrow-repeat
-      - arrows-angle-expand
-      - arrows-angle-contract
-      - play
-      - pause
-      - skip-backward
-      - skip-forward
-      - circle
-      - circle-fill
-      - record-circle
-      - arrow-right-circle-fill
-      - arrow-left-circle-fill
-      - arrow-up-circle-fill
-      - arrow-down-circle-fill
-      - caret-right-fill
-      - caret-left-fill
-      - caret-up-fill
-      - caret-down-fill
+        - none
+        - facebook
+        - twitter-x
+        - instagram
+        - linkedin
+        - x
+        - plus
+        - exclamation
+        - check
+        - dash
+        - question
+        - info
+        - search
+        - person
+        - people
+        - person-plus
+        - person-check
+        - chevron-up
+        - chevron-down
+        - chevron-left
+        - chevron-right
+        - chevron-double-up
+        - chevron-double-down
+        - chevron-double-left
+        - chevron-double-right
+        - arrow-up
+        - arrow-down
+        - arrow-left
+        - arrow-right
+        - arrow-up-right
+        - arrow-up-left
+        - arrow-down-right
+        - arrow-down-left
+        - arrow-repeat
+        - arrows-angle-expand
+        - arrows-angle-contract
+        - play
+        - pause
+        - skip-backward
+        - skip-forward
+        - circle
+        - circle-fill
+        - record-circle
+        - arrow-right-circle-fill
+        - arrow-left-circle-fill
+        - arrow-up-circle-fill
+        - arrow-down-circle-fill
+        - caret-right-fill
+        - caret-left-fill
+        - caret-up-fill
+        - caret-down-fill
       default: none
       examples:
-      - none
+        - none
       meta:enum:
         none: None
         facebook: Facebook
@@ -204,19 +204,19 @@ props:
       title: Change icon position to left
       default: false
       examples:
-      - false
+        - false
     alignment:
       type: string
       title: Alignment
       description: Alignment wrapper for a single button. Use Inline for multiple buttons.
       enum:
-      - inline
-      - left
-      - center
-      - right
+        - inline
+        - left
+        - center
+        - right
       default: inline
       examples:
-      - inline
+        - inline
       meta:enum:
         inline: Inline (default)
         left: Left
@@ -228,18 +228,18 @@ props:
       description: Make the button full width using the Bootstrap w-100 utility class.
       default: false
       examples:
-      - false
+        - false
     radius:
       type: string
       title: Border radius
       description: Bootstrap border-radius utility class.
       enum:
-      - rounded
-      - rounded-pill
-      - rounded-0
+        - rounded
+        - rounded-pill
+        - rounded-0
       default: rounded
       examples:
-      - rounded
+        - rounded
       meta:enum:
         rounded: Default
         rounded-pill: Round

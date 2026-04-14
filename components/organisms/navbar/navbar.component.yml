@@ -7,61 +7,61 @@ props:
   properties:
     container:
       type:
-      - string
-      - 'null'
+        - string
+        - 'null'
       title: Container type
       description: Container type
       default: null
       enum:
-      - no-container
-      - container-sm
-      - container
-      - container-md
-      - container-lg
-      - container-xl
-      - container-xxl
-      - container-fluid
-      - null
+        - no-container
+        - container-sm
+        - container
+        - container-md
+        - container-lg
+        - container-xl
+        - container-xxl
+        - container-fluid
+        - null
     color_mode:
       type: string
       title: Color mode
       default: light
       enum:
-      - light
-      - dark
+        - light
+        - dark
     color:
       type: string
       title: Background color
       default: white
       enum:
-      - transparent
-      - light
-      - dark
-      - black
-      - white
-      - primary
-      - secondary
-      - success
-      - danger
-      - warning
-      - info
+        - transparent
+        - light
+        - dark
+        - black
+        - white
+        - primary
+        - secondary
+        - success
+        - danger
+        - warning
+        - info
     placement:
       type: string
       title: Placement
       default: ''
       enum:
-      - fixed-top
-      - fixed-bottom
-      - sticky-top
+        - fixed-top
+        - fixed-bottom
+        - sticky-top
     navbar_expand:
       type: string
       title: Navbar expand breakpoint
       default: lg
       enum:
-      - sm
-      - md
-      - lg
-      - xl
+        - sm
+        - md
+        - lg
+        - xl
     navbar_utility_classes:
       type: array
       title: Utility Classes
@@ -79,5 +79,5 @@ slots:
     title: Navigation menu
 libraryOverrides:
   dependencies:
-  - vartheme_bs5/bs-dropdown-script
-  - core/components.vartheme_bs5--navbar-brand
+    - vartheme_bs5/bs-dropdown-script
+    - core/components.vartheme_bs5--navbar-brand

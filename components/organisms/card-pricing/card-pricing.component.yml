@@ -4,7 +4,7 @@ group: Card
 props:
   type: object
   required:
-  - symbol_position
+    - symbol_position
   properties:
     badge_text:
       type: string
@@ -12,23 +12,23 @@ props:
       description: Optional badge (e.g. Popular).
       default: ''
       examples:
-      - Most popular
+        - Most popular
     heading_text:
       type: string
       title: Heading
       examples:
-      - Premium
+        - Premium
     level:
       type: number
       title: Heading level
       description: HTML heading level for the card title.
       enum:
-      - 2
-      - 3
-      - 4
+        - 2
+        - 3
+        - 4
       default: 3
       examples:
-      - 3
+        - 3
       meta:enum:
         2: H2
         3: H3
@@ -38,34 +38,34 @@ props:
       title: Description (optional)
       pattern: (.|\r?\n)*
       examples:
-      - Curabitur nascetur non potenti pede luctus vivamus.
+        - Curabitur nascetur non potenti pede luctus vivamus.
     price:
       type: string
       title: Price
       description: Numeric value (e.g. 159).
       examples:
-      - '159'
+        - '159'
     currency_code:
       type: string
       title: Currency code (optional)
       description: Used in the <data> attribute (e.g. USD).
       examples:
-      - USD
+        - USD
     currency_symbol:
       type: string
       title: Currency symbol (optional)
       description: Display symbol (e.g. $).
       examples:
-      - $
+        - $
     symbol_position:
       type: string
       title: Currency symbol position
       enum:
-      - before
-      - after
+        - before
+        - after
       default: before
       examples:
-      - before
+        - before
       meta:enum:
         before: Before the price
         after: After the price
@@ -75,21 +75,21 @@ props:
       description: Short text after the price (e.g. /month).
       default: ''
       examples:
-      - /month
+        - /month
     price_note:
       type: string
       title: Price note (optional)
       description: "Small note under the price (e.g. \u201CBilled annually\u201D)."
       default: ''
       examples:
-      - Billed annually
+        - Billed annually
     show_features_divider:
       type: boolean
       title: Divider above features
       description: Adds a top border before the features list.
       default: true
       examples:
-      - true
+        - true
     text:
       type: string
       title: Features (rich text)
@@ -99,19 +99,19 @@ props:
       default: <ul> <li>Enter rich text</li> <li>Facilisis dictumst letius in</li>
         <li>Diam mus est faucibus ornare ut consectetuer metus</li> </ul>
       examples:
-      - <ul><li>Example item 1</li><li>Example item 2</li></ul>
+        - <ul><li>Example item 1</li><li>Example item 2</li></ul>
     shadow:
       type: string
       title: Shadow
       description: Bootstrap shadow utility class.
       enum:
-      - shadow-none
-      - shadow-sm
-      - shadow
-      - shadow-lg
+        - shadow-none
+        - shadow-sm
+        - shadow
+        - shadow-lg
       default: shadow
       examples:
-      - shadow
+        - shadow
       meta:enum:
         shadow-none: No shadow
         shadow-sm: Small shadow
@@ -122,19 +122,19 @@ props:
       title: Border style
       description: Bootstrap border utility class.
       enum:
-      - border
-      - border-0
-      - border-primary
-      - border-secondary
-      - border-success
-      - border-danger
-      - border-warning
-      - border-info
-      - border-light
-      - border-dark
+        - border
+        - border-0
+        - border-primary
+        - border-secondary
+        - border-success
+        - border-danger
+        - border-warning
+        - border-info
+        - border-light
+        - border-dark
       default: border
       examples:
-      - border
+        - border
       meta:enum:
         border: Default
         border-0: No border
@@ -151,18 +151,18 @@ props:
       title: Background theme
       description: Bootstrap background utility class.
       enum:
-      - bg-body
-      - bg-primary text-white
-      - bg-secondary text-white
-      - bg-success text-white
-      - bg-danger text-white
-      - bg-warning
-      - bg-info
-      - bg-light
-      - bg-dark text-white
+        - bg-body
+        - bg-primary text-white
+        - bg-secondary text-white
+        - bg-success text-white
+        - bg-danger text-white
+        - bg-warning
+        - bg-info
+        - bg-light
+        - bg-dark text-white
       default: bg-body
       examples:
-      - bg-body
+        - bg-body
       meta:enum:
         bg-body: Default
         bg-primary text-white: Primary
@@ -178,11 +178,11 @@ props:
       title: Text alignment
       description: Bootstrap text alignment utility class.
       enum:
-      - text-start
-      - text-center
+        - text-start
+        - text-center
       default: text-start
       examples:
-      - text-start
+        - text-start
       meta:enum:
         text-start: Left
         text-center: Center
@@ -195,11 +195,11 @@ props:
       title: Button target
       description: Controls how the button link opens.
       enum:
-      - self
-      - blank
+        - self
+        - blank
       default: self
       examples:
-      - self
+        - self
       meta:enum:
         self: Same tab
         blank: New tab
@@ -207,24 +207,24 @@ props:
       type: string
       title: Button label (optional)
       examples:
-      - Choose this plan
+        - Choose this plan
     button_variant:
       type: string
       title: Button style
       description: Bootstrap button utility class.
       enum:
-      - btn-primary
-      - btn-secondary
-      - btn-success
-      - btn-danger
-      - btn-warning
-      - btn-info
-      - btn-light
-      - btn-dark
-      - btn-link
+        - btn-primary
+        - btn-secondary
+        - btn-success
+        - btn-danger
+        - btn-warning
+        - btn-info
+        - btn-light
+        - btn-dark
+        - btn-link
       default: btn-primary
       examples:
-      - btn-primary
+        - btn-primary
       meta:enum:
         btn-primary: Primary
         btn-secondary: Secondary
@@ -241,4 +241,4 @@ props:
       description: Emphasizes the card visually (border + stronger shadow).
       default: false
       examples:
-      - false
+        - false
