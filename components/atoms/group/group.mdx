@@ -1,31 +1,75 @@
-import { Meta, Canvas, Story, Controls } from '@storybook/blocks';
-import * as GroupStories from './group.stories.json';
+import { Title, Subtitle, Description, Source, Meta, Primary, Stories, Controls } from '@storybook/blocks';
+import * as comStories from './group.stories.json';
+import templateSource from './group.twig?raw';
 
-<Meta of={GroupStories} />
+<Meta of={comStories} name="Docs"/>
 
-# Group
+<Title />
+<Subtitle />
+<Description />
 
-Use the Group component to arrange content in a simple Bootstrap flex wrapper with spacing, alignment, wrapping, and background utilities.
+> ### Bootstrap documentation
+> * [Flex](https://getbootstrap.com/docs/5.3/utilities/flex/)
+> * [Gap](https://getbootstrap.com/docs/5.3/utilities/spacing/#gap)
+> * [Spacing](https://getbootstrap.com/docs/5.3/utilities/spacing/)
+> * [Background](https://getbootstrap.com/docs/5.3/utilities/background/)
+> * [Align items](https://getbootstrap.com/docs/5.3/utilities/flex/#align-items)
+> * [Justify content](https://getbootstrap.com/docs/5.3/utilities/flex/#justify-content)
 
-## Highlights
+<Primary />
 
-- vertical or horizontal flow
-- Bootstrap gap, alignment, and distribution utilities
-- optional top, bottom, start, and end spacing utilities
-- optional background color utility
+## Properties
+<Controls />
 
-## Preview
+<Stories of={comStories} />
 
-<Canvas of={GroupStories.Default} />
+## Slots
+* `content`: Items rendered inside the group wrapper.
 
-## Available stories
+## Notes
+* This component is a flexible Bootstrap wrapper for grouping items vertically or horizontally.
+* `direction` switches between `flex-column` and `flex-row`.
+* `wrap` only affects horizontal layouts.
+* `gap`, alignment, padding, margin, and background are all passed through as Bootstrap utility classes.
+* This component works well for button groups, tag clouds, stacked content, and small layout clusters.
 
-- Default
-- Horizontal Actions
-- Wrapped Tags
-- Centered Callout
-- Spaced Stack
+## Examples
 
-## Controls
+### Example #1 : Vertical stack
+```twig
+{% embed 'vartheme_bs5:group' with {
+  direction: 'vertical',
+  gap: 'gap-3'
+} %}
+  {% block content %}
+    <div class="p-3 border rounded">First item</div>
+    <div class="p-3 border rounded">Second item</div>
+    <div class="p-3 border rounded">Third item</div>
+  {% endblock %}
+{% endembed %}
+```
 
-<Controls of={GroupStories.Default} />
+### Example #2 : Horizontal actions
+```twig
+{% embed 'vartheme_bs5:group' with {
+  background_color: 'bg-light',
+  direction: 'horizontal',
+  gap: 'gap-2',
+  wrap: 'wrap',
+  align_items: 'align-items-center',
+  justify_content: 'justify-content-start',
+  padding_block_start: 'pt-3',
+  padding_block_end: 'pb-3',
+  padding_inline_start: 'ps-2',
+  padding_inline_end: 'pe-2'
+} %}
+  {% block content %}
+    <button class="btn btn-primary">Save</button>
+    <button class="btn btn-outline-secondary">Preview</button>
+    <button class="btn btn-link">Cancel</button>
+  {% endblock %}
+{% endembed %}
+```
+
+## Source code
+<Source code={templateSource} />
