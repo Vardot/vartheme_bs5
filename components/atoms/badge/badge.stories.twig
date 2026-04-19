@@ -63,18 +63,53 @@
     },
     icon: {
       name: 'Icon (optional)',
-      description: 'Bootstrap Icon name from the shared icon component list. Use Custom icon name to override.',
+      description: 'Optional Bootstrap Icon name (without the "bi-" prefix). Use "none" to disable.',
       defaultValue: 'none',
       control: 'select',
       options: {
         None: 'none',
+        Facebook: 'facebook',
+        "'Twitter X'": 'twitter-x',
+        Instagram: 'instagram',
+        LinkedIn: 'linkedin',
+        "'Close (X)'": 'x',
+        Plus: 'plus',
+        Exclamation: 'exclamation',
         Check: 'check',
+        Dash: 'dash',
+        Question: 'question',
         Info: 'info',
         Search: 'search',
         Person: 'person',
         People: 'people',
-        "'Arrow right'": 'arrow-right',
-        "'Chevron right'": 'chevron-right',
+        "'Person Plus'": 'person-plus',
+        "'Person Check'": 'person-check',
+        "'Chevron Up'": 'chevron-up',
+        "'Chevron Down'": 'chevron-down',
+        "'Chevron Left'": 'chevron-left',
+        "'Chevron Right'": 'chevron-right',
+        "'Chevron Double Up'": 'chevron-double-up',
+        "'Chevron Double Down'": 'chevron-double-down',
+        "'Chevron Double Left'": 'chevron-double-left',
+        "'Chevron Double Right'": 'chevron-double-right',
+        "'Arrow Up'": 'arrow-up',
+        "'Arrow Down'": 'arrow-down',
+        "'Arrow Left'": 'arrow-left',
+        "'Arrow Right'": 'arrow-right',
+        "'Arrow Up Right'": 'arrow-up-right',
+        "'Arrow Up Left'": 'arrow-up-left',
+        "'Arrow Down Right'": 'arrow-down-right',
+        "'Arrow Down Left'": 'arrow-down-left',
+        "'Arrow Repeat'": 'arrow-repeat',
+        Expand: 'arrows-angle-expand',
+        Contract: 'arrows-angle-contract',
+        Play: 'play',
+        Pause: 'pause',
+        "'Skip Backward'": 'skip-backward',
+        "'Skip Forward'": 'skip-forward',
+        Circle: 'circle',
+        "'Circle Filled'": 'circle-fill',
+        "'Record Circle'": 'record-circle',
       },
     },
     icon_first: {
@@ -120,6 +155,91 @@
   {{ include('vartheme_bs5:badge') }}
 {% endstory %}
 
+{% story BadgeVariant with {
+  name: 'Variant',
+  args: {
+    label: 'Success',
+    url: '',
+    variant: 'text-bg-success',
+    size: 'fs-6 px-3 py-2',
+    radius: 'rounded-1',
+    icon: 'none',
+    icon_first: true,
+    indicator: 'none',
+    indicator_text: '99+',
+  },
+} %}
+  {{ include('vartheme_bs5:badge') }}
+{% endstory %}
+
+{% story BadgeSize with {
+  name: 'Size',
+  args: {
+    label: 'Large',
+    url: '',
+    variant: 'text-bg-primary',
+    size: 'fs-5 px-3 py-2',
+    radius: 'rounded-1',
+    icon: 'none',
+    icon_first: true,
+    indicator: 'none',
+    indicator_text: '99+',
+  },
+} %}
+  {{ include('vartheme_bs5:badge') }}
+{% endstory %}
+
+{% story BadgeRadius with {
+  name: 'Radius',
+  args: {
+    label: 'Rounded',
+    url: '',
+    variant: 'text-bg-primary',
+    size: 'fs-6 px-3 py-2',
+    radius: 'rounded-pill',
+    icon: 'none',
+    icon_first: true,
+    indicator: 'none',
+    indicator_text: '99+',
+  },
+} %}
+  {{ include('vartheme_bs5:badge') }}
+{% endstory %}
+
+{% story BadgeIcon with {
+  name: 'Icon',
+  args: {
+    label: 'Verified',
+    url: '',
+    variant: 'text-bg-primary',
+    size: 'fs-6 px-3 py-2',
+    radius: 'rounded-1',
+    icon: 'check',
+    icon_first: true,
+    indicator: 'none',
+    indicator_text: '99+',
+  },
+} %}
+  {{ include('vartheme_bs5:badge') }}
+{% endstory %}
+
+{% story BadgeIconPosition with {
+  name: 'Icon position',
+  args: {
+    label: 'Next',
+    url: '',
+    variant: 'text-bg-primary',
+    size: 'fs-6 px-3 py-2',
+    radius: 'rounded-1',
+    icon: 'arrow-right',
+    icon_first: false,
+    indicator: 'none',
+    indicator_text: '99+',
+  },
+} %}
+  {{ include('vartheme_bs5:badge') }}
+{% endstory %}
+
 {% story BadgeAsLink with {
   name: 'As link',
   args: {
@@ -137,48 +257,14 @@
   {{ include('vartheme_bs5:badge') }}
 {% endstory %}
 
-{% story BadgeWithIconBefore with {
-  name: 'With icon (before)',
-  args: {
-    label: 'Verified',
-    url: '',
-    variant: 'text-bg-info',
-    size: 'fs-6 px-3 py-2',
-    radius: 'rounded-1',
-    icon: 'check',
-    icon_first: true,
-    indicator: 'none',
-    indicator_text: '99+',
-  },
-} %}
-  {{ include('vartheme_bs5:badge') }}
-{% endstory %}
-
-{% story BadgeWithCustomIcon with {
-  name: 'With custom icon',
-  args: {
-    label: 'Alarm',
-    url: '',
-    variant: 'text-bg-secondary',
-    size: 'fs-6 px-3 py-2',
-    radius: 'rounded-1',
-    icon: 'none',
-    icon_first: true,
-    indicator: 'none',
-    indicator_text: '99+',
-  },
-} %}
-  {{ include('vartheme_bs5:badge') }}
-{% endstory %}
-
-{% story BadgeIndicatorDot with {
+{% story BadgeIndicator with {
   name: 'Indicator dot',
   args: {
     label: 'Alerts',
     url: '',
-    variant: 'text-bg-warning',
+    variant: 'text-bg-primary',
     size: 'fs-6 px-3 py-2',
-    radius: 'rounded-pill',
+    radius: 'rounded-1',
     icon: 'none',
     icon_first: true,
     indicator: 'dot',
@@ -199,7 +285,7 @@
     icon: 'none',
     icon_first: true,
     indicator: 'count',
-    indicator_text: '3',
+    indicator_text: '99+',
   },
 } %}
   {{ include('vartheme_bs5:badge') }}
