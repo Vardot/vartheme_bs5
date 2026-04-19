@@ -1,10 +1,8 @@
-{/* text.mdx */}
-
-import { Meta, Title, Subtitle, Description, Primary, Stories, Controls, Source } from '@storybook/blocks';
+import { Title, Subtitle, Description, Source, Meta, Primary, Stories, Controls } from '@storybook/addon-docs/blocks';
 import * as comStories from './text.stories.json';
 import templateSource from './text.twig?raw';
 
-<Meta of={comStories} name="Docs"/>
+<Meta of={comStories} />
 
 <Title />
 <Subtitle />
@@ -23,10 +21,36 @@ import templateSource from './text.twig?raw';
 <Stories of={comStories} />
 
 ## Notes
-- `text` is rendered as trusted HTML when trimming is disabled.
-- Use `strip_html` for safer smart-trim output.
-- Smart trim supports both character-based and word-based trimming.
+* `text` is rendered as trusted HTML — ensure content is already filtered/safe before passing.
+* `text_size` accepts Bootstrap font-size utilities (`fs-3` through `fs-6`). Use `none` to disable.
+* `text_color` accepts Bootstrap text color utilities (`text-primary`, `text-muted`, etc.).
+
+## Examples
+
+### Example #1: Default text
+```twig
+{% include 'vartheme_bs5:text' with {
+  text: '<p><strong>Hello</strong> from rich text.</p>',
+} only %}
+```
+
+### Example #2: Large primary text
+```twig
+{% include 'vartheme_bs5:text' with {
+  text: '<p>Featured announcement.</p>',
+  text_size: 'fs-3',
+  text_color: 'text-primary',
+} only %}
+```
+
+### Example #3: Muted small text
+```twig
+{% include 'vartheme_bs5:text' with {
+  text: '<p>Last updated: January 2025.</p>',
+  text_size: 'fs-6',
+  text_color: 'text-muted',
+} only %}
+```
 
 ## Source code
-[//]: # (Twig Template source code)
 <Source code={templateSource} />
