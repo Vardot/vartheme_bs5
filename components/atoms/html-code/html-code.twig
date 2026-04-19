@@ -1,0 +1,7 @@
+{# HTML Code component (trusted HTML only) #}
+
+{% set code = code|default('') %}
+
+{% if code|trim is not empty %}
+  {{ code|raw }}
+{% endif %}

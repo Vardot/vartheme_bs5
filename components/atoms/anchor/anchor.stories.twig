@@ -1,0 +1,62 @@
+{% stories Anchor with {
+  title: 'Base/Anchor',
+  parameters: {
+    componentSubtitle: 'In-page anchor target',
+    docs: {
+      description: {
+        component: 'Creates an invisible in-page target that can be linked to with a URL fragment such as #pricing or #faq.',
+      },
+      story: {
+        inline: true,
+      },
+    },
+  },
+  argTypes: {
+    id: {
+      name: 'ID for in-page link',
+      description: 'Anchor ID used in the URL fragment.',
+      defaultValue: 'section-anchor',
+      control: 'text',
+    },
+  },
+} %}
+
+{% story Default with {
+  name: 'Default',
+  args: {
+    id: 'section-anchor',
+  },
+} %}
+<div class="p-4 border rounded">
+  {{ include('vartheme_bs5:anchor') }}
+  <p class="mb-0">Anchor placed here with ID: <code>#{{ id }}</code></p>
+</div>
+{% endstory %}
+
+{% story Pricing with {
+  name: 'Pricing section anchor',
+  args: {
+    id: 'pricing',
+  },
+} %}
+<div class="p-4 border rounded">
+  {{ include('vartheme_bs5:anchor') }}
+  <h3 class="h5 mb-2">Pricing</h3>
+  <p class="mb-0">Use <code>#pricing</code> to jump here.</p>
+</div>
+{% endstory %}
+
+{% story FAQ with {
+  name: 'FAQ section anchor',
+  args: {
+    id: 'faq',
+  },
+} %}
+<div class="p-4 border rounded">
+  {{ include('vartheme_bs5:anchor') }}
+  <h3 class="h5 mb-2">FAQ</h3>
+  <p class="mb-0">Use <code>#faq</code> to jump here.</p>
+</div>
+{% endstory %}
+
+{% endstories %}

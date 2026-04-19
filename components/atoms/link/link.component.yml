@@ -1,15 +1,15 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: Link
-status: experimental
 description: Link with Bootstrap Link helpers and utility classes
+noUi: true
 props:
   type: object
   properties:
     url:
       type: string
       title: URL Link
+      format: uri-reference
       description: URL link.
-      $ref: "ui-patterns://url"
       default: ''
     color:
       type: string
@@ -85,10 +85,9 @@ props:
         type: 'string'
       description: An array of utility classes that can be used to add extra Bootstrap utility classes or custom classes to this component.
     attributes:
-      type: object
+      type: Drupal\Core\Template\Attribute
       title: Attributes
       description: HTML attributes for the containing element.
-      $ref: 'ui-patterns://attributes'
 slots:
   content:
     type: string

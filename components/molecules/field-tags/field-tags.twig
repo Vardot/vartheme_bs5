@@ -27,7 +27,7 @@
     'field--type-' ~ field_type|clean_class,
     'field--label-' ~ label_display,
     'clearfix',
-    'vb-tags'
+    'vb-tags',
   ]
 %}
 {%
@@ -38,17 +38,17 @@
 %}
 <div{{ attributes.addClass(classes) }}>
   {% if not label_hidden %}
-    {% include 'vartheme_bs5:heading' with {
+    {{ include('vartheme_bs5:heading', {
         html_tag: 'h3',
         content: label,
         attributes: title_attributes,
-        field_tags_utility_classes: title_classes
-      }
-    %}
+        field_tags_utility_classes: title_classes,
+      },
+    ) }}
   {% endif %}
   <ul class='links field__items'>
     {% for item in items %}
-      <li{{ item.attributes }}>{% include 'vartheme_bs5:taxonomy' with { content: item.content } only %}</li>
+      <li{{ item.attributes }}>{{ include('vartheme_bs5:taxonomy', {content: item.content}, false) }}</li>
     {% endfor %}
   </ul>
 </div>

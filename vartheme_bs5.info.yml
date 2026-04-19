@@ -10,18 +10,9 @@ screenshot: screenshot.png
 alt text: Screenshot of Vartheme BS5, Varbase front-end theme.
 
 regions:
-  top_bar: Top bar
-  navbar_branding: Navbar branding
-  navigation: Navigation (Desktop and Collapse)
-  highlighted: Highlighted
-  content_above: Content above
-  primary_sidebar: Primary sidebar
   content: Content
-  secondary_sidebar: Secondary sidebar
-  content_below: Content below
-  footer_top: Footer top
-  footer_bottom: Footer bottom
-
+  header: Header
+  footer: Footer
 libraries:
   - vartheme_bs5/framework
 

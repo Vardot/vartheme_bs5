@@ -1,0 +1,12 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: HTML Code
+props:
+  type: object
+  properties:
+    code:
+      type: string
+      title: HTML code
+      description: "Adds raw HTML markup. Use only with trusted content."
+      pattern: (.|\r?\n)*
+      examples:
+        - "<p class=\"mb-0\">Hello <strong>world</strong>.</p>"

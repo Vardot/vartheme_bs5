@@ -2,18 +2,13 @@
 
 A Starterkit theme for Varbase websites.
 
-A new generation of theming based on **Bootstrap 5**, **Single Directory Components (SDC)** with **Drupal** `~11.2.0`, and **UI Patterns** `~2.0`.
+A new generation of theming based on **Bootstrap 5**, **Single Directory Components (SDC)** with **Drupal**, and **UI Patterns** `~2.0`.
 
-Having **[Varbase Components](https://www.drupal.org/project/varbase_components)** to provides Helpers and Event subscribers for Varbase and **Vartheme BS5**.
 
 # Installation
 Require the theme in a Drupal
 ```
 composer require 'drupal/vartheme_bs5:~4.0.0'
-```
-The Vartheme BS5 requires to enable the **Varbase Component** Before installing the theme
-```
-drush pm:enable varbase_components
 ```
 
 ## Compile custom styling

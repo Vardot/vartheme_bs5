@@ -1,0 +1,54 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Rich Text
+props:
+  type: object
+  properties:
+    text:
+      type: string
+      title: Content (rich text)
+      description: HTML content (e.g. Text). Make sure this content is filtered/safe before rendering.
+      contentMediaType: text/html
+      x-formatting-context: block
+      default: <p>Lorem ipsum dolor sit amet.</p>
+      examples:
+        - <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    trim:
+      type: boolean
+      title: Trim
+      description: Enable smart trimming.
+      default: false
+      examples:
+        - false
+    trim_length:
+      type: integer
+      title: Trim length
+      description: Number of characters or words to keep.
+      default: 50
+      minimum: 0
+      examples:
+        - 50
+    trim_units:
+      type: string
+      title: Trim units
+      description: Choose whether trim length is measured in characters or words.
+      default: words
+      enum:
+        - characters
+        - words
+      examples:
+        - words
+    suffix:
+      type: string
+      title: Suffix
+      description: Text appended when content is trimmed.
+      default: '...'
+      examples:
+        - '...'
+        - ' Read more'
+    strip_html:
+      type: boolean
+      title: Strip HTML
+      description: Only works when Trim is enabled. If Trim is disabled, original rich HTML is shown.
+      default: false
+      examples:
+        - false

@@ -1,0 +1,205 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Hero CTA
+description: A call to action with a heading, description and slot for buttons.
+group: Hero
+props:
+  type: object
+  required:
+    - text_align
+    - level
+  properties:
+    bg_edge2edge:
+      type: boolean
+      title: Background edge to edge
+      description: Adds the "bg-edge2edge" class to make the background image span edge to edge.
+      default: false
+    heading_text:
+      type: string
+      title: Heading
+      examples:
+        - Your heading goes here
+    level:
+      type: integer
+      title: Heading level
+      enum:
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+      examples:
+        - 2
+      meta:enum:
+        2: H2
+        3: H3
+        4: H4
+        5: H5
+        6: H6
+    text:
+      type: string
+      title: Text
+      examples:
+        - Lorem ipsum dolor sit amet.
+    heading_size:
+      type: string
+      title: Heading size
+      description: Controls the visual size of the heading.
+      enum:
+        - display-4
+        - display-5
+        - display-6
+        - h1
+        - h2
+        - h3
+      default: display-5
+      examples:
+        - display-5
+      meta:enum:
+        display-4: Extra large
+        display-5: Large
+        display-6: Medium
+        h1: Heading 1 size
+        h2: Heading 2 size
+        h3: Heading 3 size
+    background_image:
+      $ref: json-schema-definitions://canvas.module/image
+      title: Background image
+      type: object
+    overlay_opacity:
+      type: string
+      title: Background image overlay
+      description: Dark overlay over background image.
+      enum:
+        - 0%
+        - 20%
+        - 40%
+        - 60%
+        - 75%
+      default: 40%
+      examples:
+        - 40%
+      meta:enum:
+        0%: None
+        20%: Light
+        40%: Medium
+        60%: Strong
+        75%: Very strong
+    background_color:
+      type: string
+      title: Background color
+      enum:
+        - bg-none
+        - bg-primary text-white
+        - bg-secondary text-white
+        - bg-light
+        - bg-dark text-white
+        - bg-body-tertiary
+        - bg-info text-white
+      meta:enum:
+        bg-none: None
+        bg-primary text-white: Primary
+        bg-secondary text-white: Secondary
+        bg-light: Light
+        bg-dark text-white: Dark
+        bg-body-tertiary: Muted
+        bg-info text-white: Accent
+      default: bg-none
+    content_color:
+      type: string
+      title: Content color
+      description: Controls text color for heading, body text and actions.
+      enum:
+        - auto
+        - text-body
+        - text-white
+        - text-dark
+        - text-primary
+        - text-secondary
+        - text-success
+        - text-danger
+        - text-warning
+        - text-info
+        - text-muted
+      default: auto
+      meta:enum:
+        auto: Auto (based on background)
+        text-body: Body
+        text-white: White
+        text-dark: Dark
+        text-primary: Primary
+        text-secondary: Secondary
+        text-success: Success
+        text-danger: Danger
+        text-warning: Warning
+        text-info: Info
+        text-muted: Muted
+    text_align:
+      type: string
+      title: Text alignment
+      enum:
+        - text-center
+        - text-start
+        - text-end
+      meta:enum:
+        text-center: Center
+        text-start: Left
+        text-end: Right
+      default: text-center
+      examples:
+        - text-center
+    button_text:
+      type: string
+      title: Button text (optional)
+      description: Optional primary button label. If provided with Button URL, a Bootstrap button is rendered.
+      default: bg-none
+      examples:
+        - Learn more
+    button_url:
+      type: string
+      title: Button URL (optional)
+      format: uri-reference
+      description: Link for the primary button.
+      default: bg-none
+      examples:
+        - https://example.com
+    button_variant:
+      type: string
+      title: Button style
+      description: Bootstrap button variant.
+      enum:
+        - btn-primary
+        - btn-secondary
+        - btn-success
+        - btn-danger
+        - btn-warning
+        - btn-info
+        - btn-light
+        - btn-dark
+        - btn-outline-primary
+        - btn-outline-secondary
+        - btn-outline-success
+        - btn-outline-danger
+        - btn-outline-warning
+        - btn-outline-info
+        - btn-outline-light
+        - btn-outline-dark
+        - btn-link
+      default: btn-primary
+      meta:enum:
+        btn-primary: Primary
+        btn-secondary: Secondary
+        btn-success: Success
+        btn-danger: Danger
+        btn-warning: Warning
+        btn-info: Info
+        btn-light: Light
+        btn-dark: Dark
+        btn-outline-primary: Outline primary
+        btn-outline-secondary: Outline secondary
+        btn-outline-success: Outline success
+        btn-outline-danger: Outline danger
+        btn-outline-warning: Outline warning
+        btn-outline-info: Outline info
+        btn-outline-light: Outline light
+        btn-outline-dark: Outline dark
+        btn-link: Link

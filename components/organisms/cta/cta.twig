@@ -1,0 +1,165 @@
+{# Hero CTA #}
+
+{% set align_class = text_align|default('text-center') %}
+{% set actions_class = {
+  'text-start': 'justify-content-start',
+  'text-center': 'justify-content-center',
+  'text-end': 'justify-content-end',
+}[align_class]|default('justify-content-center') %}
+
+{% set bg_value = background_color|default('bg-none') %}
+{% set bg_class = bg_value == 'bg-none' ? '' : bg_value %}
+
+{% set content_color_value = content_color|default('auto') %}
+{% set auto_content_color = ('text-white' in bg_class) ? 'text-white' : 'text-body' %}
+{% set resolved_content_color = content_color_value == 'auto' ? auto_content_color : content_color_value %}
+{% set content_text_class = resolved_content_color in [
+  'text-body',
+  'text-white',
+  'text-dark',
+  'text-primary',
+  'text-secondary',
+  'text-success',
+  'text-danger',
+  'text-warning',
+  'text-info',
+  'text-muted',
+] ? resolved_content_color : '' %}
+
+{% set heading_props = {
+  heading_text: heading_text|default(''),
+  level: level|default(2),
+  align: align_class,
+  url: '',
+} %}
+{% if heading_size is defined and heading_size is not empty %}
+  {% set heading_props = heading_props|merge({text_size: heading_size}) %}
+{% endif %}
+{% if resolved_content_color in [
+  'text-primary',
+  'text-secondary',
+  'text-success',
+  'text-danger',
+  'text-warning',
+  'text-info',
+  'text-muted',
+  'text-white',
+  'text-dark',
+] %}
+  {% set heading_props = heading_props|merge({text_color: resolved_content_color}) %}
+{% endif %}
+
+{% set overlay_class = {
+  '0%': '',
+  '20%': 'bg-dark bg-opacity-25',
+  '40%': 'bg-dark bg-opacity-50',
+  '60%': 'bg-dark bg-opacity-75',
+  '75%': 'bg-dark bg-opacity-75',
+}[overlay_opacity|default('40%')]|default('bg-dark bg-opacity-50') %}
+
+{% set btn_text = button_text|default('')|trim %}
+{% set btn_url = button_url|default('')|trim %}
+{% set btn_variant_value = button_variant|default('btn-primary')|trim %}
+{% set btn_size = button_size|default('default')|trim %}
+{% set btn_new_tab = button_new_tab|default(false) %}
+{% set btn_outline = 'btn-outline-' in btn_variant_value %}
+{% set btn_variant = btn_outline ? btn_variant_value|replace({'btn-outline-': 'btn-'}) : btn_variant_value %}
+{% set btn_size_value = {
+  default: 'btn-md',
+  'btn-md': 'btn-md',
+  'btn-sm': 'btn-sm',
+  'btn-lg': 'btn-lg',
+  sm: 'btn-sm',
+  lg: 'btn-lg',
+}[btn_size]|default('btn-md') %}
+{% set btn_target = btn_new_tab ? 'blank' : 'self' %}
+{% set has_primary_btn = btn_text and btn_url %}
+
+{% set slot_actions = '' %}
+{% if slots is defined and slots.actions is defined %}
+  {% set slot_actions = slots.actions|render %}
+{% endif %}
+{% set has_actions = has_primary_btn or slot_actions|trim %}
+
+{% set bg_image = null %}
+{% if background_image is defined and background_image.src is not empty %}
+  {% set bg_image = background_image %}
+{% endif %}
+
+{% set is_bg_edge2edge = bg_edge2edge|default(false) %}
+
+{% set section_classes = [
+  'hero-cta',
+  'position-relative',
+  'overflow-hidden',
+  'py-5',
+  bg_class,
+  is_bg_edge2edge ? 'bg-edge2edge' : '',
+]|filter(v => v is not empty) %}
+{% set section_attributes = create_attribute({class: section_classes}) %}
+
+{% set background_media_attributes = create_attribute({
+  class: ['position-absolute', 'top-0', 'start-0', 'w-100', 'h-100'],
+}) %}
+{% set overlay_attributes = create_attribute({
+  class: ['position-absolute', 'top-0', 'start-0', 'w-100', 'h-100', overlay_class]|filter(v => v is not empty),
+}) %}
+{% set container_attributes = create_attribute({
+  class: ['container', 'position-relative'],
+}) %}
+{% set content_attributes = create_attribute({
+  class: ['col-12', 'col-lg-10', 'col-xl-8', 'mx-auto', align_class, content_text_class]|filter(v => v is not empty),
+}) %}
+{% set text_attributes = create_attribute({
+  class: ['lead', 'mt-3', 'mb-0'],
+}) %}
+{% set actions_attributes = create_attribute({
+  class: ['d-flex', 'flex-wrap', 'gap-2', 'mt-4', actions_class],
+}) %}
+{% set bg_image_props = {
+  src: bg_image ? bg_image.src : '',
+  alt: bg_image and bg_image.alt is defined ? bg_image.alt : '',
+  width: bg_image and bg_image.width is defined ? bg_image.width : null,
+  height: bg_image and bg_image.height is defined ? bg_image.height : null,
+  class: 'w-100 h-100 object-fit-cover',
+} %}
+
+<section{{ section_attributes }}>
+  {% if bg_image %}
+    <div{{ background_media_attributes }} aria-hidden="true">
+      {% if overlay_class %}
+        <div{{ overlay_attributes }}></div>
+      {% endif %}
+      {{ include('canvas:image', bg_image_props, false, true) }}
+    </div>
+  {% endif %}
+
+  <div{{ container_attributes }}>
+    <div class="row">
+      <div{{ content_attributes }}>
+        {{ include('vartheme_bs5:heading', heading_props, with_context: false) }}
+
+        {% if text is not empty %}
+          <p{{ text_attributes }}>{{ text }}</p>
+        {% endif %}
+
+        {% if has_actions %}
+          <div{{ actions_attributes }}>
+            {% if has_primary_btn %}
+              {{ include('vartheme_bs5:button', {
+                label: btn_text,
+                href: btn_url,
+                variant: btn_variant,
+                outline: btn_outline,
+                size: btn_size_value,
+                target: btn_target,
+                alignment: 'inline',
+              }, with_context: false) }}
+            {% endif %}
+            {{ slot_actions }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>

@@ -25,7 +25,7 @@
 #}
 {% set data = data ?? [] %}
 {% set dynamic_responsive_image_utility_classes = dynamic_responsive_image_utility_classes ?? [] %}
-{% set dummy_image = "data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg'%20width='" ~ width ~ "'%20height='" ~ height ~ "'%20viewBox='0%200%20" ~ width ~ "%20" ~ height ~"'%20%3E%3C/svg%3E" %}
+{% set dummy_image = "data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg'%20width='" ~ width ~ "'%20height='" ~ height ~ "'%20viewBox='0%200%20" ~ width ~ '%20' ~ height ~ "'%20%3E%3C/svg%3E" %}
 
 {# The Dynamic Responsive Image Item Attributes #}
 {% if not item_attributes %}

@@ -1,8 +1,8 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: Views view Heroslider
-status: experimental
 description: 'A slideshow component for cycling through elements images/media or slides of text—like a heroslider.'
 group: Views
+noUi: true
 props:
   type: object
   properties:
@@ -15,13 +15,11 @@ props:
       title: 'Controls'
       description: 'Add the previous/next controls.'
       default: false
-      $ref: "ui-patterns://boolean"
     indicators:
       type: boolean
       title: 'Indicators'
       description: 'Add indicators to the heroslider, alongside the previous/next controls.'
       default: false
-      $ref: "ui-patterns://boolean"
     controls_indicators_position:
       type: string
       title: 'Controls & Indicators position'
@@ -43,7 +41,6 @@ props:
       title: 'Keyboard'
       description: 'Whether the carousel should react to keyboard events.'
       default: true
-      $ref: "ui-patterns://boolean"
     pause:
       type: string
       title: 'Pause'
@@ -69,13 +66,11 @@ props:
       title: 'Touch'
       description: 'Whether the carousel should support left/right swipe interactions on touchscreen devices.'
       default: true
-      $ref: "ui-patterns://boolean"
     wrap:
       type: boolean
       title: 'Wrap'
       description: 'Whether the carousel should cycle continuously or have hard stops.'
       default: true
-      $ref: "ui-patterns://boolean"
     heroslider_utility_classes:
       type: array
       title: 'Utility Classes'
@@ -96,20 +91,17 @@ props:
         type: 'string'
       description: 'An array of utility classes. Use to add extra Bootstrap utility classes or custom CSS classes over to the indicators element.'
     attributes:
-      type: object
+      type: Drupal\Core\Template\Attribute
       title: 'Attributes'
       description: 'HTML attributes to apply to the hero slider main wrapper tag.'
-      $ref: 'ui-patterns://attributes'
     controls_attributes:
-      type: object
+      type: Drupal\Core\Template\Attribute
       title: Controls Attributes
       description: 'HTML attributes to apply to the controls wrapper tag.'
-      $ref: 'ui-patterns://attributes'
     indicators_attributes:
-      type: object
+      type: Drupal\Core\Template\Attribute
       title: 'Indicators Attributes'
       description: 'HTML attributes to apply to the indicators wrapper tag.'
-      $ref: 'ui-patterns://attributes'
 slots:
   rows:
     type: array

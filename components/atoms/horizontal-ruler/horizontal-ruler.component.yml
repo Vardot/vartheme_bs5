@@ -1,0 +1,108 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Horizontal Ruler
+description: A Bootstrap 5.3-compatible horizontal divider using the native hr element.
+group: Layout
+props:
+  type: object
+  properties:
+    border_width:
+      type: string
+      title: Border width
+      description: Bootstrap border width utility class.
+      enum:
+        - border-1
+        - border-2
+        - border-3
+        - border-4
+        - border-5
+      meta:enum:
+        border-1: Thin
+        border-2: Medium
+        border-3: Thick
+        border-4: Extra thick
+        border-5: Maximum
+      default: border-1
+
+    border_color:
+      type: string
+      title: Border color
+      description: Bootstrap border color utility class.
+      enum:
+        - border-secondary
+        - border-light
+        - border-dark
+        - border-primary
+        - border-success
+        - border-danger
+        - border-warning
+        - border-info
+        - border-white
+        - border-black
+      meta:enum:
+        border-secondary: Secondary
+        border-light: Light
+        border-dark: Dark
+        border-primary: Primary
+        border-success: Success
+        border-danger: Danger
+        border-warning: Warning
+        border-info: Info
+        border-white: White
+        border-black: Black
+      default: border-secondary
+
+    opacity:
+      type: string
+      title: Opacity
+      description: Bootstrap opacity utility class.
+      enum:
+        - opacity-25
+        - opacity-50
+        - opacity-75
+        - opacity-100
+      meta:enum:
+        opacity-25: Subtle
+        opacity-50: Soft
+        opacity-75: Strong
+        opacity-100: Solid
+      default: opacity-100
+
+    margin_top:
+      type: string
+      title: Top spacing
+      description: Bootstrap margin-top utility class.
+      enum:
+        - mt-0
+        - mt-1
+        - mt-2
+        - mt-3
+        - mt-4
+        - mt-5
+      meta:enum:
+        mt-0: None
+        mt-1: Small
+        mt-2: Medium
+        mt-3: Default
+        mt-4: Large
+        mt-5: Extra large
+      default: mt-3
+
+    margin_bottom:
+      type: string
+      title: Bottom spacing
+      description: Bootstrap margin-bottom utility class.
+      enum:
+        - mb-0
+        - mb-1
+        - mb-2
+        - mb-3
+        - mb-4
+        - mb-5
+      meta:enum:
+        mb-0: None
+        mb-1: Small
+        mb-2: Medium
+        mb-3: Default
+        mb-4: Large
+        mb-5: Extra large
+      default: mb-3

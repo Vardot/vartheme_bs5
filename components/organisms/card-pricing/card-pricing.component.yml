@@ -1,0 +1,244 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Pricing card
+group: Card
+props:
+  type: object
+  required:
+    - symbol_position
+  properties:
+    badge_text:
+      type: string
+      title: Badge text (optional)
+      description: Optional badge (e.g. Popular).
+      default: ''
+      examples:
+        - Most popular
+    heading_text:
+      type: string
+      title: Heading
+      examples:
+        - Premium
+    level:
+      type: number
+      title: Heading level
+      description: HTML heading level for the card title.
+      enum:
+        - 2
+        - 3
+        - 4
+      default: 3
+      examples:
+        - 3
+      meta:enum:
+        2: H2
+        3: H3
+        4: H4
+    description:
+      type: string
+      title: Description (optional)
+      pattern: (.|\r?\n)*
+      examples:
+        - Curabitur nascetur non potenti pede luctus vivamus.
+    price:
+      type: string
+      title: Price
+      description: Numeric value (e.g. 159).
+      examples:
+        - '159'
+    currency_code:
+      type: string
+      title: Currency code (optional)
+      description: Used in the <data> attribute (e.g. USD).
+      examples:
+        - USD
+    currency_symbol:
+      type: string
+      title: Currency symbol (optional)
+      description: Display symbol (e.g. $).
+      examples:
+        - $
+    symbol_position:
+      type: string
+      title: Currency symbol position
+      enum:
+        - before
+        - after
+      default: before
+      examples:
+        - before
+      meta:enum:
+        before: Before the price
+        after: After the price
+    price_period:
+      type: string
+      title: Price period (optional)
+      description: Short text after the price (e.g. /month).
+      default: ''
+      examples:
+        - /month
+    price_note:
+      type: string
+      title: Price note (optional)
+      description: "Small note under the price (e.g. \u201CBilled annually\u201D)."
+      default: ''
+      examples:
+        - Billed annually
+    show_features_divider:
+      type: boolean
+      title: Divider above features
+      description: Adds a top border before the features list.
+      default: true
+      examples:
+        - true
+    text:
+      type: string
+      title: Features (rich text)
+      description: HTML list content for features.
+      contentMediaType: text/html
+      x-formatting-context: block
+      default: <ul> <li>Enter rich text</li> <li>Facilisis dictumst letius in</li>
+        <li>Diam mus est faucibus ornare ut consectetuer metus</li> </ul>
+      examples:
+        - <ul><li>Example item 1</li><li>Example item 2</li></ul>
+    shadow:
+      type: string
+      title: Shadow
+      description: Bootstrap shadow utility class.
+      enum:
+        - shadow-none
+        - shadow-sm
+        - shadow
+        - shadow-lg
+      default: shadow
+      examples:
+        - shadow
+      meta:enum:
+        shadow-none: No shadow
+        shadow-sm: Small shadow
+        shadow: Default shadow
+        shadow-lg: Large shadow
+    border:
+      type: string
+      title: Border style
+      description: Bootstrap border utility class.
+      enum:
+        - border
+        - border-0
+        - border-primary
+        - border-secondary
+        - border-success
+        - border-danger
+        - border-warning
+        - border-info
+        - border-light
+        - border-dark
+      default: border
+      examples:
+        - border
+      meta:enum:
+        border: Default
+        border-0: No border
+        border-primary: Primary
+        border-secondary: Secondary
+        border-success: Success
+        border-danger: Danger
+        border-warning: Warning
+        border-info: Info
+        border-light: Light
+        border-dark: Dark
+    background_color:
+      type: string
+      title: Background theme
+      description: Bootstrap background utility class.
+      enum:
+        - bg-body
+        - bg-primary text-white
+        - bg-secondary text-white
+        - bg-success text-white
+        - bg-danger text-white
+        - bg-warning
+        - bg-info
+        - bg-light
+        - bg-dark text-white
+      default: bg-body
+      examples:
+        - bg-body
+      meta:enum:
+        bg-body: Default
+        bg-primary text-white: Primary
+        bg-secondary text-white: Secondary
+        bg-success text-white: Success
+        bg-danger text-white: Danger
+        bg-warning: Warning
+        bg-info: Info
+        bg-light: Light
+        bg-dark text-white: Dark
+    text_align:
+      type: string
+      title: Text alignment
+      description: Bootstrap text alignment utility class.
+      enum:
+        - text-start
+        - text-center
+      default: text-start
+      examples:
+        - text-start
+      meta:enum:
+        text-start: Left
+        text-center: Center
+    button_url:
+      type: string
+      title: Button link (optional)
+      format: uri-reference
+    button_target:
+      type: string
+      title: Button target
+      description: Controls how the button link opens.
+      enum:
+        - self
+        - blank
+      default: self
+      examples:
+        - self
+      meta:enum:
+        self: Same tab
+        blank: New tab
+    button_label:
+      type: string
+      title: Button label (optional)
+      examples:
+        - Choose this plan
+    button_variant:
+      type: string
+      title: Button style
+      description: Bootstrap button utility class.
+      enum:
+        - btn-primary
+        - btn-secondary
+        - btn-success
+        - btn-danger
+        - btn-warning
+        - btn-info
+        - btn-light
+        - btn-dark
+        - btn-link
+      default: btn-primary
+      examples:
+        - btn-primary
+      meta:enum:
+        btn-primary: Primary
+        btn-secondary: Secondary
+        btn-success: Success
+        btn-danger: Danger
+        btn-warning: Warning
+        btn-info: Info
+        btn-light: Light
+        btn-dark: Dark
+        btn-link: Link
+    promote:
+      type: boolean
+      title: Highlight card
+      description: Emphasizes the card visually (border + stronger shadow).
+      default: false
+      examples:
+        - false

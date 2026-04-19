@@ -1,22 +1,20 @@
 {/* badge.mdx */}
 
-import { Canvas, Title, Subtitle, ArgTypes, Source, Meta, Description, Primary, Story, Stories, Controls } from '@storybook/blocks';
+import { Title, Subtitle, Meta, Description, Primary, Stories, Controls, Source } from '@storybook/blocks';
 import * as comStories from './badge.stories.json';
 import templateSource from './badge.twig?raw';
 
-<Meta of={comStories} name="Docs"/>
+<Meta of={comStories} name="Docs" />
 
 <Title />
 <Subtitle />
 <Description />
 
-
-> #### [Bootstrap Documentation on Badges](https://getbootstrap.com/docs/5.3/components/badge/)
-> * [Headings](https://getbootstrap.com/docs/5.3/components/badge/#headings) Badges scale to match the size of the immediate parent element.
-> * [Background colors](https://getbootstrap.com/docs/5.3/components/badge/#background-colors) to make badges more rounded 
+> ### [Bootstrap Documentation on Badges](https://getbootstrap.com/docs/5.3/components/badge/)
+> * [Examples](https://getbootstrap.com/docs/5.3/components/badge/#examples)
+> * [Background colors](https://getbootstrap.com/docs/5.3/components/badge/#background-colors)
 > * [Pill badges](https://getbootstrap.com/docs/5.3/components/badge/#pill-badges)
-> * [Buttons](https://getbootstrap.com/docs/5.3/components/badge/#buttons): Badges can be used as part of links or buttons to provide a counter.
-> * [Positioned](https://getbootstrap.com/docs/5.3/components/badge/#positioned)
+> * [Positioned badges](https://getbootstrap.com/docs/5.3/components/badge/#positioned)
 
 <Primary />
 
@@ -29,28 +27,30 @@ import templateSource from './badge.twig?raw';
 * N/A
 
 ## Slots
-* `content`: The content of the badge.
+* N/A
 
+## Examples
 
-### Examples
-**Example #1:** New post badge.
+### Example #1: Simple badge
 ```
-  {% include 'vartheme_bs5:badge' with {
-    html_tag: 'a',
-    color: 'text-bg-primary',
-    url: forum.new_url,
-    content: forum.new_text
-  } %}
+{% include 'vartheme_bs5:badge' with {
+  label: 'New',
+  variant: 'text-bg-success'
+} only %}
 ```
 
-**Example #2:** Pill badges with success content
+### Example #2: Linked badge with icon and count
 ```
-  {% include 'vartheme_bs5:badge' with {
-    html_tag: 'span',
-    color: 'text-bg-success'
-    content: 'Success',
-    badge_utility_classes: ['rounded-pill']
-  } %}
+{% include 'vartheme_bs5:badge' with {
+  label: 'Inbox',
+  url: 'https://example.com',
+  icon: 'inbox',
+  icon_first: true,
+  indicator: 'count',
+  indicator_text: '3',
+  variant: 'text-bg-primary',
+  radius: 'rounded-pill'
+} only %}
 ```
 
 ## Source code

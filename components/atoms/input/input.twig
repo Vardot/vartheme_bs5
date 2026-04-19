@@ -13,7 +13,7 @@
  *                description of the expected format).
  * - input_utility_classes: An array of utility classes that can be used to add extra
  *                    Bootstrap utility classes or custom classes to this component.
- * 
+ *
  * Available attributes:
  * - attributes: HTML attributes for the input element.
  * - children: Optional additional rendered elements.
@@ -32,17 +32,17 @@
 
 {# Change the type for the HTML <input> element. #}
 {% if type %}
-	{% set attributes = attributes.setAttribute('type', type) %}
+    {% set attributes = attributes.setAttribute('type', type) %}
 {% endif %}
 
 {# Set the value attribute with specifies an initial value for an input field. #}
 {% if value %}
-	{% set attributes = attributes.setAttribute('value', value) %}
+    {% set attributes = attributes.setAttribute('value', value) %}
 {% endif %}
 
 {# Set the placeholder attribute with specifies a short hint that describes the expected value of an input field. #}
 {% if placeholder %}
-	{% set attributes = attributes.setAttribute('placeholder', placeholder) %}
+    {% set attributes = attributes.setAttribute('placeholder', placeholder) %}
 {% endif %}
 
 <input{{ attributes.addClass(classes) }} />{{ children }}

@@ -1,0 +1,19 @@
+{#
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for the 'input submit' #type form element.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the input element.
+ * - children: Optional additional rendered elements.
+ *
+ * @see template_preprocess_input()
+ */
+#}
+
+{% set input_submit_utility_classes = input_submit_utility_classes ? input_submit_utility_classes : [] %}
+
+{{ include('vartheme_bs5:input', {
+  type: 'submit',
+  input_utility_classes: input_submit_utility_classes,
+}) }}

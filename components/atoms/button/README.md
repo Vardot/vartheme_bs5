@@ -1,65 +1,285 @@
+
 # Button
 
-Use Bootstrap’s custom button styles for actions in forms, dialogs, and more with support for multiple sizes, states, and more.
+The **Button component** provides a flexible way to render Bootstrap 5 buttons within the theme. It supports both standard `<button>` elements and link-style buttons (`<a>`), while maintaining full compatibility with Bootstrap utilities and Varbase component patterns.
 
-> #### [Bootstrap Documentation on Buttons](https://getbootstrap.com/docs/5.3/components/buttons)
-> * [Button tags](https://getbootstrap.com/docs/5.3/components/buttons/#button-tags)
-> * [Outline buttons](https://getbootstrap.com/docs/5.3/components/buttons/#outline-buttons)
-> * [Disabled state](https://getbootstrap.com/docs/5.3/components/buttons/#disabled-state)
-> * [Link functionality caveat](https://getbootstrap.com/docs/5.3/components/buttons/#link-functionality-caveat)
-> * [Button plugin](https://getbootstrap.com/docs/5.3/components/buttons/#button-plugin)
-> * [Toggle states](https://getbootstrap.com/docs/5.3/components/buttons/#toggle-states)
+The component allows you to control appearance, size, icon placement, and alignment through simple properties without needing additional custom classes.
 
-## Properties:
-* `html_tag`: The HTML tag to use for the button (button | a). Defaults to `button`.
-* `url`: URL link for the button when the HTML tag is an anchor link.
-* `color`: Bootstrap includes several predefined button styles, each serving its own
-          semantic purpose, with a few extras thrown in for more control.
-          (primary | secondary | success | danger | warning | info | dark | light | link)
-* `outline`: (true|false) In need of a button, but not the hefty background colors they bring?
-              Replace the default modifier classes with the `.btn-outline-*` ones to remove all
-              background images and colors on any button.
-* `size`: (btn-sm | btn-lg) Bootstrap button size
-* `disabled`: (true|false) Disabled button
-* `button_utility_classes`: An array of utility classes that can
-                    be used to add extra Bootstrap utility classes or custom
-                    classes to this component.
+---
 
-## Attributes:
-* `attributes`: Drupal attributes for link.
+# Features
 
-## Slots:
-* `content`: The content for the button
+- Built on **Bootstrap 5 button utilities**
+- Can render as either:
+  - `<button>` element
+  - `<a>` element (when `href` is provided)
+- Supports **Bootstrap variants**
+- Optional **outline style**
+- Supports **Bootstrap Icons**
+- Configurable **button size**
+- Configurable **border radius**
+- Optional **alignment wrapper**
+- Works seamlessly inside Canvas and Varbase component architecture
 
-### Examples
-**Example #1:** Primary button
+---
+
+# Component Properties
+
+## Required
+
+### `variant`
+Bootstrap button style.
+
+Examples:
+
 ```
+btn-primary
+btn-secondary
+btn-success
+btn-danger
+btn-link
+```
+
+---
+
+### `size`
+Bootstrap size utility.
+
+Available options:
+
+```
+btn
+btn-sm
+btn-lg
+```
+
+Default: `btn`
+
+---
+
+# Optional Properties
+
+### `label`
+
+Text displayed inside the button.
+
+Example
+
+```
+Read more
+```
+
+---
+
+### `href`
+
+If provided, the component renders an **anchor element instead of a button**.
+
+Example
+
+```
+https://example.com
+```
+
+---
+
+### `target`
+
+Used only when `href` is provided.
+
+Options
+
+```
+self
+blank
+```
+
+Example
+
+```
+target: blank
+```
+
+---
+
+### `outline`
+
+When enabled, the button becomes an **outline button variant**.
+
+Example
+
+```
+btn-primary → btn-outline-primary
+```
+
+Not applied to `btn-link`.
+
+---
+
+### `disabled`
+
+Disables the button.
+
+For `<button>` it adds the `disabled` attribute.  
+For `<a>` it adds `aria-disabled="true"`.
+
+---
+
+### `icon`
+
+Displays a **Bootstrap icon** inside the button.
+
+Example
+
+```
+search
+arrow-right
+download
+```
+
+---
+
+### `icon_first`
+
+Controls icon placement.
+
+```
+true  → icon before label
+false → icon after label
+```
+
+---
+
+### `alignment`
+
+Wraps the button in an alignment container.
+
+Options
+
+```
+inline
+left
+center
+right
+```
+
+Default
+
+```
+inline
+```
+
+---
+
+### `full_width`
+
+Makes the button full width using Bootstrap's `w-100` utility class.
+
+```
+true  → full width
+false → normal width
+```
+
+
+---
+
+### Link variant behavior
+
+When `variant` is set to `btn-link`, the component now removes all button padding automatically using Bootstrap's `p-0` utility. This keeps the text aligned more naturally with surrounding content without adding extra configuration.
+
+
+---
+
+### `radius`
+
+Bootstrap border radius utility.
+
+Options
+
+```
+rounded
+rounded-pill
+rounded-0
+```
+
+Default
+
+```
+rounded
+```
+
+---
+
+# Usage
+
+## Basic Button
+
+```twig
 {% include 'vartheme_bs5:button' with {
-  html_tag: 'button',
-  color: 'primary',
-  content: 'Login'
+  label: 'Read more',
+  variant: 'btn-primary',
+  size: 'btn',
+  radius: 'rounded'
 } %}
 ```
 
-**Example #2:** Anchor button as Read more link in a Card
-```
+---
+
+## Link Button
+
+```twig
 {% include 'vartheme_bs5:button' with {
-  html_tag: 'a',
-  url: '/blog/blog-test1',
-  content: 'Read more'|t,
-  color: 'primary',
-  outline: true,
-  button_utility_classes: ['card-link', 'float-end', 'mt-3', 'read-more']
+  label: 'Visit website',
+  href: 'https://example.com',
+  target: 'blank',
+  variant: 'btn-primary',
+  size: 'btn-lg'
 } %}
 ```
 
-**Example #3:** Disabled Anchor button
-```
+---
+
+## Full Width Button
+
+```twig
 {% include 'vartheme_bs5:button' with {
-  html_tag: 'a',
-  color: 'primary',
-  content: 'Read more',
-  url: '#',
-  disabled: true,
+  label: 'Submit',
+  variant: 'btn-primary',
+  size: 'btn-md',
+  full_width: true
 } %}
 ```
+
+---
+
+## Button With Icon
+
+```twig
+{% include 'vartheme_bs5:button' with {
+  label: 'Search',
+  variant: 'btn-primary',
+  icon: 'search',
+  icon_first: true
+} %}
+```
+
+---
+
+## Outline Button
+
+```twig
+{% include 'vartheme_bs5:button' with {
+  label: 'Learn more',
+  variant: 'btn-primary',
+  outline: true
+} %}
+```
+
+---
+
+# Best Practices
+
+- Use **Bootstrap utilities** for layout spacing instead of modifying the component.
+- Avoid adding custom classes to the button directly.
+- Use the available properties (`variant`, `size`, `radius`, etc.) to control styling.
+- Keep the component consistent with Bootstrap design patterns.

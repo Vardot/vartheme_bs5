@@ -1,66 +1,112 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
-name: 'Text Card' 
-status: experimental
-description: 'Text card component and pattern with content.'
-group: Cards
+name: 'Text Card'
+group: Card
+status: stable
+description: 'Stacked card layout with no media. One drag & drop content area. Built
+  with Bootstrap 5 utility classes.'
 props:
   type: object
   properties:
-    style_size:
-      type: string
-      title: 'Card style size'
-      description: 'Card style size (xsmall|small|medium|large|xlarge).'
-      default: ''
-      enum:
-        - ''
-        - xsmall
-        - small
-        - medium
-        - large
-        - xlarge
     card_border:
       type: boolean
-      title: 'Card Border'
-      description: 'Add a default border to the card.'
+      title: Card border
+      description: Add a default border for the card.
       default: false
+    background_color:
+      type: string
+      title: Background color
+      description: Bootstrap background utility applied to the card.
+      default: bg-transparent
+      enum:
+        - bg-transparent
+        - bg-body
+        - bg-body-tertiary
+        - bg-white
+        - bg-light
+        - bg-dark
+        - bg-primary
+        - bg-secondary
+        - bg-success
+        - bg-danger
+        - bg-warning
+        - bg-info
+      meta:enum:
+        bg-transparent: Transparent
+        bg-body: Body
+        bg-body-tertiary: Body tertiary
+        bg-white: White
+        bg-light: Light
+        bg-dark: Dark
+        bg-primary: Primary
+        bg-secondary: Secondary
+        bg-success: Success
+        bg-danger: Danger
+        bg-warning: Warning
+        bg-info: Info
     padded:
       type: boolean
-      title: 'Padded'
-      description: 'Add a default padding to the card.'
+      title: Padded
+      description: Adds Bootstrap padding (p-4) to the content area.
       default: false
+    box_shadow:
+      type: string
+      title: Shadow
+      description: Bootstrap shadow utility applied to the card.
+      default: shadow-none
+      enum:
+        - shadow-none
+        - shadow-sm
+        - shadow
+        - shadow-lg
+      meta:enum:
+        shadow-none: None
+        shadow-sm: Small
+        shadow: Medium
+        shadow-lg: Large
+    corner_style:
+      type: string
+      title: Corner style
+      description: Bootstrap rounded utility applied to the card.
+      default: rounded-0
+      enum:
+        - rounded-0
+        - rounded-1
+        - rounded-3
+        - rounded-pill
+      meta:enum:
+        rounded-0: None (square)
+        rounded-1: Small
+        rounded-3: Large
+        rounded-pill: Pill
     equal_height:
       type: boolean
-      title: 'Equal height'
-      default: true
-    anchor_all:
-      type: boolean
-      title: 'Anchor All'
+      title: Equal height
+      description: Apply h-100 to the card wrapper.
       default: false
-    card_text_utility_classes:
-      type: array
-      title: 'Utility Classes'
-      default: []
-      items:
-        type: 'string'
-      description: 'Use to add extra Bootstrap utility classes for the main Card wrapper. E.g. `mb-3 shadow-lg` ( Do not add `card`).' 
-    card_text_content_utility_classes:
-      type: array
-      title: 'Content Utility Classes'
-      default: []
-      items:
-        type: 'string'
-      description: 'Use to add extra Bootstrap utility classes for the Card Content region wrapper. E.g. `w-75 mb-3 overflow-y-hidden`  ( Do not add `card-body`).'
-    card_attributes:
-      type: object
-      title: 'Card attributes'
-      description: 'HTML attributes for the Card element.'
-      $ref: 'ui-patterns://attributes'
-    content_attributes:
-      type: object
-      title: 'Content Attributes'
-      description: 'HTML attributes for the content element.'
-      $ref: 'ui-patterns://attributes'
+    stretched_link:
+      type: boolean
+      title: Stretched link
+      description: When enabled and a Card link URL is provided, the entire card becomes clickable using Bootstrap's stretched-link.
+      default: false
+    link_url:
+      type: string
+      title: Card link URL
+      format: uri-reference
+      description: Optional URL for the card link.
+      default: ''
+    link_target:
+      type: string
+      title: Link target
+      enum:
+        - default
+        - _self
+        - _blank
+      default: default
+      meta:enum:
+        default: Default (same tab)
+        _self: Same tab
+        _blank: New tab
 slots:
   content:
-    title: 'Card Content'
-    description: 'The content slot for the card.'
+    title: Card content
+    description: Drag & drop content slot for text/buttons/etc.

@@ -10,10 +10,10 @@ import templateSource from './image.twig?raw';
 <Subtitle />
 <Description />
 
-> ## [Bootstrap Documentation on Images](https://getbootstrap.com/docs/5.3/content/images)
-> * [Images](https://getbootstrap.com/docs/5.3/content/images)
-> * [Responsive Images](https://getbootstrap.com/docs/5.3/content/images/#responsive-images)
-
+> ### Bootstrap documentation
+> * [Images](https://getbootstrap.com/docs/5.3/content/images/)
+> * [Ratio](https://getbootstrap.com/docs/5.3/helpers/ratio/)
+> * [Object fit](https://getbootstrap.com/docs/5.3/helpers/ratio/#object-fit)
 
 <Primary />
 
@@ -22,51 +22,54 @@ import templateSource from './image.twig?raw';
 
 <Stories of={comStories} />
 
-## Attributes:
-* `attributes`: HTML attributes for the img tag.
+## Notes
+* The component prefers `dynamic-responsive-image` when available, and falls back to `canvas:image` (both are included with `ignore missing`).
+* `media.data` can be provided when integrating with `drimage_improved`.
 
-## Slots:
-* N/A
+## Examples
 
-
-### Examples
-
-**Example #1:** Default system image
+### Example #1 : Default image
 ```
-{% include 'vartheme_bs5:image' %}
-```
-
-**Example #2:** Use the Image component with Responsive image
-```
-{% include 'vartheme_bs5:image' with {
-    responsive: true
+{% include "vartheme_bs5:image" with {
+  media: {
+    src: 'assets/image-placeholder.svg',
+    alt: 'Placeholder image',
+    width: 1200,
+    height: 800
   }
-%}
+} %}
 ```
 
-**Example #3:** Use the Image component with align center, rounded, and thumbnails 
+### Example #2 : 16:9 ratio crop + cover
 ```
-{% include 'vartheme_bs5:image' with {
-    align: 'center',
-    responsive: true,
-    rounded: true,
-    thumbnails: true
-  }
-%}
-```
-
-**Example #3:** Use the Image component with align center, rounded, and thumbnails 
-```
-{% include 'vartheme_bs5:image' with {
-    align: 'center',
-    responsive: true,
-    rounded: true,
-    thumbnails: true
-    attributes: ["src": "https://raw.githubusercontent.com/Vardot/varbase_media_demo/10.0.0/content/file/coworking-1.jpg"]
-  }
-%}
+{% include "vartheme_bs5:image" with {
+  media: {
+    src: 'assets/image-placeholder.svg',
+    alt: 'Wide image',
+    width: 1200,
+    height: 800
+  },
+  ratio: 'ratio-16x9',
+  fit: 'object-fit-cover',
+  width: 'w-75',
+  align: 'mx-auto',
+  rounded: 'rounded-1'
+} %}
 ```
 
+### Example #3 : Linked image (new tab)
+```
+{% include "vartheme_bs5:image" with {
+  media: {
+    src: 'assets/image-placeholder.svg',
+    alt: 'Linked image',
+    width: 1200,
+    height: 800
+  },
+  link_url: 'https://example.com',
+  target: 'blank'
+} %}
+```
 
 ## Source code
 [//]: # (Twig Template source code)

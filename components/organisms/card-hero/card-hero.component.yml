@@ -1,8 +1,8 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: 'Hero Card' 
-status: experimental
 description: 'Hero card component for a media and a content over the media'
 group: Cards
+noUi: true
 props:
   type: object
   properties:
@@ -69,20 +69,17 @@ props:
         type: 'string'
       description: 'Use to add extra Bootstrap utility classes for the Card Content region wrapper. E.g. `w-75 mb-3 overflow-y-hidden`  ( Do not add `card-body`).'
     card_attributes:
-      type: object
+      type: Drupal\Core\Template\Attribute
       title: 'Card Attributes'
       description: 'HTML attributes for the card element.'
-      $ref: 'ui-patterns://attributes'
     media_attributes:
-      type: object
+      type: Drupal\Core\Template\Attribute
       title: 'Media Attributes'
       description: 'HTML attributes for the media element.'
-      $ref: 'ui-patterns://attributes'
     content_attributes:
-      type: object
+      type: Drupal\Core\Template\Attribute
       title: 'Content Attributes'
       description: 'HTML attributes for the content element.'
-      $ref: 'ui-patterns://attributes'
 slots:
   media:
     title: 'Card Media'

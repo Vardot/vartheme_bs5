@@ -1,6 +1,6 @@
-{/* Button.mdx */}
+{/* button.mdx */}
 
-import { Canvas, Title, Subtitle, ArgTypes, Source, Meta, Description, Primary, Story, Stories, Controls } from '@storybook/blocks';
+import { Title, Subtitle, Meta, Description, Primary, Stories, Controls, Source } from '@storybook/blocks';
 import * as comStories from './button.stories.json';
 import templateSource from './button.twig?raw';
 
@@ -10,13 +10,10 @@ import templateSource from './button.twig?raw';
 <Subtitle />
 <Description />
 
-> #### [Bootstrap Documentation on Buttons](https://getbootstrap.com/docs/5.3/components/buttons)
+> ### [Bootstrap Documentation on Buttons](https://getbootstrap.com/docs/5.3/components/buttons/)
 > * [Button tags](https://getbootstrap.com/docs/5.3/components/buttons/#button-tags)
 > * [Outline buttons](https://getbootstrap.com/docs/5.3/components/buttons/#outline-buttons)
-> * [Disabled state](https://getbootstrap.com/docs/5.3/components/buttons/#disabled-state)
-> * [Link functionality caveat](https://getbootstrap.com/docs/5.3/components/buttons/#link-functionality-caveat)
-> * [Button plugin](https://getbootstrap.com/docs/5.3/components/buttons/#button-plugin)
-> * [Toggle states](https://getbootstrap.com/docs/5.3/components/buttons/#toggle-states)
+> * [Sizes](https://getbootstrap.com/docs/5.3/components/buttons/#sizes)
 
 <Primary />
 
@@ -25,36 +22,52 @@ import templateSource from './button.twig?raw';
 
 <Stories of={comStories} />
 
-### Examples
-**Example #1:** Primary button
-```
-{% include 'vartheme_bs5:button' with {
-  html_tag: 'button',
-  color: 'primary',
-  content: 'Login'
-} %}
-```
+## Attributes
+* N/A
 
-**Example #2:** Anchor button as Read more link in a Card
+## Slots
+* N/A
+
+## Examples
+
+### Example #1: Link button (opens in a new tab)
 ```
-{% include 'vartheme_bs5:button' with {
-  html_tag: 'a',
-  url: '/blog/blog-test1',
-  content: 'Read more'|t,
-  color: 'primary',
+{% include "vartheme_bs5:button" with {
+  variant: 'btn-primary',
   outline: true,
-  button_utility_classes: ['card-link', 'float-end', 'mt-3', 'read-more']
+  size: 'btn',
+  label: 'Visit site',
+  href: 'https://example.com',
+  target: 'blank',
+  icon: 'box-arrow-up-right',
+  icon_first: false,
+  alignment: 'inline',
+  full_width: false,
+  radius: 'rounded'
 } %}
 ```
 
-**Example #3:** Disabled Anchor button
+### Example #2: Large button with icon first
 ```
-{% include 'vartheme_bs5:button' with {
-  html_tag: 'a',
-  color: 'primary',
-  content: 'Read more',
-  url: '#',
-  disabled: true,
+{% include "vartheme_bs5:button" with {
+  variant: 'btn-dark',
+  size: 'btn-lg',
+  label: 'Download',
+  icon: 'download',
+  icon_first: true,
+  full_width: false,
+  radius: 'rounded-pill'
+} %}
+```
+
+### Example #3: Full width button
+```
+{% include "vartheme_bs5:button" with {
+  variant: 'btn-primary',
+  size: 'btn-md',
+  label: 'Submit',
+  full_width: true,
+  radius: 'rounded'
 } %}
 ```
 

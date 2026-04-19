@@ -1,7 +1,7 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: Nav
-status: experimental
 description: Nav component description
+noUi: true
 props:
   type: object
   properties:
@@ -36,10 +36,9 @@ props:
         type: 'string'
       description: Use to add extra Bootstrap utility classes or custom CSS classes over to this to this component.
     attributes:
-      type: object
+      type: Drupal\Core\Template\Attribute
       title: Attributes
       description: HTML attributes for the containing element.
-      $ref: 'ui-patterns://attributes'
 slots:
   items:
     type: array
@@ -47,7 +46,6 @@ slots:
     item:
       type: object
       title: Link
-      $ref: "ui-patterns://links"
     description: Navigation items.
 libraryOverrides:
   dependencies:

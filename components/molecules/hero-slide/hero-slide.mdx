@@ -1,0 +1,77 @@
+import { Title, Subtitle, Meta, Description, Primary, Stories, Controls, Source } from '@storybook/blocks';
+import * as comStories from './hero-slide.stories.json';
+import templateSource from './hero-slide.twig?raw';
+
+<Meta of={comStories} name="Docs"/>
+
+<Title />
+<Subtitle />
+<Description />
+
+<Primary />
+
+## Properties
+<Controls />
+
+<Stories of={comStories} />
+
+## Attributes
+* N/A
+
+## Slots
+* N/A
+
+## Examples
+
+### Example #1: Overlay slide
+```
+{{ include('vartheme_bs5:hero-slide', {
+  title: 'Build faster with Varbase',
+  content: '<p>Create flexible landing pages with reusable Bootstrap-based components.</p>',
+  button_text: 'Get started',
+  button_url: '/get-started',
+  button_variant: 'btn-primary',
+  media: {
+    src: 'assets/hero-slider-image.webp',
+    alt: 'Hero image'
+  },
+  media_position: 'overlay',
+  overlay_bg: 'bg-dark',
+  overlay_opacity: 'opacity-50'
+}, with_context = false) }}
+```
+
+### Example #2: Split layout
+```
+{{ include('vartheme_bs5:hero-slide', {
+  title: 'Design with confidence',
+  content: '<p>Use reusable pieces and keep the markup maintainable.</p>',
+  button_text: 'Explore components',
+  button_url: '/components',
+  button_variant: 'btn-dark',
+  media: {
+    src: 'assets/hero-slider-image.webp',
+    alt: 'Slide image'
+  },
+  media_position: 'start',
+  background_color: 'bg-light',
+  text_color: 'text-dark'
+}, with_context = false) }}
+```
+
+### Example #3: Text-only slide
+```
+{{ include('vartheme_bs5:hero-slide', {
+  title: 'Content first',
+  content: '<p>Use this mode when no image is needed.</p>',
+  button_text: 'Read more',
+  button_url: '/read-more',
+  media_position: 'none',
+  background_color: 'bg-black',
+  text_color: 'text-white',
+  text_align: 'text-center'
+}, with_context = false) }}
+```
+
+## Source code
+<Source code={templateSource} />

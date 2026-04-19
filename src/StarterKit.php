@@ -172,8 +172,6 @@ final class StarterKit implements StarterKitInterface {
     self::findAndReplace($working_dir, 'vartheme', $machine_name);
     self::findAndReplace($working_dir, 'Vartheme', $theme_name);
 
-    self::findAndReplace($working_dir, '- varbase_default_content', '');
-
     self::getBuildFiles($working_dir, $machine_name);
   }
 

@@ -1,0 +1,341 @@
+{#
+  Hero Slide (Bootstrap 5)
+
+  Intended use:
+  - Place multiple "Hero Slide" components inside "Hero Slider (Container)" slot.
+
+  Container context variables used:
+  - hero_slider_media_position (default media position)
+  - hero_slider_container_type (content width for overlay slides)
+#}
+
+{{ attach_library('vartheme_bs5/framework') }}
+
+{% macro media_src(media) %}
+  {% if media is iterable %}
+    {% if media.src is defined and media.src %}
+      {{ media.src }}
+    {% elseif media.url is defined and media.url %}
+      {{ media.url }}
+    {% elseif media.uri is defined and media.uri %}
+      {{ media.uri }}
+    {% else %}
+      {{ '' }}
+    {% endif %}
+  {% else %}
+    {{ '' }}
+  {% endif %}
+{% endmacro %}
+
+{% set enabled_res = enabled is defined ? enabled : true %}
+{% if enabled_res in [true, 1, '1', 'true', 'TRUE', 'on', 'yes'] %}
+  {% set mp_from_container = hero_slider_media_position|default('overlay') %}
+  {% set mp = mp_from_container|trim|lower %}
+  {% if media_position is defined and media_position and media_position != 'inherit' %}
+    {% set mp = media_position|trim|lower %}
+  {% endif %}
+  {% if mp in ['no_media', 'no-media', 'nomedia'] %}
+    {% set mp = 'none' %}
+  {% endif %}
+
+  {% set bg_color = background_color|default(mp == 'overlay' ? 'bg-transparent' : 'bg-white') %}
+  {% set gap = split_gap|default('md') %}
+  {% set container_type = hero_slider_container_type|default('none') %}
+  {% set pad_x = 'px-0' %}
+  {% set pad_y = 'py-0' %}
+  {% if mp == 'overlay' %}
+    {% set pad_x = 'px-0' %}
+    {% set pad_y = 'pt-4 pt-lg-0 pb-4 pb-lg-0' %}
+  {% elseif mp == 'none' %}
+    {% set pad_x = 'px-0' %}
+    {% set pad_y = 'py-4' %}
+  {% endif %}
+  {% if mp == 'start' and pad_x == 'px-0' %}
+    {% set pad_x = 'px-0 px-lg-4' %}
+  {% endif %}
+  {% if mp != 'overlay' and pad_y == 'py-0' %}
+    {% set pad_y = 'py-3 py-lg-5' %}
+  {% endif %}
+
+  {% set title_tag_res = title_tag|default('h2') %}
+  {% set title_size_res = title_size|default('display-5') %}
+  {% set content_size_res = 'fs-6' %}
+  {% set overlay_bg_res = overlay_bg|default('bg-dark') %}
+  {% set overlay_opacity_res = overlay_opacity|default('opacity-50') %}
+  {% set object_pos = 'center' %}
+  {% set img_fit = 'cover' %}
+  {% set h_align = 'start' %}
+  {% set v_align = vertical_alignment|default('center') %}
+  {% set text_align_res = text_align|default('text-start') %}
+  {% set text_color_res = text_color|default(mp == 'overlay' ? 'text-white' : 'text-dark') %}
+  {% set max_w = content_max_width|default('normal') %}
+
+  {% set title_final = (title is defined ? title : '')|trim %}
+  {% if title_final == '' %}
+    {% set title_final = 'Varbase; better than ever' %}
+  {% endif %}
+
+  {% set button_text_final = (button_text is defined ? button_text : '')|trim %}
+  {% if button_text_final == '' %}
+    {% set button_text_final = 'Learn more' %}
+  {% endif %}
+
+  {% set button_url_final = (button_url is defined ? button_url : '')|trim %}
+  {% if button_url_final == '' %}
+    {% set button_url_final = '#' %}
+  {% endif %}
+
+  {% set justify_map = {
+    start: 'justify-content-start',
+    center: 'justify-content-center',
+    end: 'justify-content-end',
+  } %}
+  {% set align_map = {
+    start: 'align-items-start',
+    center: 'align-items-center',
+    end: 'align-items-end',
+  } %}
+  {% set width_map = {
+    narrow: 'col-lg-5',
+    normal: 'col-lg-6',
+    wide: 'col-lg-7',
+  } %}
+  {% set gap_map = {
+    none: 'g-0',
+    sm: 'g-2',
+    md: 'g-3',
+    lg: 'g-4',
+  } %}
+
+  {% set content_wrap_class = mp == 'none' ? 'position-relative w-100 h-100' : 'position-absolute top-0 start-0 w-100 h-100' %}
+
+  {% set content_container_class = '' %}
+  {% if (mp == 'overlay' or mp == 'none') and container_type == 'container' %}
+    {% set content_container_class = 'container' %}
+  {% elseif (mp == 'overlay' or mp == 'none') and container_type == 'container-fluid' %}
+    {% set content_container_class = 'container-fluid' %}
+  {% elseif mp == 'overlay' or mp == 'none' %}
+    {% set content_container_class = 'container' %}
+  {% endif %}
+
+  {% set overlay_classes = '' %}
+  {% if mp == 'overlay' and overlay_bg_res != 'none' %}
+    {% set overlay_classes = overlay_bg_res ~ ' ' ~ overlay_opacity_res %}
+  {% endif %}
+
+  {% set src_final = _self.media_src(media)|trim %}
+  {% if mp == 'none' %}
+    {% set src_final = '' %}
+  {% endif %}
+  {% if src_final and (src_final starts with 'assets/') %}
+    {% if componentMetadata is defined and componentMetadata.path is defined %}
+      {% set src_final = (base_path|default('/')) ~ componentMetadata.path ~ '/' ~ src_final %}
+    {% elseif directory is defined %}
+      {% set src_final = (base_path|default('/')) ~ directory ~ '/components/atoms/hero-slider/hero-slide/' ~ src_final %}
+    {% endif %}
+  {% endif %}
+
+  {% set has_media = src_final != '' %}
+  {% set alt_final = (media.alt is defined and media.alt) ? media.alt : (title_final ? title_final : 'Slide image') %}
+  {% set has_cta = button_text_final and button_url_final %}
+  {% set cta_button_props = {
+    label: button_text_final,
+    href: button_url_final,
+    variant: button_variant|default('btn-primary'),
+    size: 'btn-md',
+  } %}
+
+  {% set item_attributes = create_attribute({
+    class: ['carousel-item'],
+  }) %}
+  {% if active %}
+    {% set item_attributes = item_attributes.addClass('active') %}
+  {% endif %}
+  {% set item_attributes = item_attributes
+    .setAttribute('data-hero-slide', true)
+    .setAttribute('data-hero-layout', mp) %}
+
+  {% set slide_item_attributes = create_attribute({
+    class: ['hero-slider__item', 'position-relative', 'w-100'],
+  }) %}
+  {% if mp != 'overlay' and bg_color %}
+    {% set slide_item_attributes = slide_item_attributes.addClass(bg_color) %}
+  {% endif %}
+
+  {% set image_attributes = create_attribute({
+    class: [
+      'd-block',
+      'hero-slider__img',
+      'hero-slider__img-fit-' ~ img_fit,
+      'hero-slider__img-pos-' ~ object_pos,
+      'h-100',
+      'w-100',
+    ],
+    src: src_final,
+    alt: alt_final,
+    loading: 'lazy',
+    decoding: 'async',
+  }) %}
+
+  {% set overlay_gradient_attributes = create_attribute({
+    class: ['hero-slider__overlay-gradient'],
+    'aria-hidden': 'true',
+  }) %}
+
+  {% set overlay_layer_attributes = create_attribute({
+    class: ['position-absolute', 'top-0', 'start-0', 'w-100', 'h-100'],
+    'aria-hidden': 'true',
+  }) %}
+  {% if overlay_classes %}
+    {% set overlay_layer_attributes = overlay_layer_attributes.addClass(overlay_classes) %}
+  {% endif %}
+
+  {% set fallback_overlay_attributes = create_attribute({
+    class: ['position-absolute', 'top-0', 'start-0', 'w-100', 'h-100', 'bg-black'],
+    'aria-hidden': 'true',
+  }) %}
+
+  {% set split_fallback_attributes = create_attribute({
+    class: ['w-100', 'h-100', 'bg-black'],
+    'aria-hidden': 'true',
+  }) %}
+
+  {% set content_wrap_attributes = create_attribute({
+    class: [content_wrap_class, 'd-flex', justify_map[h_align], align_map[v_align], 'hero-slider__content-wrap'],
+  }) %}
+
+  {% set content_inner_attributes = create_attribute({
+    class: ['w-100', pad_y],
+  }) %}
+
+  {% set caption_attributes = create_attribute({
+    class: ['hero-slider__caption', text_align_res, text_color_res],
+  }) %}
+
+  {% set title_attributes = create_attribute({
+    class: ['hero-slider__title', title_size_res, 'mb-3'],
+  }) %}
+
+  {% set text_attributes = create_attribute({
+    class: ['hero-slider__text', content_size_res],
+  }) %}
+
+  {% set cta_wrap_attributes = create_attribute({
+    class: ['mt-3'],
+  }) %}
+
+  {% set split_row_attributes = create_attribute({
+    class: ['row', 'h-100', 'align-items-stretch', gap_map[gap]],
+  }) %}
+
+  {% set media_frame_attributes = create_attribute({
+    class: ['h-100', 'w-100', 'position-relative'],
+  }) %}
+
+  {% set split_text_wrap_attributes = create_attribute({
+    class: ['w-100', 'd-flex', justify_map[h_align], align_map[v_align]],
+  }) %}
+
+  {% set content_col_class = width_map[max_w] %}
+  {% set split_text_col_class = pad_x %}
+  {% set img_col_class = 'col-12 col-lg-6' %}
+  {% set text_col_class = 'col-12 col-lg-6 d-flex' %}
+
+  {% set overlay_content_markup %}
+    <div{{ content_wrap_attributes }}>
+      <div{{ content_inner_attributes }}>
+        <div class="{{ content_container_class }}">
+          <div class="row g-0">
+            <div class="col-12 {{ content_col_class }}">
+              <div{{ caption_attributes }}>
+                {% if title_final %}
+                  <{{ title_tag_res }}{{ title_attributes }}>{{ title_final }}</{{ title_tag_res }}>
+                {% endif %}
+                {% if content %}
+                  <div{{ text_attributes }}>{{ content|raw }}</div>
+                {% endif %}
+                {% if has_cta %}
+                  <div{{ cta_wrap_attributes }}>
+                    {{ include('vartheme_bs5:button', cta_button_props, with_context: false) }}
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endset %}
+
+  {% set split_text_markup %}
+    <div{{ split_text_wrap_attributes }}>
+      <div{{ content_inner_attributes }}>
+        <div class="{{ content_container_class }}">
+          <div class="row g-0">
+            <div class="col-12 {{ split_text_col_class }}">
+              <div{{ caption_attributes }}>
+                {% if title_final %}
+                  <{{ title_tag_res }}{{ title_attributes }}>{{ title_final }}</{{ title_tag_res }}>
+                {% endif %}
+                {% if content %}
+                  <div{{ text_attributes }}>{{ content|raw }}</div>
+                {% endif %}
+                {% if has_cta %}
+                  <div{{ cta_wrap_attributes }}>
+                    {{ include('vartheme_bs5:button', cta_button_props, with_context: false) }}
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endset %}
+
+  {% set split_media_markup %}
+    <div{{ media_frame_attributes }}>
+      {% if has_media %}
+        <img{{ image_attributes }}/>
+      {% else %}
+        <div{{ split_fallback_attributes }}></div>
+      {% endif %}
+    </div>
+  {% endset %}
+
+  <div{{ item_attributes }}>
+    <div{{ slide_item_attributes }}>
+      {% if mp == 'overlay' or mp == 'none' %}
+        {% if has_media %}
+          <img{{ image_attributes }}/>
+        {% elseif mp != 'none' %}
+          <div{{ fallback_overlay_attributes }}></div>
+        {% endif %}
+
+        {% if mp != 'none' %}
+          <div{{ overlay_gradient_attributes }}></div>
+        {% endif %}
+
+        {% if overlay_classes %}
+          <div{{ overlay_layer_attributes }}></div>
+        {% endif %}
+
+        {{ overlay_content_markup }}
+      {% else %}
+        <div class="h-100">
+          <div class="container h-100">
+            <div{{ split_row_attributes }}>
+              {% if mp == 'start' %}
+                <div class="{{ img_col_class }}">{{ split_media_markup }}</div>
+                <div class="{{ text_col_class }}">{{ split_text_markup }}</div>
+              {% else %}
+                <div class="{{ text_col_class }}">{{ split_text_markup }}</div>
+                <div class="{{ img_col_class }}">{{ split_media_markup }}</div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+{% endif %}

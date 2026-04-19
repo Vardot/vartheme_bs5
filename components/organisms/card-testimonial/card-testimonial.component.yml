@@ -1,0 +1,74 @@
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json"
+name: Testimonial card
+group: Card
+props:
+  type: object
+  required:
+    - align
+    - style
+  properties:
+    style:
+      type: string
+      title: Style
+      description: Card background style.
+      enum: [bg-body, 'bg-dark text-white']
+      default: bg-body
+      examples: [bg-body]
+      meta:enum:
+        bg-body: Default (light)
+        'bg-dark text-white': Dark (inverted)
+    text:
+      type: string
+      title: Quote text
+      description: The testimonial quote text.
+      pattern: (.|\r?\n)*
+      examples:
+        - "My career guidance was crucial in helping me understand the tech industry landscape and ultimately secure my role."
+    cite_name:
+      type: string
+      title: Author name (optional)
+      examples:
+        - "Isiah Julio"
+    cite_text:
+      type: string
+      title: Author title / role (optional)
+      examples:
+        - "Engineer, Technical Services"
+    media:
+      $ref: json-schema-definitions://canvas.module/image
+      title: Avatar image (optional)
+      examples:
+        - src: "assets/avatar-placeholder.svg"
+          alt: "Avatar placeholder"
+          width: 120
+          height: 120
+    shadow:
+      type: string
+      title: Shadow
+      description: Adds depth to the card.
+      enum: [shadow-none, shadow-sm, shadow, shadow-lg]
+      default: shadow
+      examples: [shadow]
+      meta:enum:
+        shadow-none: No shadow
+        shadow-sm: Small shadow
+        shadow: Default shadow
+        shadow-lg: Large shadow
+    align:
+      type: string
+      title: Content alignment
+      description: Align quote + author block.
+      enum: [text-center, text-start]
+      default: text-center
+      examples: [text-center]
+      meta:enum:
+        text-center: Center
+        text-start: Left
+    show_quote_icon:
+      type: boolean
+      title: Show quote icon
+      description: Displays a decorative quote icon in the corner.
+      default: true
+      examples: [true]
+
+    

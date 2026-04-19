@@ -1,0 +1,99 @@
+import { Canvas, Title, Subtitle, Source, Meta, Description, Primary, Story, Stories, Controls } from '@storybook/blocks';
+import * as comStories from './card.stories.json';
+import templateSource from './card.twig?raw';
+
+<Meta of={comStories} name="Docs"/>
+
+<Title />
+<Subtitle />
+<Description />
+
+> ### Bootstrap documentation
+> * [Card](https://getbootstrap.com/docs/5.3/components/card/)
+> * [Ratio](https://getbootstrap.com/docs/5.3/helpers/ratio/)
+> * [Shadows](https://getbootstrap.com/docs/5.3/utilities/shadows/)
+> * [Colors](https://getbootstrap.com/docs/5.3/utilities/colors/)
+> * [Background](https://getbootstrap.com/docs/5.3/utilities/background/)
+
+<Primary />
+
+## Properties
+<Controls />
+
+<Stories of={comStories} />
+
+## Notes
+* The component supports multiple card layouts with image positions at top, left, right, and bottom.
+* `content_vertical` controls vertical alignment for left and right image layouts.
+* `media_ratio` is mainly useful for top and bottom image layouts.
+* `has_padding` controls whether the card body includes inner spacing.
+* Button output is only useful when both `url` and `button_label` are provided.
+* Styling options such as `background` and `shadow` rely on Bootstrap utility classes.
+
+## Examples
+
+### Example #1 : Default card
+
+```twig
+{% include 'vartheme_bs5:card' with {
+  orientation: 'image-top',
+  heading_text: 'This is your card title',
+  text: 'A short description goes here.',
+  media: {
+    src: '/components/organisms/card/assets/card-placeholder.svg',
+    alt: 'Placeholder card image',
+    width: 1200,
+    height: 900
+  },
+  media_ratio: 'ratio-16x9',
+  background: 'bg-body',
+  shadow: 'shadow',
+  has_padding: true
+} %}
+```
+
+### Example #2 : Image left layout
+
+```twig
+{% include 'vartheme_bs5:card' with {
+  orientation: 'image-left',
+  content_vertical: 'justify-content-center',
+  heading_text: 'This is your card title',
+  text: 'A short description goes here.',
+  media: {
+    src: '/components/organisms/card/assets/card-placeholder.svg',
+    alt: 'Placeholder card image',
+    width: 1200,
+    height: 900
+  },
+  background: 'bg-body',
+  shadow: 'shadow',
+  has_padding: true
+} %}
+```
+
+### Example #3 : Card with button
+
+```twig
+{% include 'vartheme_bs5:card' with {
+  orientation: 'image-top',
+  heading_text: 'This is your card title',
+  text: 'A short description goes here.',
+  media: {
+    src: '/components/organisms/card/assets/card-placeholder.svg',
+    alt: 'Placeholder card image',
+    width: 1200,
+    height: 900
+  },
+  media_ratio: 'ratio-16x9',
+  background: 'bg-body',
+  shadow: 'shadow',
+  has_padding: true,
+  url: 'https://example.com/',
+  button_label: 'Learn more',
+  button_variant: 'btn-primary'
+} %}
+```
+
+## Source code
+<Source code={templateSource} />

@@ -21,99 +21,55 @@
  *
  *
  * Regions:
- * - page.top_bar: Items for the Top bar region.
- * - page.navbar_branding: Items for the Navbar branding region.
- * - page.navigation: Items for the Navigation (Desktop and Collapse) region.
- * - page.highlighted: Items for the Highlighted region.
- * - page.content_above: Items for the Content above region.
- * - page.primary_sidebar: Items for the Primary sidebar region.
+ * - page.header: Items for the Header region.
  * - page.content: Items for the Content region.
- * - page.secondary_sidebar: Items for the Secondary sidebar region.
- * - page.content_below: Items for the Content below region.
- * - page.footer_top: Items for the Footer top region.
- * - page.footer_bottom: Items for the Footer bottom region.
- *
- * Vartheme BS5 variables:
- * - attributes
- * - navbar_top_attributes: Items for the header region.
- * - navbar_attributes: Items for the header region.
- * - content_attributes: Items for the header region.
- * - secondary_sidebar_attributes: Items for the secondary sidebar region. 
- * - sidebar_second_attributes: Items for the primary menu region.
- * - sidebar_collapse: If the sidebar_first will collapse.
- * - logo_print: Print logo.
- * - site_name: Site name.
- * - site_slogan: Site Slogan.
- * - lang_dir: Language direction.
+ * - page.footer: Items for the Footer region.
  *
  * @see template_preprocess_page()
- * @see vartheme_bs5_preprocess_page()
- * @see vartheme_bs5_preprocess()
  * @see html.html.twig
  */
 #}
 <div id="page" class="page d-flex flex-column">
 
-  {% include "vartheme_bs5:page-header" %}
+  {% if page.header %}
+    <header role="banner">
+      {% if container_header %}
+        <div class="{{ container_header }}">
+      {% endif %}
+      {{ page.header }}
+      {% if container_header %}
+        </div>
+      {% endif %}
+    </header>
+  {% endif %}
 
   <main class="mb-3">
     <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
-
-    {% if page.content_above %}
-      <div class="content-above">
-        {% if container_content_above %}
-        <div class="{{ container_content_above }}">
-        {% endif %}
-          {{ page.content_above }}
-        {% if container_content_above %}
-        </div>
-        {% endif %}
-      </div>
-    {% endif %}
-
-    {% if page.content or page.primary_sidebar or page.secondary_sidebar %}
+    {% if page.content %}
       {% if container_content %}
-      <div class="{{ container_content }}">
+        <div class="{{ container_content }}">
       {% endif %}
-        <div class="row">
-          <div class="col-12">
-            <div class="page-content">
-              {% if page.primary_sidebar %}
-                <div class="primary-sidebar">
-                  {{ page.primary_sidebar }}
-                </div>
-              {% endif %}
-
-              <div class="inner-content">
-                {{ page.content }}
-              </div>
-
-              {% if page.secondary_sidebar %}
-                <div class="secondary-sidebar">
-                  {{ page.secondary_sidebar }}
-                </div>
-              {% endif %}
-            </div>
+        <div class="page-content">
+          <div class="inner-content">
+            {{ page.content }}
           </div>
         </div>
       {% if container_content %}
-      </div>
-      {% endif %}
-    {% endif %}
-
-    {% if page.content_below %}
-      <div class="content-below">
-        {% if container_content_below %}
-        <div class="{{ container_content_below }}">
-        {% endif %}
-          {{ page.content_below }}
-        {% if container_content_below %}
         </div>
-        {% endif %}
-      </div>
+      {% endif %}
     {% endif %}
   </main>
 
-  {% include "vartheme_bs5:page-footer" %}
+  {% if page.footer %}
+    <footer class="footer" role="contentinfo">
+      {% if container_footer %}
+        <div class="{{ container_footer }}">
+      {% endif %}
+      {{ page.footer }}
+      {% if container_footer %}
+        </div>
+      {% endif %}
+    </footer>
+  {% endif %}
 
 </div>

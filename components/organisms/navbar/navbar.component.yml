@@ -1,38 +1,38 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: Navbar
-status: experimental
 description: Navbar component
+group: Layout
 props:
   type: object
   properties:
     container:
-      type: string
-      title: Container
-      description: container type
-      default: ''
+      type:
+        - string
+        - 'null'
+      title: Container type
+      description: Container type
+      default: null
       enum:
-        - ''
         - no-container
+        - container-sm
         - container
         - container-md
         - container-lg
         - container-xl
         - container-xxl
         - container-fluid
+        - null
     color_mode:
       type: string
       title: Color mode
-      description: The default color mode for the navigation bar.
-      default: ''
+      default: light
       enum:
-        - ''
         - light
         - dark
     color:
       type: string
-      title: Color
-      description: The default color for the navigation bar
-      default: ''
+      title: Background color
+      default: white
       enum:
         - transparent
         - light
@@ -48,20 +48,16 @@ props:
     placement:
       type: string
       title: Placement
-      description: Placement
       default: ''
       enum:
-        - ''
         - fixed-top
         - fixed-bottom
         - sticky-top
     navbar_expand:
       type: string
-      title: Expand
-      description: Expanded navbar
-      default: ''
+      title: Navbar expand breakpoint
+      default: lg
       enum:
-        - ''
         - sm
         - md
         - lg
@@ -69,22 +65,18 @@ props:
     navbar_utility_classes:
       type: array
       title: Utility Classes
-      default: []
       items:
-        type: 'string'
-      description: An array of utility classes that can be used to add extra Bootstrap utility classes or custom classes to this component.
+        type: string
+      default: []
     attributes:
-      type: object
+      type: Drupal\Core\Template\Attribute
       title: Attributes
-      description: HTML attributes for the containing element.
-      $ref: 'ui-patterns://attributes'
+      description: HTML attributes for the navbar element
 slots:
   branding:
-    title: Branding
-    description: Site branding.
+    title: Site branding
   navigation:
-    title: Navigation
-    description: site navigation.
+    title: Navigation menu
 libraryOverrides:
   dependencies:
     - vartheme_bs5/bs-dropdown-script

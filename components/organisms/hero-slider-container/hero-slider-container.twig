@@ -1,0 +1,228 @@
+{#
+  Hero Slider Container (Bootstrap 5)
+
+  Canvas / SDC notes:
+  - Uses slot content for slides so Canvas can manage drag/drop ordering.
+  - Avoids pre-building slide arrays in Twig.
+  - Keeps all logic and attribute preparation at the top so markup stays clean.
+#}
+{{ attach_library('vartheme_bs5/framework') }}
+
+{% set carousel_id = 'heroSlider-' ~ random(1000000) %}
+
+{# Shared values exposed to nested Hero Slide components. #}
+{% set hero_slider_id = carousel_id %}
+{% set hero_slider_media_position = 'overlay' %}
+{% set hero_slider_bg_edge2edge = bg_edge2edge is defined ? bg_edge2edge : true %}
+{% set hero_slider_container_type = 'container' %}
+{% set hero_slider_section_padding_y = 'py-0' %}
+{% set hero_slider_slider_height = slider_height|default('700') %}
+{% set hero_slider_controller_shape = 'round' %}
+{% set hero_slider_controller_color = controller_color|default('primary') %}
+{% set hero_slider_transition = transition|default('slide') %}
+{% set hero_slider_autoplay = autoplay is defined ? autoplay : true %}
+{% set hero_slider_interval = interval_ms|default(5000) %}
+{% set hero_slider_pause_on_hover = pause_on_hover is defined ? pause_on_hover : true %}
+{% set hero_slider_show_indicators = show_indicators is defined ? show_indicators : true %}
+{% set hero_slider_show_controls = show_controls is defined ? show_controls : true %}
+
+{# Width handling stays per-slide to avoid double containers in Canvas. #}
+{% set outer_container_class = '' %}
+{% set content_container_class = hero_slider_container_type == 'container-fluid' ? 'container-fluid' : 'container' %}
+
+{# Slot check: render only for emptiness test, keep actual slot output untouched below. #}
+{% set has_slides = slides is defined and slides|render|trim is not empty %}
+
+{# Root / section classes. #}
+{% set section_classes = ['hero-slider'] %}
+{% if hero_slider_bg_edge2edge %}
+  {% set section_classes = section_classes|merge(['hero-slider--edge2edge', 'bg-edge2edge']) %}
+{% endif %}
+{% if hero_slider_section_padding_y %}
+  {% set section_classes = section_classes|merge([hero_slider_section_padding_y]) %}
+{% endif %}
+
+{# Carousel classes. #}
+{% set carousel_classes = [
+  'carousel',
+  'slide',
+  'hero-slider__carousel',
+  'hero-slider',
+  'hero-slider--h-' ~ hero_slider_slider_height,
+  'hero-slider--controller-' ~ hero_slider_controller_color,
+] %}
+{% if hero_slider_transition == 'fade' %}
+  {% set carousel_classes = carousel_classes|merge(['carousel-fade']) %}
+{% endif %}
+
+{# Controller classes. #}
+{% set control_classes = ['hero-slider__control', 'btn', 'btn-link'] %}
+{% if hero_slider_controller_shape == 'round' %}
+  {% set control_classes = control_classes|merge(['rounded-circle']) %}
+{% elseif hero_slider_controller_shape == 'pill' %}
+  {% set control_classes = control_classes|merge(['rounded-pill']) %}
+{% else %}
+  {% set control_classes = control_classes|merge(['rounded-0']) %}
+{% endif %}
+
+{# Bootstrap utility names should remain directly reusable in Twig. #}
+{% set control_text_class = hero_slider_controller_color == 'white' ? 'text-white' : 'text-' ~ hero_slider_controller_color %}
+{% set prev_control_classes = control_classes|merge([control_text_class]) %}
+{% set next_control_classes = control_classes|merge([control_text_class]) %}
+{% set pause_control_classes = control_classes|merge(['hero-slider__control--pause', control_text_class]) %}
+
+{# Nav alignment classes. #}
+{% set nav_col_class = 'col-12' %}
+{% if hero_slider_media_position == 'start' %}
+  {% set nav_col_class = 'col-12 col-lg-6 offset-lg-6 hero-slider__nav-col--offset' %}
+{% elseif hero_slider_media_position == 'end' %}
+  {% set nav_col_class = 'col-12 col-lg-6' %}
+{% endif %}
+
+{% set nav_inner_classes = ['hero-slider__nav-inner', 'd-flex', 'align-items-center', 'gap-3', control_text_class] %}
+{% if hero_slider_media_position == 'overlay' %}
+  {% set nav_inner_classes = nav_inner_classes|merge(['mt-3', 'mt-md-4']) %}
+{% else %}
+  {% set nav_inner_classes = nav_inner_classes|merge(['mt-3']) %}
+{% endif %}
+
+{% if hero_slider_show_indicators and hero_slider_show_controls %}
+  {% set nav_inner_classes = nav_inner_classes|merge(['justify-content-between']) %}
+{% elseif (not hero_slider_show_indicators) and hero_slider_show_controls %}
+  {% set nav_inner_classes = nav_inner_classes|merge(['justify-content-end']) %}
+{% else %}
+  {% set nav_inner_classes = nav_inner_classes|merge(['justify-content-start']) %}
+{% endif %}
+
+{# Fallback slide classes. #}
+{% set fallback_item_classes = ['hero-slider__item', 'position-relative', 'w-100', 'bg-black'] %}
+{% set fallback_overlay_classes = ['position-absolute', 'top-0', 'start-0', 'w-100', 'h-100', 'bg-dark', 'opacity-50'] %}
+{% set fallback_layout_classes = ['position-absolute', 'top-0', 'start-0', 'w-100', 'h-100', 'd-flex', 'justify-content-start', 'align-items-center'] %}
+{% set fallback_inner_wrap_classes = ['w-100', 'py-4'] %}
+{% set fallback_row_classes = ['row', 'g-0'] %}
+{% set fallback_col_classes = ['col-12', 'col-lg-8', 'px-4'] %}
+{% set fallback_caption_classes = ['hero-slider__caption', 'text-start', 'text-white'] %}
+{% set fallback_title_classes = ['hero-slider__title', 'display-5', 'mb-3'] %}
+{% set fallback_text_classes = ['hero-slider__text', 'fs-6'] %}
+
+{# Prepared attributes for cleaner HTML. #}
+{% set section_attributes = create_attribute({class: section_classes}) %}
+{% set outer_container_attributes = outer_container_class ? create_attribute({class: [outer_container_class]}) : null %}
+{% set carousel_attributes = create_attribute({
+  id: carousel_id,
+  class: carousel_classes,
+  'data-hero-media-position': hero_slider_media_position,
+  'data-hero-autoplay': hero_slider_autoplay ? '1' : '0',
+  'data-bs-pause': hero_slider_pause_on_hover ? 'hover' : 'false',
+}) %}
+{% if hero_slider_autoplay %}
+  {% set carousel_attributes = carousel_attributes.setAttribute('data-bs-ride', 'carousel') %}
+  {% set carousel_attributes = carousel_attributes.setAttribute('data-bs-interval', hero_slider_interval) %}
+{% else %}
+  {% set carousel_attributes = carousel_attributes.setAttribute('data-bs-interval', 'false') %}
+{% endif %}
+
+{% set carousel_inner_attributes = create_attribute({class: ['carousel-inner']}) %}
+{% set nav_attributes = create_attribute({class: ['hero-slider__nav'], 'aria-hidden': 'false'}) %}
+{% set content_container_attributes = create_attribute({class: [content_container_class]}) %}
+{% set nav_row_attributes = create_attribute({class: ['row']}) %}
+{% set nav_col_attributes = create_attribute({class: nav_col_class|split(' '), 'data-hero-nav-col': true}) %}
+{% set nav_inner_attributes = create_attribute({class: nav_inner_classes}) %}
+{% set indicators_attributes = create_attribute({class: ['carousel-indicators', 'position-static', 'justify-content-start', 'm-0'], 'data-hero-indicators': true}) %}
+{% set controls_attributes = create_attribute({class: ['hero-slider__controls', 'd-flex', 'align-items-center', 'gap-2'], role: 'group', 'aria-label': 'Carousel controls'}) %}
+{% set prev_button_attributes = create_attribute({class: prev_control_classes, type: 'button', 'data-bs-target': '#' ~ carousel_id, 'data-bs-slide': 'prev'}) %}
+{% set pause_button_attributes = create_attribute({class: pause_control_classes, type: 'button', 'data-hero-toggle': 'pause', 'data-paused': hero_slider_autoplay ? 'false' : 'true', 'aria-label': hero_slider_autoplay ? 'Pause' : 'Play'}) %}
+{% set next_button_attributes = create_attribute({class: next_control_classes, type: 'button', 'data-bs-target': '#' ~ carousel_id, 'data-bs-slide': 'next'}) %}
+
+{% set fallback_carousel_item_attributes = create_attribute({class: ['carousel-item', 'active'], 'data-hero-slide': true}) %}
+{% set fallback_item_attributes = create_attribute({class: fallback_item_classes}) %}
+{% set fallback_overlay_attributes = create_attribute({class: fallback_overlay_classes, 'aria-hidden': 'true'}) %}
+{% set fallback_layout_attributes = create_attribute({class: fallback_layout_classes}) %}
+{% set fallback_inner_wrap_attributes = create_attribute({class: fallback_inner_wrap_classes}) %}
+{% set fallback_row_attributes = create_attribute({class: fallback_row_classes}) %}
+{% set fallback_col_attributes = create_attribute({class: fallback_col_classes}) %}
+{% set fallback_caption_attributes = create_attribute({class: fallback_caption_classes}) %}
+{% set fallback_title_attributes = create_attribute({class: fallback_title_classes}) %}
+{% set fallback_text_attributes = create_attribute({class: fallback_text_classes}) %}
+
+<section{{ section_attributes }}>
+  {% if outer_container_attributes %}
+    <div{{ outer_container_attributes }}>
+  {% endif %}
+
+  <div{{ carousel_attributes }}>
+    <div{{ carousel_inner_attributes }}>
+      {% if has_slides %}
+        {{ slides }}
+      {% else %}
+        <div{{ fallback_carousel_item_attributes }}>
+          <div{{ fallback_item_attributes }}>
+            <div{{ fallback_overlay_attributes }}></div>
+            <div{{ fallback_layout_attributes }}>
+              <div{{ fallback_inner_wrap_attributes }}>
+                <div{{ content_container_attributes }}>
+                  <div{{ fallback_row_attributes }}>
+                    <div{{ fallback_col_attributes }}>
+                      <div{{ fallback_caption_attributes }}>
+                        <h2{{ fallback_title_attributes }}>Hero Slider</h2>
+                        <div{{ fallback_text_attributes }}><p>Add “Hero Slide” components into the Slides slot.</p></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+
+    {% if hero_slider_show_indicators or hero_slider_show_controls %}
+      <div{{ nav_attributes }}>
+        <div{{ content_container_attributes }}>
+          <div{{ nav_row_attributes }}>
+            <div{{ nav_col_attributes }}>
+              <div{{ nav_inner_attributes }}>
+                {% if hero_slider_show_indicators %}
+                  <div{{ indicators_attributes }}></div>
+                {% endif %}
+
+                {% if hero_slider_show_controls %}
+                  <div{{ controls_attributes }}>
+                    <button{{ prev_button_attributes }}>
+                      <span class="visually-hidden">Previous</span>
+                      <svg class="icon-prev" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                        <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H6.707l1.147 1.146a.5.5 0 1 1-.708.708l-2-2a.5.5 0 0 1 0-.708l2-2a.5.5 0 1 1 .708.708L6.707 7.5H11.5z" fill="currentColor"/>
+                      </svg>
+                    </button>
+
+                    <button{{ pause_button_attributes }}>
+                      <span class="visually-hidden">{{ hero_slider_autoplay ? 'Pause' : 'Play' }}</span>
+                      <svg class="icon-pause" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                        <path d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5zm5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5z" fill="currentColor"/>
+                      </svg>
+                      <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <path d="M10 8l8 4-8 4V8z" fill="currentColor"/>
+                      </svg>
+                    </button>
+
+                    <button{{ next_button_attributes }}>
+                      <span class="visually-hidden">Next</span>
+                      <svg class="icon-next" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                        <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zm-3.5 7.5a.5.5 0 0 0 0 1h4.793l-1.147 1.146a.5.5 0 1 0 .708.708l2-2a.5.5 0 0 0 0-.708l-2-2a.5.5 0 1 0-.708.708L9.293 7.5H4.5z" fill="currentColor"/>
+                      </svg>
+                    </button>
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+
+  {% if outer_container_attributes %}
+    </div>
+  {% endif %}
+</section>

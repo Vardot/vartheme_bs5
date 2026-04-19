@@ -1,0 +1,71 @@
+{#
+  Bootstrap 5 Logo Card
+#}
+
+{% set has_url = url is defined and url is not empty and url != 'No URL' %}
+{% set shadow_class = shadow|default('shadow') %}
+
+{% set src_value = '' %}
+{% if media is defined and media %}
+  {% if media.src is defined and media.src %}
+    {% if media.src is iterable %}
+      {% set src_value = media.src.url|default(media.src.uri|default(media.src.value|default(''))) %}
+    {% else %}
+      {% set src_value = media.src %}
+    {% endif %}
+  {% elseif media.url is defined and media.url %}
+    {% set src_value = media.url %}
+  {% endif %}
+{% endif %}
+{% set media_ok = src_value is not empty %}
+
+{% set image_media = {
+  src: src_value,
+  alt: media.alt|default(''),
+  width: media.width|default(''),
+  height: media.height|default(''),
+} %}
+
+{% set card_classes = ['card', 'overflow-hidden'] %}
+{% if shadow_class and shadow_class != 'shadow-none' %}
+  {% set card_classes = card_classes|merge([shadow_class]) %}
+{% endif %}
+{% if has_url %}
+  {% set card_classes = card_classes|merge(['position-relative']) %}
+{% endif %}
+
+{% set body_classes = ['card-body', 'd-flex', 'align-items-center', 'justify-content-center', 'p-3', 'p-md-4'] %}
+{% set image_wrapper_classes = ['d-flex', 'justify-content-center', 'align-items-center'] %}
+{% set link_classes = ['stretched-link', 'text-decoration-none'] %}
+
+{% set card_attributes = create_attribute().addClass(card_classes) %}
+{% set body_attributes = create_attribute().addClass(body_classes) %}
+{% set image_wrapper_attributes = create_attribute().addClass(image_wrapper_classes) %}
+
+{% set image_markup %}
+  {{ include('vartheme_bs5:image', {
+    media: image_media,
+    ratio: 'ratio-auto',
+    fit: 'object-fit-contain',
+    width: 'w-100',
+    align: 'mx-auto',
+  }, false, true) }}
+{% endset %}
+
+<div{{ card_attributes }}>
+  <div{{ body_attributes }}>
+    {% if has_url %}
+      {{ include('vartheme_bs5:link', {
+        url: url,
+        attributes: create_attribute().addClass(link_classes),
+        content: '',
+      }, with_context: false) }}
+    {% endif %}
+
+    {% if media_ok %}
+      <div{{ image_wrapper_attributes }}>
+        {{ image_markup }}
+      </div>
+    {% endif %}
+  </div>
+</div>

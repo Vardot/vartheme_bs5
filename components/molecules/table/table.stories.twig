@@ -1,2313 +1,2299 @@
 {% stories Table with {
-  "title": "Molecules/Table",
-  "parameters": {
-    "componentSubtitle": "Bootstrap Table Component",
-    "docs": {
-      "description": {
-        "component": "The Table component with support for Bootstrap"
+  title: 'Molecules/Table',
+  parameters: {
+    componentSubtitle: 'Bootstrap Table Component',
+    docs: {
+      description: {
+        component: 'The Table component with support for Bootstrap',
       },
-      "story": {
-        "inline": false,
-        "iframeHeight": 350
-      }
-    }
+      story: {
+        inline: false,
+        iframeHeight: 350,
+      },
+    },
   },
-  "argTypes": {
-    "variant": {
-      "name": "Variant",
-      "description": "Contextual classes for table variants.",
-      "defaultValue": "",
-      "control": "select",
-      "options": {
-        "Default": "",
-        "Primary": "primary",
-        "Secondary": "secondary",
-        "Success": "success",
-        "Info": "info",
-        "Warning": "warning",
-        "Danger": "danger",
-        "Light": "light",
-        "Dark": "dark"
-      }
+  argTypes: {
+    variant: {
+      name: 'Variant',
+      description: 'Contextual classes for table variants.',
+      defaultValue: '',
+      control: 'select',
+      options: {
+        Default: '',
+        Primary: 'primary',
+        Secondary: 'secondary',
+        Success: 'success',
+        Info: 'info',
+        Warning: 'warning',
+        Danger: 'danger',
+        Light: 'light',
+        Dark: 'dark',
+      },
     },
-    "responsive": {
-      "name": "Responsive",
-      "description": "Responsive tables allow tables to be scrolled horizontally with ease. Make any table responsive across all viewports.",
-      "control": "boolean",
-      "defaultValue": false
+    responsive: {
+      name: 'Responsive',
+      description: 'Responsive tables allow tables to be scrolled horizontally with ease. Make any table responsive across all viewports.',
+      control: 'boolean',
+      defaultValue: false,
     },
-    "striped_rows": {
-      "name": "Striped rows",
-      "description": "Use to add zebra-striping to any table row within the `<tbody>`. Works when `no_striping` is false.",
-      "control": "boolean",
-      "defaultValue": false
+    striped_rows: {
+      name: 'Striped rows',
+      description: 'Use to add zebra-striping to any table row within the `<tbody>`. Works when `no_striping` is false.',
+      control: 'boolean',
+      defaultValue: false,
     },
-    "striped_columns": {
-      "name": "Striped columns",
-      "description": "Use to add zebra-striping to any table column. Works when `no_striping` is false.",
-      "control": "boolean",
-      "defaultValue": false
+    striped_columns: {
+      name: 'Striped columns',
+      description: 'Use to add zebra-striping to any table column. Works when `no_striping` is false.',
+      control: 'boolean',
+      defaultValue: false,
     },
-    "hover": {
-      "name": "Hover",
-      "description": "Enable a hover state on table rows within a `<tbody>` for hoverable rows.",
-      "control": "boolean",
-      "defaultValue": false
+    hover: {
+      name: 'Hover',
+      description: 'Enable a hover state on table rows within a `<tbody>` for hoverable rows.',
+      control: 'boolean',
+      defaultValue: false,
     },
-    "bordered": {
-      "name": "Bordered",
-      "description": "Add borders on all sides of the table and cells.",
-      "control": "boolean",
-      "defaultValue": false
+    bordered: {
+      name: 'Bordered',
+      description: 'Add borders on all sides of the table and cells.',
+      control: 'boolean',
+      defaultValue: false,
     },
-    "border_color": {
-      "name": "Border Color",
-      "description": "Use the border color utility to change border colors.",
-      "defaultValue": "",
-      "control": "select",
-      "options": {
-        "'- none -'": "",
-        "Primary": "primary",
-        "Secondary": "secondary",
-        "Success": "success",
-        "Info": "info",
-        "Warning": "warning",
-        "Danger": "danger",
-        "Light": "light",
-        "Dark": "dark",
-        "Black": "black",
-        "White": "white",
-        "'Primary subtle'": "primary-subtle",
-        "'Secondary subtle'": "secondary-subtle",
-        "'Success subtle'": "success-subtle",
-        "'Info subtle'": "info-subtle",
-        "'Warning subtle'": "warning-subtle",
-        "'Danger subtle'": "danger-subtle",
-        "'Light subtle'": "light-subtle",
-        "'Dark subtle'": "dark-subtle"
-      }
+    border_color: {
+      name: 'Border Color',
+      description: 'Use the border color utility to change border colors.',
+      defaultValue: '',
+      control: 'select',
+      options: {
+        "'- none -'": '',
+        Primary: 'primary',
+        Secondary: 'secondary',
+        Success: 'success',
+        Info: 'info',
+        Warning: 'warning',
+        Danger: 'danger',
+        Light: 'light',
+        Dark: 'dark',
+        Black: 'black',
+        White: 'white',
+        "'Primary subtle'": 'primary-subtle',
+        "'Secondary subtle'": 'secondary-subtle',
+        "'Success subtle'": 'success-subtle',
+        "'Info subtle'": 'info-subtle',
+        "'Warning subtle'": 'warning-subtle',
+        "'Danger subtle'": 'danger-subtle',
+        "'Light subtle'": 'light-subtle',
+        "'Dark subtle'": 'dark-subtle',
+      },
     },
-    "borderless": {
-      "name": "Borderless",
-      "description": "Add `.table-borderless` for a table without borders.",
-      "control": "boolean",
-      "defaultValue": false
+    borderless: {
+      name: 'Borderless',
+      description: 'Add `.table-borderless` for a table without borders.',
+      control: 'boolean',
+      defaultValue: false,
     },
-    "size": {
-      "name": "Table Size",
-      "description": "Use sm for small to make any table more compact by cutting all cell padding in half.",
-      "defaultValue": "",
-      "control": "select",
-      "options": {
-        "'- none -'": "",
-        "Small": "sm"
-      }
+    size: {
+      name: 'Table Size',
+      description: 'Use sm for small to make any table more compact by cutting all cell padding in half.',
+      defaultValue: '',
+      control: 'select',
+      options: {
+        "'- none -'": '',
+        Small: 'sm',
+      },
     },
-    "caption": {
-      "name": "Caption",
-      "description": "A localized string for the `<caption>` tag.",
-      "control": "text",
-      "defaultValue": ""
+    caption: {
+      name: 'Caption',
+      description: 'A localized string for the `<caption>` tag.',
+      control: 'text',
+      defaultValue: '',
     },
-    "colgroups": {
-      "name": "Column groups",
-      "description": "Column groups which contains attributes",
-      "control": "object"
+    colgroups: {
+      name: 'Column groups',
+      description: 'Column groups which contains attributes',
+      control: 'object',
     },
-    "header": {
-      "name": "Table header cells",
-      "description": "Table header cells which contains (tag, attributes, content, field, sort)",
-      "control": "object",
-      "defaultValue": {}
+    header: {
+      name: 'Table header cells',
+      description: 'Table header cells which contains (tag, attributes, content, field, sort)',
+      control: 'object',
+      defaultValue: {},
     },
-    "sticky": {
-      "name": "Sticky",
-      "description": "A flag indicating whether to use a sticky table header.",
-      "control": "boolean",
-      "defaultValue": false
+    sticky: {
+      name: 'Sticky',
+      description: 'A flag indicating whether to use a sticky table header.',
+      control: 'boolean',
+      defaultValue: false,
     },
-    "rows": {
-      "name": "Rows",
-      "description": "Table rows, which each row contains (attributes, data, no_striping, cells). Each cell contains (tag, attributes, content, active_table_sort)",
-      "control": "object",
-      "defaultValue": {}
+    rows: {
+      name: 'Rows',
+      description: 'Table rows, which each row contains (attributes, data, no_striping, cells). Each cell contains (tag, attributes, content, active_table_sort)',
+      control: 'object',
+      defaultValue: {},
     },
-    "footer": {
-      "name": "Footer",
-      "description": "Table footer rows, in the same format as the rows variable.",
-      "control": "object",
-      "defaultValue": {}
+    footer: {
+      name: 'Footer',
+      description: 'Table footer rows, in the same format as the rows variable.',
+      control: 'object',
+      defaultValue: {},
     },
-    "empty": {
-      "name": "Empty",
-      "description": "The message to display in an extra row if table does not have any rows.",
-      "control": "text",
-      "defaultValue": ""
+    empty: {
+      name: 'Empty',
+      description: 'The message to display in an extra row if table does not have any rows.',
+      control: 'text',
+      defaultValue: '',
     },
-    "no_striping": {
-      "name": "No Striping",
-      "description": "A boolean indicating that the row should receive no striping.",
-      "control": "boolean",
-      "defaultValue": false
+    no_striping: {
+      name: 'No Striping',
+      description: 'A boolean indicating that the row should receive no striping.',
+      control: 'boolean',
+      defaultValue: false,
     },
-    "table_utility_classes": {
-      "name": "Utility Classes",
-      "description": "An array of utility classes. Use to add extra Bootstrap utility classes or custom CSS classes over to the table element.",
-      "control": "object",
-      "defaultValue": []
+    table_utility_classes: {
+      name: 'Utility Classes',
+      description: 'An array of utility classes. Use to add extra Bootstrap utility classes or custom CSS classes over to the table element.',
+      control: 'object',
+      defaultValue: [],
     },
-    "thead_utility_classes": {
-      "name": "Table Head Utility Classes",
-      "description": "An array of utility classes. Use to add extra Bootstrap utility classes or custom CSS classes over to the head of the table element.",
-      "control": "object",
-      "defaultValue": []
+    thead_utility_classes: {
+      name: 'Table Head Utility Classes',
+      description: 'An array of utility classes. Use to add extra Bootstrap utility classes or custom CSS classes over to the head of the table element.',
+      control: 'object',
+      defaultValue: [],
     },
-    "tbody_utility_classes": {
-      "name": "Table Body Utility Classes",
-      "description": "An array of utility classes. Use to add extra Bootstrap utility classes or custom CSS classes over to the body of the table element.",
-      "control": "object",
-      "defaultValue": []
+    tbody_utility_classes: {
+      name: 'Table Body Utility Classes',
+      description: 'An array of utility classes. Use to add extra Bootstrap utility classes or custom CSS classes over to the body of the table element.',
+      control: 'object',
+      defaultValue: [],
     },
-    "tfoot_utility_classes": {
-      "name": "Table Footer Utility Classes",
-      "description": "An array of utility classes. Use to add extra Bootstrap utility classes or custom CSS classes over to the footer of the table element.",
-      "control": "object",
-      "defaultValue": []
+    tfoot_utility_classes: {
+      name: 'Table Footer Utility Classes',
+      description: 'An array of utility classes. Use to add extra Bootstrap utility classes or custom CSS classes over to the footer of the table element.',
+      control: 'object',
+      defaultValue: [],
     },
-    "attributes": {
-      "name": "Attributes",
-      "description": "HTML attributes to apply to the `<table>` tag.",
-      "control": "object",
-      "defaultValue": {}
+    attributes: {
+      name: 'Attributes',
+      description: 'HTML attributes to apply to the `<table>` tag.',
+      control: 'object',
+      defaultValue: {},
     },
-    "thead_attributes": {
-      "name": "Table head attributes",
-      "description": "HTML attributes to apply to the `<thead>` tag.",
-      "control": "object",
-      "defaultValue": {}
+    thead_attributes: {
+      name: 'Table head attributes',
+      description: 'HTML attributes to apply to the `<thead>` tag.',
+      control: 'object',
+      defaultValue: {},
     },
-    "tbody_attributes": {
-      "name": "Table body attributes",
-      "description": "HTML attributes to apply to the `<tbody>` tag.",
-      "control": "object",
-      "defaultValue": {}
+    tbody_attributes: {
+      name: 'Table body attributes',
+      description: 'HTML attributes to apply to the `<tbody>` tag.',
+      control: 'object',
+      defaultValue: {},
     },
-    "tfoot_attributes": {
-      "name": "Table footer attributes",
-      "description": "HTML attributes to apply to the `<tfoot>` tag.",
-      "control": "object",
-      "defaultValue": {}
-    }
-  }
+    tfoot_attributes: {
+      name: 'Table footer attributes',
+      description: 'HTML attributes to apply to the `<tfoot>` tag.',
+      control: 'object',
+      defaultValue: {},
+    },
+  },
 } %}
-
 
 {% story TableDefault with {
-  "name": "Table default",
-  "args": {
-    "variant": "",
-    "responsive": true,
-    "striped_rows": false,
-    "striped_columns": false,
-    "hover": false,
-    "bordered": false,
-    "border_color": "",
-    "borderless": false,
-    "size": "",
-    "caption": "Example table caption",
-    "colgroups": {},
-    "header": {
-      "0": {
-        "tag": "th",
-        "content": "#"
+  name: 'Table default',
+  args: {
+    variant: '',
+    responsive: true,
+    striped_rows: false,
+    striped_columns: false,
+    hover: false,
+    bordered: false,
+    border_color: '',
+    borderless: false,
+    size: '',
+    caption: 'Example table caption',
+    colgroups: {},
+    header: {
+      0: {
+        tag: 'th',
+        content: '#',
       },
-      "1": {
-        "tag": "th",
-        "content": "First"
+      1: {
+        tag: 'th',
+        content: 'First',
       },
-      "2": {
-        "tag": "th",
-        "content": "Last"
+      2: {
+        tag: 'th',
+        content: 'Last',
       },
-      "3": {
-        "tag": "th",
-        "content": "Handle"
-      }
+      3: {
+        tag: 'th',
+        content: 'Handle',
+      },
     },
-    "sticky": false,
-    "rows": {
-      "0": {
-        "cells": {
-          "0":{
-            "tag":"td",
-            "content":"1"
+    sticky: false,
+    rows: {
+      0: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: '1',
           },
-          "1":{
-            "tag":"td",
-            "content":"Mark"
+          1: {
+            tag: 'td',
+            content: 'Mark',
           },
-          "2":{
-            "tag":"td",
-            "content":"Otto"
+          2: {
+            tag: 'td',
+            content: 'Otto',
           },
-          "3":{
-            "tag":"td",
-            "content":"@mdo"
-          }
-        }
+          3: {
+            tag: 'td',
+            content: '@mdo',
+          },
+        },
       },
-      "1": {
-        "cells": {
-          "0":{
-            "tag":"td",
-            "content":"2"
+      1: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: '2',
           },
-          "1":{
-            "tag":"td",
-            "content":"Jacob"
+          1: {
+            tag: 'td',
+            content: 'Jacob',
           },
-          "2":{
-            "tag":"td",
-            "content":"Thornton"
+          2: {
+            tag: 'td',
+            content: 'Thornton',
           },
-          "3":{
-            "tag":"td",
-            "content":"@fat"
-          }
-        }
+          3: {
+            tag: 'td',
+            content: '@fat',
+          },
+        },
       },
-      "2": {
-        "cells": {
-          "0":{
-            "tag":"td",
-            "content":"3"
+      2: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: '3',
           },
-          "1":{
-            "tag":"td",
-            "content":"Larry the Bird"
+          1: {
+            tag: 'td',
+            content: 'Larry the Bird',
           },
-          "2":{
-            "tag":"td",
-            "content":""
+          2: {
+            tag: 'td',
+            content: '',
           },
-          "3":{
-            "tag":"td",
-            "content":"@twitter"
-          }
-        }
-      }
+          3: {
+            tag: 'td',
+            content: '@twitter',
+          },
+        },
+      },
     },
-    "footer":  {
-      "0":{
-        "cells":{
-          "0":{
-            "tag":"td",
-            "content":"Footer"
+    footer: {
+      0: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: 'Footer',
           },
-          "1":{
-            "tag":"td",
-            "content":"Footer"
+          1: {
+            tag: 'td',
+            content: 'Footer',
           },
-          "2":{
-            "tag":"td",
-            "content":"Footer"
+          2: {
+            tag: 'td',
+            content: 'Footer',
           },
-          "3":{
-            "tag":"td",
-            "content":"Footer"
-          }
-        }
-      }
+          3: {
+            tag: 'td',
+            content: 'Footer',
+          },
+        },
+      },
     },
-    "empty": "This Table is empty message",
-    "no_striping": false,
-    "table_utility_classes": [],
-    "thead_utility_classes": [],
-    "tbody_utility_classes": [],
-    "tfoot_utility_classes": []
-  }
+    empty: 'This Table is empty message',
+    no_striping: false,
+    table_utility_classes: [],
+    thead_utility_classes: [],
+    tbody_utility_classes: [],
+    tfoot_utility_classes: [],
+  },
 } %}
 {{ include('vartheme_bs5:table') }}
 {% endstory %}
-
 
 {% story TableStripedRows with {
-  "name": "Table striped rows",
-  "args": {
-    "variant": "",
-    "responsive": true,
-    "striped_rows": true,
-    "striped_columns": false,
-    "hover": true,
-    "bordered": true,
-    "border_color": "",
-    "borderless": false,
-    "size": "",
-    "caption": "",
-    "colgroups": {},
-    "header": {
-      "0": {
-        "tag": "th",
-        "content": "#"
+  name: 'Table striped rows',
+  args: {
+    variant: '',
+    responsive: true,
+    striped_rows: true,
+    striped_columns: false,
+    hover: true,
+    bordered: true,
+    border_color: '',
+    borderless: false,
+    size: '',
+    caption: '',
+    colgroups: {},
+    header: {
+      0: {
+        tag: 'th',
+        content: '#',
       },
-      "1": {
-        "tag": "th",
-        "content": "First"
+      1: {
+        tag: 'th',
+        content: 'First',
       },
-      "2": {
-        "tag": "th",
-        "content": "Last"
+      2: {
+        tag: 'th',
+        content: 'Last',
       },
-      "3": {
-        "tag": "th",
-        "content": "Handle"
-      }
+      3: {
+        tag: 'th',
+        content: 'Handle',
+      },
     },
-    "sticky": false,
-    "rows": {
-      "0": {
-        "cells": {
-          "0":{
-            "tag":"td",
-            "content":"1"
+    sticky: false,
+    rows: {
+      0: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: '1',
           },
-          "1":{
-            "tag":"td",
-            "content":"Mark"
+          1: {
+            tag: 'td',
+            content: 'Mark',
           },
-          "2":{
-            "tag":"td",
-            "content":"Otto"
+          2: {
+            tag: 'td',
+            content: 'Otto',
           },
-          "3":{
-            "tag":"td",
-            "content":"@mdo"
-          }
-        }
+          3: {
+            tag: 'td',
+            content: '@mdo',
+          },
+        },
       },
-      "1": {
-        "cells": {
-          "0":{
-            "tag":"td",
-            "content":"2"
+      1: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: '2',
           },
-          "1":{
-            "tag":"td",
-            "content":"Jacob"
+          1: {
+            tag: 'td',
+            content: 'Jacob',
           },
-          "2":{
-            "tag":"td",
-            "content":"Thornton"
+          2: {
+            tag: 'td',
+            content: 'Thornton',
           },
-          "3":{
-            "tag":"td",
-            "content":"@fat"
-          }
-        }
+          3: {
+            tag: 'td',
+            content: '@fat',
+          },
+        },
       },
-      "2": {
-        "cells": {
-          "0":{
-            "tag":"td",
-            "content":"3"
+      2: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: '3',
           },
-          "1":{
-            "tag":"td",
-            "content":"Larry the Bird"
+          1: {
+            tag: 'td',
+            content: 'Larry the Bird',
           },
-          "2":{
-            "tag":"td",
-            "content":""
+          2: {
+            tag: 'td',
+            content: '',
           },
-          "3":{
-            "tag":"td",
-            "content":"@twitter"
-          }
-        }
-      }
+          3: {
+            tag: 'td',
+            content: '@twitter',
+          },
+        },
+      },
     },
-    "footer":  {
-      "0":{
-        "cells":{
-          "0":{
-            "tag":"td",
-            "content":"Footer"
+    footer: {
+      0: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: 'Footer',
           },
-          "1":{
-            "tag":"td",
-            "content":"Footer"
+          1: {
+            tag: 'td',
+            content: 'Footer',
           },
-          "2":{
-            "tag":"td",
-            "content":"Footer"
+          2: {
+            tag: 'td',
+            content: 'Footer',
           },
-          "3":{
-            "tag":"td",
-            "content":"Footer"
-          }
-        }
-      }
+          3: {
+            tag: 'td',
+            content: 'Footer',
+          },
+        },
+      },
     },
-    "empty": "This Table is empty message",
-    "no_striping": false,
-    "table_utility_classes": [],
-    "thead_utility_classes": [],
-    "tbody_utility_classes": [],
-    "tfoot_utility_classes": []
-  }
+    empty: 'This Table is empty message',
+    no_striping: false,
+    table_utility_classes: [],
+    thead_utility_classes: [],
+    tbody_utility_classes: [],
+    tfoot_utility_classes: [],
+  },
 } %}
 {{ include('vartheme_bs5:table') }}
 {% endstory %}
-
 
 {% story TableStripedColumns with {
-  "name": "Table striped columns",
-  "args": {
-    "variant": "",
-    "responsive": true,
-    "striped_rows": false,
-    "striped_columns": true,
-    "hover": true,
-    "bordered": true,
-    "border_color": "",
-    "borderless": false,
-    "size": "",
-    "caption": "",
-    "colgroups": {},
-    "header": {
-      "0": {
-        "tag": "th",
-        "content": "#"
+  name: 'Table striped columns',
+  args: {
+    variant: '',
+    responsive: true,
+    striped_rows: false,
+    striped_columns: true,
+    hover: true,
+    bordered: true,
+    border_color: '',
+    borderless: false,
+    size: '',
+    caption: '',
+    colgroups: {},
+    header: {
+      0: {
+        tag: 'th',
+        content: '#',
       },
-      "1": {
-        "tag": "th",
-        "content": "First"
+      1: {
+        tag: 'th',
+        content: 'First',
       },
-      "2": {
-        "tag": "th",
-        "content": "Last"
+      2: {
+        tag: 'th',
+        content: 'Last',
       },
-      "3": {
-        "tag": "th",
-        "content": "Handle"
-      }
+      3: {
+        tag: 'th',
+        content: 'Handle',
+      },
     },
-    "sticky": false,
-    "rows": {
-      "0": {
-        "cells": {
-          "0":{
-            "tag":"td",
-            "content":"1"
+    sticky: false,
+    rows: {
+      0: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: '1',
           },
-          "1":{
-            "tag":"td",
-            "content":"Mark"
+          1: {
+            tag: 'td',
+            content: 'Mark',
           },
-          "2":{
-            "tag":"td",
-            "content":"Otto"
+          2: {
+            tag: 'td',
+            content: 'Otto',
           },
-          "3":{
-            "tag":"td",
-            "content":"@mdo"
-          }
-        }
+          3: {
+            tag: 'td',
+            content: '@mdo',
+          },
+        },
       },
-      "1": {
-        "cells": {
-          "0":{
-            "tag":"td",
-            "content":"2"
+      1: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: '2',
           },
-          "1":{
-            "tag":"td",
-            "content":"Jacob"
+          1: {
+            tag: 'td',
+            content: 'Jacob',
           },
-          "2":{
-            "tag":"td",
-            "content":"Thornton"
+          2: {
+            tag: 'td',
+            content: 'Thornton',
           },
-          "3":{
-            "tag":"td",
-            "content":"@fat"
-          }
-        }
+          3: {
+            tag: 'td',
+            content: '@fat',
+          },
+        },
       },
-      "2": {
-        "cells": {
-          "0":{
-            "tag":"td",
-            "content":"3"
+      2: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: '3',
           },
-          "1":{
-            "tag":"td",
-            "content":"Larry the Bird"
+          1: {
+            tag: 'td',
+            content: 'Larry the Bird',
           },
-          "2":{
-            "tag":"td",
-            "content":""
+          2: {
+            tag: 'td',
+            content: '',
           },
-          "3":{
-            "tag":"td",
-            "content":"@twitter"
-          }
-        }
-      }
+          3: {
+            tag: 'td',
+            content: '@twitter',
+          },
+        },
+      },
     },
-    "footer":  {
-      "0":{
-        "cells":{
-          "0":{
-            "tag":"td",
-            "content":"Footer"
+    footer: {
+      0: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: 'Footer',
           },
-          "1":{
-            "tag":"td",
-            "content":"Footer"
+          1: {
+            tag: 'td',
+            content: 'Footer',
           },
-          "2":{
-            "tag":"td",
-            "content":"Footer"
+          2: {
+            tag: 'td',
+            content: 'Footer',
           },
-          "3":{
-            "tag":"td",
-            "content":"Footer"
-          }
-        }
-      }
+          3: {
+            tag: 'td',
+            content: 'Footer',
+          },
+        },
+      },
     },
-    "empty": "This Table is empty message",
-    "no_striping": false,
-    "table_utility_classes": [],
-    "thead_utility_classes": [],
-    "tbody_utility_classes": [],
-    "tfoot_utility_classes": []
-  }
+    empty: 'This Table is empty message',
+    no_striping: false,
+    table_utility_classes: [],
+    thead_utility_classes: [],
+    tbody_utility_classes: [],
+    tfoot_utility_classes: [],
+  },
 } %}
 {{ include('vartheme_bs5:table') }}
 {% endstory %}
-
 
 {% story SmallTable with {
-  "name": "Small Table",
-  "args": {
-    "variant": "",
-    "responsive": true,
-    "striped_rows": true,
-    "striped_columns": false,
-    "hover": true,
-    "bordered": true,
-    "border_color": "",
-    "borderless": false,
-    "size": "sm",
-    "caption": "",
-    "colgroups": {},
-    "header": {
-      "0": {
-        "tag": "th",
-        "content": "#"
+  name: 'Small Table',
+  args: {
+    variant: '',
+    responsive: true,
+    striped_rows: true,
+    striped_columns: false,
+    hover: true,
+    bordered: true,
+    border_color: '',
+    borderless: false,
+    size: 'sm',
+    caption: '',
+    colgroups: {},
+    header: {
+      0: {
+        tag: 'th',
+        content: '#',
       },
-      "1": {
-        "tag": "th",
-        "content": "First"
+      1: {
+        tag: 'th',
+        content: 'First',
       },
-      "2": {
-        "tag": "th",
-        "content": "Last"
+      2: {
+        tag: 'th',
+        content: 'Last',
       },
-      "3": {
-        "tag": "th",
-        "content": "Handle"
-      }
+      3: {
+        tag: 'th',
+        content: 'Handle',
+      },
     },
-    "sticky": false,
-    "rows": {
-      "0": {
-        "cells": {
-          "0":{
-            "tag":"td",
-            "content":"1"
+    sticky: false,
+    rows: {
+      0: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: '1',
           },
-          "1":{
-            "tag":"td",
-            "content":"Mark"
+          1: {
+            tag: 'td',
+            content: 'Mark',
           },
-          "2":{
-            "tag":"td",
-            "content":"Otto"
+          2: {
+            tag: 'td',
+            content: 'Otto',
           },
-          "3":{
-            "tag":"td",
-            "content":"@mdo"
-          }
-        }
+          3: {
+            tag: 'td',
+            content: '@mdo',
+          },
+        },
       },
-      "1": {
-        "cells": {
-          "0":{
-            "tag":"td",
-            "content":"2"
+      1: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: '2',
           },
-          "1":{
-            "tag":"td",
-            "content":"Jacob"
+          1: {
+            tag: 'td',
+            content: 'Jacob',
           },
-          "2":{
-            "tag":"td",
-            "content":"Thornton"
+          2: {
+            tag: 'td',
+            content: 'Thornton',
           },
-          "3":{
-            "tag":"td",
-            "content":"@fat"
-          }
-        }
+          3: {
+            tag: 'td',
+            content: '@fat',
+          },
+        },
       },
-      "2": {
-        "cells": {
-          "0":{
-            "tag":"td",
-            "content":"3"
+      2: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: '3',
           },
-          "1":{
-            "tag":"td",
-            "content":"Larry the Bird"
+          1: {
+            tag: 'td',
+            content: 'Larry the Bird',
           },
-          "2":{
-            "tag":"td",
-            "content":""
+          2: {
+            tag: 'td',
+            content: '',
           },
-          "3":{
-            "tag":"td",
-            "content":"@twitter"
-          }
-        }
-      }
+          3: {
+            tag: 'td',
+            content: '@twitter',
+          },
+        },
+      },
     },
-    "footer":  {
-      "0":{
-        "cells":{
-          "0":{
-            "tag":"td",
-            "content":"Footer"
+    footer: {
+      0: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: 'Footer',
           },
-          "1":{
-            "tag":"td",
-            "content":"Footer"
+          1: {
+            tag: 'td',
+            content: 'Footer',
           },
-          "2":{
-            "tag":"td",
-            "content":"Footer"
+          2: {
+            tag: 'td',
+            content: 'Footer',
           },
-          "3":{
-            "tag":"td",
-            "content":"Footer"
-          }
-        }
-      }
+          3: {
+            tag: 'td',
+            content: 'Footer',
+          },
+        },
+      },
     },
-    "empty": "This Table is empty message",
-    "no_striping": false,
-    "table_utility_classes": [],
-    "thead_utility_classes": [],
-    "tbody_utility_classes": [],
-    "tfoot_utility_classes": []
-  }
+    empty: 'This Table is empty message',
+    no_striping: false,
+    table_utility_classes: [],
+    thead_utility_classes: [],
+    tbody_utility_classes: [],
+    tfoot_utility_classes: [],
+  },
 } %}
 {{ include('vartheme_bs5:table') }}
 {% endstory %}
-
 
 {% story StickyTableHeader with {
-  "name": "Sticky Table Header",
-  "args": {
-    "variant": "",
-    "responsive": false,
-    "striped_rows": true,
-    "striped_columns": false,
-    "hover": true,
-    "bordered": true,
-    "border_color": "",
-    "borderless": false,
-    "size": "",
-    "caption": "",
-    "colgroups": {},
-    "header": {
-      "0": {
-        "tag": "th",
-        "content": "#"
+  name: 'Sticky Table Header',
+  args: {
+    variant: '',
+    responsive: false,
+    striped_rows: true,
+    striped_columns: false,
+    hover: true,
+    bordered: true,
+    border_color: '',
+    borderless: false,
+    size: '',
+    caption: '',
+    colgroups: {},
+    header: {
+      0: {
+        tag: 'th',
+        content: '#',
       },
-      "1": {
-        "tag": "th",
-        "content": "Heading"
+      1: {
+        tag: 'th',
+        content: 'Heading',
       },
-      "2": {
-        "tag": "th",
-        "content": "Heading"
+      2: {
+        tag: 'th',
+        content: 'Heading',
       },
-      "3": {
-        "tag": "th",
-        "content": "Heading"
+      3: {
+        tag: 'th',
+        content: 'Heading',
       },
-      "4": {
-        "tag": "th",
-        "content": "Heading"
+      4: {
+        tag: 'th',
+        content: 'Heading',
       },
-      "5": {
-        "tag": "th",
-        "content": "Heading"
-      }
+      5: {
+        tag: 'th',
+        content: 'Heading',
+      },
     },
-    "sticky": true,
-    "rows": {
-      "0": {
-        "cells": {
-          "0":{
-            "tag":"td",
-            "content":"1"
+    sticky: true,
+    rows: {
+      0: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: '1',
           },
-          "1":{
-            "tag":"td",
-            "content":"Cell"
+          1: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "2":{
-            "tag":"td",
-            "content":"Cell"
+          2: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "3":{
-            "tag":"td",
-            "content":"Cell"
+          3: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "4":{
-            "tag":"td",
-            "content":"Cell"
+          4: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "5":{
-            "tag":"td",
-            "content":"Cell"
-          }
-        }
+          5: {
+            tag: 'td',
+            content: 'Cell',
+          },
+        },
       },
-      "1": {
-        "cells": {
-          "0":{
-            "tag":"td",
-            "content":"2"
+      1: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: '2',
           },
-          "1":{
-            "tag":"td",
-            "content":"Cell"
+          1: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "2":{
-            "tag":"td",
-            "content":"Cell"
+          2: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "3":{
-            "tag":"td",
-            "content":"Cell"
+          3: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "4":{
-            "tag":"td",
-            "content":"Cell"
+          4: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "5":{
-            "tag":"td",
-            "content":"Cell"
-          }
-        }
+          5: {
+            tag: 'td',
+            content: 'Cell',
+          },
+        },
       },
-      "2": {
-        "cells": {
-          "0":{
-            "tag":"td",
-            "content":"3"
+      2: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: '3',
           },
-          "1":{
-            "tag":"td",
-            "content":"Cell"
+          1: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "2":{
-            "tag":"td",
-            "content":"Cell"
+          2: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "3":{
-            "tag":"td",
-            "content":"Cell"
+          3: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "4":{
-            "tag":"td",
-            "content":"Cell"
+          4: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "5":{
-            "tag":"td",
-            "content":"Cell"
-          }
-        }
+          5: {
+            tag: 'td',
+            content: 'Cell',
+          },
+        },
       },
-      "3": {
-        "cells": {
-          "0":{
-            "tag":"td",
-            "content":"4"
+      3: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: '4',
           },
-          "1":{
-            "tag":"td",
-            "content":"Cell"
+          1: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "2":{
-            "tag":"td",
-            "content":"Cell"
+          2: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "3":{
-            "tag":"td",
-            "content":"Cell"
+          3: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "4":{
-            "tag":"td",
-            "content":"Cell"
+          4: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "5":{
-            "tag":"td",
-            "content":"Cell"
-          }
-        }
+          5: {
+            tag: 'td',
+            content: 'Cell',
+          },
+        },
       },
-      "4": {
-        "cells": {
-          "0":{
-            "tag":"td",
-            "content":"5"
+      4: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: '5',
           },
-          "1":{
-            "tag":"td",
-            "content":"Cell"
+          1: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "2":{
-            "tag":"td",
-            "content":"Cell"
+          2: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "3":{
-            "tag":"td",
-            "content":"Cell"
+          3: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "4":{
-            "tag":"td",
-            "content":"Cell"
+          4: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "5":{
-            "tag":"td",
-            "content":"Cell"
-          }
-        }
+          5: {
+            tag: 'td',
+            content: 'Cell',
+          },
+        },
       },
-      "5": {
-        "cells": {
-          "0":{
-            "tag":"td",
-            "content":"6"
+      5: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: '6',
           },
-          "1":{
-            "tag":"td",
-            "content":"Cell"
+          1: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "2":{
-            "tag":"td",
-            "content":"Cell"
+          2: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "3":{
-            "tag":"td",
-            "content":"Cell"
+          3: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "4":{
-            "tag":"td",
-            "content":"Cell"
+          4: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "5":{
-            "tag":"td",
-            "content":"Cell"
-          }
-        }
+          5: {
+            tag: 'td',
+            content: 'Cell',
+          },
+        },
       },
-      "6": {
-        "cells": {
-          "0":{
-            "tag":"td",
-            "content":"7"
+      6: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: '7',
           },
-          "1":{
-            "tag":"td",
-            "content":"Cell"
+          1: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "2":{
-            "tag":"td",
-            "content":"Cell"
+          2: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "3":{
-            "tag":"td",
-            "content":"Cell"
+          3: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "4":{
-            "tag":"td",
-            "content":"Cell"
+          4: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "5":{
-            "tag":"td",
-            "content":"Cell"
-          }
-        }
+          5: {
+            tag: 'td',
+            content: 'Cell',
+          },
+        },
       },
-      "7": {
-        "cells": {
-          "0":{
-            "tag":"td",
-            "content":"8"
+      7: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: '8',
           },
-          "1":{
-            "tag":"td",
-            "content":"Cell"
+          1: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "2":{
-            "tag":"td",
-            "content":"Cell"
+          2: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "3":{
-            "tag":"td",
-            "content":"Cell"
+          3: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "4":{
-            "tag":"td",
-            "content":"Cell"
+          4: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "5":{
-            "tag":"td",
-            "content":"Cell"
-          }
-        }
+          5: {
+            tag: 'td',
+            content: 'Cell',
+          },
+        },
       },
-      "8": {
-        "cells": {
-          "0":{
-            "tag":"td",
-            "content":"9"
+      8: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: '9',
           },
-          "1":{
-            "tag":"td",
-            "content":"Cell"
+          1: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "2":{
-            "tag":"td",
-            "content":"Cell"
+          2: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "3":{
-            "tag":"td",
-            "content":"Cell"
+          3: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "4":{
-            "tag":"td",
-            "content":"Cell"
+          4: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "5":{
-            "tag":"td",
-            "content":"Cell"
-          }
-        }
+          5: {
+            tag: 'td',
+            content: 'Cell',
+          },
+        },
       },
-      "9": {
-        "cells": {
-          "0":{
-            "tag":"td",
-            "content":"10"
+      9: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: '10',
           },
-          "1":{
-            "tag":"td",
-            "content":"Cell"
+          1: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "2":{
-            "tag":"td",
-            "content":"Cell"
+          2: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "3":{
-            "tag":"td",
-            "content":"Cell"
+          3: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "4":{
-            "tag":"td",
-            "content":"Cell"
+          4: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "5":{
-            "tag":"td",
-            "content":"Cell"
-          }
-        }
+          5: {
+            tag: 'td',
+            content: 'Cell',
+          },
+        },
       },
-      "10": {
-        "cells": {
-          "0":{
-            "tag":"td",
-            "content":"11"
+      10: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: '11',
           },
-          "1":{
-            "tag":"td",
-            "content":"Cell"
+          1: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "2":{
-            "tag":"td",
-            "content":"Cell"
+          2: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "3":{
-            "tag":"td",
-            "content":"Cell"
+          3: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "4":{
-            "tag":"td",
-            "content":"Cell"
+          4: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "5":{
-            "tag":"td",
-            "content":"Cell"
-          }
-        }
+          5: {
+            tag: 'td',
+            content: 'Cell',
+          },
+        },
       },
-      "11": {
-        "cells": {
-          "0":{
-            "tag":"td",
-            "content":"12"
+      11: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: '12',
           },
-          "1":{
-            "tag":"td",
-            "content":"Cell"
+          1: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "2":{
-            "tag":"td",
-            "content":"Cell"
+          2: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "3":{
-            "tag":"td",
-            "content":"Cell"
+          3: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "4":{
-            "tag":"td",
-            "content":"Cell"
+          4: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "5":{
-            "tag":"td",
-            "content":"Cell"
-          }
-        }
+          5: {
+            tag: 'td',
+            content: 'Cell',
+          },
+        },
       },
-      "12": {
-        "cells": {
-          "0":{
-            "tag":"td",
-            "content":"13"
+      12: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: '13',
           },
-          "1":{
-            "tag":"td",
-            "content":"Cell"
+          1: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "2":{
-            "tag":"td",
-            "content":"Cell"
+          2: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "3":{
-            "tag":"td",
-            "content":"Cell"
+          3: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "4":{
-            "tag":"td",
-            "content":"Cell"
+          4: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "5":{
-            "tag":"td",
-            "content":"Cell"
-          }
-        }
+          5: {
+            tag: 'td',
+            content: 'Cell',
+          },
+        },
       },
-      "13": {
-        "cells": {
-          "0":{
-            "tag":"td",
-            "content":"14"
+      13: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: '14',
           },
-          "1":{
-            "tag":"td",
-            "content":"Cell"
+          1: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "2":{
-            "tag":"td",
-            "content":"Cell"
+          2: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "3":{
-            "tag":"td",
-            "content":"Cell"
+          3: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "4":{
-            "tag":"td",
-            "content":"Cell"
+          4: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "5":{
-            "tag":"td",
-            "content":"Cell"
-          }
-        }
+          5: {
+            tag: 'td',
+            content: 'Cell',
+          },
+        },
       },
-      "14": {
-        "cells": {
-          "0":{
-            "tag":"td",
-            "content":"15"
+      14: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: '15',
           },
-          "1":{
-            "tag":"td",
-            "content":"Cell"
+          1: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "2":{
-            "tag":"td",
-            "content":"Cell"
+          2: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "3":{
-            "tag":"td",
-            "content":"Cell"
+          3: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "4":{
-            "tag":"td",
-            "content":"Cell"
+          4: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "5":{
-            "tag":"td",
-            "content":"Cell"
-          }
-        }
+          5: {
+            tag: 'td',
+            content: 'Cell',
+          },
+        },
       },
-      "15": {
-        "cells": {
-          "0":{
-            "tag":"td",
-            "content":"16"
+      15: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: '16',
           },
-          "1":{
-            "tag":"td",
-            "content":"Cell"
+          1: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "2":{
-            "tag":"td",
-            "content":"Cell"
+          2: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "3":{
-            "tag":"td",
-            "content":"Cell"
+          3: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "4":{
-            "tag":"td",
-            "content":"Cell"
+          4: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "5":{
-            "tag":"td",
-            "content":"Cell"
-          }
-        }
+          5: {
+            tag: 'td',
+            content: 'Cell',
+          },
+        },
       },
-      "16": {
-        "cells": {
-          "0":{
-            "tag":"td",
-            "content":"17"
+      16: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: '17',
           },
-          "1":{
-            "tag":"td",
-            "content":"Cell"
+          1: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "2":{
-            "tag":"td",
-            "content":"Cell"
+          2: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "3":{
-            "tag":"td",
-            "content":"Cell"
+          3: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "4":{
-            "tag":"td",
-            "content":"Cell"
+          4: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "5":{
-            "tag":"td",
-            "content":"Cell"
-          }
-        }
+          5: {
+            tag: 'td',
+            content: 'Cell',
+          },
+        },
       },
-      "17": {
-        "cells": {
-          "0":{
-            "tag":"td",
-            "content":"18"
+      17: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: '18',
           },
-          "1":{
-            "tag":"td",
-            "content":"Cell"
+          1: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "2":{
-            "tag":"td",
-            "content":"Cell"
+          2: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "3":{
-            "tag":"td",
-            "content":"Cell"
+          3: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "4":{
-            "tag":"td",
-            "content":"Cell"
+          4: {
+            tag: 'td',
+            content: 'Cell',
           },
-          "5":{
-            "tag":"td",
-            "content":"Cell"
-          }
-        }
-      }
+          5: {
+            tag: 'td',
+            content: 'Cell',
+          },
+        },
+      },
     },
-    "footer":  {},
-    "empty": "This Table is empty message",
-    "no_striping": false,
-    "table_utility_classes": [],
-    "thead_utility_classes": [],
-    "tbody_utility_classes": [],
-    "tfoot_utility_classes": []
-  }
+    footer: {},
+    empty: 'This Table is empty message',
+    no_striping: false,
+    table_utility_classes: [],
+    thead_utility_classes: [],
+    tbody_utility_classes: [],
+    tfoot_utility_classes: [],
+  },
 } %}
 {{ include('vartheme_bs5:table') }}
 {% endstory %}
-
 
 {% story TablePrimary with {
-  "name": "Primary",
-  "args": {
-    "variant": "primary",
-    "responsive": true,
-    "striped_rows": true,
-    "striped_columns": false,
-    "hover": true,
-    "bordered": true,
-    "border_color": "",
-    "borderless": false,
-    "size": "",
-    "caption": "",
-    "colgroups": {},
-    "header": {
-      "0": {
-        "tag": "th",
-        "content": "#"
+  name: 'Primary',
+  args: {
+    variant: 'primary',
+    responsive: true,
+    striped_rows: true,
+    striped_columns: false,
+    hover: true,
+    bordered: true,
+    border_color: '',
+    borderless: false,
+    size: '',
+    caption: '',
+    colgroups: {},
+    header: {
+      0: {
+        tag: 'th',
+        content: '#',
       },
-      "1": {
-        "tag": "th",
-        "content": "First"
+      1: {
+        tag: 'th',
+        content: 'First',
       },
-      "2": {
-        "tag": "th",
-        "content": "Last"
+      2: {
+        tag: 'th',
+        content: 'Last',
       },
-      "3": {
-        "tag": "th",
-        "content": "Handle"
-      }
+      3: {
+        tag: 'th',
+        content: 'Handle',
+      },
     },
-    "sticky": false,
-    "rows": {
-      "0": {
-        "cells": {
-          "0":{
-            "tag":"td",
-            "content":"1"
+    sticky: false,
+    rows: {
+      0: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: '1',
           },
-          "1":{
-            "tag":"td",
-            "content":"Mark"
+          1: {
+            tag: 'td',
+            content: 'Mark',
           },
-          "2":{
-            "tag":"td",
-            "content":"Otto"
+          2: {
+            tag: 'td',
+            content: 'Otto',
           },
-          "3":{
-            "tag":"td",
-            "content":"@mdo"
-          }
-        }
+          3: {
+            tag: 'td',
+            content: '@mdo',
+          },
+        },
       },
-      "1": {
-        "cells": {
-          "0":{
-            "tag":"td",
-            "content":"2"
+      1: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: '2',
           },
-          "1":{
-            "tag":"td",
-            "content":"Jacob"
+          1: {
+            tag: 'td',
+            content: 'Jacob',
           },
-          "2":{
-            "tag":"td",
-            "content":"Thornton"
+          2: {
+            tag: 'td',
+            content: 'Thornton',
           },
-          "3":{
-            "tag":"td",
-            "content":"@fat"
-          }
-        }
+          3: {
+            tag: 'td',
+            content: '@fat',
+          },
+        },
       },
-      "2": {
-        "cells": {
-          "0":{
-            "tag":"td",
-            "content":"3"
+      2: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: '3',
           },
-          "1":{
-            "tag":"td",
-            "content":"Larry the Bird"
+          1: {
+            tag: 'td',
+            content: 'Larry the Bird',
           },
-          "2":{
-            "tag":"td",
-            "content":""
+          2: {
+            tag: 'td',
+            content: '',
           },
-          "3":{
-            "tag":"td",
-            "content":"@twitter"
-          }
-        }
-      }
+          3: {
+            tag: 'td',
+            content: '@twitter',
+          },
+        },
+      },
     },
-    "footer":  {
-      "0":{
-        "cells":{
-          "0":{
-            "tag":"td",
-            "content":"Footer"
+    footer: {
+      0: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: 'Footer',
           },
-          "1":{
-            "tag":"td",
-            "content":"Footer"
+          1: {
+            tag: 'td',
+            content: 'Footer',
           },
-          "2":{
-            "tag":"td",
-            "content":"Footer"
+          2: {
+            tag: 'td',
+            content: 'Footer',
           },
-          "3":{
-            "tag":"td",
-            "content":"Footer"
-          }
-        }
-      }
+          3: {
+            tag: 'td',
+            content: 'Footer',
+          },
+        },
+      },
     },
-    "empty": "This Table is empty message",
-    "no_striping": false,
-    "table_utility_classes": [],
-    "thead_utility_classes": [],
-    "tbody_utility_classes": [],
-    "tfoot_utility_classes": []
-  }
+    empty: 'This Table is empty message',
+    no_striping: false,
+    table_utility_classes: [],
+    thead_utility_classes: [],
+    tbody_utility_classes: [],
+    tfoot_utility_classes: [],
+  },
 } %}
 {{ include('vartheme_bs5:table') }}
 {% endstory %}
-
 
 {% story TableSecondary with {
-  "name": "Secondary",
-  "args": {
-    "variant": "secondary",
-    "responsive": true,
-    "striped_rows": false,
-    "striped_columns": true,
-    "hover": true,
-    "bordered": true,
-    "border_color": "",
-    "borderless": false,
-    "size": "",
-    "caption": "",
-    "colgroups": {},
-    "header": {
-      "0": {
-        "tag": "th",
-        "content": "#"
+  name: 'Secondary',
+  args: {
+    variant: 'secondary',
+    responsive: true,
+    striped_rows: false,
+    striped_columns: true,
+    hover: true,
+    bordered: true,
+    border_color: '',
+    borderless: false,
+    size: '',
+    caption: '',
+    colgroups: {},
+    header: {
+      0: {
+        tag: 'th',
+        content: '#',
       },
-      "1": {
-        "tag": "th",
-        "content": "First"
+      1: {
+        tag: 'th',
+        content: 'First',
       },
-      "2": {
-        "tag": "th",
-        "content": "Last"
+      2: {
+        tag: 'th',
+        content: 'Last',
       },
-      "3": {
-        "tag": "th",
-        "content": "Handle"
-      }
+      3: {
+        tag: 'th',
+        content: 'Handle',
+      },
     },
-    "sticky": false,
-    "rows": {
-      "0": {
-        "cells": {
-          "0":{
-            "tag":"td",
-            "content":"1"
+    sticky: false,
+    rows: {
+      0: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: '1',
           },
-          "1":{
-            "tag":"td",
-            "content":"Mark"
+          1: {
+            tag: 'td',
+            content: 'Mark',
           },
-          "2":{
-            "tag":"td",
-            "content":"Otto"
+          2: {
+            tag: 'td',
+            content: 'Otto',
           },
-          "3":{
-            "tag":"td",
-            "content":"@mdo"
-          }
-        }
+          3: {
+            tag: 'td',
+            content: '@mdo',
+          },
+        },
       },
-      "1": {
-        "cells": {
-          "0":{
-            "tag":"td",
-            "content":"2"
+      1: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: '2',
           },
-          "1":{
-            "tag":"td",
-            "content":"Jacob"
+          1: {
+            tag: 'td',
+            content: 'Jacob',
           },
-          "2":{
-            "tag":"td",
-            "content":"Thornton"
+          2: {
+            tag: 'td',
+            content: 'Thornton',
           },
-          "3":{
-            "tag":"td",
-            "content":"@fat"
-          }
-        }
+          3: {
+            tag: 'td',
+            content: '@fat',
+          },
+        },
       },
-      "2": {
-        "cells": {
-          "0":{
-            "tag":"td",
-            "content":"3"
+      2: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: '3',
           },
-          "1":{
-            "tag":"td",
-            "content":"Larry the Bird"
+          1: {
+            tag: 'td',
+            content: 'Larry the Bird',
           },
-          "2":{
-            "tag":"td",
-            "content":""
+          2: {
+            tag: 'td',
+            content: '',
           },
-          "3":{
-            "tag":"td",
-            "content":"@twitter"
-          }
-        }
-      }
+          3: {
+            tag: 'td',
+            content: '@twitter',
+          },
+        },
+      },
     },
-    "footer":  {
-      "0":{
-        "cells":{
-          "0":{
-            "tag":"td",
-            "content":"Footer"
+    footer: {
+      0: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: 'Footer',
           },
-          "1":{
-            "tag":"td",
-            "content":"Footer"
+          1: {
+            tag: 'td',
+            content: 'Footer',
           },
-          "2":{
-            "tag":"td",
-            "content":"Footer"
+          2: {
+            tag: 'td',
+            content: 'Footer',
           },
-          "3":{
-            "tag":"td",
-            "content":"Footer"
-          }
-        }
-      }
+          3: {
+            tag: 'td',
+            content: 'Footer',
+          },
+        },
+      },
     },
-    "empty": "This Table is empty message",
-    "no_striping": false,
-    "table_utility_classes": [],
-    "thead_utility_classes": [],
-    "tbody_utility_classes": [],
-    "tfoot_utility_classes": []
-  }
+    empty: 'This Table is empty message',
+    no_striping: false,
+    table_utility_classes: [],
+    thead_utility_classes: [],
+    tbody_utility_classes: [],
+    tfoot_utility_classes: [],
+  },
 } %}
 {{ include('vartheme_bs5:table') }}
 {% endstory %}
-
 
 {% story TableSuccess with {
-  "name": "Success",
-  "args": {
-    "variant": "success",
-    "responsive": true,
-    "striped_rows": true,
-    "striped_columns": false,
-    "hover": true,
-    "bordered": true,
-    "border_color": "",
-    "borderless": false,
-    "size": "",
-    "caption": "",
-    "colgroups": {},
-    "header": {
-      "0": {
-        "tag": "th",
-        "content": "#"
+  name: 'Success',
+  args: {
+    variant: 'success',
+    responsive: true,
+    striped_rows: true,
+    striped_columns: false,
+    hover: true,
+    bordered: true,
+    border_color: '',
+    borderless: false,
+    size: '',
+    caption: '',
+    colgroups: {},
+    header: {
+      0: {
+        tag: 'th',
+        content: '#',
       },
-      "1": {
-        "tag": "th",
-        "content": "First"
+      1: {
+        tag: 'th',
+        content: 'First',
       },
-      "2": {
-        "tag": "th",
-        "content": "Last"
+      2: {
+        tag: 'th',
+        content: 'Last',
       },
-      "3": {
-        "tag": "th",
-        "content": "Handle"
-      }
+      3: {
+        tag: 'th',
+        content: 'Handle',
+      },
     },
-    "sticky": false,
-    "rows": {
-      "0": {
-        "cells": {
-          "0":{
-            "tag":"td",
-            "content":"1"
+    sticky: false,
+    rows: {
+      0: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: '1',
           },
-          "1":{
-            "tag":"td",
-            "content":"Mark"
+          1: {
+            tag: 'td',
+            content: 'Mark',
           },
-          "2":{
-            "tag":"td",
-            "content":"Otto"
+          2: {
+            tag: 'td',
+            content: 'Otto',
           },
-          "3":{
-            "tag":"td",
-            "content":"@mdo"
-          }
-        }
+          3: {
+            tag: 'td',
+            content: '@mdo',
+          },
+        },
       },
-      "1": {
-        "cells": {
-          "0":{
-            "tag":"td",
-            "content":"2"
+      1: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: '2',
           },
-          "1":{
-            "tag":"td",
-            "content":"Jacob"
+          1: {
+            tag: 'td',
+            content: 'Jacob',
           },
-          "2":{
-            "tag":"td",
-            "content":"Thornton"
+          2: {
+            tag: 'td',
+            content: 'Thornton',
           },
-          "3":{
-            "tag":"td",
-            "content":"@fat"
-          }
-        }
+          3: {
+            tag: 'td',
+            content: '@fat',
+          },
+        },
       },
-      "2": {
-        "cells": {
-          "0":{
-            "tag":"td",
-            "content":"3"
+      2: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: '3',
           },
-          "1":{
-            "tag":"td",
-            "content":"Larry the Bird"
+          1: {
+            tag: 'td',
+            content: 'Larry the Bird',
           },
-          "2":{
-            "tag":"td",
-            "content":""
+          2: {
+            tag: 'td',
+            content: '',
           },
-          "3":{
-            "tag":"td",
-            "content":"@twitter"
-          }
-        }
-      }
+          3: {
+            tag: 'td',
+            content: '@twitter',
+          },
+        },
+      },
     },
-    "footer":  {
-      "0":{
-        "cells":{
-          "0":{
-            "tag":"td",
-            "content":"Footer"
+    footer: {
+      0: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: 'Footer',
           },
-          "1":{
-            "tag":"td",
-            "content":"Footer"
+          1: {
+            tag: 'td',
+            content: 'Footer',
           },
-          "2":{
-            "tag":"td",
-            "content":"Footer"
+          2: {
+            tag: 'td',
+            content: 'Footer',
           },
-          "3":{
-            "tag":"td",
-            "content":"Footer"
-          }
-        }
-      }
+          3: {
+            tag: 'td',
+            content: 'Footer',
+          },
+        },
+      },
     },
-    "empty": "This Table is empty message",
-    "no_striping": false,
-    "table_utility_classes": [],
-    "thead_utility_classes": [],
-    "tbody_utility_classes": [],
-    "tfoot_utility_classes": []
-  }
+    empty: 'This Table is empty message',
+    no_striping: false,
+    table_utility_classes: [],
+    thead_utility_classes: [],
+    tbody_utility_classes: [],
+    tfoot_utility_classes: [],
+  },
 } %}
 {{ include('vartheme_bs5:table') }}
 {% endstory %}
-
 
 {% story TableInfo with {
-  "name": "Info",
-  "args": {
-    "variant": "info",
-    "responsive": true,
-    "striped_rows": true,
-    "striped_columns": false,
-    "hover": true,
-    "bordered": true,
-    "border_color": "",
-    "borderless": false,
-    "size": "",
-    "caption": "",
-    "colgroups": {},
-    "header": {
-      "0": {
-        "tag": "th",
-        "content": "#"
+  name: 'Info',
+  args: {
+    variant: 'info',
+    responsive: true,
+    striped_rows: true,
+    striped_columns: false,
+    hover: true,
+    bordered: true,
+    border_color: '',
+    borderless: false,
+    size: '',
+    caption: '',
+    colgroups: {},
+    header: {
+      0: {
+        tag: 'th',
+        content: '#',
       },
-      "1": {
-        "tag": "th",
-        "content": "First"
+      1: {
+        tag: 'th',
+        content: 'First',
       },
-      "2": {
-        "tag": "th",
-        "content": "Last"
+      2: {
+        tag: 'th',
+        content: 'Last',
       },
-      "3": {
-        "tag": "th",
-        "content": "Handle"
-      }
+      3: {
+        tag: 'th',
+        content: 'Handle',
+      },
     },
-    "sticky": false,
-    "rows": {
-      "0": {
-        "cells": {
-          "0":{
-            "tag":"td",
-            "content":"1"
+    sticky: false,
+    rows: {
+      0: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: '1',
           },
-          "1":{
-            "tag":"td",
-            "content":"Mark"
+          1: {
+            tag: 'td',
+            content: 'Mark',
           },
-          "2":{
-            "tag":"td",
-            "content":"Otto"
+          2: {
+            tag: 'td',
+            content: 'Otto',
           },
-          "3":{
-            "tag":"td",
-            "content":"@mdo"
-          }
-        }
+          3: {
+            tag: 'td',
+            content: '@mdo',
+          },
+        },
       },
-      "1": {
-        "cells": {
-          "0":{
-            "tag":"td",
-            "content":"2"
+      1: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: '2',
           },
-          "1":{
-            "tag":"td",
-            "content":"Jacob"
+          1: {
+            tag: 'td',
+            content: 'Jacob',
           },
-          "2":{
-            "tag":"td",
-            "content":"Thornton"
+          2: {
+            tag: 'td',
+            content: 'Thornton',
           },
-          "3":{
-            "tag":"td",
-            "content":"@fat"
-          }
-        }
+          3: {
+            tag: 'td',
+            content: '@fat',
+          },
+        },
       },
-      "2": {
-        "cells": {
-          "0":{
-            "tag":"td",
-            "content":"3"
+      2: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: '3',
           },
-          "1":{
-            "tag":"td",
-            "content":"Larry the Bird"
+          1: {
+            tag: 'td',
+            content: 'Larry the Bird',
           },
-          "2":{
-            "tag":"td",
-            "content":""
+          2: {
+            tag: 'td',
+            content: '',
           },
-          "3":{
-            "tag":"td",
-            "content":"@twitter"
-          }
-        }
-      }
+          3: {
+            tag: 'td',
+            content: '@twitter',
+          },
+        },
+      },
     },
-    "footer":  {
-      "0":{
-        "cells":{
-          "0":{
-            "tag":"td",
-            "content":"Footer"
+    footer: {
+      0: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: 'Footer',
           },
-          "1":{
-            "tag":"td",
-            "content":"Footer"
+          1: {
+            tag: 'td',
+            content: 'Footer',
           },
-          "2":{
-            "tag":"td",
-            "content":"Footer"
+          2: {
+            tag: 'td',
+            content: 'Footer',
           },
-          "3":{
-            "tag":"td",
-            "content":"Footer"
-          }
-        }
-      }
+          3: {
+            tag: 'td',
+            content: 'Footer',
+          },
+        },
+      },
     },
-    "empty": "This Table is empty message",
-    "no_striping": false,
-    "table_utility_classes": [],
-    "thead_utility_classes": [],
-    "tbody_utility_classes": [],
-    "tfoot_utility_classes": []
-  }
+    empty: 'This Table is empty message',
+    no_striping: false,
+    table_utility_classes: [],
+    thead_utility_classes: [],
+    tbody_utility_classes: [],
+    tfoot_utility_classes: [],
+  },
 } %}
 {{ include('vartheme_bs5:table') }}
 {% endstory %}
-
 
 {% story TableWarning with {
-  "name": "Warning",
-  "args": {
-    "variant": "warning",
-    "responsive": true,
-    "striped_rows": true,
-    "striped_columns": false,
-    "hover": true,
-    "bordered": true,
-    "border_color": "",
-    "borderless": false,
-    "size": "",
-    "caption": "",
-    "colgroups": {},
-    "header": {
-      "0": {
-        "tag": "th",
-        "content": "#"
+  name: 'Warning',
+  args: {
+    variant: 'warning',
+    responsive: true,
+    striped_rows: true,
+    striped_columns: false,
+    hover: true,
+    bordered: true,
+    border_color: '',
+    borderless: false,
+    size: '',
+    caption: '',
+    colgroups: {},
+    header: {
+      0: {
+        tag: 'th',
+        content: '#',
       },
-      "1": {
-        "tag": "th",
-        "content": "First"
+      1: {
+        tag: 'th',
+        content: 'First',
       },
-      "2": {
-        "tag": "th",
-        "content": "Last"
+      2: {
+        tag: 'th',
+        content: 'Last',
       },
-      "3": {
-        "tag": "th",
-        "content": "Handle"
-      }
+      3: {
+        tag: 'th',
+        content: 'Handle',
+      },
     },
-    "sticky": false,
-    "rows": {
-      "0": {
-        "cells": {
-          "0":{
-            "tag":"td",
-            "content":"1"
+    sticky: false,
+    rows: {
+      0: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: '1',
           },
-          "1":{
-            "tag":"td",
-            "content":"Mark"
+          1: {
+            tag: 'td',
+            content: 'Mark',
           },
-          "2":{
-            "tag":"td",
-            "content":"Otto"
+          2: {
+            tag: 'td',
+            content: 'Otto',
           },
-          "3":{
-            "tag":"td",
-            "content":"@mdo"
-          }
-        }
+          3: {
+            tag: 'td',
+            content: '@mdo',
+          },
+        },
       },
-      "1": {
-        "cells": {
-          "0":{
-            "tag":"td",
-            "content":"2"
+      1: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: '2',
           },
-          "1":{
-            "tag":"td",
-            "content":"Jacob"
+          1: {
+            tag: 'td',
+            content: 'Jacob',
           },
-          "2":{
-            "tag":"td",
-            "content":"Thornton"
+          2: {
+            tag: 'td',
+            content: 'Thornton',
           },
-          "3":{
-            "tag":"td",
-            "content":"@fat"
-          }
-        }
+          3: {
+            tag: 'td',
+            content: '@fat',
+          },
+        },
       },
-      "2": {
-        "cells": {
-          "0":{
-            "tag":"td",
-            "content":"3"
+      2: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: '3',
           },
-          "1":{
-            "tag":"td",
-            "content":"Larry the Bird"
+          1: {
+            tag: 'td',
+            content: 'Larry the Bird',
           },
-          "2":{
-            "tag":"td",
-            "content":""
+          2: {
+            tag: 'td',
+            content: '',
           },
-          "3":{
-            "tag":"td",
-            "content":"@twitter"
-          }
-        }
-      }
+          3: {
+            tag: 'td',
+            content: '@twitter',
+          },
+        },
+      },
     },
-    "footer":  {
-      "0":{
-        "cells":{
-          "0":{
-            "tag":"td",
-            "content":"Footer"
+    footer: {
+      0: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: 'Footer',
           },
-          "1":{
-            "tag":"td",
-            "content":"Footer"
+          1: {
+            tag: 'td',
+            content: 'Footer',
           },
-          "2":{
-            "tag":"td",
-            "content":"Footer"
+          2: {
+            tag: 'td',
+            content: 'Footer',
           },
-          "3":{
-            "tag":"td",
-            "content":"Footer"
-          }
-        }
-      }
+          3: {
+            tag: 'td',
+            content: 'Footer',
+          },
+        },
+      },
     },
-    "empty": "This Table is empty message",
-    "no_striping": false,
-    "table_utility_classes": [],
-    "thead_utility_classes": [],
-    "tbody_utility_classes": [],
-    "tfoot_utility_classes": []
-  }
+    empty: 'This Table is empty message',
+    no_striping: false,
+    table_utility_classes: [],
+    thead_utility_classes: [],
+    tbody_utility_classes: [],
+    tfoot_utility_classes: [],
+  },
 } %}
 {{ include('vartheme_bs5:table') }}
 {% endstory %}
-
 
 {% story TableDanger with {
-  "name": "Danger",
-  "args": {
-    "variant": "danger",
-    "responsive": true,
-    "striped_rows": true,
-    "striped_columns": false,
-    "hover": true,
-    "bordered": true,
-    "border_color": "",
-    "borderless": false,
-    "size": "",
-    "caption": "",
-    "colgroups": {},
-    "header": {
-      "0": {
-        "tag": "th",
-        "content": "#"
+  name: 'Danger',
+  args: {
+    variant: 'danger',
+    responsive: true,
+    striped_rows: true,
+    striped_columns: false,
+    hover: true,
+    bordered: true,
+    border_color: '',
+    borderless: false,
+    size: '',
+    caption: '',
+    colgroups: {},
+    header: {
+      0: {
+        tag: 'th',
+        content: '#',
       },
-      "1": {
-        "tag": "th",
-        "content": "First"
+      1: {
+        tag: 'th',
+        content: 'First',
       },
-      "2": {
-        "tag": "th",
-        "content": "Last"
+      2: {
+        tag: 'th',
+        content: 'Last',
       },
-      "3": {
-        "tag": "th",
-        "content": "Handle"
-      }
+      3: {
+        tag: 'th',
+        content: 'Handle',
+      },
     },
-    "sticky": false,
-    "rows": {
-      "0": {
-        "cells": {
-          "0":{
-            "tag":"td",
-            "content":"1"
+    sticky: false,
+    rows: {
+      0: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: '1',
           },
-          "1":{
-            "tag":"td",
-            "content":"Mark"
+          1: {
+            tag: 'td',
+            content: 'Mark',
           },
-          "2":{
-            "tag":"td",
-            "content":"Otto"
+          2: {
+            tag: 'td',
+            content: 'Otto',
           },
-          "3":{
-            "tag":"td",
-            "content":"@mdo"
-          }
-        }
+          3: {
+            tag: 'td',
+            content: '@mdo',
+          },
+        },
       },
-      "1": {
-        "cells": {
-          "0":{
-            "tag":"td",
-            "content":"2"
+      1: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: '2',
           },
-          "1":{
-            "tag":"td",
-            "content":"Jacob"
+          1: {
+            tag: 'td',
+            content: 'Jacob',
           },
-          "2":{
-            "tag":"td",
-            "content":"Thornton"
+          2: {
+            tag: 'td',
+            content: 'Thornton',
           },
-          "3":{
-            "tag":"td",
-            "content":"@fat"
-          }
-        }
+          3: {
+            tag: 'td',
+            content: '@fat',
+          },
+        },
       },
-      "2": {
-        "cells": {
-          "0":{
-            "tag":"td",
-            "content":"3"
+      2: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: '3',
           },
-          "1":{
-            "tag":"td",
-            "content":"Larry the Bird"
+          1: {
+            tag: 'td',
+            content: 'Larry the Bird',
           },
-          "2":{
-            "tag":"td",
-            "content":""
+          2: {
+            tag: 'td',
+            content: '',
           },
-          "3":{
-            "tag":"td",
-            "content":"@twitter"
-          }
-        }
-      }
+          3: {
+            tag: 'td',
+            content: '@twitter',
+          },
+        },
+      },
     },
-    "footer":  {
-      "0":{
-        "cells":{
-          "0":{
-            "tag":"td",
-            "content":"Footer"
+    footer: {
+      0: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: 'Footer',
           },
-          "1":{
-            "tag":"td",
-            "content":"Footer"
+          1: {
+            tag: 'td',
+            content: 'Footer',
           },
-          "2":{
-            "tag":"td",
-            "content":"Footer"
+          2: {
+            tag: 'td',
+            content: 'Footer',
           },
-          "3":{
-            "tag":"td",
-            "content":"Footer"
-          }
-        }
-      }
+          3: {
+            tag: 'td',
+            content: 'Footer',
+          },
+        },
+      },
     },
-    "empty": "This Table is empty message",
-    "no_striping": false,
-    "table_utility_classes": [],
-    "thead_utility_classes": [],
-    "tbody_utility_classes": [],
-    "tfoot_utility_classes": []
-  }
+    empty: 'This Table is empty message',
+    no_striping: false,
+    table_utility_classes: [],
+    thead_utility_classes: [],
+    tbody_utility_classes: [],
+    tfoot_utility_classes: [],
+  },
 } %}
 {{ include('vartheme_bs5:table') }}
 {% endstory %}
-
 
 {% story TableLight with {
-  "name": "Light",
-  "args": {
-    "variant": "light",
-    "responsive": true,
-    "striped_rows": true,
-    "striped_columns": false,
-    "hover": true,
-    "bordered": true,
-    "border_color": "",
-    "borderless": false,
-    "size": "",
-    "caption": "",
-    "colgroups": {},
-    "header": {
-      "0": {
-        "tag": "th",
-        "content": "#"
+  name: 'Light',
+  args: {
+    variant: 'light',
+    responsive: true,
+    striped_rows: true,
+    striped_columns: false,
+    hover: true,
+    bordered: true,
+    border_color: '',
+    borderless: false,
+    size: '',
+    caption: '',
+    colgroups: {},
+    header: {
+      0: {
+        tag: 'th',
+        content: '#',
       },
-      "1": {
-        "tag": "th",
-        "content": "First"
+      1: {
+        tag: 'th',
+        content: 'First',
       },
-      "2": {
-        "tag": "th",
-        "content": "Last"
+      2: {
+        tag: 'th',
+        content: 'Last',
       },
-      "3": {
-        "tag": "th",
-        "content": "Handle"
-      }
+      3: {
+        tag: 'th',
+        content: 'Handle',
+      },
     },
-    "sticky": false,
-    "rows": {
-      "0": {
-        "cells": {
-          "0":{
-            "tag":"td",
-            "content":"1"
+    sticky: false,
+    rows: {
+      0: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: '1',
           },
-          "1":{
-            "tag":"td",
-            "content":"Mark"
+          1: {
+            tag: 'td',
+            content: 'Mark',
           },
-          "2":{
-            "tag":"td",
-            "content":"Otto"
+          2: {
+            tag: 'td',
+            content: 'Otto',
           },
-          "3":{
-            "tag":"td",
-            "content":"@mdo"
-          }
-        }
+          3: {
+            tag: 'td',
+            content: '@mdo',
+          },
+        },
       },
-      "1": {
-        "cells": {
-          "0":{
-            "tag":"td",
-            "content":"2"
+      1: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: '2',
           },
-          "1":{
-            "tag":"td",
-            "content":"Jacob"
+          1: {
+            tag: 'td',
+            content: 'Jacob',
           },
-          "2":{
-            "tag":"td",
-            "content":"Thornton"
+          2: {
+            tag: 'td',
+            content: 'Thornton',
           },
-          "3":{
-            "tag":"td",
-            "content":"@fat"
-          }
-        }
+          3: {
+            tag: 'td',
+            content: '@fat',
+          },
+        },
       },
-      "2": {
-        "cells": {
-          "0":{
-            "tag":"td",
-            "content":"3"
+      2: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: '3',
           },
-          "1":{
-            "tag":"td",
-            "content":"Larry the Bird"
+          1: {
+            tag: 'td',
+            content: 'Larry the Bird',
           },
-          "2":{
-            "tag":"td",
-            "content":""
+          2: {
+            tag: 'td',
+            content: '',
           },
-          "3":{
-            "tag":"td",
-            "content":"@twitter"
-          }
-        }
-      }
+          3: {
+            tag: 'td',
+            content: '@twitter',
+          },
+        },
+      },
     },
-    "footer":  {
-      "0":{
-        "cells":{
-          "0":{
-            "tag":"td",
-            "content":"Footer"
+    footer: {
+      0: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: 'Footer',
           },
-          "1":{
-            "tag":"td",
-            "content":"Footer"
+          1: {
+            tag: 'td',
+            content: 'Footer',
           },
-          "2":{
-            "tag":"td",
-            "content":"Footer"
+          2: {
+            tag: 'td',
+            content: 'Footer',
           },
-          "3":{
-            "tag":"td",
-            "content":"Footer"
-          }
-        }
-      }
+          3: {
+            tag: 'td',
+            content: 'Footer',
+          },
+        },
+      },
     },
-    "empty": "This Table is empty message",
-    "no_striping": false,
-    "table_utility_classes": [],
-    "thead_utility_classes": [],
-    "tbody_utility_classes": [],
-    "tfoot_utility_classes": []
-  }
+    empty: 'This Table is empty message',
+    no_striping: false,
+    table_utility_classes: [],
+    thead_utility_classes: [],
+    tbody_utility_classes: [],
+    tfoot_utility_classes: [],
+  },
 } %}
 {{ include('vartheme_bs5:table') }}
 {% endstory %}
-
 
 {% story TableDark with {
-  "name": "Dark",
-  "args": {
-    "variant": "dark",
-    "responsive": true,
-    "striped_rows": true,
-    "striped_columns": false,
-    "hover": true,
-    "bordered": true,
-    "border_color": "light",
-    "borderless": false,
-    "size": "",
-    "caption": "",
-    "colgroups": {},
-    "header": {
-      "0": {
-        "tag": "th",
-        "content": "#"
+  name: 'Dark',
+  args: {
+    variant: 'dark',
+    responsive: true,
+    striped_rows: true,
+    striped_columns: false,
+    hover: true,
+    bordered: true,
+    border_color: 'light',
+    borderless: false,
+    size: '',
+    caption: '',
+    colgroups: {},
+    header: {
+      0: {
+        tag: 'th',
+        content: '#',
       },
-      "1": {
-        "tag": "th",
-        "content": "First"
+      1: {
+        tag: 'th',
+        content: 'First',
       },
-      "2": {
-        "tag": "th",
-        "content": "Last"
+      2: {
+        tag: 'th',
+        content: 'Last',
       },
-      "3": {
-        "tag": "th",
-        "content": "Handle"
-      }
+      3: {
+        tag: 'th',
+        content: 'Handle',
+      },
     },
-    "sticky": false,
-    "rows": {
-      "0": {
-        "cells": {
-          "0":{
-            "tag":"td",
-            "content":"1"
+    sticky: false,
+    rows: {
+      0: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: '1',
           },
-          "1":{
-            "tag":"td",
-            "content":"Mark"
+          1: {
+            tag: 'td',
+            content: 'Mark',
           },
-          "2":{
-            "tag":"td",
-            "content":"Otto"
+          2: {
+            tag: 'td',
+            content: 'Otto',
           },
-          "3":{
-            "tag":"td",
-            "content":"@mdo"
-          }
-        }
+          3: {
+            tag: 'td',
+            content: '@mdo',
+          },
+        },
       },
-      "1": {
-        "cells": {
-          "0":{
-            "tag":"td",
-            "content":"2"
+      1: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: '2',
           },
-          "1":{
-            "tag":"td",
-            "content":"Jacob"
+          1: {
+            tag: 'td',
+            content: 'Jacob',
           },
-          "2":{
-            "tag":"td",
-            "content":"Thornton"
+          2: {
+            tag: 'td',
+            content: 'Thornton',
           },
-          "3":{
-            "tag":"td",
-            "content":"@fat"
-          }
-        }
+          3: {
+            tag: 'td',
+            content: '@fat',
+          },
+        },
       },
-      "2": {
-        "cells": {
-          "0":{
-            "tag":"td",
-            "content":"3"
+      2: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: '3',
           },
-          "1":{
-            "tag":"td",
-            "content":"Larry the Bird"
+          1: {
+            tag: 'td',
+            content: 'Larry the Bird',
           },
-          "2":{
-            "tag":"td",
-            "content":""
+          2: {
+            tag: 'td',
+            content: '',
           },
-          "3":{
-            "tag":"td",
-            "content":"@twitter"
-          }
-        }
-      }
+          3: {
+            tag: 'td',
+            content: '@twitter',
+          },
+        },
+      },
     },
-    "footer":  {
-      "0":{
-        "cells":{
-          "0":{
-            "tag":"td",
-            "content":"Footer"
+    footer: {
+      0: {
+        cells: {
+          0: {
+            tag: 'td',
+            content: 'Footer',
           },
-          "1":{
-            "tag":"td",
-            "content":"Footer"
+          1: {
+            tag: 'td',
+            content: 'Footer',
           },
-          "2":{
-            "tag":"td",
-            "content":"Footer"
+          2: {
+            tag: 'td',
+            content: 'Footer',
           },
-          "3":{
-            "tag":"td",
-            "content":"Footer"
-          }
-        }
-      }
+          3: {
+            tag: 'td',
+            content: 'Footer',
+          },
+        },
+      },
     },
-    "empty": "This Table is empty message",
-    "no_striping": false,
-    "table_utility_classes": [],
-    "thead_utility_classes": [],
-    "tbody_utility_classes": [],
-    "tfoot_utility_classes": []
-  }
+    empty: 'This Table is empty message',
+    no_striping: false,
+    table_utility_classes: [],
+    thead_utility_classes: [],
+    tbody_utility_classes: [],
+    tfoot_utility_classes: [],
+  },
 } %}
 {{ include('vartheme_bs5:table') }}
 {% endstory %}
-
 
 {% endstories %}

@@ -1,0 +1,310 @@
+{% stories Row with {
+  title: 'Layout/Row',
+  parameters: {
+    componentSubtitle: 'Bootstrap Row layout wrapper',
+    docs: {
+      description: {
+        component: 'Responsive Bootstrap row wrapper with container, grid, alignment, background, and spacing utilities.',
+      },
+      story: {
+        inline: true,
+      },
+    },
+  },
+  argTypes: {
+    background_color: {
+      name: 'Background color',
+      control: 'select',
+      defaultValue: 'none',
+      options: {
+        None: 'none',
+        Light: 'bg-light',
+        Body: 'bg-body',
+        "'Body secondary'": 'bg-body-secondary',
+        "'Body tertiary'": 'bg-body-tertiary',
+        Primary: 'bg-primary',
+        Secondary: 'bg-secondary',
+        Success: 'bg-success',
+        Danger: 'bg-danger',
+        Warning: 'bg-warning',
+        Info: 'bg-info',
+        Dark: 'bg-dark',
+      },
+    },
+    bg_edge2edge: {
+      name: 'Background edge-to-edge',
+      control: 'boolean',
+      defaultValue: false,
+    },
+    container_type: {
+      name: 'Container',
+      control: 'select',
+      defaultValue: 'container',
+      options: {
+        "'No container'": 'none',
+        Container: 'container',
+        "'Container fluid'": 'container-fluid',
+      },
+    },
+    gutter: {
+      name: 'Grid gap',
+      control: 'select',
+      defaultValue: '3',
+      options: {
+        None: '0',
+        Small: '1',
+        Medium: '2',
+        Large: '3',
+        "'X-Large'": '4',
+        "'XX-Large'": '5',
+      },
+    },
+    columns_mobile: {
+      name: 'Columns on mobile',
+      control: 'select',
+      defaultValue: '1',
+      options: {
+        "'Use child widths'": 'none',
+        "'1 per row'": '1',
+        "'2 per row'": '2',
+        "'3 per row'": '3',
+        "'4 per row'": '4',
+        "'5 per row'": '5',
+        "'6 per row'": '6',
+      },
+    },
+    columns_desktop: {
+      name: 'Columns on desktop',
+      control: 'select',
+      defaultValue: '2',
+      options: {
+        "'No desktop override'": 'none',
+        "'MD: 1 per row'": '1',
+        "'MD: 2 per row'": '2',
+        "'MD: 3 per row'": '3',
+        "'MD: 4 per row'": '4',
+        "'MD: 5 per row'": '5',
+        "'MD: 6 per row'": '6',
+      },
+    },
+    align_items: {
+      name: 'Vertical alignment',
+      control: 'select',
+      defaultValue: 'none',
+      options: {
+        Default: 'none',
+        Top: 'align-items-start',
+        Center: 'align-items-center',
+        Bottom: 'align-items-end',
+        Stretch: 'align-items-stretch',
+      },
+    },
+    justify_content: {
+      name: 'Horizontal distribution',
+      control: 'select',
+      defaultValue: 'none',
+      options: {
+        Default: 'none',
+        Start: 'justify-content-start',
+        Center: 'justify-content-center',
+        End: 'justify-content-end',
+        "'Space between'": 'justify-content-between',
+        "'Space around'": 'justify-content-around',
+        "'Space evenly'": 'justify-content-evenly',
+      },
+    },
+    overlay_color: {
+      name: 'Overlay color',
+      control: 'select',
+      defaultValue: 'dark',
+      options: {
+        None: 'none',
+        Dark: 'dark',
+        Light: 'light',
+      },
+    },
+    overlay_opacity: {
+      name: 'Overlay opacity',
+      control: 'select',
+      defaultValue: 50,
+      options: {
+        "'0%'": 0,
+        "'25%'": 25,
+        "'50%'": 50,
+        "'75%'": 75,
+        "'100%'": 100,
+      },
+    },
+    padding_block_start: {
+      name: 'Padding top',
+      control: 'select',
+      defaultValue: 'pt-0',
+      options: {
+        None: 'pt-0',
+        Small: 'pt-1',
+        Medium: 'pt-2',
+        Large: 'pt-3',
+        "'X-Large'": 'pt-4',
+        "'XX-Large'": 'pt-5',
+      },
+    },
+    padding_block_end: {
+      name: 'Padding bottom',
+      control: 'select',
+      defaultValue: 'pb-0',
+      options: {
+        None: 'pb-0',
+        Small: 'pb-1',
+        Medium: 'pb-2',
+        Large: 'pb-3',
+        "'X-Large'": 'pb-4',
+        "'XX-Large'": 'pb-5',
+      },
+    },
+    margin_block_start: {
+      name: 'Margin top',
+      control: 'select',
+      defaultValue: 'mt-0',
+      options: {
+        None: 'mt-0',
+        Small: 'mt-1',
+        Medium: 'mt-2',
+        Large: 'mt-3',
+        "'X-Large'": 'mt-4',
+        "'XX-Large'": 'mt-5',
+      },
+    },
+    margin_block_end: {
+      name: 'Margin bottom',
+      control: 'select',
+      defaultValue: 'mb-0',
+      options: {
+        None: 'mb-0',
+        Small: 'mb-1',
+        Medium: 'mb-2',
+        Large: 'mb-3',
+        "'X-Large'": 'mb-4',
+        "'XX-Large'": 'mb-5',
+      },
+    },
+  },
+} %}
+
+{% story Default with {
+  name: 'Default',
+  args: {
+    background_color: 'none',
+    bg_edge2edge: false,
+    container_type: 'container',
+    gutter: '3',
+    columns_mobile: '1',
+    columns_desktop: '2',
+    align_items: 'none',
+    justify_content: 'none',
+    overlay_color: 'dark',
+    overlay_opacity: 50,
+    padding_block_start: 'pt-0',
+    padding_block_end: 'pb-0',
+    margin_block_start: 'mt-0',
+    margin_block_end: 'mb-0',
+  },
+} %}
+{% embed 'vartheme_bs5:row' with _context %}
+  {% block content %}
+    <div class="col"><div class="p-3 border rounded">Column one</div></div>
+    <div class="col"><div class="p-3 border rounded">Column two</div></div>
+  {% endblock %}
+{% endembed %}
+{% endstory %}
+
+{% story CardGrid with {
+  name: 'Card Grid',
+  args: {
+    background_color: 'bg-light',
+    bg_edge2edge: false,
+    container_type: 'container',
+    gutter: '4',
+    columns_mobile: '1',
+    columns_desktop: '3',
+    align_items: 'align-items-stretch',
+    justify_content: 'justify-content-center',
+    overlay_color: 'dark',
+    overlay_opacity: 50,
+    padding_block_start: 'pt-5',
+    padding_block_end: 'pb-5',
+    margin_block_start: 'mt-0',
+    margin_block_end: 'mb-0',
+  },
+} %}
+{% embed 'vartheme_bs5:row' with _context %}
+  {% block content %}
+    <div class="col"><div class="p-4 border rounded bg-white h-100">Card 1</div></div>
+    <div class="col"><div class="p-4 border rounded bg-white h-100">Card 2</div></div>
+    <div class="col"><div class="p-4 border rounded bg-white h-100">Card 3</div></div>
+  {% endblock %}
+{% endembed %}
+{% endstory %}
+
+{% story CenteredCTA with {
+  name: 'Centered CTA',
+  args: {
+    background_color: 'bg-body-tertiary',
+    bg_edge2edge: false,
+    container_type: 'container',
+    gutter: '3',
+    columns_mobile: '1',
+    columns_desktop: 'none',
+    align_items: 'align-items-center',
+    justify_content: 'justify-content-center',
+    overlay_color: 'dark',
+    overlay_opacity: 50,
+    padding_block_start: 'pt-5',
+    padding_block_end: 'pb-5',
+    margin_block_start: 'mt-0',
+    margin_block_end: 'mb-0',
+  },
+} %}
+{% embed 'vartheme_bs5:row' with _context %}
+  {% block content %}
+    <div class="col-12 text-center">
+      <h3 class="h4 mb-3">Build responsive sections faster</h3>
+      <p class="mb-4">Use Row to manage layout, spacing, and alignment without custom CSS.</p>
+      <a href="#" class="btn btn-primary">Get started</a>
+    </div>
+  {% endblock %}
+{% endembed %}
+{% endstory %}
+
+{% story EdgeToEdgePromo with {
+  name: 'Edge To Edge Promo',
+  args: {
+    background_color: 'bg-dark',
+    bg_edge2edge: true,
+    container_type: 'container',
+    gutter: '3',
+    columns_mobile: '1',
+    columns_desktop: '2',
+    align_items: 'align-items-center',
+    justify_content: 'justify-content-between',
+    overlay_color: 'dark',
+    overlay_opacity: 50,
+    padding_block_start: 'pt-5',
+    padding_block_end: 'pb-5',
+    margin_block_start: 'mt-4',
+    margin_block_end: 'mb-4',
+  },
+} %}
+{% embed 'vartheme_bs5:row' with _context %}
+  {% block content %}
+    <div class="col text-white">
+      <h3 class="h4 mb-2">Full-bleed background</h3>
+      <p class="mb-0">Combine edge-to-edge backgrounds with an inner Bootstrap container.</p>
+    </div>
+    <div class="col-auto">
+      <a href="#" class="btn btn-light">Learn more</a>
+    </div>
+  {% endblock %}
+{% endembed %}
+{% endstory %}
+
+{% endstories %}

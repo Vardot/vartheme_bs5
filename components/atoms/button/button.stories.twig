@@ -1,345 +1,291 @@
 {% stories Button with {
-  "title": "Atoms/Button",
-  "parameters": {
-    "componentSubtitle": "Bootstrap Button Component",
-    "docs": {
-      "description": {
-        "component": "Use Bootstrap custom button styles for actions in forms, dialogs, and more with support for multiple sizes, states, and more"
+  title: 'Base/Button',
+  parameters: {
+    componentSubtitle: 'Bootstrap Button component',
+    docs: {
+      description: {
+        component: 'Use Bootstrap’s custom button styles for actions in forms, dialogs, and more.',
       },
-      "story": {
-        "inline": true
-      }
-    }
+      story: {
+        inline: true,
+      },
+    },
   },
-  "argTypes": {
-    "html_tag": {
-      "name": "HTML Tag",
-      "description": "The HTML tag to use for the button (button | a). Defaults to `button`.",
-      "control": "select",
-      "defaultValue": "button",
-      "options": {
-        "'Button element'": "button",
-        "'Anchor button'": "a"
-      }
+  argTypes: {
+    variant: {
+      name: 'Variant',
+      description: 'Bootstrap button style class.',
+      defaultValue: 'btn-primary',
+      control: 'select',
+      options: {
+        Primary: 'btn-primary',
+        Secondary: 'btn-secondary',
+        Success: 'btn-success',
+        Danger: 'btn-danger',
+        Warning: 'btn-warning',
+        Info: 'btn-info',
+        Light: 'btn-light',
+        Dark: 'btn-dark',
+        Link: 'btn-link',
+      },
     },
-    "color": {
-      "name": "Color",
-      "description": "Bootstrap includes several predefined button styles, each serving its own semantic purpose, with a few extras thrown in for more control.",
-      "defaultValue": "",
-      "control": "select",
-      "options": {
-        "Primary": "primary",
-        "Secondary": "secondary",
-        "Success": "success",
-        "Info": "info",
-        "Warning": "warning",
-        "Danger": "danger",
-        "Light": "light",
-        "Dark": "dark"
-      }
+    outline: {
+      name: 'Outline',
+      description: 'When enabled, uses the Bootstrap outline style (btn-outline-*) for the selected variant (not applied to Link).',
+      defaultValue: false,
+      control: 'boolean',
     },
-    "outline": {
-      "name": "Outline",
-      "description": "In need of a button, but not the hefty background colors they bring? Replace the default modifier classes with the .btn-outline-* ones to remove all background images and colors on any button.",
-      "defaultValue": false,
-      "control": "boolean"
+    size: {
+      name: 'Size',
+      description: 'Bootstrap button size class.',
+      defaultValue: 'btn',
+      control: 'select',
+      options: {
+        "'Medium (default)'": 'btn-md',
+        Small: 'btn-sm',
+        Large: 'btn-lg',
+      },
     },
-    "size": {
-      "name": "Size",
-      "description": "Bootstrap button size",
-      "defaultValue": "",
-      "control": "select",
-      "options": {
-        "'- none -'": "",
-        "Small": "btn-sm",
-        "Large": "btn-lg"
-      }
+    label: {
+      name: 'Label',
+      description: 'Button text.',
+      defaultValue: 'Button label',
+      control: 'text',
     },
-    "disabled": {
-      "name": "Disabled",
-      "description": "Disabled button",
-      "defaultValue": false,
-      "control": "boolean"
+    href: {
+      name: 'Link URL (optional)',
+      description: 'If provided, renders as a link (<a>) instead of a <button>.',
+      defaultValue: '',
+      control: 'text',
     },
-    "content": {
-      "name": "Content",
-      "description": "The content for the button",
-      "control": "text",
-      "defaultValue": "Button"
+    target: {
+      name: 'Link target',
+      description: 'Where to open the link (used only when Link URL is provided).',
+      defaultValue: 'self',
+      control: 'select',
+      options: {
+        "'Same tab (default)'": 'self',
+        "'New tab'": 'blank',
+      },
     },
-    "url": {
-      "name": "URL Link",
-      "description": "URL link for the button when the HTML tag is an anchor link.",
-      "defaultValue": "",
-      "control": "text"
+    disabled: {
+      name: 'Disabled',
+      defaultValue: false,
+      control: 'boolean',
     },
-    "button_utility_classes": {
-      "name": "Utility Classes",
-      "description": "An array of utility classes that can be used to add extra Bootstrap utility classes or custom classes to this component.",
-      "control": "object",
-      "defaultValue": []
+    icon: {
+      name: 'Icon',
+      description: 'Optional Bootstrap icon name to show with the label.',
+      defaultValue: 'none',
+      control: 'select',
+      options: {
+        None: 'none',
+        "'Arrow right'": 'arrow-right',
+        "'Arrow left'": 'arrow-left',
+        "'Arrow right fill'": 'arrow-right-circle-fill',
+        "'Arrow left fill'": 'arrow-left-circle-fill',
+        "'Arrow up fill'": 'arrow-up-circle-fill',
+        "'Arrow down fill'": 'arrow-down-circle-fill',
+        "'Caret right fill'": 'caret-right-fill',
+        "'Caret left fill'": 'caret-left-fill',
+        Plus: 'plus-lg',
+        Download: 'download',
+        "'External link'": 'box-arrow-up-right',
+        Check: 'check-lg',
+        Info: 'info-circle',
+      },
     },
-    "attributes": {
-      "name": "Attributes",
-      "description": "HTML attributes for the containing element.",
-      "control": "object",
-      "defaultValue": {}
-    }
-  }
+    icon_first: {
+      name: 'Icon first',
+      description: 'Show icon before the label.',
+      defaultValue: false,
+      control: 'boolean',
+    },
+    alignment: {
+      name: 'Alignment',
+      description: 'Alignment wrapper for a single button. Use Inline for multiple buttons.',
+      defaultValue: 'inline',
+      control: 'select',
+      options: {
+        "'Inline (default)'": 'inline',
+        Left: 'left',
+        Center: 'center',
+        Right: 'right',
+      },
+    },
+    radius: {
+      name: 'Radius',
+      description: 'Bootstrap border radius utility class.',
+      defaultValue: 'rounded',
+      control: 'select',
+      options: {
+        "'Rounded (default)'": 'rounded',
+        Pill: 'rounded-pill',
+        Square: 'rounded-0',
+      },
+    },
+  },
 } %}
 
-{% story Primary with {
-  "name": "Primary",
-  "args": {
-    "html_tag": "button",
-    "color": "primary",
-    "outline": false,
-    "size": "",
-    "disabled": false,
-    "content": "Button",
-    "url": "#",
-    "button_utility_classes": []
-  }
-} %}
-{{ include('vartheme_bs5:button') }}
-{% endstory %}
-
-{% story Secondary with {
-  "name": "Secondary",
-  "args": {
-    "html_tag": "button",
-    "color": "secondary",
-    "outline": false,
-    "size": "",
-    "disabled": false,
-    "content": "Button",
-    "url": "#",
-    "button_utility_classes": []
-  }
-} %}
-{{ include('vartheme_bs5:button') }}
-{% endstory %}
-
-{% story Success with {
-  "name": "Success",
-  "args": {
-    "html_tag": "button",
-    "color": "success",
-    "outline": false,
-    "size": "",
-    "disabled": false,
-    "content": "Button",
-    "url": "#",
-    "button_utility_classes": []
-  }
-} %}
-{{ include('vartheme_bs5:button') }}
-{% endstory %}
-
-{% story Info with {
-  "name": "Info",
-  "args": {
-    "html_tag": "button",
-    "color": "info",
-    "outline": false,
-    "size": "",
-    "disabled": false,
-    "content": "Button",
-    "url": "#",
-    "button_utility_classes": []
-  }
+{% story Default with {
+  name: 'Default',
+  args: {
+    variant: 'btn-primary',
+    size: 'btn-md',
+    label: 'Button',
+    href: '',
+    target: 'self',
+    disabled: false,
+    icon: 'none',
+    icon_first: false,
+    alignment: 'inline',
+    radius: 'rounded',
+  },
 } %}
 {{ include('vartheme_bs5:button') }}
 {% endstory %}
 
-{% story Warning with {
-  "name": "Warning",
-  "args": {
-    "html_tag": "button",
-    "color": "warning",
-    "outline": false,
-    "size": "",
-    "disabled": false,
-    "content": "Button",
-    "url": "#",
-    "button_utility_classes": []
-  }
+{% story Link with {
+  name: 'Link (as <a>)',
+  args: {
+    variant: 'btn-link',
+    outline: false,
+    size: 'btn-md',
+    label: 'Visit site',
+    href: 'https://example.com',
+    target: 'blank',
+    disabled: false,
+    icon: 'arrow-up-right',
+    icon_first: false,
+    alignment: 'inline',
+    radius: 'rounded',
+  },
 } %}
 {{ include('vartheme_bs5:button') }}
 {% endstory %}
 
-{% story Danger with {
-  "name": "Danger",
-  "args": {
-    "html_tag": "button",
-    "color": "danger",
-    "outline": false,
-    "size": "",
-    "disabled": false,
-    "content": "Button",
-    "url": "#",
-    "button_utility_classes": []
-  }
+{% story Disabled with {
+  name: 'Disabled',
+  args: {
+    variant: 'btn-secondary',
+    size: 'btn-md',
+    label: 'Disabled',
+    href: '',
+    target: 'self',
+    disabled: true,
+    icon: 'none',
+    icon_first: false,
+    alignment: 'inline',
+    radius: 'rounded',
+  },
 } %}
 {{ include('vartheme_bs5:button') }}
 {% endstory %}
-  
-{% story Light with {
-  "name": "Light",
-  "args": {
-    "html_tag": "button",
-    "color": "light",
-    "outline": false,
-    "size": "",
-    "disabled": false,
-    "content": "Button",
-    "url": "#",
-    "button_utility_classes": []
-  }
+
+{% story WithIcon with {
+  name: 'With icon (after label)',
+  args: {
+    variant: 'btn-success',
+    size: 'btn-md',
+    label: 'Download',
+    href: '',
+    target: 'self',
+    disabled: false,
+    icon: 'download',
+    icon_first: false,
+    alignment: 'inline',
+    radius: 'rounded',
+  },
 } %}
 {{ include('vartheme_bs5:button') }}
 {% endstory %}
-  
-{% story Dark with {
-  "name": "Dark",
-  "args": {
-    "html_tag": "button",
-    "color": "dark",
-    "outline": false,
-    "size": "",
-    "disabled": false,
-    "content": "Button",
-    "url": "#",
-    "button_utility_classes": []
-  }
+
+{% story WithIconFirst with {
+  name: 'With icon (before label)',
+  args: {
+    variant: 'btn-success',
+    size: 'btn-md',
+    label: 'Download',
+    href: '',
+    target: 'self',
+    disabled: false,
+    icon: 'download',
+    icon_first: true,
+    alignment: 'inline',
+    radius: 'rounded',
+  },
 } %}
 {{ include('vartheme_bs5:button') }}
 {% endstory %}
-  
-{% story OutlinePrimary with {
-  "name": "Outline - Primary",
-  "args": {
-    "html_tag": "button",
-    "color": "primary",
-    "outline": true,
-    "size": "",
-    "disabled": false,
-    "content": "Button",
-    "url": "#",
-    "button_utility_classes": []
-  }
+
+{% story Centered with {
+  name: 'Centered',
+  args: {
+    variant: 'btn-primary',
+    size: 'btn-md',
+    label: 'Centered',
+    href: '',
+    target: 'self',
+    disabled: false,
+    icon: 'none',
+    icon_first: false,
+    alignment: 'center',
+    radius: 'rounded',
+  },
 } %}
 {{ include('vartheme_bs5:button') }}
 {% endstory %}
-  
-{% story OutlineSecondary with {
-  "name": "Outline - Secondary",
-  "args": {
-    "html_tag": "button",
-    "color": "secondary",
-    "outline": true,
-    "size": "",
-    "disabled": false,
-    "content": "Button",
-    "url": "#",
-    "button_utility_classes": []
-  }
+
+{% story RightAligned with {
+  name: 'Right aligned',
+  args: {
+    variant: 'btn-primary',
+    size: 'btn-md',
+    label: 'Right',
+    href: '',
+    target: 'self',
+    disabled: false,
+    icon: 'arrow-right',
+    icon_first: false,
+    alignment: 'right',
+    radius: 'rounded',
+  },
 } %}
 {{ include('vartheme_bs5:button') }}
 {% endstory %}
-  
-{% story OutlineSuccess with {
-  "name": "Outline - Success",
-  "args": {
-    "html_tag": "button",
-    "color": "success",
-    "outline": true,
-    "size": "",
-    "disabled": false,
-    "content": "Button",
-    "url": "#",
-    "button_utility_classes": []
-  }
+
+{% story Pill with {
+  name: 'Pill radius',
+  args: {
+    variant: 'btn-warning',
+    size: 'btn-md',
+    label: 'Pill',
+    href: '',
+    target: 'self',
+    disabled: false,
+    icon: 'none',
+    icon_first: false,
+    alignment: 'inline',
+    radius: 'rounded-pill',
+  },
 } %}
 {{ include('vartheme_bs5:button') }}
 {% endstory %}
-  
-{% story OutlineInfo with {
-  "name": "Outline - Info",
-  "args": {
-    "html_tag": "button",
-    "color": "info",
-    "outline": true,
-    "size": "",
-    "disabled": false,
-    "content": "Button",
-    "url": "#",
-    "button_utility_classes": []
-  }
-} %}
-{{ include('vartheme_bs5:button') }}
-{% endstory %}
-  
-{% story OutlineWarning with {
-  "name": "Outline - Warning",
-  "args": {
-    "html_tag": "button",
-    "color": "warning",
-    "outline": true,
-    "size": "",
-    "disabled": false,
-    "content": "Button",
-    "url": "#",
-    "button_utility_classes": []
-  }
-} %}
-{{ include('vartheme_bs5:button') }}
-{% endstory %}
-  
-{% story OutlineDanger with {
-  "name": "Outline - Danger",
-  "args": {
-    "html_tag": "button",
-    "color": "danger",
-    "outline": true,
-    "size": "",
-    "disabled": false,
-    "content": "Button",
-    "url": "#",
-    "button_utility_classes": []
-  }
-} %}
-{{ include('vartheme_bs5:button') }}
-{% endstory %}
-  
-{% story OutlineLight with {
-  "name": "Outline - Light",
-  "args": {
-    "html_tag": "button",
-    "color": "light",
-    "outline": true,
-    "size": "",
-    "disabled": false,
-    "content": "Button",
-    "url": "#",
-    "button_utility_classes": []
-  }
-} %}
-{{ include('vartheme_bs5:button') }}
-{% endstory %}
-  
-{% story OutlineDark with {
-  "name": "Outline - Dark",
-  "args": {
-    "html_tag": "button",
-    "color": "dark",
-    "outline": true,
-    "size": "",
-    "disabled": false,
-    "content": "Button",
-    "url": "#",
-    "button_utility_classes": []
-  }
+
+{% story Large with {
+  name: 'Large button',
+  args: {
+    variant: 'btn-dark',
+    size: 'btn-lg',
+    label: 'Large Button',
+    href: '',
+    target: 'self',
+    disabled: false,
+    icon: 'none',
+    icon_first: false,
+    alignment: 'inline',
+    radius: 'rounded',
+  },
 } %}
 {{ include('vartheme_bs5:button') }}
 {% endstory %}

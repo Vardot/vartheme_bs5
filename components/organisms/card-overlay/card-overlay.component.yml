@@ -1,101 +1,171 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
-name: 'Overlay Card'
-status: experimental
-description: 'Overlay card component for a media and a content over the media with sizes.'
-group: Cards
+name: Overlay Card
+group: Card
+status: stable
+description: 'Overlay card with background media and a single drag & drop content area. Built with Bootstrap 5 utility classes only.'
 props:
   type: object
   properties:
-    style_size:
+    media_image:
+      title: Media upload
+      description: Image selected from the Media Library or uploaded. Displayed as the background media.
+      $ref: json-schema-definitions://canvas.module/image
+      type: object
+      examples:
+        - src: assets/overlay-card-image-placeholder.svg
+          alt: Overlay card placeholder image
+          width: 1200
+          height: 675
+    ratio:
       type: string
-      title: 'Card style size'
-      description: 'Card style size. (xsmall|small|medium|large|xlarge).'
-      default: ''
+      title: Image ratio (crop)
+      description: Keeps consistent image shapes.
       enum:
-        - ''
-        - xsmall
-        - small
-        - medium
-        - large
-        - xlarge
-    card_border:
-      type: boolean
-      title: 'Card Border'
-      description: 'Add a default border to the card.'
-      default: true
+        - ratio-auto
+        - ratio-16x9
+        - ratio-4x3
+        - ratio-1x1
+        - ratio-21x9
+      default: ratio-16x9
+      meta:enum:
+        ratio-auto: Auto (no crop)
+        ratio-16x9: Wide (16:9)
+        ratio-4x3: Standard (4:3)
+        ratio-1x1: Square (1:1)
+        ratio-21x9: Ultra-wide (21:9)
+    fit:
+      type: string
+      title: Image fit
+      description: How the image behaves inside a fixed ratio.
+      enum:
+        - object-fit-cover
+        - object-fit-contain
+      default: object-fit-cover
+      meta:enum:
+        object-fit-cover: Fill (crop)
+        object-fit-contain: Fit (no crop)
     padded:
       type: boolean
-      title: 'Padded'
-      description: 'Add a default padding to the card.'
-      default: false
+      title: Padded
+      description: Adds Bootstrap padding (p-4) to the content area.
+      default: true
+      examples: [true]
+    box_shadow:
+      type: string
+      title: Shadow
+      description: Bootstrap shadow utility applied to the card.
+      default: shadow-none
+      enum:
+        - shadow-none
+        - shadow-sm
+        - shadow
+        - shadow-lg
+      meta:enum:
+        shadow-none: None
+        shadow-sm: Small
+        shadow: Medium
+        shadow-lg: Large
+    overlay_color:
+      type: string
+      title: Overlay color
+      description: Bootstrap background utility applied to the overlay layer.
+      default: bg-transparent
+      enum:
+        - bg-transparent
+        - bg-dark
+        - bg-light
+        - bg-primary
+        - bg-secondary
+        - bg-success
+        - bg-danger
+        - bg-warning
+        - bg-info
+        - bg-body
+        - bg-body-tertiary
+        - bg-white
+      meta:enum:
+        bg-transparent: None
+        bg-dark: Dark
+        bg-light: Light
+        bg-primary: Primary
+        bg-secondary: Secondary
+        bg-success: Success
+        bg-danger: Danger
+        bg-warning: Warning
+        bg-info: Info
+        bg-body: Body
+        bg-body-tertiary: Body tertiary
+        bg-white: White
+    overlay_opacity:
+      type: string
+      title: Overlay opacity
+      description: Bootstrap background opacity utility applied to the overlay layer.
+      default: bg-opacity-50
+      enum:
+        - bg-opacity-10
+        - bg-opacity-25
+        - bg-opacity-50
+        - bg-opacity-75
+        - bg-opacity-100
+      meta:enum:
+        bg-opacity-10: 10%
+        bg-opacity-25: 25%
+        bg-opacity-50: 50%
+        bg-opacity-75: 75%
+        bg-opacity-100: 100%
     equal_height:
       type: boolean
-      title: 'Equal height'
-      default: true
-    anchor_all:
-      type: boolean
-      title: 'Anchor All'
+      title: Equal height
+      description: Apply h-100 to the card wrapper.
       default: false
-    horizontal_alignment:
+    h_align:
       type: string
-      title: 'Horizontal alignment'
-      description: 'Horizontal alignment of the content.'
-      default: ''
+      title: Horizontal alignment
+      default: text-start
       enum:
-        - ''
-        - start
-        - center
-        - end
-    vertical_alignment:
+        - text-start
+        - text-center
+        - text-end
+      meta:enum:
+        text-start: Start
+        text-center: Center
+        text-end: End
+    v_align:
       type: string
-      title: 'Vertical alignment'
-      description: 'Vertical alignment of the content.'
-      default: ''
+      title: Vertical alignment
+      default: align-items-center
       enum:
-        - ''
-        - start
-        - center
-        - end
-    card_overlay_utility_classes:
-      type: array
-      title: 'Utility Classes'
-      default: []
-      items:
-        type: 'string'
-      description: 'Use to add extra Bootstrap utility classes for the main Card wrapper. E.g. `mb-3 shadow-lg` ( Do not add `card`).' 
-    card_overlay_media_utility_classes:
-      type: array
-      title: 'Media Utility Classes'
-      default: []
-      items:
-        type: 'string'
-      description: 'Use to add extra Bootstrap utility classes for the Card Media region wrapper. E.g. `bg-secondary mb-3` ( Do not add `card-img`).'
-    card_overlay_content_utility_classes:
-      type: array
-      title: 'Content Utility Classes'
-      default: []
-      items:
-        type: 'string'
-      description: 'Use to add extra Bootstrap utility classes for the Card Content region wrapper. E.g. `w-75 mb-3 overflow-y-hidden`  ( Do not add `card-body`).'
-    card_attributes:
-      type: object
-      title: 'Card Attributes'
-      description: 'HTML attributes for the card element.'
-      $ref: 'ui-patterns://attributes'
-    media_attributes:
-      type: object
-      title: 'Media Attributes'
-      description: 'HTML attributes for the media element.'
-      $ref: 'ui-patterns://attributes'
-    content_attributes:
-      type: object
-      title: 'Content Attributes'
-      description: 'HTML attributes for the content element.'
-      $ref: 'ui-patterns://attributes'
+        - align-items-start
+        - align-items-center
+        - align-items-end
+      meta:enum:
+        align-items-start: Start
+        align-items-center: Center
+        align-items-end: End
+    stretched_link:
+      type: boolean
+      title: Stretched link
+      description: When enabled and a Card link URL is provided, the entire card becomes clickable using Bootstrap’s stretched-link.
+      default: false
+    link_url:
+      type: string
+      title: Card link URL
+      format: uri-reference
+      description: Optional URL for the card link.
+      default: ''
+    link_target:
+      type: string
+      title: Link target
+      enum:
+        - default
+        - _self
+        - _blank
+      default: default
+      meta:enum:
+        default: Default (same tab)
+        _self: Same tab
+        _blank: New tab
 slots:
-  media:
-    title: 'Card Media'
-    description: 'The media image/video slot for the card.'
   content:
-    title: 'Card Content'
-    description: 'The content slot for the card.'
+    title: Card content
+    description: Drag & drop content slot for text, buttons, and other components.

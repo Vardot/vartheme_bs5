@@ -1,0 +1,43 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Nav item
+description: Nav item
+props:
+  type: object
+  properties:
+    container:
+      type: string
+      title: Container
+      description: container type
+      enum:
+        - fixed
+        - fluid
+    color:
+      type: string
+      title: Color
+      description: Color
+      enum:
+        - light
+        - dark
+    placement:
+      type: string
+      title: Placement
+      description: Placement
+      default: ''
+      enum:
+        - ''
+        - fixed-top
+        - fixed-bottom
+        - sticky-top
+    navbar_expand:
+      type: string
+      title: Expand
+      description: Expanded navbar
+      enum:
+        - sm
+        - md
+        - lg
+        - xl
+libraryOverrides:
+  dependencies:
+    - vartheme_bs5/bs-collapse-script
+    - vartheme_bs5/bs-dropdown-script

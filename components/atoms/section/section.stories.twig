@@ -1,0 +1,464 @@
+{% stories Section with {
+  title: 'Layout/Section',
+  parameters: {
+    componentSubtitle: 'Bootstrap Section layout wrapper',
+    docs: {
+      description: {
+        component: 'Flexible section wrapper with Bootstrap-based spacing, containers, background options, and responsive column presets.',
+      },
+      story: {
+        inline: true,
+      },
+    },
+  },
+  argTypes: {
+    bg_edge2edge: {
+      name: 'Background edge-to-edge',
+      control: 'boolean',
+      defaultValue: false,
+    },
+    container_type: {
+      name: 'Container style',
+      control: 'select',
+      defaultValue: 'container',
+      options: {
+        Container: 'container',
+        "'Full width (fluid)'": 'container-fluid',
+        "'No container'": 'none',
+      },
+    },
+    background_color: {
+      name: 'Background color',
+      control: 'select',
+      defaultValue: 'none',
+      options: {
+        None: 'none',
+        Light: 'bg-light',
+        Muted: 'bg-body-tertiary',
+        Primary: 'bg-primary',
+        Secondary: 'bg-secondary',
+        Dark: 'bg-dark',
+        Accent: 'bg-info',
+      },
+    },
+    text_color: {
+      name: 'Text color',
+      control: 'select',
+      defaultValue: 'auto',
+      options: {
+        Auto: 'auto',
+        Default: 'text-body',
+        Dark: 'text-dark',
+        White: 'text-white',
+        Muted: 'text-muted',
+      },
+    },
+    background_overlay: {
+      name: 'Image overlay',
+      control: 'select',
+      defaultValue: 'none',
+      options: {
+        None: 'none',
+        "'Light (10%)'": 'overlay-10',
+        "'Soft (25%)'": 'overlay-25',
+        "'Medium (50%)'": 'overlay-50',
+        "'Strong (75%)'": 'overlay-75',
+      },
+    },
+    columns: {
+      name: 'Grid layout',
+      control: 'select',
+      defaultValue: '50-50',
+      options: {
+        "'1 column (100%)'": '100',
+        "'2 columns (50 / 50)'": '50-50',
+        "'3 columns (33 / 33 / 33)'": '33-33-33',
+        "'2 columns (75 / 25)'": '75-25',
+        "'2 columns (25 / 75)'": '25-75',
+        "'2 columns (67 / 33)'": '67-33',
+        "'2 columns (33 / 67)'": '33-67',
+        "'3 columns (50 / 25 / 25)'": '50-25-25',
+        "'3 columns (25 / 25 / 50)'": '25-25-50',
+        "'4 columns'": '25-25-25-25',
+        "'5 columns'": '20-20-20-20-20',
+        "'6 columns'": '16-16-16-16-16-16',
+      },
+    },
+    gutter: {
+      name: 'Grid gap',
+      control: 'select',
+      defaultValue: 'gx-3 gy-3',
+      options: {
+        None: 'gx-0 gy-0',
+        Small: 'gx-1 gy-1',
+        Medium: 'gx-2 gy-2',
+        Large: 'gx-3 gy-3',
+        "'Extra large'": 'gx-4 gy-4',
+        "'XX-Large'": 'gx-5 gy-5',
+      },
+    },
+    padding_block_start: {
+      name: 'Padding top',
+      control: 'select',
+      defaultValue: 'pt-5',
+      options: {
+        None: 'pt-0',
+        Small: 'pt-1',
+        Medium: 'pt-2',
+        Large: 'pt-3',
+        "'Extra large'": 'pt-4',
+        "'XX-Large'": 'pt-5',
+      },
+    },
+    padding_block_end: {
+      name: 'Padding bottom',
+      control: 'select',
+      defaultValue: 'pb-5',
+      options: {
+        None: 'pb-0',
+        Small: 'pb-1',
+        Medium: 'pb-2',
+        Large: 'pb-3',
+        "'Extra large'": 'pb-4',
+        "'XX-Large'": 'pb-5',
+      },
+    },
+    padding_inline_start: {
+      name: 'Padding start',
+      control: 'select',
+      defaultValue: 'ps-0',
+      options: {
+        None: 'ps-0',
+        Small: 'ps-1',
+        Medium: 'ps-2',
+        Large: 'ps-3',
+        "'Extra large'": 'ps-4',
+        "'XX-Large'": 'ps-5',
+      },
+    },
+    padding_inline_end: {
+      name: 'Padding end',
+      control: 'select',
+      defaultValue: 'pe-0',
+      options: {
+        None: 'pe-0',
+        Small: 'pe-1',
+        Medium: 'pe-2',
+        Large: 'pe-3',
+        "'Extra large'": 'pe-4',
+        "'XX-Large'": 'pe-5',
+      },
+    },
+    margin_block_start: {
+      name: 'Margin top',
+      control: 'select',
+      defaultValue: 'mt-0',
+      options: {
+        None: 'mt-0',
+        Small: 'mt-1',
+        Medium: 'mt-2',
+        Large: 'mt-3',
+        "'Extra large'": 'mt-4',
+        "'XX-Large'": 'mt-5',
+      },
+    },
+    margin_block_end: {
+      name: 'Margin bottom',
+      control: 'select',
+      defaultValue: 'mb-0',
+      options: {
+        None: 'mb-0',
+        Small: 'mb-1',
+        Medium: 'mb-2',
+        Large: 'mb-3',
+        "'Extra large'": 'mb-4',
+        "'XX-Large'": 'mb-5',
+      },
+    },
+    margin_inline_start: {
+      name: 'Margin start',
+      control: 'select',
+      defaultValue: 'ms-0',
+      options: {
+        None: 'ms-0',
+        Small: 'ms-1',
+        Medium: 'ms-2',
+        Large: 'ms-3',
+        "'Extra large'": 'ms-4',
+        "'XX-Large'": 'ms-5',
+      },
+    },
+    margin_inline_end: {
+      name: 'Margin end',
+      control: 'select',
+      defaultValue: 'me-0',
+      options: {
+        None: 'me-0',
+        Small: 'me-1',
+        Medium: 'me-2',
+        Large: 'me-3',
+        "'Extra large'": 'me-4',
+        "'XX-Large'": 'me-5',
+      },
+    },
+    shadow: {
+      name: 'Shadow',
+      control: 'select',
+      defaultValue: 'none',
+      options: {
+        None: 'none',
+        Small: 'shadow-sm',
+        Medium: 'shadow',
+        Large: 'shadow-lg',
+      },
+    },
+    section_header: {
+      name: 'Show header region',
+      control: 'boolean',
+      defaultValue: true,
+    },
+    section_footer: {
+      name: 'Show footer region',
+      control: 'boolean',
+      defaultValue: false,
+    },
+    background_media: {
+      name: 'Background image object',
+      control: 'object',
+      defaultValue: {},
+    },
+  },
+} %}
+
+{% story Default with {
+  name: 'Default',
+  args: {
+    bg_edge2edge: false,
+    container_type: 'container',
+    background_color: 'bg-light',
+    text_color: 'auto',
+    background_overlay: 'none',
+    columns: '50-50',
+    gutter: 'gx-4 gy-4',
+    padding_block_start: 'pt-5',
+    padding_block_end: 'pb-5',
+    padding_inline_start: 'ps-0',
+    padding_inline_end: 'pe-0',
+    margin_block_start: 'mt-0',
+    margin_block_end: 'mb-0',
+    margin_inline_start: 'ms-0',
+    margin_inline_end: 'me-0',
+    shadow: 'none',
+    section_header: true,
+    section_footer: true,
+    background_media: {},
+  },
+} %}
+{% embed 'vartheme_bs5:section' with _context %}
+  {% block header_slot %}
+    <div class="text-center">
+      <h2 class="h3 mb-2">Default section</h2>
+      <p class="mb-0 text-muted">A simple two-column layout inside a standard container.</p>
+    </div>
+  {% endblock %}
+  {% block col_1 %}
+    <div class="p-4 border rounded-3 h-100 bg-white">
+      <h3 class="h5">Column one</h3>
+      <p class="mb-0">Use this area for introductory copy, feature text, or layout building blocks.</p>
+    </div>
+  {% endblock %}
+  {% block col_2 %}
+    <div class="p-4 border rounded-3 h-100 bg-white">
+      <h3 class="h5">Column two</h3>
+      <p class="mb-0">The component only renders the selected number of columns for the chosen preset.</p>
+    </div>
+  {% endblock %}
+  {% block footer_slot %}
+    <div class="small text-muted text-center">Footer region example</div>
+  {% endblock %}
+{% endembed %}
+{% endstory %}
+
+{% story HeroWithBackground with {
+  name: 'Hero With Background',
+  args: {
+    bg_edge2edge: true,
+    container_type: 'container',
+    background_color: 'bg-dark',
+    text_color: 'text-white',
+    background_overlay: 'overlay-50',
+    columns: '100',
+    gutter: 'gx-0 gy-0',
+    padding_block_start: 'pt-5',
+    padding_block_end: 'pb-5',
+    padding_inline_start: 'ps-0',
+    padding_inline_end: 'pe-0',
+    margin_block_start: 'mt-0',
+    margin_block_end: 'mb-0',
+    margin_inline_start: 'ms-0',
+    margin_inline_end: 'me-0',
+    shadow: 'none',
+    section_header: false,
+    section_footer: false,
+    background_media: {
+      src: 'https://picsum.photos/id/1018/1600/900',
+      alt: 'Background landscape',
+      width: 1600,
+      height: 900,
+    },
+  },
+} %}
+{% embed 'vartheme_bs5:section' with _context %}
+  {% block col_1 %}
+    <div class="py-5 text-center mx-auto" style="max-width: 48rem;">
+      <span class="badge text-bg-light mb-3">Featured</span>
+      <h2 class="display-5 fw-semibold">Hero section example</h2>
+      <p class="lead mb-0">Pair a full-width background image with a single-column layout for hero banners and campaign intros.</p>
+    </div>
+  {% endblock %}
+{% endembed %}
+{% endstory %}
+
+{% story ThreeColumns with {
+  name: 'Three Columns',
+  args: {
+    bg_edge2edge: false,
+    container_type: 'container',
+    background_color: 'none',
+    text_color: 'auto',
+    background_overlay: 'none',
+    columns: '33-33-33',
+    gutter: 'gx-4 gy-4',
+    padding_block_start: 'pt-4',
+    padding_block_end: 'pb-4',
+    margin_block_start: 'mt-0',
+    margin_block_end: 'mb-0',
+    shadow: 'none',
+    section_header: true,
+    section_footer: false,
+    background_media: {},
+  },
+} %}
+{% embed 'vartheme_bs5:section' with _context %}
+  {% block header_slot %}
+    <h2 class="h3 text-center mb-0">Three-column section</h2>
+  {% endblock %}
+  {% block col_1 %}
+    <div class="p-4 rounded-3 bg-body-tertiary h-100"><h3 class="h6">Card one</h3><p class="mb-0">Equal-width content column.</p></div>
+  {% endblock %}
+  {% block col_2 %}
+    <div class="p-4 rounded-3 bg-body-tertiary h-100"><h3 class="h6">Card two</h3><p class="mb-0">Useful for feature grids and summaries.</p></div>
+  {% endblock %}
+  {% block col_3 %}
+    <div class="p-4 rounded-3 bg-body-tertiary h-100"><h3 class="h6">Card three</h3><p class="mb-0">Add as much inner markup as needed.</p></div>
+  {% endblock %}
+{% endembed %}
+{% endstory %}
+
+{% story AsymmetricSplit with {
+  name: 'Asymmetric Split',
+  args: {
+    bg_edge2edge: false,
+    container_type: 'container-fluid',
+    background_color: 'bg-body-tertiary',
+    text_color: 'auto',
+    background_overlay: 'none',
+    columns: '67-33',
+    gutter: 'gx-5 gy-5',
+    padding_block_start: 'pt-5',
+    padding_block_end: 'pb-5',
+    padding_inline_start: 'ps-0',
+    padding_inline_end: 'pe-0',
+    margin_block_start: 'mt-0',
+    margin_block_end: 'mb-0',
+    margin_inline_start: 'ms-0',
+    margin_inline_end: 'me-0',
+    shadow: 'shadow-sm',
+    section_header: true,
+    section_footer: false,
+    background_media: {},
+  },
+} %}
+{% embed 'vartheme_bs5:section' with _context %}
+  {% block header_slot %}
+    <h2 class="h3 mb-0">Asymmetric 67/33 split</h2>
+  {% endblock %}
+  {% block col_1 %}
+    <div class="p-4 bg-white rounded-3 h-100">
+      <h3 class="h5">Primary content</h3>
+      <p class="mb-0">Great for main content plus a supporting sidebar. This example uses a fluid container and muted section background.</p>
+    </div>
+  {% endblock %}
+  {% block col_2 %}
+    <aside class="p-4 bg-white rounded-3 h-100">
+      <h3 class="h6">Sidebar</h3>
+      <ul class="mb-0 ps-3">
+        <li>Supporting links</li>
+        <li>Meta information</li>
+        <li>Callouts</li>
+      </ul>
+    </aside>
+  {% endblock %}
+{% endembed %}
+{% endstory %}
+
+{% story FiveColumns with {
+  name: 'Five Columns',
+  args: {
+    bg_edge2edge: false,
+    container_type: 'container',
+    background_color: 'none',
+    text_color: 'auto',
+    background_overlay: 'none',
+    columns: '20-20-20-20-20',
+    gutter: 'gx-3 gy-3',
+    padding_block_start: 'pt-4',
+    padding_block_end: 'pb-4',
+    margin_block_start: 'mt-0',
+    margin_block_end: 'mb-0',
+    shadow: 'none',
+    section_header: false,
+    section_footer: false,
+    background_media: {},
+  },
+} %}
+{% embed 'vartheme_bs5:section' with _context %}
+  {% block col_1 %}<div class="p-3 border rounded-3 text-center">1</div>{% endblock %}
+  {% block col_2 %}<div class="p-3 border rounded-3 text-center">2</div>{% endblock %}
+  {% block col_3 %}<div class="p-3 border rounded-3 text-center">3</div>{% endblock %}
+  {% block col_4 %}<div class="p-3 border rounded-3 text-center">4</div>{% endblock %}
+  {% block col_5 %}<div class="p-3 border rounded-3 text-center">5</div>{% endblock %}
+{% endembed %}
+{% endstory %}
+
+{% story SixColumns with {
+  name: 'Six Columns',
+  args: {
+    bg_edge2edge: false,
+    container_type: 'container',
+    background_color: 'none',
+    text_color: 'auto',
+    background_overlay: 'none',
+    columns: '16-16-16-16-16-16',
+    gutter: 'gx-3 gy-3',
+    padding_block_start: 'pt-4',
+    padding_block_end: 'pb-4',
+    margin_block_start: 'mt-0',
+    margin_block_end: 'mb-0',
+    shadow: 'none',
+    section_header: false,
+    section_footer: false,
+    background_media: {},
+  },
+} %}
+{% embed 'vartheme_bs5:section' with _context %}
+  {% block col_1 %}<div class="p-3 border rounded-3 text-center">1</div>{% endblock %}
+  {% block col_2 %}<div class="p-3 border rounded-3 text-center">2</div>{% endblock %}
+  {% block col_3 %}<div class="p-3 border rounded-3 text-center">3</div>{% endblock %}
+  {% block col_4 %}<div class="p-3 border rounded-3 text-center">4</div>{% endblock %}
+  {% block col_5 %}<div class="p-3 border rounded-3 text-center">5</div>{% endblock %}
+  {% block col_6 %}<div class="p-3 border rounded-3 text-center">6</div>{% endblock %}
+{% endembed %}
+{% endstory %}
+
+{% endstories %}

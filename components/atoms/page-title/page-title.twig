@@ -1,0 +1,49 @@
+{#
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for the page title.
+ *
+ * Available properties:
+ * - title: The page title, for use in the actual content.
+ * - display: When you need a heading to stand out, consider using a display
+ *   heading—a larger, slightly more opinionated heading style.
+ *   optional values are:
+ *   ( display-1, display-2, display-3, display-4, display-5, display-6)
+ * - page_title_utility_classes: An array of utility classes. Use this property to add
+ *   extra Bootstrap utility classes or your custom class over to this to this component.
+ *
+ * Available attributes:
+ * - title_attributes: HTML attributes for the page title element.
+ *
+ * Available variables:
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the main title tag that appears in the template.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the main title tag that appears in the template.
+ */
+#}
+{% set page_title_utility_classes = page_title_utility_classes ? page_title_utility_classes : [] %}
+{% set display = display ? display : '' %}
+
+{%
+  set classes = [
+    'title',
+    'page-title',
+  ]|merge(page_title_utility_classes)
+%}
+
+{% set _attributes = (attributes is defined and attributes is iterable) ? attributes : (attributes is defined and attributes is not iterable and attributes is not empty ? create_attribute({class: [attributes]}) : create_attribute()) %}
+{% set _title_attributes = (title_attributes is defined and title_attributes is iterable) ? title_attributes : (title_attributes is defined and title_attributes is not iterable and title_attributes is not empty ? create_attribute({class: [title_attributes]}) : create_attribute()) %}
+
+{{ title_prefix }}
+{% if title|render|striptags|trim %}
+  {{ include('vartheme_bs5:heading', {
+      html_tag: 'h1',
+      content: title,
+      display: display,
+      attributes: _title_attributes,
+      page_title_utility_classes: classes,
+    }
+  , false) }}
+{% endif %}
+{{ title_suffix }}

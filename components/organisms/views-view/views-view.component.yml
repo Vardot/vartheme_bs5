@@ -1,8 +1,8 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: Views view
-status: experimental
 description: Implementation for main view component.
 group: Views
+noUi: true
 props:
   type: object
   properties:
@@ -10,7 +10,6 @@ props:
       type: string
       title: Content
     attributes:
-      type: object
+      type: Drupal\Core\Template\Attribute
       title: Attributes
       description: HTML attributes for the containing element.
-      $ref: 'ui-patterns://attributes'

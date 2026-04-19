@@ -39,7 +39,7 @@
     'views-view-grid',
     'grid',
     'row',
-    'clearfix'
+    'clearfix',
   ]|merge(grid_utility_classes)
 %}
 
@@ -50,11 +50,11 @@
 {% set attributes = attributes.addClass(classes) %}
 
 {% if title %}
-  {% include 'vartheme_bs5:heading' with {
+  {{ include('vartheme_bs5:heading', {
       html_tag: 'h3',
-      content: title
-    }
-  %}
+      content: title,
+    },
+  ) }}
 {% endif %}
 
 {% if rows is iterable %}

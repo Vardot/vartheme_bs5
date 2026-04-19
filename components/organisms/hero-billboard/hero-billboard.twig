@@ -1,0 +1,131 @@
+{% set hero_height = height|default('ribbon') %}
+{% set hero_position = flex_position|default('center-left') %}
+{% set hero_object_position = object_position|default('center') %}
+{% set container_class = container_type|default('container') %}
+{% set overlay_bg_class = overlay_bg|default('bg-dark') %}
+{% set overlay_opacity_class = overlay_opacity|default('opacity-50') %}
+{% set content_width_class = content_width|default('w-100') %}
+
+{% set vertical_align_class = {
+  'top-left': 'justify-content-start',
+  'center-left': 'justify-content-center',
+  'bottom-left': 'justify-content-end',
+  'hero-center': 'justify-content-center',
+}[hero_position]|default('justify-content-center') %}
+
+{% set center_mode = hero_position == 'hero-center' %}
+{% set text_align_class = center_mode ? 'text-center' : 'text-start' %}
+{% set content_align_class = center_mode ? 'align-items-center' : 'align-items-start' %}
+
+{% set hero_spacing_classes = hero_height == 'large'
+  ? ['py-5', 'py-lg-6']
+  : ['py-4', 'py-lg-5']
+%}
+
+{% set image_alignment_class = {
+  top: 'align-self-start',
+  center: 'align-self-center',
+  bottom: 'align-self-end',
+}[hero_object_position]|default('align-self-center') %}
+
+{% set media_src = '' %}
+{% set media_alt = '' %}
+{% set media_width = '' %}
+{% set media_height = '' %}
+{% if media is defined %}
+  {% if media.src is defined and media.src is not empty %}
+    {% if media.src is iterable %}
+      {% set media_src = media.src.url|default(media.src.uri|default(media.src.value|default(''))) %}
+    {% else %}
+      {% set media_src = media.src %}
+    {% endif %}
+  {% elseif media.url is defined and media.url is not empty %}
+    {% set media_src = media.url %}
+  {% endif %}
+  {% set media_alt = media.alt|default('') %}
+  {% set media_width = media.width|default('') %}
+  {% set media_height = media.height|default('') %}
+{% endif %}
+
+{% set section_attributes = create_attribute().addClass([
+  'position-relative',
+  'overflow-hidden',
+  'px-0',
+  'text-bg-dark',
+  bg_edge2edge|default(false) ? 'bg-edge2edge' : '',
+]|merge(hero_spacing_classes)) %}
+
+{% set media_layer_attributes = create_attribute().addClass([
+  'position-absolute',
+  'top-0',
+  'start-0',
+  'w-100',
+  'h-100',
+  'd-flex',
+]) %}
+
+{% set media_inner_attributes = create_attribute().addClass([
+  'w-100',
+  'h-100',
+  'd-flex',
+  image_alignment_class,
+]) %}
+
+{% set overlay_attributes = create_attribute().addClass([
+  'position-absolute',
+  'top-0',
+  'start-0',
+  'w-100',
+  'h-100',
+  overlay_bg_class,
+  overlay_opacity_class,
+]) %}
+
+{% set container_attributes = create_attribute().addClass([
+  container_class != 'none' ? container_class : '',
+  'position-relative',
+]) %}
+
+{% set content_outer_attributes = create_attribute().addClass([
+  'd-flex',
+  'w-100',
+  vertical_align_class,
+  content_align_class,
+  text_align_class,
+]) %}
+
+{% set content_width_attributes = create_attribute().addClass([
+  content_width_class,
+]) %}
+
+<section{{ section_attributes }}>
+  {% if media_src is not empty %}
+    <div{{ media_layer_attributes }} aria-hidden="true">
+      <div{{ media_inner_attributes }}>
+        {{ include('vartheme_bs5:image', {
+          media: {
+            src: media_src,
+            alt: media_alt,
+            width: media_width,
+            height: media_height,
+          },
+          width: 'w-100',
+          fit: 'object-fit-cover',
+          align: 'me-auto',
+          rounded: 'rounded-0',
+          ratio: 'ratio-auto',
+          loading: 'eager',
+        }, false, true) }}
+      </div>
+      <div{{ overlay_attributes }}></div>
+    </div>
+  {% endif %}
+
+  <div{{ container_attributes }}>
+    <div{{ content_outer_attributes }}>
+      <div{{ content_width_attributes }}>
+        {% block hero_slot %}{% endblock %}
+      </div>
+    </div>
+  </div>
+</section>

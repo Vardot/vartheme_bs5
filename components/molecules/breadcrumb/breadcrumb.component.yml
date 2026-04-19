@@ -1,6 +1,5 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: Breadcrumb
-status: experimental
 description: Breadcrumb trail items that indicate the current page’s location within a navigational hierarchy that automatically adds separators via CSS.
 props:
   type: object
@@ -23,12 +22,10 @@ props:
         type: 'string'
       description: An array of utility classes that can be used to add extra Bootstrap utility classes or custom classes to this component.
     attributes:
-      type: object
+      type: Drupal\Core\Template\Attribute
       title: Attributes
       description: HTML attributes for the breadcrumb nav element.
-      $ref: 'ui-patterns://attributes'
     items_attributes:
-      type: object
+      type: Drupal\Core\Template\Attribute
       title: Dismiss close button attribute
       description: HTML attributes for the Breadcrumb trail items element.
-      $ref: 'ui-patterns://attributes'

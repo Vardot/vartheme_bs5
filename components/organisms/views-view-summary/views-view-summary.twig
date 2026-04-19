@@ -25,15 +25,15 @@
   {% set list_item_content = row.link %}
 
   {% if options.count %}
-    {% set list_item_content = list_item_content~ '(' ~ row.count ~ ')' %}
+    {% set list_item_content = list_item_content ~ '(' ~ row.count ~ ')' %}
   {% endif %}
 
   {%
     set list_group_row = include ('vartheme_bs5:link', {
       url: row.url,
       content: list_item_content,
-      link_utility_classes: [row.active ? 'is-active']
-      }, with_context = false)
+      link_utility_classes: [row.active ? 'is-active'],
+      }, with_context: false)
   %}
 
   {% set list_group_rows = list_group_rows|merge([list_group_row]) %}
@@ -44,7 +44,7 @@
     include('vartheme_bs5:list-group', {
       type: 'ul',
       rows: list_group_rows,
-      list_group_utility_classes: ['views-summary']
-    }, with_context = false)
+      list_group_utility_classes: ['views-summary'],
+    }, with_context: false)
   }}
 </div>

@@ -1,8 +1,8 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: Block Accordion
-status: experimental
 description: A wrapper accordion block for the Varbase Accordion component.
 group: Blocks
+noUi: true
 props:
   type: object
   properties:
@@ -27,10 +27,9 @@ props:
         type: 'string'
       description: Use to add extra Bootstrap utility classes or custom CSS classes over component. E.g. w-75 mb-3 
     attributes:
-      type: object
+      type: Drupal\Core\Template\Attribute
       title: Attributes
       description: HTML attributes for the containing element.
-      $ref: 'ui-patterns://attributes'
     title_prefix:
       type: array
       title: title prefix

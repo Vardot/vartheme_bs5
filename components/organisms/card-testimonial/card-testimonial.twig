@@ -1,0 +1,92 @@
+{# Bootstrap 5 Testimonial Card #}
+
+{% set style_value = style|default('bg-body') %}
+{% set shadow_value = shadow|default('shadow') %}
+{% set align_value = align|default('text-center') %}
+
+{# Quote icon toggle (normalize) #}
+{% set raw_icon = show_quote_icon is defined ? show_quote_icon : true %}
+{% set raw_icon_str = (raw_icon ~ '')|lower|trim %}
+{% set show_icon = raw_icon is same as(true)
+  or raw_icon is same as(1)
+  or raw_icon_str in ['1', 'true', 'yes', 'on'] %}
+
+{% set has_media = media is defined and media.src is defined and media.src is not empty %}
+{% set has_footer = cite_name is not empty or cite_text is not empty or has_media %}
+
+{% set card_classes = ['card', 'h-100', 'position-relative', style_value] %}
+{% if shadow_value and shadow_value != 'shadow-none' %}
+  {% set card_classes = card_classes|merge([shadow_value]) %}
+{% endif %}
+
+{% set body_classes = ['card-body', 'p-4', 'p-lg-5', align_value] %}
+{% set blockquote_classes = ['mb-0'] %}
+{% set quote_text_classes = ['lead', 'mb-4'] %}
+{% set footer_classes = ['d-flex', 'align-items-center', 'gap-3', align_value == 'text-center' ? 'justify-content-center' : 'justify-content-start'] %}
+{% set avatar_wrapper_classes = ['flex-shrink-0'] %}
+{% set author_meta_classes = ['small'] %}
+{% set author_name_classes = ['fw-semibold'] %}
+{% set author_role_classes = ['opacity-75'] %}
+{% set quote_icon_classes = ['position-absolute', 'top-0', 'start-0', 'p-3', 'opacity-25'] %}
+
+{% set card_attributes = create_attribute().addClass(card_classes) %}
+{% set body_attributes = create_attribute().addClass(body_classes) %}
+{% set blockquote_attributes = create_attribute().addClass(blockquote_classes) %}
+{% set quote_text_attributes = create_attribute().addClass(quote_text_classes) %}
+{% set footer_attributes = create_attribute().addClass(footer_classes) %}
+{% set avatar_wrapper_attributes = create_attribute().addClass(avatar_wrapper_classes).setAttribute('style', 'width: 60px; height: 60px;') %}
+{% set author_meta_attributes = create_attribute().addClass(author_meta_classes) %}
+{% set author_name_attributes = create_attribute().addClass(author_name_classes) %}
+{% set author_role_attributes = create_attribute().addClass(author_role_classes) %}
+{% set quote_icon_attributes = create_attribute().addClass(quote_icon_classes).setAttribute('aria-hidden', 'true') %}
+
+{% set image_media = {
+  src: media.src|default(''),
+  alt: media.alt|default(cite_name|default('Avatar')),
+  width: media.width|default(60),
+  height: media.height|default(60),
+} %}
+
+<div{{ card_attributes }}>
+  <div{{ body_attributes }}>
+    {% if show_icon %}
+      <div{{ quote_icon_attributes }}>
+        <svg width="40" height="40" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M7.39762 10.3C7.39762 11.0733 7.14888 11.7 6.6514 12.18C6.15392 12.6333 5.52552 12.86 4.76621 12.86C3.84979 12.86 3.09047 12.5533 2.48825 11.94C1.91222 11.3266 1.62421 10.4467 1.62421 9.29999C1.62421 8.07332 1.96459 6.87332 2.64535 5.69999C3.35231 4.49999 4.33418 3.55332 5.59098 2.85999L6.4943 4.25999C5.81354 4.73999 5.26369 5.27332 4.84476 5.85999C4.45201 6.44666 4.19017 7.12666 4.05926 7.89999C4.29491 7.79332 4.56983 7.73999 4.88403 7.73999C5.61716 7.73999 6.21938 7.97999 6.69067 8.45999C7.16197 8.93999 7.39762 9.55333 7.39762 10.3ZM14.6242 10.3C14.6242 11.0733 14.3755 11.7 13.878 12.18C13.3805 12.6333 12.7521 12.86 11.9928 12.86C11.0764 12.86 10.3171 12.5533 9.71484 11.94C9.13881 11.3266 8.85079 10.4467 8.85079 9.29999C8.85079 8.07332 9.19117 6.87332 9.87194 5.69999C10.5789 4.49999 11.5608 3.55332 12.8176 2.85999L13.7209 4.25999C13.0401 4.73999 12.4903 5.27332 12.0713 5.85999C11.6786 6.44666 11.4168 7.12666 11.2858 7.89999C11.5215 7.79332 11.7964 7.73999 12.1106 7.73999C12.8437 7.73999 13.446 7.97999 13.9173 8.45999C14.3886 8.93999 14.6242 9.55333 14.6242 10.3Z" fill="currentColor"></path>
+        </svg>
+      </div>
+    {% endif %}
+
+    <blockquote{{ blockquote_attributes }}>
+      {% if text is not empty %}
+        <p{{ quote_text_attributes }}>{{ text }}</p>
+      {% endif %}
+
+      {% if has_footer %}
+        <footer{{ footer_attributes }}>
+          {% if has_media %}
+            <div{{ avatar_wrapper_attributes }}>
+              {{ include('vartheme_bs5:image', {
+                media: image_media,
+                ratio: 'ratio-auto',
+                fit: 'object-fit-contain',
+                width: 'w-100',
+                align: 'mx-auto',
+              }, false, true) }}
+            </div>
+          {% endif %}
+
+          <div{{ author_meta_attributes }}>
+            {% if cite_name is not empty %}
+              <div{{ author_name_attributes }}>{{ cite_name }}</div>
+            {% endif %}
+
+            {% if cite_text is not empty %}
+              <div{{ author_role_attributes }}>{{ cite_text }}</div>
+            {% endif %}
+          </div>
+        </footer>
+      {% endif %}
+    </blockquote>
+  </div>
+</div>

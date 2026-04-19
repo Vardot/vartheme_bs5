@@ -26,12 +26,21 @@ bootstrap_icons:
   #     title: "Class"
   #     type: "string"
   template: >-
-    <svg{{
-        attributes
-          .setAttribute('viewBox', attributes.viewBox|default('0 0 16 16'))
-          .setAttribute('width', size|default('32'))
-          .setAttribute('height', size|default('32'))
-          .setAttribute('aria-hidden', 'true')
-    }}>
+    {# Accessible SVG wrapper for extracted icons. #}
+    {% set svg_attributes = attributes
+      .setAttribute('viewBox', attributes.viewBox|default('0 0 16 16'))
+      .setAttribute('width', size|default('32'))
+      .setAttribute('height', size|default('32'))
+      .setAttribute('role', 'img')
+    %}
+    {% if alt|default('')|trim %}
+      {% set svg_attributes = svg_attributes
+        .setAttribute('aria-label', alt|trim)
+        .setAttribute('aria-hidden', 'false')
+      %}
+    {% else %}
+      {% set svg_attributes = svg_attributes.setAttribute('aria-hidden', 'true') %}
+    {% endif %}
+    <svg{{ svg_attributes }}>
       {{ content }}
     </svg>

@@ -1,14 +1,24 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: Media Hero Slide
-status: experimental
 description: A rich hero slide that display video and/or image.
+noUi: true
 props:
   type: object
   properties:
     node:
-      type: Drupal\node\Entity\Node
+      type: object
       title: Node
       description: The node entity with limited access to object properties and methods.
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        type:
+          type: string
+      required:
+        - id
+        - title
     label:
       type: string
       title: Label
@@ -36,32 +46,28 @@ props:
     url:
       type: string
       title: URL
+      format: uri-reference
       description: Direct URL of the current node.
-      $ref: "ui-patterns://url"
     display_submitted:
       type: boolean
       title: Display Submitted
       description: Whether submission information should be displayed.
     attributes:
-      type: object
+      type: Drupal\Core\Template\Attribute
       title: Attributes
       description: HTML attributes for the containing element.
-      $ref: 'ui-patterns://attributes'
     title_attributes:
-      type: object
+      type: Drupal\Core\Template\Attribute
       title: Title Attributes
       description: Same as attributes, except applied to the main title tag that appears in the template.
-      $ref: 'ui-patterns://attributes'
     content_attributes:
-      type: object
+      type: Drupal\Core\Template\Attribute
       title: Content Attributes
       description: Same as attributes, except applied to the main content tag that appears in the template.
-      $ref: 'ui-patterns://attributes'
     author_attributes:
-      type: object
+      type: Drupal\Core\Template\Attribute
       title: Author Attributes
       description: Same as attributes, except applied to the author of the node tag that appears in the template.
-      $ref: 'ui-patterns://attributes'
     title_prefix:
       type: array
       title: Title Prefix

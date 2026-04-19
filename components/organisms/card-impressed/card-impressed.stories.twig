@@ -1,389 +1,193 @@
 {% stories ImpressedCard with {
-  "title": "Organisms/Impressed Card",
-  "parameters": {
-    "componentSubtitle": "Bootstrap Impressed card component",
-    "docs": {
-      "description": {
-        "component": "Impressed card component and pattern with media and content."
+  title: 'Cards/Impressed Card',
+  parameters: {
+    componentSubtitle: 'Stacked card with optional media (top/bottom) and a single content slot.',
+    docs: {
+      description: {
+        component: 'Impressed Card is a Bootstrap 5 card layout with an optional media area rendered through the image component. Use utility-class props to control border, padding, background, rounding, and shadows.',
       },
-      "story": {
-        "inline": true
-      }
-    }
+      story: {inline: true},
+    },
   },
-  "argTypes": {
-    "style_size": {
-      "name": "Card style size",
-      "description": "Card style size",
-      "control": "select",
-      "defaultValue": "",
-      "options": {
-        "' - none - '": "",
-        "XSmall": "xsmall",
-        "Small": "small",
-        "Medium": "medium",
-        "Large": "large",
-        "XLarge": "xlarge"
-      }
+  argTypes: {
+    media_position: {
+      name: 'Media position',
+      control: {type: 'select'},
+      options: ['top', 'bottom'],
     },
-    "media_position": {
-      "name": "Media position",
-      "description": "Media position",
-      "control": "select",
-      "defaultValue": "",
-      "options": {
-        "' - none - '": "",
-        "Top": "top",
-        "Bottom": "bottom"
-      }
+    media_image: {
+      name: 'Media upload',
+      control: {type: 'object'},
     },
-    "card_border": {
-      "name": "Card Border",
-      "description": "Add a default border to the card.",
-      "control": "boolean",
-      "defaultValue": true
+    ratio: {
+      name: 'Image ratio (crop)',
+      control: {type: 'select'},
+      options: ['ratio-auto', 'ratio-16x9', 'ratio-4x3', 'ratio-1x1', 'ratio-21x9'],
     },
-    "padded": {
-      "name": "Padded",
-      "description": "Add a default padding to the card.",
-      "control": "boolean",
-      "defaultValue": false
+    fit: {
+      name: 'Image fit',
+      control: {type: 'select'},
+      options: ['object-fit-cover', 'object-fit-contain'],
     },
-    "equal_height": {
-      "name": "Equal height",
-      "description": "Equal height",
-      "control": "boolean",
-      "defaultValue": true
+    card_border: {
+      name: 'Card border',
+      control: {type: 'boolean'},
     },
-    "anchor_all": {
-      "name": "Anchor All",
-      "description": "Anchor All",
-      "control": "boolean",
-      "defaultValue": false
+    background_color: {
+      name: 'Background',
+      control: {type: 'select'},
+      options: ['bg-transparent', 'bg-body', 'bg-body-tertiary', 'bg-white', 'bg-light', 'bg-dark', 'bg-primary', 'bg-secondary', 'bg-success', 'bg-danger', 'bg-warning', 'bg-info'],
     },
-    "media": {
-      "name": "Card media",
-      "description": "Choose the location of the media from (top|bottom).",
-      "control": "text",
-      "defaultValue": ""
+    padded: {
+      name: 'Padded',
+      control: {type: 'boolean'},
     },
-    "content": {
-      "name": "Card content",
-      "slots": "The content slot for the card.",
-      "control": "text",
-      "defaultValue": ""
+    box_shadow: {
+      name: 'Shadow',
+      control: {type: 'select'},
+      options: ['shadow-none', 'shadow-sm', 'shadow', 'shadow-lg'],
     },
-    "card_impressed_utility_classes": {
-      "name": "Utility Classes",
-      "description": "Use to add extra Bootstrap utility classes for the main Card wrapper. E.g. `mb-3 shadow-lg` ( Do not add `card`).",
-      "control": "object",
-      "defaultValue": []
+    corner_style: {
+      name: 'Corner style',
+      control: {type: 'select'},
+      options: ['rounded-0', 'rounded-1', 'rounded-3', 'rounded-pill'],
     },
-    "card_impressed_media_utility_classes": {
-      "name": "Media Utility Classes",
-      "description": "Use to add extra Bootstrap utility classes for the Card Media region wrapper. E.g. `bg-secondary mb-3` ( Do not add `card-img`).",
-      "control": "object",
-      "defaultValue": []
+    equal_height: {
+      name: 'Equal height',
+      control: {type: 'boolean'},
     },
-    "card_impressed_content_utility_classes": {
-      "name": "Content Utility Classes",
-      "description": "Use to add extra Bootstrap utility classes for the Card Content region wrapper. E.g. `w-75 mb-3 overflow-y-hidden`  ( Do not add `card-body`).",
-      "control": "object",
-      "defaultValue": []
+    link_url: {
+      name: 'Link URL',
+      control: {type: 'text'},
     },
-    "card_attributes": {
-      "name": "Card Attributes",
-      "description": "HTML attributes for the card element.",
-      "control": "object",
-      "defaultValue": {}
+    link_target: {
+      name: 'Link target',
+      control: {type: 'select'},
+      options: ['default', '_self', '_blank'],
     },
-    "content_attributes": {
-      "name": "Content Attributes",
-      "description": "HTML attributes for the content element.",
-      "control": "object",
-      "defaultValue": {}
-    }
-  }
+  },
 } %}
 
-
-{% story xlarge with {
-  "name": "xlarge",
-  "args": {
-    "style_size": "xlarge",
-    "media_position": "top",
-    "card_border": false,
-    "padded": false,
-    "equal_height": true,
-    "anchor_all": true,
-    "media": "<picture class=\"card-img-top img-fluid\"><img class=\"card-img-top img-fluid\" src=\"https://raw.githubusercontent.com/Vardot/varbase_media_demo/10.0.0/content/file/coworking-1.jpg\"></picture>",
-    "content": "<h3 class=\"card-title\"><a href=\"#\">Lorem Ipsum Dolor Sit Amet</a></h3><p class=\"card-text\">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas.</p>",
-    "card_impressed_utility_classes": ['col-12'],
-    "card_impressed_media_utility_classes": [],
-    "card_impressed_content_utility_classes": []
-  }
+{% story Default with {
+  args: {
+    media_position: 'top',
+    ratio: 'ratio-16x9',
+    fit: 'object-fit-cover',
+    card_border: true,
+    background_color: 'bg-white',
+    padded: false,
+    box_shadow: 'shadow-sm',
+    corner_style: 'rounded-3',
+    equal_height: false,
+    link_url: '',
+    link_target: 'default',
+  },
 } %}
-{{ include('vartheme_bs5:card-impressed') }}
+{% embed 'vartheme_bs5:card-impressed' %}
+  {% block content %}
+    <div class="d-flex flex-column gap-2">
+      <h3 class="h5 m-0">Impressed Card</h3>
+      <p class="m-0 text-muted">A stacked card with an optional media area and one content slot.</p>
+      <div class="d-flex gap-2">
+        <span class="badge text-bg-primary">Badge</span>
+        <span class="badge text-bg-secondary">Tag</span>
+      </div>
+    </div>
+  {% endblock %}
+{% endembed %}
 {% endstory %}
 
-
-{% story large with {
-  "name": "large",
-  "args": {
-    "style_size": "large",
-    "media_position": "top",
-    "card_border": false,
-    "padded": false,
-    "equal_height": true,
-    "anchor_all": true,
-    "media": "<picture class=\"card-img-top img-fluid\"><img class=\"card-img-top img-fluid\" src=\"https://raw.githubusercontent.com/Vardot/varbase_media_demo/10.0.0/content/file/coworking-1.jpg\"></picture>",
-    "content": "<h3 class=\"card-title\"><a href=\"#\">Lorem Ipsum Dolor Sit Amet</a></h3><p class=\"card-text\">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas.</p>",
-    "card_impressed_utility_classes": ['col-9'],
-    "card_impressed_media_utility_classes": [],
-    "card_impressed_content_utility_classes": []
-  }
+{% story PaddedContent with {
+  args: {
+    media_position: 'top',
+    ratio: 'ratio-16x9',
+    fit: 'object-fit-cover',
+    card_border: true,
+    background_color: 'bg-body',
+    padded: true,
+    box_shadow: 'shadow',
+    corner_style: 'rounded-3',
+    equal_height: false,
+    link_url: '',
+    link_target: 'default',
+  },
 } %}
-{{ include('vartheme_bs5:card-impressed') }}
+{% embed 'vartheme_bs5:card-impressed' %}
+  {% block content %}
+    <h3 class="h5 mb-2">Padded content</h3>
+    <p class="mb-0">When <code>padded</code> is enabled, the content wrapper gets <code>p-4</code>.</p>
+  {% endblock %}
+{% endembed %}
 {% endstory %}
 
-
-{% story medium with {
-  "name": "medium",
-  "args": {
-    "style_size": "medium",
-    "media_position": "top",
-    "card_border": false,
-    "padded": false,
-    "equal_height": true,
-    "anchor_all": true,
-    "media": "<picture class=\"card-img-top img-fluid\"><img class=\"card-img-top img-fluid\" src=\"https://raw.githubusercontent.com/Vardot/varbase_media_demo/10.0.0/content/file/coworking-1.jpg\"></picture>",
-    "content": "<h3 class=\"card-title\"><a href=\"#\">Lorem Ipsum Dolor Sit Amet</a></h3><p class=\"card-text\">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas.</p>",
-    "card_impressed_utility_classes": ['col-6'],
-    "card_impressed_media_utility_classes": [],
-    "card_impressed_content_utility_classes": []
-  }
+{% story MediaBottom with {
+  args: {
+    media_position: 'bottom',
+    ratio: 'ratio-4x3',
+    fit: 'object-fit-cover',
+    card_border: true,
+    background_color: 'bg-white',
+    padded: true,
+    box_shadow: 'shadow-sm',
+    corner_style: 'rounded-3',
+    equal_height: false,
+    link_url: '',
+    link_target: 'default',
+  },
 } %}
-{{ include('vartheme_bs5:card-impressed') }}
+{% embed 'vartheme_bs5:card-impressed' %}
+  {% block content %}
+    <h3 class="h5 mb-2">Media at the bottom</h3>
+    <p class="mb-0">Use <code>media_position</code> to render the image below the content.</p>
+  {% endblock %}
+{% endembed %}
 {% endstory %}
 
-
-{% story small with {
-  "name": "small",
-  "args": {
-    "style_size": "small",
-    "media_position": "top",
-    "card_border": false,
-    "padded": false,
-    "equal_height": true,
-    "anchor_all": true,
-    "media": "<picture class=\"card-img-top img-fluid\"><img class=\"card-img-top img-fluid\" src=\"https://raw.githubusercontent.com/Vardot/varbase_media_demo/10.0.0/content/file/coworking-1.jpg\"></picture>",
-    "content": "<h3 class=\"card-title\"><a href=\"#\">Lorem Ipsum Dolor Sit Amet</a></h3><p class=\"card-text\">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas.</p>",
-    "card_impressed_utility_classes": ['col-4'],
-    "card_impressed_media_utility_classes": [],
-    "card_impressed_content_utility_classes": []
-  }
+{% story ContainFit with {
+  args: {
+    media_position: 'top',
+    ratio: 'ratio-1x1',
+    fit: 'object-fit-contain',
+    card_border: true,
+    background_color: 'bg-white',
+    padded: true,
+    box_shadow: 'shadow-none',
+    corner_style: 'rounded-0',
+    equal_height: false,
+    link_url: '',
+    link_target: 'default',
+  },
 } %}
-{{ include('vartheme_bs5:card-impressed') }}
+{% embed 'vartheme_bs5:card-impressed' %}
+  {% block content %}
+    <h3 class="h5 mb-2">Contain fit</h3>
+    <p class="mb-0">Use <code>object-fit-contain</code> to avoid cropping inside fixed ratios.</p>
+  {% endblock %}
+{% endembed %}
 {% endstory %}
 
-
-{% story xsmall with {
-  "name": "xsmall",
-  "args": {
-    "style_size": "xsmall",
-    "media_position": "top",
-    "card_border": false,
-    "padded": false,
-    "equal_height": true,
-    "anchor_all": true,
-    "media": "<picture class=\"card-img-top img-fluid\"><img class=\"card-img-top img-fluid\" src=\"https://raw.githubusercontent.com/Vardot/varbase_media_demo/10.0.0/content/file/coworking-1.jpg\"></picture>",
-    "content": "<h3 class=\"card-title\"><a href=\"#\">Lorem Ipsum Dolor Sit Amet</a></h3><p class=\"card-text\">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas.</p>",
-    "card_impressed_utility_classes": ['col-3'],
-    "card_impressed_media_utility_classes": [],
-    "card_impressed_content_utility_classes": []
-  }
+{% story LinkedCard with {
+  args: {
+    media_position: 'top',
+    ratio: 'ratio-21x9',
+    fit: 'object-fit-cover',
+    card_border: true,
+    background_color: 'bg-white',
+    padded: true,
+    box_shadow: 'shadow-lg',
+    corner_style: 'rounded-3',
+    equal_height: false,
+    stretched_link: true,
+    link_url: 'https://example.com',
+    link_target: '_blank',
+  },
 } %}
-{{ include('vartheme_bs5:card-impressed') }}
-{% endstory %}
-
-
-{% story xlargePadded with {
-  "name": "xlarge - Padded",
-  "args": {
-    "style_size": "xlarge",
-    "media_position": "top",
-    "card_border": true,
-    "padded": true,
-    "equal_height": true,
-    "anchor_all": true,
-    "media": "<picture class=\"card-img-top img-fluid\"><img class=\"card-img-top img-fluid\" src=\"https://raw.githubusercontent.com/Vardot/varbase_media_demo/10.0.0/content/file/coworking-1.jpg\"></picture>",
-    "content": "<div data-component-id=\"vartheme_bs5:field\" class=\"field field--name-node-title field--type-ds field--label-hidden field__item\"><h3 class=\"card-title\"><a href=\"#\" hreflang=\"en\">Lorem Ipsum Dolor Sit Amet</a></h3></div><div class=\"field field--name-body field--type-text-with-summary field--label-hidden field__item\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pharetra arcu risus, id tempus risus elementum at. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas ...</div>",
-    "card_impressed_utility_classes": ['col-12'],
-    "card_impressed_media_utility_classes": [],
-    "card_impressed_content_utility_classes": []
-  }
-} %}
-{{ include('vartheme_bs5:card-impressed') }}
-{% endstory %}
-
-
-{% story largePadded with {
-  "name": "large - Padded",
-  "args": {
-    "style_size": "large",
-    "media_position": "top",
-    "card_border": true,
-    "padded": true,
-    "equal_height": true,
-    "anchor_all": true,
-    "media": "<picture class=\"card-img-top img-fluid\"><img class=\"card-img-top img-fluid\" src=\"https://raw.githubusercontent.com/Vardot/varbase_media_demo/10.0.0/content/file/coworking-1.jpg\"></picture>",
-    "content": "<div data-component-id=\"vartheme_bs5:field\" class=\"field field--name-node-title field--type-ds field--label-hidden field__item\"><h3 class=\"card-title\"><a href=\"#\" hreflang=\"en\">Lorem Ipsum Dolor Sit Amet</a></h3></div><div class=\"field field--name-body field--type-text-with-summary field--label-hidden field__item\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pharetra arcu risus, id tempus risus elementum at. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas ...</div>",
-    "card_impressed_utility_classes": ['col-9'],
-    "card_impressed_media_utility_classes": [],
-    "card_impressed_content_utility_classes": []
-  }
-} %}
-{{ include('vartheme_bs5:card-impressed') }}
-{% endstory %}
-
-
-{% story mediumPadded with {
-  "name": "medium - Padded",
-  "args": {
-    "style_size": "medium",
-    "media_position": "top",
-    "card_border": true,
-    "padded": true,
-    "equal_height": true,
-    "anchor_all": true,
-    "media": "<picture class=\"card-img-top img-fluid\"><img class=\"card-img-top img-fluid\" src=\"https://raw.githubusercontent.com/Vardot/varbase_media_demo/10.0.0/content/file/coworking-1.jpg\"></picture>",
-    "content": "<div data-component-id=\"vartheme_bs5:field\" class=\"field field--name-node-title field--type-ds field--label-hidden field__item\"><h3 class=\"card-title\"><a href=\"#\" hreflang=\"en\">Lorem Ipsum Dolor Sit Amet</a></h3></div><div class=\"field field--name-body field--type-text-with-summary field--label-hidden field__item\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pharetra arcu risus, id tempus risus elementum at. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas ...</div>",
-    "card_impressed_utility_classes": ['col-6'],
-    "card_impressed_media_utility_classes": [],
-    "card_impressed_content_utility_classes": []
-  }
-} %}
-{{ include('vartheme_bs5:card-impressed') }}
-{% endstory %}
-
-
-{% story LargeShadowTopMedia with {
-  "name": "Large Shadow - Top Media",
-  "args": {
-    "style_size": "medium",
-    "media_position": "top",
-    "card_border": true,
-    "padded": true,
-    "equal_height": true,
-    "anchor_all": true,
-    "media": "<picture class=\"card-img-top img-fluid\"><img class=\"card-img-top img-fluid\" src=\"https://raw.githubusercontent.com/Vardot/varbase_media_demo/10.0.0/content/file/coworking-1.jpg\"></picture>",
-    "content": "<div data-component-id=\"vartheme_bs5:field\" class=\"field field--name-node-title field--type-ds field--label-hidden field__item\"><h3 class=\"card-title\"><a href=\"#\" hreflang=\"en\">Lorem Ipsum Dolor Sit Amet</a></h3></div><div class=\"field field--name-body field--type-text-with-summary field--label-hidden field__item\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pharetra arcu risus, id tempus risus elementum at. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas ...</div>",
-    "card_impressed_utility_classes": ['shadow-lg', 'col-12'],
-    "card_impressed_media_utility_classes": [],
-    "card_impressed_content_utility_classes": []
-  }
-} %}
-{{ include('vartheme_bs5:card-impressed') }}
-{% endstory %}
-
-
-{% story LargeShadowButtomMedia with {
-  "name": "Large Shadow - Buttom Media",
-  "args": {
-    "style_size": "medium",
-    "media_position": "bottom",
-    "card_border": true,
-    "padded": true,
-    "equal_height": true,
-    "anchor_all": true,
-    "media": "<picture class=\"card-img-top img-fluid\"><img class=\"card-img-top img-fluid\" src=\"https://raw.githubusercontent.com/Vardot/varbase_media_demo/10.0.0/content/file/coworking-1.jpg\"></picture>",
-    "content": "<div data-component-id=\"vartheme_bs5:field\" class=\"field field--name-node-title field--type-ds field--label-hidden field__item\"><h3 class=\"card-title\"><a href=\"#\" hreflang=\"en\">Lorem Ipsum Dolor Sit Amet</a></h3></div><div class=\"field field--name-body field--type-text-with-summary field--label-hidden field__item\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pharetra arcu risus, id tempus risus elementum at. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas ...</div>",
-    "card_impressed_utility_classes": ['shadow-lg', 'col-6'],
-    "card_impressed_media_utility_classes": [],
-    "card_impressed_content_utility_classes": []
-  }
-} %}
-{{ include('vartheme_bs5:card-impressed') }}
-{% endstory %}
-
-
-{% story LightBackbroundLargeShadow with {
-  "name": "Light Backbround - Large Shadow",
-  "args": {
-    "style_size": "medium",
-    "media_position": "top",
-    "card_border": true,
-    "padded": true,
-    "equal_height": true,
-    "anchor_all": true,
-    "media": "<picture class=\"card-img-top img-fluid\"><img class=\"card-img-top img-fluid\" src=\"https://raw.githubusercontent.com/Vardot/varbase_media_demo/10.0.0/content/file/coworking-1.jpg\"></picture>",
-    "content": "<div data-component-id=\"vartheme_bs5:field\" class=\"field field--name-node-title field--type-ds field--label-hidden field__item\"><h3 class=\"card-title\"><a href=\"#\" hreflang=\"en\">Lorem Ipsum Dolor Sit Amet</a></h3></div><div class=\"field field--name-body field--type-text-with-summary field--label-hidden field__item\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pharetra arcu risus, id tempus risus elementum at. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas ...</div>",
-    "card_impressed_utility_classes": ['bg-light', 'text-dark', 'shadow-lg', 'col-6'],
-    "card_impressed_media_utility_classes": [],
-    "card_impressed_content_utility_classes": []
-  }
-} %}
-{{ include('vartheme_bs5:card-impressed') }}
-{% endstory %}
-
-
-{% story LightBackbroundSmallShadow with {
-  "name": "Light Backbround - Small Shadow",
-  "args": {
-    "style_size": "medium",
-    "media_position": "top",
-    "card_border": true,
-    "padded": true,
-    "equal_height": true,
-    "anchor_all": true,
-    "media": "<picture class=\"card-img-top img-fluid\"><img class=\"card-img-top img-fluid\" src=\"https://raw.githubusercontent.com/Vardot/varbase_media_demo/10.0.0/content/file/coworking-1.jpg\"></picture>",
-    "content": "<div data-component-id=\"vartheme_bs5:field\" class=\"field field--name-node-title field--type-ds field--label-hidden field__item\"><h3 class=\"card-title\"><a href=\"#\" hreflang=\"en\">Lorem Ipsum Dolor Sit Amet</a></h3></div><div class=\"field field--name-body field--type-text-with-summary field--label-hidden field__item\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pharetra arcu risus, id tempus risus elementum at. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas ...</div>",
-    "card_impressed_utility_classes": ['bg-light', 'text-dark', 'shadow-sm', 'col-6'],
-    "card_impressed_media_utility_classes": [],
-    "card_impressed_content_utility_classes": []
-  }
-} %}
-{{ include('vartheme_bs5:card-impressed') }}
-{% endstory %}
-
-
-{% story DarkBackbroundTopMedia with {
-  "name": "Dark Backbround - Top Media",
-  "args": {
-    "style_size": "medium",
-    "media_position": "top",
-    "card_border": true,
-    "padded": true,
-    "equal_height": true,
-    "anchor_all": true,
-    "media": "<picture class=\"card-img-top img-fluid\"><img class=\"card-img-top img-fluid\" src=\"https://raw.githubusercontent.com/Vardot/varbase_media_demo/10.0.0/content/file/coworking-1.jpg\"></picture>",
-    "content": "<div data-component-id=\"vartheme_bs5:field\" class=\"field field--name-node-title field--type-ds field--label-hidden field__item\"><h3 class=\"card-title text-light\"><a class=\"text-light\" href=\"#\" hreflang=\"en\">Lorem Ipsum Dolor Sit Amet</a></h3></div><div class=\"field field--name-body field--type-text-with-summary field--label-hidden field__item\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pharetra arcu risus, id tempus risus elementum at. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas ...</div><div class=\"read-more text-end\"></div>",
-    "card_impressed_utility_classes": ['bg-dark', 'text-light', 'col-6'],
-    "card_impressed_media_utility_classes": [],
-    "card_impressed_content_utility_classes": []
-  }
-} %}
-{{ include('vartheme_bs5:card-impressed') }}
-{% endstory %}
-
-
-{% story DarkBackbroundBottomMedia with {
-  "name": "Dark Backbround - Bottom Media",
-  "args": {
-    "style_size": "medium",
-    "media_position": "bottom",
-    "card_border": true,
-    "padded": true,
-    "equal_height": true,
-    "anchor_all": true,
-    "media": "<picture class=\"card-img-top img-fluid\"><img class=\"card-img-top img-fluid\" src=\"https://raw.githubusercontent.com/Vardot/varbase_media_demo/10.0.0/content/file/coworking-1.jpg\"></picture>",
-    "content": "<div data-component-id=\"vartheme_bs5:field\" class=\"field field--name-node-title field--type-ds field--label-hidden field__item\"><h3 class=\"card-title text-light\"><a class=\"text-light\" href=\"#\" hreflang=\"en\">Lorem Ipsum Dolor Sit Amet</a></h3></div><div class=\"field field--name-body field--type-text-with-summary field--label-hidden field__item\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pharetra arcu risus, id tempus risus elementum at. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas ...</div><div class=\"read-more text-end\"></div>",
-    "card_impressed_utility_classes": ['bg-dark', 'text-light', 'col-6'],
-    "card_impressed_media_utility_classes": [],
-    "card_impressed_content_utility_classes": []
-  }
-} %}
-{{ include('vartheme_bs5:card-impressed') }}
+{% embed 'vartheme_bs5:card-impressed' %}
+  {% block content %}
+    <h3 class="h5 mb-2">Linked card</h3>
+    <p class="mb-0">Enable <code>stretched_link</code> and set <code>link_url</code> to make the whole card clickable.</p>
+  {% endblock %}
+{% endembed %}
 {% endstory %}
 
 {% endstories %}

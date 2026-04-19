@@ -1,0 +1,210 @@
+$schema: "https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json"
+name: Card Icon
+group: Card
+props:
+  type: object
+  properties:
+    text:
+      type: string
+      title: Heading
+      description: Main title text.
+      default: "Your heading here"
+      examples:
+        - "Your heading here"
+    description:
+      type: string
+      title: Description
+      description: Supporting text (HTML allowed).
+      contentMediaType: text/html
+      x-formatting-context: block
+      examples:
+        - "<p>This is placeholder text.</p>"
+    text_align:
+      type: string
+      title: Text alignment
+      description: Alignment applied to the icon, heading, and description.
+      enum: [text-start, text-center, text-end]
+      default: text-center
+      examples: [text-center]
+      meta:enum:
+        text-start: Left
+        text-center: Center
+        text-end: Right
+    icon:
+      type: string
+      title: Icon (optional)
+      description: 'Optional Bootstrap Icon name (without the "bi-" prefix). Use "none" to disable.'
+      enum:
+        - "none"
+        - "facebook"
+        - "twitter-x"
+        - "instagram"
+        - "linkedin"
+        - "x"
+        - "plus"
+        - "exclamation"
+        - "check"
+        - "dash"
+        - "question"
+        - "info"
+        - "search"
+        - "person"
+        - "people"
+        - "person-plus"
+        - "person-check"
+        - "chevron-up"
+        - "chevron-down"
+        - "chevron-left"
+        - "chevron-right"
+        - "chevron-double-up"
+        - "chevron-double-down"
+        - "chevron-double-left"
+        - "chevron-double-right"
+        - "arrow-up"
+        - "arrow-down"
+        - "arrow-left"
+        - "arrow-right"
+        - "arrow-up-right"
+        - "arrow-up-left"
+        - "arrow-down-right"
+        - "arrow-down-left"
+        - "arrow-repeat"
+        - "arrows-angle-expand"
+        - "arrows-angle-contract"
+        - "play"
+        - "pause"
+        - "skip-backward"
+        - "skip-forward"
+        - "circle"
+        - "circle-fill"
+        - "record-circle"
+      default: "people"
+      examples:
+        - "people"
+      meta:enum:
+        "none": "None"
+        "facebook": "Facebook"
+        "twitter-x": "Twitter X"
+        "instagram": "Instagram"
+        "linkedin": "LinkedIn"
+        "x": "Close (X)"
+        "plus": "Plus"
+        "exclamation": "Exclamation"
+        "check": "Check"
+        "dash": "Dash"
+        "question": "Question"
+        "info": "Info"
+        "search": "Search"
+        "person": "Person"
+        "people": "People"
+        "person-plus": "Person Plus"
+        "person-check": "Person Check"
+        "chevron-up": "Chevron Up"
+        "chevron-down": "Chevron Down"
+        "chevron-left": "Chevron Left"
+        "chevron-right": "Chevron Right"
+        "chevron-double-up": "Chevron Double Up"
+        "chevron-double-down": "Chevron Double Down"
+        "chevron-double-left": "Chevron Double Left"
+        "chevron-double-right": "Chevron Double Right"
+        "arrow-up": "Arrow Up"
+        "arrow-down": "Arrow Down"
+        "arrow-left": "Arrow Left"
+        "arrow-right": "Arrow Right"
+        "arrow-up-right": "Arrow Up Right"
+        "arrow-up-left": "Arrow Up Left"
+        "arrow-down-right": "Arrow Down Right"
+        "arrow-down-left": "Arrow Down Left"
+        "arrow-repeat": "Arrow Repeat"
+        "arrows-angle-expand": "Expand"
+        "arrows-angle-contract": "Contract"
+        "play": "Play"
+        "pause": "Pause"
+        "skip-backward": "Skip Backward"
+        "skip-forward": "Skip Forward"
+        "circle": "Circle"
+        "circle-fill": "Circle Filled"
+        "record-circle": "Record Circle"
+    icon_size:
+      type: string
+      title: Icon size
+      description: Controls the icon size using Bootstrap font-size utilities.
+      enum:
+        - fs-6
+        - fs-5
+        - fs-4
+        - fs-3
+        - fs-2
+        - fs-1
+      default: fs-4
+      meta:enum:
+        fs-6: Extra small
+        fs-5: Small
+        fs-4: Medium
+        fs-3: Large
+        fs-2: Extra large
+        fs-1: Huge
+    background_color:
+      type: string
+      title: Background theme
+      description: Background color style for the card.
+      enum: [bg-body, bg-primary text-white, bg-secondary text-white, bg-success text-white, bg-danger text-white, bg-warning, bg-info, bg-light, bg-dark text-white]
+      default: bg-body
+      examples: [bg-body]
+      meta:enum:
+        bg-body: Default
+        bg-primary text-white: Primary
+        bg-secondary text-white: Secondary
+        bg-success text-white: Success
+        bg-danger text-white: Danger
+        bg-warning: Warning
+        bg-info: Info
+        bg-light: Light
+        bg-dark text-white: Dark
+    shadow:
+      type: string
+      title: Shadow
+      description: Adds depth to the card.
+      enum: [shadow-none, shadow-sm, shadow, shadow-lg]
+      default: shadow
+      examples: [shadow]
+      meta:enum:
+        shadow-none: No shadow
+        shadow-sm: Small shadow
+        shadow: Default shadow
+        shadow-lg: Large shadow
+    has_padding:
+      type: boolean
+      title: Add padding
+      description: If enabled, applies Bootstrap p-4 to the card body.
+      default: true
+      examples: [true]
+    url:
+      type: string
+      title: Link URL (optional)
+      format: uri-reference
+      description: If provided, the card becomes clickable or shows a button when button label is set.
+    button_label:
+      type: string
+      title: Button label (optional)
+      description: If set and Link URL is provided, shows a button instead of linking the full card.
+      default: ""
+      examples:
+        - "Learn more"
+    button_variant:
+      type: string
+      title: Button style
+      description: Style for the optional button.
+      enum: [btn-primary, btn-secondary, btn-success, btn-danger, btn-warning, btn-info, btn-light, btn-dark, btn-link]
+      default: btn-primary
+      examples: [btn-primary]
+      meta:enum:
+        btn-primary: Primary
+        btn-secondary: Secondary
+        btn-success: Success
+        btn-danger: Danger
+        btn-warning: Warning
+        btn-info: Info
+        btn-light: Light
+        btn-dark: Dark
+        btn-link: Link style

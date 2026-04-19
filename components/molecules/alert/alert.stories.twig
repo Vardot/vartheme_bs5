@@ -1,176 +1,175 @@
 {% stories Alert with {
-  "title": "Molecules/Alert",
-  "parameters": {
-    "componentSubtitle": "Bootstrap Alert Component",
-    "docs": {
-      "description": {
-        "component": "Alerts are available for any length of text, as well as an optional close button. For proper styling, use one of the eight required contextual classes (e.g., .alert-success)."
+  title: 'Molecules/Alert',
+  parameters: {
+    componentSubtitle: 'Bootstrap Alert Component',
+    docs: {
+      description: {
+        component: 'Alerts are available for any length of text, as well as an optional close button. For proper styling, use one of the eight required contextual classes (e.g., .alert-success).',
       },
-      "story": {
-        "inline": true
-      }
-    }
+      story: {
+        inline: true,
+      },
+    },
   },
-  "argTypes": {
-    "type": {
-      "name": "Alert type",
-      "description": "Bootstrap includes several predefined alert type styles.",
-      "defaultValue": "",
-      "control": "select",
-      "options": {
-        "'- none -'": "",
-        "Primary": "alert-primary",
-        "Secondary": "alert-secondary",
-        "Success": "alert-success",
-        "Danger": "alert-danger",
-        "Warning": "alert-warning",
-        "Info": "alert-info",
-        "Light": "alert-light",
-        "Dark": "alert-dark"
-      }
+  argTypes: {
+    type: {
+      name: 'Alert type',
+      description: 'Bootstrap includes several predefined alert type styles.',
+      defaultValue: '',
+      control: 'select',
+      options: {
+        "'- none -'": '',
+        Primary: 'alert-primary',
+        Secondary: 'alert-secondary',
+        Success: 'alert-success',
+        Danger: 'alert-danger',
+        Warning: 'alert-warning',
+        Info: 'alert-info',
+        Light: 'alert-light',
+        Dark: 'alert-dark',
+      },
     },
-    "dismissible": {
-      "name": "Dismissible",
-      "description": "It is possible to dismiss any alert inline, When an alert is dismissed, the element is completely removed from the page structure.",
-      "defaultValue": true,
-      "control": "boolean"
+    dismissible: {
+      name: 'Dismissible',
+      description: 'It is possible to dismiss any alert inline, When an alert is dismissed, the element is completely removed from the page structure.',
+      defaultValue: true,
+      control: 'boolean',
     },
-    "content": {
-      "name": "Alert content",
-      "description": "The content of the alert.",
-      "defaultValue": "",
-      "control": "text"
+    content: {
+      name: 'Alert content',
+      description: 'The content of the alert.',
+      defaultValue: '',
+      control: 'text',
     },
-    "heading": {
-      "name": "Alert heading",
-      "description": "Alerts can also contain primary alert heading.",
-      "defaultValue": "",
-      "control": "text"
+    heading: {
+      name: 'Alert heading',
+      description: 'Alerts can also contain primary alert heading.',
+      defaultValue: '',
+      control: 'text',
     },
-    "alert_utility_classes": {
-      "name": "Utility Classes",
-      "description": "An array of utility classes that can be used to add extra Bootstrap utility classes or custom classes to this component.",
-      "control": "object",
-      "defaultValue": []
+    alert_utility_classes: {
+      name: 'Utility Classes',
+      description: 'An array of utility classes that can be used to add extra Bootstrap utility classes or custom classes to this component.',
+      control: 'object',
+      defaultValue: [],
     },
-    "attributes": {
-      "name": "Attributes",
-      "description": "HTML attributes for the alert element.",
-      "control": "object",
-      "defaultValue": {}
+    attributes: {
+      name: 'Attributes',
+      description: 'HTML attributes for the alert element.',
+      control: 'object',
+      defaultValue: {},
     },
-    "dismissible_attributes": {
-      "name": "Attributes",
-      "description": "Dismiss close button attributes",
-      "control": "object",
-      "defaultValue": {}
-    }
-  }
+    dismissible_attributes: {
+      name: 'Attributes',
+      description: 'Dismiss close button attributes',
+      control: 'object',
+      defaultValue: {},
+    },
+  },
 } %}
 
 {% story Primary with {
-  "name": "Primary",
-  "args": {
-    "type": "alert-primary",
-    "dismissible": true,
-    "heading": "",
-    "content": "A simple alert primary check it out!",
-    "alert_utility_classes": []
-  }
+  name: 'Primary',
+  args: {
+    type: 'alert-primary',
+    dismissible: true,
+    heading: '',
+    content: 'A simple alert primary check it out!',
+    alert_utility_classes: [],
+  },
 } %}
 {{ include('vartheme_bs5:alert') }}
 {% endstory %}
 
 {% story Secondary with {
-  "name": "Secondary",
-  "args": {
-    "type": "alert-secondary",
-    "dismissible": true,
-    "heading": "",
-    "content": "A simple alert a secondary check it out!",
-    "alert_utility_classes": []
-  }
+  name: 'Secondary',
+  args: {
+    type: 'alert-secondary',
+    dismissible: true,
+    heading: '',
+    content: 'A simple alert a secondary check it out!',
+    alert_utility_classes: [],
+  },
 } %}
 {{ include('vartheme_bs5:alert') }}
 {% endstory %}
 
 {% story Success with {
-  "name": "Success",
-  "args": {
-    "type": "alert-success",
-    "dismissible": true,
-    "heading": "",
-    "content": "A simple alert success check it out!",
-    "alert_utility_classes": []
-  }
+  name: 'Success',
+  args: {
+    type: 'alert-success',
+    dismissible: true,
+    heading: '',
+    content: 'A simple alert success check it out!',
+    alert_utility_classes: [],
+  },
 } %}
 {{ include('vartheme_bs5:alert') }}
 {% endstory %}
 
 {% story Danger with {
-  "name": "Danger",
-  "args": {
-    "type": "alert-danger",
-    "dismissible": true,
-    "heading": "",
-    "content": "A simple alert danger check it out!",
-    "alert_utility_classes": []
-  }
+  name: 'Danger',
+  args: {
+    type: 'alert-danger',
+    dismissible: true,
+    heading: '',
+    content: 'A simple alert danger check it out!',
+    alert_utility_classes: [],
+  },
 } %}
 {{ include('vartheme_bs5:alert') }}
 {% endstory %}
 
 {% story Warning with {
-  "name": "Warning",
-  "args": {
-    "type": "alert-warning",
-    "dismissible": true,
-    "heading": "",
-    "content": "A simple alert warning check it out!",
-    "alert_utility_classes": []
-  }
+  name: 'Warning',
+  args: {
+    type: 'alert-warning',
+    dismissible: true,
+    heading: '',
+    content: 'A simple alert warning check it out!',
+    alert_utility_classes: [],
+  },
 } %}
 {{ include('vartheme_bs5:alert') }}
 {% endstory %}
 
 {% story Info with {
-  "name": "Info",
-  "args": {
-    "type": "alert-info",
-    "dismissible": true,
-    "heading": "",
-    "content": "A simple alert info check it out!",
-    "alert_utility_classes": []
-  }
+  name: 'Info',
+  args: {
+    type: 'alert-info',
+    dismissible: true,
+    heading: '',
+    content: 'A simple alert info check it out!',
+    alert_utility_classes: [],
+  },
 } %}
 {{ include('vartheme_bs5:alert') }}
 {% endstory %}
 
 {% story Light with {
-  "name": "Light",
-  "args": {
-    "type": "alert-light",
-    "dismissible": true,
-    "heading": "",
-    "content": "A simple alert light check it out!",
-    "alert_utility_classes": []
-  }
+  name: 'Light',
+  args: {
+    type: 'alert-light',
+    dismissible: true,
+    heading: '',
+    content: 'A simple alert light check it out!',
+    alert_utility_classes: [],
+  },
 } %}
 {{ include('vartheme_bs5:alert') }}
 {% endstory %}
 
 {% story Dark with {
-  "name": "Dark",
-  "args": {
-    "type": "alert-dark",
-    "dismissible": true,
-    "heading": "",
-    "content": "A simple alert dark check it out!",
-    "alert_utility_classes": []
-  }
+  name: 'Dark',
+  args: {
+    type: 'alert-dark',
+    dismissible: true,
+    heading: '',
+    content: 'A simple alert dark check it out!',
+    alert_utility_classes: [],
+  },
 } %}
 {{ include('vartheme_bs5:alert') }}
 {% endstory %}
-
 
 {% endstories %}

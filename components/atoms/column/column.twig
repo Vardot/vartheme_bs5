@@ -1,12 +1,11 @@
 {#
-  * Column component.
-  * Available config:
-    - attributes: Drupal attributes.
-    - content: The content that will be inside row.
+  Column (Bootstrap)
+  - Simple .col wrapper for use inside the Row component
+  - No settings, only a content slot
 #}
 
-<div {{ attributes }}>
-  {% block content %}
-    {{ content }}
-  {% endblock %}
+{% set attributes = attributes|default(create_attribute()) %}
+
+<div {{ attributes.addClass(['col']) }}>
+  {% block content %}{% endblock %}
 </div>

@@ -1,0 +1,20 @@
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json"
+name: Anchor
+description: An invisible element with an ID you can link to with a URL fragment (e.g. \#intro)
+group: Base
+props:
+  type: object
+  required:
+    - id
+  properties:
+    id:
+      type: string
+      title: ID for in-page link
+      description: String to use in the URL. Should begin with a letter and contain only lowercase letters, numerals, and hyphens.
+      examples:
+        - anchor-id
+libraryOverrides:
+  js:
+    anchor.js:
+      attributes:
+        type: module

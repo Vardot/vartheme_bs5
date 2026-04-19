@@ -1,0 +1,21 @@
+{# Type: Dark/Light (text + border colors) #}
+{% set type = type|default('dark') %}
+{% set text_class = (type == 'light') ? 'text-white' : 'text-dark' %}
+{% set border_class = (type == 'light') ? 'border-light' : 'border-secondary' %}
+
+<blockquote
+  class="blockquote d-flex flex-column align-items-start w-100 border-start border-2 {{ text_class }} {{ border_class }}"
+  data-type="{{ type|e }}"
+>
+  {# Mobile quote size matches fs-6 (1rem). Desktop size is handled in SCSS media query. #}
+  <p class="mb-0 fst-italic fw-bold fs-6">
+    {{ text }}
+  </p>
+
+  {% if cite_text is not empty %}
+    <footer class="mb-0">
+      {# Use existing utilities for weight/desktop size; mobile size is handled in SCSS. #}
+      <cite title="{{ cite_text }}" class="d-block fst-normal fw-normal fs-6 mb-0">{{ cite_text }}</cite>
+    </footer>
+  {% endif %}
+</blockquote>

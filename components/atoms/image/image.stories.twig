@@ -1,99 +1,211 @@
 {% stories Image with {
-  "title": "Atoms/Image",
-  "parameters": {
-    "componentSubtitle": "Bootstrap Image component",
-    "docs": {
-      "description": {
-        "component": "Image component with responsive behavior for the system image."
+  title: 'Base/Image',
+  parameters: {
+    componentSubtitle: 'Bootstrap responsive Image component',
+    docs: {
+      description: {
+        component: 'Responsive image component using Bootstrap utilities with optional aspect ratio cropping, object-fit behavior, alignment, sizing, and optional link wrapper.',
       },
-      "story": {
-        "inline": true
-      }
-    }
+      story: {
+        inline: true,
+      },
+    },
   },
-  "argTypes": {
-    "align": {
-      "name": "Aligning images",
-      "description": "(optional) Align images with the helper float classes or text alignment classes. block-level images can be centered using the `.mx-auto` margin utility class.",
-      "defaultValue": "",
-      "control": "select",
-      "options": {
-        "'- none -'": "",
-        "Start": "start",
-        "Center": "center",
-        "End": "end"
-      }
+  argTypes: {
+    media: {
+      name: 'Image media',
+      description: 'Main image object (src, alt, width, height, and optional drimage_improved data).',
+      control: 'object',
+      defaultValue: {
+        src: 'assets/image-placeholder.svg',
+        alt: 'Placeholder image',
+        width: 1200,
+        height: 800,
+      },
     },
-    "responsive": {
-      "name": "Responsive image",
-      "description": "(optional) Images in Bootstrap are made responsive with `.img-fluid`. This applies max-width with 100% and height with auto to the image so that it scales with the parent width.",
-      "defaultValue": false,
-      "control": "boolean"
+    link_url: {
+      name: 'Link URL',
+      description: 'If provided, the image becomes clickable.',
+      defaultValue: '',
+      control: 'text',
     },
-    "thumbnails": {
-      "name": "Image thumbnails",
-      "description": "(optional) In addition to Bootstrap border-radius utilities, you can use `.img-thumbnail` to give an image a rounded 1px border appearance.",
-      "defaultValue": false,
-      "control": "boolean"
+    target: {
+      name: 'Link target',
+      description: 'Open link in same tab or a new tab.',
+      defaultValue: 'self',
+      control: 'select',
+      options: {
+        "'Same tab'": 'self',
+        "'New tab'": 'blank',
+      },
     },
-    "rounded": {
-      "name": "Rounded image",
-      "defaultValue": false,
-      "control": "boolean"
+    ratio: {
+      name: 'Image ratio',
+      description: 'Apply a Bootstrap `.ratio-*` wrapper to keep consistent shape.',
+      defaultValue: 'ratio-auto',
+      control: 'select',
+      options: {
+        "'Auto (no crop)'": 'ratio-auto',
+        "'Wide (16:9)'": 'ratio-16x9',
+        "'Standard (4:3)'": 'ratio-4x3',
+        "'Square (1:1)'": 'ratio-1x1',
+        "'Ultra-wide (21:9)'": 'ratio-21x9',
+      },
     },
-    "image_utility_classes": {
-      "name": "Utility Classes",
-      "description": "An array of utility classes that can be used to add extra Bootstrap utility classes or custom classes to this component.",
-      "control": "object",
-      "defaultValue": []
+    fit: {
+      name: 'Image fit',
+      description: 'How the image behaves inside a fixed ratio.',
+      defaultValue: 'object-fit-cover',
+      control: 'select',
+      options: {
+        "'Fill (cover)'": 'object-fit-cover',
+        "'Fit (contain)'": 'object-fit-contain',
+      },
     },
-    "attributes": {
-      "name": "Attributes",
-      "description": "HTML attributes for the containing element.",
-      "control": "object",
-      "defaultValue": {}
-    }
-  }
+    align: {
+      name: 'Alignment',
+      description: 'Alignment of the image block.',
+      defaultValue: 'me-auto',
+      control: 'select',
+      options: {
+        Left: 'me-auto',
+        Center: 'mx-auto',
+        Right: 'ms-auto',
+      },
+    },
+    width: {
+      name: 'Width',
+      description: 'Visual width of the image container (Bootstrap utilities).',
+      defaultValue: 'w-auto',
+      control: 'select',
+      options: {
+        Auto: 'w-auto',
+        "'25%'": 'w-25',
+        "'50%'": 'w-50',
+        "'75%'": 'w-75',
+        "'100%'": 'w-100',
+      },
+    },
+    rounded: {
+      name: 'Corner style',
+      description: 'Bootstrap rounded utilities applied to the image.',
+      defaultValue: 'rounded-0',
+      control: 'select',
+      options: {
+        None: 'rounded-0',
+        "'Slightly rounded'": 'rounded-1',
+        Rounded: 'rounded-3',
+        Pill: 'rounded-pill',
+      },
+    },
+    loading: {
+      name: 'Loading',
+      description: 'Browser loading strategy (applies to canvas:image fallback).',
+      defaultValue: 'lazy',
+      control: 'select',
+      options: {
+        "'Lazy load'": 'lazy',
+        "'Load immediately'": 'eager',
+      },
+    },
+  },
 } %}
 
 {% story ImageDefault with {
-  "name": "Image",
-  "args": {
-    "align": "",
-    "responsive": true,
-    "thumbnails": false,
-    "rounded": false,
-    "image_utility_classes": [],
-    "attributes": {"src": "https://raw.githubusercontent.com/Vardot/varbase_media_demo/10.0.0/content/file/coworking-1.jpg"}
-  }
+  name: 'Default',
+  args: {
+    media: {
+      src: 'assets/image-placeholder.svg',
+      alt: 'Placeholder image',
+      width: 1200,
+      height: 800,
+    },
+    link_url: '',
+    target: 'self',
+    ratio: 'ratio-auto',
+    fit: 'object-fit-cover',
+    align: 'me-auto',
+    width: 'w-auto',
+    rounded: 'rounded-0',
+    loading: 'lazy'},
 } %}
 {{ include('vartheme_bs5:image') }}
 {% endstory %}
 
-{% story ImageThumbnails with {
-  "name": "Thumbnails",
-  "args": {
-    "align": "",
-    "responsive": true,
-    "thumbnails": true,
-    "rounded": false,
-    "image_utility_classes": [],
-    "attributes": {"src": "https://raw.githubusercontent.com/Vardot/varbase_media_demo/10.0.0/content/file/avatar-1.jpg"}
-  }
+{% story ImageRatioWide with {
+  name: '16:9 ratio (cover)',
+  args: {
+    media: {
+      src: 'assets/image-placeholder.svg',
+      alt: 'Wide image',
+      width: 1200,
+      height: 800,
+    },
+    ratio: 'ratio-16x9',
+    fit: 'object-fit-cover',
+    align: 'mx-auto',
+    width: 'w-75',
+    rounded: 'rounded-1',
+    loading: 'lazy'},
 } %}
 {{ include('vartheme_bs5:image') }}
 {% endstory %}
 
-{% story ImageRounded with {
-  "name": "Rounded",
-  "args": {
-    "align": "",
-    "responsive": true,
-    "thumbnails": false,
-    "rounded": true,
-    "image_utility_classes": [],
-    "attributes": {"src": "https://raw.githubusercontent.com/Vardot/varbase_media_demo/10.0.0/content/file/avatar-1.jpg"}
-  }
+{% story ImageSquareContain with {
+  name: 'Square ratio (contain)',
+  args: {
+    media: {
+      src: 'assets/image-placeholder.svg',
+      alt: 'Square contain',
+      width: 1200,
+      height: 800,
+    },
+    ratio: 'ratio-1x1',
+    fit: 'object-fit-contain',
+    align: 'mx-auto',
+    width: 'w-50',
+    rounded: 'rounded-3',
+    loading: 'lazy'},
+} %}
+{{ include('vartheme_bs5:image') }}
+{% endstory %}
+
+{% story ImageLinked with {
+  name: 'Linked (new tab)',
+  args: {
+    media: {
+      src: 'assets/image-placeholder.svg',
+      alt: 'Linked image',
+      width: 1200,
+      height: 800,
+    },
+    link_url: 'https://example.com',
+    target: 'blank',
+    ratio: 'ratio-auto',
+    fit: 'object-fit-cover',
+    align: 'me-auto',
+    width: 'w-50',
+    rounded: 'rounded-0',
+    loading: 'lazy'},
+} %}
+{{ include('vartheme_bs5:image') }}
+{% endstory %}
+
+{% story ImageFullWidth with {
+  name: 'Full width',
+  args: {
+    media: {
+      src: 'assets/image-placeholder.svg',
+      alt: 'Full width image',
+      width: 1200,
+      height: 800,
+    },
+    ratio: 'ratio-21x9',
+    fit: 'object-fit-cover',
+    align: 'mx-auto',
+    width: 'w-100',
+    rounded: 'rounded-0',
+    loading: 'eager'},
 } %}
 {{ include('vartheme_bs5:image') }}
 {% endstory %}

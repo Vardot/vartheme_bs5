@@ -1,70 +1,100 @@
 # Image
 
-Image component with responsive behavior for the system image.
+Canvas + SDC **Image** component built with Bootstrap 5 utilities.
 
-Images in Bootstrap are made responsive with `.img-fluid`. This applies
- `max-width: 100%;` and `height: auto;` to the image so that it scales
- with the parent width.
+- Optional link wrapper (`link_url`)
+- Optional fixed aspect ratio crop using Bootstrap `.ratio` (`ratio-*`)
 
-> ## [Bootstrap Documentation on Images](https://getbootstrap.com/docs/5.3/content/images)
-> * [Images](https://getbootstrap.com/docs/5.3/content/images)
-> * [Responsive Images](https://getbootstrap.com/docs/5.3/content/images/#responsive-images)
+## Props
 
+### media (object) — required
+Main image source.
 
-## Properties:
-* `align`: (optional) Align images with the helper float classes or text alignment classes.
-            block-level images can be centered using the .mx-auto margin utility class.
-            options (`float-start`, `mx-auto d-block`, `float-end`)
-* `responsive`: (optional) Images in Bootstrap are made responsive with `.img-fluid`.
-                This applies max-width with 100% and height with auto to the image so
-                that it scales with the parent width.
-* `thumbnails`: (optional)(true|false) In addition to Bootstrap border-radius utilities, you can
-                use `.img-thumbnail` to give an image a rounded 1px border appearance.
-* `rounded`: (optional)(true|false) Rounded image
-* `image_utility_classes`: An array of utility classes that can
-                    be used to add extra Bootstrap utility classes or custom
-                    classes to this component.
+Example:
+- `src`: `assets/image-placeholder.svg`
+- `alt`: `Placeholder image`
+- `width`: `1200`
+- `height`: `800`
 
-## Attributes:
-* `attributes`: HTML attributes for the img tag.
+### link_url (string) — optional
+If provided, the image becomes clickable.
 
-## Slots:
-* N/A
+### target (string)
+Link target:
+- `self` → Same tab
+- `blank` → New tab (adds `rel="noopener noreferrer"`)
 
-### Examples
+### ratio (string)
+Aspect ratio crop (Bootstrap classes):
+- `ratio-auto` → Auto (no crop)
+- `ratio-16x9` → Wide (16:9)
+- `ratio-4x3` → Standard (4:3)
+- `ratio-1x1` → Square (1:1)
+- `ratio-21x9` → Ultra-wide (21:9)
 
-**Example #1:** Default system image
-```
-{% include 'vartheme_bs5:image' %}
-```
+### fit (string)
+How the image behaves inside a fixed ratio (Bootstrap utilities):
+- `object-fit-cover` → Fill (crop)
+- `object-fit-contain` → Fit (no crop)
 
-**Example #2:** Use the Image component with Responsive image
-```
-{% include 'vartheme_bs5:image' with {
-    responsive: true
+### align (string)
+Alignment for the whole image block (Bootstrap utilities):
+- `me-auto` → Left
+- `mx-auto` → Center
+- `ms-auto` → Right
+
+### width (string)
+Container width (Bootstrap utilities):
+- `w-auto`, `w-25`, `w-50`, `w-75`, `w-100`
+
+### rounded (string)
+Corner rounding (Bootstrap utilities):
+- `rounded-0`, `rounded-1`, `rounded-3`, `rounded-pill`
+
+### loading (string)
+Browser loading behavior:
+- `lazy` (default)
+- `eager`
+
+## Twig usage examples
+
+### Basic image
+```twig
+{% include 'sdc:vartheme_bs5.image' with {
+  media: {
+    src: 'assets/image-placeholder.svg',
+    alt: 'Placeholder'
   }
-%}
+} %}
 ```
 
-**Example #3:** Use the Image component with align center, rounded, and thumbnails 
-```
-{% include 'vartheme_bs5:image' with {
-    align: 'center',
-    responsive: true,
-    rounded: true,
-    thumbnails: true
-  }
-%}
+### Clickable, centered, 50% width, rounded, fixed ratio
+```twig
+{% include 'sdc:vartheme_bs5.image' with {
+  media: {
+    src: 'assets/image-placeholder.svg',
+    alt: 'Example'
+  },
+  link_url: 'https://example.com',
+  target: 'blank',
+  align: 'mx-auto',
+  width: 'w-50',
+  rounded: 'rounded-3',
+  ratio: 'ratio-16x9',
+  fit: 'object-fit-cover'
+} %}
 ```
 
-**Example #3:** Use the Image component with align center, rounded, and thumbnails 
-```
-{% include 'vartheme_bs5:image' with {
-    align: 'center',
-    responsive: true,
-    rounded: true,
-    thumbnails: true
-    attributes: ["src": "https://raw.githubusercontent.com/Vardot/varbase_media_demo/10.0.0/content/file/coworking-1.jpg"]
-  }
-%}
+### Add extra utility classes
+```twig
+{% include 'sdc:vartheme_bs5.image' with {
+  media: {
+    src: 'assets/image-placeholder.svg',
+    alt: 'Example'
+  },
+  ratio: 'ratio-16x9',
+  width: 'w-100',
+  fit: 'object-fit-cover',
+  loading: 'lazy'
+} %}
 ```
