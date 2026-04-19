@@ -53,7 +53,7 @@ A two-column hero component with text content on one side and an image on the ot
   background_color: 'bg-light',
   content_color: 'text-dark',
   button_label: 'Get started',
-  button_url: '#',
+  button_url: 'https://example.com/',
   button_variant: 'btn-primary',
   button_size: 'btn-md'
 } only %}
