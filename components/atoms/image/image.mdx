@@ -1,10 +1,8 @@
-{/* image.mdx */}
-
-import { Canvas, Title, Subtitle, ArgTypes, Source, Meta, Description, Primary, Story, Stories, Controls } from '@storybook/blocks';
+import { Title, Subtitle, Description, Source, Meta, Primary, Stories, Controls } from '@storybook/addon-docs/blocks';
 import * as comStories from './image.stories.json';
 import templateSource from './image.twig?raw';
 
-<Meta of={comStories} name="Docs"/>
+<Meta of={comStories} />
 
 <Title />
 <Subtitle />
@@ -23,54 +21,53 @@ import templateSource from './image.twig?raw';
 <Stories of={comStories} />
 
 ## Notes
-* The component prefers `dynamic-responsive-image` when available, and falls back to `canvas:image` (both are included with `ignore missing`).
+* The component prefers `dynamic-responsive-image` when available, and falls back to `canvas:image` (both included with `ignore missing`).
 * `media.data` can be provided when integrating with `drimage_improved`.
 
 ## Examples
 
-### Example #1 : Default image
-```
-{% include "vartheme_bs5:image" with {
+### Example #1: Default image
+```twig
+{% include 'vartheme_bs5:image' with {
   media: {
-    src: 'assets/image-placeholder.svg',
+    src: '/components/atoms/image/assets/image-placeholder.svg',
     alt: 'Placeholder image',
     width: 1200,
-    height: 800
-  }
-} %}
+    height: 800,
+  },
+} only %}
 ```
 
-### Example #2 : 16:9 ratio crop + cover
-```
-{% include "vartheme_bs5:image" with {
+### Example #2: 16:9 ratio crop + cover
+```twig
+{% include 'vartheme_bs5:image' with {
   media: {
-    src: 'assets/image-placeholder.svg',
+    src: '/components/atoms/image/assets/image-placeholder.svg',
     alt: 'Wide image',
     width: 1200,
-    height: 800
+    height: 800,
   },
   ratio: 'ratio-16x9',
   fit: 'object-fit-cover',
   width: 'w-75',
   align: 'mx-auto',
-  rounded: 'rounded-1'
-} %}
+  rounded: 'rounded-1',
+} only %}
 ```
 
-### Example #3 : Linked image (new tab)
-```
-{% include "vartheme_bs5:image" with {
+### Example #3: Linked image (new tab)
+```twig
+{% include 'vartheme_bs5:image' with {
   media: {
-    src: 'assets/image-placeholder.svg',
+    src: '/components/atoms/image/assets/image-placeholder.svg',
     alt: 'Linked image',
     width: 1200,
-    height: 800
+    height: 800,
   },
   link_url: 'https://example.com',
-  target: 'blank'
-} %}
+  target: 'blank',
+} only %}
 ```
 
 ## Source code
-[//]: # (Twig Template source code)
 <Source code={templateSource} />
