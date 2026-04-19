@@ -1,89 +1,167 @@
 {% stories ImpressedCard with {
   title: 'Cards/Impressed Card',
   parameters: {
-    componentSubtitle: 'Stacked card with optional media (top/bottom) and a single content slot.',
+    componentSubtitle: 'Stacked card with optional media (top or bottom) and a single content slot.',
     docs: {
       description: {
-        component: 'Impressed Card is a Bootstrap 5 card layout with an optional media area rendered through the image component. Use utility-class props to control border, padding, background, rounding, and shadows.',
+        component: 'Impressed Card is a stacked Bootstrap 5 card with an optional media area and a single content slot. Use utility-class props to control border, padding, background, rounding, shadows, and full-card link behavior.',
       },
-      story: {inline: true},
+      story: {
+        inline: true,
+      },
     },
   },
   argTypes: {
     media_position: {
       name: 'Media position',
-      control: {type: 'select'},
-      options: ['top', 'bottom'],
+      description: 'Choose whether the image appears above or below the content.',
+      defaultValue: 'top',
+      control: 'select',
+      options: {
+        Top: 'top',
+        Bottom: 'bottom',
+      },
     },
     media_image: {
       name: 'Media upload',
-      control: {type: 'object'},
+      description: 'Optional image shown in the media area.',
+      control: 'object',
     },
     ratio: {
       name: 'Image ratio (crop)',
-      control: {type: 'select'},
-      options: ['ratio-auto', 'ratio-16x9', 'ratio-4x3', 'ratio-1x1', 'ratio-21x9'],
+      description: 'Keeps consistent image shapes.',
+      defaultValue: 'ratio-16x9',
+      control: 'select',
+      options: {
+        "'Auto (no crop)'": 'ratio-auto',
+        "'Wide (16:9)'": 'ratio-16x9',
+        "'Standard (4:3)'": 'ratio-4x3',
+        "'Square (1:1)'": 'ratio-1x1',
+        "'Ultra-wide (21:9)'": 'ratio-21x9',
+      },
     },
     fit: {
       name: 'Image fit',
-      control: {type: 'select'},
-      options: ['object-fit-cover', 'object-fit-contain'],
+      description: 'How the image behaves inside a fixed ratio.',
+      defaultValue: 'object-fit-cover',
+      control: 'select',
+      options: {
+        "'Fill (crop)'": 'object-fit-cover',
+        "'Fit (no crop)'": 'object-fit-contain',
+      },
     },
     card_border: {
       name: 'Card border',
-      control: {type: 'boolean'},
+      description: 'Adds the default Bootstrap border.',
+      defaultValue: true,
+      control: 'boolean',
     },
     background_color: {
       name: 'Background',
-      control: {type: 'select'},
-      options: ['bg-transparent', 'bg-body', 'bg-body-tertiary', 'bg-white', 'bg-light', 'bg-dark', 'bg-primary', 'bg-secondary', 'bg-success', 'bg-danger', 'bg-warning', 'bg-info'],
+      description: 'Bootstrap background utility applied to the card.',
+      defaultValue: 'bg-white',
+      control: 'select',
+      options: {
+        Transparent: 'bg-transparent',
+        Body: 'bg-body',
+        "'Body tertiary'": 'bg-body-tertiary',
+        White: 'bg-white',
+        Light: 'bg-light',
+        Dark: 'bg-dark',
+        Primary: 'bg-primary',
+        Secondary: 'bg-secondary',
+        Success: 'bg-success',
+        Danger: 'bg-danger',
+        Warning: 'bg-warning',
+        Info: 'bg-info',
+      },
     },
     padded: {
       name: 'Padded',
-      control: {type: 'boolean'},
+      description: 'Adds p-4 to the content area.',
+      defaultValue: false,
+      control: 'boolean',
     },
     box_shadow: {
       name: 'Shadow',
-      control: {type: 'select'},
-      options: ['shadow-none', 'shadow-sm', 'shadow', 'shadow-lg'],
+      description: 'Bootstrap shadow utility applied to the card.',
+      defaultValue: 'shadow-sm',
+      control: 'select',
+      options: {
+        None: 'shadow-none',
+        Small: 'shadow-sm',
+        Medium: 'shadow',
+        Large: 'shadow-lg',
+      },
     },
     corner_style: {
       name: 'Corner style',
-      control: {type: 'select'},
-      options: ['rounded-0', 'rounded-1', 'rounded-3', 'rounded-pill'],
+      description: 'Bootstrap rounded utility applied to the card.',
+      defaultValue: 'rounded-3',
+      control: 'select',
+      options: {
+        "'None (square)'": 'rounded-0',
+        Small: 'rounded-1',
+        Large: 'rounded-3',
+        Pill: 'rounded-pill',
+      },
     },
     equal_height: {
       name: 'Equal height',
-      control: {type: 'boolean'},
+      description: 'Apply h-100 to the card wrapper.',
+      defaultValue: false,
+      control: 'boolean',
+    },
+    stretched_link: {
+      name: 'Stretched link',
+      description: 'Makes the full card clickable when Link URL is provided.',
+      defaultValue: false,
+      control: 'boolean',
     },
     link_url: {
       name: 'Link URL',
-      control: {type: 'text'},
+      description: 'Optional URL for the card link.',
+      defaultValue: '',
+      control: 'text',
     },
     link_target: {
       name: 'Link target',
-      control: {type: 'select'},
-      options: ['default', '_self', '_blank'],
+      description: 'Target attribute for the card link.',
+      defaultValue: 'default',
+      control: 'select',
+      options: {
+        "'Default (same tab)'": 'default',
+        "'Same tab'": '_self',
+        "'New tab'": '_blank',
+      },
     },
   },
 } %}
 
 {% story Default with {
+  name: 'Default',
   args: {
     media_position: 'top',
+    media_image: {
+      src: '/components/organisms/card-impressed/assets/impressed-card-image-placeholder.svg',
+      alt: 'Impressed image',
+      width: 800,
+      height: 600,
+    },
     ratio: 'ratio-16x9',
     fit: 'object-fit-cover',
     card_border: true,
     background_color: 'bg-white',
-    padded: false,
+    padded: true,
     box_shadow: 'shadow-sm',
     corner_style: 'rounded-3',
     equal_height: false,
+    stretched_link: false,
     link_url: '',
     link_target: 'default',
   },
 } %}
-{% embed 'vartheme_bs5:card-impressed' %}
+{% embed 'vartheme_bs5:card-impressed' with _context %}
   {% block content %}
     <div class="d-flex flex-column gap-2">
       <h3 class="h5 m-0">Impressed Card</h3>
@@ -98,8 +176,15 @@
 {% endstory %}
 
 {% story PaddedContent with {
+  name: 'Padded content',
   args: {
     media_position: 'top',
+    media_image: {
+      src: '/components/organisms/card-impressed/assets/impressed-card-image-placeholder.svg',
+      alt: 'Impressed image',
+      width: 800,
+      height: 600,
+    },
     ratio: 'ratio-16x9',
     fit: 'object-fit-cover',
     card_border: true,
@@ -108,11 +193,12 @@
     box_shadow: 'shadow',
     corner_style: 'rounded-3',
     equal_height: false,
+    stretched_link: false,
     link_url: '',
     link_target: 'default',
   },
 } %}
-{% embed 'vartheme_bs5:card-impressed' %}
+{% embed 'vartheme_bs5:card-impressed' with _context %}
   {% block content %}
     <h3 class="h5 mb-2">Padded content</h3>
     <p class="mb-0">When <code>padded</code> is enabled, the content wrapper gets <code>p-4</code>.</p>
@@ -121,8 +207,15 @@
 {% endstory %}
 
 {% story MediaBottom with {
+  name: 'Media bottom',
   args: {
     media_position: 'bottom',
+    media_image: {
+      src: '/components/organisms/card-impressed/assets/impressed-card-image-placeholder.svg',
+      alt: 'Impressed image',
+      width: 800,
+      height: 600,
+    },
     ratio: 'ratio-4x3',
     fit: 'object-fit-cover',
     card_border: true,
@@ -131,11 +224,12 @@
     box_shadow: 'shadow-sm',
     corner_style: 'rounded-3',
     equal_height: false,
+    stretched_link: false,
     link_url: '',
     link_target: 'default',
   },
 } %}
-{% embed 'vartheme_bs5:card-impressed' %}
+{% embed 'vartheme_bs5:card-impressed' with _context %}
   {% block content %}
     <h3 class="h5 mb-2">Media at the bottom</h3>
     <p class="mb-0">Use <code>media_position</code> to render the image below the content.</p>
@@ -143,32 +237,16 @@
 {% endembed %}
 {% endstory %}
 
-{% story ContainFit with {
-  args: {
-    media_position: 'top',
-    ratio: 'ratio-1x1',
-    fit: 'object-fit-contain',
-    card_border: true,
-    background_color: 'bg-white',
-    padded: true,
-    box_shadow: 'shadow-none',
-    corner_style: 'rounded-0',
-    equal_height: false,
-    link_url: '',
-    link_target: 'default',
-  },
-} %}
-{% embed 'vartheme_bs5:card-impressed' %}
-  {% block content %}
-    <h3 class="h5 mb-2">Contain fit</h3>
-    <p class="mb-0">Use <code>object-fit-contain</code> to avoid cropping inside fixed ratios.</p>
-  {% endblock %}
-{% endembed %}
-{% endstory %}
-
 {% story LinkedCard with {
+  name: 'Linked card',
   args: {
     media_position: 'top',
+    media_image: {
+      src: '/components/organisms/card-impressed/assets/impressed-card-image-placeholder.svg',
+      alt: 'Impressed image',
+      width: 800,
+      height: 600,
+    },
     ratio: 'ratio-21x9',
     fit: 'object-fit-cover',
     card_border: true,
@@ -182,10 +260,41 @@
     link_target: '_blank',
   },
 } %}
-{% embed 'vartheme_bs5:card-impressed' %}
+{% embed 'vartheme_bs5:card-impressed' with _context %}
   {% block content %}
     <h3 class="h5 mb-2">Linked card</h3>
     <p class="mb-0">Enable <code>stretched_link</code> and set <code>link_url</code> to make the whole card clickable.</p>
+  {% endblock %}
+{% endembed %}
+{% endstory %}
+
+{% story EqualHeight with {
+  name: 'Equal height',
+  args: {
+    media_position: 'top',
+    media_image: {
+      src: '/components/organisms/card-impressed/assets/impressed-card-image-placeholder.svg',
+      alt: 'Impressed image',
+      width: 800,
+      height: 600,
+    },
+    ratio: 'ratio-16x9',
+    fit: 'object-fit-cover',
+    card_border: true,
+    background_color: 'bg-light',
+    padded: true,
+    box_shadow: 'shadow-sm',
+    corner_style: 'rounded-3',
+    equal_height: true,
+    stretched_link: false,
+    link_url: '',
+    link_target: 'default',
+  },
+} %}
+{% embed 'vartheme_bs5:card-impressed' with _context %}
+  {% block content %}
+    <h3 class="h5 mb-2">Equal height</h3>
+    <p class="mb-0">Useful when multiple cards need a consistent height in grid layouts.</p>
   {% endblock %}
 {% endembed %}
 {% endstory %}

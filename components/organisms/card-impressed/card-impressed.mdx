@@ -1,35 +1,117 @@
-{/* card-impressed.mdx */}
-
-import { Title, Subtitle, Description, ArgTypes, Source, Meta, Primary, Stories, Controls } from '@storybook/blocks';
+import { Title, Subtitle, Description, Source, Meta, Primary, Stories, Controls } from '@storybook/addon-docs/blocks';
 import * as comStories from './card-impressed.stories.json';
 import templateSource from './card-impressed.twig?raw';
 
-<Meta of={comStories} name="Docs"/>
+<Meta of={comStories} />
 
 <Title />
 <Subtitle />
 <Description />
 
 > ### Bootstrap documentation
-> Card: https://getbootstrap.com/docs/5.3/components/card/  
-> Ratio: https://getbootstrap.com/docs/5.3/helpers/ratio/  
-> Object fit: https://getbootstrap.com/docs/5.3/utilities/object-fit/
-
-## Usage
-
-This component provides a stacked card with an optional media area (top or bottom) and a single content slot.
-
-## Props
-
-<ArgTypes />
-
-## Examples
+> * [Card](https://getbootstrap.com/docs/5.3/components/card/)
+> * [Ratio](https://getbootstrap.com/docs/5.3/helpers/ratio/)
+> * [Object fit](https://getbootstrap.com/docs/5.3/utilities/object-fit/)
+> * [Shadows](https://getbootstrap.com/docs/5.3/utilities/shadows/)
+> * [Stretched link](https://getbootstrap.com/docs/5.3/helpers/stretched-link/)
 
 <Primary />
 
-### Twig source
-
-<Source code={templateSource} language="twig" />
+## Properties
+<Controls />
 
 <Stories />
-<Controls />
+
+## Slots
+* `content`: Main card content area.
+
+## Notes
+* This component provides a stacked card with optional media shown above or below the content.
+* `media_image` is the main image prop and is rendered through the shared image component.
+* `ratio` and `fit` work together to control image cropping behavior.
+* `padded` adds `p-4` to the content area.
+* `stretched_link` only works when `link_url` is also provided.
+* `equal_height` applies `h-100` to the card wrapper for grid consistency.
+
+## Examples
+
+### Example #1 : Default impressed card
+```twig
+{% embed 'vartheme_bs5:card-impressed' with {
+  media_position: 'top',
+  media_image: {
+    src: '/components/organisms/card-impressed/assets/impressed-card-image-placeholder.svg',
+    alt: 'Impressed image',
+    width: 800,
+    height: 600
+  },
+  ratio: 'ratio-16x9',
+  fit: 'object-fit-cover',
+  card_border: true,
+  background_color: 'bg-white',
+  padded: false,
+  box_shadow: 'shadow-sm',
+  corner_style: 'rounded-3'
+} %}
+  {% block content %}
+    <h3 class="h5 mb-2">Impressed Card</h3>
+    <p class="mb-0">A stacked card with an optional media area and one content slot.</p>
+  {% endblock %}
+{% endembed %}
+```
+
+### Example #2 : Media bottom
+```twig
+{% embed 'vartheme_bs5:card-impressed' with {
+  media_position: 'bottom',
+  media_image: {
+    src: '/components/organisms/card-impressed/assets/impressed-card-image-placeholder.svg',
+    alt: 'Impressed image',
+    width: 800,
+    height: 600
+  },
+  ratio: 'ratio-4x3',
+  fit: 'object-fit-cover',
+  card_border: true,
+  background_color: 'bg-white',
+  padded: true,
+  box_shadow: 'shadow-sm',
+  corner_style: 'rounded-3'
+} %}
+  {% block content %}
+    <h3 class="h5 mb-2">Media at the bottom</h3>
+    <p class="mb-0">Use <code>media_position</code> to render the image below the content.</p>
+  {% endblock %}
+{% endembed %}
+```
+
+### Example #3 : Linked card
+```twig
+{% embed 'vartheme_bs5:card-impressed' with {
+  media_position: 'top',
+  media_image: {
+    src: '/components/organisms/card-impressed/assets/impressed-card-image-placeholder.svg',
+    alt: 'Impressed image',
+    width: 800,
+    height: 600
+  },
+  ratio: 'ratio-21x9',
+  fit: 'object-fit-cover',
+  card_border: true,
+  background_color: 'bg-white',
+  padded: true,
+  box_shadow: 'shadow-lg',
+  corner_style: 'rounded-3',
+  stretched_link: true,
+  link_url: 'https://example.com',
+  link_target: '_blank'
+} %}
+  {% block content %}
+    <h3 class="h5 mb-2">Linked card</h3>
+    <p class="mb-0">Enable <code>stretched_link</code> and set <code>link_url</code> to make the whole card clickable.</p>
+  {% endblock %}
+{% endembed %}
+```
+
+## Source code
+<Source code={templateSource} />
