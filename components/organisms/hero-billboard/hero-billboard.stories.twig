@@ -11,6 +11,111 @@
             },
         },
     },
+    argTypes: {
+        container_type: {
+            name: 'Container style',
+            description: 'Choose how the content is wrapped.',
+            defaultValue: 'container',
+            control: 'select',
+            options: {
+                "'Container (default)'": 'container',
+                "'Full width'": 'container-fluid',
+                "'Small container'": 'container-sm',
+                "'Medium container'": 'container-md',
+                "'Large container'": 'container-lg',
+                "'Extra large container'": 'container-xl',
+                "'Extra extra large container'": 'container-xxl',
+                "'No container'": 'none',
+            },
+        },
+        bg_edge2edge: {
+            name: 'Background edge-to-edge',
+            description: 'If enabled, adds the bg-edge2edge class to the outer section so the background image can extend full width.',
+            defaultValue: false,
+            control: 'boolean',
+        },
+        height: {
+            name: 'Hero height',
+            description: 'Choose the vertical size of the hero.',
+            defaultValue: 'ribbon',
+            control: 'select',
+            options: {
+                "'Ribbon (default)'": 'ribbon',
+                Large: 'large',
+            },
+        },
+        flex_position: {
+            name: 'Content position',
+            description: 'Controls vertical placement and horizontal alignment of the content.',
+            defaultValue: 'center-left',
+            control: 'select',
+            options: {
+                "'Top left'": 'top-left',
+                "'Center left'": 'center-left',
+                "'Bottom left'": 'bottom-left',
+                Center: 'hero-center',
+            },
+        },
+        overlay_bg: {
+            name: 'Overlay background',
+            description: 'Bootstrap background utility class.',
+            defaultValue: 'bg-transparent',
+            control: 'select',
+            options: {
+                Transparent: 'bg-transparent',
+                Dark: 'bg-dark',
+                Black: 'bg-black',
+                Primary: 'bg-primary',
+                Secondary: 'bg-secondary',
+                Success: 'bg-success',
+                Danger: 'bg-danger',
+                Warning: 'bg-warning',
+                Info: 'bg-info',
+                White: 'bg-white',
+            },
+        },
+        overlay_opacity: {
+            name: 'Overlay opacity',
+            description: 'Bootstrap opacity utility class.',
+            defaultValue: 'opacity-50',
+            control: 'select',
+            options: {
+                "'0% (none)'": 'opacity-0',
+                "'25%'": 'opacity-25',
+                "'50%'": 'opacity-50',
+                "'75%'": 'opacity-75',
+                "'100% (solid)'": 'opacity-100',
+            },
+        },
+        content_width: {
+            name: 'Content width',
+            description: 'Bootstrap width utility class.',
+            defaultValue: 'w-100',
+            control: 'select',
+            options: {
+                "'100% (full)'": 'w-100',
+                "'75%'": 'w-75',
+                "'50%'": 'w-50',
+                "'25%'": 'w-25',
+            },
+        },
+        object_position: {
+            name: 'Background image position',
+            description: 'Controls the background image position.',
+            defaultValue: 'center',
+            control: 'select',
+            options: {
+                Top: 'top',
+                Center: 'center',
+                Bottom: 'bottom',
+            },
+        },
+        media: {
+            name: 'Background image',
+            description: 'Background image object.',
+            control: 'object',
+        },
+    },
 } %}
 
 {% story Default with {
@@ -25,101 +130,279 @@
         content_width: 'w-100',
         object_position: 'center',
         media: {
-            src: 'assets/hero-bg-placeholder.svg',
-            alt: 'Background image',
+            src: '/components/organisms/hero-billboard/assets/hero-billboard.webp',
+            alt: 'Varbase hero background',
             width: 1920,
             height: 1075,
         },
-        hero_slot: '<div class="text-white"><h2 class="display-5 mb-3">Hero billboard title</h2><p class="lead mb-0">Add any rich content inside the hero slot.</p></div>',
     },
 } %}
-{% embed 'vartheme_bs5:hero-billboard' with {
-    container_type: container_type|default('container'),
-    bg_edge2edge: bg_edge2edge|default(false),
-    height: height|default('ribbon'),
-    flex_position: flex_position|default('center-left'),
-    overlay_bg: overlay_bg|default('bg-dark'),
-    overlay_opacity: overlay_opacity|default('opacity-50'),
-    content_width: content_width|default('w-100'),
-    object_position: object_position|default('center'),
-    media: media|default({}),
-} only %}
+{% embed 'vartheme_bs5:hero-billboard' with _context %}
     {% block hero_slot %}
-        {{ hero_slot|default('')|raw }}
+        {% include 'vartheme_bs5:heading' with {
+            heading_text: 'Hero Billboard Title',
+            level: 2,
+            text_size: 'display-5',
+            text_color: 'text-white',
+        } only %}
+        <p class="lead mb-0 text-white">Add any rich content inside the hero slot.</p>
     {% endblock %}
 {% endembed %}
 {% endstory %}
 
-{% story Centered with {
-    name: 'Centered',
+{% story LargeHeight with {
+    name: 'Hero height',
+    args: {
+        container_type: 'container',
+        bg_edge2edge: false,
+        height: 'large',
+        flex_position: 'center-left',
+        overlay_bg: 'bg-dark',
+        overlay_opacity: 'opacity-50',
+        content_width: 'w-100',
+        object_position: 'center',
+        media: {
+            src: '/components/organisms/hero-billboard/assets/hero-bg-placeholder.svg',
+            alt: 'Background image',
+            width: 1920,
+            height: 1075,
+        },
+    },
+} %}
+{% embed 'vartheme_bs5:hero-billboard' with _context %}
+    {% block hero_slot %}
+        {% include 'vartheme_bs5:heading' with {
+            heading_text: 'Large Hero',
+            level: 2,
+            text_size: 'display-4',
+            text_color: 'text-white',
+        } only %}
+        <p class="lead mb-0 text-white">Expanded vertical space for more prominent billboard content.</p>
+    {% endblock %}
+{% endembed %}
+{% endstory %}
+
+{% story CenteredContent with {
+    name: 'Content position',
     args: {
         container_type: 'container',
         bg_edge2edge: false,
         height: 'large',
         flex_position: 'hero-center',
-        overlay_bg: 'bg-primary',
+        overlay_bg: 'bg-dark',
         overlay_opacity: 'opacity-50',
         content_width: 'w-75',
         object_position: 'center',
         media: {
-            src: 'assets/hero-bg-placeholder.svg',
+            src: '/components/organisms/hero-billboard/assets/hero-bg-placeholder.svg',
             alt: 'Background image',
             width: 1920,
             height: 1075,
         },
-        hero_slot: '<div class="text-white"><h2 class="display-4 mb-3">Centered content</h2><p class="lead mb-0">Use the hero slot for structured content.</p></div>',
     },
 } %}
-{% embed 'vartheme_bs5:hero-billboard' with {
-    container_type: container_type|default('container'),
-    bg_edge2edge: bg_edge2edge|default(false),
-    height: height|default('ribbon'),
-    flex_position: flex_position|default('center-left'),
-    overlay_bg: overlay_bg|default('bg-dark'),
-    overlay_opacity: overlay_opacity|default('opacity-50'),
-    content_width: content_width|default('w-100'),
-    object_position: object_position|default('center'),
-    media: media|default({}),
-} only %}
+{% embed 'vartheme_bs5:hero-billboard' with _context %}
     {% block hero_slot %}
-        {{ hero_slot|default('')|raw }}
+        {% include 'vartheme_bs5:heading' with {
+            heading_text: 'Centered Content',
+            level: 2,
+            text_size: 'display-4',
+            text_color: 'text-white',
+            align: 'text-center',
+        } only %}
+        <p class="lead mb-0 text-white text-center">Most commonly used centered hero content layout.</p>
     {% endblock %}
 {% endembed %}
 {% endstory %}
 
-{% story EdgeToEdge with {
-    name: 'Edge to edge',
+{% story BrandOverlay with {
+    name: 'Overlay background',
     args: {
         container_type: 'container',
-        bg_edge2edge: true,
-        height: 'large',
-        flex_position: 'bottom-left',
-        overlay_bg: 'bg-black',
-        overlay_opacity: 'opacity-75',
-        content_width: 'w-50',
-        object_position: 'bottom',
+        bg_edge2edge: false,
+        height: 'ribbon',
+        flex_position: 'center-left',
+        overlay_bg: 'bg-primary',
+        overlay_opacity: 'opacity-50',
+        content_width: 'w-100',
+        object_position: 'center',
         media: {
-            src: 'assets/hero-bg-placeholder.svg',
+            src: '/components/organisms/hero-billboard/assets/hero-bg-placeholder.svg',
             alt: 'Background image',
             width: 1920,
             height: 1075,
         },
-        hero_slot: '<div class="text-white"><h2 class="display-5 mb-3">Edge-to-edge billboard</h2><p class="lead mb-0">Background image extends across the section.</p></div>',
     },
 } %}
-{% embed 'vartheme_bs5:hero-billboard' with {
-    container_type: container_type|default('container'),
-    bg_edge2edge: bg_edge2edge|default(false),
-    height: height|default('ribbon'),
-    flex_position: flex_position|default('center-left'),
-    overlay_bg: overlay_bg|default('bg-dark'),
-    overlay_opacity: overlay_opacity|default('opacity-50'),
-    content_width: content_width|default('w-100'),
-    object_position: object_position|default('center'),
-    media: media|default({}),
-} only %}
+{% embed 'vartheme_bs5:hero-billboard' with _context %}
     {% block hero_slot %}
-        {{ hero_slot|default('')|raw }}
+        {% include 'vartheme_bs5:heading' with {
+            heading_text: 'Primary Overlay',
+            level: 2,
+            text_size: 'display-5',
+            text_color: 'text-white',
+        } only %}
+        <p class="lead mb-0 text-white">Useful to match branded hero backgrounds.</p>
+    {% endblock %}
+{% endembed %}
+{% endstory %}
+
+{% story StrongOverlay with {
+    name: 'Overlay opacity',
+    args: {
+        container_type: 'container',
+        bg_edge2edge: false,
+        height: 'ribbon',
+        flex_position: 'center-left',
+        overlay_bg: 'bg-dark',
+        overlay_opacity: 'opacity-75',
+        content_width: 'w-100',
+        object_position: 'center',
+        media: {
+            src: '/components/organisms/hero-billboard/assets/hero-bg-placeholder.svg',
+            alt: 'Background image',
+            width: 1920,
+            height: 1075,
+        },
+    },
+} %}
+{% embed 'vartheme_bs5:hero-billboard' with _context %}
+    {% block hero_slot %}
+        {% include 'vartheme_bs5:heading' with {
+            heading_text: 'Stronger Overlay',
+            level: 2,
+            text_size: 'display-5',
+            text_color: 'text-white',
+        } only %}
+        <p class="lead mb-0 text-white">Improves readability for text-heavy hero content.</p>
+    {% endblock %}
+{% endembed %}
+{% endstory %}
+
+{% story BottomImageFocus with {
+    name: 'Background image position',
+    args: {
+        container_type: 'container',
+        bg_edge2edge: false,
+        height: 'large',
+        flex_position: 'bottom-left',
+        overlay_bg: 'bg-dark',
+        overlay_opacity: 'opacity-50',
+        content_width: 'w-75',
+        object_position: 'bottom',
+        media: {
+            src: '/components/organisms/hero-billboard/assets/hero-bg-placeholder.svg',
+            alt: 'Background image',
+            width: 1920,
+            height: 1075,
+        },
+    },
+} %}
+{% embed 'vartheme_bs5:hero-billboard' with _context %}
+    {% block hero_slot %}
+        {% include 'vartheme_bs5:heading' with {
+            heading_text: 'Bottom Aligned Image',
+            level: 2,
+            text_size: 'display-5',
+            text_color: 'text-white',
+        } only %}
+        <p class="lead mb-0 text-white">Common when the focal point of the image is lower.</p>
+    {% endblock %}
+{% endembed %}
+{% endstory %}
+
+{% story RichHeroContent with {
+    name: 'Hero content',
+    args: {
+        container_type: 'container',
+        bg_edge2edge: false,
+        height: 'large',
+        flex_position: 'center-left',
+        overlay_bg: 'bg-black',
+        overlay_opacity: 'opacity-75',
+        content_width: 'w-75',
+        object_position: 'center',
+        media: {
+            src: '/components/organisms/hero-billboard/assets/hero-bg-placeholder.svg',
+            alt: 'Background image',
+            width: 1920,
+            height: 1075,
+        },
+    },
+} %}
+{% embed 'vartheme_bs5:hero-billboard' with _context %}
+    {% block hero_slot %}
+        <p class="text-uppercase small mb-2 text-white opacity-75">Featured campaign</p>
+        {% include 'vartheme_bs5:heading' with {
+            heading_text: 'Build Bold Hero Experiences',
+            level: 1,
+            text_size: 'display-3',
+            text_color: 'text-white',
+        } only %}
+        <p class="lead mb-4 text-white">Compose headings, descriptive text, and actions directly inside the hero slot.</p>
+        <div class="d-flex flex-wrap gap-2">
+            {% include 'vartheme_bs5:button' with {
+                label: 'Primary action',
+                variant: 'btn-primary',
+                size: 'btn-md',
+                href: '',
+            } only %}
+            {% include 'vartheme_bs5:button' with {
+                label: 'Secondary action',
+                variant: 'btn-light',
+                size: 'btn-md',
+                outline: true,
+                href: '',
+            } only %}
+        </div>
+    {% endblock %}
+{% endembed %}
+{% endstory %}
+
+{% story WithPhoto with {
+    name: 'With photo',
+    args: {
+        container_type: 'container',
+        bg_edge2edge: true,
+        height: 'large',
+        flex_position: 'center-left',
+        overlay_bg: 'bg-dark',
+        overlay_opacity: 'opacity-50',
+        content_width: 'w-75',
+        object_position: 'center',
+        media: {
+            src: '/components/organisms/hero-billboard/assets/hero-billboard.webp',
+            alt: 'Hero background photo',
+            width: 1920,
+            height: 1075,
+        },
+    },
+} %}
+{% embed 'vartheme_bs5:hero-billboard' with _context %}
+    {% block hero_slot %}
+        <p class="text-uppercase small mb-2 text-white opacity-75">Varbase Design System</p>
+        {% include 'vartheme_bs5:heading' with {
+            heading_text: 'Build Stunning Drupal Websites',
+            level: 1,
+            text_size: 'display-4',
+            text_color: 'text-white',
+        } only %}
+        <p class="lead mb-4 text-white">An enterprise-ready Drupal distribution with a powerful component library.</p>
+        <div class="d-flex flex-wrap gap-2">
+            {% include 'vartheme_bs5:button' with {
+                label: 'Get started',
+                variant: 'btn-primary',
+                size: 'btn-md',
+                href: '',
+            } only %}
+            {% include 'vartheme_bs5:button' with {
+                label: 'Learn more',
+                variant: 'btn-light',
+                size: 'btn-md',
+                outline: true,
+                href: '',
+            } only %}
+        </div>
     {% endblock %}
 {% endembed %}
 {% endstory %}

@@ -70,8 +70,9 @@ props:
       type: string
       title: Overlay background
       description: Bootstrap background utility class.
-      default: bg-dark
+      default: bg-transparent
       enum:
+        - bg-transparent
         - bg-dark
         - bg-black
         - bg-primary
@@ -82,6 +83,7 @@ props:
         - bg-info
         - bg-white
       meta:enum:
+        bg-transparent: Transparent
         bg-dark: Dark
         bg-black: Black
         bg-primary: Primary
