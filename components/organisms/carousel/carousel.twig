@@ -53,13 +53,13 @@
 
       {%
         set indicators_classes = [
-          'carousel-indicators',
+          'carousel-indicators'
         ]|merge(carousel_indicators_utility_classes)
       %}
 
       {% set indicators_attributes = indicators_attributes.addClass(indicators_classes) %}
 
-      <div{{ indicators_attributes }}>
+      <div{{ indicators_attributes}}>
         {% for key, item in items %}
           <button type="button" data-bs-target="#{{ id }}" data-bs-slide-to="{{ key }}" class="{{ (key == 0) ? 'active' }}" aria-label="{{ item.indicator_label }}" aria-current="{{ (key == 0) ? 'true' }}"></button>
         {% endfor %}
@@ -83,11 +83,11 @@
               {% set content_slot = '' %}
             {% endif %}
 
-            {{ include(slide_component, {
+            {% include slide_component with {
               card_border: false,
               media: media_slot,
-              content: content_slot,
-            }, false) }}
+              content: content_slot
+            } only %}
           {% endif %}
         </div>
       {% endfor %}

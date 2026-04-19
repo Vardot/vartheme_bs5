@@ -1,94 +1,87 @@
-# Heading component
+# Heading
 
-A flexible heading component that renders **h1–h6** with optional link support, using **Bootstrap utility classes** for styling.
+All HTML headings, `<h1>` through `<h6>`, are available.
 
----
+> #### [Bootstrap Documentation on Heading](https://getbootstrap.com/docs/5.3/content/typography/#headings)
+> * [Headings](https://getbootstrap.com/docs/5.3/content/typography/#headings)
+> * [Display headings](https://getbootstrap.com/docs/5.3/content/typography/#display-headings)
 
-## Features
+## Properties:
+* `html_tag` : The HTML tag to use for the header.
+               Defaults to h1 (h1|h2|h3|h4|h5|h6)
+* `display`: When you need a heading to stand out, consider using a display
+             heading—a larger, slightly more opinionated heading style.
+* `url`: Simple URL link for heading. 
+* `heading_utility_classes`: An array of utility classes that can
+                    be used to add extra Bootstrap utility classes or custom
+                    classes to this component.
 
-- ✅ Renders **h1–h6** via `level`
-- ✅ Optional **linked heading** via `url`
-- ✅ Optional **link target** via `target` (adds safe `rel` for `_blank`)
-- ✅ Uses **Bootstrap utility classes** for color/alignment/weight/style
+## Attributes:
+ * `attributes`: Attributes array.
 
----
-
-## Props
-
-| Prop | Type | Default | Description |
-|---|---|---:|---|
-| `text` | string | `Heading` | The heading text. |
-| `level` | string | `h2` | Heading level: `h1`–`h6`. |
-| `url` | string | *(empty)* | If provided, the heading becomes a link. |
-| `target` | string | `default` | Link target: `default`, `_self`, `_blank`, `_parent`, `_top`. |
-| `text_color` | string | `text-body` | Bootstrap text utility class (enum keys match class names). |
-| `text_align` | string | `text-start` | Bootstrap alignment class (enum keys match class names). |
-| `font_weight` | string | *(empty)* | Bootstrap font weight utility class. |
-| `font_style` | string | *(empty)* | Bootstrap font style utility class. |
-
-### Bootstrap enum keys
-
-For select props (like `text_color`, `text_align`), the **stored value is the actual Bootstrap utility class name** (e.g. `text-primary`, `text-center`).  
-This means the Twig template can apply them directly without mapping.
-
----
+## Slots:
+ * `content`: Content text for the heading.
 
 ## Examples
 
-### 1) Basic heading
-
-- `level`: `h2`  
-- `text`: `About us`
-
-### 2) Colored heading
-
-- `level`: `h3`
-- `text`: `Latest updates`
-- `text_color`: `text-primary`
-
-### 3) Centered, lighter weight
-
-- `level`: `h4`
-- `text`: `Highlights`
-- `text_align`: `text-center`
-- `font_weight`: `fw-semibold`
-- `font_style`: `fst-italic`
-
-### 4) Linked heading (same tab)
-
-- `level`: `h2`
-- `text`: `Read more`
-- `url`: `/blog`
-
-### 5) Linked heading (new tab)
-
-- `level`: `h2`
-- `text`: `Visit website`
-- `url`: `https://example.com`
-- `target`: `_blank`
-
-> When `target` is `_blank`, the component automatically adds:  
-> `rel="noopener noreferrer"` (recommended for security).
-
----
-
-## Twig usage
-
-```twig
+**Example #1:** Have a heading for the h1 page title
+```
 {% include 'vartheme_bs5:heading' with {
-  text: 'Documentation',
-  level: 'h2',
-  text_color: 'text-primary',
-  text_align: 'text-start',
-  font_weight: 'fw-bold',
-  font_style: 'fst-italic',
-  url: 'https://example.com',
-  target: '_blank'
-} only %}
+    html_tag: 'h1',
+    content: title|render|striptags|trim,
+    attributes: title_attributes,
+    heading_utility_classes: classes
+  }
+%}
 ```
 
----
+**Example #2:** Use for the heading of a block
+```
+{% include 'vartheme_bs5:heading' with {
+    html_tag: heading_tag,
+    content: heading_text|render|striptags|trim,
+    attributes: []
+  }
+%}
+```
 
-## Notes
+**Example #3:** Use in views title
+```
+{% embed "vartheme_bs5:heading" with {
+  attributes: title_attributes,
+  content: label,
+  html_tag: 'h2'
+} %}
+{% endembed %}
+```
 
-- The component relies on **Bootstrap utilities** for most styling.
+**Example #4** Have title with utility classes
+```
+{% include "vartheme_bs5:heading" with {
+  attributes: heading_attributes,
+  html_tag: 'h2',
+  content: heading,
+  heading_utility_classes: ['rich-heading', 'mb-2']
+} %}
+```
+
+**Example #5** Heading for the the alert message
+```
+	{% if heading|render|striptags|trim is not empty %}
+		{% include "vartheme_bs5:heading" with {
+			html_tag: 'h4',
+			content: heading|render|striptags|trim,
+			heading_utility_classes: ['alert-heading']
+		} only %}
+	{% endif %}
+```
+
+**Example #6** Have title with URL link
+```
+{% include "vartheme_bs5:heading" with {
+  attributes: heading_attributes,
+  html_tag: 'h2',
+  content: heading,
+  url: '#'
+} %}
+```

@@ -33,7 +33,7 @@
     'level-1',
     style,
     alignment,
-    fill,
+    fill
   ]|merge(nav_utility_classes)
 %}
 
@@ -57,18 +57,18 @@
             <a href="{{ item.url }}" class="{{ nav_link_classes|merge(['dropdown-toggle'])|join(' ') }}" data-bs-toggle="dropdown">{{ item.title }}</a>
             {% if item.below %}
             {% set second_level = 2 %}
-              {{ include('vartheme_bs5:dropdown-menu', {
+              {% include 'vartheme_bs5:dropdown-menu' with {
                 items: item.below,
                 menu_level: (item.below|first).menu_link_level,
-                parent_item: item,
-              }) }}
+                parent_item: item
+              } %}
             {% endif %}
-            <div class="field-image-background d-none d-lg-block">
-              {{ item.content.field_media }}
+            <div class="field-image-background d-none d-lg-block"> 
+              {{ item.content.field_media }}  
             </div>
           {% else %}
             {% if item.url %}
-            {{ link(item.title, item.url, {class: nav_link_classes}) }}
+            {{ link(item.title, item.url, { 'class': nav_link_classes }) }}
             {% endif %}
           {% endif %}
         </li>

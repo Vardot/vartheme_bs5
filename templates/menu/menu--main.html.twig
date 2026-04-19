@@ -1,28 +1,10 @@
 {#
 /**
  * Template for the main menu.
- *
- * Wraps the menu in a Bootstrap 5.3 navbar so the hamburger + collapse
- * behavior is handled by stock BS classes on tablet/mobile (< lg), while
- * items render inline from the lg breakpoint up. The footer neutralizes
- * the toggler/collapse via CSS so the same template works in both regions.
  */
 #}
-{% set collapse_id = 'main-menu-collapse-' ~ random(99999) %}
-<nav class="navbar navbar-expand-lg w-100 p-0">
-  <button class="navbar-toggler ms-auto" type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#{{ collapse_id }}"
-          aria-controls="{{ collapse_id }}"
-          aria-expanded="false"
-          aria-label="{{ 'Toggle navigation'|t }}">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div id="{{ collapse_id }}" class="collapse navbar-collapse">
-    {% include 'vartheme_bs5:nav-menu' with {
-      nav_menu_utility_classes: [
-        'navbar-nav',
-      ],
-    } %}
-  </div>
-</nav>
+{% include 'vartheme_bs5:nav-menu' with {
+  nav_menu_utility_classes: [
+    'navbar-nav',
+  ],
+} %}

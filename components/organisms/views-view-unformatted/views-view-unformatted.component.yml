@@ -1,30 +1,11 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: Views view unformatted
+status: experimental
 description: Component implementation to display a view of unformatted rows.
 group: Views
-noUi: true
-use_in_views: true
 props:
   type: object
   properties:
-    title:
+    content:
       type: string
-      title: Title
-      description: 'The title of this group of rows. May be empty.'
-      default: ''
-    default_row_class:
-      type: boolean
-      title: 'Default Row Class'
-      description: 'Add a default "views-row" CSS class to each row wrapper.'
-      default: false
-    attributes:
-      type: Drupal\Core\Template\Attribute
-      title: Attributes
-      description: 'HTML attributes for the wrapping element.'
-slots:
-  rows:
-    type: array
-    title: 'Rows'
-    description: 'Rows'
-    items:
-      type: 'object'
+      title: Content

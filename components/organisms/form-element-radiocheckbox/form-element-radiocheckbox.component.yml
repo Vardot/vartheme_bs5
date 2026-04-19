@@ -1,0 +1,12 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Form Element Radio Checkbox 
+status: experimental
+description: Form Element Radio Checkbox
+props:
+  type: object
+  properties:
+    attributes:
+      type: object
+      title: Attributes
+      description: HTML attributes for the containing element.
+      $ref: 'ui-patterns://attributes'

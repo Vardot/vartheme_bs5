@@ -1,235 +1,257 @@
-{% stories CardText with {
-  title: 'Cards/Card Text',
-  parameters: {
-    componentSubtitle: 'Simple text-based card with flexible content slot and utility styling options.',
-    docs: {
-      description: {
-        component: 'A lightweight text-focused card component for titles, descriptions, and actions. Supports padding, background, borders, shadows, and full-card link behavior.',
+{% stories TextCard with {
+  "title": "Organisms/Text Card",
+  "parameters": {
+    "componentSubtitle": "Bootstrap Text card component",
+    "docs": {
+      "description": {
+        "component": "Text card component and pattern with content."
       },
-      story: {
-        inline: true,
-      },
-    },
+      "story": {
+        "inline": true
+      }
+    }
   },
-  argTypes: {
-    card_border: {
-      name: 'Card border',
-      description: 'Adds default Bootstrap border.',
-      defaultValue: true,
-      control: 'boolean',
+  "argTypes": {
+    "style_size": {
+      "name": "Card style size",
+      "description": "Card style size",
+      "control": "select",
+      "defaultValue": "",
+      "options": {
+        "' - none - '": "",
+        "XSmall": "xsmall",
+        "Small": "small",
+        "Medium": "medium",
+        "Large": "large",
+        "XLarge": "xlarge"
+      }
     },
-    background_color: {
-      name: 'Background',
-      description: 'Bootstrap background utility.',
-      defaultValue: 'bg-white',
-      control: 'select',
-      options: {
-        Transparent: 'bg-transparent',
-        Body: 'bg-body',
-        "'Body tertiary'": 'bg-body-tertiary',
-        White: 'bg-white',
-        Light: 'bg-light',
-        Dark: 'bg-dark',
-        Primary: 'bg-primary',
-        Secondary: 'bg-secondary',
-        Success: 'bg-success',
-        Danger: 'bg-danger',
-        Warning: 'bg-warning',
-        Info: 'bg-info',
-      },
+    "card_border": {
+      "name": "Card Border",
+      "description": "Add a default border to the card.",
+      "control": "boolean",
+      "defaultValue": true
     },
-    padded: {
-      name: 'Padded',
-      description: 'Adds p-4 spacing to content.',
-      defaultValue: true,
-      control: 'boolean',
+    "padded": {
+      "name": "Padded",
+      "description": "Add a default padding to the card.",
+      "control": "boolean",
+      "defaultValue": false
     },
-    box_shadow: {
-      name: 'Shadow',
-      description: 'Bootstrap shadow utility.',
-      defaultValue: 'shadow-sm',
-      control: 'select',
-      options: {
-        None: 'shadow-none',
-        Small: 'shadow-sm',
-        Medium: 'shadow',
-        Large: 'shadow-lg',
-      },
+    "equal_height": {
+      "name": "Equal height",
+      "description": "Equal height",
+      "control": "boolean",
+      "defaultValue": true
     },
-    corner_style: {
-      name: 'Corner style',
-      description: 'Rounded utility for the card.',
-      defaultValue: 'rounded-3',
-      control: 'select',
-      options: {
-        "'None (square)'": 'rounded-0',
-        Small: 'rounded-1',
-        Large: 'rounded-3',
-        Pill: 'rounded-pill',
-      },
+    "anchor_all": {
+      "name": "Anchor All",
+      "description": "Anchor All",
+      "control": "boolean",
+      "defaultValue": false
     },
-    equal_height: {
-      name: 'Equal height',
-      description: 'Apply h-100 for grid alignment.',
-      defaultValue: false,
-      control: 'boolean',
+    "content": {
+      "name": "Card content",
+      "slots": "The content for card",
+      "control": "text",
+      "defaultValue": ""
     },
-    stretched_link: {
-      name: 'Stretched link',
-      description: 'Make entire card clickable.',
-      defaultValue: false,
-      control: 'boolean',
+    "card_text_utility_classes": {
+      "name": "Utility Classes",
+      "description": "Use to add extra Bootstrap utility classes for the main Card wrapper. E.g. `mb-3 shadow-lg` ( Do not add card)",
+      "control": "object",
+      "defaultValue": []
     },
-    link_url: {
-      name: 'Link URL',
-      description: 'Optional card link.',
-      defaultValue: '',
-      control: 'text',
+    "card_text_content_utility_classes": {
+      "name": "Content Utility Classes",
+      "description": "Use to add extra Bootstrap utility classes for the Card Content region wrapper. E.g. `w-75 mb-3 overflow-y-hidden`  ( Do not add card-body)",
+      "control": "object",
+      "defaultValue": []
     },
-    link_target: {
-      name: 'Link target',
-      description: 'Target attribute.',
-      defaultValue: 'default',
-      control: 'select',
-      options: {
-        "'Default (same tab)'": 'default',
-        "'Same tab'": '_self',
-        "'New tab'": '_blank',
-      },
+    "card_attributes": {
+      "name": "Card Attributes",
+      "description": "HTML attributes for the Card element.",
+      "control": "object",
+      "defaultValue": {}
     },
-  },
+    "content_attributes": {
+      "name": "Content Attributes",
+      "description": "HTML attributes for the content element.",
+      "control": "object",
+      "defaultValue": {}
+    }
+  }
 } %}
 
-{% story Default with {
-  name: 'Default',
-  args: {
-    card_border: true,
-    background_color: 'bg-white',
-    padded: true,
-    box_shadow: 'shadow-sm',
-    corner_style: 'rounded-3',
-    equal_height: false,
-    stretched_link: false,
-    link_url: '',
-    link_target: 'default',
-  },
+
+{% story xlarge with {
+  "name": "xlarge",
+  "args": {
+    "style_size": "xlarge",
+    "card_border": false,
+    "padded": false,
+    "equal_height": true,
+    "anchor_all": false,
+    "content": "<h3 class=\"card-title\"><a href=\"#\">Lorem Ipsum Dolor Sit Amet</a></h3><p class=\"card-text\">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut…</p>",
+    "card_text_utility_classes": ['col-12'],
+    "card_text_content_utility_classes": []
+  }
 } %}
-{% embed 'vartheme_bs5:card-text' with _context %}
-  {% block content %}
-    <h3 class="h5 mb-2">Card text title</h3>
-    <p class="mb-3">This is a simple text card used for descriptions, highlights, or small content blocks.</p>
-    <a href="#" class="btn btn-primary">Action</a>
-  {% endblock %}
-{% endembed %}
+{{ include('vartheme_bs5:card-text') }}
 {% endstory %}
 
-{% story DarkBackground with {
-  name: 'Dark background',
-  args: {
-    card_border: false,
-    background_color: 'bg-dark',
-    padded: true,
-    box_shadow: 'shadow',
-    corner_style: 'rounded-3',
-    equal_height: false,
-    stretched_link: false,
-    link_url: '',
-    link_target: 'default',
-  },
+
+{% story large with {
+  "name": "large",
+  "args": {
+    "style_size": "large",
+    "card_border": false,
+    "padded": false,
+    "equal_height": true,
+    "anchor_all": false,
+    "content": "<h3 class=\"card-title\"><a href=\"#\">Lorem Ipsum Dolor Sit Amet</a></h3><p class=\"card-text\">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut…</p>",
+    "card_text_utility_classes": ['col-9'],
+    "card_text_content_utility_classes": []
+  }
 } %}
-{% embed 'vartheme_bs5:card-text' with _context %}
-  {% block content %}
-    <h3 class="h5 mb-2 text-white">Dark card</h3>
-    <p class="mb-0 text-white-50">Use text utility classes when working with dark backgrounds.</p>
-  {% endblock %}
-{% endembed %}
+{{ include('vartheme_bs5:card-text') }}
 {% endstory %}
 
-{% story NoPadding with {
-  name: 'No padding',
-  args: {
-    card_border: true,
-    background_color: 'bg-white',
-    padded: false,
-    box_shadow: 'shadow-sm',
-    corner_style: 'rounded-0',
-    equal_height: false,
-    stretched_link: false,
-    link_url: '',
-    link_target: 'default',
-  },
+
+{% story medium with {
+  "name": "medium",
+  "args": {
+    "style_size": "medium",
+    "card_border": false,
+    "padded": false,
+    "equal_height": true,
+    "anchor_all": false,
+    "content": "<h3 class=\"card-title\"><a href=\"#\">Lorem Ipsum Dolor Sit Amet</a></h3><p class=\"card-text\">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut…</p>",
+    "card_text_utility_classes": ['col-6'],
+    "card_text_content_utility_classes": []
+  }
 } %}
-{% embed 'vartheme_bs5:card-text' with _context %}
-  {% block content %}
-    <h3 class="h5 m-0">Compact layout</h3>
-  {% endblock %}
-{% endembed %}
+{{ include('vartheme_bs5:card-text') }}
 {% endstory %}
 
-{% story LargeShadow with {
-  name: 'Large shadow',
-  args: {
-    card_border: true,
-    background_color: 'bg-light',
-    padded: true,
-    box_shadow: 'shadow-lg',
-    corner_style: 'rounded-3',
-    equal_height: false,
-    stretched_link: false,
-    link_url: '',
-    link_target: 'default',
-  },
+
+{% story small with {
+  "name": "small",
+  "args": {
+    "style_size": "small",
+    "card_border": false,
+    "padded": false,
+    "equal_height": true,
+    "anchor_all": false,
+    "content": "<h3 class=\"card-title\"><a href=\"#\">Lorem Ipsum Dolor Sit Amet</a></h3><p class=\"card-text\">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut…</p>",
+    "card_text_utility_classes": ['col-4'],
+    "card_text_content_utility_classes": []
+  }
 } %}
-{% embed 'vartheme_bs5:card-text' with _context %}
-  {% block content %}
-    <h3 class="h5 mb-2">Elevated card</h3>
-    <p class="mb-0">Use larger shadows for emphasis.</p>
-  {% endblock %}
-{% endembed %}
+{{ include('vartheme_bs5:card-text') }}
 {% endstory %}
 
-{% story LinkedCard with {
-  name: 'Linked card',
-  args: {
-    card_border: true,
-    background_color: 'bg-white',
-    padded: true,
-    box_shadow: 'shadow-sm',
-    corner_style: 'rounded-3',
-    equal_height: false,
-    stretched_link: true,
-    link_url: 'https://example.com',
-    link_target: '_blank',
-  },
+
+{% story xsmall with {
+  "name": "xsmall",
+  "args": {
+    "style_size": "xsmall",
+    "card_border": false,
+    "padded": false,
+    "equal_height": true,
+    "anchor_all": false,
+    "content": "<h3 class=\"card-title\"><a href=\"#\">Lorem Ipsum Dolor Sit Amet</a></h3><p class=\"card-text\">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut…</p>",
+    "card_text_utility_classes": ['col-3'],
+    "card_text_content_utility_classes": []
+  }
 } %}
-{% embed 'vartheme_bs5:card-text' with _context %}
-  {% block content %}
-    <h3 class="h5 mb-2">Clickable card</h3>
-    <p class="mb-0">Entire card acts as a link.</p>
-  {% endblock %}
-{% endembed %}
+{{ include('vartheme_bs5:card-text') }}
 {% endstory %}
 
-{% story EqualHeight with {
-  name: 'Equal height',
-  args: {
-    card_border: true,
-    background_color: 'bg-white',
-    padded: true,
-    box_shadow: 'shadow-sm',
-    corner_style: 'rounded-3',
-    equal_height: true,
-    stretched_link: false,
-    link_url: '',
-    link_target: 'default',
-  },
+
+{% story xlargePadded with {
+  "name": "xlarge - Padded",
+  "args": {
+    "style_size": "xlarge",
+    "card_border": true,
+    "padded": true,
+    "equal_height": true,
+    "anchor_all": false,
+    "content": "<div data-component-id=\"vartheme_bs5:field\" class=\"field field--name-node-title field--type-ds field--label-hidden field__item\"><h3 class=\"card-title\"><a href=\"#\" hreflang=\"en\">Lorem Ipsum Dolor Sit Amet</a></h3></div><div class=\"field field--name-body field--type-text-with-summary field--label-hidden field__item\">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut…</div>",
+    "card_text_utility_classes": ['col-12'],
+    "card_text_content_utility_classes": []
+  }
 } %}
-{% embed 'vartheme_bs5:card-text' with _context %}
-  {% block content %}
-    <h3 class="h5 mb-2">Equal height</h3>
-    <p class="mb-0">Useful in grid layouts.</p>
-  {% endblock %}
-{% endembed %}
+{{ include('vartheme_bs5:card-text') }}
 {% endstory %}
+
+
+{% story largePadded with {
+  "name": "large - Padded",
+  "args": {
+    "style_size": "large",
+    "card_border": true,
+    "padded": true,
+    "equal_height": true,
+    "anchor_all": false,
+    "content": "<div data-component-id=\"vartheme_bs5:field\" class=\"field field--name-node-title field--type-ds field--label-hidden field__item\"><h3 class=\"card-title\"><a href=\"#\" hreflang=\"en\">Lorem Ipsum Dolor Sit Amet</a></h3></div><div class=\"field field--name-body field--type-text-with-summary field--label-hidden field__item\">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut…</div>",
+    "card_text_utility_classes": ['col-9'],
+    "card_text_content_utility_classes": []
+  }
+} %}
+{{ include('vartheme_bs5:card-text') }}
+{% endstory %}
+
+
+{% story mediumPadded with {
+  "name": "medium - Padded",
+  "args": {
+    "style_size": "medium",
+    "card_border": true,
+    "padded": true,
+    "equal_height": true,
+    "anchor_all": false,
+    "content": "<div data-component-id=\"vartheme_bs5:field\" class=\"field field--name-node-title field--type-ds field--label-hidden field__item\"><h3 class=\"card-title\"><a href=\"#\" hreflang=\"en\">Lorem Ipsum Dolor Sit Amet</a></h3></div><div class=\"field field--name-body field--type-text-with-summary field--label-hidden field__item\">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut…</div>",
+    "card_text_utility_classes": ['col-6'],
+    "card_text_content_utility_classes": []
+  }
+} %}
+{{ include('vartheme_bs5:card-text') }}
+{% endstory %}
+
+
+{% story smallPadded with {
+  "name": "small - Padded",
+  "args": {
+    "style_size": "small",
+    "card_border": true,
+    "padded": true,
+    "equal_height": true,
+    "anchor_all": false,
+    "content": "<div data-component-id=\"vartheme_bs5:field\" class=\"field field--name-node-title field--type-ds field--label-hidden field__item\"><h3 class=\"card-title\"><a href=\"#\" hreflang=\"en\">Lorem Ipsum Dolor Sit Amet</a></h3></div><div class=\"field field--name-body field--type-text-with-summary field--label-hidden field__item\">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut…</div>",
+    "card_text_utility_classes": ['col-4'],
+    "card_text_content_utility_classes": []
+  }
+} %}
+{{ include('vartheme_bs5:card-text') }}
+{% endstory %}
+
+
+{% story xsmallPadded with {
+  "name": "xsmall - Padded",
+  "args": {
+    "style_size": "xsmall",
+    "card_border": true,
+    "padded": true,
+    "equal_height": true,
+    "anchor_all": false,
+    "content": "<div data-component-id=\"vartheme_bs5:field\" class=\"field field--name-node-title field--type-ds field--label-hidden field__item\"><h3 class=\"card-title\"><a href=\"#\" hreflang=\"en\">Lorem Ipsum Dolor Sit Amet</a></h3></div><div class=\"field field--name-body field--type-text-with-summary field--label-hidden field__item\">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut…</div>",
+    "card_text_utility_classes": ['col-3'],
+    "card_text_content_utility_classes": []
+  }
+} %}
+{{ include('vartheme_bs5:card-text') }}
+{% endstory %}
+
 
 {% endstories %}

@@ -16,18 +16,18 @@
 {% apply spaceless %}
 {% if items is iterable and items|length > 0 %}
   {% set utility_classes = utility_classes ? utility_classes : [] %}
-
+  
   {# Build CSS classes #}
   {% set list_classes = ['list-group'] %}
-
+  
   {% if flush %}
     {% set list_classes = list_classes|merge(['list-group-flush']) %}
   {% endif %}
-
+  
   {% if numbered %}
     {% set list_classes = list_classes|merge(['list-group-numbered']) %}
   {% endif %}
-
+  
   {% if horizontal %}
     {% if horizontal == 'sm' or horizontal == 'md' or horizontal == 'lg' or horizontal == 'xl' or horizontal == 'xxl' %}
       {% set list_classes = list_classes|merge(['list-group-horizontal-' ~ horizontal]) %}
@@ -35,15 +35,15 @@
       {% set list_classes = list_classes|merge(['list-group-horizontal']) %}
     {% endif %}
   {% endif %}
-
+  
   {% set list_classes = list_classes|merge(utility_classes) %}
-
+  
   {# Set up attributes #}
   {% if not attributes %}
     {% set attributes = create_attribute() %}
   {% endif %}
   {% set attributes = attributes.addClass(list_classes) %}
-
+  
   {# Determine if we need div or ul based on whether items have links #}
   {% set has_links = false %}
   {% for item in items %}
@@ -51,29 +51,29 @@
       {% set has_links = true %}
     {% endif %}
   {% endfor %}
-
+  
   {% if has_links %}
     <div{{ attributes }}>
   {% else %}
     <ul{{ attributes }}>
   {% endif %}
-
+    
     {% for item in items %}
       {% set item_classes = ['list-group-item'] %}
-
+      
       {# Add contextual classes #}
       {% if item.active is defined and item.active %}
         {% set item_classes = item_classes|merge(['active']) %}
       {% endif %}
-
+      
       {% if item.disabled is defined and item.disabled %}
         {% set item_classes = item_classes|merge(['disabled']) %}
       {% endif %}
-
+      
       {% if item.variant is defined and item.variant %}
         {% set item_classes = item_classes|merge(['list-group-item-' ~ item.variant]) %}
       {% endif %}
-
+      
       {# Handle different item types #}
       {% if item.href is defined and item.href %}
         {% set item_classes = item_classes|merge(['list-group-item-action']) %}
@@ -104,7 +104,7 @@
         {% endif %}
       {% endif %}
     {% endfor %}
-
+    
   {% if has_links %}
     </div>
   {% else %}

@@ -1,9 +1,8 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: Views view grid
+status: experimental
 description: Component implementation for views to display rows in a grid.
 group: Views
-noUi: true
-use_in_views: true
 props:
   type: object
   properties:
@@ -172,9 +171,10 @@ props:
         "col-xxl-12" : "12 (1 column per row)"
       x-translation-context: Column width of items at xxl breakpoint
     attributes:
-      type: Drupal\Core\Template\Attribute
+      type: object
       title: Attributes
       description: HTML attributes for the containing element.
+      $ref: 'ui-patterns://attributes'
 slots:
   rows:
     type: array

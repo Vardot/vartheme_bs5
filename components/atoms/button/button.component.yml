@@ -1,246 +1,82 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: Button
-group: Base
+status: experimental
+description: Use Bootstrap custom button styles for actions in forms, dialogs, and more with support for multiple sizes, states, and more.
 props:
   type: object
-  required:
-    - variant
-    - size
   properties:
-    variant:
+    html_tag:
       type: string
-      title: Variant
-      description: Bootstrap button style class.
+      title: The HTML tag to use for the button (button | a). Defaults to `button`.
+      default: button
       enum:
-        - btn-primary
-        - btn-secondary
-        - btn-success
-        - btn-danger
-        - btn-warning
-        - btn-info
-        - btn-light
-        - btn-dark
-        - btn-link
-      default: btn-primary
-      examples:
-        - btn-primary
-      meta:enum:
-        btn-primary: Primary
-        btn-secondary: Secondary
-        btn-success: Success
-        btn-danger: Danger
-        btn-warning: Warning
-        btn-info: Info
-        btn-light: Light
-        btn-dark: Dark
-        btn-link: Link
+        - button
+        - a
+    url:
+      type: string
+      title: URL Link
+      description: URL link for the button when the HTML tag is an anchor link.
+      $ref: "ui-patterns://url"
+    color:
+      type: string
+      title: Color
+      description: Bootstrap includes several predefined button styles, each serving its own semantic purpose, with a few extras thrown in for more control.
+      default: ''
+      enum:
+        - ''
+        - primary
+        - secondary
+        - success
+        - danger
+        - warning
+        - info
+        - dark
+        - light
+        - link
     outline:
       type: boolean
       title: Outline
-      description: When enabled, uses the Bootstrap outline button style (btn-outline-*) for the selected variant (not applied
-        to btn-link).
+      description: In need of a button, but not the hefty background colors they bring? Replace the default modifier classes with the .btn-outline-* ones to remove all background images and colors on any button.
       default: false
-      examples:
-        - false
     size:
       type: string
       title: Size
-      description: Bootstrap button size class.
+      description: Bootstrap button size
+      default: ''
       enum:
-        - btn-md
+        - ''
         - btn-sm
         - btn-lg
-      default: btn
-      examples:
-        - btn-md
-      meta:enum:
-        btn-md: Medium (default)
-        btn-sm: Small
-        btn-lg: Large
-    label:
-      type: string
-      title: Label
-      default: Button label
-      examples:
-        - Read more
-      description: Button text.
-    href:
-      type: string
-      title: Link URL (optional)
-      format: uri-reference
-      description: If provided, renders as a link (<a>) instead of a <button>.
-    target:
-      type: string
-      title: Link target
-      description: Where to open the link (used only when Link URL is provided).
-      enum:
-        - self
-        - blank
-      default: self
-      examples:
-        - self
-      meta:enum:
-        self: Same tab (default)
-        blank: New tab
     disabled:
       type: boolean
       title: Disabled
+      description: Disabled button
       default: false
-      examples:
-        - false
-    icon:
-      type: string
-      title: Icon (optional)
-      description: Optional Bootstrap Icon name (without the "bi-" prefix). Use "none" to disable.
-      enum:
-        - none
-        - facebook
-        - twitter-x
-        - instagram
-        - linkedin
-        - x
-        - plus
-        - exclamation
-        - check
-        - dash
-        - question
-        - info
-        - search
-        - person
-        - people
-        - person-plus
-        - person-check
-        - chevron-up
-        - chevron-down
-        - chevron-left
-        - chevron-right
-        - chevron-double-up
-        - chevron-double-down
-        - chevron-double-left
-        - chevron-double-right
-        - arrow-up
-        - arrow-down
-        - arrow-left
-        - arrow-right
-        - arrow-up-right
-        - arrow-up-left
-        - arrow-down-right
-        - arrow-down-left
-        - arrow-repeat
-        - arrows-angle-expand
-        - arrows-angle-contract
-        - play
-        - pause
-        - skip-backward
-        - skip-forward
-        - circle
-        - circle-fill
-        - record-circle
-        - arrow-right-circle-fill
-        - arrow-left-circle-fill
-        - arrow-up-circle-fill
-        - arrow-down-circle-fill
-        - caret-right-fill
-        - caret-left-fill
-        - caret-up-fill
-        - caret-down-fill
-      default: none
-      examples:
-        - none
-      meta:enum:
-        none: None
-        facebook: Facebook
-        twitter-x: Twitter X
-        instagram: Instagram
-        linkedin: LinkedIn
-        x: Close (X)
-        plus: Plus
-        exclamation: Exclamation
-        check: Check
-        dash: Dash
-        question: Question
-        info: Info
-        search: Search
-        person: Person
-        people: People
-        person-plus: Person Plus
-        person-check: Person Check
-        chevron-up: Chevron Up
-        chevron-down: Chevron Down
-        chevron-left: Chevron Left
-        chevron-right: Chevron Right
-        chevron-double-up: Chevron Double Up
-        chevron-double-down: Chevron Double Down
-        chevron-double-left: Chevron Double Left
-        chevron-double-right: Chevron Double Right
-        arrow-up: Arrow Up
-        arrow-down: Arrow Down
-        arrow-left: Arrow Left
-        arrow-right: Arrow Right
-        arrow-up-right: Arrow Up Right
-        arrow-up-left: Arrow Up Left
-        arrow-down-right: Arrow Down Right
-        arrow-down-left: Arrow Down Left
-        arrow-repeat: Arrow Repeat
-        arrows-angle-expand: Expand
-        arrows-angle-contract: Contract
-        play: Play
-        pause: Pause
-        skip-backward: Skip Backward
-        skip-forward: Skip Forward
-        circle: Circle
-        circle-fill: Circle Filled
-        record-circle: Record Circle
-        arrow-right-circle-fill: Arrow Right Circle Filled
-        arrow-left-circle-fill: Arrow Left Circle Filled
-        arrow-up-circle-fill: Arrow Up Circle Filled
-        arrow-down-circle-fill: Arrow Down Circle Filled
-        caret-right-fill: Caret Right Filled
-        caret-left-fill: Caret Left Filled
-        caret-up-fill: Caret Up Filled
-        caret-down-fill: Caret Down Filled
-    icon_first:
-      type: boolean
-      title: Change icon position to left
-      default: false
-      examples:
-        - false
-    alignment:
-      type: string
-      title: Alignment
-      description: Alignment wrapper for a single button. Use Inline for multiple buttons.
-      enum:
-        - inline
-        - left
-        - center
-        - right
-      default: inline
-      examples:
-        - inline
-      meta:enum:
-        inline: Inline (default)
-        left: Left
-        center: Center
-        right: Right
-    full_width:
-      type: boolean
-      title: Full width
-      description: Make the button full width using the Bootstrap w-100 utility class.
-      default: false
-      examples:
-        - false
-    radius:
-      type: string
-      title: Border radius
-      description: Bootstrap border-radius utility class.
-      enum:
-        - rounded
-        - rounded-pill
-        - rounded-0
-      default: rounded
-      examples:
-        - rounded
-      meta:enum:
-        rounded: Default
-        rounded-pill: Round
-        rounded-0: None
+    button_utility_classes:
+      type: array
+      title: Utility Classes
+      default: []
+      items:
+        type: 'string'
+      description: An array of utility classes that can be used to add extra Bootstrap utility classes or custom classes to this component.
+    attributes:
+      type: object
+      title: Attributes
+      description: HTML attributes for the containing element.
+      $ref: 'ui-patterns://attributes'
+slots:
+  content:
+    type: string
+    title: Content
+    description: The content for the button
+    minLength: 1
+    examples:
+      - Press
+      - Submit now
+      - Save
+      - Login
+      - Read more
+libraryOverrides:
+  dependencies:
+    - vartheme_bs5/bs-base-component-script
+    - vartheme_bs5/bs-button-script

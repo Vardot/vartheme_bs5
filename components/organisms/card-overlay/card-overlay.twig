@@ -1,116 +1,86 @@
 {#
-  Overlay Card
-  - Bootstrap utility classes only
-  - No custom CSS / SCSS / inline styles
-  - Background media from media_image prop
-  - Content is the only Canvas slot
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for the Overlay Card component.
+ *
+ * Available properties:
+ * - style_size: Card style size. (xsmall|small|medium|large|xlarge).
+ * - card_border: Add a default border to the card. (true|false)
+ * - padded: Add a default padding to the card. (true|false)
+ * - equal_height: Equal height. (true|false)
+ * - anchor_all: Anchor All. (true|false)
+ * - horizontal_alignment: Horizontal alignment of the content. (start|center|end).
+ * - vertical_alignment: Vertical alignment of the content. (start|center|end).
+ *
+ * Available attributes:
+ * - card_attributes: Drupal attributes for featured card wrapper.
+ * - media_attributes: Drupal attributes for card media slot region.
+ * - content_attributes: Drupal attributes for card content slot region.
+ * - card_overlay_utility_classes: Use to add extra Bootstrap utility classes for the main Card wrapper.
+ *                    E.g. `mb-3 shadow-lg` ( Do not add `card`).
+ * - card_overlay_media_utility_classes: Use to add extra Bootstrap utility classes for the Card Media region wrapper.
+ *                          E.g. `bg-secondary mb-3` ( Do not add `card-img`).
+ * - card_overlay_content_utility_classes: Use to add extra Bootstrap utility classes for the Card Content region wrapper.
+ *                            E.g. `w-75 mb-3 overflow-y-hidden`  ( Do not add `card-body`)
+ *
+ * Available slots:
+ * - media: Card Media slot region.
+ * - content: Card Content slot region.
+ */
 #}
 
-{% set padded = padded|default(true) %}
-{% set equal_height = equal_height|default(false) %}
-{% set box_shadow = box_shadow|default('shadow-none') %}
-{% set stretched_link = stretched_link|default(false) %}
+{% set style_size = style_size ? [style_size]: [] %}
+{% set card_border = card_border ? ['bordered'] : ['border-0'] %}
+{% set padded = padded ? ['p-4'] : [''] %}
+{% set equal_height = equal_height ? ['h-100'] : [] %}
+{% set anchor_all = anchor_all ? ['anchor-all'] : [] %}
+{% set vertical_alignment = vertical_alignment == '' ? [] : ['justify-content-' ~ vertical_alignment] %}
+{% set content_horizontal_alignment = horizontal_alignment == '' ? [] : ['align-items-' ~ horizontal_alignment] %}
+{% set text_horizontal_alignment = horizontal_alignment == '' ? [] : ['align-items-' ~ horizontal_alignment] %}
+{% set card_overlay_utility_classes = card_overlay_utility_classes ? card_overlay_utility_classes : [] %}
+{% set card_overlay_media_utility_classes = card_overlay_media_utility_classes ? card_overlay_media_utility_classes : [] %}
+{% set card_overlay_content_utility_classes = card_overlay_content_utility_classes ? card_overlay_content_utility_classes : [] %}
 
-{% set overlay_color = overlay_color|default('bg-transparent') %}
-{% set overlay_opacity = overlay_opacity|default('bg-opacity-50') %}
-{% set h_align = h_align|default('text-start') %}
-{% set v_align = v_align|default('align-items-center') %}
-
-{% set link_url = link_url|default('')|trim %}
-{% set link_target_raw = link_target|default('default') %}
-{% set link_target = (link_target_raw == 'default') ? '_self' : link_target_raw %}
-{% set use_stretched_link = stretched_link and (link_url is not empty) %}
-
-{% set media_image = media_image|default({}) %}
-{% set ratio = ratio|default('ratio-16x9') %}
-{% set fit = fit|default('object-fit-cover') %}
-{% set has_media = (media_image.src|default('')|trim) is not empty %}
-
-{% set content_slot %}{% block content %}{% endblock %}{% endset %}
-{% set has_content_slot = content_slot|render|trim is not empty %}
-
-{% set placeholder_src = (component_metadata.path is defined)
-  ? (base_path ~ component_metadata.path ~ '/assets/overlay-card-image-placeholder.svg')
-  : 'assets/overlay-card-image-placeholder.svg'
+{%
+  set card_classes = [
+    'card',
+    'varbase-overlay-card'
+  ]|merge(style_size)|merge(card_border)|merge(padded)|merge(equal_height)|merge(anchor_all)|merge(card_overlay_utility_classes)
 %}
 
-{% set card_attributes = create_attribute().addClass([
-  'card',
-  'overflow-hidden',
-  'position-relative',
-  box_shadow,
-  (equal_height ? 'h-100' : ''),
-]|filter(v => v is not empty)) %}
+{%
+  set media_classes = []|merge(card_overlay_media_utility_classes)
+%}
 
-{% set overlay_attributes = create_attribute().addClass([
-  'card-img-overlay',
-  overlay_color,
-  (overlay_color != 'bg-transparent' ? overlay_opacity : ''),
-  'p-0',
-  'pointer-events-none',
-]|filter(v => v is not empty)) %}
+{%
+  set content_classes = [
+    'overlay-card-content',
+    'card-img-overlay',
+    'd-flex',
+    'flex-column',
+  ]|merge(vertical_alignment)|merge(content_horizontal_alignment)|merge(text_horizontal_alignment)|merge(card_overlay_content_utility_classes)
+%}
 
-{% set content_overlay_attributes = create_attribute().addClass([
-  'card-img-overlay',
-  'd-flex',
-  v_align,
-  'p-0',
-  'text-white',
-]|filter(v => v is not empty)) %}
+{% if not card_attributes %}
+  {% set card_attributes = create_attribute() %}
+{% endif %}
 
-{% set card_body_attributes = create_attribute().addClass([
-  'card-body',
-  'w-100',
-  h_align,
-  (padded ? 'p-4' : 'p-0'),
-  ((not has_content_slot) and (not padded) ? 'py-4' : ''),
-]|filter(v => v is not empty)) %}
+{% if not content_attributes %}
+  {% set content_attributes = create_attribute() %}
+{% endif %}
 
-{% set empty_state_attributes = create_attribute().addClass([
-  'small',
-  'pe-none',
-]|filter(v => v is not empty)) %}
-
-{% set image_payload = {
-  media: {
-    src: media_image.src|default(''),
-    alt: media_image.alt|default(''),
-    width: media_image.width|default(null),
-    height: media_image.height|default(null),
-  },
-  ratio: ratio,
-  width: 'w-100',
-  fit: fit,
-  extra_classes: ['d-block', 'img-fluid', 'w-100', 'card-img']|join(' '),
-  loading: media_image.loading|default('lazy'),
-  sizes: media_image.sizes|default(''),
-} %}
-
-<div{{ card_attributes }}>
-  {% if has_media %}
-    {{ include('vartheme_bs5:image', image_payload, false, true) }}
+<div{{ card_attributes.addClass(card_classes) }}>
+  {% if media_classes is not empty %}
+    {% if not media_attributes %}
+      {% set media_attributes = create_attribute() %}
+    {% endif %}
+    <div{{ media_attributes.addClass(media_classes) }}>
   {% endif %}
-
-  {% if overlay_color != 'bg-transparent' %}
-    <div{{ overlay_attributes.setAttribute('aria-hidden', 'true') }}></div>
-  {% endif %}
-
-  <div{{ content_overlay_attributes }}>
-    <div{{ card_body_attributes }}>
-      {% if has_content_slot %}
-        {{ content_slot }}
-      {% else %}
-        <div{{ empty_state_attributes }}>Drop content here</div>
-      {% endif %}
+    {{ media }}
+  {% if media_classes is not empty %}
     </div>
-  </div>
-
-  {% if use_stretched_link %}
-    {{ include('vartheme_bs5:link', {
-      url: link_url,
-      target: link_target,
-      content: '',
-      link_utility_classes: ['stretched-link'],
-    }) }}
   {% endif %}
+  <div{{ content_attributes.addClass(content_classes) }}>
+    {{ content }}
+  </div>
 </div>

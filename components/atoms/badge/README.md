@@ -1,55 +1,52 @@
-# Badge component
+# Badge
 
-A Canvas + SDC compatible Badge component built on Bootstrap 5 badges.
+Documentation and examples for badges, our small count and labeling component.
 
-## Features
+> #### [Bootstrap Documentation on Badges](https://getbootstrap.com/docs/5.3/components/badge/)
+> * [Headings](https://getbootstrap.com/docs/5.3/components/badge/#headings) Badges scale to match the size of the immediate parent element.
+> * [Background colors](https://getbootstrap.com/docs/5.3/components/badge/#background-colors) to make badges more rounded 
+> * [Pill badges](https://getbootstrap.com/docs/5.3/components/badge/#pill-badges)
+> * [Buttons](https://getbootstrap.com/docs/5.3/components/badge/#buttons): Badges can be used as part of links or buttons to provide a counter.
+> * [Positioned](https://getbootstrap.com/docs/5.3/components/badge/#positioned)
 
-- Optional link wrapper (`url`)
-- Optional Bootstrap Icon (via VarTheme icon component)
-- Optional notification indicator (dot or count)
-- Uses Bootstrap utility classes for variant, size, and radius (select values match class names)
+## Properties:
+* `html_tag`: The HTML tag to use for the badge. Defaults to span.
+* `color`: Background and Text Color.Set a background-color with contrasting
+          foreground color with our .text-bg-{color} helpers. Previously it
+          was required to manually pair your choice of .text-{color}
+          and .bg-{color} utilities for styling,
+				  which you still may use if you prefer.
+          (primary | secondary | success | info |
+          warning | danger | light | dark)
+* `url`: The HTML tag will automatically be set to a if an anchor is added to the URL.
+* `badge_utility_classes`: An array of utility classes that can
+                    be used to add extra Bootstrap utility classes or custom
+                    classes to this component.
 
-## Props
+## Attributes
+* N/A
 
-| Prop | Type | Required | Default | Notes |
-|---|---|---:|---|---|
-| `label` | string | ✅ | — | Text shown inside the badge |
-| `url` | string | — | `""` | If set, renders as `<a>` |
-| `variant` | string (select) | ✅ | `text-bg-primary` | Bootstrap badge variant utility (`text-bg-*`) |
-| `size` | string (select) | — | `fs-6 px-3 py-2` | Bootstrap sizing utilities (font-size + padding). Internal SCSS uses a size modifier class to keep indicator sizing consistent. |
-| `icon` | string (select) | — | `none` | Bootstrap Icon name from the shared icon component enum |
-| `icon_first` | boolean | — | `true` | Icon before label when true |
-| `radius` | string (select) | — | `rounded-1` | Bootstrap border-radius utility |
-| `indicator` | string (select) | — | `none` | `none`, `dot`, `count` |
-| `indicator_text` | string | — | `99+` | Used when `indicator=count` |
+## Slots
+* `content`: The content of the badge.
 
-## Styling
 
-Custom styling is intentionally minimal and implemented in `badge.scss` using **CSS Logical Properties and Values** (e.g. `padding-inline`, `padding-block`, `inline-size`, `block-size`) to support RTL/LTR layouts.
-
-## Example
-
-```twig
-{% include 'vartheme_bs5:badge' with {
-  label: 'New',
-  url: 'https://example.com',
-  variant: 'text-bg-success',
-  size: 'fs-6 px-3 py-2',
-  radius: 'rounded-pill',
-  icon: 'check',
-  icon_first: true,
-  indicator: 'count',
-  indicator_text: '3'
-} only %}
+### Examples
+**Example #1:** New post badge.
+```
+  {% include 'vartheme_bs5:badge' with {
+    html_tag: 'a',
+    color: 'text-bg-primary',
+    url: forum.new_url,
+    content: forum.new_text
+  } %}
 ```
 
-## Custom icon override
-
-```twig
-{% include 'vartheme_bs5:badge' with {
-  label: 'Reminder',
-  icon: 'none',
-} only %}
+**Example #2:** Pill badges with success content
 ```
-
-## Icon component compatibility
+  {% include 'vartheme_bs5:badge' with {
+    html_tag: 'span',
+    color: 'text-bg-success'
+    content: 'Success',
+    badge_utility_classes: ['rounded-pill']
+  } %}
+```

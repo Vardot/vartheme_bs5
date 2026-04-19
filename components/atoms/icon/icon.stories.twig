@@ -1,48 +1,174 @@
 {% stories Icon with {
-  title: 'Base/Icon',
-  parameters: {
-    componentSubtitle: 'Bootstrap Icon component',
-    docs: {
-      description: {
-        component: 'An icon component using Bootstrap Icons CSS classes.',
+  "title": "Atoms/Icon",
+  "parameters": {
+    "componentSubtitle": "Bootstrap Icon Component",
+    "docs": {
+      "description": {
+        "component": "A generic icons for use in the site."
       },
-      story: {
-        inline: true,
-      },
-    },
+      "story": {
+        "inline": true
+      }
+    }
   },
-  argTypes: {
-    icon: {
-      name: 'Icon',
-      control: 'select',
-      options: ['people', 'facebook', 'twitter-x', 'instagram', 'linkedin', 'plus', 'check', 'info', 'search', 'person', 'arrow-right', 'arrow-left'],
+  "argTypes": {
+    "name": {
+      "name": "Icon name",
+      "description": "The name of the icon in Bootstrap Icon library. (https://icons.getbootstrap.com)",
+      "defaultValue": "",
+      "control": "text",
+      "default": ""
     },
-  },
+    "role": {
+      "name": "Role",
+      "description": "The accessibility role for the icon as string. (https://icons.getbootstrap.com/#accessibility)",
+      "defaultValue": "",
+      "control": "text",
+      "default": ""
+    },
+    "rtl": {
+      "name": "RTL Icon name",
+      "description": "If needed, The name of the Right to Left (RTL) icon replacement Bootstrap Icon for the default LTR one.",
+      "defaultValue": "",
+      "control": "text",
+      "default": ""
+    },
+    "icon_utility_classes": {
+      "name": "Utility Classes",
+      "description": "An array of utility classes that can be used to add extra Bootstrap utility classes or custom classes to this component.",
+      "control": "object",
+      "defaultValue": []
+    },
+    "attributes": {
+      "name": "Attributes",
+      "description": "HTML attributes for the containing element.",
+      "control": "object",
+      "defaultValue": {}
+    }
+  }
 } %}
 
-{% story Default with {
-  name: 'Default',
-  args: {
-    icon: 'people',
-  },
+{% story ChevronRight with {
+  "name": "Chevron right",
+  "args": {
+    "name": "bi-chevron-right",
+    "icon_utility_classes": []
+  }
 } %}
 {{ include('vartheme_bs5:icon') }}
 {% endstory %}
 
-{% story InfoIcon with {
-  name: 'Info icon',
-  args: {
-    icon: 'info',
-  },
+{% story ChevronLeft with {
+  "name": "Chevron left",
+  "args": {
+    "name": "bi-chevron-left",
+    "icon_utility_classes": []
+  }
 } %}
 {{ include('vartheme_bs5:icon') }}
 {% endstory %}
 
-{% story ArrowRight with {
-  name: 'Arrow right',
-  args: {
-    icon: 'arrow-right',
-  },
+{% story ChevronUp with {
+  "name": "Chevron up",
+  "args": {
+    "name": "bi-chevron-up",
+    "icon_utility_classes": []
+  }
+} %}
+{{ include('vartheme_bs5:icon') }}
+{% endstory %}
+
+{% story ChevronDown with {
+  "name": "Chevron down",
+  "args": {
+    "name": "bi-chevron-down",
+    "icon_utility_classes": []
+  }
+} %}
+{{ include('vartheme_bs5:icon') }}
+{% endstory %}
+
+{% story ChevronDoubleRight with {
+  "name": "Chevron double right",
+  "args": {
+    "name": "bi-chevron-double-right",
+    "role": "button",
+    "rtl": "bi-chevron-double-left",
+    "icon_utility_classes": []
+  }
+} %}
+{{ include('vartheme_bs5:icon') }}
+{% endstory %}
+
+{% story ChevronDoubleLeft with {
+  "name": "Chevron double left",
+  "args": {
+    "name": "bi-chevron-double-left",
+    "rtl": "bi-chevron-double-right",
+    "icon_utility_classes": []
+  }
+} %}
+{{ include('vartheme_bs5:icon') }}
+{% endstory %}
+
+{% story ChevronDoubleUp with {
+  "name": "Chevron double up",
+  "args": {
+    "name": "bi-chevron-double-up",
+    "role": "scroll",
+    "icon_utility_classes": []
+  }
+} %}
+{{ include('vartheme_bs5:icon') }}
+{% endstory %}
+
+{% story ChevronDoubleDown with {
+  "name": "Chevron double down",
+  "args": {
+    "name": "bi-chevron-double-down",
+    "role": "scroll",
+    "icon_utility_classes": []
+  }
+} %}
+{{ include('vartheme_bs5:icon') }}
+{% endstory %}
+
+{% story BoxArrowInRight with {
+  "name": "Box arrow in right",
+  "args": {
+    "name": "bi-box-arrow-in-right",
+    "icon_utility_classes": []
+  }
+} %}
+{{ include('vartheme_bs5:icon') }}
+{% endstory %}
+
+{% story BoxArrowInLeft with {
+  "name": "Box arrow in left",
+  "args": {
+    "name": "bi-box-arrow-in-left",
+    "icon_utility_classes": []
+  }
+} %}
+{{ include('vartheme_bs5:icon') }}
+{% endstory %}
+
+{% story PersonFill with {
+  "name": "Person fill",
+  "args": {
+    "name": "bi-person-fill",
+    "icon_utility_classes": []
+  }
+} %}
+{{ include('vartheme_bs5:icon') }}
+{% endstory %}
+
+{% story HouseDoorFill with {
+  "name": "House door fill",
+  "args": {
+    "name": "bi-house-door-fill",
+    "icon_utility_classes": []
+  }
 } %}
 {{ include('vartheme_bs5:icon') }}
 {% endstory %}

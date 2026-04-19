@@ -1,0 +1,113 @@
+@import "../../defaults";   // Global component defaults.
+
+// Overlay Card default styles.
+$overlay-card-title-color: $white;
+$overlay-card-xlarge-title-font-size: 4rem;
+$overlay-card-content-color: $white;
+$overlay-card-content-stop1-location: 65%;
+$overlay-card-content-stop1-color: transparent;
+$overlay-card-content-stop2-location: 105%;
+$overlay-card-content-stop2-color: $black;
+$overlay-card-content-hover-opacity: 0.9;
+
+.varbase-overlay-card {
+  .overlay-card-content {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: $card-xsmall-title-font-size;
+    z-index: 3;
+    display: flex;
+    align-self: flex-end;
+    color: $overlay-card-content-color;
+
+    background: linear-gradient(to bottom, $overlay-card-content-stop1-color $overlay-card-content-stop1-location, $overlay-card-content-stop2-color $overlay-card-content-stop2-location) repeat scroll 0 0;
+    background: -webkit-linear-gradient(to bottom, $overlay-card-content-stop1-color $overlay-card-content-stop1-location, $overlay-card-content-stop2-color  $overlay-card-content-stop2-location) repeat scroll 0 0;
+    background: -o-linear-gradient(to bottom, $overlay-card-content-stop1-color $overlay-card-content-stop1-location, $overlay-card-content-stop2-color  $overlay-card-content-stop2-location) repeat scroll 0 0;
+    background: -moz-linear-gradient(to bottom, $overlay-card-content-stop1-color $overlay-card-content-stop1-location, $overlay-card-content-stop2-color  $overlay-card-content-stop2-location) repeat scroll 0 0;
+
+    &:hover,
+    &:focus,
+    &:active {
+      opacity: $overlay-card-content-hover-opacity;
+    }
+
+    >.field {
+      display: flex;
+      align-self: flex-end;
+    }
+  }
+  
+  &.anchor-all {
+    position: relative;
+
+    .card-title {
+      position: static;
+      margin: 0;
+      padding: 0;
+      color: $overlay-card-title-color;
+
+      a {
+        color: $overlay-card-title-color;
+        text-decoration: none;
+        position: static;
+
+        &::before {
+          position: absolute;
+          content: '';
+          display: block;
+          overflow: hidden;
+          top: 0;
+          bottom: 0;
+          right: 0;
+          left: 0;        
+          z-index: 2;
+        }
+      }
+    }
+
+    a.card-link,
+    div.card-link > a {
+      position: static;
+
+      &::before {
+        position: absolute;
+        content: '';
+        display: block;
+        overflow: hidden;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;   
+        z-index: 3;
+      }
+    }
+
+    a {
+      z-index: 4;
+      position: relative;
+    }
+  }
+
+  &.xlarge {
+
+    .overlay-card-content {
+      padding: $card-large-title-font-size;
+    }
+  }
+
+  &.large {
+    .overlay-card-content {
+      padding: $card-large-title-font-size;
+    }
+  }
+
+  &.medium {
+    .overlay-card-content {
+      padding: $card-medium-title-font-size;
+    }
+  }
+
+}

@@ -1,200 +1,201 @@
 {% stories ViewsViewGrid with {
-  title: 'Organisms/View Grid',
-  parameters: {
-    componentSubtitle: 'Bootstrap Grid component for a block, which uses Drupal Views.',
-    docs: {
-      description: {
-        component: 'A Drupal View Block component rendered as a responsive Bootstrap grid layout. Each item in the view appears inside a column that is responsive at various breakpoints.',
+  "title": "Organisms/View Grid",
+  "parameters": {
+    "componentSubtitle": "Bootstrap Grid component for a block, which uses Drupal Views.",
+    "docs": {
+      "description": {
+        "component": "A Drupal View Block component rendered as a responsive Bootstrap grid layout. Each item in the view appears inside a column that is responsive at various breakpoints."
       },
-      story: {
-        inline: true,
-      },
-    },
+      "story": {
+        "inline": true
+      }
+    }
   },
-  argTypes: {
-    rows: {
-      name: 'Rows',
-      description: 'An array of items. Each item is wrapped in a responsive column.',
-      control: 'object',
-      defaultValue: [],
+  "argTypes": {
+    "rows": {
+      "name": "Rows",
+      "description": "An array of items. Each item is wrapped in a responsive column.",
+      "control": "object",
+      "defaultValue": []
     },
-    grid_utility_classes: {
-      name: 'Grid Row Utility Classes',
-      description: 'Use to add extra Bootstrap utility classes for the grid `row`. E.g. `row-cols-1 row-cols-sm-2 row-cols-md-4`. ( Do not add `grid`, or `row`).',
-      control: 'object',
-      defaultValue: [],
+    "grid_utility_classes": {
+      "name": "Grid Row Utility Classes",
+      "description": "Use to add extra Bootstrap utility classes for the grid `row`. E.g. `row-cols-1 row-cols-sm-2 row-cols-md-4`. ( Do not add `grid`, or `row`).",
+      "control": "object",
+      "defaultValue": []
     },
-    column_utility_classes: {
-      name: 'Column Utility Classes',
-      description: 'Use to add extra Bootstrap utility classes for the column `col`. E.g. `gy-4 g-sm-4` or `mb-4`. ( Do not add `col` or `col-[*]`).',
-      control: 'object',
-      defaultValue: [],
+    "column_utility_classes": {
+      "name": "Column Utility Classes",
+      "description": "Use to add extra Bootstrap utility classes for the column `col`. E.g. `gy-4 g-sm-4` or `mb-4`. ( Do not add `col` or `col-[*]`).",
+      "control": "object",
+      "defaultValue": []
     },
-    col_xs: {
-      name: 'Column width of items at xs breakpoint',
-      description: 'Set the number of columns each item should take up at the xs breakpoint and higher.',
-      control: 'select',
-      options: {
-        "'None or inherit from previous'": 'none',
-        "'Equal'": 'col',
-        "'Fit to content'": 'col-auto',
-        "'1 (12 columns per row)'": 'col-1',
-        "'2 (6 columns per row)'": 'col-2',
-        "'3 (4 columns per row)'": 'col-3',
-        "'4 (3 columns per row)'": 'col-4',
-        "'6 (2 columns per row)'": 'col-6',
-        "'12 (1 column per row)'": 'col-12',
+    "col_xs": {
+      "name": "Column width of items at xs breakpoint",
+      "description": "Set the number of columns each item should take up at the xs breakpoint and higher.",
+      "control": "select",
+      "options": {
+        "'None or inherit from previous'": "none",
+        "'Equal'": "col",
+        "'Fit to content'": "col-auto",
+        "'1 (12 columns per row)'": "col-1",
+        "'2 (6 columns per row)'": "col-2",
+        "'3 (4 columns per row)'": "col-3",
+        "'4 (3 columns per row)'": "col-4",
+        "'6 (2 columns per row)'": "col-6",
+        "'12 (1 column per row)'": "col-12"
       },
-      defaultValue: 'none',
+      "defaultValue": "none"
     },
-    col_sm: {
-      name: 'Column width of items at sm breakpoint',
-      description: 'Set the number of columns each item should take up at the sm breakpoint and higher.',
-      control: 'select',
-      options: {
-        "'None (or inherit from previous)'": 'none',
-        "'Equal'": 'col-md',
-        "'Fit to content'": 'col-md-auto',
-        "'1 (12 columns per row)'": 'col-md-1',
-        "'2 (6 columns per row)'": 'col-md-2',
-        "'3 (4 columns per row)'": 'col-md-3',
-        "'4 (3 columns per row)'": 'col-md-4',
-        "'6 (2 columns per row)'": 'col-md-6',
-        "'12 (1 column per row)'": 'col-md-12',
+    "col_sm": {
+      "name": "Column width of items at sm breakpoint",
+      "description": "Set the number of columns each item should take up at the sm breakpoint and higher.",
+      "control": "select",
+      "options": {
+        "'None (or inherit from previous)'": "none",
+        "'Equal'": "col-md",
+        "'Fit to content'": "col-md-auto",
+        "'1 (12 columns per row)'": "col-md-1",
+        "'2 (6 columns per row)'": "col-md-2",
+        "'3 (4 columns per row)'": "col-md-3",
+        "'4 (3 columns per row)'": "col-md-4",
+        "'6 (2 columns per row)'": "col-md-6",
+        "'12 (1 column per row)'": "col-md-12"
       },
-      defaultValue: 'none',
+      "defaultValue": "none"
     },
-    col_md: {
-      name: 'Column width of items at md breakpoint',
-      description: 'Set the number of columns each item should take up at the md breakpoint and higher.',
-      control: 'select',
-      options: {
-        "'None (or inherit from previous)'": 'none',
-        "'Equal'": 'col-md',
-        "'Fit to content'": 'col-md-auto',
-        "'1 (12 columns per row)'": 'col-md-1',
-        "'2 (6 columns per row)'": 'col-md-2',
-        "'3 (4 columns per row)'": 'col-md-3',
-        "'4 (3 columns per row)'": 'col-md-4',
-        "'6 (2 columns per row)'": 'col-md-6',
-        "'12 (1 column per row)'": 'col-md-12',
+    "col_md": {
+      "name": "Column width of items at md breakpoint",
+      "description": "Set the number of columns each item should take up at the md breakpoint and higher.",
+      "control": "select",
+      "options": {
+        "'None (or inherit from previous)'": "none",
+        "'Equal'": "col-md",
+        "'Fit to content'": "col-md-auto",
+        "'1 (12 columns per row)'": "col-md-1",
+        "'2 (6 columns per row)'": "col-md-2",
+        "'3 (4 columns per row)'": "col-md-3",
+        "'4 (3 columns per row)'": "col-md-4",
+        "'6 (2 columns per row)'": "col-md-6",
+        "'12 (1 column per row)'": "col-md-12"
       },
-      defaultValue: 'none',
+      "defaultValue": "none"
     },
-    col_lg: {
-      name: 'Column width of items at lg breakpoint',
-      description: 'Set the number of columns each item should take up at the lg breakpoint and higher.',
-      control: 'select',
-      options: {
-        "'None (or inherit from previous)'": 'none',
-        "'Equal'": 'col-xl',
-        "'Fit to content'": 'col-xl-auto',
-        "'1 (12 columns per row)'": 'col-xl-1',
-        "'2 (6 columns per row)'": 'col-xl-2',
-        "'3 (4 columns per row)'": 'col-xl-3',
-        "'4 (3 columns per row)'": 'col-xl-4',
-        "'6 (2 columns per row)'": 'col-xl-6',
-        "'12 (1 column per row)'": 'col-xl-12',
+    "col_lg": {
+      "name": "Column width of items at lg breakpoint",
+      "description": "Set the number of columns each item should take up at the lg breakpoint and higher.",
+      "control": "select",
+      "options": {
+        "'None (or inherit from previous)'": "none",
+        "'Equal'": "col-xl",
+        "'Fit to content'": "col-xl-auto",
+        "'1 (12 columns per row)'": "col-xl-1",
+        "'2 (6 columns per row)'": "col-xl-2",
+        "'3 (4 columns per row)'": "col-xl-3",
+        "'4 (3 columns per row)'": "col-xl-4",
+        "'6 (2 columns per row)'": "col-xl-6",
+        "'12 (1 column per row)'": "col-xl-12"
       },
-      defaultValue: 'none',
+      "defaultValue": "none"
     },
-    col_xl: {
-      name: 'Column width of items at xl breakpoint',
-      description: 'Set the number of columns each item should take up at the xl breakpoint and higher.',
-      control: 'select',
-      options: {
-        "'None (or inherit from previous)'": 'none',
-        "'Equal'": 'col-xl',
-        "'Fit to content'": 'col-xl-auto',
-        "'1 (12 columns per row)'": 'col-xl-1',
-        "'2 (6 columns per row)'": 'col-xl-2',
-        "'3 (4 columns per row)'": 'col-xl-3',
-        "'4 (3 columns per row)'": 'col-xl-4',
-        "'6 (2 columns per row)'": 'col-xl-6',
-        "'12 (1 column per row)'": 'col-xl-12',
+    "col_xl": {
+      "name": "Column width of items at xl breakpoint",
+      "description": "Set the number of columns each item should take up at the xl breakpoint and higher.",
+      "control": "select",
+      "options": {
+        "'None (or inherit from previous)'": "none",
+        "'Equal'": "col-xl",
+        "'Fit to content'": "col-xl-auto",
+        "'1 (12 columns per row)'": "col-xl-1",
+        "'2 (6 columns per row)'": "col-xl-2",
+        "'3 (4 columns per row)'": "col-xl-3",
+        "'4 (3 columns per row)'": "col-xl-4",
+        "'6 (2 columns per row)'": "col-xl-6",
+        "'12 (1 column per row)'": "col-xl-12"
       },
-      defaultValue: 'none',
+      "defaultValue": "none"
     },
-    col_xxl: {
-      name: 'Column width of items at xxl breakpoint',
-      description: 'Set the number of columns each item should take up at the xl breakpoint and higher.',
-      control: 'select',
-      options: {
-        "'None (or inherit from previous)'": 'none',
-        "'Equal'": 'col-xxl',
-        "'Fit to content'": 'col-xxl-auto',
-        "'1 (12 columns per row)'": 'col-xxl-1',
-        "'2 (6 columns per row)'": 'col-xxl-2',
-        "'3 (4 columns per row)'": 'col-xxl-3',
-        "'4 (3 columns per row)'": 'col-xxl-4',
-        "'6 (2 columns per row)'": 'col-xxl-6',
-        "'12 (1 column per row)'": 'col-xxl-12',
+    "col_xxl": {
+      "name": "Column width of items at xxl breakpoint",
+      "description": "Set the number of columns each item should take up at the xl breakpoint and higher.",
+      "control": "select",
+      "options": {
+        "'None (or inherit from previous)'": "none",
+        "'Equal'": "col-xxl",
+        "'Fit to content'": "col-xxl-auto",
+        "'1 (12 columns per row)'": "col-xxl-1",
+        "'2 (6 columns per row)'": "col-xxl-2",
+        "'3 (4 columns per row)'": "col-xxl-3",
+        "'4 (3 columns per row)'": "col-xxl-4",
+        "'6 (2 columns per row)'": "col-xxl-6",
+        "'12 (1 column per row)'": "col-xxl-12"
       },
-      defaultValue: 'none',
+      "defaultValue": "none"
     },
-    attributes: {
-      name: 'Attributes',
-      description: 'HTML attributes to apply to the outer grid container.',
-      control: 'object',
-      defaultValue: {},
-    },
-  },
+    "attributes": {
+      "name": "Attributes",
+      "description": "HTML attributes to apply to the outer grid container.",
+      "control": "object",
+      "defaultValue": {}
+    }
+  }
 } %}
 
 {% story ViewsViewGridBlogListing with {
-  name: 'Blog listing',
-  args: {
-    grid_utility_classes: [],
-    column_utility_classes: ['mb-4'],
-    col_xs: 'col-12',
-    col_sm: 'none',
-    col_md: 'none',
-    col_lg: 'none',
-    col_xl: 'none',
-    col_xxl: 'none',
-  },
+  "name": "Blog listing",
+  "args": {
+    "grid_utility_classes": [],
+    "column_utility_classes": ["mb-4"],
+    "col_xs": "col-12",
+    "col_sm": "none",
+    "col_md": "none",
+    "col_lg": "none",
+    "col_xl": "none",
+    "col_xxl": "none"
+  }
 } %}
 
   {% set image1_html = include('vartheme_bs5:image', {
     attributes: create_attribute({
-      src: 'https://raw.githubusercontent.com/Vardot/varbase_media_demo/10.1.x/recipes/default/content/file/skyscraper.webp',
-      class: ['card-image', 'img-fluid'],
-      alt: 'Skyscraper',
-    }),
+      'src': 'https://raw.githubusercontent.com/Vardot/varbase_media_demo/10.1.x/recipes/default/content/file/skyscraper.webp',
+      'class': ['card-image', 'img-fluid'],
+      'alt': 'Skyscraper'
+    })
   }) %}
 
   {% set image2_html = include('vartheme_bs5:image', {
     attributes: create_attribute({
-      src: 'https://raw.githubusercontent.com/Vardot/varbase_media_demo/10.1.x/recipes/default/content/file/coworking-2.webp',
-      class: ['card-image', 'img-fluid'],
-      alt: 'co-working 2',
-    }),
+      'src': 'https://raw.githubusercontent.com/Vardot/varbase_media_demo/10.1.x/recipes/default/content/file/coworking-2.webp',
+      'class': ['card-image', 'img-fluid'],
+      'alt' : 'co-working 2'
+    })
   }) %}
 
   {% set image3_html = include('vartheme_bs5:image', {
     attributes: create_attribute({
-      src: 'https://raw.githubusercontent.com/Vardot/varbase_media_demo/10.1.x/recipes/default/content/file/business-way.webp',
-      class: ['card-image', 'img-fluid'],
-      alt: 'Business way',
-    }),
+      'src': 'https://raw.githubusercontent.com/Vardot/varbase_media_demo/10.1.x/recipes/default/content/file/business-way.webp',
+      'class': ['card-image', 'img-fluid'],
+      'alt': 'Business way'
+    })
   }) %}
+
 
   {% set heading1_html = include('vartheme_bs5:heading', {
     html_tag: 'h3',
     content: 'Why Varbase? The Ultimate Drupal Distribution for Accelerated Development',
-    heading_utility_classes: ['card-title'],
+    heading_utility_classes: ['card-title']      
   }) %}
 
   {% set heading2_html = include('vartheme_bs5:heading', {
     html_tag: 'h3',
     content: 'Why Varbase? The Ultimate Drupal Distribution for Accelerated Development',
-    heading_utility_classes: ['card-title'],
+    heading_utility_classes: ['card-title']      
   }) %}
 
   {% set heading3_html = include('vartheme_bs5:heading', {
     html_tag: 'h3',
     content: 'Customizing Your Website with Varbase: Flexibility and Freedom',
-    heading_utility_classes: ['card-title'],
+    heading_utility_classes: ['card-title']      
   }) %}
 
   {% set content_header1_html = '<div class="content-header d-flex justify-content-between mb-3">
@@ -215,6 +216,7 @@
     </div>'
   %}
 
+
   {% set card_content1_html = 'Introduction to Varbase: Varbase is more than just a Drupal distribution—it\'s a powerhouse designed for developers who aim to build complex, feature-rich websites efficiently. This enhanced distribution comes pre-configured with ...' %}
   {% set card_content2_html = 'Overview of Security Features: Varbase is built with security at its core, leveraging Drupal’s robust security framework and enhancing it further with custom features. This post delves into these enhancements ...' %}
   {% set card_content3_html = 'Exploring Varbase’s Customization Capabilities: Customization is key to making a website fit your brand’s unique needs and style. Varbase’s flexible architecture allows you to tailor every aspect of your site ...' %}
@@ -222,145 +224,148 @@
   {% set card_link_html = '<div class="read-more text-start mt-4 fw-bold">' ~ include('vartheme_bs5:link', {
     url: '#',
     content: 'Read Article'|t,
-    link_utility_classes: ['card-link'],
+    link_utility_classes: ['card-link']      
   }) ~ '</div>' %}
 
   {% set row_data_html1 = include('vartheme_bs5:card-featured', {
-      style_size: 'medium',
-      card_border: true,
-      padded: true,
-      equal_height: true,
-      anchor_all: true,
-      media_position: 'start',
-      content_vertical_alignment: 'center',
-      gutters_between: 'no',
-      columns_xs_size: '',
-      columns_sm_size: '',
-      columns_md_size: '04_08',
-      columns_lg_size: '',
-      columns_xl_size: '',
-      columns_xxl_size: '',
-      media: image1_html,
-      content: content_header1_html ~ heading1_html ~ card_content1_html ~ card_link_html,
-      card_featured_utility_classes: [],
-      card_featured_media_utility_classes: ['ratio', 'ratio-16x9'],
-      card_featured_content_utility_classes: ['pt-0', 'pb-0'],
+      "style_size": "medium",
+      "card_border": true,
+      "padded": true,
+      "equal_height": true,
+      "anchor_all": true,
+      "media_position": "start",
+      "content_vertical_alignment": "center",
+      "gutters_between": "no",
+      "columns_xs_size": "",
+      "columns_sm_size": "",
+      "columns_md_size": "04_08",
+      "columns_lg_size": "",
+      "columns_xl_size": "",
+      "columns_xxl_size": "",
+      "media": image1_html,
+      "content": content_header1_html ~ heading1_html ~ card_content1_html ~ card_link_html,
+      "card_featured_utility_classes": [],
+      "card_featured_media_utility_classes": ['ratio', 'ratio-16x9'],
+      "card_featured_content_utility_classes": ['pt-0', 'pb-0']
     },
-    with_context: false,
+    with_context = false
   ) %}
 
   {% set row_data_html2 = include('vartheme_bs5:card-featured', {
-      style_size: 'medium',
-      card_border: true,
-      padded: true,
-      equal_height: true,
-      anchor_all: true,
-      media_position: 'start',
-      content_vertical_alignment: 'center',
-      gutters_between: 'no',
-      columns_xs_size: '',
-      columns_sm_size: '',
-      columns_md_size: '04_08',
-      columns_lg_size: '',
-      columns_xl_size: '',
-      columns_xxl_size: '',
-      media: image2_html,
-      content: content_header2_html ~ heading2_html ~ card_content2_html ~ card_link_html,
-      card_featured_utility_classes: [],
-      card_featured_media_utility_classes: ['ratio', 'ratio-16x9'],
-      card_featured_content_utility_classes: ['pt-0', 'pb-0'],
+      "style_size": "medium",
+      "card_border": true,
+      "padded": true,
+      "equal_height": true,
+      "anchor_all": true,
+      "media_position": "start",
+      "content_vertical_alignment": "center",
+      "gutters_between": "no",
+      "columns_xs_size": "",
+      "columns_sm_size": "",
+      "columns_md_size": "04_08",
+      "columns_lg_size": "",
+      "columns_xl_size": "",
+      "columns_xxl_size": "",
+      "media": image2_html,
+      "content": content_header2_html ~ heading2_html ~ card_content2_html ~ card_link_html,
+      "card_featured_utility_classes": [],
+      "card_featured_media_utility_classes": ['ratio', 'ratio-16x9'],
+      "card_featured_content_utility_classes": ['pt-0', 'pb-0']
     },
-    with_context: false,
+    with_context = false
   ) %}
 
   {% set row_data_html3 = include('vartheme_bs5:card-featured', {
-      style_size: 'medium',
-      card_border: true,
-      padded: true,
-      equal_height: true,
-      anchor_all: true,
-      media_position: 'start',
-      content_vertical_alignment: 'center',
-      gutters_between: 'no',
-      columns_xs_size: '',
-      columns_sm_size: '',
-      columns_md_size: '04_08',
-      columns_lg_size: '',
-      columns_xl_size: '',
-      columns_xxl_size: '',
-      media: image3_html,
-      content: content_header3_html ~ heading3_html ~ card_content3_html ~ card_link_html,
-      card_featured_utility_classes: [],
-      card_featured_media_utility_classes: ['ratio', 'ratio-16x9'],
-      card_featured_content_utility_classes: ['pt-0', 'pb-0'],
+      "style_size": "medium",
+      "card_border": true,
+      "padded": true,
+      "equal_height": true,
+      "anchor_all": true,
+      "media_position": "start",
+      "content_vertical_alignment": "center",
+      "gutters_between": "no",
+      "columns_xs_size": "",
+      "columns_sm_size": "",
+      "columns_md_size": "04_08",
+      "columns_lg_size": "",
+      "columns_xl_size": "",
+      "columns_xxl_size": "",
+      "media": image3_html,
+      "content": content_header3_html ~ heading3_html ~ card_content3_html ~ card_link_html,
+      "card_featured_utility_classes": [],
+      "card_featured_media_utility_classes": ['ratio', 'ratio-16x9'],
+      "card_featured_content_utility_classes": ['pt-0', 'pb-0']
     },
-    with_context: false,
+    with_context = false
   ) %}
 
+  
   {{ include('vartheme_bs5:views-view-grid', {
-      rows: [
+      "rows": [
         row_data_html1,
         row_data_html2,
-        row_data_html3,
-      ],
+        row_data_html3
+      ]
     })
   }}
 {% endstory %}
 
+
 {% story ViewsViewGridHomepageBlog with {
-  name: 'Homepage blog',
-  args: {
-    grid_utility_classes: [],
-    column_utility_classes: ['gy-4', 'g-sm-4'],
-    col_xs: 'col-12',
-    col_sm: 'none',
-    col_md: 'none',
-    col_lg: 'none',
-    col_xl: 'col-xl-4',
-    col_xxl: 'none',
-  },
+  "name": "Homepage blog",
+  "args": {
+    "grid_utility_classes": [],
+    "column_utility_classes": ["gy-4", "g-sm-4"],
+    "col_xs": "col-12",
+    "col_sm": "none",
+    "col_md": "none",
+    "col_lg": "none",
+    "col_xl": "col-xl-4",
+    "col_xxl": "none"
+  }
 } %}
 
   {% set image1_html = include('vartheme_bs5:image', {
     attributes: create_attribute({
-      src: 'https://raw.githubusercontent.com/Vardot/varbase_media_demo/10.1.x/recipes/default/content/file/skyscraper.webp',
-      class: ['card-image', 'img-fluid'],
-      alt: 'Skyscraper',
-    }),
+      'src': 'https://raw.githubusercontent.com/Vardot/varbase_media_demo/10.1.x/recipes/default/content/file/skyscraper.webp',
+      'class': ['card-image', 'img-fluid'],
+      'alt': 'Skyscraper'
+    })
   }) %}
 
   {% set image2_html = include('vartheme_bs5:image', {
     attributes: create_attribute({
-      src: 'https://raw.githubusercontent.com/Vardot/varbase_media_demo/10.1.x/recipes/default/content/file/coworking-2.webp',
-      class: ['card-image', 'img-fluid'],
-      alt: 'co-working 2',
-    }),
+      'src': 'https://raw.githubusercontent.com/Vardot/varbase_media_demo/10.1.x/recipes/default/content/file/coworking-2.webp',
+      'class': ['card-image', 'img-fluid'],
+      'alt' : 'co-working 2'
+    })
   }) %}
 
   {% set image3_html = include('vartheme_bs5:image', {
     attributes: create_attribute({
-      src: 'https://raw.githubusercontent.com/Vardot/varbase_media_demo/10.1.x/recipes/default/content/file/business-way.webp',
-      class: ['card-image', 'img-fluid'],
-      alt: 'Business way',
-    }),
+      'src': 'https://raw.githubusercontent.com/Vardot/varbase_media_demo/10.1.x/recipes/default/content/file/business-way.webp',
+      'class': ['card-image', 'img-fluid'],
+      'alt': 'Business way'
+    })
   }) %}
+
 
   {% set heading1_html = include('vartheme_bs5:heading', {
     html_tag: 'h3',
     content: 'Why Varbase? The Ultimate Drupal Distribution for Accelerated Development',
-    heading_utility_classes: ['card-title'],
+    heading_utility_classes: ['card-title']      
   }) %}
 
   {% set heading2_html = include('vartheme_bs5:heading', {
     html_tag: 'h3',
     content: 'Why Varbase? The Ultimate Drupal Distribution for Accelerated Development',
-    heading_utility_classes: ['card-title'],
+    heading_utility_classes: ['card-title']      
   }) %}
 
   {% set heading3_html = include('vartheme_bs5:heading', {
     html_tag: 'h3',
     content: 'Customizing Your Website with Varbase: Flexibility and Freedom',
-    heading_utility_classes: ['card-title'],
+    heading_utility_classes: ['card-title']      
   }) %}
 
   {% set content_header1_html = '<div class="content-header d-flex justify-content-between mb-3">
@@ -381,6 +386,7 @@
     </div>'
   %}
 
+
   {% set card_content1_html = 'Introduction to Varbase: Varbase is more than just a Drupal distribution—it\'s a powerhouse designed for developers who aim to build complex, feature-rich websites efficiently. This enhanced distribution comes pre-configured with ...' %}
   {% set card_content2_html = 'Overview of Security Features: Varbase is built with security at its core, leveraging Drupal’s robust security framework and enhancing it further with custom features. This post delves into these enhancements ...' %}
   {% set card_content3_html = 'Exploring Varbase’s Customization Capabilities: Customization is key to making a website fit your brand’s unique needs and style. Varbase’s flexible architecture allows you to tailor every aspect of your site ...' %}
@@ -388,83 +394,86 @@
   {% set card_link_html = '<div class="read-more text-start mt-4 fw-bold">' ~ include('vartheme_bs5:link', {
     url: '#',
     content: 'Read Article'|t,
-    link_utility_classes: ['card-link'],
+    link_utility_classes: ['card-link']      
   }) ~ '</div>' %}
 
   {% set row_data_html1 = include('vartheme_bs5:card-impressed', {
-      style_size: 'medium',
-      card_border: true,
-      padded: true,
-      equal_height: true,
-      anchor_all: true,
-      media_position: 'top',
-      col_xs: 'col-12',
-      col_sm: 'none',
-      col_md: 'none',
-      col_lg: 'none',
-      col_xl: 'col-xl-4',
-      col_xxl: 'none',
-      media: image1_html,
-      content: content_header1_html ~ heading1_html ~ card_content1_html ~ card_link_html,
-      card_impressed_utility_classes: [],
-      card_impressed_media_utility_classes: ['ratio', 'ratio-16x9'],
-      card_impressed_content_utility_classes: [],
+      "style_size": "medium",
+      "card_border": true,
+      "padded": true,
+      "equal_height": true,
+      "anchor_all": true,
+      "media_position": "top",
+      "col_xs": "col-12",
+      "col_sm": "none",
+      "col_md": "none",
+      "col_lg": "none",
+      "col_xl": "col-xl-4",
+      "col_xxl": "none",
+      "media": image1_html,
+      "content": content_header1_html ~ heading1_html ~ card_content1_html ~ card_link_html,
+      "card_impressed_utility_classes": [],
+      "card_impressed_media_utility_classes": ['ratio', 'ratio-16x9'],
+      "card_impressed_content_utility_classes": []
     },
-    with_context: false,
+    with_context = false
   ) %}
 
   {% set row_data_html2 = include('vartheme_bs5:card-impressed', {
-      style_size: 'medium',
-      card_border: true,
-      padded: true,
-      equal_height: true,
-      anchor_all: true,
-      media_position: 'top',
-      col_xs: 'col-12',
-      col_sm: 'none',
-      col_md: 'none',
-      col_lg: 'none',
-      col_xl: 'col-xl-4',
-      col_xxl: 'none',
-      media: image2_html,
-      content: content_header2_html ~ heading2_html ~ card_content2_html ~ card_link_html,
-      card_impressed_utility_classes: [],
-      card_impressed_media_utility_classes: ['ratio', 'ratio-16x9'],
-      card_impressed_content_utility_classes: [],
+      "style_size": "medium",
+      "card_border": true,
+      "padded": true,
+      "equal_height": true,
+      "anchor_all": true,
+      "media_position": "top",
+      "col_xs": "col-12",
+      "col_sm": "none",
+      "col_md": "none",
+      "col_lg": "none",
+      "col_xl": "col-xl-4",
+      "col_xxl": "none",
+      "media": image2_html,
+      "content": content_header2_html ~ heading2_html ~ card_content2_html ~ card_link_html,
+      "card_impressed_utility_classes": [],
+      "card_impressed_media_utility_classes": ['ratio', 'ratio-16x9'],
+      "card_impressed_content_utility_classes": []
     },
-    with_context: false,
+    with_context = false
   ) %}
 
   {% set row_data_html3 = include('vartheme_bs5:card-impressed', {
-      style_size: 'medium',
-      card_border: true,
-      padded: true,
-      equal_height: true,
-      anchor_all: true,
-      media_position: 'top',
-      col_xs: 'col-12',
-      col_sm: 'none',
-      col_md: 'none',
-      col_lg: 'none',
-      col_xl: 'col-xl-4',
-      col_xxl: 'none',
-      media: image3_html,
-      content: content_header3_html ~ heading3_html ~ card_content3_html ~ card_link_html,
-      card_impressed_utility_classes: [],
-      card_impressed_media_utility_classes: ['ratio', 'ratio-16x9'],
-      card_impressed_content_utility_classes: [],
+      "style_size": "medium",
+      "card_border": true,
+      "padded": true,
+      "equal_height": true,
+      "anchor_all": true,
+      "media_position": "top",
+      "col_xs": "col-12",
+      "col_sm": "none",
+      "col_md": "none",
+      "col_lg": "none",
+      "col_xl": "col-xl-4",
+      "col_xxl": "none",
+      "media": image3_html,
+      "content": content_header3_html ~ heading3_html ~ card_content3_html ~ card_link_html,
+      "card_impressed_utility_classes": [],
+      "card_impressed_media_utility_classes": ['ratio', 'ratio-16x9'],
+      "card_impressed_content_utility_classes": []
     },
-    with_context: false,
+    with_context = false
   ) %}
 
+  
   {{ include('vartheme_bs5:views-view-grid', {
-      rows: [
+      "rows": [
         row_data_html1,
         row_data_html2,
-        row_data_html3,
-      ],
+        row_data_html3
+      ]
     })
   }}
 {% endstory %}
+
+
 
 {% endstories %}

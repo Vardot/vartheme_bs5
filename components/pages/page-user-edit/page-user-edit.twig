@@ -7,19 +7,9 @@
  */
 #}
 
-<div id="page" class="page d-flex flex-column">
+<div class="page d-flex flex-column">
 
-  {% if page.header %}
-    <header role="banner">
-      {% if container_header %}
-        <div class="{{ container_header }}">
-      {% endif %}
-      {{ page.header }}
-      {% if container_header %}
-        </div>
-      {% endif %}
-    </header>
-  {% endif %}
+  {% include "vartheme_bs5:page-header" %}
 
   <main class="mb-3">
     <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
@@ -29,11 +19,11 @@
         <div class="row justify-content-center">
           <div id="auth-box" class="user-edit col-10 col-sm-6">
             <div id="top-part">
-              {{ include('vartheme_bs5:heading', {
+              {% include 'vartheme_bs5:heading' with {
                   html_tag: 'h1',
-                  content: 'Edit account'|t,
-                }
-              , false) }}
+                  content: 'Edit account'|t
+                } only
+              %}
             </div>
             <div id="middle-part">
               {{ page.content }}
@@ -44,16 +34,6 @@
     {% endif %}
   </main>
 
-  {% if page.footer %}
-    <footer class="footer" role="contentinfo">
-      {% if container_footer %}
-        <div class="{{ container_footer }}">
-      {% endif %}
-      {{ page.footer }}
-      {% if container_footer %}
-        </div>
-      {% endif %}
-    </footer>
-  {% endif %}
+  {% include "vartheme_bs5:page-footer" %}
 
 </div>

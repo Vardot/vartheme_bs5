@@ -10,15 +10,8 @@
 ] %}
 
 <article{{ attributes.addClass(classes) }}>
-  {% if user_label %}
-    <h2 class="user__name" style="text-transform:none">{{ user_label }}</h2>
-  {% endif %}
-  {% if user_actions %}
-    <nav class="user__actions" aria-label="User actions">
-      {{ user_actions }}
-    </nav>
-  {% endif %}
   {% block content %}
     {{- content|without('summary') -}}
   {% endblock %}
 </article>
+

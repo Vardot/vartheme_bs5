@@ -30,7 +30,7 @@
 {% set html_tag = html_tag ? html_tag : 'div' %}
 {% set type = type ?? 'border' %}
 {% set type_classes = type ? ['spinner-' ~ type] : ['spinner-border'] %}
-{% set size_classes = size ? ['spinner-' ~ type ~ '-' ~ size] : [] %}
+{% set size_classes = size ? ['spinner-' ~ type ~ '-' ~ size] : []  %}
 {% set color_classes = color ? ['text-' ~ color] : [] %}
 {% set hidden_status = hidden_status ?? true %}
 {% set spinner_utility_classes = spinner_utility_classes ? spinner_utility_classes : [] %}

@@ -1,18 +1,15 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: User 
+status: experimental
 description: User
-noUi: true
 props:
   type: object
   properties:
     attributes:
-      type: Drupal\Core\Template\Attribute
+      type: object
       title: Attributes
       description: HTML attributes for the containing element.
-    user_label:
-      type: string
-      title: User label
-      description: The user's display name.
+      $ref: 'ui-patterns://attributes'
 slots:
   content:
     type: string

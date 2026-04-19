@@ -1,17 +1,15 @@
 {/* taxonomy.mdx */}
 
-import { Title, Subtitle, Description, Primary, Stories, Controls, Meta, Source } from '@storybook/blocks';
+import { Canvas, Title, Subtitle, ArgTypes, Source, Meta, Description, Primary, Story, Stories, Controls } from '@storybook/blocks';
 import * as comStories from './taxonomy.stories.json';
 import templateSource from './taxonomy.twig?raw';
 
-<Meta of={comStories} name="Docs" />
+<Meta of={comStories} name="Docs"/>
 
 <Title />
 <Subtitle />
 <Description />
 
-> ### Bootstrap documentation
-> * [Badges](https://getbootstrap.com/docs/5.3/components/badge/)
 
 <Primary />
 
@@ -20,15 +18,17 @@ import templateSource from './taxonomy.twig?raw';
 
 <Stories of={comStories} />
 
-## Twig usage example
-```twig
-{% include "vartheme_bs5:taxonomy" with {
-  label: 'Taxonomy',
-  url: '',
-  target: '_self',
-  size: 'taxonomy-lg',
-} %}
+## Slots:
+* `content`: The content text or text with a link for the taxonomy term.
+
+
+## Examples:
+
+```
+{% include 'vartheme_bs5:taxonomy' with { content: item.content } only %}
 ```
 
+
 ## Source code
+[//]: # (Twig Template source code)
 <Source code={templateSource} />

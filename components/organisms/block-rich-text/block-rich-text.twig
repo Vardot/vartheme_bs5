@@ -4,7 +4,7 @@
   width ?? '',
   bg_color ? 'bg-' ~ bg_color : '',
   text_color ? 'text-' ~ text_color : '',
-  border_radius ? 'rounded-' ~ border_radius : '',
+  border_radius ? 'rounded-' ~ border_radius : ''
 ] %}
 
 {% set html_tag = html_tag ?? 'div' %}
@@ -12,12 +12,12 @@
 <{{ html_tag }} {{ attributes.addClass(classes) }}>
   {{ title_prefix }}
   {% if heading %}
-    {{ include('vartheme_bs5:heading', {
+    {% include "vartheme_bs5:heading" with {
       attributes: heading_attributes,
       html_tag: 'h2',
       content: heading,
-      heading_utility_classes: ['rich-heading', 'mb-2'],
-    }, false) }}
+      heading_utility_classes: ['rich-heading', 'mb-2']
+    } only %}
   {% endif %}
   {{ title_suffix }}
 

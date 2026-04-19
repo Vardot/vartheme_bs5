@@ -1,37 +1,47 @@
 # Icon
 
-Renders a Bootstrap Icon.
+> [Bootstrap Icons](https://icons.getbootstrap.com)
 
-## Properties
-- `icon`: Bootstrap Icon name from the predefined list. Use the icon name without the `bi-` prefix.
+Varbase implementation for Bootstrap icons.
 
-## Notes
-- The component automatically adds the `bi` base class.
-- You can pass the custom icon name with or without the `bi-` prefix.
-- Icon size and color are not controlled by the component.
-- The icon inherits size and color from the parent element or surrounding Bootstrap utility classes.
+## Available properties:
+ - `name`: Icon name - The name of the icon in Bootstrap Icon library. (https://icons.getbootstrap.com)
+ - `role`: The accessibility role for the icon as string. (https://icons.getbootstrap.com/#accessibility)
+ - `rtl`: RTL Icon name - If needed, The name of the Right to Left (RTL) icon replacement Bootstrap Icon for the default LTR one.
+ - `icon_utility_classes`: An array of utility classes that can be used to add extra
+                     Bootstrap utility classes or custom classes to this component.
 
-## Examples
+## Available attributes:
+* `attributes`: HTML attributes for the icon element.
 
-### Example #1: Default icon
-```twig
-{% include "vartheme_bs5:icon" with {
-  icon: 'people'
-} %}
+## Available slots:
+* N/A
+
+
+## Examples:
+
+### Example 1
+Bootstrap Icon for the stroke.
+
+```
+{% include 'vartheme_bs5:icon' with { name: 'bi-chevron-right'} only %}
 ```
 
-### Example #2: Inherit size and color from parent
-```twig
-<div class="fs-1 text-primary">
-  {% include "vartheme_bs5:icon" with {
-    icon: 'search'
-  } %}
-</div>
+### Example 2
+Bootstrap Icon for a stroke and the right to left (RTL) replacement for it.
+
+```
+{% include 'vartheme_bs5:icon' with { name: 'bi-chevron-right', rtl: 'bi-chevron-left', lang_dir: lang_dir} only %}
 ```
 
-### Example #3: Custom icon override
-```twig
-{% include "vartheme_bs5:icon" with {
-  icon: 'info',
-} %}
 ```
+{% include 'vartheme_bs5:icon' with { name: 'bi-chevron-right', rtl: 'bi-chevron-left'} %}
+```
+
+### Example 3
+Bootstrap Icon for chevron with double down stokes and a role fo scroll.
+
+```
+{% include 'vartheme_bs5:icon' with { name: 'bi-chevron-double-down', role: 'scroll' } only %}
+```
+

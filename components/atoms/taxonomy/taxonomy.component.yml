@@ -1,43 +1,10 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: Taxonomy
-group: Base
-status: stable
-props:
-  type: object
-  required:
-    - label
-  properties:
-    label:
-      type: string
-      title: Label
-      description: Text shown inside the taxonomy badge.
-      examples:
-        - Taxonomy
-    url:
-      type: string
-      title: Link (optional)
-      format: uri-reference
-      description: If provided, taxonomy will render as a link.
-      default: ''
-    target:
-      type: string
-      title: Link target
-      description: Where to open the link (only used when Link is provided).
-      enum:
-        - _self
-        - _blank
-      default: _self
-      meta:enum:
-        _self: Same tab
-        _blank: New tab
-    size:
-      type: string
-      title: Size
-      description: Controls the typography size (taxonomy modifier class).
-      enum:
-        - taxonomy-lg
-        - taxonomy-sm
-      default: taxonomy-lg
-      meta:enum:
-        taxonomy-lg: Large
-        taxonomy-sm: Small
+status: experimental
+description: Taxonomy terms as taxonomy tags.
+slots:
+  content:
+    type: string
+    title: Content
+    description: The content text or text with a link for the taxonomy term.
+    default: ""

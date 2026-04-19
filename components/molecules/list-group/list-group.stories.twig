@@ -6,202 +6,202 @@
  */
 #}
 {% stories ListGroup with {
-  title: 'Molecules/List Group',
-  parameters: {
-    componentSubtitle: 'Bootstrap 5.3 List Group component for displaying flexible lists of content.',
-    docs: {
-      description: {
-        component: 'A flexible component for displaying a series of content. Build complex lists with custom content and controls.',
+  "title": "Molecules/List Group",
+  "parameters": {
+    "componentSubtitle": "Bootstrap 5.3 List Group component for displaying flexible lists of content.",
+    "docs": {
+      "description": {
+        "component": "A flexible component for displaying a series of content. Build complex lists with custom content and controls."
       },
-      story: {
-        inline: true,
-      },
-    },
+      "story": {
+        "inline": true
+      }
+    }
   },
-  argTypes: {
-    items: {
-      name: 'Items',
-      description: 'Array of list group items to display.',
-      control: 'object',
-      defaultValue: [],
+  "argTypes": {
+    "items": {
+      "name": "Items",
+      "description": "Array of list group items to display.",
+      "control": "object",
+      "defaultValue": []
     },
-    flush: {
-      name: 'Flush',
-      description: 'Remove borders and rounded corners.',
-      control: 'boolean',
-      defaultValue: false,
+    "flush": {
+      "name": "Flush",
+      "description": "Remove borders and rounded corners.",
+      "control": "boolean",
+      "defaultValue": false
     },
-    numbered: {
-      name: 'Numbered',
-      description: 'Add numbers to list items.',
-      control: 'boolean',
-      defaultValue: false,
+    "numbered": {
+      "name": "Numbered",
+      "description": "Add numbers to list items.",
+      "control": "boolean",
+      "defaultValue": false
     },
-    horizontal: {
-      name: 'Horizontal',
-      description: 'Make list group horizontal at breakpoint.',
-      control: 'select',
-      options: {
-        None: '',
-        Always: 'true',
-        Small: 'sm',
-        Medium: 'md',
-        Large: 'lg',
-        "'Extra Large'": 'xl',
-        "'Extra Extra Large'": 'xxl',
+    "horizontal": {
+      "name": "Horizontal",
+      "description": "Make list group horizontal at breakpoint.",
+      "control": "select",
+      "options": {
+        "None": "",
+        "Always": "true",
+        "Small": "sm",
+        "Medium": "md", 
+        "Large": "lg",
+        "'Extra Large'": "xl",
+        "'Extra Extra Large'": "xxl"
       },
-      defaultValue: '',
+      "defaultValue": ""
     },
-    utility_classes: {
-      name: 'Utility Classes',
-      description: 'Additional Bootstrap utility classes.',
-      control: 'object',
-      defaultValue: [],
-    },
-  },
+    "utility_classes": {
+      "name": "Utility Classes",
+      "description": "Additional Bootstrap utility classes.",
+      "control": "object",
+      "defaultValue": []
+    }
+  }
 } %}
 
 {% story BasicListGroup with {
-  name: 'Basic List Group',
-  args: {
-    items: [
-      {content: 'An item'},
-      {content: 'A second item'},
-      {content: 'A third item'},
-      {content: 'A fourth item'},
-      {content: 'And a fifth one'},
-    ],
-  },
+  "name": "Basic List Group",
+  "args": {
+    "items": [
+      {"content": "An item"},
+      {"content": "A second item"},
+      {"content": "A third item"},
+      {"content": "A fourth item"},
+      {"content": "And a fifth one"}
+    ]
+  }
 } %}
-  {{ include('vartheme_bs5:list-group') }}
+  {{ include("vartheme_bs5:list-group") }}
 {% endstory %}
 
 {% story ActiveDisabledItems with {
-  name: 'Active and Disabled Items',
-  args: {
-    items: [
-      {content: 'An active item', active: true},
-      {content: 'A second item'},
-      {content: 'A third item'},
-      {content: 'A fourth item'},
-      {content: 'A disabled item', disabled: true},
-    ],
-  },
+  "name": "Active and Disabled Items",
+  "args": {
+    "items": [
+      {"content": "An active item", "active": true},
+      {"content": "A second item"},
+      {"content": "A third item"},
+      {"content": "A fourth item"},
+      {"content": "A disabled item", "disabled": true}
+    ]
+  }
 } %}
-  {{ include('vartheme_bs5:list-group') }}
+  {{ include("vartheme_bs5:list-group") }}
 {% endstory %}
 
 {% story LinksAndButtons with {
-  name: 'Links and Buttons',
-  args: {
-    items: [
-      {content: 'The current link item', href: '#', active: true},
-      {content: 'A second link item', href: '#'},
-      {content: 'A third link item', href: '#'},
-      {content: 'A fourth link item', href: '#'},
-      {content: 'A disabled link item', href: '#', disabled: true},
-    ],
-  },
+  "name": "Links and Buttons",
+  "args": {
+    "items": [
+      {"content": "The current link item", "href": "#", "active": true},
+      {"content": "A second link item", "href": "#"},
+      {"content": "A third link item", "href": "#"},
+      {"content": "A fourth link item", "href": "#"},
+      {"content": "A disabled link item", "href": "#", "disabled": true}
+    ]
+  }
 } %}
-  {{ include('vartheme_bs5:list-group') }}
+  {{ include("vartheme_bs5:list-group") }}
 {% endstory %}
 
 {% story FlushListGroup with {
-  name: 'Flush List Group',
-  args: {
-    flush: true,
-    items: [
-      {content: 'An item'},
-      {content: 'A second item'},
-      {content: 'A third item'},
-      {content: 'A fourth item'},
-      {content: 'And a fifth one'},
-    ],
-  },
+  "name": "Flush List Group",
+  "args": {
+    "flush": true,
+    "items": [
+      {"content": "An item"},
+      {"content": "A second item"},
+      {"content": "A third item"},
+      {"content": "A fourth item"},
+      {"content": "And a fifth one"}
+    ]
+  }
 } %}
-  {{ include('vartheme_bs5:list-group') }}
+  {{ include("vartheme_bs5:list-group") }}
 {% endstory %}
 
 {% story NumberedListGroup with {
-  name: 'Numbered List Group',
-  args: {
-    numbered: true,
-    items: [
-      {content: 'A list item'},
-      {content: 'A list item'},
-      {content: 'A list item'},
-    ],
-  },
+  "name": "Numbered List Group",
+  "args": {
+    "numbered": true,
+    "items": [
+      {"content": "A list item"},
+      {"content": "A list item"},
+      {"content": "A list item"}
+    ]
+  }
 } %}
-  {{ include('vartheme_bs5:list-group') }}
+  {{ include("vartheme_bs5:list-group") }}
 {% endstory %}
 
 {% story HorizontalListGroup with {
-  name: 'Horizontal List Group',
-  args: {
-    horizontal: 'md',
-    items: [
-      {content: 'An item'},
-      {content: 'A second item'},
-      {content: 'A third item'},
-    ],
-  },
+  "name": "Horizontal List Group",
+  "args": {
+    "horizontal": "md",
+    "items": [
+      {"content": "An item"},
+      {"content": "A second item"},
+      {"content": "A third item"}
+    ]
+  }
 } %}
-  {{ include('vartheme_bs5:list-group') }}
+  {{ include("vartheme_bs5:list-group") }}
 {% endstory %}
 
 {% story ContextualClasses with {
-  name: 'Contextual Classes',
-  args: {
-    items: [
-      {content: 'A simple default list group item'},
-      {content: 'A simple primary list group item', variant: 'primary'},
-      {content: 'A simple secondary list group item', variant: 'secondary'},
-      {content: 'A simple success list group item', variant: 'success'},
-      {content: 'A simple danger list group item', variant: 'danger'},
-      {content: 'A simple warning list group item', variant: 'warning'},
-      {content: 'A simple info list group item', variant: 'info'},
-      {content: 'A simple light list group item', variant: 'light'},
-      {content: 'A simple dark list group item', variant: 'dark'},
-    ],
-  },
+  "name": "Contextual Classes",
+  "args": {
+    "items": [
+      {"content": "A simple default list group item"},
+      {"content": "A simple primary list group item", "variant": "primary"},
+      {"content": "A simple secondary list group item", "variant": "secondary"},
+      {"content": "A simple success list group item", "variant": "success"},
+      {"content": "A simple danger list group item", "variant": "danger"},
+      {"content": "A simple warning list group item", "variant": "warning"},
+      {"content": "A simple info list group item", "variant": "info"},
+      {"content": "A simple light list group item", "variant": "light"},
+      {"content": "A simple dark list group item", "variant": "dark"}
+    ]
+  }
 } %}
-  {{ include('vartheme_bs5:list-group') }}
+  {{ include("vartheme_bs5:list-group") }}
 {% endstory %}
 
 {% story WithBadges with {
-  name: 'With Badges',
-  args: {
-    items: [
-      {content: 'A list item', badge: {text: '14', variant: 'primary'}},
-      {content: 'A second list item', badge: {text: '2', variant: 'secondary'}},
-      {content: 'A third list item', badge: {text: '1', variant: 'success'}},
-    ],
-  },
+  "name": "With Badges",
+  "args": {
+    "items": [
+      {"content": "A list item", "badge": {"text": "14", "variant": "primary"}},
+      {"content": "A second list item", "badge": {"text": "2", "variant": "secondary"}},
+      {"content": "A third list item", "badge": {"text": "1", "variant": "success"}}
+    ]
+  }
 } %}
-  {{ include('vartheme_bs5:list-group') }}
+  {{ include("vartheme_bs5:list-group") }}
 {% endstory %}
 
 {% story CustomContent with {
-  name: 'Custom Content',
-  args: {
-    items: [
+  "name": "Custom Content",
+  "args": {
+    "items": [
       {
-        content: "<div class='d-flex w-100 justify-content-between'><h5 class='mb-1'>List group item heading</h5><small>3 days ago</small></div><p class='mb-1'>Some placeholder content in a paragraph.</p><small>And some small print.</small>",
-        href: '#',
+        "content": "<div class='d-flex w-100 justify-content-between'><h5 class='mb-1'>List group item heading</h5><small>3 days ago</small></div><p class='mb-1'>Some placeholder content in a paragraph.</p><small>And some small print.</small>",
+        "href": "#"
       },
       {
-        content: "<div class='d-flex w-100 justify-content-between'><h5 class='mb-1'>List group item heading</h5><small class='text-muted'>3 days ago</small></div><p class='mb-1'>Some placeholder content in a paragraph.</p><small class='text-muted'>And some muted small print.</small>",
-        href: '#',
+        "content": "<div class='d-flex w-100 justify-content-between'><h5 class='mb-1'>List group item heading</h5><small class='text-muted'>3 days ago</small></div><p class='mb-1'>Some placeholder content in a paragraph.</p><small class='text-muted'>And some muted small print.</small>",
+        "href": "#"
       },
       {
-        content: "<div class='d-flex w-100 justify-content-between'><h5 class='mb-1'>List group item heading</h5><small class='text-muted'>3 days ago</small></div><p class='mb-1'>Some placeholder content in a paragraph.</p><small class='text-muted'>And some muted small print.</small>",
-        href: '#',
-      },
-    ],
-  },
+        "content": "<div class='d-flex w-100 justify-content-between'><h5 class='mb-1'>List group item heading</h5><small class='text-muted'>3 days ago</small></div><p class='mb-1'>Some placeholder content in a paragraph.</p><small class='text-muted'>And some muted small print.</small>",
+        "href": "#"
+      }
+    ]
+  }
 } %}
-  {{ include('vartheme_bs5:list-group') }}
+  {{ include("vartheme_bs5:list-group") }}
 {% endstory %}
 
 {% endstories %}

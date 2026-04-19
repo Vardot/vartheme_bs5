@@ -1,98 +1,38 @@
 {#
-  Image component
-  - Optional ratio crop via Bootstrap .ratio + .ratio-*
-  - Bootstrap utility classes only
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation of an image.
+ * 
+ * Available properties:
+ * - align: (optional) Align images with the helper float classes or text alignment classes.
+ *          block-level images can be centered using the .mx-auto margin utility class.
+ *          options (`float-start`, `mx-auto d-block`, `float-end`)
+ * - responsive: (optional) Images in Bootstrap are made responsive with `.img-fluid`. This applies max-width with 100% and height with auto to the image so that it scales with the parent width.
+ * - thumbnails: (optional) In addition to Bootstrap border-radius utilities, you can use `.img-thumbnail` to give an image a rounded 1px border appearance.
+ * - rounded: (optional) Rounded image
+ * - image_utility_classes: An array of utility classes that can be used to add extra
+ *                    Bootstrap utility classes or custom classes to this component.
+ *
+ * Available attributes:
+ * - attributes: HTML attributes for the img tag.
+ *
+ * Available slots:
+ * - N/A
+ *
+ */
 #}
+{% set aligning = {
+  start: ['float-start'],
+  center: ['mx-auto', 'd-block'],
+  end: ['float-end'],
+} %}
 
-{% set media_ok = media is defined and media and media.src is defined and media.src is not empty %}
+{% set align = align ? aligning[align]: [] %}
+{% set responsive = responsive ? ['img-fluid'] : [] %}
+{% set thumbnails = thumbnails ? ['img-thumbnail'] : [] %}
+{% set rounded = rounded ? ['rounded'] : [] %}
+{% set image_utility_classes = image_utility_classes ? image_utility_classes : [] %}
 
-{% set link_url = link_url|default('')|trim %}
-{% set has_link = link_url is not empty and link_url != 'No URL' %}
+{% set classes = []|merge(align)|merge(responsive)|merge(thumbnails)|merge(rounded)|merge(image_utility_classes) %}
 
-{% set target_value = target|default('self') %}
-{% set target_attr = target_value == 'blank' ? '_blank' : '_self' %}
-{% set rel_attr = target_value == 'blank' ? 'noopener noreferrer' : null %}
-
-{# Link attributes for vartheme_bs5:link #}
-{% set link_attrs_ratio = create_attribute().addClass(['d-block', 'w-100', 'h-100']) %}
-{% set link_attrs_inline = create_attribute().addClass(['d-inline-block']) %}
-{% if target_attr %}
-  {% set link_attrs_ratio = link_attrs_ratio.setAttribute('target', target_attr) %}
-  {% set link_attrs_inline = link_attrs_inline.setAttribute('target', target_attr) %}
-{% endif %}
-{% if rel_attr %}
-  {% set link_attrs_ratio = link_attrs_ratio.setAttribute('rel', rel_attr) %}
-  {% set link_attrs_inline = link_attrs_inline.setAttribute('rel', rel_attr) %}
-{% endif %}
-
-{# Ratio: use a special value for "no crop" (ratio-auto) #}
-{% set ratio_value = ratio|default('ratio-auto') %}
-{% set has_ratio = ratio_value != 'ratio-auto' %}
-{% set ratio_wrapper_class = has_ratio ? ('ratio ' ~ ratio_value) : '' %}
-
-{# Fit: Bootstrap object-fit utilities #}
-{% set fit_class = fit|default('object-fit-cover') %}
-
-{# Alignment + width: Bootstrap utilities (values are the class names) #}
-{% set align_class = align|default('me-auto') %}
-{% set width_class = width|default('w-auto') %}
-
-{# Rounded: Bootstrap utilities (values are the class names) #}
-{% set rounded_class = rounded|default('rounded-0') %}
-
-{% set loading_value = loading|default('lazy') %}
-
-{# Figure wrapper classes #}
-{% set figure_classes = (['d-block', 'm-0', width_class, align_class])|filter(v => v is not empty) %}
-{% set figure_attrs = create_attribute().addClass(figure_classes) %}
-
-{# Image classes #}
-{% set img_classes = (['img-fluid', fit_class, rounded_class]|filter(v => v is not empty)) %}
-{% set img_classes_final = (has_ratio ? ['w-100', 'h-100'] : [])|merge(img_classes) %}
-{% set img_class_final = img_classes_final|join(' ') %}
-
-{# Pick link attributes based on ratio mode #}
-{% set link_attrs = has_ratio ? link_attrs_ratio : link_attrs_inline %}
-
-{# Build the inner markup (no logic in <figure>) #}
-{% set figure_content %}{% endset %}
-{% if media_ok %}
-  {# Render a native <img> — no dependency on canvas:image, handles missing width/height gracefully #}
-  {% set image_markup %}
-    <img
-      src="{{ media.src }}"
-      alt="{{ media.alt|default('')|e }}"
-      {% if media.width is not empty %}width="{{ media.width }}"{% endif %}
-      {% if media.height is not empty %}height="{{ media.height }}"{% endif %}
-      class="{{ img_class_final }}"
-      loading="{{ loading_value }}"
-    >
-  {% endset %}
-
-  {# Build the optional link wrapper once #}
-  {% set linked_markup %}
-    {% if has_link %}
-      {{ include('vartheme_bs5:link', {
-        url: link_url,
-        attributes: link_attrs,
-        content: image_markup,
-      }, false, true) }}
-    {% else %}
-      {{ image_markup }}
-    {% endif %}
-  {% endset %}
-
-  {% set figure_content %}
-    {% if has_ratio %}
-      <div class="{{ ratio_wrapper_class }}">
-        {{ linked_markup }}
-      </div>
-    {% else %}
-      {{ linked_markup }}
-    {% endif %}
-  {% endset %}
-{% endif %}
-
-<figure{{ figure_attrs }}>
-  {{ figure_content }}
-</figure>
+<img{{ attributes.addClass(classes) }} />

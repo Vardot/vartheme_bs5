@@ -1,5 +1,6 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: Field tags
+status: experimental
 description: Field tags with styled taxonomy terms
 props:
   type: object
@@ -48,14 +49,17 @@ props:
         type: 'string'
       description: Use to add extra Bootstrap utility classes for the main wrapper.
     attributes:
-      type: Drupal\Core\Template\Attribute
+      type: object
       title: Attributes
       description: HTML attributes for the containing element.
+      $ref: 'ui-patterns://attributes'
     title_attributes:
-      type: Drupal\Core\Template\Attribute
+      type: object
       title: Title attributes
       description: HTML attributes for the label.
+      $ref: 'ui-patterns://attributes'
     content_attributes:
-      type: Drupal\Core\Template\Attribute
+      type: object
       title: Content attributes
       description: HTML attributes for the content.
+      $ref: 'ui-patterns://attributes'

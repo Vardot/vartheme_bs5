@@ -1,129 +1,43 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: Image
-group: Base
+status: experimental
+description: Image component with responsive behavior for the system image.
 props:
   type: object
   properties:
-    media:
-      $ref: json-schema-definitions://canvas.module/image
-      type: object
-      title: Image
-      description: Main image source.
-      examples:
-        - src: assets/image-placeholder.svg
-          alt: Placeholder image
-          width: 1200
-          height: 800
-    link_url:
-      type: string
-      title: Link URL (optional)
-      format: uri-reference
-      description: If provided, the image becomes clickable.
-    target:
-      type: string
-      title: Link target
-      enum:
-        - self
-        - blank
-      default: self
-      examples:
-        - self
-      meta:enum:
-        self: Same tab
-        blank: New tab
-    ratio:
-      type: string
-      title: Image ratio (crop)
-      description: Keeps consistent image shapes.
-      enum:
-        - ratio-auto
-        - ratio-16x9
-        - ratio-4x3
-        - ratio-1x1
-        - ratio-21x9
-      default: ratio-auto
-      examples:
-        - ratio-auto
-      meta:enum:
-        ratio-auto: Auto (no crop)
-        ratio-16x9: Wide (16:9)
-        ratio-4x3: Standard (4:3)
-        ratio-1x1: Square (1:1)
-        ratio-21x9: Ultra-wide (21:9)
-    fit:
-      type: string
-      title: Image fit
-      description: How the image behaves inside a fixed ratio.
-      enum:
-        - object-fit-cover
-        - object-fit-contain
-      default: object-fit-cover
-      examples:
-        - object-fit-cover
-      meta:enum:
-        object-fit-cover: Fill (crop)
-        object-fit-contain: Fit (no crop)
     align:
       type: string
-      title: Alignment
-      description: Alignment of the whole image block.
+      title: Aligning images
+      description: (optional) Align images with the helper float classes or text alignment classes. block-level images can be centered using the .mx-auto margin utility class.
+      default: ''
       enum:
-        - me-auto
-        - mx-auto
-        - ms-auto
-      default: me-auto
-      examples:
-        - me-auto
-      meta:enum:
-        me-auto: Left
-        mx-auto: Center
-        ms-auto: Right
-    width:
-      type: string
-      title: Width
-      description: Controls the visual width of the image container.
-      enum:
-        - w-auto
-        - w-25
-        - w-50
-        - w-75
-        - w-100
-      default: w-auto
-      examples:
-        - w-auto
-      meta:enum:
-        w-auto: Auto
-        w-25: 25%
-        w-50: 50%
-        w-75: 75%
-        w-100: 100%
+        - ''
+        - start
+        - center
+        - end
+    responsive:
+      type: boolean
+      title: Responsive image
+      description: (optional) Images in Bootstrap are made responsive with `.img-fluid`. This applies max-width with 100% and height with auto to the image so that it scales with the parent width.
+      default: false
+    thumbnails:
+      type: boolean
+      title: Image thumbnails
+      description: (optional) In addition to Bootstrap border-radius utilities, you can use .img-thumbnail to give an image a rounded 1px border appearance.
+      default: false
     rounded:
-      type: string
-      title: Corner style
-      description: Controls how rounded the image corners are.
-      enum:
-        - rounded-0
-        - rounded-1
-        - rounded-3
-        - rounded-pill
-      default: rounded-0
-      examples:
-        - rounded-0
-      meta:enum:
-        rounded-0: None
-        rounded-1: Slightly rounded
-        rounded-3: Rounded
-        rounded-pill: Fully rounded (pill)
-    loading:
-      type: string
-      title: Loading behavior
-      description: Controls browser loading strategy.
-      enum:
-        - lazy
-        - eager
-      default: lazy
-      examples:
-        - lazy
-      meta:enum:
-        lazy: Lazy load
-        eager: Load immediately
+      type: boolean
+      title: Rounded image
+      default: false
+    image_utility_classes:
+      type: array
+      title: Utility Classes
+      default: []
+      items:
+        type: 'string'
+      description: An array of utility classes that can be used to add extra Bootstrap utility classes or custom classes to this component.
+    attributes:
+      type: object
+      title: Attributes
+      description: HTML attributes for the containing element.
+      $ref: 'ui-patterns://attributes'

@@ -5,7 +5,7 @@
  *
  * Available properties:
  * - breadcrumb: Breadcrumb trail items.
- * - divider: Dividers are automatically added in CSS through ::before and content. They can be changed by modifying a local CSS custom property --bs-breadcrumb-divider, or through the $breadcrumb-divider Sass variable — and $breadcrumb-divider-flipped for its RTL counterpart, if needed.
+ * - divider: Dividers are automatically added in CSS through ::before and content. They can be changed by modifying a local CSS custom property --bs-breadcrumb-divider, or through the $breadcrumb-divider Sass variable — and $breadcrumb-divider-flipped for its RTL counterpart, if needed. 
  * - breadcrumb_utility_classes: An array of utility classes. Use to add extra Bootstrap utility classes or custom CSS classes over to this component.
  *
  * Available attributes:
@@ -26,11 +26,11 @@
 {% endif %}
 
 {% set attributes = attributes.addClass(classes) %}
-{% set attributes = attributes.setAttribute('role', 'navigation') %}
-{% set attributes = attributes.setAttribute('aria-label', 'breadcrumb') %}
+{% set attributes = attributes.setAttribute('role', 'navigation' ) %}
+{% set attributes = attributes.setAttribute('aria-label', 'breadcrumb' ) %}
 
 {% if divider is not empty and divider != '' %}
-  {% set attributes = attributes.setAttribute('style', "--bs-breadcrumb-divider: '" ~ divider ~ "';") %}
+  {% set attributes = attributes.setAttribute('style', "--bs-breadcrumb-divider: '" ~ divider ~ "';" ) %}
 {% endif %}
 
 {%
@@ -51,10 +51,10 @@
       {% for item in breadcrumb %}
         {% if item.url %}
           <li class="breadcrumb-item">
-            {{ include('vartheme_bs5:link', {
+            {% include 'vartheme_bs5:link' with {
               url: item.url,
-              content: item.text,
-            }, false) }}
+              content: item.text
+            } only %}
           </li>
         {% else %}
           <li class="breadcrumb-item active" aria-current="page">

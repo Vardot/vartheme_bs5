@@ -1,5 +1,6 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: Dynamic Responsive Image
+status: experimental
 description: Generate (nearly) perfectly scaled (or cropped) images on-the-fly assumes the width of images is set in CSS, either directly in the wrapper-div or inherited through a parent element. Any grid system will do just fine for this.
 group: Dynamic Responsive Image
 props:
@@ -7,9 +8,9 @@ props:
   properties:
     url:
       type: string
-      format: uri-reference
       title: Optional URL
       description: An optional URL the image can be linked to.
+      $ref: "ui-patterns://url"
     width:
       type: string
       title: Original Width
@@ -32,25 +33,30 @@ props:
       default: []
       description: Use to add extra Bootstrap utility classes for the main wrapper.
     item_attributes:
-      type: Drupal\Core\Template\Attribute
+      type: object
       title: The Dynamic Responsive Image Item Attributes
       description: HTML attributes for the item wrapper element.
+      $ref: 'ui-patterns://attributes'
     picture_source_attributes:
-      type: Drupal\Core\Template\Attribute
+      type: object
       title: Picture Source Attributes
       description: HTML attributes for the picture source element.
+      $ref: 'ui-patterns://attributes'
     picture_img_attributes:
-      type: Drupal\Core\Template\Attribute
+      type: object
       title: Picture Image Attributes
       description: HTML attributes for the picture image element.
+      $ref: 'ui-patterns://attributes'
     url_attributes:
-      type: Drupal\Core\Template\Attribute
+      type: object
       title: URL Attributes
       description: HTML attributes for the URL element.
+      $ref: 'ui-patterns://attributes'
     noscript_img_attributes:
-      type: Drupal\Core\Template\Attribute
+      type: object
       title: No JavaScript Image Attributes
       description: HTML attributes for the No JavaScript Image element.
+      $ref: 'ui-patterns://attributes'
 libraryOverrides:
   dependencies:
     - drimage_improved/drimage_improved

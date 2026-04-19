@@ -4,35 +4,43 @@
  * Vartheme BS5 Starter Kit implementation for the Alert component.
  *
  * Available properties:
- * - variant: Bootstrap predefined alert variant.
- *            (primary|secondary|success|info|warning|danger|light|dark)
- * - dismissible: It is possible to dismiss any alert inline. When an alert
- *   is dismissed, the element is completely removed from the page structure.
+ * - type: Bootstrap includes several predefined alert type styles.
+ *         (alert-primary|alert-secondary|alert-success|alert-info|
+ *          alert-warning|alert-danger|alert-light|alert-dark)
+ * - dismissible: It is possible to dismiss any alert inline, When an alert is dismissed, the element is completely removed from the page structure.
+ * - alert_utility_classes: An array of utility classes. Use to add extra Bootstrap utility classes or custom CSS classes over to this component.
+ *
+ * Available attributes:
+ * - attributes: HTML attributes for the alert element.
+ * - dismissible_attributes: HTML attributes for the alert dismiss close button element.
  *
  * Available slots:
- * - heading: Alerts can also contain a primary alert heading.
  * - content: The content of the alert.
+ * - heading: Alerts can also contain primary alert heading.
  */
 #}
-{% set variant_classes = variant ? ['alert-' ~ variant] : [] %}
+{% set type_classes = type ? [type] : [] %}
 {% set dismissible = dismissible ?? true %}
 {% set dismissible_classes = dismissible ? ['alert-dismissible', 'fade', 'show'] : [] %}
+{% set alert_utility_classes = alert_utility_classes ? alert_utility_classes : [] %}
 
 {% set classes = [
   'alert',
-]|merge(variant_classes)|merge(dismissible_classes) %}
+]|merge(type_classes)|merge(dismissible_classes)|merge(alert_utility_classes) %}
 
-{% set attributes = create_attribute() %}
+{% if not attributes %}
+  {% set attributes = create_attribute() %}
+{% endif %}
 {% set attributes = attributes.addClass(classes) %}
 {% set attributes = attributes.setAttribute('role', 'alert') %}
 
 <div{{ attributes }}>
   {% if heading|render|striptags|trim is not empty %}
-    {{ include('vartheme_bs5:heading', {
-      heading_text: heading|render|striptags|trim,
-      level: 4,
-      extra_classes: 'alert-heading',
-    }, false) }}
+    {% include "vartheme_bs5:heading" with {
+      html_tag: 'h4',
+      content: heading|render|striptags|trim,
+      alert_utility_classes: ['alert-heading']
+    } only %}
   {% endif %}
 
   {% block content %}
@@ -40,11 +48,13 @@
   {% endblock %}
 
   {% if dismissible %}
-    {% set close_attrs = create_attribute() %}
-    {% set close_attrs = close_attrs.setAttribute('data-bs-dismiss', 'alert') %}
-    {{ include('vartheme_bs5:close-button', {
+    {% if not dismissible_attributes %}
+      {% set dismissible_attributes = create_attribute() %}
+    {% endif %}
+    {% set dismissible_attributes = dismissible_attributes.setAttribute('data-bs-dismiss', 'alert') %}
+    {{ include ('vartheme_bs5:close-button', {
         size: 'btn-sm',
-        attributes: close_attrs,
+        attributes: dismissible_attributes
       }, with_context: false) }}
   {% endif %}
 </div>

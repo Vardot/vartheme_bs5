@@ -1,13 +1,41 @@
 {#
-  Icon component.
-
-  Props:
-  - icon (string): icon id from dropdown
+/**
+ * @file
+ * Template for the Bootstrap Icon component.
+ *
+ * Vartheme BS5 Starter Kit implementation for Bootstrap icons.
+ * https://icons.getbootstrap.com
+ *
+ * Available properties:
+ * - name: Icon name - The name of the icon in Bootstrap Icon library. (https://icons.getbootstrap.com)
+ * - role: The accessibility role for the icon as string. (https://icons.getbootstrap.com/#accessibility)
+ * - rtl: RTL Icon name - If needed, The name of the Right to Left (RTL) icon replacement Bootstrap Icon for the default LTR one.
+ * - icon_utility_classes: An array of utility classes that can be used to add extra
+ *                    Bootstrap utility classes or custom classes to this component.
+ *
+ * Available attributes:
+ * - attributes: HTML attributes for the icon element.
+ *
+ * Available slots:
+ * - N/A
+ *
+ */
 #}
+{% set icon_name = name ? [name] : [] %}
+{% set icon_utility_classes = icon_utility_classes ? icon_utility_classes : [] %}
 
-{% if icon %}
-  {{ include('vartheme_bs5:bootstrap-icon', {
-    icon: icon,
-    icon_size: 'fs-4',
-  }, with_context: false) }}
+{% if rtl is not empty and lang_dir == 'rtl' %}
+  {% set icon_name = [rtl] %}
 {% endif %}
+
+{% set classes = [
+  'bi',
+]|merge(icon_name)|merge(icon_utility_classes) %}
+
+{% if role is not empty %}
+  {% set attributes = attributes.setAttribute('role', role) %}
+{% endif %}
+
+{% set attributes = attributes.setAttribute('aria-hidden', true) %}
+
+<i{{ attributes.addClass(classes) }}></i>

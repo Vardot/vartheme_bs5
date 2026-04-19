@@ -1,16 +1,17 @@
 {% set classes = [
   'block',
-  'varbase-remote-youtube-video-block',
+  'varbase-remote-youtube-video-block'
 ] %}
 
 <div {{ attributes.addClass(classes) }}>
   {% if title %}
-    {{ include('vartheme_bs5:heading', {
+    {% include "vartheme_bs5:heading" with {
       attributes: title_attributes,
       tag: title_tag,
-      content: title,
-    }, false) }}
+      content: title
+    } only %}
   {% endif %}
+
 
   <div class="remote-video-media-wrapper">
     <div class="iframe-wrapper">

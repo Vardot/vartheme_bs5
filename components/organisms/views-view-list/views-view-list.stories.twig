@@ -1,100 +1,100 @@
 {% stories ViewsViewList with {
-  title: 'Organisms/View List',
-  parameters: {
-    componentSubtitle: 'Displays a Drupal View as an HTML list using Bootstrap utility classes.',
-    docs: {
-      description: {
-        component: 'A component to render view rows in a list format (`<ul>` or `<ol>`) with customizable utility classes.',
+  "title": "Organisms/View List",
+  "parameters": {
+    "componentSubtitle": "Displays a Drupal View as an HTML list using Bootstrap utility classes.",
+    "docs": {
+      "description": {
+        "component": "A component to render view rows in a list format (`<ul>` or `<ol>`) with customizable utility classes."
       },
-      story: {
-        inline: true,
-      },
-    },
+      "story": {
+        "inline": true
+      }
+    }
   },
-  argTypes: {
-    type: {
-      name: 'List Type',
-      description: 'The type of list: unordered (ul) or ordered (ol).',
-      defaultValue: 'ul',
-      control: 'select',
-      options: {
-        ul: 'Unordered list',
-        ol: 'Ordered list',
-      },
+  "argTypes": {
+    "type": {
+      "name": "List Type",
+      "description": "The type of list: unordered (ul) or ordered (ol).",
+      "defaultValue": "ul",
+      "control": "select",
+      "options": {
+        "ul": "Unordered list",
+        "ol": "Ordered list"
+      }
     },
-    list_utility_classes: {
-      name: 'List Utility Classes',
-      description: 'Extra Bootstrap or custom utility classes to apply to the list container.',
-      control: 'object',
-      defaultValue: [],
+    "list_utility_classes": {
+      "name": "List Utility Classes",
+      "description": "Extra Bootstrap or custom utility classes to apply to the list container.",
+      "control": "object",
+      "defaultValue": []
     },
-    list_item_utility_classes: {
-      name: 'List Item Utility Classes',
-      description: 'Utility classes for each list item (`<li>`).',
-      control: 'object',
-      defaultValue: [],
+    "list_item_utility_classes": {
+      "name": "List Item Utility Classes",
+      "description": "Utility classes for each list item (`<li>`).",
+      "control": "object",
+      "defaultValue": []
     },
-    attributes: {
-      name: 'Attributes',
-      description: 'HTML attributes applied to the outer list element.',
-      control: 'object',
-      defaultValue: {},
+    "attributes": {
+      "name": "Attributes",
+      "description": "HTML attributes applied to the outer list element.",
+      "control": "object",
+      "defaultValue": {}
     },
-    rows: {
-      name: 'Rows',
-      description: 'An array of view row renderable objects.',
-      control: 'object',
-      defaultValue: [
-        {content: 'View item one'},
-        {content: 'View item two'},
-        {content: 'View item three'},
-      ],
-    },
-  },
+    "rows": {
+      "name": "Rows",
+      "description": "An array of view row renderable objects.",
+      "control": "object",
+      "defaultValue": [
+        { "content": "View item one" },
+        { "content": "View item two" },
+        { "content": "View item three" }
+      ]
+    }
+  }
 } %}
 
 {% story ViewsViewListDefault with {
-  name: 'Default - Unordered',
-  args: {
-    type: 'ul',
-    rows: [
-      {content: 'List row A'},
-      {content: 'List row B'},
-      {content: 'List row C'},
-    ],
-  },
+  "name": "Default - Unordered",
+  "args": {
+    "type": "ul",
+    "rows": [
+      { "content": "List row A" },
+      { "content": "List row B" },
+      { "content": "List row C" }
+    ]
+  }
 } %}
-  {{ include('vartheme_bs5:views-view-list') }}
+  {{ include("vartheme_bs5:views-view-list") }}
 {% endstory %}
 
 {% story ViewsViewListOrdered with {
-  name: 'Ordered list',
-  args: {
-    type: 'ol',
-    rows: [
-      {content: 'Step 1'},
-      {content: 'Step 2'},
-      {content: 'Step 3'},
-    ],
-  },
+  "name": "Ordered list",
+  "args": {
+    "type": "ol",
+    "rows": [
+      { "content": "Step 1" },
+      { "content": "Step 2" },
+      { "content": "Step 3" }
+    ]
+  }
 } %}
-  {{ include('vartheme_bs5:views-view-list') }}
+  {{ include("vartheme_bs5:views-view-list") }}
 {% endstory %}
 
 {% story ViewsViewListWithUtilityClasses with {
-  name: 'With Utility Classes',
-  args: {
-    type: 'ul',
-    rows: [
-      {content: 'Styled item 1'},
-      {content: 'Styled item 2'},
-      {content: 'Styled item 3'},
+  "name": "With Utility Classes",
+  "args": {
+    "type": "ul",
+    "rows": [
+      { "content": "Styled item 1" },
+      { "content": "Styled item 2" },
+      { "content": "Styled item 3" }
     ],
-    list_utility_classes: ['list-group'],
-    list_item_utility_classes: ['list-group-item', 'text-primary'],
-  },
+    "list_utility_classes": ["list-group"],
+    "list_item_utility_classes": ["list-group-item", "text-primary"]
+  }
 } %}
-  {{ include('vartheme_bs5:views-view-list') }}
+  {{ include("vartheme_bs5:views-view-list") }}
 {% endstory %}
 
 {% endstories %}

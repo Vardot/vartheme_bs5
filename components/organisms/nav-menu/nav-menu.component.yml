@@ -1,7 +1,7 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: Nav
+status: experimental
 description: Nav component description
-noUi: true
 props:
   type: object
   properties:
@@ -11,24 +11,7 @@ props:
       item:
         type: object
         title: Link
-        properties:
-          title:
-            type: string
-            title: Title
-            description: Link text
-          url:
-            type: string
-            format: uri
-            title: URL
-            description: Link URL
-          target:
-            type: string
-            title: Target
-            description: HTML anchor target
-          rel:
-            type: string
-            title: Rel
-            description: HTML rel attribute
+        $ref: "ui-patterns://links"
       description: Navigation items.
     alignment:
       type: string
@@ -58,13 +41,13 @@ props:
       title: Utility Classes
       default: []
       items:
-        type: string
-      description: Use to add extra Bootstrap utility classes or custom CSS classes
-        over to this to this component.
+        type: 'string'
+      description: Use to add extra Bootstrap utility classes or custom CSS classes over to this to this component.
     attributes:
-      type: Drupal\Core\Template\Attribute
+      type: object
       title: Attributes
       description: HTML attributes for the containing element.
+      $ref: 'ui-patterns://attributes'
 libraryOverrides:
   dependencies:
     - vartheme_bs5/bs-dropdown-script

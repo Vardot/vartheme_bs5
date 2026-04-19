@@ -1,48 +1,55 @@
-"$schema": "https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json"
-name: Alert
-description: "Alerts are available for any length of text, as well as an optional close button."
-
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Alert 
+status: experimental
+description: Alerts are available for any length of text, as well as an optional close button. For proper styling, use one of the eight required contextual classes (e.g., .alert-success). 
 props:
   type: object
   properties:
-    variant:
+    type:
       type: string
-      title: Alert variant
-      description: "Predefined alert variant."
-      default: ""
+      title: Alert type
+      description: Bootstrap includes several predefined alert type styles.
+      default: ''
       enum:
-        - ""
-        - primary
-        - secondary
-        - success
-        - danger
-        - warning
-        - info
-        - dark
-        - light
-      meta:enum:
-        "": "- None -"
-        primary: "Primary"
-        secondary: "Secondary"
-        success: "Success"
-        danger: "Danger"
-        warning: "Warning"
-        info: "Info"
-        dark: "Dark"
-        light: "Light"
-
+        - ''
+        - alert-primary
+        - alert-secondary
+        - alert-success
+        - alert-danger
+        - alert-warning
+        - alert-info
+        - alert-dark
+        - alert-light
     dismissible:
       type: boolean
       title: Dismissible
-      description: "Show close button to dismiss the alert."
-      default: true
-
+      description: It is possible to dismiss any alert inline, When an alert is dismissed, the element is completely removed from the page structure.
+    alert_utility_classes:
+      type: array
+      title: Utility Classes
+      default: []
+      items:
+        type: 'string'
+      description: An array of utility classes that can be used to add extra Bootstrap utility classes or custom classes to this component.
+    attributes:
+      type: object
+      title: Attributes
+      description: HTML attributes for the alert element.
+      $ref: 'ui-patterns://attributes'
+    dismissible_attributes:
+      type: object
+      title: Dismiss close button attributes
+      description: HTML attributes for the alert dismiss close button element.
+      $ref: 'ui-patterns://attributes'
 slots:
-  heading:
-    title: Alert heading
   content:
+    type: string
     title: Alert content
-
+    description: The content of the alert.
+  heading:
+    type: string
+    title: Alert heading
+    description: Alerts can also contain primary alert heading.
 libraryOverrides:
   dependencies:
     - vartheme_bs5/bs-alert-script

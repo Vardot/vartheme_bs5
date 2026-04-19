@@ -1,5 +1,6 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata-full.schema.json
 name: List Group
+status: experimental
 description: Bootstrap 5.3 List Group component for displaying a flexible list of content.
 props:
   type: object
@@ -29,7 +30,6 @@ props:
           href:
             type: string
             title: Link URL
-            format: uri-reference
             description: Optional URL to make the item a link.
           badge:
             type: object
@@ -97,6 +97,7 @@ props:
         type: string
       description: Additional Bootstrap utility classes for the list group.
     attributes:
-      type: Drupal\Core\Template\Attribute
+      type: object
       title: Attributes
       description: HTML attributes to apply to the list group.
+      $ref: 'ui-patterns://attributes'

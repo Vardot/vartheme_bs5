@@ -1,0 +1,114 @@
+{#
+ /**
+  * @file
+  * Vartheme BS5 Starter Kit implementation for the Accordion component.
+  *
+  * Available properties:
+  * - title: The title of the accordion.
+  * - title_tag: The HTML (h1, h2, h3, h4, h5, or h6) title of the accordion tag.
+  * - accordion_id: Unique ID for the accordion component.
+  * - header_tag: The HTML (h1, h2, h3, h4, h5, or h6) header tag of the accordion items.
+  * - items: An array of accordion items inside the accordion.
+  *          Each accordion item is an object that has (header, body) slots,
+  *          with (id, header_tag, collapse, expanded, accordion_item_utility_classes, accordion_item_header_utility_classes,
+  *          accordion_item_body_utility_classes, attributes, header_attributes, body_attributes) properties.
+  * - expanded_item_index: The index of the accordion item which is opened by default.
+  *                        (0 = no item, 1 = first item, 2 = second item)
+  * - toggle_all: Have an expand all or collapse all option as [expand all] or [collapse all].
+  * - flush: True if the accordion has no background color or borders.
+  * - accordion_utility_classes: An array of utility classes that can be used to add extra
+  *                    Bootstrap utility classes or custom classes to the root accordion wrapper.
+  * - accordion_title_utility_classes: An array of utility classes that can be used to add extra
+  *                          Bootstrap utility classes or custom classes to the title element.
+  *
+  * Available attributes:
+  * - attributes: HTML attributes for the root accordion wrapper element.
+  * - title_attributes: HTML attributes for the accordion title element.
+  *
+  * Available slots:
+  * - N/A
+  *
+  */
+  #}
+{% apply spaceless %}
+
+{% set accordion_id = accordion_id ? accordion_id : 'accordion-' ~ random(1000) %}
+{% set flush_classes = flush ? ['accordion-flush'] : [] %}
+{% set toggle_all = toggle_all ?? false %}
+{% set header_tag = header_tag ?? 'h4' %}
+{% set expanded_item_index = expanded_item_index ? expanded_item_index : 0 %}
+{% set accordion_utility_classes = accordion_utility_classes ? accordion_utility_classes : [] %}
+
+
+
+{# Accordion wrapper #}
+{%
+  set classes = [
+    'accordion',
+  ]|merge(flush_classes)|merge(accordion_utility_classes)
+%}
+
+{% if not attributes %}
+  {% set attributes = create_attribute() %}
+{% endif %}
+
+{%
+  set attributes = attributes.addClass(classes)
+                  .setAttribute('id', accordion_id)
+%}
+
+{% if title or toggle_all %}
+  <div class="accordion-top d-flex flex-wrap {{ title ? 'justify-content-between' : 'justify-content-end' }} align-items-end">
+    {% if title %}
+      {% set title_tag = title_tag ? title_tag : 'h2' %}
+      {% set accordion_title_utility_classes = accordion_title_utility_classes ? accordion_title_utility_classes : [] %}
+
+      {%
+        set title_classes = [
+          'accordion-title',
+        ]|merge(accordion_title_utility_classes)
+      %}
+
+      {% if not title_attributes %}
+        {% set title_attributes = create_attribute() %}
+      {% endif %}
+
+      {% set title_attributes = title_attributes.addClass(title_classes) %}
+
+      {% include "vartheme_bs5:heading" with {
+          html_tag: title_tag,
+          content: title,
+          attributes: title_attributes
+       } only %}
+
+    {% endif %}
+
+    {% if toggle_all %}
+      {% set all_expanded = true %}
+      {% for item in items %}
+        {% if item.expanded == false %}
+          {% set all_expanded = false %}
+        {% endif %}
+      {% endfor %}
+
+      <button id="{{ accordion_id }}-toggle-all" data-accordion-id="{{ accordion_id }}" class="btn btn-link btn-sm accordion-toggle-all" data-expanded-text="{{ '[expand all]'|t }}" data-collapsed-text="{{ '[collapse all]'|t }}" data-toggle-status='{{ all_expanded ? 'expended' : 'collapsed' }}'>{{ all_expanded ? '[collapse all]'|t : '[expand all]'|t }}</button>
+    {% endif %}
+  </div>
+{% endif %}
+
+{% if items is not empty %}
+  <div{{ attributes }}>
+    {% for item in items %}
+      {% include "vartheme_bs5:accordion-item" with {
+        item_id: item.id ? item.id : '',
+        accordion_id: accordion_id,
+        header_tag: header_tag,
+        collapsable: item.collapsable ? item.collapsable : false,
+        expanded: (loop.index == expanded_item_index or item.expanded) ? true : false,
+        header: item.header ? item.header : '',
+        body: item.body ? item.body : '',
+      } only %}
+    {% endfor %}
+  </div>
+{% endif %}
+{% endapply %}

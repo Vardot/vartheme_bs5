@@ -1,81 +1,87 @@
-{# Button component #}
+{#
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for the button component.
+ *
+ * Available properties:
+ * - html_tag: The HTML tag to use for the button (button | a). Defaults to `button`.
+ * - url: URL link for the button when the HTML tag is an anchor link.
+ * - color: Bootstrap includes several predefined button styles, each serving its own
+ *          semantic purpose, with a few extras thrown in for more control.
+ *          (primary | secondary | success | danger | warning | info | dark | light | link)
+ * - outline: (true|false) In need of a button, but not the hefty background colors they bring?
+ *            Replace the default modifier classes with the `.btn-outline-*` ones to remove all
+ *            background images and colors on any button.
+ * - size: (btn-sm | btn-lg) Bootstrap button size
+ * - disabled: (true|false) Disabled button
+ * - button_utility_classes: An array of utility classes that can be used to add extra
+ *                    Bootstrap utility classes or custom classes to this component.
+ *
+ * Available attributes:
+ * - attributes: Attributes array.
+ *
+ * Available slots:
+ * - content: The content for the button
+ */
+#}
 
-{% set label = label|default('Button label') %}
-{% set variant = variant|default('btn-primary') %}
-{% set is_outline = outline|default(false) %}
-{% set variant_class = (is_outline and variant != 'btn-link') ? (variant|replace({'btn-':'btn-outline-'}) ) : variant %}
-{% set size = size|default('btn') %}
-{% set is_disabled = disabled|default(false) %}
-{% set href_value = (href is defined and href is not empty) ? href : null %}
+{% set html_tag = html_tag ?? 'button' %}
+{% set size = size ? [size] : [] %}
+{% set disabled_classes = disabled ? ['disabled'] : [] %}
+{% set button_utility_classes = button_utility_classes ? button_utility_classes : [] %}
 
-{% set target = target|default('self') %}
-{% set target_attr = target == 'blank' ? '_blank' : '_self' %}
-{% set rel_attr = target == 'blank' ? 'noopener noreferrer' : null %}
+{% set button_color = [] %}
 
-{% set icon_value = icon|default('')|trim %}
-{% set has_icon = icon_value is not empty and icon_value != 'none' %}
-
-{% set alignment = alignment|default('inline') %}
-{% set full_width = full_width|default(false) %}
-{% set radius = radius|default('rounded') %}
-{% set is_icon_first = (icon_first|default(false) ~ '')|lower|trim in ['1','true','yes','on'] %}
-{% set size_text_class = (size == 'btn-lg') ? 'fs-5' : '' %}
-{% set width_class = full_width ? 'w-100' : '' %}
-{% set radius_class = radius %}
-{% set is_link_variant = variant_class == 'btn-link' %}
-{% set padding_class = is_link_variant ? 'p-0' : '' %}
-
-{% set wrapper_class = alignment == 'left' ? 'd-flex justify-content-start'
-  : alignment == 'center' ? 'd-flex justify-content-center'
-  : alignment == 'right' ? 'd-flex justify-content-end'
-  : '' %}
-
-{% set classes = [
-  'btn',
-  variant_class,
-  size,
-  size_text_class,
-  width_class,
-  radius_class,
-  padding_class,
-  'd-inline-flex',
-  'align-items-center',
-  'justify-content-center',
-  'gap-2',
-  'fw-bold'
-] %}
-
-{% if has_icon and not is_icon_first %}
-  {% set classes = classes|merge(['flex-row-reverse']) %}
+{% if color != '' %}
+  {% if outline == true %}
+    {% set button_color = ['btn-outline-' ~ color] %}
+  {% else %}
+    {% set button_color = ['btn-' ~ color] %}
+  {% endif %}
 {% endif %}
 
-{% set class_attr = (classes|join(' '))|trim %}
-{% set class_attr = class_attr|replace({'  ':' '}) %}
+{%
+  set classes = [
+    'btn',
+  ]|merge(button_color)|merge(size)|merge(disabled_classes)|merge(button_utility_classes)
+%}
 
-{% if is_disabled %}
-  {% set href_value = null %}
+{# When the HTML tag is an anchor link #}
+{% if html_tag == 'a' %}
+
+  {# When having a value for the URL
+   # Then add the href attribute with url link value.
+   #}
+  {% if url != '' %}
+    {% set attributes = attributes.setAttribute('href', url ) %}
+  {% endif %}
+
+  {# Set the role for the anchor link as a button #}
+  {#
+   # When using button classes on `<a>` elements that are used to trigger
+   # in-page functionality (like collapsing content), rather than linking
+   # to new pages or sections within the current page, these links should
+   # be given a `role="button"` to appropriately convey their purpose to
+   # assistive technologies such as screen readers.
+  #}
+  {% set attributes = attributes.setAttribute('role', 'button' ) %}
+
+  {# When the link is disabled
+   # Then add more accessibility attributes for aria-disabled
+   # And no tab index #}
+  {#
+   # Bootstrap Link functionality caveat:
+   # https://getbootstrap.com/docs/5.3/components/buttons/#link-functionality-caveat
+   #
+   #}
+  {% if disabled == true %}
+    {% set attributes = attributes.setAttribute('aria-disabled', 'true' ) %}
+    {% set attributes = attributes.setAttribute('tabindex', '-1' ) %}
+  {% endif %}
 {% endif %}
 
-{% if wrapper_class %}<div class="{{ wrapper_class }}">{% endif %}
-
-{% if href_value %}
-<a href="{{ href_value|e }}"
-   class="{{ class_attr|e }}"
-   target="{{ target_attr }}"
-   {% if rel_attr %}rel="{{ rel_attr }}"{% endif %}
-   {% if is_disabled %}aria-disabled="true" tabindex="-1"{% endif %}>
-{% else %}
-<button type="button" class="{{ class_attr|e }}" {% if is_disabled %}disabled{% endif %}>
-{% endif %}
-
-{% if has_icon %}
-  {{ include('vartheme_bs5:bootstrap-icon', {
-    icon: icon_value
-  }, with_context = false) }}
-{% endif %}
-
-<span>{{ label }}</span>
-
-{% if href_value %}</a>{% else %}</button>{% endif %}
-
-{% if wrapper_class %}</div>{% endif %}
+<{{ html_tag }}{{ attributes.addClass(classes) }}>{% apply spaceless %}
+  {% block content %}
+    {{ content }}
+  {% endblock %}
+{% endapply %}</{{ html_tag }}>

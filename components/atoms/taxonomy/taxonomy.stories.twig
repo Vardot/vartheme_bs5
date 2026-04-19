@@ -1,82 +1,31 @@
----
 {% stories Taxonomy with {
-  title: 'Base/Taxonomy',
-  parameters: {
-    componentSubtitle: 'Taxonomy badge',
-    docs: {
-      description: {
-        component: 'Taxonomy component that can render as plain text or a link. Uses Bootstrap utilities with minimal SCSS (logical properties + hover).',
+  "title": "Atoms/Taxonomy",
+  "parameters": {
+    "componentSubtitle": "Taxonomy",
+    "docs": {
+      "description": {
+        "component": "Taxonomy terms as taxonomy tags."
       },
-      story: {inline: true},
-    },
+      "story": {
+        "inline": true
+      }
+    }
   },
-  argTypes: {
-    label: {
-      name: 'Label',
-      description: 'Text shown inside the taxonomy badge.',
-      defaultValue: 'Taxonomy',
-      control: 'text',
-    },
-    url: {
-      name: 'Link (optional)',
-      description: 'If provided, taxonomy will render as a link.',
-      defaultValue: '',
-      control: 'text',
-    },
-    target: {
-      name: 'Link target',
-      description: 'Where to open the link (only used when Link is provided).',
-      defaultValue: '_self',
-      control: 'select',
-      options: {
-        "'Same tab'": '_self',
-        "'New tab'": '_blank',
-      },
-    },
-    size: {
-      name: 'Size',
-      description: 'Typography size (taxonomy modifier class).',
-      defaultValue: 'taxonomy-lg',
-      control: 'select',
-      options: {
-        Large: 'taxonomy-lg',
-        Small: 'taxonomy-sm',
-      },
-    },
-
-  },
+  "argTypes": {
+    "content": {
+      "name": "Content",
+      "description": "List of all the field items. Each item contains attributes, and content.",
+      "control": "text",
+      "defaultValue": ""
+    }
+  }
 } %}
 
-{% story Default with {
-  name: 'Default (Large)',
-  args: {
-    label: 'Taxonomy',
-    url: '',
-    target: '_self',
-    size: 'taxonomy-lg',
-  },
-} %}
-{{ include('vartheme_bs5:taxonomy') }}
-{% endstory %}
-
-{% story Small with {
-  name: 'Small',
-  args: {
-    label: 'Small taxonomy',
-    size: 'taxonomy-sm',
-  },
-} %}
-{{ include('vartheme_bs5:taxonomy') }}
-{% endstory %}
-
-{% story WithLink with {
-  name: 'With link',
-  args: {
-    label: 'Linked taxonomy',
-    url: 'https://example.com',
-    target: '_blank',
-    size: 'taxonomy-lg',
-  },
+{% story Taxonomy with {
+  "name": "Taxonomy",
+  "args": {
+    "content": "<a href=\"#\" hreflang=\"en\">Taxonomy</a>"
+  }
 } %}
 {{ include('vartheme_bs5:taxonomy') }}
 {% endstory %}

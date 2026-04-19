@@ -1,5 +1,6 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: Grid
+status: experimental
 description: Component implementation for a grid using Bootstrap ~5.3.0 methods.
 group: Grid
 props:
@@ -151,6 +152,7 @@ props:
         type: 'string'
       description: 'Use to add extra Bootstrap utility classes for the column `col`. E.g. `gy-4 g-sm-4` or `mb-4`. ( Do not add `col` or `col-[*]`).'
     attributes:
-      type: Drupal\Core\Template\Attribute
+      type: object
       title: Attributes
       description: HTML attributes for the containing element.
+      $ref: 'ui-patterns://attributes'

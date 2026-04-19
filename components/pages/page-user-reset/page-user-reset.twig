@@ -7,19 +7,9 @@
  */
 #}
 
-<div id="page" class="page d-flex flex-column">
+<div class="page d-flex flex-column">
 
-  {% if page.header %}
-    <header role="banner">
-      {% if container_header %}
-        <div class="{{ container_header }}">
-      {% endif %}
-      {{ page.header }}
-      {% if container_header %}
-        </div>
-      {% endif %}
-    </header>
-  {% endif %}
+  {% include "vartheme_bs5:page-header" %}
 
   <main class="mb-3">
     <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
@@ -28,23 +18,23 @@
       <div class="row justify-content-center">
         <div id="auth-box" class="reset-password col-10 col-sm-7 col-lg-5 col-xl-4">
           <div id="top-part">
-            {{ include('vartheme_bs5:heading', {
+            {% include 'vartheme_bs5:heading' with {
                 html_tag: 'h1',
-                content: 'Reset password'|t,
-              }
-            , false) }}
+                content: 'Reset password'|t
+              } only
+            %}
           </div>
           <div id="middle-part">
             {% if logged_in %}
-              {{ include('vartheme_bs5:page-better-login', {without_blocks: logged_in_without_blocks}) }}
+              {% include 'vartheme_bs5:page-better-login' with { without_blocks: logged_in_without_blocks } %}
             {% else %}
-              {{ include('vartheme_bs5:page-better-login', {without_blocks: not_logged_in_without_blocks}) }}
+              {% include 'vartheme_bs5:page-better-login' with { without_blocks: not_logged_in_without_blocks } %}
             {% endif %}
             {{ page.content }}
           </div>
           <div id="bottom-part">
             <div class="back-link">
-              <a href="{{ url('<front>') }}">{{ include('vartheme_bs5:icon', {icon: 'house-door-fill'}, false) }} {{ 'Back to'|t }}  {{ site_name }}</a>
+              <a href="{{ url('<front>') }}">{% include 'vartheme_bs5:icon' with { name: 'bi-house-door-fill' } only %} {{ 'Back to'|t }}  {{ site_name }}</a>
             </div>
           </div>
         </div>
@@ -52,16 +42,6 @@
     </div>
   </main>
 
-  {% if page.footer %}
-    <footer class="footer" role="contentinfo">
-      {% if container_footer %}
-        <div class="{{ container_footer }}">
-      {% endif %}
-      {{ page.footer }}
-      {% if container_footer %}
-        </div>
-      {% endif %}
-    </footer>
-  {% endif %}
+  {% include "vartheme_bs5:page-footer" %}
 
 </div>

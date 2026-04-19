@@ -8,7 +8,7 @@
   {% for item in items %}
     {% set nav_link_classes = [
       'dropdown-item',
-      item.in_active_trail ? 'active' : '',
+      item.in_active_trail ? 'active' : ''
     ] %}
     {% if item.url.options.attributes.class is iterable %}
       {% set nav_link_classes = nav_link_classes|merge(item.url.options.attributes.class) %}
@@ -19,13 +19,13 @@
       {% if item.is_expanded and item.below %}
         <a href="{{ item.url }}" class="{{ nav_link_classes|merge(['dropdown-toggle'])|join(' ') }}" data-bs-toggle="dropdown">{{ item.title }}</a>
         {% if item.below %}
-          {{ include('vartheme_bs5:dropdown-menu', {
+          {% include 'vartheme_bs5:dropdown-menu' with {
             items: item.below,
-            menu_level: (item.below|first).menu_link_level,
-          }) }}
+            menu_level: (item.below|first).menu_link_level
+          } %}
         {% endif %}
       {% else %}
-        {{ link(item.title, item.url, {class: nav_link_classes}) }}
+        {{ link(item.title, item.url, { 'class': nav_link_classes }) }}
       {% endif %}
     </li>
   {% endfor %}

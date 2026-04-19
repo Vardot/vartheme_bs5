@@ -15,7 +15,7 @@
  *
  */
 #}
-{{
+{{ 
   include('vartheme_bs5:heroslider',
     {
       id: id,
@@ -29,8 +29,8 @@
       touch: (touch ?? true),
       wrap: (wrap ?? true),
       items: (rows ?? []),
-      empty: (empty ?? ''),
+      empty: (empty ?? '')
     },
-    with_context: false,
+    with_context = false
   )
 }}

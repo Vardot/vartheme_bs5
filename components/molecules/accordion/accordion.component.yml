@@ -1,0 +1,90 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Accordion
+status: experimental
+description: Build vertically collapsing accordions in combination with our Collapse JavaScript plugin. Accordion component, see Bootstrap Documentation - https://getbootstrap.com/docs/5.3/components/accordion/
+props:
+  type: object
+  properties:
+    title:
+      type: string
+      title: Accordion title
+      description: The title of the accordion
+      default: ''
+    title_tag:
+      type: string
+      title: Header tag
+      description: The HTML (h1, h2, h3, h4, h5, or h6) title of the accordion tag.
+      default: h2
+      enum:
+        - h1
+        - h2
+        - h3
+        - h4
+        - h5
+        - h6
+    accordion_id:
+      type: string
+      title: Accordion ID
+      description: Unique ID for the accordion component.
+      default: ''
+    header_tag:
+      type: string
+      title: Header tag
+      description: The HTML (h1, h2, h3, h4, h5, or h6) header tag of the accordion items.
+      default: h4
+      enum:
+        - h1
+        - h2
+        - h3
+        - h4
+        - h5
+        - h6
+    items:
+      type: array
+      title: Items
+      description: An array of accordion items inside the accordion. Each accordion item is an object that has (header, body) slots, with (id, header_tag, collapse, expanded, accordion_item_utility_classes, accordion_item_header_utility_classes, accordion_item_body_utility_classes, attributes, header_attributes, body_attributes) properties.
+      default: []
+    expanded_item_index:
+      type: number
+      title: Expanded item index
+      description: The index of the accordion item which is opened by default. (0 = no item, 1 = first item, 2 = second item)
+      default: 0
+      min: 0
+    toggle_all:
+      type: boolean
+      title: Show Toggle All
+      description: Have an expand all or collapse all option as [expand all] or [collapse all]
+      default: false
+    flush:
+      type: boolean
+      title: Flush
+      description: True if the accordion has no background color or borders.
+      default: false
+    accordion_utility_classes:
+      type: object
+      title: Utility Classes
+      default: []
+      items:
+        type: 'string'
+      description: An array of utility classes that can be used to add extra Bootstrap utility classes or custom classes to the root accordion wrapper.
+    accordion_title_utility_classes:
+      type: object
+      title: Title Utility Classes
+      default: []
+      items:
+        type: 'string'
+      description: An array of utility classes that can be used to add extra Bootstrap utility classes or custom classes to the title element.
+    attributes:
+      type: object
+      title: Attributes
+      description: HTML attributes for the root accordion wrapper element.
+      $ref: 'ui-patterns://attributes'
+    title_attributes:
+      type: object
+      title: Attributes
+      description: HTML attributes for the accordion title element.
+      $ref: 'ui-patterns://attributes'
+libraryOverrides:
+  dependencies:
+    - vartheme_bs5/bs-collapse-script
+    - vartheme_bs5/bs-dropdown-script

@@ -16,7 +16,7 @@
  * - wrapper_html_tag: (div|span) The HTML tag for the wrapper.
  * - wrapper_utility_classes: An array of utility classes. Use to add extra Bootstrap utility classes or custom CSS classes over the wrapper div to this component.
  * - textarea_utility_classes: An array of utility classes. Use to add extra Bootstrap utility classes or custom CSS classes over the form element to this component.
- *
+ * 
  * Available attributes:
  * - attributes: HTML attributes for the <textarea> element.
  * - wrapper_attributes: HTML attributes for the wrapper element.
@@ -58,8 +58,8 @@
 
 {% if disabled is not empty and disabled == true %}
   {% set attributes = attributes.setAttribute('disabled', true) %}
-  {% set attributes = attributes.setAttribute('aria-disabled', 'true') %}
-  {% set attributes = attributes.setAttribute('tabindex', '-1') %}
+  {% set attributes = attributes.setAttribute('aria-disabled', 'true' ) %}
+  {% set attributes = attributes.setAttribute('tabindex', '-1' ) %}
 {% endif %}
 
 {%
@@ -73,7 +73,7 @@
 {% if wrapper_html_tag != '' %}
   {%
     set wrapper_classes = [
-      'form-textarea-wrapper',
+      'form-textarea-wrapper'
     ]|merge(wrapper_utility_classes)
   %}
 

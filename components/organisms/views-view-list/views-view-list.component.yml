@@ -1,8 +1,8 @@
 "$schema": "https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata-full.schema.json"
 name: Views View List
+status: experimental
 description: Implementation for displaying a view as a view list of items.
 group: Views
-noUi: true
 props:
   type: object
   properties:
@@ -33,13 +33,11 @@ props:
         type: 'string'
       description: Use to add extra Bootstrap utility classes or custom CSS classes over to list items.
     attributes:
-      type: Drupal\Core\Template\Attribute
+      type: object
       title: Attributes
       description: "HTML attributes to apply to the list."
+      $ref: 'ui-patterns://attributes'
 slots:
   rows:
-    type: array
-    title: 'Rows'
-    description: 'Rows'
-    items:
-      type: 'object'
+    title: Rows
+    description: 'Data rows by view rows.'

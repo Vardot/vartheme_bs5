@@ -1,164 +1,90 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
-name: Impressed Card
-group: Card
-status: stable
-description: 'Stacked card layout with an optional media image (top or bottom) and a single drag & drop content area. Built
-  with Bootstrap 5 utility classes.'
+name: 'Impressed Card' 
+status: experimental
+description: 'Impressed card component with media at the side.'
+group: Cards
 props:
   type: object
   properties:
-    media_position:
+    style_size:
       type: string
-      title: Media position
-      default: top
+      title: 'Card style size'
+      description: 'Card style size (xsmall|small|medium|large|xlarge).'
+      default: ''
       enum:
-        - top
-        - bottom
-      meta:enum:
-        top: Top
-        bottom: Bottom
-    media_image:
-      title: Media upload
-      description: 'Image selected from the Media Library or uploaded. Displayed in the media area (no drag & drop slot).'
-      $ref: json-schema-definitions://canvas.module/image
-      type: object
-      examples:
-        - src: assets/impressed-card-image-placeholder.svg
-          alt: Impressed image
-          width: 800
-          height: 600
-    ratio:
-      type: string
-      title: Image ratio (crop)
-      description: Keeps consistent image shapes.
-      enum:
-        - ratio-auto
-        - ratio-16x9
-        - ratio-4x3
-        - ratio-1x1
-        - ratio-21x9
-      default: ratio-16x9
-      examples:
-        - ratio-16x9
-      meta:enum:
-        ratio-auto: Auto (no crop)
-        ratio-16x9: Wide (16:9)
-        ratio-4x3: Standard (4:3)
-        ratio-1x1: Square (1:1)
-        ratio-21x9: Ultra-wide (21:9)
-    fit:
-      type: string
-      title: Image fit
-      description: How the image behaves inside a fixed ratio.
-      enum:
-        - object-fit-cover
-        - object-fit-contain
-      default: object-fit-cover
-      examples:
-        - object-fit-cover
-      meta:enum:
-        object-fit-cover: Fill (crop)
-        object-fit-contain: Fit (no crop)
+        - ''
+        - xsmall
+        - small
+        - medium
+        - large
+        - xlarge
     card_border:
       type: boolean
-      title: Card border
-      description: Add a default border for the card.
-      default: false
-    background_color:
-      type: string
-      title: Background color
-      description: Bootstrap background utility applied to the card.
-      default: bg-transparent
-      enum:
-        - bg-transparent
-        - bg-body
-        - bg-body-tertiary
-        - bg-white
-        - bg-light
-        - bg-dark
-        - bg-primary
-        - bg-secondary
-        - bg-success
-        - bg-danger
-        - bg-warning
-        - bg-info
-      meta:enum:
-        bg-transparent: Transparent
-        bg-body: Body
-        bg-body-tertiary: Body tertiary
-        bg-white: White
-        bg-light: Light
-        bg-dark: Dark
-        bg-primary: Primary
-        bg-secondary: Secondary
-        bg-success: Success
-        bg-danger: Danger
-        bg-warning: Warning
-        bg-info: Info
+      title: 'Card Border'
+      description: 'Add a default padding to the card.'
+      default: true
     padded:
       type: boolean
-      title: Padded
-      description: Adds Bootstrap padding (p-4) to the content area.
+      title: 'Padded'
+      description: 'Add a default padding to the card.'
       default: false
-    box_shadow:
-      type: string
-      title: Shadow
-      description: Bootstrap shadow utility applied to the card.
-      default: shadow-none
-      enum:
-        - shadow-none
-        - shadow-sm
-        - shadow
-        - shadow-lg
-      meta:enum:
-        shadow-none: None
-        shadow-sm: Small
-        shadow: Medium
-        shadow-lg: Large
-    corner_style:
-      type: string
-      title: Corner style
-      description: Bootstrap rounded utility applied to the card.
-      default: rounded-0
-      enum:
-        - rounded-0
-        - rounded-1
-        - rounded-3
-        - rounded-pill
-      meta:enum:
-        rounded-0: None (square)
-        rounded-1: Small
-        rounded-3: Large
-        rounded-pill: Pill
     equal_height:
       type: boolean
-      title: Equal height
-      description: Apply h-100 to the card wrapper.
-      default: false
-    stretched_link:
+      title: 'Equal height'
+      default: true
+    anchor_all:
       type: boolean
-      title: Stretched link
-      description: When enabled and a Card link URL is provided, the entire card becomes clickable using Bootstrap’s stretched-link.
+      title: 'Anchor All'
       default: false
-    link_url:
+    media_position:
       type: string
-      title: Card link URL
-      format: uri-reference
-      description: Optional URL for the card link.
+      title: 'Media position'
+      description: 'Choose the location of the media from (top|bottom).'
       default: ''
-    link_target:
-      type: string
-      title: Link target
       enum:
-        - default
-        - _self
-        - _blank
-      default: default
-      meta:enum:
-        default: Default (same tab)
-        _self: Same tab
-        _blank: New tab
+        - ''
+        - top
+        - bottom
+    card_impressed_utility_classes:
+      type: array
+      title: 'Utility Classes'
+      default: []
+      items:
+        type: 'string'
+      description: 'Use to add extra Bootstrap utility classes for the main Card wrapper. E.g. `mb-3 shadow-lg` ( Do not add `card`).' 
+    card_impressed_media_utility_classes:
+      type: array
+      title: 'Media Utility Classes'
+      default: []
+      items:
+        type: 'string'
+      description: 'Use to add extra Bootstrap utility classes for the Card Media region wrapper. E.g. `bg-secondary mb-3` ( Do not add `card-img`).'
+    card_impressed_content_utility_classes:
+      type: array
+      title: Content Utility Classes
+      default: []
+      items:
+        type: 'string'
+      description: Use to add extra Bootstrap utility classes for the Card Content region wrapper. E.g. `w-75 mb-3 overflow-y-hidden`  ( Do not add `card-body`).'
+    card_attributes:
+      type: object
+      title: 'Card Attributes'
+      description: 'HTML attributes for the card element.'
+      $ref: 'ui-patterns://attributes'
+    content_attributes:
+      type: object
+      title: 'Content Attributes'
+      description: 'HTML attributes for the content element.'
+      $ref: 'ui-patterns://attributes'
+    media_attributes:
+      type: object
+      title: 'Media Attributes'
+      description: 'HTML attributes for the media element.'
+      $ref: 'ui-patterns://attributes'
 slots:
+  media:
+    title: 'Card Media'
+    description: 'The media image/video slot for the card.'
   content:
-    title: Card content
-    description: Drag & drop content slot for text/buttons/etc.
+    title: 'Card Content'
+    description: 'The content slot for the card.'

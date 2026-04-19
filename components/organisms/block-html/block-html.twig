@@ -7,14 +7,14 @@
  * - html_tag: The HTML tag for the block.
  */
 #}
-{% set bundle = bundle ? 'block--' ~ bundle|clean_class : '' %}
-{% set id = id ? 'block--' ~ id|replace({_: '-'})|clean_class : '' %}
+{% set bundle = bundle ? 'block--' ~ bundle|clean_class : "" %}
+{% set id = id ? 'block--' ~ id|replace({"_": "-"})|clean_class : "" %}
 {% set html_tag = html_tag ? html_tag : 'div' %}
 {% set classes = [
   'block',
   'block-html-code',
   bundle,
-  id,
+  id
 ] %}
 
 <{{ html_tag }}{{ attributes.addClass(classes) }}>
@@ -25,10 +25,10 @@
 
   {% if label %}
     {% block label %}
-      {% embed 'vartheme_bs5:heading' with {
+      {% embed "vartheme_bs5:heading" with {
         attributes: title_attributes,
         content: label,
-        html_tag: 'h2',
+        html_tag: 'h2'
       } only %}
       {% endembed %}
     {% endblock %}

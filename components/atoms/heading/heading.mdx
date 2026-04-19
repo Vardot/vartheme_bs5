@@ -1,64 +1,93 @@
 {/* heading.mdx */}
 
-import { Title, Subtitle, Meta, Description, Primary, Stories, Controls, Source } from '@storybook/blocks';
+import { Canvas, Title, Subtitle, ArgTypes, Source, Meta, Description, Primary, Story, Stories, Controls } from '@storybook/blocks';
 import * as comStories from './heading.stories.json';
 import templateSource from './heading.twig?raw';
 
-<Meta of={comStories} name="Docs" />
+<Meta of={comStories} name="Docs"/>
 
 <Title />
 <Subtitle />
 <Description />
 
-> ### Bootstrap Documentation
-> * [Typography – Headings](https://getbootstrap.com/docs/5.3/content/typography/#headings)
-> * [Typography – Display headings](https://getbootstrap.com/docs/5.3/content/typography/#display-headings)
-> * [Utilities – Text](https://getbootstrap.com/docs/5.3/utilities/text/)
+> #### [Bootstrap Documentation on Heading](https://getbootstrap.com/docs/5.3/content/typography/#headings)
+> * [Headings](https://getbootstrap.com/docs/5.3/content/typography/#headings)
+> * [Display headings](https://getbootstrap.com/docs/5.3/content/typography/#display-headings)
 
 <Primary />
 
 ## Properties
 <Controls />
 
+## Attributes:
+ * `attributes`: Attributes array.
+
+## Slots:
+ * `content`: Content text for the heading.
+
 <Stories of={comStories} />
-
-## Attributes
-* N/A
-
-## Slots
-* N/A
 
 ## Examples
 
-### Example #1: Simple H2
+**Example #1:** Have a heading for the h1 page title
 ```
-{% include "vartheme_bs5:heading" with {
-  heading_text: 'Hello world',
-  level: 2
-} only %}
-```
-
-### Example #2: Display heading, centered, colored
-```
-{% include "vartheme_bs5:heading" with {
-  heading_text: 'Big title',
-  level: 2,
-  text_size: 'display-3',
-  align: 'text-center',
-  text_color: 'text-primary',
-  font_weight: 'fw-bold',
-  font_style: 'fst-italic'
-} only %}
+{% include 'vartheme_bs5:heading' with {
+    html_tag: 'h1',
+    content: title|render|striptags|trim,
+    attributes: title_attributes,
+    heading_utility_classes: classes
+  }
+%}
 ```
 
-### Example #3: Linked heading (opens in a new tab)
+**Example #2:** Use for the heading of a block
+```
+{% include 'vartheme_bs5:heading' with {
+    html_tag: heading_tag,
+    content: heading_text|render|striptags|trim,
+    attributes: []
+  }
+%}
+```
+
+**Example #3:** Use in views title
+```
+{% embed "vartheme_bs5:heading" with {
+  attributes: title_attributes,
+  content: label,
+  html_tag: 'h2'
+} %}
+{% endembed %}
+```
+
+**Example #4** Have title with utility classes
 ```
 {% include "vartheme_bs5:heading" with {
-  heading_text: 'Read more',
-  level: 3,
-  url: 'https://example.com',
-  target: '_blank'
-} only %}
+  attributes: heading_attributes,
+  html_tag: 'h2',
+  content: heading,
+  heading_utility_classes: ['rich-heading', 'mb-2']
+} %}
+```
+
+**Example #5** Heading for the the alert message
+```
+	{% if heading|render|striptags|trim is not empty %}
+		{% include "vartheme_bs5:heading" with {
+			html_tag: 'h4',
+			content: heading|render|striptags|trim,
+			heading_utility_classes: ['alert-heading']
+		} only %}
+	{% endif %}
+```
+**Example #6** Have title with URL link
+```
+{% include "vartheme_bs5:heading" with {
+  attributes: heading_attributes,
+  html_tag: 'h2',
+  content: heading,
+  url: '#'
+} %}
 ```
 
 ## Source code

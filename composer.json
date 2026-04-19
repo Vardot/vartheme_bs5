@@ -17,7 +17,7 @@
   },
   "require": {
     "drupal/core": "~11.3.0",
-    "drupal/canvas": "~1",
-    "drupal/cva": "^1"
+    "vardot/varbase-patches": "~10.1.0",
+    "drupal/varbase_components": "~3.0.0"
   }
 }

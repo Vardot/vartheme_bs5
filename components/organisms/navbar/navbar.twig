@@ -29,7 +29,6 @@
   set classes = [
     'navbar',
     'justify-content-between',
-    'container',
   ]|merge(placement)|merge(color_mode)|merge(color)|merge(navbar_expand)|merge(navbar_utility_classes)
 %}
 
@@ -58,11 +57,9 @@
   </button>
 
   <div class="collapse navbar-collapse">
-    <div class="ms-auto">
-      {% block navigation %}
-        {{ navigation }}
-      {% endblock %}
-    </div>
+    {% block navigation %}
+      {{ navigation }}
+    {% endblock %}
   </div>
 
   {% if container %}

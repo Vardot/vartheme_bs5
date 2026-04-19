@@ -1,8 +1,0 @@
-{% set attributes = attributes|default(create_attribute()) %}
-{% set size = size|default('py-3') %}
-{% set allowed_sizes = ['py-0', 'py-1', 'py-2', 'py-3', 'py-4', 'py-5'] %}
-{% if size not in allowed_sizes %}
-  {% set size = 'py-3' %}
-{% endif %}
-
-<div {{ attributes.addClass([size, 'w-100']) }} aria-hidden="true"></div>

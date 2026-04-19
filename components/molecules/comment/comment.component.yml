@@ -1,5 +1,6 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: Comment 
+status: experimental
 description: Comment
 props:
   type: object
@@ -8,13 +9,15 @@ props:
       type: string
       title: Content
     attributes:
-      type: Drupal\Core\Template\Attribute
+      type: object
       title: Attributes
       description: HTML attributes for the containing element.
+      $ref: 'ui-patterns://attributes'
     content_attributes:
-      type: Drupal\Core\Template\Attribute
+      type: object
       title: Content Attributes
       description: HTML attributes for the content element.
+      $ref: 'ui-patterns://attributes'
     title_prefix:
       type: array
       title: title prefix

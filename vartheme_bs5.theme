@@ -122,9 +122,17 @@ function vartheme_bs5_preprocess_page(&$variables) {
   $variables['site_slogan'] = \Drupal::config('system.site')->get('slogan');
 
   $vartheme_bs5_contained_regions = [
-    'container_header',
+    'container_top_bar',
+    // 'container_navbar_branding',
+    // 'container_navigation',
+    // 'container_highlighted',
+    'container_content_above',
+    // 'container_primary_sidebar',
     'container_content',
-    'container_footer',
+    // 'container_secondary_sidebar',
+    'container_content_below',
+    'container_footer_top',
+    'container_footer_bottom',
   ];
 
   foreach ($vartheme_bs5_contained_regions as $contained_region) {
@@ -174,33 +182,6 @@ function vartheme_bs5_form_alter(&$form, $form_state, $form_id) {
     $form['moderation_state']['#attributes']['class'][] = 'card card-body bg-light mb-3';
     $form['#attached']['library'][] = 'vartheme_bs5/content_moderation';
   }
-}
-
-/**
- * Implements hook_preprocess_user().
- */
-function vartheme_bs5_preprocess_user(&$variables) {
-  $user = $variables['user'] ?? NULL;
-  if (!$user || !$user->id()) {
-    return;
-  }
-  if (!$user->access('update')) {
-    return;
-  }
-  $variables['user_actions'] = [
-    'edit' => [
-      '#type' => 'link',
-      '#title' => t('Edit profile'),
-      '#url' => \Drupal\Core\Url::fromRoute('entity.user.edit_form', ['user' => $user->id()]),
-      '#attributes' => ['class' => ['btn', 'btn-primary', 'user__action-edit']],
-    ],
-    'logout' => [
-      '#type' => 'link',
-      '#title' => t('Log out'),
-      '#url' => \Drupal\Core\Url::fromRoute('user.logout'),
-      '#attributes' => ['class' => ['btn', 'btn-secondary', 'user__action-logout', 'ms-2']],
-    ],
-  ];
 }
 
 /**

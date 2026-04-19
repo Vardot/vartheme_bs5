@@ -18,14 +18,14 @@
  */
 #}
 
-{% set tabs_block_classes = ['nav', 'nav-' ~ shape] %}
+{% set tabs_block_classes = ['nav', 'nav-' ~ shape ] %}
 
 {% if items %}
   <ul {{ attributes.addClass(tabs_block_classes) }} id="{{ tabs_id }}" role="tablist">
       {% for item in items %}
         {% set tab_button_classes = [
           'nav-link',
-          item.is_active ? 'active' : '',
+          item.is_active ? 'active' : ''
         ] %}
         <li class="nav-item" role="presentation">
           <button class="{{ tab_button_classes|join(' ') }}" id="{{ item.id }}" data-bs-toggle="tab" data-bs-target="{{ '#' ~ item.target }}" type="button" role="tab" aria-controls="{{ item.target }}" aria-selected="true">{{ item.title }}</button>

@@ -1,5 +1,6 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: Callout
+status: experimental
 description: Call out specific text from the content. These are intended to draw priority attention to that text.
 props:
   type: object
@@ -22,9 +23,10 @@ props:
         type: 'string'
       description: An array of utility classes that can be used to add extra Bootstrap utility classes or custom classes to this component.
     attributes:
-      type: Drupal\Core\Template\Attribute
+      type: object
       title: Attributes
       description: HTML attributes for the callout element.
+      $ref: 'ui-patterns://attributes'
 slots:
   content:
     type: string

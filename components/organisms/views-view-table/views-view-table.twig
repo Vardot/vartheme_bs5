@@ -40,9 +40,9 @@
 {% if first_row and first_row['#view'] and first_row['#view'].field %}
   {% for field_name, field_handler in first_row['#view'].field %}
     {# Check if field should be included in display #}
-    {% if not field_handler.options.exclude and
-          first_row['#row'] is defined and
-          first_row['#row']._entity is defined and
+    {% if not field_handler.options.exclude and 
+          first_row['#row'] is defined and 
+          first_row['#row']._entity is defined and 
           first_row['#row']._entity.hasField(field_name) %}
 
       {% set field_definition = first_row['#row']._entity.getFieldDefinition(field_name) %}
@@ -66,9 +66,9 @@
       {% endif %}
 
       {% set header_cell = {
-        tag: 'th',
-        attributes: header_attributes,
-        content: header_content,
+        'tag': 'th',
+        'attributes': header_attributes,
+        'content': header_content
       } %}
       {% set header_cells = header_cells|merge([header_cell]) %}
     {% endif %}
@@ -81,15 +81,15 @@
   {% for row in rows %}
     {% set cells = [] %}
     {# Validate row structure before processing #}
-    {% if row['#row'] is defined and
-          row['#row']._entity is defined and
-          row['#view'] is defined and
+    {% if row['#row'] is defined and 
+          row['#row']._entity is defined and 
+          row['#view'] is defined and 
           row['#view'].field is defined %}
 
       {# Process each field in the current row #}
       {% for field_name, field_handler in row['#view'].field %}
         {# Check if field should be included #}
-        {% if not field_handler.options.exclude and
+        {% if not field_handler.options.exclude and 
               row['#row']._entity.hasField(field_name) %}
 
           {% set field_value = row['#row']._entity.get(field_name) %}
@@ -104,8 +104,8 @@
           {% set cell_content = '' %}
           {% if not field_value.isEmpty() %}
             {# Apply field alterations if configured #}
-            {% if field_handler.options.alter is defined and
-                  field_handler.options.alter.alter_text and
+            {% if field_handler.options.alter is defined and 
+                  field_handler.options.alter.alter_text and 
                   field_handler.options.alter.text %}
               {% set cell_content = field_handler.options.alter.text %}
             {% else %}
@@ -114,16 +114,16 @@
             {% endif %}
           {% else %}
             {# Handle empty field display #}
-            {% if field_handler.options.empty_field_behavior is defined and
+            {% if field_handler.options.empty_field_behavior is defined and 
                   field_handler.options.empty_field_behavior.empty_text %}
               {% set cell_content = field_handler.options.empty_field_behavior.empty_text %}
             {% endif %}
           {% endif %}
 
           {% set cell = {
-            tag: 'td',
-            attributes: cell_attributes,
-            content: cell_content,
+            'tag': 'td',
+            'attributes': cell_attributes,
+            'content': cell_content
           } %}
           {% set cells = cells|merge([cell]) %}
         {% endif %}
@@ -140,8 +140,8 @@
         {% endif %}
 
         {% set table_row = {
-          attributes: row_attributes,
-          cells: cells,
+          'attributes': row_attributes,
+          'cells': cells
         } %}
 
         {% set table_rows = table_rows|merge([table_row]) %}
@@ -157,7 +157,7 @@
     rows: table_rows,
     footer: [],
     caption: caption ?? '',
-    empty: '<p>Empty table!</p>'|t,
+    empty: "<p>Empty table!</p>"|t,
     responsive: responsive ?? false,
     sticky: sticky ?? false,
     variant: variant ?? null,
@@ -176,6 +176,6 @@
     attributes: attributes ?? create_attribute(),
     thead_attributes: thead_attributes ?? create_attribute(),
     tbody_attributes: tbody_attributes ?? create_attribute(),
-    tfoot_attributes: tfoot_attributes ?? create_attribute(),
-  }, with_context: false)
+    tfoot_attributes: tfoot_attributes ?? create_attribute()
+  }, with_context = false)
 }}

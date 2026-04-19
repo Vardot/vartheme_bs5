@@ -1,8 +1,8 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: Block CTA
+status: experimental
 description: Call to action (CTA) block component.
 group: Blocks
-noUi: true
 props:
   type: object
   properties:
@@ -20,9 +20,10 @@ props:
       type: string
       title: Heading
     attributes:
-      type: Drupal\Core\Template\Attribute
+      type: object
       title: Attributes
       description: HTML attributes for the containing element.
+      $ref: 'ui-patterns://attributes'
 slots:
   content:
     type: string

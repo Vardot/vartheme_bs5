@@ -1,13 +1,5 @@
-{# Text component #}
 
-{% set classes = [
-  'rich-text',
-  text_size|default('none'),
-  text_color|default('text-body'),
-]|filter(v => v is not empty and v != 'none') %}
+{% set text_utility_classes = text_utility_classes ? text_utility_classes : [] %}
+{% set classes = []|merge(text_utility_classes) %}
 
-{% set attrs = create_attribute().addClass(classes) %}
-
-<div {{ attrs }}>
-  {{ text|default('')|raw }}
-</div>
+<p{{ attributes.addClass(classes) }}>{{ content }}</p>

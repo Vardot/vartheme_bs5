@@ -48,9 +48,17 @@ function vartheme_bs5_form_system_theme_settings_alter(&$form, FormStateInterfac
   ];
 
   $vartheme_bs5_contained_regions = [
+    'top_bar' => t('Top bar'),
+    // 'navbar_branding' => t('Navbar branding'),
+    // 'navigation' => t('Navigation (Desktop and Collapse)'),
+    // 'highlighted' => t('Highlighted'),
+    'content_above' => t('Content above'),
+    // 'primary_sidebar' => t('Primary sidebar'),
     'content' => t('Content'),
-    'header' => t('Header'),
-    'footer' => t('Footer '),
+    // 'secondary_sidebar' => t('Secondary sidebar'),
+    'content_below' => t('Content below'),
+    'footer_top' => t('Footer top'),
+    'footer_bottom' => t('Footer bottom'),
   ];
 
   foreach ($vartheme_bs5_contained_regions as $contained_region_name => $contained_region_title) {
@@ -63,5 +71,51 @@ function vartheme_bs5_form_system_theme_settings_alter(&$form, FormStateInterfac
       '#options' => $container_options,
     ];
   }
+
+  // Email logo settings to be used with Varbase Email module.
+  $form['email_logo'] = [
+    '#type'     => 'details',
+    '#title'    => t('Email Logo'),
+    '#open' => FALSE,
+    '#description' => t('Email logo settings to be used with Varbase Email module. Have a look at @varbase_docs_link.', [
+      '@varbase_docs_link' => Link::fromTextAndUrl('Set the Email Logo for Symfony Mailer Template', Url::fromUri('https://docs.varbase.vardot.com/v/10.1.x/developers/understanding-varbase/core-components/varbase-email', ['absolute' => TRUE, 'fragment' => 'containers']))->toString(),
+    ]),
+  ];
+
+  $form['email_logo']['email_logo_default'] = [
+    "#type" => "checkbox",
+    '#title'    => t('Use the logo supplied by the theme'),
+    "#default_value" => theme_get_setting('email_logo_default'),
+  ];
+
+  $form['email_logo']['email_logo_settings'] = [
+    "#type" => "container",
+    '#states' => [
+      "invisible" => [
+        'input[name="email_logo_default"]' => [
+          "checked" => TRUE,
+        ],
+      ],
+    ],
+  ];
+
+  $form['email_logo']['email_logo_settings']["email_logo_path"] = [
+    "#type" => "textfield",
+    "#title" => "Path to custom logo",
+    "#default_value" => theme_get_setting('email_logo_path'),
+    "#description" => t("Examples: <code>@external-file</code>", ["@external-file" => "http://www.example.com/logo.png"]),
+  ];
+
+  $form['email_logo']['email_logo_settings']["email_logo_upload"] = [
+    '#type'     => 'managed_file',
+    "#title"    => t("Upload logo image"),
+    "#description" => t("If you don't have direct file access to the server, use this field to upload your logo."),
+    '#required' => FALSE,
+    '#upload_location' => \Drupal::config('system.file')->get('default_scheme') . '://theme/email_logo/',
+    '#default_value' => theme_get_setting('email_logo_upload'),
+    '#upload_validators' => [
+      'file_validate_extensions' => ['gif png jpg jpeg'],
+    ],
+  ];
 
 }

@@ -1,36 +1,8 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: Icons 
+status: experimental
 description: Icons
-noUi: true
 group: Meta
 props:
   type: object
-  required:
-    - icon
-    - icon_size
-  properties:
-    icon:
-      type: string
-      title: Icon name
-      description: 'The ID of an icon from the <a href="https://icons.getbootstrap.com/" target="_blank">Bootstrap Icons</a> library.'
-      default: "rocket"
-      examples:
-        - "rocket"
-    icon_size:
-      type: string
-      title: Icon size
-      enum:
-        - extra-small
-        - small
-        - medium
-        - large
-        - extra-large
-      meta:enum:
-        extra-small: Extra small
-        small: Small
-        medium: Medium
-        large: Large
-        extra-large: Extra large
-      default: small
-      examples:
-        - small
+  properties: {}

@@ -122,13 +122,13 @@
 
           {%
             set indicators_classes = [
-              'carousel-indicators',
+              'carousel-indicators'
             ]|merge(heroslider_indicators_utility_classes)
           %}
 
           {% set indicators_attributes = indicators_attributes.addClass(indicators_classes) %}
 
-          <div{{ indicators_attributes }}>
+          <div{{ indicators_attributes}}>
             {% for key, item in items %}
               {% set item_id = heroslider_id ~ '--item-' ~ key %}
               <button id="indicator--{{ item_id }}" type="button" data-bs-target="#{{ heroslider_id }}" data-bs-slide-to="{{ key }}" class="{{ (key == 0) ? 'active' }}" aria-label="{{ item.indicator_label }}" aria-current="{{ (key == 0) ? 'true' }}"></button>

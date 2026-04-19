@@ -29,10 +29,10 @@
 ]|merge(size)|merge(disabled_classes)|merge(close_button_utility_classes) %}
 
 {# Include text for screen readers, using aria-label #}
-{% set attributes = attributes.setAttribute('aria-label', 'Close'|t) %}
+{% set attributes = attributes.setAttribute('aria-label', 'Close'|t ) %}
 
 {% if disabled %}
-  {% set attributes = attributes.setAttribute('disabled', true) %}
+  {% set attributes = attributes.setAttribute('disabled', true ) %}
 {% endif %}
 
 <button type="button" {{ attributes.addClass(classes) }} {{ disabled }}"></button>
