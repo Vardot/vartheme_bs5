@@ -20,8 +20,9 @@
   <div class="border-top pt-4 mb-5">
     <h2 class="fw-bold mb-4">Responsive Images</h2>
     <img
-      src="/components/foundation/images/assets/placeholder.jpg"
-      class="img-fluid w-100"
+      src="/components/foundation/images/assets/hero-2.jpg"
+      class="img-fluid w-100 object-fit-cover"
+      style="height: 500px;"
       alt="Responsive image example"
     />
   </div>
@@ -36,7 +37,7 @@
       <img
         src="/components/foundation/images/assets/hero-2.jpg"
         class="img-fluid w-100 object-fit-cover"
-        style="max-height: 810px;"
+        style="height: 810px;"
         alt="Hero image example"
       />
     </div>
@@ -47,7 +48,7 @@
       <img
         src="/components/foundation/images/assets/banner-1.jpg"
         class="img-fluid w-100 object-fit-cover"
-        style="max-height: 465px;"
+        style="height: 465px;"
         alt="Banner image example"
       />
     </div>
@@ -58,7 +59,7 @@
       <img
         src="/components/foundation/images/assets/teaser-1.jpg"
         class="img-fluid object-fit-cover"
-        style="max-width: 750px; max-height: 440px;"
+        style="width: 750px; height: 440px;"
         alt="Teaser image example"
       />
     </div>
@@ -67,22 +68,16 @@
   {# Image Alignment #}
   <div class="border-top pt-4 mb-5">
     <h2 class="fw-bold mb-4">Image Alignment</h2>
-    <div class="row g-4">
-      <div class="col-6 col-md-3">
-        <img src="/components/foundation/images/assets/teaser-1.jpg" class="img-fluid w-100 object-fit-cover" style="height: 220px;" alt="Teaser 1" />
-        <p class="small text-muted mt-2 text-center"><code>float-start</code></p>
+    <div class="d-flex gap-4 align-items-start">
+      {# Left: 2 stacked #}
+      <div class="d-flex flex-column gap-4" style="width: 375px; flex-shrink: 0;">
+        <img src="/components/foundation/images/assets/teaser-5.jpg" class="object-fit-cover" style="width: 375px; height: 220px;" alt="float-start" />
+        <img src="/components/foundation/images/assets/teaser-6.jpg" class="object-fit-cover" style="width: 375px; height: 220px;" alt="float-start second" />
       </div>
-      <div class="col-6 col-md-3">
-        <img src="/components/foundation/images/assets/teaser-2.jpg" class="img-fluid w-100 object-fit-cover" style="height: 220px;" alt="Teaser 2" />
-        <p class="small text-muted mt-2 text-center"><code>mx-auto d-block</code></p>
-      </div>
-      <div class="col-6 col-md-3">
-        <img src="/components/foundation/images/assets/teaser-3.jpg" class="img-fluid w-100 object-fit-cover" style="height: 220px;" alt="Teaser 3" />
-        <p class="small text-muted mt-2 text-center"><code>float-end</code></p>
-      </div>
-      <div class="col-6 col-md-3">
-        <img src="/components/foundation/images/assets/teaser-1.jpg" class="img-fluid w-100 object-fit-cover" style="height: 220px;" alt="Teaser 4" />
-        <p class="small text-muted mt-2 text-center"><code>img-fluid</code></p>
+      {# Right: 2 side-by-side #}
+      <div class="d-flex gap-4 ms-auto" style="width: 780px; flex-shrink: 0;">
+        <img src="/components/foundation/images/assets/teaser-7.jpg" class="object-fit-cover" style="width: 375px; height: 220px;" alt="mx-auto d-block" />
+        <img src="/components/foundation/images/assets/teaser-8.jpg" class="object-fit-cover" style="width: 375px; height: 220px;" alt="float-end" />
       </div>
     </div>
   </div>
@@ -94,48 +89,91 @@
       src="/components/foundation/images/assets/placeholder.jpg"
       class="img-fluid"
       style="width: 380px; height: 380px; object-fit: cover;"
-      alt="Image element example"
+      alt="Image element placeholder"
     />
   </div>
 
-  {# Teasers gallery #}
+  {# Teasers — all 12 from Figma #}
   <div class="border-top pt-4 mb-5">
     <h2 class="fw-bold mb-4">Teasers</h2>
     <div class="row g-3">
-      <div class="col-md-4">
-        <img src="/components/foundation/images/assets/teaser-1.jpg" class="img-fluid w-100 object-fit-cover" style="height: 280px;" alt="Teaser 01" />
+      <div class="col-md-4 col-lg-3">
+        <img src="/components/foundation/images/assets/teaser-1.jpg" class="img-fluid w-100 object-fit-cover" style="height: 220px;" alt="Teaser 01" />
+        <p class="small text-muted mt-1 text-center">#01</p>
       </div>
-      <div class="col-md-4">
-        <img src="/components/foundation/images/assets/teaser-2.jpg" class="img-fluid w-100 object-fit-cover" style="height: 280px;" alt="Teaser 02" />
+      <div class="col-md-4 col-lg-3">
+        <img src="/components/foundation/images/assets/teaser-2.jpg" class="img-fluid w-100 object-fit-cover" style="height: 220px;" alt="Teaser 02" />
+        <p class="small text-muted mt-1 text-center">#02</p>
       </div>
-      <div class="col-md-4">
-        <img src="/components/foundation/images/assets/teaser-3.jpg" class="img-fluid w-100 object-fit-cover" style="height: 280px;" alt="Teaser 03" />
+      <div class="col-md-4 col-lg-3">
+        <img src="/components/foundation/images/assets/teaser-3.jpg" class="img-fluid w-100 object-fit-cover" style="height: 220px;" alt="Teaser 03" />
+        <p class="small text-muted mt-1 text-center">#03</p>
+      </div>
+      <div class="col-md-4 col-lg-3">
+        <img src="/components/foundation/images/assets/teaser-4.jpg" class="img-fluid w-100 object-fit-cover" style="height: 220px;" alt="Teaser 04" />
+        <p class="small text-muted mt-1 text-center">#04</p>
+      </div>
+      <div class="col-md-4 col-lg-3">
+        <img src="/components/foundation/images/assets/teaser-5.jpg" class="img-fluid w-100 object-fit-cover" style="height: 220px;" alt="Teaser 05" />
+        <p class="small text-muted mt-1 text-center">#05</p>
+      </div>
+      <div class="col-md-4 col-lg-3">
+        <img src="/components/foundation/images/assets/teaser-6.jpg" class="img-fluid w-100 object-fit-cover" style="height: 220px;" alt="Teaser 06" />
+        <p class="small text-muted mt-1 text-center">#06</p>
+      </div>
+      <div class="col-md-4 col-lg-3">
+        <img src="/components/foundation/images/assets/teaser-7.jpg" class="img-fluid w-100 object-fit-cover" style="height: 220px;" alt="Teaser 07" />
+        <p class="small text-muted mt-1 text-center">#07</p>
+      </div>
+      <div class="col-md-4 col-lg-3">
+        <img src="/components/foundation/images/assets/teaser-8.jpg" class="img-fluid w-100 object-fit-cover" style="height: 220px;" alt="Teaser 08" />
+        <p class="small text-muted mt-1 text-center">#08</p>
+      </div>
+      <div class="col-md-4 col-lg-3">
+        <img src="/components/foundation/images/assets/teaser-9.jpg" class="img-fluid w-100 object-fit-cover" style="height: 220px;" alt="Teaser 09" />
+        <p class="small text-muted mt-1 text-center">#09</p>
+      </div>
+      <div class="col-md-4 col-lg-3">
+        <img src="/components/foundation/images/assets/teaser-10.jpg" class="img-fluid w-100 object-fit-cover" style="height: 220px;" alt="Teaser 10" />
+        <p class="small text-muted mt-1 text-center">#10</p>
+      </div>
+      <div class="col-md-4 col-lg-3">
+        <img src="/components/foundation/images/assets/teaser-11.jpg" class="img-fluid w-100 object-fit-cover" style="height: 220px;" alt="Teaser 11" />
+        <p class="small text-muted mt-1 text-center">#11</p>
+      </div>
+      <div class="col-md-4 col-lg-3">
+        <img src="/components/foundation/images/assets/teaser-12.jpg" class="img-fluid w-100 object-fit-cover" style="height: 220px;" alt="Teaser 12" />
+        <p class="small text-muted mt-1 text-center">#12</p>
       </div>
     </div>
   </div>
 
-  {# Hero gallery #}
+  {# Hero — both from Figma #}
   <div class="border-top pt-4 mb-5">
     <h2 class="fw-bold mb-4">Hero</h2>
     <div class="row g-3">
       <div class="col-12">
-        <img src="/components/foundation/images/assets/hero-1.jpg" class="img-fluid w-100 object-fit-cover" style="height: 400px;" alt="Hero 01" />
+        <img src="/components/foundation/images/assets/hero-1.jpg" class="img-fluid w-100 object-fit-cover" style="height: 400px;" alt="Hero #1" />
+        <p class="small text-muted mt-1 text-center">#1</p>
       </div>
       <div class="col-12">
-        <img src="/components/foundation/images/assets/hero-2.jpg" class="img-fluid w-100 object-fit-cover" style="height: 400px;" alt="Hero 02" />
+        <img src="/components/foundation/images/assets/hero-2.jpg" class="img-fluid w-100 object-fit-cover" style="height: 400px;" alt="Hero #2" />
+        <p class="small text-muted mt-1 text-center">#2</p>
       </div>
     </div>
   </div>
 
-  {# Banner gallery #}
+  {# Banner — both from Figma #}
   <div class="border-top pt-4 mb-5">
     <h2 class="fw-bold mb-4">Banner</h2>
     <div class="row g-3">
       <div class="col-12">
-        <img src="/components/foundation/images/assets/banner-1.jpg" class="img-fluid w-100 object-fit-cover" style="height: 300px;" alt="Banner 01" />
+        <img src="/components/foundation/images/assets/banner-1.jpg" class="img-fluid w-100 object-fit-cover" style="height: 300px;" alt="Banner #1" />
+        <p class="small text-muted mt-1 text-center">#1</p>
       </div>
       <div class="col-12">
-        <img src="/components/foundation/images/assets/banner-2.jpg" class="img-fluid w-100 object-fit-cover" style="height: 300px;" alt="Banner 02" />
+        <img src="/components/foundation/images/assets/banner-2.jpg" class="img-fluid w-100 object-fit-cover" style="height: 300px;" alt="Banner #2" />
+        <p class="small text-muted mt-1 text-center">#2</p>
       </div>
     </div>
   </div>
