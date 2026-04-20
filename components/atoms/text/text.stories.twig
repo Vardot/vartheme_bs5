@@ -52,22 +52,29 @@
   },
 } %}
 
-{% story Default with {
-  name: 'Default',
+{% story TextOnly with {
+  name: 'Text',
   args: {
     text: '<p><strong>Hello</strong> from rich text.</p>',
-    text_size: 'none',
-    text_color: 'text-body',
   },
 } %}
 {{ include('vartheme_bs5:text') }}
 {% endstory %}
 
-{% story Primary with {
-  name: 'Primary color',
+{% story TextSizeOnly with {
+  name: 'Text size',
   args: {
-    text: '<p>This text uses the <strong>primary</strong> color utility.</p>',
-    text_size: 'fs-5',
+    text: '<p><strong>Hello</strong> from rich text.</p>',
+    text_size: 'fs-3',
+  },
+} %}
+{{ include('vartheme_bs5:text') }}
+{% endstory %}
+
+{% story TextColorOnly with {
+  name: 'Text color',
+  args: {
+    text: '<p><strong>Hello</strong> from rich text.</p>',
     text_color: 'text-primary',
   },
 } %}

@@ -1,22 +1,124 @@
-import { Canvas, Meta, Story } from '@storybook/blocks';
-import * as HeroBillboardStories from './hero-billboard.stories.json';
+import { Canvas, Title, Subtitle, Source, Meta, Description, Primary, Story, Stories, Controls } from '@storybook/addon-docs/blocks';
+import * as comStories from './hero-billboard.stories.json';
+import templateSource from './hero-billboard.twig?raw';
 
-<Meta title="Hero/Hero Billboard" of={HeroBillboardStories} />
+<Meta of={comStories} />
 
-# Hero billboard
+<Title />
+<Subtitle />
+<Description />
 
-Hero billboard displays content over a background image with overlay controls and flexible content positioning.
+> ### Bootstrap documentation
+> * [Background](https://getbootstrap.com/docs/5.3/utilities/background/)
+> * [Opacity](https://getbootstrap.com/docs/5.3/utilities/opacity/)
+> * [Sizing](https://getbootstrap.com/docs/5.3/utilities/sizing/)
+> * [Position](https://getbootstrap.com/docs/5.3/utilities/position/)
+> * [Flex](https://getbootstrap.com/docs/5.3/utilities/flex/)
+
+<Primary />
+
+## Properties
+<Controls />
+
+<Stories of={comStories} />
+
+## Notes
+* The component displays hero content over a background image.
+* `hero_slot` is a Twig slot/block.
+* Content must be rendered using `{% block hero_slot %}`.
+* `media` expects `src`, `alt`, `width`, and `height`.
+* Layout is controlled by `container_type`, `bg_edge2edge`, `height`, `flex_position`, `overlay_bg`, `overlay_opacity`, `content_width`, and `object_position`.
 
 ## Examples
 
-<Canvas>
-  <Story of={HeroBillboardStories.Default} />
-</Canvas>
+### Example #1 : Default hero billboard
 
-<Canvas>
-  <Story of={HeroBillboardStories.Centered} />
-</Canvas>
+```twig
+{% embed 'vartheme_bs5:hero-billboard' with {
+  container_type: 'container',
+  bg_edge2edge: false,
+  height: 'ribbon',
+  flex_position: 'center-left',
+  overlay_bg: 'bg-dark',
+  overlay_opacity: 'opacity-50',
+  content_width: 'w-100',
+  object_position: 'center',
+  media: {
+    src: '/components/organisms/hero-billboard/assets/hero-bg-placeholder.svg',
+    alt: 'Background image',
+    width: 1920,
+    height: 1075
+  }
+} %}
+  {% block hero_slot %}
+    <div class="text-white">
+      <h2 class="display-5 mb-3">Hero billboard title</h2>
+      <p class="lead mb-0">Add any rich content inside the hero slot.</p>
+    </div>
+  {% endblock %}
+{% endembed %}
+```
 
-<Canvas>
-  <Story of={HeroBillboardStories.Edge_to_edge} />
-</Canvas>
+### Example #2 : Centered hero billboard
+
+```twig
+{% embed 'vartheme_bs5:hero-billboard' with {
+  container_type: 'container',
+  bg_edge2edge: false,
+  height: 'large',
+  flex_position: 'hero-center',
+  overlay_bg: 'bg-dark',
+  overlay_opacity: 'opacity-50',
+  content_width: 'w-75',
+  object_position: 'center',
+  media: {
+    src: '/components/organisms/hero-billboard/assets/hero-bg-placeholder.svg',
+    alt: 'Background image',
+    width: 1920,
+    height: 1075
+  }
+} %}
+  {% block hero_slot %}
+    <div class="text-center text-white">
+      <h1 class="display-4 mb-3">Centered hero</h1>
+      <p class="lead mb-0">Most commonly used centered layout</p>
+    </div>
+  {% endblock %}
+{% endembed %}
+```
+
+### Example #3 : Hero billboard with actions
+
+```twig
+{% embed 'vartheme_bs5:hero-billboard' with {
+  container_type: 'container',
+  bg_edge2edge: false,
+  height: 'large',
+  flex_position: 'center-left',
+  overlay_bg: 'bg-black',
+  overlay_opacity: 'opacity-75',
+  content_width: 'w-75',
+  object_position: 'center',
+  media: {
+    src: '/components/organisms/hero-billboard/assets/hero-bg-placeholder.svg',
+    alt: 'Background image',
+    width: 1920,
+    height: 1075
+  }
+} %}
+  {% block hero_slot %}
+    <div class="text-white">
+      <p class="text-uppercase small mb-2">Featured campaign</p>
+      <h1 class="display-3 mb-3">Build bold hero experiences</h1>
+      <p class="lead mb-4">Compose headings, text, and actions</p>
+      <div class="d-flex gap-2">
+        <a href="#" class="btn btn-primary">Primary</a>
+        <a href="#" class="btn btn-outline-light">Secondary</a>
+      </div>
+    </div>
+  {% endblock %}
+{% endembed %}
+```
+
+## Source code
+<Source code={templateSource} />

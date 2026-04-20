@@ -1,17 +1,47 @@
-import { Title, Subtitle, Meta, Description } from '@storybook/blocks';
-import * as comStories from './plain-text.stories.json';
+import { Source, Meta, Controls } from '@storybook/blocks';
 import templateSource from './plain-text.twig?raw';
 
-<Meta of={comStories} name="Docs"/>
+<Meta title="Base/Plain Text" />
 
-<Title />
-<Subtitle />
-<Description>
-  A minimal plain text component with optional trim behavior.
-</Description>
+# Plain Text
 
-## Twig template
+A minimal plain text component with optional trim behavior.
 
-```twig
-{templateSource}
-```
+> ### Bootstrap documentation
+> * https://getbootstrap.com/docs/5.3/content/typography/
+> * https://getbootstrap.com/docs/5.3/content/typography/#inline-text-elements
+> * https://getbootstrap.com/docs/5.3/utilities/api/
+
+## Properties
+<Controls />
+
+## Notes
+* This component renders plain text content safely
+* No HTML rendering (escaped output)
+* Ideal for user/admin input where HTML is not allowed
+
+## Examples
+
+### Example 1: Simple text
+<Source
+  code={`{% include "vartheme_bs5:plain-text" with {
+  text: 'This is a simple plain text.'
+} %}`}
+/>
+
+### Example 2: Text with special characters
+<Source
+  code={`{% include "vartheme_bs5:plain-text" with {
+  text: 'This will show <strong>as text</strong>, not HTML.'
+} %}`}
+/>
+
+### Example 3: Multi-line text
+<Source
+  code={`{% include "vartheme_bs5:plain-text" with {
+  text: 'Line one\nLine two\nLine three'
+} %}`}
+/>
+
+## Source code
+<Source code={templateSource} />

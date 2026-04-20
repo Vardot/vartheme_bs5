@@ -1,17 +1,81 @@
-import { Meta } from '@storybook/blocks';
+import { Canvas, Title, Subtitle, Source, Meta, Description, Primary, Stories, Controls } from '@storybook/blocks';
+import * as comStories from './card-icon.stories.json';
+import templateSource from './card-icon.twig?raw';
 
-<Meta title="Cards/Card Icon" />
+<Meta of={comStories} name="Docs"/>
 
-# Card Icon
+<Title />
+<Subtitle />
+<Description />
 
-Bootstrap card with an optional icon, heading, description, and optional link or button.
+> ### Bootstrap documentation
+> * [Card](https://getbootstrap.com/docs/5.3/components/card/)
+> * [Icons](https://icons.getbootstrap.com/)
+> * [Shadows](https://getbootstrap.com/docs/5.3/utilities/shadows/)
+> * [Text alignment](https://getbootstrap.com/docs/5.3/utilities/text/#text-alignment)
+> * [Background](https://getbootstrap.com/docs/5.3/utilities/background/)
 
-## Highlights
+<Primary />
 
-- Heading always renders as H3
-- Optional icon
-- Text alignment applies to the icon, heading, and description
-- Background and shadow options use Bootstrap utility class values
-- Natural card height
-- Button mode or full-card link mode
-- Padding checkbox that adds `p-4`
+## Properties
+<Controls />
+
+<Stories of={comStories} />
+
+## Notes
+* This component renders an optional Bootstrap icon, heading, description, and optional CTA button.
+* The icon name should be passed without the `bi-` prefix.
+* `text_align` affects the icon row, heading, and description alignment together.
+* `has_padding` applies `p-4` to the card body.
+* When both `url` and `button_label` are provided, the card renders a button.
+* When only `url` is provided, the component can be used as a link-style card pattern depending on the surrounding implementation.
+
+## Examples
+
+### Example #1 : Default card icon
+```twig
+{% include 'vartheme_bs5:card-icon' with {
+  text: 'Your heading here',
+  description: '<p>This is placeholder text for a default card.</p>',
+  icon: 'people',
+  icon_size: 'fs-4',
+  text_align: 'text-center',
+  background_color: 'bg-body',
+  shadow: 'shadow',
+  has_padding: true
+} %}
+```
+
+### Example #2 : Primary background
+```twig
+{% include 'vartheme_bs5:card-icon' with {
+  text: 'Support services',
+  description: '<p>Find useful information and key guidance in one place.</p>',
+  icon: 'info',
+  icon_size: 'fs-3',
+  text_align: 'text-center',
+  background_color: 'bg-primary text-white',
+  shadow: 'shadow-lg',
+  has_padding: true
+} %}
+```
+
+### Example #3 : Card with button
+```twig
+{% include 'vartheme_bs5:card-icon' with {
+  text: 'Create account',
+  description: '<p>Start your registration process and continue with the next steps.</p>',
+  icon: 'person-check',
+  icon_size: 'fs-4',
+  text_align: 'text-center',
+  background_color: 'bg-body',
+  shadow: 'shadow',
+  has_padding: true,
+  url: 'https://example.com/register',
+  button_label: 'Get started',
+  button_variant: 'btn-primary'
+} %}
+```
+
+## Source code
+<Source code={templateSource} />

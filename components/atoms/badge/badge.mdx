@@ -1,17 +1,15 @@
-{/* badge.mdx */}
-
-import { Title, Subtitle, Meta, Description, Primary, Stories, Controls, Source } from '@storybook/blocks';
+import { Title, Subtitle, Description, Source, Meta, Primary, Stories, Controls } from '@storybook/addon-docs/blocks';
 import * as comStories from './badge.stories.json';
 import templateSource from './badge.twig?raw';
 
-<Meta of={comStories} name="Docs" />
+<Meta of={comStories} />
 
 <Title />
 <Subtitle />
 <Description />
 
-> ### [Bootstrap Documentation on Badges](https://getbootstrap.com/docs/5.3/components/badge/)
-> * [Examples](https://getbootstrap.com/docs/5.3/components/badge/#examples)
+> ### Bootstrap documentation
+> * [Badge examples](https://getbootstrap.com/docs/5.3/components/badge/#examples)
 > * [Background colors](https://getbootstrap.com/docs/5.3/components/badge/#background-colors)
 > * [Pill badges](https://getbootstrap.com/docs/5.3/components/badge/#pill-badges)
 > * [Positioned badges](https://getbootstrap.com/docs/5.3/components/badge/#positioned)
@@ -23,36 +21,49 @@ import templateSource from './badge.twig?raw';
 
 <Stories of={comStories} />
 
-## Attributes
-* N/A
-
-## Slots
-* N/A
+## Notes
+* `url` renders the badge as an `<a>` tag instead of a `<span>`.
+* `icon` accepts a Bootstrap Icon name without the `bi-` prefix. Use `none` to disable.
+* `icon_first` controls whether the icon appears before or after the label.
+* `indicator: 'dot'` shows a small dot. `indicator: 'count'` shows a count bubble using `indicator_text`.
+* `indicator_text` must be a string (e.g. `'99+'`, not `99`).
 
 ## Examples
 
 ### Example #1: Simple badge
-```
+```twig
 {% include 'vartheme_bs5:badge' with {
   label: 'New',
-  variant: 'text-bg-success'
+  variant: 'text-bg-success',
+  size: 'fs-6 px-3 py-2',
+  radius: 'rounded-1',
 } only %}
 ```
 
-### Example #2: Linked badge with icon and count
+### Example #2: Badge as link with icon
+```twig
+{% include 'vartheme_bs5:badge' with {
+  label: 'Open',
+  url: 'https://example.com',
+  variant: 'text-bg-primary',
+  size: 'fs-6 px-3 py-2',
+  radius: 'rounded-pill',
+  icon: 'arrow-right',
+  icon_first: false,
+} only %}
 ```
+
+### Example #3: Badge with count indicator
+```twig
 {% include 'vartheme_bs5:badge' with {
   label: 'Inbox',
-  url: 'https://example.com',
-  icon: 'inbox',
-  icon_first: true,
+  variant: 'text-bg-dark',
+  size: 'fs-6 px-3 py-2',
+  radius: 'rounded-pill',
   indicator: 'count',
-  indicator_text: '3',
-  variant: 'text-bg-primary',
-  radius: 'rounded-pill'
+  indicator_text: '99+',
 } only %}
 ```
 
 ## Source code
-[//]: # (Twig Template source code)
 <Source code={templateSource} />
