@@ -99,38 +99,38 @@
       <hr class="my-3">
       <div class="row align-items-center mb-3">
         <div class="col-2"><small class="text-muted">Heading 1</small></div>
-        <div class="col-5"><h1 class="mb-0">Heading 1</h1></div>
-        <div class="col-5"><h1 class="mb-0 fs-1">Heading 1</h1></div>
+        <div class="col-5">{{ include('vartheme_bs5:heading', { heading_text: 'Heading 1', level: 1 }) }}</div>
+        <div class="col-5">{{ include('vartheme_bs5:heading', { heading_text: 'Heading 1', level: 1, text_size: 'h1' }) }}</div>
       </div>
       <hr class="my-3">
       <div class="row align-items-center mb-3">
         <div class="col-2"><small class="text-muted">Heading 2</small></div>
-        <div class="col-5"><h2 class="mb-0">Heading 2</h2></div>
-        <div class="col-5"><h2 class="mb-0 fs-2">Heading 2</h2></div>
+        <div class="col-5">{{ include('vartheme_bs5:heading', { heading_text: 'Heading 2', level: 2 }) }}</div>
+        <div class="col-5">{{ include('vartheme_bs5:heading', { heading_text: 'Heading 2', level: 2, text_size: 'h2' }) }}</div>
       </div>
       <hr class="my-3">
       <div class="row align-items-center mb-3">
         <div class="col-2"><small class="text-muted">Heading 3</small></div>
-        <div class="col-5"><h3 class="mb-0">Heading 3</h3></div>
-        <div class="col-5"><h3 class="mb-0 fs-3">Heading 3</h3></div>
+        <div class="col-5">{{ include('vartheme_bs5:heading', { heading_text: 'Heading 3', level: 3 }) }}</div>
+        <div class="col-5">{{ include('vartheme_bs5:heading', { heading_text: 'Heading 3', level: 3, text_size: 'h3' }) }}</div>
       </div>
       <hr class="my-3">
       <div class="row align-items-center mb-3">
         <div class="col-2"><small class="text-muted">Heading 4</small></div>
-        <div class="col-5"><h4 class="mb-0">Heading 4</h4></div>
-        <div class="col-5"><h4 class="mb-0 fs-4">Heading 4</h4></div>
+        <div class="col-5">{{ include('vartheme_bs5:heading', { heading_text: 'Heading 4', level: 4 }) }}</div>
+        <div class="col-5">{{ include('vartheme_bs5:heading', { heading_text: 'Heading 4', level: 4, text_size: 'h4' }) }}</div>
       </div>
       <hr class="my-3">
       <div class="row align-items-center mb-3">
         <div class="col-2"><small class="text-muted">Heading 5</small></div>
-        <div class="col-5"><h5 class="mb-0">Heading 5</h5></div>
-        <div class="col-5"><h5 class="mb-0 fs-5">Heading 5</h5></div>
+        <div class="col-5">{{ include('vartheme_bs5:heading', { heading_text: 'Heading 5', level: 5 }) }}</div>
+        <div class="col-5">{{ include('vartheme_bs5:heading', { heading_text: 'Heading 5', level: 5, text_size: 'h5' }) }}</div>
       </div>
       <hr class="my-3">
       <div class="row align-items-center mb-3">
         <div class="col-2"><small class="text-muted">Heading 6</small></div>
-        <div class="col-5"><h6 class="mb-0">Heading 6</h6></div>
-        <div class="col-5"><h6 class="mb-0 fs-6">Heading 6</h6></div>
+        <div class="col-5">{{ include('vartheme_bs5:heading', { heading_text: 'Heading 6', level: 6 }) }}</div>
+        <div class="col-5">{{ include('vartheme_bs5:heading', { heading_text: 'Heading 6', level: 6, text_size: 'h6' }) }}</div>
       </div>
       <hr class="my-3">
     </div>
@@ -146,14 +146,42 @@
         <div class="col-5">Mobile</div>
       </div>
       <hr class="my-3">
-      {% for n in 1..6 %}
-        <div class="row align-items-center mb-3">
-          <div class="col-2"><small class="text-muted">Display {{ n }}</small></div>
-          <div class="col-5"><h1 class="display-{{ n }} mb-0">Display {{ n }}</h1></div>
-          <div class="col-5"><h1 class="display-{{ n }} mb-0">Display {{ n }}</h1></div>
-        </div>
-        <hr class="my-3">
-      {% endfor %}
+      <div class="row align-items-center mb-3">
+        <div class="col-2"><small class="text-muted">Display 1</small></div>
+        <div class="col-5">{{ include('vartheme_bs5:heading', { heading_text: 'Display 1', level: 1, text_size: 'display-1' }) }}</div>
+        <div class="col-5">{{ include('vartheme_bs5:heading', { heading_text: 'Display 1', level: 1, text_size: 'display-1' }) }}</div>
+      </div>
+      <hr class="my-3">
+      <div class="row align-items-center mb-3">
+        <div class="col-2"><small class="text-muted">Display 2</small></div>
+        <div class="col-5">{{ include('vartheme_bs5:heading', { heading_text: 'Display 2', level: 1, text_size: 'display-2' }) }}</div>
+        <div class="col-5">{{ include('vartheme_bs5:heading', { heading_text: 'Display 2', level: 1, text_size: 'display-2' }) }}</div>
+      </div>
+      <hr class="my-3">
+      <div class="row align-items-center mb-3">
+        <div class="col-2"><small class="text-muted">Display 3</small></div>
+        <div class="col-5">{{ include('vartheme_bs5:heading', { heading_text: 'Display 3', level: 1, text_size: 'display-3' }) }}</div>
+        <div class="col-5">{{ include('vartheme_bs5:heading', { heading_text: 'Display 3', level: 1, text_size: 'display-3' }) }}</div>
+      </div>
+      <hr class="my-3">
+      <div class="row align-items-center mb-3">
+        <div class="col-2"><small class="text-muted">Display 4</small></div>
+        <div class="col-5">{{ include('vartheme_bs5:heading', { heading_text: 'Display 4', level: 1, text_size: 'display-4' }) }}</div>
+        <div class="col-5">{{ include('vartheme_bs5:heading', { heading_text: 'Display 4', level: 1, text_size: 'display-4' }) }}</div>
+      </div>
+      <hr class="my-3">
+      <div class="row align-items-center mb-3">
+        <div class="col-2"><small class="text-muted">Display 5</small></div>
+        <div class="col-5">{{ include('vartheme_bs5:heading', { heading_text: 'Display 5', level: 1, text_size: 'display-5' }) }}</div>
+        <div class="col-5">{{ include('vartheme_bs5:heading', { heading_text: 'Display 5', level: 1, text_size: 'display-5' }) }}</div>
+      </div>
+      <hr class="my-3">
+      <div class="row align-items-center mb-3">
+        <div class="col-2"><small class="text-muted">Display 6</small></div>
+        <div class="col-5">{{ include('vartheme_bs5:heading', { heading_text: 'Display 6', level: 1, text_size: 'display-6' }) }}</div>
+        <div class="col-5">{{ include('vartheme_bs5:heading', { heading_text: 'Display 6', level: 1, text_size: 'display-6' }) }}</div>
+      </div>
+      <hr class="my-3">
     </div>
   </div>
 
