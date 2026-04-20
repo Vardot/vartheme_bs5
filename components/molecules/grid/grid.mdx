@@ -1,0 +1,91 @@
+import { Title, Subtitle, Description, Source, Meta, Primary, Stories, Controls } from '@storybook/addon-docs/blocks';
+import * as comStories from './grid.stories.json';
+import templateSource from './grid.twig?raw';
+
+<Meta of={comStories} />
+
+<Title />
+<Subtitle />
+<Description />
+
+> ### Bootstrap documentation
+> * [Grid system](https://getbootstrap.com/docs/5.3/layout/grid/)
+> * [Columns](https://getbootstrap.com/docs/5.3/layout/columns/)
+> * [Gutters](https://getbootstrap.com/docs/5.3/layout/gutters/)
+> * [Row columns](https://getbootstrap.com/docs/5.3/layout/grid/#row-columns)
+
+<Primary />
+
+## Properties
+<Controls />
+
+<Stories />
+
+## Notes
+* Bootstrap 5.3 uses a 12-column flexbox grid.
+* Column widths are specified with `col-*` classes where `*` is 1–12.
+* Responsive breakpoints: `xs` (default), `sm` (≥576px), `md` (≥768px), `lg` (≥992px), `xl` (≥1200px), `xxl` (≥1400px).
+* `row-cols-*` sets a uniform column count on a row.
+* Gutters are controlled with `g-*`, `gx-*`, `gy-*` utility classes.
+
+## Column breakpoint reference
+
+| Class | Breakpoint | Min width |
+|---|---|---|
+| `col-` | Extra small | `<576px` |
+| `col-sm-` | Small | `≥576px` |
+| `col-md-` | Medium | `≥768px` |
+| `col-lg-` | Large | `≥992px` |
+| `col-xl-` | X-Large | `≥1200px` |
+| `col-xxl-` | XX-Large | `≥1400px` |
+
+## Examples
+
+### Example #1 : Equal-width three columns
+
+```twig
+{% embed 'vartheme_bs5:grid' with {
+  container_type: 'container',
+  gutter: 'g-3'
+} %}
+  {% block content %}
+    <div class="col"><div class="p-3 border rounded">Column 1</div></div>
+    <div class="col"><div class="p-3 border rounded">Column 2</div></div>
+    <div class="col"><div class="p-3 border rounded">Column 3</div></div>
+  {% endblock %}
+{% endembed %}
+```
+
+### Example #2 : Responsive stacked-to-horizontal
+
+```twig
+{% embed 'vartheme_bs5:grid' with {
+  container_type: 'container',
+  gutter: 'g-4'
+} %}
+  {% block content %}
+    <div class="col-12 col-md-8"><div class="p-3 border rounded">Main content</div></div>
+    <div class="col-6 col-md-4"><div class="p-3 border rounded">Sidebar</div></div>
+  {% endblock %}
+{% endembed %}
+```
+
+### Example #3 : Row columns responsive layout
+
+```twig
+{% embed 'vartheme_bs5:grid' with {
+  container_type: 'container',
+  row_cols: 'row-cols-1 row-cols-sm-2 row-cols-md-4',
+  gutter: 'g-3'
+} %}
+  {% block content %}
+    <div class="col"><div class="p-3 border rounded">Item 1</div></div>
+    <div class="col"><div class="p-3 border rounded">Item 2</div></div>
+    <div class="col"><div class="p-3 border rounded">Item 3</div></div>
+    <div class="col"><div class="p-3 border rounded">Item 4</div></div>
+  {% endblock %}
+{% endembed %}
+```
+
+## Source code
+<Source code={templateSource} />

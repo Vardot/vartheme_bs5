@@ -1,0 +1,55 @@
+import { Title, Subtitle, Description, Source, Meta, Primary, Stories, Controls } from '@storybook/addon-docs/blocks';
+import * as comStories from './input-checkbox.stories.json';
+import templateSource from './input-checkbox.twig?raw';
+
+<Meta of={comStories} />
+
+<Title />
+<Subtitle />
+<Description />
+
+> ### Bootstrap documentation
+> * [Checkboxes](https://getbootstrap.com/docs/5.3/forms/checks-radios/#checkboxes)
+> * [Form controls](https://getbootstrap.com/docs/5.3/forms/form-control/)
+
+<Primary />
+
+## Properties
+<Controls />
+
+<Stories />
+
+## Notes
+* Renders a Bootstrap checkbox input with label.
+* `checked` sets the default checked state.
+* `disabled` renders the checkbox and label in a disabled state.
+* `required` adds the HTML required attribute.
+
+## Examples
+
+### Example #1 : Basic checkbox
+
+```twig
+{{ include('vartheme_bs5:input-checkbox', {
+  id: 'agree',
+  label: 'I agree to the terms',
+  name: 'agree',
+  checked: false,
+  required: true
+}, with_context: false) }}
+```
+
+### Example #2 : Pre-checked disabled checkbox
+
+```twig
+{{ include('vartheme_bs5:input-checkbox', {
+  id: 'newsletter',
+  label: 'Subscribe to newsletter',
+  name: 'newsletter',
+  checked: true,
+  disabled: true
+}, with_context: false) }}
+```
+
+## Source code
+<Source code={templateSource} />

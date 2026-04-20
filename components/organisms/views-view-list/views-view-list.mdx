@@ -1,0 +1,29 @@
+import { Title, Subtitle, Description, Source, Meta, Primary, Stories, Controls } from '@storybook/addon-docs/blocks';
+import * as comStories from './views-view-list.stories.json';
+import templateSource from './views-view-list.twig?raw';
+
+<Meta of={comStories} />
+
+<Title />
+<Subtitle />
+<Description />
+
+> ### Bootstrap documentation
+> * [Typography — Lists](https://getbootstrap.com/docs/5.3/content/typography/#lists)
+> * [List group](https://getbootstrap.com/docs/5.3/components/list-group/)
+
+<Primary />
+
+## Properties
+<Controls />
+
+<Stories />
+
+## Notes
+* Renders Drupal Views rows as an HTML list (`ul` or `ol`).
+* `rows` contains the individual items rendered by Drupal Views.
+* `type` switches between unordered and ordered list markup.
+* Bootstrap utility classes can be applied via `utility_classes`.
+
+## Source code
+<Source code={templateSource} />

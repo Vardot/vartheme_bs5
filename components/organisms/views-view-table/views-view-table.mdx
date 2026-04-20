@@ -1,0 +1,30 @@
+import { Title, Subtitle, Description, Source, Meta, Primary, Stories, Controls } from '@storybook/addon-docs/blocks';
+import * as comStories from './views-view-table.stories.json';
+import templateSource from './views-view-table.twig?raw';
+
+<Meta of={comStories} />
+
+<Title />
+<Subtitle />
+<Description />
+
+> ### Bootstrap documentation
+> * [Tables](https://getbootstrap.com/docs/5.3/content/tables/)
+> * [Table variants](https://getbootstrap.com/docs/5.3/content/tables/#variants)
+
+<Primary />
+
+## Properties
+<Controls />
+
+<Stories />
+
+## Notes
+* Renders Drupal Views results as a Bootstrap table.
+* `header` contains the column headers; `rows` contains the row data.
+* Supports Bootstrap table modifiers: `table-striped`, `table-hover`, `table-bordered`, `table-sm`.
+* `caption` adds an accessible caption element.
+* Responsive wrapping can be enabled with the `responsive` property.
+
+## Source code
+<Source code={templateSource} />

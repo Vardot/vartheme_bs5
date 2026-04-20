@@ -1,0 +1,48 @@
+import { Title, Subtitle, Description, Source, Meta, Primary, Stories, Controls } from '@storybook/addon-docs/blocks';
+import * as comStories from './input-submit.stories.json';
+import templateSource from './input-submit.twig?raw';
+
+<Meta of={comStories} />
+
+<Title />
+<Subtitle />
+<Description />
+
+> ### Bootstrap documentation
+> * [Buttons](https://getbootstrap.com/docs/5.3/components/buttons/)
+> * [Form controls](https://getbootstrap.com/docs/5.3/forms/form-control/)
+
+<Primary />
+
+## Properties
+<Controls />
+
+<Stories />
+
+## Notes
+* Renders an `<input type="submit">` with Bootstrap button styling.
+* `variant` maps to Bootstrap button classes (e.g. `btn-primary`, `btn-secondary`).
+* `disabled` adds the disabled attribute and visual state.
+
+## Examples
+
+### Example #1 : Primary submit button
+
+```twig
+{{ include('vartheme_bs5:input-submit', {
+  value: 'Submit',
+  variant: 'btn-primary'
+}, with_context: false) }}
+```
+
+### Example #2 : Secondary submit button
+
+```twig
+{{ include('vartheme_bs5:input-submit', {
+  value: 'Save changes',
+  variant: 'btn-secondary'
+}, with_context: false) }}
+```
+
+## Source code
+<Source code={templateSource} />

@@ -1,0 +1,60 @@
+import { Title, Subtitle, Description, Source, Meta, Primary, Stories, Controls } from '@storybook/addon-docs/blocks';
+import * as comStories from './list.stories.json';
+import templateSource from './list.twig?raw';
+
+<Meta of={comStories} />
+
+<Title />
+<Subtitle />
+<Description />
+
+> ### Bootstrap documentation
+> * [List Group](https://getbootstrap.com/docs/5.3/components/list-group/)
+> * [Typography](https://getbootstrap.com/docs/5.3/content/typography/)
+
+<Primary />
+
+## Properties
+<Controls />
+
+<Stories />
+
+## Notes
+* `type` controls the HTML tag: `ul` for unordered, `ol` for ordered.
+* `list_utility_classes` applies Bootstrap utility classes on the list element (e.g. `list-group`).
+* `list_item_utility_classes` applies Bootstrap utility classes on each `<li>` (e.g. `list-group-item`).
+* `attributes` supports additional HTML attributes on the list element.
+
+## Examples
+
+### Example #1 : Unordered list
+
+```twig
+{{ include('vartheme_bs5:list', {
+  type: 'ul',
+  items: ['First item', 'Second item', 'Third item']
+}, with_context: false) }}
+```
+
+### Example #2 : Ordered list
+
+```twig
+{{ include('vartheme_bs5:list', {
+  type: 'ol',
+  items: ['Step one', 'Step two', 'Step three']
+}, with_context: false) }}
+```
+
+### Example #3 : Bootstrap List Group
+
+```twig
+{{ include('vartheme_bs5:list', {
+  type: 'ul',
+  items: ['Home', 'About', 'Contact'],
+  list_utility_classes: 'list-group',
+  list_item_utility_classes: 'list-group-item'
+}, with_context: false) }}
+```
+
+## Source code
+<Source code={templateSource} />

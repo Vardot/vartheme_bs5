@@ -1,0 +1,83 @@
+import { Title, Subtitle, Description, Source, Meta, Primary, Stories, Controls } from '@storybook/addon-docs/blocks';
+import * as comStories from './list-group.stories.json';
+import templateSource from './list-group.twig?raw';
+
+<Meta of={comStories} />
+
+<Title />
+<Subtitle />
+<Description />
+
+> ### Bootstrap documentation
+> * [List group](https://getbootstrap.com/docs/5.3/components/list-group/)
+> * [Badges](https://getbootstrap.com/docs/5.3/components/badge/)
+> * [Contextual colors](https://getbootstrap.com/docs/5.3/utilities/colors/)
+
+<Primary />
+
+## Properties
+<Controls />
+
+<Stories />
+
+## Properties reference
+
+| Property | Type | Description | Default |
+|---|---|---|---|
+| `items` | array | List items — each with `content`, `active`, `disabled`, `href`, `variant`, `badge` | `[]` |
+| `flush` | boolean | Remove borders and rounded corners for edge-to-edge rendering | `false` |
+| `numbered` | boolean | Add automatic numbering to items | `false` |
+| `horizontal` | string | Horizontal layout at breakpoint: `sm`, `md`, `lg`, `xl`, `xxl` | `""` |
+| `utility_classes` | array | Additional Bootstrap utility classes on the wrapper | `[]` |
+| `attributes` | object | HTML attributes on the list group element | `{}` |
+
+## Item properties
+
+| Property | Type | Description |
+|---|---|---|
+| `content` | string | Item text or HTML content |
+| `active` | boolean | Mark item as active |
+| `disabled` | boolean | Mark item as disabled |
+| `href` | string | URL — renders item as `<a>` instead of `<li>` |
+| `variant` | string | Bootstrap contextual variant: `primary`, `success`, `danger`, etc. |
+| `badge` | object | Badge with `text` and `variant` properties |
+
+## Examples
+
+### Example #1 : Basic list group
+
+```twig
+{{ include('vartheme_bs5:list-group', {
+  items: [
+    {content: 'First item'},
+    {content: 'Second item'},
+    {content: 'Third item'}
+  ]
+}, with_context: false) }}
+```
+
+### Example #2 : Links with active and disabled states
+
+```twig
+{{ include('vartheme_bs5:list-group', {
+  items: [
+    {content: 'Home', href: '/', active: true},
+    {content: 'About', href: '/about'},
+    {content: 'Contact', href: '/contact', disabled: true}
+  ]
+}, with_context: false) }}
+```
+
+### Example #3 : With badges and contextual variants
+
+```twig
+{{ include('vartheme_bs5:list-group', {
+  items: [
+    {content: 'Messages', variant: 'primary', badge: {text: '12', variant: 'light'}},
+    {content: 'Warnings', variant: 'warning', badge: {text: '3', variant: 'dark'}}
+  ]
+}, with_context: false) }}
+```
+
+## Source code
+<Source code={templateSource} />

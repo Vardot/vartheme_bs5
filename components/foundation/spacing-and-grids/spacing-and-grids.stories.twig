@@ -3,7 +3,7 @@
   parameters: {
     docs: {
       description: {
-        component: 'Getting started page for Varbase Storybook',
+        component: 'Spacing scale, grid system, and layout containers for Vartheme BS5.',
       },
     },
   },
@@ -13,7 +13,165 @@
   name: 'Spacing & Grids',
 } %}
 
-<h1>Spacing & Grids</h1>
+<div class="px-5 py-5">
+  <h1 class="fw-bold mb-5">Spacing &amp; Grids</h1>
+
+  {# Containers #}
+  <div class="border-top pt-4 mb-5">
+    <h2 class="fw-bold mb-4">Containers</h2>
+    <p class="mb-4">Bootstrap containers set <code>max-width</code> at each responsive breakpoint.</p>
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead class="table-light">
+          <tr>
+            <th>Container</th>
+            <th>&lt;576px</th>
+            <th>≥576px</th>
+            <th>≥768px</th>
+            <th>≥992px</th>
+            <th>≥1200px</th>
+            <th>≥1400px</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><code>.container</code></td><td>100%</td><td>540px</td><td>720px</td><td>960px</td><td>1140px</td><td>1320px</td></tr>
+          <tr><td><code>.container-sm</code></td><td>100%</td><td>540px</td><td>720px</td><td>960px</td><td>1140px</td><td>1320px</td></tr>
+          <tr><td><code>.container-md</code></td><td>100%</td><td>100%</td><td>720px</td><td>960px</td><td>1140px</td><td>1320px</td></tr>
+          <tr><td><code>.container-lg</code></td><td>100%</td><td>100%</td><td>100%</td><td>960px</td><td>1140px</td><td>1320px</td></tr>
+          <tr><td><code>.container-xl</code></td><td>100%</td><td>100%</td><td>100%</td><td>100%</td><td>1140px</td><td>1320px</td></tr>
+          <tr><td><code>.container-xxl</code></td><td>100%</td><td>100%</td><td>100%</td><td>100%</td><td>100%</td><td>1320px</td></tr>
+          <tr><td><code>.container-fluid</code></td><td>100%</td><td>100%</td><td>100%</td><td>100%</td><td>100%</td><td>100%</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  {# Desktop Columns #}
+  <div class="border-top pt-4 mb-5">
+    <h2 class="fw-bold mb-4">Desktop Columns</h2>
+    <p class="mb-4">12-column flexbox grid. Desktop: gutter <strong>30px</strong>, margin <strong>150px</strong>.</p>
+    <div class="d-flex mb-2" style="height: 100px; gap: 15px; padding: 0; background: #f8f9fa; border: 1px solid #dee2e6;">
+      <div class="d-flex flex-fill gap-2 p-2">
+        <div class="flex-fill bg-primary bg-opacity-25 d-flex align-items-center justify-content-center small">1</div>
+        <div class="flex-fill bg-primary bg-opacity-25 d-flex align-items-center justify-content-center small">2</div>
+        <div class="flex-fill bg-primary bg-opacity-25 d-flex align-items-center justify-content-center small">3</div>
+        <div class="flex-fill bg-primary bg-opacity-25 d-flex align-items-center justify-content-center small">4</div>
+        <div class="flex-fill bg-primary bg-opacity-25 d-flex align-items-center justify-content-center small">5</div>
+        <div class="flex-fill bg-primary bg-opacity-25 d-flex align-items-center justify-content-center small">6</div>
+        <div class="flex-fill bg-primary bg-opacity-25 d-flex align-items-center justify-content-center small">7</div>
+        <div class="flex-fill bg-primary bg-opacity-25 d-flex align-items-center justify-content-center small">8</div>
+        <div class="flex-fill bg-primary bg-opacity-25 d-flex align-items-center justify-content-center small">9</div>
+        <div class="flex-fill bg-primary bg-opacity-25 d-flex align-items-center justify-content-center small">10</div>
+        <div class="flex-fill bg-primary bg-opacity-25 d-flex align-items-center justify-content-center small">11</div>
+        <div class="flex-fill bg-primary bg-opacity-25 d-flex align-items-center justify-content-center small">12</div>
+      </div>
+    </div>
+  </div>
+
+  {# Spacing Scale #}
+  <div class="border-top pt-4 mb-5">
+    <h2 class="fw-bold mb-4">Spacing &amp; Padding</h2>
+    <p class="mb-2">Bootstrap spacer base: <code>$spacer = 1rem (16px)</code>. Utilities: <code>m-*</code> / <code>p-*</code> with values 0–5.</p>
+    <div class="table-responsive mb-4">
+      <table class="table table-bordered">
+        <thead class="table-light">
+          <tr><th>Step</th><th>Value</th><th>Pixels</th><th>Visual</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>0</code></td><td>0</td><td>0px</td><td><div class="bg-primary" style="height:10px;width:0px;">&nbsp;</div></td></tr>
+          <tr><td><code>1</code></td><td>0.25rem</td><td>4px</td><td><div class="bg-primary" style="height:10px;width:4px;">&nbsp;</div></td></tr>
+          <tr><td><code>2</code></td><td>0.5rem</td><td>8px</td><td><div class="bg-primary" style="height:10px;width:8px;">&nbsp;</div></td></tr>
+          <tr><td><code>3</code></td><td>1rem</td><td>16px</td><td><div class="bg-primary" style="height:10px;width:16px;">&nbsp;</div></td></tr>
+          <tr><td><code>4</code></td><td>1.5rem</td><td>24px</td><td><div class="bg-primary" style="height:10px;width:24px;">&nbsp;</div></td></tr>
+          <tr><td><code>5</code></td><td>3rem</td><td>48px</td><td><div class="bg-primary" style="height:10px;width:48px;">&nbsp;</div></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="fw-bold mb-3">Padding visual</h3>
+    <div class="d-flex flex-wrap gap-4 mb-5">
+      <div><div class="p-0 bg-primary bg-opacity-10 border border-primary border-opacity-25"><span class="small px-1"><code>p-0</code></span></div></div>
+      <div><div class="p-1 bg-primary bg-opacity-10 border border-primary border-opacity-25"><span class="small px-1"><code>p-1</code></span></div></div>
+      <div><div class="p-2 bg-primary bg-opacity-10 border border-primary border-opacity-25"><span class="small px-1"><code>p-2</code></span></div></div>
+      <div><div class="p-3 bg-primary bg-opacity-10 border border-primary border-opacity-25"><span class="small px-1"><code>p-3</code></span></div></div>
+      <div><div class="p-4 bg-primary bg-opacity-10 border border-primary border-opacity-25"><span class="small px-1"><code>p-4</code></span></div></div>
+      <div><div class="p-5 bg-primary bg-opacity-10 border border-primary border-opacity-25"><span class="small px-1"><code>p-5</code></span></div></div>
+    </div>
+
+    <h3 class="fw-bold mb-3">Margin visual</h3>
+    <div class="bg-light p-2 border mb-3">
+      <span class="d-inline-block bg-primary text-white small m-0 px-2 py-1"><code>m-0</code></span>
+      <span class="d-inline-block bg-primary text-white small m-1 px-2 py-1"><code>m-1</code></span>
+      <span class="d-inline-block bg-primary text-white small m-2 px-2 py-1"><code>m-2</code></span>
+      <span class="d-inline-block bg-primary text-white small m-3 px-2 py-1"><code>m-3</code></span>
+      <span class="d-inline-block bg-primary text-white small m-4 px-2 py-1"><code>m-4</code></span>
+      <span class="d-inline-block bg-primary text-white small m-5 px-2 py-1"><code>m-5</code></span>
+    </div>
+  </div>
+
+  {# Grids #}
+  <div class="border-top pt-4 mb-5">
+    <h2 class="fw-bold mb-4">Grids</h2>
+
+    <h3 class="fw-bold mb-3">Desktop (≥1200px) — 12 columns</h3>
+    <div class="d-flex mb-4" style="height:60px;gap:8px;background:#f8f9fa;border:1px solid #dee2e6;padding:8px;">
+      <div class="flex-fill bg-secondary bg-opacity-25 border border-secondary border-opacity-25"></div>
+      <div class="flex-fill bg-secondary bg-opacity-25 border border-secondary border-opacity-25"></div>
+      <div class="flex-fill bg-secondary bg-opacity-25 border border-secondary border-opacity-25"></div>
+      <div class="flex-fill bg-secondary bg-opacity-25 border border-secondary border-opacity-25"></div>
+      <div class="flex-fill bg-secondary bg-opacity-25 border border-secondary border-opacity-25"></div>
+      <div class="flex-fill bg-secondary bg-opacity-25 border border-secondary border-opacity-25"></div>
+      <div class="flex-fill bg-secondary bg-opacity-25 border border-secondary border-opacity-25"></div>
+      <div class="flex-fill bg-secondary bg-opacity-25 border border-secondary border-opacity-25"></div>
+      <div class="flex-fill bg-secondary bg-opacity-25 border border-secondary border-opacity-25"></div>
+      <div class="flex-fill bg-secondary bg-opacity-25 border border-secondary border-opacity-25"></div>
+      <div class="flex-fill bg-secondary bg-opacity-25 border border-secondary border-opacity-25"></div>
+      <div class="flex-fill bg-secondary bg-opacity-25 border border-secondary border-opacity-25"></div>
+    </div>
+
+    <h3 class="fw-bold mb-3">Tablet (≥768px) — 12 columns</h3>
+    <div class="d-flex mb-4" style="height:60px;gap:8px;background:#f8f9fa;border:1px solid #dee2e6;padding:8px;">
+      <div class="flex-fill bg-secondary bg-opacity-25 border border-secondary border-opacity-25"></div>
+      <div class="flex-fill bg-secondary bg-opacity-25 border border-secondary border-opacity-25"></div>
+      <div class="flex-fill bg-secondary bg-opacity-25 border border-secondary border-opacity-25"></div>
+      <div class="flex-fill bg-secondary bg-opacity-25 border border-secondary border-opacity-25"></div>
+      <div class="flex-fill bg-secondary bg-opacity-25 border border-secondary border-opacity-25"></div>
+      <div class="flex-fill bg-secondary bg-opacity-25 border border-secondary border-opacity-25"></div>
+      <div class="flex-fill bg-secondary bg-opacity-25 border border-secondary border-opacity-25"></div>
+      <div class="flex-fill bg-secondary bg-opacity-25 border border-secondary border-opacity-25"></div>
+      <div class="flex-fill bg-secondary bg-opacity-25 border border-secondary border-opacity-25"></div>
+      <div class="flex-fill bg-secondary bg-opacity-25 border border-secondary border-opacity-25"></div>
+      <div class="flex-fill bg-secondary bg-opacity-25 border border-secondary border-opacity-25"></div>
+      <div class="flex-fill bg-secondary bg-opacity-25 border border-secondary border-opacity-25"></div>
+    </div>
+
+    <h3 class="fw-bold mb-3">Mobile (&lt;768px) — 4 columns</h3>
+    <div class="d-flex mb-4" style="height:60px;gap:8px;background:#f8f9fa;border:1px solid #dee2e6;padding:8px;max-width:375px;">
+      <div class="flex-fill bg-secondary bg-opacity-25 border border-secondary border-opacity-25"></div>
+      <div class="flex-fill bg-secondary bg-opacity-25 border border-secondary border-opacity-25"></div>
+      <div class="flex-fill bg-secondary bg-opacity-25 border border-secondary border-opacity-25"></div>
+      <div class="flex-fill bg-secondary bg-opacity-25 border border-secondary border-opacity-25"></div>
+    </div>
+  </div>
+
+  {# Gutters #}
+  <div class="border-top pt-4 mb-5">
+    <h2 class="fw-bold mb-4">Gutters</h2>
+    <div class="row g-0 mb-3 align-items-center">
+      <div class="col-auto me-3"><code>g-0</code></div>
+      <div class="col"><div class="row g-0"><div class="col"><div class="bg-primary bg-opacity-25 border border-primary border-opacity-25 p-2 text-center small">col</div></div><div class="col"><div class="bg-primary bg-opacity-25 border border-primary border-opacity-25 p-2 text-center small">col</div></div><div class="col"><div class="bg-primary bg-opacity-25 border border-primary border-opacity-25 p-2 text-center small">col</div></div><div class="col"><div class="bg-primary bg-opacity-25 border border-primary border-opacity-25 p-2 text-center small">col</div></div></div></div>
+    </div>
+    <div class="row g-0 mb-3 align-items-center">
+      <div class="col-auto me-3"><code>g-2</code></div>
+      <div class="col"><div class="row g-2"><div class="col"><div class="bg-primary bg-opacity-25 border border-primary border-opacity-25 p-2 text-center small">col</div></div><div class="col"><div class="bg-primary bg-opacity-25 border border-primary border-opacity-25 p-2 text-center small">col</div></div><div class="col"><div class="bg-primary bg-opacity-25 border border-primary border-opacity-25 p-2 text-center small">col</div></div><div class="col"><div class="bg-primary bg-opacity-25 border border-primary border-opacity-25 p-2 text-center small">col</div></div></div></div>
+    </div>
+    <div class="row g-0 mb-3 align-items-center">
+      <div class="col-auto me-3"><code>g-4</code></div>
+      <div class="col"><div class="row g-4"><div class="col"><div class="bg-primary bg-opacity-25 border border-primary border-opacity-25 p-2 text-center small">col</div></div><div class="col"><div class="bg-primary bg-opacity-25 border border-primary border-opacity-25 p-2 text-center small">col</div></div><div class="col"><div class="bg-primary bg-opacity-25 border border-primary border-opacity-25 p-2 text-center small">col</div></div><div class="col"><div class="bg-primary bg-opacity-25 border border-primary border-opacity-25 p-2 text-center small">col</div></div></div></div>
+    </div>
+  </div>
+
+</div>
 
 {% endstory %}
 

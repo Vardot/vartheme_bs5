@@ -1,0 +1,30 @@
+import { Title, Subtitle, Description, Source, Meta, Primary, Stories, Controls } from '@storybook/addon-docs/blocks';
+import * as comStories from './views-view-grid.stories.json';
+import templateSource from './views-view-grid.twig?raw';
+
+<Meta of={comStories} />
+
+<Title />
+<Subtitle />
+<Description />
+
+> ### Bootstrap documentation
+> * [Grid system](https://getbootstrap.com/docs/5.3/layout/grid/)
+> * [Cards](https://getbootstrap.com/docs/5.3/components/cards/)
+> * [Gutters](https://getbootstrap.com/docs/5.3/layout/gutters/)
+
+<Primary />
+
+## Properties
+<Controls />
+
+<Stories />
+
+## Notes
+* Renders Drupal Views rows in a responsive Bootstrap grid layout.
+* `rows` contains the rendered row output from Drupal Views.
+* Column count and breakpoints are configured via the component properties.
+* Used for blog listings, card grids, and other multi-item layouts.
+
+## Source code
+<Source code={templateSource} />

@@ -3,7 +3,7 @@
   parameters: {
     docs: {
       description: {
-        component: 'Getting started page for Varbase Storybook',
+        component: 'Image utilities, aspect ratios, and responsive image patterns for Vartheme BS5.',
       },
     },
   },
@@ -13,7 +13,130 @@
   name: 'Images',
 } %}
 
-<h2>Colors</h2>
+<div class="px-5 py-5">
+  <h1 class="fw-bold mb-5">Images</h1>
+
+  {# Hero #}
+  <div class="border-top pt-4 mb-5">
+    <h2 class="fw-bold mb-4">Hero</h2>
+    <p class="mb-3">Full-width hero image — use <code>img-fluid w-100</code> with <code>object-fit-cover</code>.</p>
+    <div class="ratio ratio-21x9 mb-3">
+      <img src="https://picsum.photos/seed/hero/1440/400"
+           class="img-fluid object-fit-cover w-100"
+           alt="Hero example image" />
+    </div>
+    <pre class="bg-light p-3 small"><code>&lt;div class="ratio ratio-21x9"&gt;
+  &lt;img src="..." class="img-fluid object-fit-cover w-100" alt="..."&gt;
+&lt;/div&gt;</code></pre>
+  </div>
+
+  {# Banner #}
+  <div class="border-top pt-4 mb-5">
+    <h2 class="fw-bold mb-4">Banner</h2>
+    <p class="mb-3">Banner image — use <code>ratio ratio-16x9</code> container with <code>object-fit-cover</code>.</p>
+    <div class="ratio ratio-16x9 mb-3" style="max-width: 800px;">
+      <img src="https://picsum.photos/seed/banner/800/450"
+           class="img-fluid object-fit-cover w-100"
+           alt="Banner example image" />
+    </div>
+    <pre class="bg-light p-3 small"><code>&lt;div class="ratio ratio-16x9"&gt;
+  &lt;img src="..." class="img-fluid object-fit-cover w-100" alt="..."&gt;
+&lt;/div&gt;</code></pre>
+  </div>
+
+  {# Teasers #}
+  <div class="border-top pt-4 mb-5">
+    <h2 class="fw-bold mb-4">Teasers</h2>
+    <p class="mb-3">Teaser / card thumbnail — use <code>ratio ratio-4x3</code> or <code>ratio ratio-1x1</code>.</p>
+    <div class="row g-3 mb-3">
+      <div class="col-md-4">
+        <div class="ratio ratio-4x3">
+          <img src="https://picsum.photos/seed/teaser1/400/300"
+               class="object-fit-cover w-100"
+               alt="Teaser example 4x3" />
+        </div>
+        <p class="small text-muted mt-1 text-center"><code>ratio-4x3</code></p>
+      </div>
+      <div class="col-md-4">
+        <div class="ratio ratio-16x9">
+          <img src="https://picsum.photos/seed/teaser2/400/225"
+               class="object-fit-cover w-100"
+               alt="Teaser example 16x9" />
+        </div>
+        <p class="small text-muted mt-1 text-center"><code>ratio-16x9</code></p>
+      </div>
+      <div class="col-md-4">
+        <div class="ratio ratio-1x1">
+          <img src="https://picsum.photos/seed/teaser3/300/300"
+               class="object-fit-cover w-100"
+               alt="Teaser example 1x1" />
+        </div>
+        <p class="small text-muted mt-1 text-center"><code>ratio-1x1</code></p>
+      </div>
+    </div>
+  </div>
+
+  {# Image utilities #}
+  <div class="border-top pt-4 mb-5">
+    <h2 class="fw-bold mb-4">Image Utility Classes</h2>
+    <div class="row g-4 mb-4">
+      <div class="col-md-3 text-center">
+        <img src="https://picsum.photos/seed/util1/200/150" class="img-fluid" alt="img-fluid" />
+        <p class="small text-muted mt-2"><code>img-fluid</code></p>
+      </div>
+      <div class="col-md-3 text-center">
+        <img src="https://picsum.photos/seed/util2/200/150" class="img-thumbnail" alt="img-thumbnail" style="max-width: 200px;" />
+        <p class="small text-muted mt-2"><code>img-thumbnail</code></p>
+      </div>
+      <div class="col-md-3 text-center">
+        <img src="https://picsum.photos/seed/util3/150/150" class="img-fluid rounded" alt="rounded" style="max-width: 150px;" />
+        <p class="small text-muted mt-2"><code>rounded</code></p>
+      </div>
+      <div class="col-md-3 text-center">
+        <img src="https://picsum.photos/seed/util4/150/150" class="img-fluid rounded-circle" alt="rounded-circle" style="max-width: 150px;" />
+        <p class="small text-muted mt-2"><code>rounded-circle</code></p>
+      </div>
+    </div>
+  </div>
+
+  {# Object fit #}
+  <div class="border-top pt-4 mb-5">
+    <h2 class="fw-bold mb-4">Object Fit</h2>
+    <p class="mb-3">All boxes are <code>300×200px</code> — only <code>object-fit</code> changes.</p>
+    <div class="d-flex flex-wrap gap-4">
+      {% set fits = ['contain', 'cover', 'fill', 'none', 'scale-down'] %}
+      {% set fit_classes = ['object-fit-contain', 'object-fit-cover', 'object-fit-fill', 'object-fit-none', 'object-fit-scale'] %}
+      {% for i in 0..4 %}
+        <div class="text-center">
+          <div class="border bg-light" style="width: 200px; height: 150px; overflow: hidden;">
+            <img src="https://picsum.photos/seed/fit{{ i }}/300/200"
+                 class="w-100 h-100 {{ fit_classes[i] }}"
+                 alt="{{ fits[i] }}" />
+          </div>
+          <p class="small text-muted mt-2"><code>{{ fit_classes[i] }}</code></p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  {# Aspect ratios #}
+  <div class="border-top pt-4 mb-5">
+    <h2 class="fw-bold mb-4">Aspect Ratio Helper</h2>
+    <div class="row g-3">
+      {% set ratios = ['1x1', '4x3', '16x9', '21x9'] %}
+      {% for ratio in ratios %}
+        <div class="col-md-3">
+          <div class="ratio ratio-{{ ratio }} bg-light border">
+            <div class="d-flex align-items-center justify-content-center">
+              <span class="text-muted small"><code>ratio-{{ ratio }}</code></span>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+</div>
 
 {% endstory %}
 

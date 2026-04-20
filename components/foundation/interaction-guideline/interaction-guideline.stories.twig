@@ -3,7 +3,7 @@
   parameters: {
     docs: {
       description: {
-        component: 'Getting started page for Varbase Storybook',
+        component: 'Interaction states, focus management, and animation guidelines for Vartheme BS5.',
       },
     },
   },
@@ -13,7 +13,206 @@
   name: 'Interaction Guideline',
 } %}
 
-<h1>Design Interaction Guideline</h1>
+<div class="px-5 py-5">
+  <h1 class="fw-bold mb-5">Design Interaction Guideline</h1>
+
+  {# Interaction states #}
+  <div class="border-top pt-4 mb-5">
+    <h2 class="fw-bold mb-4">Interaction States</h2>
+    <p class="mb-4">All interactive elements follow Bootstrap's built-in state system.</p>
+
+    <div class="row g-4 mb-5">
+      {# Default #}
+      <div class="col-md-4">
+        <h5 class="fw-bold mb-3">Default</h5>
+        <div class="d-flex flex-column gap-2">
+          <a href="#" class="btn btn-primary">Primary Button</a>
+          <a href="#" class="btn btn-outline-primary">Outline Button</a>
+          <a href="#">Link text</a>
+          <input type="text" class="form-control" value="Text input" readonly />
+        </div>
+      </div>
+
+      {# Focus #}
+      <div class="col-md-4">
+        <h5 class="fw-bold mb-3">Focus <span class="text-muted fw-normal small">(keyboard / click)</span></h5>
+        <div class="d-flex flex-column gap-2">
+          <a href="#" class="btn btn-primary focus-visible" style="outline: 3px solid rgba(13,110,253,.5); outline-offset: 2px;">Primary Button</a>
+          <a href="#" class="btn btn-outline-primary focus-visible" style="outline: 3px solid rgba(13,110,253,.5); outline-offset: 2px;">Outline Button</a>
+          <a href="#" style="outline: 3px solid rgba(13,110,253,.5); outline-offset: 2px;">Link text</a>
+          <input type="text" class="form-control" value="Text input" style="outline: 3px solid rgba(13,110,253,.5); outline-offset: 2px;" readonly />
+        </div>
+      </div>
+
+      {# Disabled #}
+      <div class="col-md-4">
+        <h5 class="fw-bold mb-3">Disabled</h5>
+        <div class="d-flex flex-column gap-2">
+          <button class="btn btn-primary" disabled>Primary Button</button>
+          <button class="btn btn-outline-primary" disabled>Outline Button</button>
+          <a href="#" class="disabled text-muted" aria-disabled="true" style="pointer-events: none;">Link text</a>
+          <input type="text" class="form-control" value="Text input" disabled />
+        </div>
+      </div>
+    </div>
+
+    {# State table #}
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead class="table-light">
+          <tr>
+            <th>State</th>
+            <th>Trigger</th>
+            <th>Bootstrap mechanism</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Default</strong></td><td>No interaction</td><td>Base component styles</td></tr>
+          <tr><td><strong>Hover</strong></td><td>Mouse over</td><td><code>:hover</code> pseudo-class</td></tr>
+          <tr><td><strong>Focus</strong></td><td>Keyboard / click focus</td><td><code>:focus-visible</code> + focus ring</td></tr>
+          <tr><td><strong>Active</strong></td><td>Mouse/key down</td><td><code>:active</code> pseudo-class</td></tr>
+          <tr><td><strong>Disabled</strong></td><td><code>disabled</code> attribute</td><td><code>.disabled</code> class or <code>disabled</code> attr</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  {# Button states #}
+  <div class="border-top pt-4 mb-5">
+    <h2 class="fw-bold mb-4">Button States</h2>
+    <div class="d-flex flex-wrap gap-3 align-items-center mb-3">
+      <div class="text-center">
+        <button class="btn btn-primary d-block mb-1">Default</button>
+        <span class="small text-muted">default</span>
+      </div>
+      <div class="text-center">
+        <button class="btn btn-primary d-block mb-1" style="background-color: #0b5ed7; border-color: #0a58ca;">Hover</button>
+        <span class="small text-muted">:hover</span>
+      </div>
+      <div class="text-center">
+        <button class="btn btn-primary d-block mb-1" style="outline: 3px solid rgba(13,110,253,.5); outline-offset: 2px;">Focus</button>
+        <span class="small text-muted">:focus</span>
+      </div>
+      <div class="text-center">
+        <button class="btn btn-primary active d-block mb-1">Active</button>
+        <span class="small text-muted">:active</span>
+      </div>
+      <div class="text-center">
+        <button class="btn btn-primary d-block mb-1" disabled>Disabled</button>
+        <span class="small text-muted">disabled</span>
+      </div>
+    </div>
+
+    <div class="d-flex flex-wrap gap-3 align-items-center">
+      <div class="text-center">
+        <button class="btn btn-outline-primary d-block mb-1">Default</button>
+        <span class="small text-muted">default</span>
+      </div>
+      <div class="text-center">
+        <button class="btn btn-outline-primary d-block mb-1" style="background-color: #0d6efd; color: #fff;">Hover</button>
+        <span class="small text-muted">:hover</span>
+      </div>
+      <div class="text-center">
+        <button class="btn btn-outline-primary active d-block mb-1">Active</button>
+        <span class="small text-muted">:active</span>
+      </div>
+      <div class="text-center">
+        <button class="btn btn-outline-primary d-block mb-1" disabled>Disabled</button>
+        <span class="small text-muted">disabled</span>
+      </div>
+    </div>
+  </div>
+
+  {# Focus ring #}
+  <div class="border-top pt-4 mb-5">
+    <h2 class="fw-bold mb-4">Focus Ring</h2>
+    <p class="mb-3">Bootstrap applies a consistent focus ring for accessibility, configured via CSS variables.</p>
+    <div class="table-responsive mb-4">
+      <table class="table table-bordered">
+        <thead class="table-light">
+          <tr><th>Variable</th><th>Default</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>--bs-focus-ring-width</code></td><td>0.25rem</td><td>Ring thickness</td></tr>
+          <tr><td><code>--bs-focus-ring-opacity</code></td><td>0.25</td><td>Ring opacity</td></tr>
+          <tr><td><code>--bs-focus-ring-color</code></td><td>rgba(13, 110, 253, 0.25)</td><td>Ring color</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="d-flex gap-4 align-items-center">
+      <button class="btn btn-primary" style="outline: 4px solid rgba(13,110,253,.25); outline-offset: 2px;">Focus ring demo</button>
+      <button class="btn btn-success" style="outline: 4px solid rgba(25,135,84,.25); outline-offset: 2px;">Success focus</button>
+      <button class="btn btn-danger" style="outline: 4px solid rgba(220,53,69,.25); outline-offset: 2px;">Danger focus</button>
+    </div>
+  </div>
+
+  {# Cursor guidelines #}
+  <div class="border-top pt-4 mb-5">
+    <h2 class="fw-bold mb-4">Cursor Guidelines</h2>
+    <div class="table-responsive mb-4">
+      <table class="table table-bordered">
+        <thead class="table-light">
+          <tr><th>Interaction</th><th>Cursor</th><th>Demo</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Links and buttons</td>
+            <td><code>pointer</code></td>
+            <td><a href="#" style="cursor: pointer;">Hover me</a></td>
+          </tr>
+          <tr>
+            <td>Disabled elements</td>
+            <td><code>not-allowed</code></td>
+            <td><span style="cursor: not-allowed; opacity: .5;">Disabled</span></td>
+          </tr>
+          <tr>
+            <td>Draggable elements</td>
+            <td><code>grab</code> / <code>grabbing</code></td>
+            <td><span style="cursor: grab; background: #f8f9fa; padding: 4px 8px; border-radius: 4px;">Drag me</span></td>
+          </tr>
+          <tr>
+            <td>Text inputs</td>
+            <td><code>text</code></td>
+            <td><input type="text" class="form-control form-control-sm" style="width: 120px; cursor: text;" placeholder="Type here" /></td>
+          </tr>
+          <tr>
+            <td>Tooltips</td>
+            <td><code>help</code></td>
+            <td><span style="cursor: help; text-decoration: underline dotted;">Need help?</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  {# Transitions #}
+  <div class="border-top pt-4 mb-5">
+    <h2 class="fw-bold mb-4">Animation &amp; Transitions</h2>
+    <p class="mb-3">Bootstrap uses <code>transition</code> for smooth state changes. Default duration: <code>0.15s ease-in-out</code>.</p>
+    <div class="d-flex flex-wrap gap-4 mb-4">
+      <div>
+        <p class="small fw-bold mb-2">Button (hover to see)</p>
+        <button class="btn btn-primary">Hover me</button>
+      </div>
+      <div>
+        <p class="small fw-bold mb-2">Alert dismiss</p>
+        <div class="alert alert-info alert-dismissible fade show mb-0" role="alert">
+          Alert with fade
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      </div>
+    </div>
+    <div class="bg-light p-3 border">
+      <p class="small fw-bold mb-2">Reduced motion (accessibility)</p>
+      <pre class="mb-0 small"><code>@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+  }
+}</code></pre>
+    </div>
+  </div>
+
+</div>
 
 {% endstory %}
 
