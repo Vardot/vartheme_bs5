@@ -1,7 +1,7 @@
 "$schema": "https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json"
 name: Group
 group: Layout
-description: "Bootstrap flex group for stacking items (horizontal/vertical) with gap, alignment, spacing, and background utilities."
+description: "Bootstrap flex group for stacking items (horizontal/vertical) with gap, alignment, spacing, background utilities."
 
 props:
   type: object
@@ -282,6 +282,123 @@ props:
         me-3: "Large"
         me-4: "X-Large"
         me-5: "XX-Large"
+
+    aos_animation:
+      type: string
+      title: "Animation"
+      description: "Animate On Scroll effect for the group wrapper."
+      enum:
+        - "none"
+        - "fade"
+        - "fade-up"
+        - "fade-down"
+        - "fade-left"
+        - "fade-right"
+        - "fade-up-right"
+        - "fade-up-left"
+        - "fade-down-right"
+        - "fade-down-left"
+        - "flip-up"
+        - "flip-down"
+        - "flip-left"
+        - "flip-right"
+        - "slide-up"
+        - "slide-down"
+        - "slide-left"
+        - "slide-right"
+        - "zoom-in"
+        - "zoom-in-up"
+        - "zoom-in-down"
+        - "zoom-in-left"
+        - "zoom-in-right"
+        - "zoom-out"
+        - "zoom-out-up"
+        - "zoom-out-down"
+        - "zoom-out-left"
+        - "zoom-out-right"
+      default: "none"
+      meta:enum:
+        none: "None"
+        fade: "Fade"
+        fade-up: "Fade up"
+        fade-down: "Fade down"
+        fade-left: "Fade left"
+        fade-right: "Fade right"
+        fade-up-right: "Fade up right"
+        fade-up-left: "Fade up left"
+        fade-down-right: "Fade down right"
+        fade-down-left: "Fade down left"
+        flip-up: "Flip up"
+        flip-down: "Flip down"
+        flip-left: "Flip left"
+        flip-right: "Flip right"
+        slide-up: "Slide up"
+        slide-down: "Slide down"
+        slide-left: "Slide left"
+        slide-right: "Slide right"
+        zoom-in: "Zoom in"
+        zoom-in-up: "Zoom in up"
+        zoom-in-down: "Zoom in down"
+        zoom-in-left: "Zoom in left"
+        zoom-in-right: "Zoom in right"
+        zoom-out: "Zoom out"
+        zoom-out-up: "Zoom out up"
+        zoom-out-down: "Zoom out down"
+        zoom-out-left: "Zoom out left"
+        zoom-out-right: "Zoom out right"
+
+    aos_duration:
+      type: string
+      title: "Animation duration"
+      description: "Animation duration in milliseconds."
+      enum:
+        - "default"
+        - "400"
+        - "600"
+        - "800"
+        - "1000"
+        - "1200"
+        - "1500"
+        - "2000"
+      default: "default"
+      meta:enum:
+        default: "Default"
+        400: "400 ms"
+        600: "600 ms"
+        800: "800 ms"
+        1000: "1000 ms"
+        1200: "1200 ms"
+        1500: "1500 ms"
+        2000: "2000 ms"
+
+    aos_delay:
+      type: string
+      title: "Animation delay"
+      description: "Animation delay in milliseconds."
+      enum:
+        - "0"
+        - "100"
+        - "200"
+        - "300"
+        - "400"
+        - "500"
+        - "600"
+      default: "0"
+      meta:enum:
+        0: "0 ms"
+        100: "100 ms"
+        200: "200 ms"
+        300: "300 ms"
+        400: "400 ms"
+        500: "500 ms"
+        600: "600 ms"
+
+    aos_once:
+      type: boolean
+      title: "Animate once"
+      description: "Whether the animation should happen only once."
+      default: true
+      examples: [true]
 
 slots:
   content:

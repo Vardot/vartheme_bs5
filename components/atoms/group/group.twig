@@ -5,6 +5,11 @@
 
 {% set attributes = attributes|default(create_attribute()) %}
 
+{% set aos_animation = aos_animation|default('none') %}
+{% set aos_duration = aos_duration|default('default') %}
+{% set aos_delay = aos_delay|default('0') %}
+{% set aos_once = aos_once is defined ? aos_once : true %}
+
 {% set background_color = background_color|default('none') %}
 {% set direction = direction|default('vertical') %}
 {% set gap = gap|default('gap-3') %}
@@ -46,6 +51,18 @@
 
 {% set block_content %}{% block content %}{% endblock %}{% endset %}
 
-<div {{ attributes.addClass(classes) }}>
+{# Build attributes - AOS data attributes and library only added when animation is selected #}
+{% set attributes = attributes.addClass(classes) %}
+{% if aos_animation != 'none' %}
+  {{ attach_library('varbase_components/aos') }}
+  {% set attributes = attributes
+    .setAttribute('data-aos', aos_animation)
+    .setAttribute('data-aos-duration', aos_duration != 'default' ? aos_duration : null)
+    .setAttribute('data-aos-delay', aos_delay != '0' ? aos_delay : null)
+    .setAttribute('data-aos-once', aos_once ? 'true' : 'false')
+  %}
+{% endif %}
+
+<div {{ attributes }}>
   {{ block_content }}
 </div>
