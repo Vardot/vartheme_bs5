@@ -8,6 +8,11 @@
 
 {% set attributes = attributes|default(create_attribute()) %}
 
+{% set aos_animation = aos_animation|default('none') %}
+{% set aos_duration = aos_duration|default('default') %}
+{% set aos_delay = aos_delay|default('0') %}
+{% set aos_once = aos_once is defined ? aos_once : true %}
+
 {# Base props #}
 {% set bg_edge2edge = bg_edge2edge|default(false) %}
 {% set container_type = container_type|default('none') %}
@@ -123,7 +128,19 @@
 {% set has_header = section_header and header_content|trim is not empty %}
 {% set has_footer = section_footer and footer_content|trim is not empty %}
 
-<section {{ attributes.addClass(section_classes) }}>
+{# Build attributes - AOS data attributes and library only added when animation is selected #}
+{% set attributes = attributes.addClass(section_classes) %}
+{% if aos_animation != 'none' %}
+  {{ attach_library('varbase_components/aos') }}
+  {% set attributes = attributes
+    .setAttribute('data-aos', aos_animation)
+    .setAttribute('data-aos-duration', aos_duration != 'default' ? aos_duration : null)
+    .setAttribute('data-aos-delay', aos_delay != '0' ? aos_delay : null)
+    .setAttribute('data-aos-once', aos_once ? 'true' : 'false')
+  %}
+{% endif %}
+
+<section {{ attributes }}>
   {% if has_background_image %}
     <div class="{{ media_wrap_classes|join(' ') }}" aria-hidden="true">
       {% include 'canvas:image' ignore missing with {
