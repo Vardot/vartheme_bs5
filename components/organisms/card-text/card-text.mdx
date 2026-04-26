@@ -1,61 +1,64 @@
-import { Title, Subtitle, Description, Source, Meta, Primary, Stories, Controls } from '@storybook/addon-docs/blocks';
-import * as comStories from './card-text.stories.json';
+import { Meta, Source, Canvas, Controls, Stories } from '@storybook/addon-docs/blocks';
+import * as CardTextStories from './card-text.stories.json';
 import templateSource from './card-text.twig?raw';
 
-<Meta of={comStories} name="Docs"/>
+<Meta of={CardTextStories} name="Docs" />
 
-<Title />
-<Subtitle />
-<Description />
+# Card Text
+
+A lightweight text-only Bootstrap card with a single drag-and-drop content slot and no media area. Controls border, padding, background, shadow, corner style, equal height, and full-card stretched link.
+
+- No media area — content slot is the only region
+- `stretched_link` requires `link_url` to be set — makes the entire card clickable
+- `padded: true` adds `p-4` to the content wrapper; when false, `p-0` is applied
+- `equal_height: true` adds `h-100` for consistent heights in grid row layouts
 
 > ### Bootstrap documentation
-> * [Card](https://getbootstrap.com/docs/5.3/components/card/)
-> * [Background](https://getbootstrap.com/docs/5.3/utilities/background/)
-> * [Shadows](https://getbootstrap.com/docs/5.3/utilities/shadows/)
-> * [Stretched link](https://getbootstrap.com/docs/5.3/helpers/stretched-link/)
-
-<Primary />
+> - [Cards](https://getbootstrap.com/docs/5.3/components/card/)
+> - [Stretched link](https://getbootstrap.com/docs/5.3/helpers/stretched-link/)
+> - [Shadows](https://getbootstrap.com/docs/5.3/utilities/shadows/)
 
 ## Properties
-<Controls />
 
-<Stories of={comStories} />
+<Canvas of={CardTextStories.Default} />
+<Controls of={CardTextStories.Default} />
 
-## Slots
-* `content`: Main text content area.
+## Stories
 
-## Notes
-* This is a minimal card component focused purely on textual content.
-* `padded` adds internal spacing using Bootstrap utilities.
-* `background_color` controls visual appearance.
-* `stretched_link` enables full-card click behavior.
-* `equal_height` helps align cards in grid layouts.
+<Stories of={CardTextStories} />
 
-## Examples
+## Example
 
 ### Example #1 : Default text card
+
 ```twig
 {% embed 'vartheme_bs5:card-text' with {
   card_border: true,
   background_color: 'bg-white',
   padded: true,
   box_shadow: 'shadow-sm',
-  corner_style: 'rounded-3'
+  corner_style: 'rounded-3',
 } %}
   {% block content %}
     <h3 class="h5 mb-2">Card text title</h3>
-    <p class="mb-3">Simple text card example.</p>
+    <p class="mb-3">A simple text card for descriptions, highlights, or small content blocks.</p>
     <a href="#" class="btn btn-primary">Action</a>
   {% endblock %}
 {% endembed %}
 ```
 
-### Example #2 : Clickable card
+### Example #2 : Linked card
+
 ```twig
 {% embed 'vartheme_bs5:card-text' with {
+  card_border: true,
+  background_color: 'bg-white',
+  padded: true,
+  box_shadow: 'shadow-sm',
+  corner_style: 'rounded-3',
   stretched_link: true,
   link_url: 'https://example.com',
-  link_target: '_blank'
+  link_target: '_blank',
 } %}
   {% block content %}
     <h3 class="h5 mb-2">Clickable card</h3>
@@ -65,4 +68,5 @@ import templateSource from './card-text.twig?raw';
 ```
 
 ## Source code
+[//]: # (Twig Template source code)
 <Source code={templateSource} />
