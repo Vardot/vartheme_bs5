@@ -1,36 +1,34 @@
-import { Title, Subtitle, Description, Source, Meta, Primary, Stories, Controls } from '@storybook/addon-docs/blocks';
-import * as comStories from './card-pricing.stories.json';
+import { Meta, Source, Canvas, Controls, Stories } from '@storybook/addon-docs/blocks';
+import * as CardPricingStories from './card-pricing.stories.json';
 import templateSource from './card-pricing.twig?raw';
 
-<Meta of={comStories} />
+<Meta of={CardPricingStories} name="Docs" />
 
-<Title />
-<Subtitle />
-<Description />
+# Pricing Card
+
+A pricing plan card for displaying tiered offers such as Starter, Pro, or Enterprise plans. Renders an optional badge, configurable heading, price with currency symbol (before or after), optional price period and note, a rich text features list, and an optional CTA button.
+
+- Currency symbol position is controlled by `symbol_position` (`before` or `after`) to support regional formats
+- `promote: true` emphasizes the card visually with a stronger border and shadow — use for one highlighted plan per pricing group
+- Button is rendered via the shared button component using `button_variant`; omit `button_url` and `button_label` to hide the button entirely
+- `show_features_divider` adds a top border between the price block and the features list
 
 > ### Bootstrap documentation
-> * [Cards](https://getbootstrap.com/docs/5.3/components/cards/)
-> * [Buttons](https://getbootstrap.com/docs/5.3/components/buttons/)
-> * [Badge](https://getbootstrap.com/docs/5.3/components/badge/)
-> * [Shadows](https://getbootstrap.com/docs/5.3/utilities/shadows/)
-
-<Primary />
+> - [Cards](https://getbootstrap.com/docs/5.3/components/card/)
+> - [Badges](https://getbootstrap.com/docs/5.3/components/badge/)
+> - [Buttons](https://getbootstrap.com/docs/5.3/components/buttons/)
+> - [Shadows](https://getbootstrap.com/docs/5.3/utilities/shadows/)
 
 ## Properties
-<Controls />
 
-<Stories />
+<Canvas of={CardPricingStories.Default} />
+<Controls of={CardPricingStories.Default} />
 
-## Notes
-* `badge_text` adds an optional badge label above the heading (e.g. "Most popular").
-* `price`, `currency_symbol`, `currency_code`, and `symbol_position` combine to render the price display.
-* `price_period` appears inline with the price (e.g. `/month`); `price_note` appears below.
-* `text` accepts rich HTML — typically a `<ul>` features list.
-* `show_features_divider` adds a border above the features section.
-* `promote: true` highlights the card visually for the recommended plan.
-* `button_url` and `button_label` must both be set for the CTA button to render.
+## Stories
 
-## Examples
+<Stories of={CardPricingStories} />
+
+## Example
 
 ### Example #1 : Basic pricing card
 
@@ -51,9 +49,11 @@ import templateSource from './card-pricing.twig?raw';
   border: 'border',
   background_color: 'bg-body',
   text_align: 'text-start',
-  button_url: '/starter',
+  button_url: 'https://example.com/starter',
   button_label: 'Choose plan',
-  button_variant: 'btn-primary'
+  button_variant: 'btn-primary',
+  button_target: 'self',
+  promote: false
 }, with_context: false) }}
 ```
 
@@ -77,9 +77,10 @@ import templateSource from './card-pricing.twig?raw';
   border: 'border-primary',
   background_color: 'bg-body',
   text_align: 'text-center',
-  button_url: '/pro',
+  button_url: 'https://example.com/pro',
   button_label: 'Get started',
   button_variant: 'btn-primary',
+  button_target: 'blank',
   promote: true
 }, with_context: false) }}
 ```
@@ -101,11 +102,14 @@ import templateSource from './card-pricing.twig?raw';
   border: 'border-dark',
   background_color: 'bg-dark text-white',
   text_align: 'text-start',
-  button_url: '/enterprise',
+  button_url: 'https://example.com/enterprise',
   button_label: 'Contact sales',
-  button_variant: 'btn-light'
+  button_variant: 'btn-light',
+  button_target: 'self',
+  promote: false
 }, with_context: false) }}
 ```
 
 ## Source code
+[//]: # (Twig Template source code)
 <Source code={templateSource} />

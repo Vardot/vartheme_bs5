@@ -222,6 +222,14 @@ props:
         - btn-light
         - btn-dark
         - btn-link
+        - btn-outline-primary
+        - btn-outline-secondary
+        - btn-outline-success
+        - btn-outline-danger
+        - btn-outline-warning
+        - btn-outline-info
+        - btn-outline-light
+        - btn-outline-dark
       default: btn-primary
       examples:
         - btn-primary
@@ -235,6 +243,14 @@ props:
         btn-light: Light
         btn-dark: Dark
         btn-link: Link
+        btn-outline-primary: Outline primary
+        btn-outline-secondary: Outline secondary
+        btn-outline-success: Outline success
+        btn-outline-danger: Outline danger
+        btn-outline-warning: Outline warning
+        btn-outline-info: Outline info
+        btn-outline-light: Outline light
+        btn-outline-dark: Outline dark
     promote:
       type: boolean
       title: Highlight card
