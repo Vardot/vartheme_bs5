@@ -1,10 +1,10 @@
 {% stories CardLogo with {
   title: 'Cards/Card Logo',
   parameters: {
-    componentSubtitle: 'Bootstrap logo card with optional full-card link',
+    componentSubtitle: 'Bootstrap logo card with optional full-card link and shadow variants.',
     docs: {
       description: {
-        component: 'Use this component to render a logo inside a simple card with an optional stretched link.',
+        component: 'A simple logo card component for brand, partner, sponsor, and client logos with optional full-card link behavior.',
       },
       story: {
         inline: true,
@@ -14,71 +14,106 @@
   argTypes: {
     media: {
       name: 'Logo image',
+      description: 'Logo image displayed in the card.',
       control: 'object',
     },
     url: {
       name: 'Link URL',
+      description: 'If provided, the whole card becomes clickable.',
       control: 'text',
     },
     shadow: {
       name: 'Shadow',
+      description: 'Bootstrap shadow utility class.',
       control: 'select',
       options: {
         "'No shadow'": 'shadow-none',
         "'Small shadow'": 'shadow-sm',
-        "'Default shadow'": 'shadow',
+        Default: 'shadow',
         "'Large shadow'": 'shadow-lg',
       },
     },
   },
 } %}
 
-{% story DefaultLogoCard with {
-  name: 'Default logo card',
+{% story Default with {
+  name: 'Default',
   args: {
     media: {
-      src: 'assets/logo-placeholder.svg',
+      src: '/components/organisms/card-logo/assets/logo-placeholder.svg',
       alt: 'Placeholder brand logo',
-      width: '600',
-      height: '240',
+      width: 600,
+      height: 240,
     },
     url: '',
     shadow: 'shadow',
   },
 } %}
-{{ include('vartheme_bs5:card-logo') }}
+  {{ include('vartheme_bs5:card-logo') }}
 {% endstory %}
 
-{% story LinkedLogoCard with {
-  name: 'Linked logo card',
+{% story LinkedLogo with {
+  name: 'Linked logo',
   args: {
     media: {
-      src: 'assets/logo-placeholder.svg',
+      src: '/components/organisms/card-logo/assets/logo-placeholder.svg',
       alt: 'Partner logo',
-      width: '600',
-      height: '240',
+      width: 600,
+      height: 240,
     },
     url: 'https://example.com',
     shadow: 'shadow-sm',
   },
 } %}
-{{ include('vartheme_bs5:card-logo') }}
+  {{ include('vartheme_bs5:card-logo') }}
 {% endstory %}
 
-{% story LargeShadowCard with {
+{% story NoShadow with {
+  name: 'No shadow',
+  args: {
+    media: {
+      src: '/components/organisms/card-logo/assets/logo-placeholder.svg',
+      alt: 'Sponsor logo',
+      width: 600,
+      height: 240,
+    },
+    url: '',
+    shadow: 'shadow-none',
+  },
+} %}
+  {{ include('vartheme_bs5:card-logo') }}
+{% endstory %}
+
+{% story LargeShadow with {
   name: 'Large shadow',
   args: {
     media: {
-      src: 'assets/logo-placeholder.svg',
+      src: '/components/organisms/card-logo/assets/logo-placeholder.svg',
       alt: 'Featured brand logo',
-      width: '600',
-      height: '240',
+      width: 600,
+      height: 240,
     },
     url: '',
     shadow: 'shadow-lg',
   },
 } %}
-{{ include('vartheme_bs5:card-logo') }}
+  {{ include('vartheme_bs5:card-logo') }}
+{% endstory %}
+
+{% story LinkedLargeShadow with {
+  name: 'Linked large shadow',
+  args: {
+    media: {
+      src: '/components/organisms/card-logo/assets/logo-placeholder.svg',
+      alt: 'Client logo',
+      width: 600,
+      height: 240,
+    },
+    url: 'https://example.com',
+    shadow: 'shadow-lg',
+  },
+} %}
+  {{ include('vartheme_bs5:card-logo') }}
 {% endstory %}
 
 {% endstories %}

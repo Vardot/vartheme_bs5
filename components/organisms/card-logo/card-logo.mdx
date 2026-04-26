@@ -1,15 +1,77 @@
-import { Meta } from '@storybook/addon-docs/blocks';
+import { Meta, Source, Canvas, Controls, Stories } from '@storybook/addon-docs/blocks';
+import * as CardLogoStories from './card-logo.stories.json';
+import templateSource from './card-logo.twig?raw';
 
-<Meta title="Cards/Card Logo" />
+<Meta of={CardLogoStories} name="Docs" />
 
 # Card Logo
 
-A Bootstrap logo card with an optional full-card link.
+A simple logo card for displaying brand, partner, sponsor, and client logos. Renders a logo image centred inside a card body with auto height and optional full-card link behavior using Bootstrap's stretched-link.
 
-## Highlights
+- Logo image uses `object-fit-contain` so proportions are always preserved
+- If `url` is provided, the entire card becomes clickable via a stretched link
+- Card height is always auto — the card expands to fit the image naturally
+- Uses Bootstrap utility classes only — no custom CSS required
 
-- Simple logo presentation
-- Optional full-card link
-- Natural auto height
-- Centered image layout
-- Bootstrap shadow options
+> ### Bootstrap documentation
+> - [Cards](https://getbootstrap.com/docs/5.3/components/card/)
+> - [Stretched link](https://getbootstrap.com/docs/5.3/helpers/stretched-link/)
+> - [Shadows](https://getbootstrap.com/docs/5.3/utilities/shadows/)
+
+## Properties
+
+<Canvas of={CardLogoStories.Default} />
+<Controls of={CardLogoStories.Default} />
+
+## Stories
+
+<Stories of={CardLogoStories} />
+
+## Example
+
+### Example #1 : Basic logo card
+
+```twig
+{{ include('vartheme_bs5:card-logo', {
+  media: {
+    src: 'assets/logo-placeholder.svg',
+    alt: 'Partner logo',
+    width: '600',
+    height: '240'
+  },
+  shadow: 'shadow'
+}, with_context: false) }}
+```
+
+### Example #2 : Linked logo card
+
+```twig
+{{ include('vartheme_bs5:card-logo', {
+  media: {
+    src: 'assets/logo-placeholder.svg',
+    alt: 'Partner logo',
+    width: '600',
+    height: '240'
+  },
+  url: 'https://example.com',
+  shadow: 'shadow-sm'
+}, with_context: false) }}
+```
+
+### Example #3 : Logo card without shadow
+
+```twig
+{{ include('vartheme_bs5:card-logo', {
+  media: {
+    src: 'assets/logo-placeholder.svg',
+    alt: 'Sponsor logo',
+    width: '600',
+    height: '240'
+  },
+  shadow: 'shadow-none'
+}, with_context: false) }}
+```
+
+## Source code
+[//]: # (Twig Template source code)
+<Source code={templateSource} />
