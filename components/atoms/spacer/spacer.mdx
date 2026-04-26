@@ -1,49 +1,47 @@
-import { Title, Subtitle, Meta, Description, Primary, Stories, Controls, Source } from '@storybook/addon-docs/blocks';
-import * as comStories from './spacer.stories.json';
+import { Meta, Source, Canvas, Controls, Stories } from '@storybook/addon-docs/blocks';
+import * as SpacerStories from './spacer.stories.json';
 import templateSource from './spacer.twig?raw';
 
-<Meta of={comStories} name="Docs"/>
+<Meta of={SpacerStories} name="Docs" />
 
-<Title />
-<Subtitle />
-<Description />
+# Spacer
 
-<Primary />
+A minimal invisible component that adds vertical whitespace between sections using Bootstrap `py-*` utilities. Use it to control breathing room between layout blocks without adding custom CSS.
+
+- Renders a single `<div>` with `aria-hidden="true"` — invisible and inert
+- `size` accepts `py-0` through `py-5` only; invalid values fall back to `py-3`
+- Use inside a container or directly between section-level components
+
+> ### Bootstrap documentation
+> - [Spacing](https://getbootstrap.com/docs/5.3/utilities/spacing/)
 
 ## Properties
-<Controls />
 
-<Stories of={comStories} />
+<Canvas of={SpacerStories.Default} />
+<Controls of={SpacerStories.Default} />
 
-## Attributes
-* N/A
+## Stories
 
-## Slots
-* N/A
+<Stories of={SpacerStories} />
 
-## Available sizes
+## Example
 
-- `py-0` — None
-- `py-1` — Extra small
-- `py-2` — Small
-- `py-3` — Medium (default)
-- `py-4` — Large
-- `py-5` — Extra large
+### Example #1 : Medium spacer (default)
 
-## Examples
-
-### Example #1: Default spacer
 ```twig
-{% include "vartheme_bs5:spacer" with {
-  size: 'py-3'
-} %}
+{{ include('vartheme_bs5:spacer', { size: 'py-3' }, with_context: false) }}
 ```
 
-### Example #2: Large spacer
+### Example #2 : Large spacer between sections
+
 ```twig
-{% include "vartheme_bs5:spacer" with {
-  size: 'py-5'
-} %}
+{{ include('vartheme_bs5:spacer', { size: 'py-5' }, with_context: false) }}
+```
+
+### Example #3 : Extra small spacer
+
+```twig
+{{ include('vartheme_bs5:spacer', { size: 'py-1' }, with_context: false) }}
 ```
 
 ## Source code
