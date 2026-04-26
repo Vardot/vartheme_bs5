@@ -1,7 +1,7 @@
 {% stories FeaturedCard with {
   title: 'Cards/Featured Card',
   parameters: {
-    componentSubtitle: 'Featured card (media + content) with responsive Bootstrap grid ratios.',
+    componentSubtitle: 'Featured card with optional media, responsive Bootstrap grid ratios, and flexible content alignment.',
     docs: {
       description: {
         component: 'A responsive featured card layout with an optional media image column and a flexible content slot. Includes controls for padding, borders, gutters, alignment, and breakpoint-based column ratios.',
@@ -26,21 +26,25 @@
     },
     equal_height: {
       name: 'Equal height',
+      description: 'Makes both columns stretch to the same height.',
       defaultValue: false,
       control: 'boolean',
     },
     stretched_link: {
       name: 'Stretched link',
-      defaultValue: true,
+      description: 'Makes the whole card clickable using Bootstrap stretched-link.',
+      defaultValue: false,
       control: 'boolean',
     },
     link_url: {
       name: 'Card link URL',
+      description: 'Optional URL for the card link.',
       defaultValue: '',
       control: 'text',
     },
     link_target: {
       name: 'Link target',
+      description: 'Target attribute for the card link.',
       defaultValue: 'default',
       control: 'select',
       options: {
@@ -51,17 +55,18 @@
     },
     media_position: {
       name: 'Media position',
-      description: 'Choose the location of the media from (start|end).',
+      description: 'Choose where the media column appears.',
       defaultValue: 'start',
       control: 'select',
       options: {
         Start: 'start',
         End: 'end',
+        "'No media'": 'no-media',
       },
     },
     content_vertical_alignment: {
-      name: 'Content Vertical alignment',
-      description: 'Vertical alignment of the content.',
+      name: 'Content vertical alignment',
+      description: 'Vertical alignment of the content column.',
       defaultValue: 'justify-content-center',
       control: 'select',
       options: {
@@ -84,96 +89,36 @@
     },
     columns_xs_size: {
       name: 'All Breakpoints',
-      description: 'Size of two columns for this breakpoint.',
+      description: 'Base size of the two columns.',
       defaultValue: '06_06',
       control: 'select',
       options: {
-        "'60% - 40%'": '08_04',
-        "'40% - 60%'": '04_08',
+        "'17% - 83%'": '02_10',
+        "'83% - 17%'": '10_02',
         "'25% - 75%'": '03_09',
         "'75% - 25%'": '09_03',
-        "'33% - 66%'": '04_08',
-        "'66% - 33%'": '08_04',
-        "'50% - 50%'": '06_06',
-        "'100% - 100%'": '12_12',
-      },
-    },
-    columns_sm_size: {
-      name: 'Small Breakpoint size (sm)',
-      description: 'Size of two columns for this breakpoint.',
-      defaultValue: '06_06',
-      control: 'select',
-      options: {
-        "'60% - 40%'": '08_04',
-        "'40% - 60%'": '04_08',
-        "'25% - 75%'": '03_09',
-        "'75% - 25%'": '09_03',
-        "'33% - 66%'": '04_08',
-        "'66% - 33%'": '08_04',
+        "'33% - 67%'": '04_08',
+        "'67% - 33%'": '08_04',
+        "'42% - 58%'": '05_07',
+        "'58% - 42%'": '07_05',
         "'50% - 50%'": '06_06',
         "'100% - 100%'": '12_12',
       },
     },
     columns_md_size: {
       name: 'Medium Breakpoint size (md)',
-      description: 'Size of two columns for this breakpoint.',
-      defaultValue: '06_06',
+      description: 'Column size starting from medium screens.',
+      defaultValue: '08_04',
       control: 'select',
       options: {
-        "'60% - 40%'": '08_04',
-        "'40% - 60%'": '04_08',
+        "'17% - 83%'": '02_10',
+        "'83% - 17%'": '10_02',
         "'25% - 75%'": '03_09',
         "'75% - 25%'": '09_03',
-        "'33% - 66%'": '04_08',
-        "'66% - 33%'": '08_04',
-        "'50% - 50%'": '06_06',
-        "'100% - 100%'": '12_12',
-      },
-    },
-    columns_lg_size: {
-      name: 'Large Breakpoint size (lg)',
-      description: 'Size of two columns for this breakpoint.',
-      defaultValue: '06_06',
-      control: 'select',
-      options: {
-        "'60% - 40%'": '08_04',
-        "'40% - 60%'": '04_08',
-        "'25% - 75%'": '03_09',
-        "'75% - 25%'": '09_03',
-        "'33% - 66%'": '04_08',
-        "'66% - 33%'": '08_04',
-        "'50% - 50%'": '06_06',
-        "'100% - 100%'": '12_12',
-      },
-    },
-    columns_xl_size: {
-      name: 'Extra Large Breakpoint size (xl)',
-      description: 'Size of two columns for this breakpoint.',
-      defaultValue: '06_06',
-      control: 'select',
-      options: {
-        "'60% - 40%'": '08_04',
-        "'40% - 60%'": '04_08',
-        "'25% - 75%'": '03_09',
-        "'75% - 25%'": '09_03',
-        "'33% - 66%'": '04_08',
-        "'66% - 33%'": '08_04',
-        "'50% - 50%'": '06_06',
-        "'100% - 100%'": '12_12',
-      },
-    },
-    columns_xxl_size: {
-      name: 'Extra Extra Large Breakpoint size (xxl)',
-      description: 'Size of two columns for this breakpoint.',
-      defaultValue: '06_06',
-      control: 'select',
-      options: {
-        "'60% - 40%'": '08_04',
-        "'40% - 60%'": '04_08',
-        "'25% - 75%'": '03_09',
-        "'75% - 25%'": '09_03',
-        "'33% - 66%'": '04_08',
-        "'66% - 33%'": '08_04',
+        "'33% - 67%'": '04_08',
+        "'67% - 33%'": '08_04',
+        "'42% - 58%'": '05_07',
+        "'58% - 42%'": '07_05',
         "'50% - 50%'": '06_06',
         "'100% - 100%'": '12_12',
       },
@@ -213,22 +158,18 @@
   name: 'Default',
   args: {
     card_border: true,
-    padded: false,
+    padded: true,
     equal_height: false,
-    stretched_link: true,
-    link_url: 'https://example.com',
+    stretched_link: false,
+    link_url: '',
     link_target: 'default',
     media_position: 'start',
     content_vertical_alignment: 'justify-content-center',
     gutters_between: 'g-2 g-lg-3',
     columns_xs_size: '06_06',
-    columns_sm_size: '06_06',
     columns_md_size: '08_04',
-    columns_lg_size: '08_04',
-    columns_xl_size: '08_04',
-    columns_xxl_size: '08_04',
     media_image: {
-      src: 'assets/featured-card-image-placeholder.svg',
+      src: '/components/organisms/card-featured/assets/featured-card-image-placeholder.svg',
       alt: 'Featured image',
       width: 800,
       height: 600,
@@ -237,7 +178,7 @@
     fit: 'object-fit-cover',
   },
 } %}
-{% embed 'vartheme_bs5:card-featured' %}
+{% embed 'vartheme_bs5:card-featured' with _context %}
   {% block content %}
     <h3 class="h5 mb-2">Featured card title</h3>
     <p class="mb-3">A short description that demonstrates the content slot area.</p>
@@ -247,25 +188,21 @@
 {% endstory %}
 
 {% story MediaEnd with {
-  name: 'Media on End',
+  name: 'Media end',
   args: {
     card_border: true,
-    padded: false,
+    padded: true,
     equal_height: false,
-    stretched_link: true,
-    link_url: 'https://example.com',
+    stretched_link: false,
+    link_url: '',
     link_target: 'default',
     media_position: 'end',
     content_vertical_alignment: 'justify-content-center',
     gutters_between: 'g-2 g-lg-3',
     columns_xs_size: '06_06',
-    columns_sm_size: '06_06',
     columns_md_size: '08_04',
-    columns_lg_size: '08_04',
-    columns_xl_size: '08_04',
-    columns_xxl_size: '08_04',
     media_image: {
-      src: 'assets/featured-card-image-placeholder.svg',
+      src: '/components/organisms/card-featured/assets/featured-card-image-placeholder.svg',
       alt: 'Featured image',
       width: 800,
       height: 600,
@@ -274,35 +211,130 @@
     fit: 'object-fit-cover',
   },
 } %}
-{% embed 'vartheme_bs5:card-featured' %}
+{% embed 'vartheme_bs5:card-featured' with _context %}
   {% block content %}
-    <h3 class="h5 mb-2">Featured card title</h3>
-    <p class="mb-3">A short description that demonstrates the content slot area.</p>
-    <a class="btn btn-primary" href="#">Call to action</a>
+    <h3 class="h5 mb-2">Media on the end</h3>
+    <p class="mb-3">Use this layout when the visual should appear after the content.</p>
+    <a class="btn btn-primary" href="#">Learn more</a>
   {% endblock %}
 {% endembed %}
 {% endstory %}
 
-{% story Padded with {
-  name: 'Padded Content',
+{% story PaddedContent with {
+  name: 'Padded content',
+  args: {
+    card_border: true,
+    padded: true,
+    equal_height: false,
+    stretched_link: false,
+    link_url: '',
+    link_target: 'default',
+    media_position: 'start',
+    content_vertical_alignment: 'justify-content-center',
+    gutters_between: 'g-2 g-lg-3',
+    columns_xs_size: '06_06',
+    columns_md_size: '08_04',
+    media_image: {
+      src: '/components/organisms/card-featured/assets/featured-card-image-placeholder.svg',
+      alt: 'Featured image',
+      width: 800,
+      height: 600,
+    },
+    ratio: 'ratio-16x9',
+    fit: 'object-fit-cover',
+  },
+} %}
+{% embed 'vartheme_bs5:card-featured' with _context %}
+  {% block content %}
+    <h3 class="h5 mb-2">Padded content area</h3>
+    <p class="mb-3">This example uses inner spacing to give the content more breathing room.</p>
+    <a class="btn btn-primary" href="#">Explore</a>
+  {% endblock %}
+{% endembed %}
+{% endstory %}
+
+{% story NoMedia with {
+  name: 'No media',
+  args: {
+    card_border: true,
+    padded: true,
+    equal_height: false,
+    stretched_link: false,
+    link_url: '',
+    link_target: 'default',
+    media_position: 'no-media',
+    content_vertical_alignment: 'justify-content-center',
+    gutters_between: 'g-2 g-lg-3',
+    columns_xs_size: '06_06',
+    columns_md_size: '08_04',
+    media_image: {
+      src: '',
+      alt: '',
+      width: 800,
+      height: 600,
+    },
+    ratio: 'ratio-16x9',
+    fit: 'object-fit-cover',
+  },
+} %}
+{% embed 'vartheme_bs5:card-featured' with _context %}
+  {% block content %}
+    <h3 class="h5 mb-2">Content only featured card</h3>
+    <p class="mb-3">When no media is used, the content area expands to the full width of the card.</p>
+    <a class="btn btn-primary" href="#">Read more</a>
+  {% endblock %}
+{% endembed %}
+{% endstory %}
+
+{% story EqualHeight with {
+  name: 'Equal height',
+  args: {
+    card_border: true,
+    padded: true,
+    equal_height: true,
+    stretched_link: false,
+    link_url: '',
+    link_target: 'default',
+    media_position: 'start',
+    content_vertical_alignment: 'justify-content-center',
+    gutters_between: 'g-2 g-lg-3',
+    columns_xs_size: '06_06',
+    columns_md_size: '08_04',
+    media_image: {
+      src: '/components/organisms/card-featured/assets/featured-card-image-placeholder.svg',
+      alt: 'Featured image',
+      width: 800,
+      height: 600,
+    },
+    ratio: 'ratio-16x9',
+    fit: 'object-fit-cover',
+  },
+} %}
+{% embed 'vartheme_bs5:card-featured' with _context %}
+  {% block content %}
+    <h3 class="h5 mb-2">Equal height layout</h3>
+    <p class="mb-3">Useful when featured cards appear in a grid and should align neatly.</p>
+    <a class="btn btn-primary" href="#">View details</a>
+  {% endblock %}
+{% endembed %}
+{% endstory %}
+
+{% story StretchedLink with {
+  name: 'Stretched link',
   args: {
     card_border: true,
     padded: true,
     equal_height: false,
     stretched_link: true,
     link_url: 'https://example.com',
-    link_target: 'default',
+    link_target: '_blank',
     media_position: 'start',
     content_vertical_alignment: 'justify-content-center',
     gutters_between: 'g-2 g-lg-3',
     columns_xs_size: '06_06',
-    columns_sm_size: '06_06',
     columns_md_size: '08_04',
-    columns_lg_size: '08_04',
-    columns_xl_size: '08_04',
-    columns_xxl_size: '08_04',
     media_image: {
-      src: 'assets/featured-card-image-placeholder.svg',
+      src: '/components/organisms/card-featured/assets/featured-card-image-placeholder.svg',
       alt: 'Featured image',
       width: 800,
       height: 600,
@@ -311,121 +343,10 @@
     fit: 'object-fit-cover',
   },
 } %}
-{% embed 'vartheme_bs5:card-featured' %}
+{% embed 'vartheme_bs5:card-featured' with _context %}
   {% block content %}
-    <h3 class="h5 mb-2">Featured card title</h3>
-    <p class="mb-3">A short description that demonstrates the content slot area.</p>
-    <a class="btn btn-primary" href="#">Call to action</a>
-  {% endblock %}
-{% endembed %}
-{% endstory %}
-
-{% story NoBorder with {
-  name: 'No Border + Tight Gutters',
-  args: {
-    card_border: false,
-    padded: false,
-    equal_height: false,
-    stretched_link: true,
-    link_url: 'https://example.com',
-    link_target: 'default',
-    media_position: 'start',
-    content_vertical_alignment: 'justify-content-center',
-    gutters_between: 'g-0',
-    columns_xs_size: '06_06',
-    columns_sm_size: '06_06',
-    columns_md_size: '08_04',
-    columns_lg_size: '08_04',
-    columns_xl_size: '08_04',
-    columns_xxl_size: '08_04',
-    media_image: {
-      src: 'assets/featured-card-image-placeholder.svg',
-      alt: 'Featured image',
-      width: 800,
-      height: 600,
-    },
-    ratio: 'ratio-16x9',
-    fit: 'object-fit-cover',
-  },
-} %}
-{% embed 'vartheme_bs5:card-featured' %}
-  {% block content %}
-    <h3 class="h5 mb-1">Compact content</h3>
-    <p class="mb-0">Example with alternate settings.</p>
-  {% endblock %}
-{% endembed %}
-{% endstory %}
-
-{% story EqualHeight with {
-  name: 'Equal Height',
-  args: {
-    card_border: true,
-    padded: false,
-    equal_height: true,
-    stretched_link: true,
-    link_url: 'https://example.com',
-    link_target: 'default',
-    media_position: 'start',
-    content_vertical_alignment: 'justify-content-center',
-    gutters_between: 'g-2 g-lg-3',
-    columns_xs_size: '06_06',
-    columns_sm_size: '06_06',
-    columns_md_size: '08_04',
-    columns_lg_size: '08_04',
-    columns_xl_size: '08_04',
-    columns_xxl_size: '08_04',
-    media_image: {
-      src: 'assets/featured-card-image-placeholder.svg',
-      alt: 'Featured image',
-      width: 800,
-      height: 600,
-    },
-    ratio: 'ratio-16x9',
-    fit: 'object-fit-cover',
-  },
-} %}
-{% embed 'vartheme_bs5:card-featured' %}
-  {% block content %}
-    <h3 class="h5 mb-2">Featured card title</h3>
-    <p class="mb-3">A short description that demonstrates the content slot area.</p>
-    <a class="btn btn-primary" href="#">Call to action</a>
-  {% endblock %}
-{% endembed %}
-{% endstory %}
-
-{% story Stacked with {
-  name: 'Stacked 100/100',
-  args: {
-    card_border: true,
-    padded: false,
-    equal_height: false,
-    stretched_link: true,
-    link_url: 'https://example.com',
-    link_target: 'default',
-    media_position: 'start',
-    content_vertical_alignment: 'justify-content-center',
-    gutters_between: 'g-2 g-lg-3',
-    columns_xs_size: '12_12',
-    columns_sm_size: '12_12',
-    columns_md_size: '12_12',
-    columns_lg_size: '12_12',
-    columns_xl_size: '12_12',
-    columns_xxl_size: '12_12',
-    media_image: {
-      src: 'assets/featured-card-image-placeholder.svg',
-      alt: 'Featured image',
-      width: 800,
-      height: 600,
-    },
-    ratio: 'ratio-16x9',
-    fit: 'object-fit-cover',
-  },
-} %}
-{% embed 'vartheme_bs5:card-featured' %}
-  {% block content %}
-    <h3 class="h5 mb-2">Featured card title</h3>
-    <p class="mb-3">A short description that demonstrates the content slot area.</p>
-    <a class="btn btn-primary" href="#">Call to action</a>
+    <h3 class="h5 mb-2">Clickable featured card</h3>
+    <p class="mb-0">The whole card becomes clickable when stretched link is enabled.</p>
   {% endblock %}
 {% endembed %}
 {% endstory %}

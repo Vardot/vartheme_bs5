@@ -1,30 +1,115 @@
-{/* card-featured.mdx */}
-
-import { Canvas, Title, Subtitle, ArgTypes, Source, Meta, Description, Primary, Story, Stories, Controls } from '@storybook/addon-docs/blocks';
-import * as comStories from './card-featured.stories.json';
+import { Meta, Source, Canvas, Controls, Stories } from '@storybook/addon-docs/blocks';
+import * as CardFeaturedStories from './card-featured.stories.json';
 import templateSource from './card-featured.twig?raw';
 
-<Meta of={comStories} name="Docs"/>
+<Meta of={CardFeaturedStories} name="Docs" />
 
-<Title />
-<Subtitle />
-<Description />
+# Featured Card
+
+A responsive two-column featured card with an optional media image and a flexible content slot. Supports configurable column ratios per breakpoint, gutter control, content vertical alignment, border, padding, equal height, and optional stretched-link for whole-card click behavior.
+
+- Media column is optional — set `media_position` to `no-media` to expand the content to full width
+- Column ratios are controlled per breakpoint (`columns_xs_size`, `columns_md_size`, etc.) using Bootstrap grid values
+- `stretched_link` requires a `link_url` to be set; makes the entire card clickable
+- Uses Bootstrap utility classes only — no custom CSS required
 
 > ### Bootstrap documentation
-> - Cards: https://getbootstrap.com/docs/5.3/components/card/
-> - Ratios: https://getbootstrap.com/docs/5.3/helpers/ratio/
-> - Object fit utilities: https://getbootstrap.com/docs/5.3/utilities/object-fit/
+> - [Cards](https://getbootstrap.com/docs/5.3/components/card/)
+> - [Grid system](https://getbootstrap.com/docs/5.3/layout/grid/)
+> - [Stretched link](https://getbootstrap.com/docs/5.3/helpers/stretched-link/)
+> - [Ratio](https://getbootstrap.com/docs/5.3/helpers/ratio/)
 
-<Primary />
+## Properties
 
-## Template (Twig)
-
-<Source code={templateSource} language="twig" />
-
-## Controls
-
-<Controls />
+<Canvas of={CardFeaturedStories.Default} />
+<Controls of={CardFeaturedStories.Default} />
 
 ## Stories
 
-<Stories />
+<Stories of={CardFeaturedStories} />
+
+## Example
+
+### Example #1 : Default featured card
+
+```twig
+{% embed 'vartheme_bs5:card-featured' with {
+  card_border: true,
+  padded: true,
+  media_position: 'start',
+  columns_xs_size: '06_06',
+  columns_md_size: '08_04',
+  gutters_between: 'g-2 g-lg-3',
+  ratio: 'ratio-16x9',
+  fit: 'object-fit-cover',
+  media_image: {
+    src: '/path/to/image.jpg',
+    alt: 'Featured image',
+    width: 800,
+    height: 600
+  }
+} %}
+  {% block content %}
+    <h3 class="h5 mb-2">Featured card title</h3>
+    <p class="mb-3">A short description for the content slot.</p>
+    <a class="btn btn-primary" href="#">Call to action</a>
+  {% endblock %}
+{% endembed %}
+```
+
+### Example #2 : Media on the end
+
+```twig
+{% embed 'vartheme_bs5:card-featured' with {
+  card_border: true,
+  padded: true,
+  media_position: 'end',
+  columns_xs_size: '06_06',
+  columns_md_size: '08_04',
+  ratio: 'ratio-16x9',
+  fit: 'object-fit-cover',
+  media_image: {
+    src: '/path/to/image.jpg',
+    alt: 'Featured image',
+    width: 800,
+    height: 600
+  }
+} %}
+  {% block content %}
+    <h3 class="h5 mb-2">Media on the end</h3>
+    <p class="mb-3">Content appears before the media column.</p>
+    <a class="btn btn-primary" href="#">Learn more</a>
+  {% endblock %}
+{% endembed %}
+```
+
+### Example #3 : Clickable stretched link card
+
+```twig
+{% embed 'vartheme_bs5:card-featured' with {
+  card_border: true,
+  padded: true,
+  stretched_link: true,
+  link_url: 'https://example.com',
+  link_target: '_blank',
+  media_position: 'start',
+  columns_xs_size: '06_06',
+  columns_md_size: '08_04',
+  ratio: 'ratio-16x9',
+  media_image: {
+    src: '/path/to/image.jpg',
+    alt: 'Featured image',
+    width: 800,
+    height: 600
+  }
+} %}
+  {% block content %}
+    <h3 class="h5 mb-2">Clickable featured card</h3>
+    <p class="mb-0">The whole card becomes clickable when stretched link is enabled.</p>
+  {% endblock %}
+{% endembed %}
+```
+
+## Source code
+[//]: # (Twig Template source code)
+<Source code={templateSource} />
