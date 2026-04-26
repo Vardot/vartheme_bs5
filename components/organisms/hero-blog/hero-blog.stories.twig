@@ -80,51 +80,85 @@
     author_url: '',
   },
 } %}
-{% embed 'vartheme_bs5:hero-blog' %}
-  {% block blog_media %}<img src="./assets/boliviainteligente-I1rJ9ViO3ik-unsplash.jpg" alt="Sample blog media" class="img-fluid rounded">{% endblock %}
+{% embed 'vartheme_bs5:hero-blog' with {
+  heading_text: heading_text,
+  level: level,
+  heading_size: heading_size,
+  date: date,
+  author: author,
+  author_url: author_url,
+} %}
+  {% block blog_media %}{% endblock %}
 {% endembed %}
 {% endstory %}
 
-{% story DisplayTitle with {
-  name: 'Display title',
+{% story HeadingSize with {
+  name: 'Heading size',
   args: {
     heading_text: 'Inside the new publishing workflow',
     level: 2,
     heading_size: 'display-4',
     date: '2026-03-24',
     author: 'Jane Doe',
-    author_url: 'https://example.com/authors/jane-doe',
-  },
-} %}
-{{ include('vartheme_bs5:hero-blog') }}
-{% endstory %}
-
-{% story Compact with {
-  name: 'Compact',
-  args: {
-    heading_text: 'Editorial release notes',
-    level: 3,
-    heading_size: 'h4',
-    date: '2026-03-24',
-    author: 'Editorial team',
     author_url: '',
   },
 } %}
-{{ include('vartheme_bs5:hero-blog') }}
+{% embed 'vartheme_bs5:hero-blog' with {
+  heading_text: heading_text,
+  level: level,
+  heading_size: heading_size,
+  date: date,
+  author: author,
+  author_url: author_url,
+} %}
+  {% block blog_media %}{% endblock %}
+{% endembed %}
 {% endstory %}
 
-{% story WithoutAuthor with {
-  name: 'Without author',
+{% story AuthorLink with {
+  name: 'Author link',
   args: {
-    heading_text: 'A title-only article header',
+    heading_text: 'Linked author profile',
     level: 2,
     heading_size: 'default',
     date: '2026-03-24',
+    author: 'Jane Doe',
+    author_url: 'https://example.com/authors/jane-doe',
+  },
+} %}
+{% embed 'vartheme_bs5:hero-blog' with {
+  heading_text: heading_text,
+  level: level,
+  heading_size: heading_size,
+  date: date,
+  author: author,
+  author_url: author_url,
+} %}
+  {% block blog_media %}{% endblock %}
+{% endembed %}
+{% endstory %}
+
+{% story DateOnly with {
+  name: 'Date',
+  args: {
+    heading_text: 'Date focused article header',
+    level: 2,
+    heading_size: 'default',
+    date: '2026-04-14',
     author: '',
     author_url: '',
   },
 } %}
-{{ include('vartheme_bs5:hero-blog') }}
+{% embed 'vartheme_bs5:hero-blog' with {
+  heading_text: heading_text,
+  level: level,
+  heading_size: heading_size,
+  date: date,
+  author: author,
+  author_url: author_url,
+} %}
+  {% block blog_media %}{% endblock %}
+{% endembed %}
 {% endstory %}
 
 {% endstories %}
