@@ -1,36 +1,42 @@
-{/* card-hero.mdx */}
-
-import { Canvas, Title, Subtitle, ArgTypes, Source, Meta, Description, Primary, Story, Stories, Controls } from '@storybook/addon-docs/blocks';
-import * as comStories from './card-hero.stories.json';
+import { Meta, Source, Canvas, Controls, Stories } from '@storybook/addon-docs/blocks';
+import * as CardHeroStories from './card-hero.stories.json';
 import templateSource from './card-hero.twig?raw';
 
-<Meta of={comStories} name="Docs"/>
+<Meta of={CardHeroStories} name="Docs" />
 
-<Title />
-<Subtitle />
-<Description />
+# Hero Card
 
+A Bootstrap card component that supports five distinct media positions: overlay (media as background), start/end (side-by-side split), top/bottom (stacked), and a padded variant. Content and media are both passed as slots, making it suitable for use with Drupal render arrays.
 
-<Primary />
+- `media_position: overlay` places the image behind content using Bootstrap's `card-img-overlay` structure
+- `media_position: start` or `end` creates a horizontal split layout
+- `media_position: top` or `bottom` stacks media and content vertically
+- Extra Bootstrap utility classes can be passed via `card_hero_utility_classes`, `card_hero_media_utility_classes`, and `card_hero_content_utility_classes` arrays
+
+> ### Bootstrap documentation
+> - [Cards](https://getbootstrap.com/docs/5.3/components/card/)
+> - [Card image overlays](https://getbootstrap.com/docs/5.3/components/card/#image-overlays)
 
 ## Properties
-<Controls />
 
+<Canvas of={CardHeroStories.Default} />
+<Controls of={CardHeroStories.Default} />
 
-<Stories of={comStories} />
+## Stories
 
-### Options to custom:
-- Full clone/copy the **Hero Card** component and [customize it in a custom theme](https://docs.varbase.vardot.com/v/10.0.x/developers/theme-development-with-varbase/customize-a-varbase-sdc-component-in-a-custom-theme)
-- Minimal copy of parts of the component and use for targeted selected entity type or bundle, and have the custom changes with styles(`css`) and scripts(`js`), or even with custom props and slots.
+<Stories of={CardHeroStories} />
 
+## Example
 
-```
+### Example #1 : Overlay card (default)
+
+```twig
 {% include 'vartheme_bs5:card-hero' with {
-  card_border: true,
-  padded: true,
+  card_border: false,
+  padded: false,
   media_position: 'overlay',
-  horizontal_alignment: 'center',
-  vertical_alignment: 'center',
+  horizontal_alignment: 'start',
+  vertical_alignment: 'end',
   card_hero_utility_classes: [],
   card_hero_media_utility_classes: [],
   card_hero_content_utility_classes: [],
@@ -39,16 +45,28 @@ import templateSource from './card-hero.twig?raw';
 } only %}
 ```
 
-```
+### Example #2 : Side-by-side split (media start)
+
+```twig
 {% include 'vartheme_bs5:card-hero' with {
-  card_border: true,
+  media_position: 'start',
+  horizontal_alignment: 'start',
+  vertical_alignment: 'center',
+  media: media,
+  content: content,
+} only %}
+```
+
+### Example #3 : Padded overlay with utility classes
+
+```twig
+{% include 'vartheme_bs5:card-hero' with {
+  media_position: 'overlay',
   padded: true,
-  media_position: 'end' ,
   horizontal_alignment: 'center',
   vertical_alignment: 'center',
-  card_hero_utility_classes: [],
-  card_hero_media_utility_classes: [],
-  card_hero_content_utility_classes: [],
+  card_hero_utility_classes: ['shadow'],
+  card_hero_content_utility_classes: ['w-75'],
   media: media,
   content: content,
 } only %}

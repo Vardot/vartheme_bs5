@@ -16,7 +16,7 @@
       name: 'Card Border',
       description: 'Add a default border to the card.',
       control: 'boolean',
-      defaultValue: true,
+      defaultValue: false,
     },
     padded: {
       name: 'Padded',
@@ -30,7 +30,6 @@
       control: 'select',
       defaultValue: 'overlay',
       options: {
-        "' - none - '": '',
         Overlay: 'overlay',
         Start: 'start',
         End: 'end',
@@ -62,250 +61,157 @@
         End: 'end',
       },
     },
-    media: {
-      name: 'Card media',
-      description: 'The media image/video slot for the card.',
-      control: 'text',
-      defaultValue: '',
-    },
-    content: {
-      name: 'Card content',
-      slots: 'The content slot for the card.',
-      control: 'text',
-      defaultValue: '',
-    },
     card_hero_utility_classes: {
       name: 'Utility Classes',
-      description: 'Use to add extra Bootstrap utility classes for the main Card wrapper. E.g. `mb-3 shadow-lg` ( Do not add `card`).',
+      description: 'Extra Bootstrap utility classes for the main card wrapper.',
       control: 'object',
       defaultValue: [],
     },
     card_hero_media_utility_classes: {
       name: 'Media Utility Classes',
-      description: 'Use to add extra Bootstrap utility classes for the Card Media region wrapper. E.g. `bg-secondary mb-3` ( Do not add `card-img`).',
+      description: 'Extra Bootstrap utility classes for the card media region wrapper.',
       control: 'object',
       defaultValue: [],
     },
     card_hero_content_utility_classes: {
       name: 'Content Utility Classes',
-      description: 'Use to add extra Bootstrap utility classes for the Card Content region wrapper. E.g. `w-75 mb-3 overflow-y-hidden`  ( Do not add `card-body`).',
+      description: 'Extra Bootstrap utility classes for the card content region wrapper.',
       control: 'object',
       defaultValue: [],
-    },
-    card_attributes: {
-      name: 'Card Attributes',
-      description: 'HTML attributes for the card element.',
-      control: 'object',
-      defaultValue: {},
-    },
-    content_attributes: {
-      name: 'Content Attributes',
-      description: 'HTML attributes for the content element.',
-      control: 'object',
-      defaultValue: {},
     },
   },
 } %}
 
-{% story HeroCardOverlay with {
-  name: 'Hero Card - Media overlay',
+{% story Default with {
+  name: 'Default',
   args: {
     media_position: 'overlay',
     card_border: false,
     padded: false,
     horizontal_alignment: 'start',
     vertical_alignment: 'end',
-    content: "<div data-component-id=\"vartheme_bs5:field\" class=\"field field--name-node-title field--type-ds field--label-hidden field__item\"><h3 class=\"card-title\">Varbase; better than ever</h3></div><div class=\"field field--name-body field--type-text-with-summary field--label-hidden field__item\">Elevate your digital experience with Varbase's dynamic design system, seamlessly blending aesthetic appeal with unparalleled functionality. Unleash the power of intuitive design for a compelling web presence.</div><div class=\"mt-5\"><a href=\"\" class=\"btn btn-primary btn-lg\">Learn More</a></div>",
     card_hero_utility_classes: [],
     card_hero_media_utility_classes: [],
     card_hero_content_utility_classes: [],
+    media: {
+      "'#markup'": "<img src='https://raw.githubusercontent.com/Vardot/varbase_media_demo/10.1.x/recipes/default/content/file/meeting-1.webp' class='card-image img-fluid w-100' alt='Hero card overlay image'>"
+    },
+    content: {
+      "'#markup'": "<div class='field field--name-node-title field--type-ds field--label-hidden field__item'><h3 class='card-title'>Varbase; better than ever</h3></div><div class='field field--name-body field--type-text-with-summary field--label-hidden field__item'>Elevate your digital experience with Varbase's dynamic design system, seamlessly blending aesthetic appeal with unparalleled functionality.</div><div class='mt-5'><a href='#' class='btn btn-primary btn-lg'>Learn More</a></div>"
+    },
   },
 } %}
-
-  {% set image1_html = include('vartheme_bs5:image', {
-    attributes: create_attribute({
-      src: 'https://raw.githubusercontent.com/Vardot/varbase_media_demo/10.1.x/recipes/default/content/file/meeting-1.webp',
-      class: ['card-image', 'img-fluid'],
-    }),
-  }) %}
-
-  <div class="varbase-heroslider carousel slide hero-style-overlay">
-    <div class="carousel-inner">
-     <div class="carousel-item active">
-        {{
-          include('vartheme_bs5:card-hero', {
-            media: image1_html,
-          })
-        }}
-      </div>
-    </div>
-  </div>
+{{ include('vartheme_bs5:card-hero') }}
 {% endstory %}
 
-{% story HeroCardMediaStart with {
-  name: 'Hero Card - Media start',
+{% story MediaStart with {
+  name: 'Media start',
   args: {
     media_position: 'start',
     card_border: false,
     padded: false,
     horizontal_alignment: 'start',
     vertical_alignment: 'center',
-    content: "<div data-component-id=\"vartheme_bs5:field\" class=\"field field--name-node-title field--type-ds field--label-hidden field__item\"><h3 class=\"card-title\">Varbase; better than ever</h3></div><div class=\"field field--name-body field--type-text-with-summary field--label-hidden field__item\">Elevate your digital experience with Varbase's dynamic design system, seamlessly blending aesthetic appeal with unparalleled functionality. Unleash the power of intuitive design for a compelling web presence.</div><div class=\"mt-5\"><a href=\"\" class=\"btn btn-primary btn-lg\">Learn More</a></div>",
     card_hero_utility_classes: [],
     card_hero_media_utility_classes: [],
     card_hero_content_utility_classes: [],
+    media: {
+      "'#markup'": "<img src='https://raw.githubusercontent.com/Vardot/varbase_media_demo/10.1.x/recipes/default/content/file/meeting-1.webp' class='card-image img-fluid w-100' alt='Hero card start image'>"
+    },
+    content: {
+      "'#markup'": "<div class='field field--name-node-title field--type-ds field--label-hidden field__item'><h3 class='card-title'>Media on the start</h3></div><div class='field field--name-body field--type-text-with-summary field--label-hidden field__item'>Use the split layout to place media before the content.</div><div class='mt-5'><a href='#' class='btn btn-primary btn-lg'>Explore</a></div>"
+    },
   },
 } %}
-
-  {% set image1_html = include('vartheme_bs5:image', {
-    attributes: create_attribute({
-      src: 'https://raw.githubusercontent.com/Vardot/varbase_media_demo/10.1.x/recipes/default/content/file/meeting-1.webp',
-      class: ['card-image', 'img-fluid'],
-    }),
-  }) %}
-
-  <div class="varbase-heroslider carousel slide hero-style-start">
-    <div class="carousel-inner">
-     <div class="carousel-item active">
-        {{
-          include('vartheme_bs5:card-hero', {
-            media: image1_html,
-          })
-        }}
-      </div>
-    </div>
-  </div>
+{{ include('vartheme_bs5:card-hero') }}
 {% endstory %}
 
-{% story HeroCardMediaEnd with {
-  name: 'Hero Card - Media end',
+{% story MediaEnd with {
+  name: 'Media end',
   args: {
     media_position: 'end',
     card_border: false,
     padded: false,
     horizontal_alignment: 'start',
     vertical_alignment: 'center',
-    content: "<div data-component-id=\"vartheme_bs5:field\" class=\"field field--name-node-title field--type-ds field--label-hidden field__item\"><h3 class=\"card-title\">Varbase; better than ever</h3></div><div class=\"field field--name-body field--type-text-with-summary field--label-hidden field__item\">Elevate your digital experience with Varbase's dynamic design system, seamlessly blending aesthetic appeal with unparalleled functionality. Unleash the power of intuitive design for a compelling web presence.</div><div class=\"mt-5\"><a href=\"\" class=\"btn btn-primary btn-lg\">Learn More</a></div>",
     card_hero_utility_classes: [],
     card_hero_media_utility_classes: [],
     card_hero_content_utility_classes: [],
+    media: {
+      "'#markup'": "<img src='https://raw.githubusercontent.com/Vardot/varbase_media_demo/10.1.x/recipes/default/content/file/meeting-1.webp' class='card-image img-fluid w-100' alt='Hero card end image'>"
+    },
+    content: {
+      "'#markup'": "<div class='field field--name-node-title field--type-ds field--label-hidden field__item'><h3 class='card-title'>Media on the end</h3></div><div class='field field--name-body field--type-text-with-summary field--label-hidden field__item'>Use the end position when the text should appear before the media.</div><div class='mt-5'><a href='#' class='btn btn-primary btn-lg'>Explore</a></div>"
+    },
   },
 } %}
-
-  {% set image1_html = include('vartheme_bs5:image', {
-    attributes: create_attribute({
-      src: 'https://raw.githubusercontent.com/Vardot/varbase_media_demo/10.1.x/recipes/default/content/file/meeting-1.webp',
-      class: ['card-image', 'img-fluid'],
-    }),
-  }) %}
-
-  <div class="varbase-heroslider carousel slide hero-style-end">
-    <div class="carousel-inner">
-     <div class="carousel-item active">
-        {{
-          include('vartheme_bs5:card-hero', {
-            media: image1_html,
-          })
-        }}
-      </div>
-    </div>
-  </div>
+{{ include('vartheme_bs5:card-hero') }}
 {% endstory %}
 
-{% story HeroCardMediaTop with {
-  name: 'Hero Card - Media top',
+{% story MediaTop with {
+  name: 'Media top',
   args: {
     media_position: 'top',
-    card_border: false,
+    card_border: true,
     padded: false,
     horizontal_alignment: 'center',
     vertical_alignment: 'center',
-    content: "<div data-component-id=\"vartheme_bs5:field\" class=\"field field--name-node-title field--type-ds field--label-hidden field__item\"><h3 class=\"card-title\">Varbase; better than ever</h3></div><div class=\"field field--name-body field--type-text-with-summary field--label-hidden field__item\">Elevate your digital experience with Varbase's dynamic design system, seamlessly blending aesthetic appeal with unparalleled functionality. Unleash the power of intuitive design for a compelling web presence.</div><div class=\"mt-5\"><a href=\"\" class=\"btn btn-primary btn-lg\">Learn More</a></div>",
-    card_hero_utility_classes: [],
+    card_hero_utility_classes: ['shadow-sm'],
     card_hero_media_utility_classes: [],
     card_hero_content_utility_classes: [],
+    media: {
+      "'#markup'": "<img src='https://raw.githubusercontent.com/Vardot/varbase_media_demo/10.1.x/recipes/default/content/file/meeting-1.webp' class='card-image img-fluid w-100' alt='Hero card top image'>"
+    },
+    content: {
+      "'#markup'": "<div class='field field--name-node-title field--type-ds field--label-hidden field__item'><h3 class='card-title'>Media on the top</h3></div><div class='field field--name-body field--type-text-with-summary field--label-hidden field__item'>This layout stacks the media above the content.</div><div class='mt-5'><a href='#' class='btn btn-primary btn-lg'>Read More</a></div>"
+    },
   },
 } %}
-
-  {% set image1_html = include('vartheme_bs5:image', {
-    attributes: create_attribute({
-      src: 'https://raw.githubusercontent.com/Vardot/varbase_media_demo/10.1.x/recipes/default/content/file/meeting-1.webp',
-      class: ['card-image', 'img-fluid'],
-    }),
-  }) %}
-
-  <div class="varbase-heroslider carousel slide hero-style-top">
-    <div class="carousel-inner">
-     <div class="carousel-item active">
-        {{
-          include('vartheme_bs5:card-hero', {
-            media: image1_html,
-          })
-        }}
-      </div>
-    </div>
-  </div>
+{{ include('vartheme_bs5:card-hero') }}
 {% endstory %}
 
-{% story HeroCardMediaBottom with {
-  name: 'Hero Card - Media bottom',
+{% story MediaBottom with {
+  name: 'Media bottom',
   args: {
     media_position: 'bottom',
-    card_border: false,
+    card_border: true,
     padded: false,
     horizontal_alignment: 'center',
     vertical_alignment: 'center',
-    content: "<div data-component-id=\"vartheme_bs5:field\" class=\"field field--name-node-title field--type-ds field--label-hidden field__item\"><h3 class=\"card-title\">Varbase; better than ever</h3></div><div class=\"field field--name-body field--type-text-with-summary field--label-hidden field__item\">Elevate your digital experience with Varbase's dynamic design system, seamlessly blending aesthetic appeal with unparalleled functionality. Unleash the power of intuitive design for a compelling web presence.</div><div class=\"mt-5\"><a href=\"\" class=\"btn btn-primary btn-lg\">Learn More</a></div>",
-    card_hero_utility_classes: [],
+    card_hero_utility_classes: ['shadow-sm'],
     card_hero_media_utility_classes: [],
     card_hero_content_utility_classes: [],
+    media: {
+      "'#markup'": "<img src='https://raw.githubusercontent.com/Vardot/varbase_media_demo/10.1.x/recipes/default/content/file/meeting-1.webp' class='card-image img-fluid w-100' alt='Hero card bottom image'>"
+    },
+    content: {
+      "'#markup'": "<div class='field field--name-node-title field--type-ds field--label-hidden field__item'><h3 class='card-title'>Media on the bottom</h3></div><div class='field field--name-body field--type-text-with-summary field--label-hidden field__item'>This version reverses the stack so the media appears after the content.</div><div class='mt-5'><a href='#' class='btn btn-primary btn-lg'>Read More</a></div>"
+    },
   },
 } %}
-
-  {% set image1_html = include('vartheme_bs5:image', {
-    attributes: create_attribute({
-      src: 'https://raw.githubusercontent.com/Vardot/varbase_media_demo/10.1.x/recipes/default/content/file/meeting-1.webp',
-      class: ['card-image', 'img-fluid'],
-    }),
-  }) %}
-
-  <div class="varbase-heroslider carousel slide hero-style-bottom">
-    <div class="carousel-inner">
-     <div class="carousel-item active">
-        {{
-          include('vartheme_bs5:card-hero', {
-            media: image1_html,
-          })
-        }}
-      </div>
-    </div>
-  </div>
+{{ include('vartheme_bs5:card-hero') }}
 {% endstory %}
 
-{% story HeroCardContent with {
-  name: 'Hero Card - Content',
+{% story PaddedCard with {
+  name: 'Padded card',
   args: {
-    media_position: 'top',
+    media_position: 'overlay',
     card_border: false,
-    padded: false,
-    horizontal_alignment: 'start',
+    padded: true,
+    horizontal_alignment: 'center',
     vertical_alignment: 'center',
-    content: "<div data-component-id=\"vartheme_bs5:field\" class=\"field field--name-node-title field--type-ds field--label-hidden field__item\"><h3 class=\"card-title\">Varbase; better than ever</h3></div><div class=\"field field--name-body field--type-text-with-summary field--label-hidden field__item\">Elevate your digital experience with Varbase's dynamic design system, seamlessly blending aesthetic appeal with unparalleled functionality. Unleash the power of intuitive design for a compelling web presence.</div><div class=\"mt-5\"><a href=\"\" class=\"btn btn-primary btn-lg\">Learn More</a></div>",
-    card_hero_utility_classes: [],
+    card_hero_utility_classes: ['shadow'],
     card_hero_media_utility_classes: [],
-    card_hero_content_utility_classes: [],
+    card_hero_content_utility_classes: ['w-75'],
+    media: {
+      "'#markup'": "<img src='https://raw.githubusercontent.com/Vardot/varbase_media_demo/10.1.x/recipes/default/content/file/meeting-1.webp' class='card-image img-fluid w-100' alt='Hero card padded image'>"
+    },
+    content: {
+      "'#markup'": "<div class='field field--name-node-title field--type-ds field--label-hidden field__item'><h3 class='card-title'>Padded overlay variant</h3></div><div class='field field--name-body field--type-text-with-summary field--label-hidden field__item'>Use the padded option together with utility classes when you want a more contained content block over the media.</div><div class='mt-5'><a href='#' class='btn btn-primary btn-lg'>Discover</a></div>"
+    },
   },
 } %}
-
-  <div class="varbase-heroslider carousel slide hero-style-overlay">
-    <div class="carousel-inner">
-     <div class="carousel-item active">
-        {{
-          include('vartheme_bs5:card-hero')
-        }}
-      </div>
-    </div>
-  </div>
+{{ include('vartheme_bs5:card-hero') }}
 {% endstory %}
 
 {% endstories %}
