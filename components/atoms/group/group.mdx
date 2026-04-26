@@ -1,45 +1,42 @@
-import { Title, Subtitle, Description, Source, Meta, Primary, Stories, Controls } from '@storybook/addon-docs/blocks';
-import * as comStories from './group.stories.json';
+import { Meta, Source, Canvas, Controls, Stories } from '@storybook/addon-docs/blocks';
+import * as GroupStories from './group.stories.json';
 import templateSource from './group.twig?raw';
 
-<Meta of={comStories} name="Docs"/>
+<Meta of={GroupStories} name="Docs" />
 
-<Title />
-<Subtitle />
-<Description />
+# Group
+
+A Bootstrap flex wrapper for stacking or arranging items horizontally or vertically. Controls gap, alignment, wrapping, background, spacing utilities, and optional Animate On Scroll (AOS) effects.
+
+- `direction: horizontal` renders items in a row using `flex-row`; `direction: vertical` stacks them with `flex-column`
+- `wrap` only applies in horizontal direction — vertical stacks always flow without wrapping
+- AOS animation, duration, and delay are only applied when `aos_animation` is set to a value other than `none`
+- Use `{% embed %}` to pass content into the `content` slot
 
 > ### Bootstrap documentation
-> * [Flex](https://getbootstrap.com/docs/5.3/utilities/flex/)
-> * [Gap](https://getbootstrap.com/docs/5.3/utilities/spacing/#gap)
-> * [Spacing](https://getbootstrap.com/docs/5.3/utilities/spacing/)
-> * [Background](https://getbootstrap.com/docs/5.3/utilities/background/)
-> * [Align items](https://getbootstrap.com/docs/5.3/utilities/flex/#align-items)
-> * [Justify content](https://getbootstrap.com/docs/5.3/utilities/flex/#justify-content)
-
-<Primary />
+> - [Flexbox utilities](https://getbootstrap.com/docs/5.3/utilities/flex/)
+> - [Gap utilities](https://getbootstrap.com/docs/5.3/utilities/gap/)
+> - [Spacing](https://getbootstrap.com/docs/5.3/utilities/spacing/)
 
 ## Properties
-<Controls />
 
-<Stories of={comStories} />
+<Canvas of={GroupStories.Default} />
+<Controls of={GroupStories.Default} />
 
-## Slots
-* `content`: Items rendered inside the group wrapper.
+## Stories
 
-## Notes
-* This component is a flexible Bootstrap wrapper for grouping items vertically or horizontally.
-* `direction` switches between `flex-column` and `flex-row`.
-* `wrap` only affects horizontal layouts.
-* `gap`, alignment, padding, margin, and background are all passed through as Bootstrap utility classes.
-* This component works well for button groups, tag clouds, stacked content, and small layout clusters.
+<Stories of={GroupStories} />
 
-## Examples
+## Example
 
-### Example #1 : Vertical stack
+### Example #1 : Vertical stack (default)
+
 ```twig
 {% embed 'vartheme_bs5:group' with {
   direction: 'vertical',
-  gap: 'gap-3'
+  gap: 'gap-3',
+  align_items: 'align-items-stretch',
+  justify_content: 'justify-content-start',
 } %}
   {% block content %}
     <div class="p-3 border rounded">First item</div>
@@ -49,19 +46,20 @@ import templateSource from './group.twig?raw';
 {% endembed %}
 ```
 
-### Example #2 : Horizontal actions
+### Example #2 : Horizontal action bar
+
 ```twig
 {% embed 'vartheme_bs5:group' with {
-  background_color: 'bg-light',
   direction: 'horizontal',
   gap: 'gap-2',
   wrap: 'wrap',
   align_items: 'align-items-center',
   justify_content: 'justify-content-start',
+  background_color: 'bg-light',
   padding_block_start: 'pt-3',
   padding_block_end: 'pb-3',
   padding_inline_start: 'ps-2',
-  padding_inline_end: 'pe-2'
+  padding_inline_end: 'pe-2',
 } %}
   {% block content %}
     <button class="btn btn-primary">Save</button>
@@ -72,4 +70,5 @@ import templateSource from './group.twig?raw';
 ```
 
 ## Source code
+[//]: # (Twig Template source code)
 <Source code={templateSource} />
