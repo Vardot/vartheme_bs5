@@ -1,37 +1,120 @@
-import { Meta, Canvas, Story, Controls } from '@storybook/addon-docs/blocks';
+import { Meta, Source, Canvas, Controls, Stories } from '@storybook/addon-docs/blocks';
 import * as SectionStories from './section.stories.json';
+import templateSource from './section.twig?raw';
 
-<Meta of={SectionStories} />
+<Meta of={SectionStories} name="Docs" />
 
 # Section
 
-Use the Section component to create consistent layout wrappers with Bootstrap containers, spacing utilities on all four sides, background options, and responsive column presets.
+A full-featured Bootstrap section wrapper for building page layouts. Combines container control, responsive multi-column grid presets, background color and image with overlay, full block and inline spacing utilities, shadow, and optional header and footer regions.
 
-## Highlights
+- Only the selected number of column slots are rendered for the chosen `columns` preset — empty slots are skipped
+- For 5- and 6-column presets, the component uses responsive `row-cols-*` classes instead of fixed `col-*` widths
+- `text_color: auto` automatically switches to white text for dark background utilities (`bg-primary`, `bg-secondary`, `bg-dark`)
+- Background image is applied via inline style on the outer wrapper — use `background_overlay` to add a tinted layer on top
 
-- 1 to 6 column presets
-- optional header and footer regions
-- optional background image with overlay
-- Bootstrap-based spacing, container, color, and shadow utilities
+> ### Bootstrap documentation
+> - [Grid system](https://getbootstrap.com/docs/5.3/layout/grid/)
+> - [Spacing](https://getbootstrap.com/docs/5.3/utilities/spacing/)
+> - [Background](https://getbootstrap.com/docs/5.3/utilities/background/)
+> - [Shadows](https://getbootstrap.com/docs/5.3/utilities/shadows/)
 
-## Preview
+## Properties
 
 <Canvas of={SectionStories.Default} />
-
-## Available stories
-
-- Default
-- Hero With Background
-- Three Columns
-- Asymmetric Split
-- Five Columns
-- Six Columns
-
-## Controls
-
 <Controls of={SectionStories.Default} />
 
+## Stories
 
-## Alignment
+<Stories of={SectionStories} />
 
-Use **Vertical alignment** to align columns on the row and **Horizontal alignment** to control text alignment inside each column.
+## Example
+
+### Example #1 : Simple two-column section
+
+```twig
+{% embed 'vartheme_bs5:section' with {
+  container_type: 'container',
+  columns: '50-50',
+  gutter: 'gx-4 gy-4',
+  background_color: 'bg-light',
+  padding_block_start: 'pt-5',
+  padding_block_end: 'pb-5',
+  padding_inline_start: 'ps-0',
+  padding_inline_end: 'pe-0',
+  section_header: true,
+  section_footer: false
+} only %}
+  {% block header_slot %}
+    <h2 class="h3 mb-0">Section heading</h2>
+  {% endblock %}
+  {% block col_1 %}
+    <p class="mb-0">Left column content.</p>
+  {% endblock %}
+  {% block col_2 %}
+    <p class="mb-0">Right column content.</p>
+  {% endblock %}
+{% endembed %}
+```
+
+### Example #2 : Hero-style section with background media
+
+```twig
+{% embed 'vartheme_bs5:section' with {
+  bg_edge2edge: true,
+  container_type: 'container',
+  columns: '100',
+  background_color: 'bg-dark',
+  text_color: 'text-white',
+  padding_block_start: 'pt-5',
+  padding_block_end: 'pb-5',
+  padding_inline_start: 'ps-0',
+  padding_inline_end: 'pe-0',
+  section_header: false,
+  section_footer: false
+} only %}
+  {% block col_1 %}
+    <div class="py-5 text-center">
+      <h1 class="display-5">Hero content</h1>
+      <p class="lead mb-0">Single-column full-width layout.</p>
+    </div>
+  {% endblock %}
+{% endembed %}
+```
+
+### Example #3 : Asymmetric 67/33 split with sidebar
+
+```twig
+{% embed 'vartheme_bs5:section' with {
+  container_type: 'container-fluid',
+  columns: '67-33',
+  gutter: 'gx-5 gy-5',
+  background_color: 'bg-body-tertiary',
+  padding_block_start: 'pt-5',
+  padding_block_end: 'pb-5',
+  padding_inline_start: 'ps-0',
+  padding_inline_end: 'pe-0',
+  shadow: 'shadow-sm',
+  section_header: true,
+  section_footer: false
+} only %}
+  {% block header_slot %}
+    <h2 class="h3 mb-0">Main content + sidebar</h2>
+  {% endblock %}
+  {% block col_1 %}
+    <div class="p-4 bg-white rounded-3 h-100">
+      <h3 class="h5">Primary content</h3>
+      <p class="mb-0">Main column.</p>
+    </div>
+  {% endblock %}
+  {% block col_2 %}
+    <aside class="p-4 bg-white rounded-3 h-100">
+      <h3 class="h6">Sidebar</h3>
+    </aside>
+  {% endblock %}
+{% endembed %}
+```
+
+## Source code
+[//]: # (Twig Template source code)
+<Source code={templateSource} />
