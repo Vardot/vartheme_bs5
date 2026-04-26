@@ -1,11 +1,80 @@
-import { Source, Meta, Controls, Stories } from '@storybook/addon-docs/blocks';
+import { Meta, Source, Canvas, Controls, Stories } from '@storybook/addon-docs/blocks';
+import * as HeroSideBySideStories from './hero-side-by-side.stories.json';
+import templateSource from './hero-side-by-side.twig?raw';
 
-<Meta title="Hero/Hero Side by Side" />
+<Meta of={HeroSideBySideStories} name="Docs" />
 
 # Hero Side by Side
 
-A two-column hero layout with heading, text, image, and optional CTA.
+A split-layout hero section with an image column and a content column. Supports configurable image position, content alignment, background color, optional background image with overlay, and a CTA button.
 
-<Canvas>
-  <Stories />
-</Canvas>
+- `image_position: left` reorders columns so the image appears on the start side
+- Background color and content color are set independently — use `content_color: text-white` when using dark backgrounds
+- Optional background image with overlay is separate from the main side image — controlled via `background_image`, `background_overlay_color`, and `background_overlay_opacity`
+- Button is only rendered when both `button_label` and `button_url` are provided
+
+> ### Bootstrap documentation
+> - [Grid system](https://getbootstrap.com/docs/5.3/layout/grid/)
+> - [Buttons](https://getbootstrap.com/docs/5.3/components/buttons/)
+> - [Background](https://getbootstrap.com/docs/5.3/utilities/background/)
+
+## Properties
+
+<Canvas of={HeroSideBySideStories.Default} />
+<Controls of={HeroSideBySideStories.Default} />
+
+## Stories
+
+<Stories of={HeroSideBySideStories} />
+
+## Example
+
+### Example #1 : Default side-by-side hero
+
+```twig
+{{ include('vartheme_bs5:hero-side-by-side', {
+  heading: 'Build better digital experiences',
+  heading_level: 2,
+  text: '<p>Create flexible, scalable Drupal experiences using modern components.</p>',
+  image: {
+    src: '/path/to/image.jpg',
+    alt: 'Hero image',
+    width: 1200,
+    height: 900,
+  },
+  image_position: 'right',
+  background_color: 'bg-white',
+  content_color: 'text-dark',
+  vertical_padding: 'py-4',
+  button_label: 'Get started',
+  button_url: 'https://example.com',
+  button_variant: 'btn-primary',
+}, with_context: false) }}
+```
+
+### Example #2 : Dark background with image on the left
+
+```twig
+{{ include('vartheme_bs5:hero-side-by-side', {
+  heading: 'Dark background hero',
+  heading_level: 2,
+  text: '<p>Use contrasting content color for stronger visual impact.</p>',
+  image: {
+    src: '/path/to/image.jpg',
+    alt: 'Hero image',
+    width: 1200,
+    height: 900,
+  },
+  image_position: 'left',
+  background_color: 'bg-dark',
+  content_color: 'text-white',
+  vertical_padding: 'py-5',
+  button_label: 'Get started',
+  button_url: 'https://example.com',
+  button_variant: 'btn-light',
+}, with_context: false) }}
+```
+
+## Source code
+[//]: # (Twig Template source code)
+<Source code={templateSource} />
