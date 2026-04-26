@@ -1,40 +1,38 @@
-import { Canvas, Title, Subtitle, Source, Meta, Description, Primary, Stories, Controls } from '@storybook/addon-docs/blocks';
-import * as comStories from './card-icon.stories.json';
+import { Meta, Source, Canvas, Controls, Stories } from '@storybook/addon-docs/blocks';
+import * as CardIconStories from './card-icon.stories.json';
 import templateSource from './card-icon.twig?raw';
 
-<Meta of={comStories} name="Docs"/>
+<Meta of={CardIconStories} name="Docs" />
 
-<Title />
-<Subtitle />
-<Description />
+# Card Icon
+
+A feature card with an optional Bootstrap Icon, heading, description, and optional CTA button or full-card link. Suitable for feature grids, service highlights, and navigation cards.
+
+- Icon is rendered via `vartheme_bs5:bootstrap-icon` — pass the icon name without the `bi-` prefix
+- Set `icon: 'none'` to hide the icon entirely
+- If `url` and `button_label` are both set, a CTA button is shown; if only `url` is set, the entire card becomes a stretched link
+- `text_align` controls alignment of the icon, heading, and description together
 
 > ### Bootstrap documentation
-> * [Card](https://getbootstrap.com/docs/5.3/components/card/)
-> * [Icons](https://icons.getbootstrap.com/)
-> * [Shadows](https://getbootstrap.com/docs/5.3/utilities/shadows/)
-> * [Text alignment](https://getbootstrap.com/docs/5.3/utilities/text/#text-alignment)
-> * [Background](https://getbootstrap.com/docs/5.3/utilities/background/)
-
-<Primary />
+> - [Cards](https://getbootstrap.com/docs/5.3/components/card/)
+> - [Bootstrap Icons](https://icons.getbootstrap.com/)
+> - [Stretched link](https://getbootstrap.com/docs/5.3/helpers/stretched-link/)
 
 ## Properties
-<Controls />
 
-<Stories of={comStories} />
+<Canvas of={CardIconStories.Default} />
+<Controls of={CardIconStories.Default} />
 
-## Notes
-* This component renders an optional Bootstrap icon, heading, description, and optional CTA button.
-* The icon name should be passed without the `bi-` prefix.
-* `text_align` affects the icon row, heading, and description alignment together.
-* `has_padding` applies `p-4` to the card body.
-* When both `url` and `button_label` are provided, the card renders a button.
-* When only `url` is provided, the component can be used as a link-style card pattern depending on the surrounding implementation.
+## Stories
 
-## Examples
+<Stories of={CardIconStories} />
 
-### Example #1 : Default card icon
+## Example
+
+### Example #1 : Default icon card
+
 ```twig
-{% include 'vartheme_bs5:card-icon' with {
+{{ include('vartheme_bs5:card-icon', {
   text: 'Your heading here',
   description: '<p>This is placeholder text for a default card.</p>',
   icon: 'people',
@@ -42,27 +40,14 @@ import templateSource from './card-icon.twig?raw';
   text_align: 'text-center',
   background_color: 'bg-body',
   shadow: 'shadow',
-  has_padding: true
-} %}
+  has_padding: true,
+}, with_context: false) }}
 ```
 
-### Example #2 : Primary background
-```twig
-{% include 'vartheme_bs5:card-icon' with {
-  text: 'Support services',
-  description: '<p>Find useful information and key guidance in one place.</p>',
-  icon: 'info',
-  icon_size: 'fs-3',
-  text_align: 'text-center',
-  background_color: 'bg-primary text-white',
-  shadow: 'shadow-lg',
-  has_padding: true
-} %}
-```
+### Example #2 : Icon card with button
 
-### Example #3 : Card with button
 ```twig
-{% include 'vartheme_bs5:card-icon' with {
+{{ include('vartheme_bs5:card-icon', {
   text: 'Create account',
   description: '<p>Start your registration process and continue with the next steps.</p>',
   icon: 'person-check',
@@ -73,9 +58,10 @@ import templateSource from './card-icon.twig?raw';
   has_padding: true,
   url: 'https://example.com/register',
   button_label: 'Get started',
-  button_variant: 'btn-primary'
-} %}
+  button_variant: 'btn-primary',
+}, with_context: false) }}
 ```
 
 ## Source code
+[//]: # (Twig Template source code)
 <Source code={templateSource} />
