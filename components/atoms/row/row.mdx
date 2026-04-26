@@ -1,17 +1,99 @@
-import { Meta } from '@storybook/addon-docs/blocks';
+import { Meta, Source, Canvas, Controls, Stories } from '@storybook/addon-docs/blocks';
+import * as RowStories from './row.stories.json';
+import templateSource from './row.twig?raw';
 
-<Meta title="Layout/Row" />
+<Meta of={RowStories} name="Docs" />
 
 # Row
 
-The Row component is a Bootstrap grid row wrapper for Drupal. It helps you build responsive layouts with optional container wrapping, row column presets, alignment controls, background utilities, and spacing utilities.
+A flexible Bootstrap `.row` wrapper for building grid layouts. Provides gutter control, alignment and distribution options, responsive `row-cols-*` column presets, optional container wrapping, background utilities, background image with overlay, and full top/bottom spacing control.
 
-## Best uses
+- Column content goes inside the `content` slot as standard Bootstrap column markup
+- Background image is applied to the outer wrapper, not to the `.row` element itself
+- Spacing utilities (`pt-*`, `pb-*`, `mt-*`, `mb-*`) are applied on the outer wrapper for consistent section-level spacing
+- Use `bg_edge2edge` to extend the background beyond the container boundary
 
-- Multi-column content sections
-- Card grids
-- Feature rows
-- CTA rows with controlled spacing
-- Full-width background wrappers with inner containers
+> ### Bootstrap documentation
+> - [Grid system](https://getbootstrap.com/docs/5.3/layout/grid/)
+> - [Gutters](https://getbootstrap.com/docs/5.3/layout/gutters/)
+> - [Spacing](https://getbootstrap.com/docs/5.3/utilities/spacing/)
+> - [Background](https://getbootstrap.com/docs/5.3/utilities/background/)
 
-Use Bootstrap column markup inside the `content` slot for best results.
+## Properties
+
+<Canvas of={RowStories.Default} />
+<Controls of={RowStories.Default} />
+
+## Stories
+
+<Stories of={RowStories} />
+
+## Example
+
+### Example #1 : Simple two-column row
+
+```twig
+{% embed 'vartheme_bs5:row' with {
+  container_type: 'container',
+  gutter: '3',
+  columns_mobile: '1',
+  columns_desktop: '2',
+  padding_block_start: 'pt-4',
+  padding_block_end: 'pb-4'
+} %}
+  {% block content %}
+    <div class="col">
+      <div class="p-3 border rounded">Column one</div>
+    </div>
+    <div class="col">
+      <div class="p-3 border rounded">Column two</div>
+    </div>
+  {% endblock %}
+{% endembed %}
+```
+
+### Example #2 : Centered card grid with background
+
+```twig
+{% embed 'vartheme_bs5:row' with {
+  container_type: 'container',
+  gutter: '4',
+  columns_mobile: '1',
+  columns_desktop: '3',
+  align_items: 'align-items-stretch',
+  justify_content: 'justify-content-center',
+  background_color: 'bg-light',
+  padding_block_start: 'pt-5',
+  padding_block_end: 'pb-5'
+} %}
+  {% block content %}
+    <div class="col"><div class="p-4 border rounded bg-white h-100">Card 1</div></div>
+    <div class="col"><div class="p-4 border rounded bg-white h-100">Card 2</div></div>
+    <div class="col"><div class="p-4 border rounded bg-white h-100">Card 3</div></div>
+  {% endblock %}
+{% endembed %}
+```
+
+### Example #3 : Full-bleed dark promotional row
+
+```twig
+{% embed 'vartheme_bs5:row' with {
+  container_type: 'container',
+  gutter: '3',
+  background_color: 'bg-dark',
+  bg_edge2edge: true,
+  padding_block_start: 'pt-5',
+  padding_block_end: 'pb-5'
+} %}
+  {% block content %}
+    <div class="col-12 text-center text-white">
+      <h2 class="mb-3">Promotional section</h2>
+      <p class="mb-0">Full-bleed background without custom CSS.</p>
+    </div>
+  {% endblock %}
+{% endembed %}
+```
+
+## Source code
+[//]: # (Twig Template source code)
+<Source code={templateSource} />
