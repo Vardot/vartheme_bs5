@@ -1,7 +1,89 @@
-import { Meta } from '@storybook/addon-docs/blocks';
+import { Meta, Source, Canvas, Controls, Stories } from '@storybook/addon-docs/blocks';
+import * as ColumnStories from './column.stories.json';
+import templateSource from './column.twig?raw';
 
-<Meta title="Layout/Column" />
+<Meta of={ColumnStories} name="Docs" />
 
 # Column
 
-Simple Bootstrap `.col` wrapper with a single content slot.
+A minimal Bootstrap `.col` wrapper for use inside the Row component. It exposes a single content slot and applies no width, spacing, or style settings of its own — all layout control is delegated to the parent Row.
+
+- Renders a plain `.col` div with no additional classes
+- Column width is controlled by the parent Row using `row-cols-*` or explicit Bootstrap column classes on the wrapper
+- Use `{% embed %}` to inject content via the `content` slot
+
+> ### Bootstrap documentation
+> - [Grid system](https://getbootstrap.com/docs/5.3/layout/grid/)
+> - [Columns](https://getbootstrap.com/docs/5.3/layout/columns/)
+
+## Properties
+
+<Canvas of={ColumnStories.Default} />
+<Controls of={ColumnStories.Default} />
+
+## Stories
+
+<Stories of={ColumnStories} />
+
+## Example
+
+### Example #1 : Single column
+
+```twig
+{% embed 'vartheme_bs5:column' %}
+  {% block content %}
+    <div class="p-3 border rounded bg-light">Column content</div>
+  {% endblock %}
+{% endembed %}
+```
+
+### Example #2 : Two columns inside a row
+
+```twig
+<div class="container py-4">
+  <div class="row g-3">
+    <div class="col-md-6">
+      {% embed 'vartheme_bs5:column' %}
+        {% block content %}
+          <div class="p-3 border rounded bg-light">First column</div>
+        {% endblock %}
+      {% endembed %}
+    </div>
+    <div class="col-md-6">
+      {% embed 'vartheme_bs5:column' %}
+        {% block content %}
+          <div class="p-3 border rounded bg-body-secondary">Second column</div>
+        {% endblock %}
+      {% endembed %}
+    </div>
+  </div>
+</div>
+```
+
+### Example #3 : Three equal columns
+
+```twig
+<div class="container py-4">
+  <div class="row g-3">
+    <div class="col-md-4">
+      {% embed 'vartheme_bs5:column' %}
+        {% block content %}<div class="p-3 border rounded bg-light">Column one</div>{% endblock %}
+      {% endembed %}
+    </div>
+    <div class="col-md-4">
+      {% embed 'vartheme_bs5:column' %}
+        {% block content %}<div class="p-3 border rounded bg-body-secondary">Column two</div>{% endblock %}
+      {% endembed %}
+    </div>
+    <div class="col-md-4">
+      {% embed 'vartheme_bs5:column' %}
+        {% block content %}<div class="p-3 border rounded bg-light">Column three</div>{% endblock %}
+      {% endembed %}
+    </div>
+  </div>
+</div>
+```
+
+## Source code
+[//]: # (Twig Template source code)
+<Source code={templateSource} />

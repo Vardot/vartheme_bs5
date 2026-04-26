@@ -33,4 +33,86 @@
 </div>
 {% endstory %}
 
+{% story TwoColumns with {
+  name: 'Two columns',
+} %}
+<div class="container py-4">
+  <div class="row g-3">
+    <div class="col-md-6">
+      {% embed 'vartheme_bs5:column' %}
+        {% block content %}
+          <div class="p-3 border rounded bg-light">First column</div>
+        {% endblock %}
+      {% endembed %}
+    </div>
+    <div class="col-md-6">
+      {% embed 'vartheme_bs5:column' %}
+        {% block content %}
+          <div class="p-3 border rounded bg-body-secondary">Second column</div>
+        {% endblock %}
+      {% endembed %}
+    </div>
+  </div>
+</div>
+{% endstory %}
+
+{% story ThreeColumns with {
+  name: 'Three columns',
+} %}
+<div class="container py-4">
+  <div class="row g-3">
+    <div class="col-md-4">
+      {% embed 'vartheme_bs5:column' %}
+        {% block content %}
+          <div class="p-3 border rounded bg-light">Column one</div>
+        {% endblock %}
+      {% endembed %}
+    </div>
+    <div class="col-md-4">
+      {% embed 'vartheme_bs5:column' %}
+        {% block content %}
+          <div class="p-3 border rounded bg-body-secondary">Column two</div>
+        {% endblock %}
+      {% endembed %}
+    </div>
+    <div class="col-md-4">
+      {% embed 'vartheme_bs5:column' %}
+        {% block content %}
+          <div class="p-3 border rounded bg-light">Column three</div>
+        {% endblock %}
+      {% endembed %}
+    </div>
+  </div>
+</div>
+{% endstory %}
+
+{% story MixedContent with {
+  name: 'Mixed content',
+} %}
+<div class="container py-4">
+  <div class="row g-3">
+    <div class="col-lg-8">
+      {% embed 'vartheme_bs5:column' %}
+        {% block content %}
+          <div class="p-4 border rounded bg-light">
+            <h3 class="h5">Main content area</h3>
+            <p class="mb-0">This demonstrates how the Column component wraps richer content inside a row layout.</p>
+          </div>
+        {% endblock %}
+      {% endembed %}
+    </div>
+    <div class="col-lg-4">
+      {% embed 'vartheme_bs5:column' %}
+        {% block content %}
+          <div class="p-4 border rounded bg-body-secondary">
+            <h3 class="h6">Sidebar</h3>
+            <p class="mb-0">Secondary content block.</p>
+          </div>
+        {% endblock %}
+      {% endembed %}
+    </div>
+  </div>
+</div>
+{% endstory %}
+
 {% endstories %}
