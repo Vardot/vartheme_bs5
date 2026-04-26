@@ -1,37 +1,43 @@
-{/* card-overlay.mdx */}
-
-import { Canvas, Title, Subtitle, ArgTypes, Source, Meta, Description, Primary, Story, Stories, Controls } from '@storybook/addon-docs/blocks';
-import * as comStories from './card-overlay.stories.json';
+import { Meta, Source, Canvas, Controls, Stories } from '@storybook/addon-docs/blocks';
+import * as CardOverlayStories from './card-overlay.stories.json';
 import templateSource from './card-overlay.twig?raw';
 
-<Meta of={comStories} name="Docs"/>
+<Meta of={CardOverlayStories} name="Docs" />
 
-<Title />
-<Subtitle />
-<Description />
+# Card Overlay
+
+A Bootstrap card that renders an image as the background with content positioned on top via an overlay layer. Supports image ratio and fit controls, overlay color and opacity, horizontal and vertical content alignment, optional equal-height card wrapper, and stretched-link for whole-card click behavior.
+
+- Background image is rendered with `vartheme_bs5:image` inside the card structure
+- Overlay color and opacity are controlled independently via `overlay_color` and `overlay_opacity` Bootstrap utility classes
+- `stretched_link` requires a `link_url` to be set; makes the entire card clickable
+- Content goes into the `content` slot and can include text, buttons, and other components
 
 > ### Bootstrap documentation
-> * [Cards](https://getbootstrap.com/docs/5.3/components/card/)
-> * [Ratio](https://getbootstrap.com/docs/5.3/helpers/ratio/)
-> * [Object fit](https://getbootstrap.com/docs/5.3/utilities/object-fit/)
-> * [Background](https://getbootstrap.com/docs/5.3/utilities/background/)
-> * [Position](https://getbootstrap.com/docs/5.3/utilities/position/)
-
-<Primary />
+> - [Cards](https://getbootstrap.com/docs/5.3/components/card/)
+> - [Card image overlays](https://getbootstrap.com/docs/5.3/components/card/#image-overlays)
+> - [Stretched link](https://getbootstrap.com/docs/5.3/helpers/stretched-link/)
+> - [Ratio](https://getbootstrap.com/docs/5.3/helpers/ratio/)
 
 ## Properties
-<Controls />
 
-<Stories of={comStories} />
+<Canvas of={CardOverlayStories.Default} />
+<Controls of={CardOverlayStories.Default} />
 
-## Slots
-- `content`: Main overlay content area.
+## Stories
+
+<Stories of={CardOverlayStories} />
 
 ## Example
 
-### Example #1: Dark overlay with padded content
+### Example #1 : Basic overlay card
+
 ```twig
-{% embed "vartheme_bs5:card-overlay" with {
+{% embed 'vartheme_bs5:card-overlay' with {
+  media_image: {
+    src: '/path/to/image.jpg',
+    alt: 'Overlay card example'
+  },
   ratio: 'ratio-16x9',
   fit: 'object-fit-cover',
   padded: true,
@@ -41,24 +47,59 @@ import templateSource from './card-overlay.twig?raw';
   v_align: 'align-items-end'
 } %}
   {% block content %}
-    <h3 class="card-title mb-2">Overlay title</h3>
-    <p class="card-text mb-0">Overlay text goes here.</p>
+    <h3 class="card-title mb-2">Overlay card title</h3>
+    <p class="card-text mb-3">Use for banners, promotions, and featured content with text on top of media.</p>
+    {% include 'vartheme_bs5:link' with {
+      url: 'https://drupal.org',
+      content: 'Read more',
+      color: 'light'
+    } %}
   {% endblock %}
 {% endembed %}
 ```
 
-### Example #2: Whole-card clickable variant
+### Example #2 : Clickable overlay card
+
 ```twig
-{% embed "vartheme_bs5:card-overlay" with {
+{% embed 'vartheme_bs5:card-overlay' with {
+  media_image: {
+    src: '/path/to/image.jpg',
+    alt: 'Linked overlay card'
+  },
+  ratio: 'ratio-21x9',
+  fit: 'object-fit-cover',
+  padded: true,
+  overlay_color: 'bg-primary',
+  overlay_opacity: 'bg-opacity-50',
   stretched_link: true,
   link_url: 'https://example.com',
-  link_target: '_blank',
-  overlay_color: 'bg-primary',
-  overlay_opacity: 'bg-opacity-50'
+  link_target: '_blank'
 } %}
   {% block content %}
-    <h3 class="card-title mb-2">Clickable card</h3>
-    <p class="card-text mb-0">The full card is clickable.</p>
+    <h3 class="card-title mb-2">Linked overlay card</h3>
+    <p class="card-text mb-0">The full card becomes clickable when stretched link is enabled.</p>
+  {% endblock %}
+{% endembed %}
+```
+
+### Example #3 : Centered content with primary overlay
+
+```twig
+{% embed 'vartheme_bs5:card-overlay' with {
+  media_image: {
+    src: '/path/to/image.jpg',
+    alt: 'Centered overlay'
+  },
+  ratio: 'ratio-4x3',
+  padded: true,
+  overlay_color: 'bg-primary',
+  overlay_opacity: 'bg-opacity-50',
+  h_align: 'text-center',
+  v_align: 'align-items-center'
+} %}
+  {% block content %}
+    <h3 class="card-title mb-2">Centered content</h3>
+    <p class="card-text mb-0">Centered both horizontally and vertically.</p>
   {% endblock %}
 {% endembed %}
 ```

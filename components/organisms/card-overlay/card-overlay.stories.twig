@@ -1,10 +1,10 @@
 {% stories CardOverlay with {
   title: 'Cards/Card Overlay',
   parameters: {
-    componentSubtitle: 'Bootstrap overlay card component',
+    componentSubtitle: 'Bootstrap overlay card with background media and a single content slot.',
     docs: {
       description: {
-        component: 'Card component with background media, overlay controls, and a single content slot.',
+        component: 'Card component with background media, overlay controls, alignment options, and a single content slot.',
       },
       story: {
         inline: true,
@@ -17,7 +17,7 @@
       description: 'Background media image object.',
       control: 'object',
       defaultValue: {
-        src: 'assets/overlay-card-image-placeholder.svg',
+        src: '/components/organisms/card-overlay/assets/overlay-card-image-placeholder.svg',
         alt: 'Overlay card placeholder image',
         width: 1200,
         height: 675,
@@ -49,12 +49,13 @@
     padded: {
       name: 'Padded',
       description: 'Adds p-4 to the content area.',
-      defaultValue: false,
+      defaultValue: true,
       control: 'boolean',
     },
     box_shadow: {
       name: 'Shadow',
-      defaultValue: 'shadow-none',
+      description: 'Bootstrap shadow utility applied to the card.',
+      defaultValue: 'shadow',
       control: 'select',
       options: {
         None: 'shadow-none',
@@ -65,7 +66,8 @@
     },
     overlay_color: {
       name: 'Overlay color',
-      defaultValue: 'bg-transparent',
+      description: 'Bootstrap background utility applied to the overlay layer.',
+      defaultValue: 'bg-dark',
       control: 'select',
       options: {
         None: 'bg-transparent',
@@ -84,6 +86,7 @@
     },
     overlay_opacity: {
       name: 'Overlay opacity',
+      description: 'Bootstrap background opacity utility applied to the overlay layer.',
       defaultValue: 'bg-opacity-50',
       control: 'select',
       options: {
@@ -102,6 +105,7 @@
     },
     h_align: {
       name: 'Horizontal alignment',
+      description: 'Text alignment for content.',
       defaultValue: 'text-start',
       control: 'select',
       options: {
@@ -112,7 +116,8 @@
     },
     v_align: {
       name: 'Vertical alignment',
-      defaultValue: 'align-items-center',
+      description: 'Vertical alignment for the overlay content.',
+      defaultValue: 'align-items-end',
       control: 'select',
       options: {
         Start: 'align-items-start',
@@ -122,17 +127,19 @@
     },
     stretched_link: {
       name: 'Stretched link',
-      description: 'Makes the full card clickable when link_url is provided.',
+      description: 'Makes the full card clickable when Card link URL is provided.',
       defaultValue: false,
       control: 'boolean',
     },
     link_url: {
       name: 'Card link URL',
+      description: 'Optional URL for the card link.',
       defaultValue: '',
       control: 'text',
     },
     link_target: {
       name: 'Link target',
+      description: 'Target attribute for the card link.',
       defaultValue: 'default',
       control: 'select',
       options: {
@@ -148,7 +155,7 @@
   name: 'Default',
   args: {
     media_image: {
-      src: 'assets/overlay-card-image-placeholder.svg',
+      src: '/components/organisms/card-overlay/assets/overlay-card-image-placeholder.svg',
       alt: 'Overlay card placeholder image',
       width: 1200,
       height: 675,
@@ -181,10 +188,10 @@
 {% endstory %}
 
 {% story CenteredContent with {
-  name: 'Centered Content',
+  name: 'Centered content',
   args: {
     media_image: {
-      src: 'assets/overlay-card-image-placeholder.svg',
+      src: '/components/organisms/card-overlay/assets/overlay-card-image-placeholder.svg',
       alt: 'Overlay card placeholder image',
       width: 1200,
       height: 675,
@@ -212,10 +219,10 @@
 {% endstory %}
 
 {% story LightOverlay with {
-  name: 'Light Overlay',
+  name: 'Light overlay',
   args: {
     media_image: {
-      src: 'assets/overlay-card-image-placeholder.svg',
+      src: '/components/organisms/card-overlay/assets/overlay-card-image-placeholder.svg',
       alt: 'Overlay card placeholder image',
       width: 1200,
       height: 675,
@@ -243,10 +250,10 @@
 {% endstory %}
 
 {% story StretchedLink with {
-  name: 'Stretched Link',
+  name: 'Stretched link',
   args: {
     media_image: {
-      src: 'assets/overlay-card-image-placeholder.svg',
+      src: '/components/organisms/card-overlay/assets/overlay-card-image-placeholder.svg',
       alt: 'Overlay card placeholder image',
       width: 1200,
       height: 675,
@@ -269,6 +276,37 @@
   {% block content %}
     <h3 class="card-title mb-2">Clickable overlay card</h3>
     <p class="card-text mb-0">The full card becomes clickable when stretched link is enabled.</p>
+  {% endblock %}
+{% endembed %}
+{% endstory %}
+
+{% story WithoutPadding with {
+  name: 'Without padding',
+  args: {
+    media_image: {
+      src: '/components/organisms/card-overlay/assets/overlay-card-image-placeholder.svg',
+      alt: 'Overlay card placeholder image',
+      width: 1200,
+      height: 675,
+    },
+    ratio: 'ratio-16x9',
+    fit: 'object-fit-cover',
+    padded: false,
+    box_shadow: 'shadow-sm',
+    overlay_color: 'bg-dark',
+    overlay_opacity: 'bg-opacity-50',
+    equal_height: false,
+    h_align: 'text-start',
+    v_align: 'align-items-end',
+    stretched_link: false,
+    link_url: '',
+    link_target: 'default',
+  },
+} %}
+{% embed 'vartheme_bs5:card-overlay' with _context %}
+  {% block content %}
+    <h3 class="card-title mb-2">Compact overlay content</h3>
+    <p class="card-text mb-0">A tighter layout without inner spacing.</p>
   {% endblock %}
 {% endembed %}
 {% endstory %}
