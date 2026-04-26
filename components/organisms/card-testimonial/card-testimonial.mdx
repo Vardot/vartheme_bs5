@@ -1,27 +1,34 @@
-import { Title, Subtitle, Meta, Description, Primary, Stories, Controls, Source } from '@storybook/addon-docs/blocks';
-import * as comStories from './card-testimonial.stories.json';
+import { Meta, Source, Canvas, Controls, Stories } from '@storybook/addon-docs/blocks';
+import * as CardTestimonialStories from './card-testimonial.stories.json';
 import templateSource from './card-testimonial.twig?raw';
 
-<Meta of={comStories} name="Docs"/>
+<Meta of={CardTestimonialStories} name="Docs" />
 
-<Title />
-<Subtitle />
-<Description />
+# Testimonial Card
 
-<Primary />
+A Bootstrap testimonial card for displaying quotes with optional author name, role, avatar image, and decorative quote icon. Supports center and left alignment, light and dark styles.
+
+- `show_quote_icon: true` renders a decorative SVG quotation mark in the top-left corner at 25% opacity
+- Avatar image is cropped to a fixed 60×60px circle using `object-fit-contain`
+- `style: 'bg-dark text-white'` switches the entire card to a dark inverted theme
+- Omit `media` to render the author line without an avatar
+
+> ### Bootstrap documentation
+> - [Cards](https://getbootstrap.com/docs/5.3/components/card/)
+> - [Typography](https://getbootstrap.com/docs/5.3/content/typography/)
 
 ## Properties
-<Controls />
 
-<Stories of={comStories} />
+<Canvas of={CardTestimonialStories.Default} />
+<Controls of={CardTestimonialStories.Default} />
 
-## Attributes
-* N/A
+## Stories
 
-## Slots
-* N/A
+<Stories of={CardTestimonialStories} />
 
 ## Example
+
+### Example #1 : Default testimonial card
 
 ```twig
 {{ include('vartheme_bs5:card-testimonial', {
@@ -29,17 +36,32 @@ import templateSource from './card-testimonial.twig?raw';
   shadow: 'shadow',
   align: 'text-center',
   show_quote_icon: true,
-  text: 'My career guidance was crucial in helping me understand the tech industry landscape and ultimately secure my role.',
+  text: 'My career guidance was crucial in helping me understand the tech industry landscape.',
   cite_name: 'Isiah Julio',
   cite_text: 'Engineer, Technical Services',
   media: {
-    src: 'assets/avatar-placeholder.svg',
-    alt: 'Avatar placeholder',
+    src: '/path/to/avatar.jpg',
+    alt: 'Avatar',
     width: 120,
-    height: 120
-  }
+    height: 120,
+  },
+}, with_context: false) }}
+```
+
+### Example #2 : Dark style left-aligned without avatar
+
+```twig
+{{ include('vartheme_bs5:card-testimonial', {
+  style: 'bg-dark text-white',
+  shadow: 'shadow-lg',
+  align: 'text-start',
+  show_quote_icon: true,
+  text: 'Their support helped me grow faster and make better decisions with confidence.',
+  cite_name: 'Nadia Ahmed',
+  cite_text: 'Marketing Lead',
 }, with_context: false) }}
 ```
 
 ## Source code
+[//]: # (Twig Template source code)
 <Source code={templateSource} />
