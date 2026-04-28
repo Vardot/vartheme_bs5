@@ -56,7 +56,7 @@ props:
       default: true
 
     slider_height:
-      type: string
+      type: [string, number]
       title: Slider height
       description: Fixed height presets (px).
       enum: ['500', '700', '900']

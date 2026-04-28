@@ -50,6 +50,7 @@ props:
       title: Placement
       default: ''
       enum:
+        - ''
         - fixed-top
         - fixed-bottom
         - sticky-top

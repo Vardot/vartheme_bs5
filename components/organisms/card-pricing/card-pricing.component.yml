@@ -40,7 +40,7 @@ props:
       examples:
         - Curabitur nascetur non potenti pede luctus vivamus.
     price:
-      type: string
+      type: [string, number]
       title: Price
       description: Numeric value (e.g. 159).
       examples:

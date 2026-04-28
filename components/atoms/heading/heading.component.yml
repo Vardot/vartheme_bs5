@@ -23,6 +23,7 @@ props:
       description: "Optional Bootstrap typography utility. Leave empty to match the selected heading level."
       default: ""
       enum:
+        - ''
         - h1
         - h2
         - h3
@@ -54,6 +55,7 @@ props:
       description: "Bootstrap text color utility. Leave empty for theme default."
       default: ""
       enum:
+        - ''
         - text-primary
         - text-secondary
         - text-success
@@ -79,6 +81,7 @@ props:
       description: "Bootstrap text alignment utility. Leave empty for default alignment."
       default: ""
       enum:
+        - ''
         - text-start
         - text-center
         - text-end
@@ -93,6 +96,7 @@ props:
       description: "Bootstrap font weight utility. Leave empty for default weight."
       default: ""
       enum:
+        - ''
         - fw-light
         - fw-normal
         - fw-medium
@@ -110,6 +114,7 @@ props:
       description: "Bootstrap font style utility. Leave empty for default style."
       default: ""
       enum:
+        - ''
         - fst-italic
       'meta:enum':
         fst-italic: Italic
@@ -125,6 +130,7 @@ props:
       description: "Optional. Controls where the linked heading opens."
       default: "_self"
       enum:
+        - ''
         - _self
         - _blank
       'meta:enum':

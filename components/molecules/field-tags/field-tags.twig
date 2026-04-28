@@ -48,7 +48,7 @@
   {% endif %}
   <ul class='links field__items'>
     {% for item in items %}
-      <li{{ item.attributes }}>{{ include('vartheme_bs5:taxonomy', {content: item.content}, false) }}</li>
+      <li{{ item.attributes }}>{{ include('vartheme_bs5:taxonomy', {label: item.content}, false) }}</li>
     {% endfor %}
   </ul>
 </div>

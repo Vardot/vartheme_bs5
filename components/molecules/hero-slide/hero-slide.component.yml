@@ -160,7 +160,7 @@ props:
     button_url:
       type: string
       title: Button URL
-      default: "#"
+      default: "/"
 
     button_variant:
       type: string

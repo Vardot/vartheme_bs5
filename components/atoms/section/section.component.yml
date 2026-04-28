@@ -84,7 +84,7 @@ props:
         overlay-50: Medium (50%)
         overlay-75: Strong (75%)
     columns:
-      type: string
+      type: [string, number]
       title: Grid layout (tablet/desktop)
       description: Shows ONLY the selected number of columns.
       enum:

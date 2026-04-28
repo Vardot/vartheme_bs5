@@ -12,21 +12,21 @@
     },
   },
   argTypes: {
-    type: {
-      name: 'Alert type',
-      description: 'Bootstrap includes several predefined alert type styles.',
+    variant: {
+      name: 'Alert variant',
+      description: 'Bootstrap includes several predefined alert variant styles.',
       defaultValue: '',
       control: 'select',
       options: {
         "'- none -'": '',
-        Primary: 'alert-primary',
-        Secondary: 'alert-secondary',
-        Success: 'alert-success',
-        Danger: 'alert-danger',
-        Warning: 'alert-warning',
-        Info: 'alert-info',
-        Light: 'alert-light',
-        Dark: 'alert-dark',
+        Primary: 'primary',
+        Secondary: 'secondary',
+        Success: 'success',
+        Danger: 'danger',
+        Warning: 'warning',
+        Info: 'info',
+        Light: 'light',
+        Dark: 'dark',
       },
     },
     dismissible: {
@@ -59,19 +59,13 @@
       control: 'object',
       defaultValue: {},
     },
-    dismissible_attributes: {
-      name: 'Attributes',
-      description: 'Dismiss close button attributes',
-      control: 'object',
-      defaultValue: {},
-    },
   },
 } %}
 
 {% story Primary with {
   name: 'Primary',
   args: {
-    type: 'alert-primary',
+    variant: 'primary',
     dismissible: true,
     heading: '',
     content: 'A simple alert primary check it out!',
@@ -84,10 +78,10 @@
 {% story Secondary with {
   name: 'Secondary',
   args: {
-    type: 'alert-secondary',
+    variant: 'secondary',
     dismissible: true,
     heading: '',
-    content: 'A simple alert a secondary check it out!',
+    content: 'A simple alert secondary check it out!',
     alert_utility_classes: [],
   },
 } %}
@@ -97,7 +91,7 @@
 {% story Success with {
   name: 'Success',
   args: {
-    type: 'alert-success',
+    variant: 'success',
     dismissible: true,
     heading: '',
     content: 'A simple alert success check it out!',
@@ -110,7 +104,7 @@
 {% story Danger with {
   name: 'Danger',
   args: {
-    type: 'alert-danger',
+    variant: 'danger',
     dismissible: true,
     heading: '',
     content: 'A simple alert danger check it out!',
@@ -123,7 +117,7 @@
 {% story Warning with {
   name: 'Warning',
   args: {
-    type: 'alert-warning',
+    variant: 'warning',
     dismissible: true,
     heading: '',
     content: 'A simple alert warning check it out!',
@@ -136,7 +130,7 @@
 {% story Info with {
   name: 'Info',
   args: {
-    type: 'alert-info',
+    variant: 'info',
     dismissible: true,
     heading: '',
     content: 'A simple alert info check it out!',
@@ -149,7 +143,7 @@
 {% story Light with {
   name: 'Light',
   args: {
-    type: 'alert-light',
+    variant: 'light',
     dismissible: true,
     heading: '',
     content: 'A simple alert light check it out!',
@@ -162,7 +156,7 @@
 {% story Dark with {
   name: 'Dark',
   args: {
-    type: 'alert-dark',
+    variant: 'dark',
     dismissible: true,
     heading: '',
     content: 'A simple alert dark check it out!',

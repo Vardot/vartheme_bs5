@@ -38,11 +38,10 @@
 {{ title_prefix }}
 {% if title|render|striptags|trim %}
   {{ include('vartheme_bs5:heading', {
-      html_tag: 'h1',
-      content: title,
-      display: display,
+      level: 1,
+      heading_text: title,
+      text_size: display,
       attributes: _title_attributes,
-      page_title_utility_classes: classes,
     }
   , false) }}
 {% endif %}

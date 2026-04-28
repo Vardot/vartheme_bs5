@@ -48,11 +48,11 @@
 {% story Breadcrumb with {
   name: 'Breadcrumb',
   args: {
-    breadcrumb: {
-      0: {url: '#', text: 'Home'},
-      1: {url: '#', text: 'Library'},
-      2: {text: 'Book'},
-    },
+    breadcrumb: [
+      {url: '/', text: 'Home'},
+      {url: '/library', text: 'Library'},
+      {text: 'Book'},
+    ],
     divider: '\\F285',
     breadcrumb_utility_classes: [],
   },

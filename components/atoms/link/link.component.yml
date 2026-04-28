@@ -55,7 +55,7 @@ props:
         - light
         - dark
     underline_offset:
-      type: string
+      type: [string, number]
       title: Underline offset
       description: Change the underline’s distance from your text. Offset is set in em units to automatically scale with the element’s current font-size.
       default: ''
@@ -65,7 +65,7 @@ props:
         - '2'
         - '3'
     underline_opacity:
-      type: string
+      type: [string, number]
       title: Underline opacity
       description: Change the underline’s opacity. Requires adding .link-underline to first set an rgba() color we use to then modify the alpha opacity.
       default: ''

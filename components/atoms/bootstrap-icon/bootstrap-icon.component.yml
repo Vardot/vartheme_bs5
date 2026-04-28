@@ -2089,7 +2089,7 @@ props:
         - zoom-in
         - zoom-out
     icon_size:
-      type: string
+      type: [string, number]
       title: Icon size
       description: "Controls the icon size using Bootstrap font-size utility classes."
       enum:

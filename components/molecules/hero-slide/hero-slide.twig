@@ -82,7 +82,7 @@
 
   {% set button_url_final = (button_url is defined ? button_url : '')|trim %}
   {% if button_url_final == '' %}
-    {% set button_url_final = '#' %}
+    {% set button_url_final = '/' %}
   {% endif %}
 
   {% set justify_map = {
