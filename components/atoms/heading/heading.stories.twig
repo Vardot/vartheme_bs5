@@ -34,10 +34,8 @@
     text_size: {
       name: 'Text size',
       description: 'Optional Bootstrap typography utility.',
-      defaultValue: '',
       control: 'select',
       options: {
-        "'Default (match level)'": '',
         "'Heading size: H1'": 'h1',
         "'Heading size: H2'": 'h2',
         "'Heading size: H3'": 'h3',
@@ -55,10 +53,8 @@
     text_color: {
       name: 'Text color',
       description: 'Bootstrap text color utility.',
-      defaultValue: '',
       control: 'select',
       options: {
-        Default: '',
         Primary: 'text-primary',
         Secondary: 'text-secondary',
         Success: 'text-success',
@@ -73,10 +69,8 @@
     align: {
       name: 'Alignment',
       description: 'Bootstrap text alignment utility.',
-      defaultValue: '',
       control: 'select',
       options: {
-        Default: '',
         Left: 'text-start',
         Center: 'text-center',
         Right: 'text-end',
@@ -85,10 +79,8 @@
     font_weight: {
       name: 'Font weight',
       description: 'Bootstrap font weight utility.',
-      defaultValue: '',
       control: 'select',
       options: {
-        Default: '',
         Light: 'fw-light',
         Normal: 'fw-normal',
         Medium: 'fw-medium',
@@ -99,30 +91,23 @@
     font_style: {
       name: 'Font style',
       description: 'Bootstrap font style utility.',
-      defaultValue: '',
       control: 'select',
       options: {
-        Default: '',
         Italic: 'fst-italic',
       },
     },
     url: {
       name: 'Link (optional)',
       description: 'If provided, the heading text will be a link.',
-      defaultValue: '',
       control: 'text',
     },
     target: {
       name: 'Link target',
       description: 'Target attribute for the link.',
-      defaultValue: '',
       control: 'select',
       options: {
-        Default: '',
         "'Same tab'": '_self',
         "'New tab'": '_blank',
-        "'Parent frame'": '_parent',
-        "'Top frame'": '_top',
       },
     },
   },
@@ -133,13 +118,6 @@
   args: {
     heading_text: 'Page title',
     level: 2,
-    text_size: '',
-    text_color: '',
-    align: '',
-    font_weight: '',
-    font_style: '',
-    url: '',
-    target: '',
   },
 } %}
 {{ include('vartheme_bs5:heading') }}
@@ -150,13 +128,6 @@
   args: {
     heading_text: 'Heading level 1',
     level: 1,
-    text_size: '',
-    text_color: '',
-    align: '',
-    font_weight: '',
-    font_style: '',
-    url: '',
-    target: '',
   },
 } %}
 {{ include('vartheme_bs5:heading') }}
@@ -169,11 +140,6 @@
     level: 2,
     text_size: 'display-3',
     text_color: 'text-primary',
-    align: '',
-    font_weight: '',
-    font_style: '',
-    url: '',
-    target: '',
   },
 } %}
 {{ include('vartheme_bs5:heading') }}
@@ -184,13 +150,8 @@
   args: {
     heading_text: 'Centered heading',
     level: 3,
-    text_size: '',
     text_color: 'text-success',
     align: 'text-center',
-    font_weight: '',
-    font_style: '',
-    url: '',
-    target: '',
   },
 } %}
 {{ include('vartheme_bs5:heading') }}
@@ -201,11 +162,7 @@
   args: {
     heading_text: 'Linked heading',
     level: 2,
-    text_size: '',
     text_color: 'text-info',
-    align: '',
-    font_weight: '',
-    font_style: '',
     url: 'https://getbootstrap.com/docs/5.3/content/typography/#headings',
     target: '_blank',
   },
