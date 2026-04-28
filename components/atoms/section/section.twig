@@ -143,12 +143,15 @@
 <section {{ attributes }}>
   {% if has_background_image %}
     <div class="{{ media_wrap_classes|join(' ') }}" aria-hidden="true">
-      {% include 'canvas:image' ignore missing with {
-        src: background_media.src,
-        alt: background_media.alt,
-        class: 'w-100 h-100 object-fit-cover',
-        width: background_media.width,
-        height: background_media.height
+      {% include 'vartheme_bs5:image' ignore missing with {
+        media: {
+          src: background_media.src,
+          alt: background_media.alt,
+          width: background_media.width,
+          height: background_media.height,
+        },
+        fit: 'object-fit-cover',
+        width: 'w-100',
       } only %}
     </div>
   {% endif %}

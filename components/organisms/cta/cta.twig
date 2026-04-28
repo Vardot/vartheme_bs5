@@ -117,11 +117,14 @@
   class: ['d-flex', 'flex-wrap', 'gap-2', 'mt-4', actions_class],
 }) %}
 {% set bg_image_props = {
-  src: bg_image ? bg_image.src : '',
-  alt: bg_image and bg_image.alt is defined ? bg_image.alt : '',
-  width: bg_image and bg_image.width is defined ? bg_image.width : null,
-  height: bg_image and bg_image.height is defined ? bg_image.height : null,
-  class: 'w-100 h-100 object-fit-cover',
+  media: {
+    src: bg_image ? bg_image.src : '',
+    alt: bg_image and bg_image.alt is defined ? bg_image.alt : '',
+    width: bg_image and bg_image.width is defined ? bg_image.width : null,
+    height: bg_image and bg_image.height is defined ? bg_image.height : null,
+  },
+  fit: 'object-fit-cover',
+  width: 'w-100',
 } %}
 
 <section{{ section_attributes }}>
@@ -130,7 +133,7 @@
       {% if overlay_class %}
         <div{{ overlay_attributes }}></div>
       {% endif %}
-      {{ include('canvas:image', bg_image_props, false, true) }}
+      {{ include('vartheme_bs5:image', bg_image_props, false, true) }}
     </div>
   {% endif %}
 

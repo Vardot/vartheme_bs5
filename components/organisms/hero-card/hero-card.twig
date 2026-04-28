@@ -293,12 +293,13 @@
     <div {{ split_background_media_attributes }}>{{ media_slot_override|raw }}</div>
   {% elseif media_src %}
     <div {{ split_background_media_attributes }}>
-      {{ include('canvas:image', {
-        src: media_src,
-        alt: media_alt,
-        width: media_width,
-        height: media_height,
-        class: split_background_media_class,
+      {{ include('vartheme_bs5:image', {
+        media: {
+          src: media_src,
+          alt: media_alt,
+          width: media_width,
+          height: media_height,
+        },
         loading: 'lazy',
       }, false, true) }}
     </div>
@@ -320,12 +321,13 @@
     <div {{ overlay_background_media_attributes }}>{{ media_slot_override|raw }}</div>
   {% elseif media_src %}
     <div {{ overlay_background_media_attributes }}>
-      {{ include('canvas:image', {
-        src: media_src,
-        alt: media_alt,
-        width: media_width,
-        height: media_height,
-        class: 'w-100 h-100 img-fluid ' ~ overlay_image_mode,
+      {{ include('vartheme_bs5:image', {
+        media: {
+          src: media_src,
+          alt: media_alt,
+          width: media_width,
+          height: media_height,
+        },
         loading: 'lazy',
       }, false, true) }}
     </div>

@@ -296,7 +296,12 @@
   {% set split_media_markup %}
     <div{{ media_frame_attributes }}>
       {% if has_media %}
-        <img{{ image_attributes }}/>
+        {{ include('vartheme_bs5:image', {
+          media: { src: src_final, alt: alt_final },
+          fit: 'object-fit-' ~ img_fit,
+          width: 'w-100',
+          loading: 'lazy',
+        }, with_context=false) }}
       {% else %}
         <div{{ split_fallback_attributes }}></div>
       {% endif %}
@@ -307,7 +312,12 @@
     <div{{ slide_item_attributes }}>
       {% if mp == 'overlay' or mp == 'none' %}
         {% if has_media %}
-          <img{{ image_attributes }}/>
+          {{ include('vartheme_bs5:image', {
+            media: { src: src_final, alt: alt_final },
+            fit: 'object-fit-' ~ img_fit,
+            width: 'w-100',
+            loading: 'lazy',
+          }, with_context=false) }}
         {% elseif mp != 'none' %}
           <div{{ fallback_overlay_attributes }}></div>
         {% endif %}
