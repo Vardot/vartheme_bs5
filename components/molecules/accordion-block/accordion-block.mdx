@@ -1,0 +1,89 @@
+import { Meta, Source, Canvas, Controls, Stories } from '@storybook/addon-docs/blocks';
+import * as AccordionBlockStories from './accordion-block.stories.json';
+import templateSource from './accordion-block.twig?raw';
+
+<Meta of={AccordionBlockStories} name="Docs" />
+
+# Accordion block
+
+A single Bootstrap 5 accordion item with a clickable header and a collapsible body slot. Use this component inside an **Accordion container** for grouped behavior, or standalone with `always_open: true` for an independent toggle.
+
+- `open_by_default: true` expands the item when the page first loads
+- `color` applies a Bootstrap `text-bg-*` class directly to the header button; use `inherit` to pick up the container's default color
+- `heading_level` controls the semantic heading tag wrapping the button — choose the correct level for your document outline
+- `item_id` produces stable, predictable IDs for deep-linking and automated testing
+- `always_open: true` lets this item stay open independently even when nested in a grouped accordion
+
+> ### Bootstrap documentation
+> - [Accordion component](https://getbootstrap.com/docs/5.3/components/accordion/)
+> - [Collapse plugin](https://getbootstrap.com/docs/5.3/components/collapse/)
+> - [Background & color helpers](https://getbootstrap.com/docs/5.3/helpers/color-background/)
+
+## Properties
+
+<Canvas of={AccordionBlockStories.Default} />
+<Controls of={AccordionBlockStories.Default} />
+
+## Stories
+
+<Stories of={AccordionBlockStories} />
+
+## Examples
+
+### Example #1: Basic item, closed by default
+
+```twig
+{% embed 'vartheme_bs5:accordion-block' with {
+  title: 'What is included?',
+  heading_level: 3,
+  open_by_default: false,
+  color: 'text-bg-light',
+} %}
+  {% block accordion_content %}
+    <p class="mb-0">This section contains the accordion body content.</p>
+  {% endblock %}
+{% endembed %}
+```
+
+### Example #2: Item with a custom color and stable ID
+
+```twig
+{% embed 'vartheme_bs5:accordion-block' with {
+  title: 'Billing details',
+  heading_level: 3,
+  item_id: 'billing-details',
+  open_by_default: true,
+  color: 'text-bg-primary',
+} %}
+  {% block accordion_content %}
+    <ul class="mb-0">
+      <li>Monthly invoicing</li>
+      <li>Tax summary</li>
+      <li>Payment methods</li>
+    </ul>
+  {% endblock %}
+{% endembed %}
+```
+
+### Example #3: Rich body content
+
+```twig
+{% embed 'vartheme_bs5:accordion-block' with {
+  title: 'Shipping & returns',
+  heading_level: 3,
+  open_by_default: true,
+  color: 'text-bg-light',
+} %}
+  {% block accordion_content %}
+    <p>Free standard shipping on orders over $50.</p>
+    <ul class="mb-0">
+      <li>Standard: 5–7 business days</li>
+      <li>Express: 2–3 business days</li>
+    </ul>
+  {% endblock %}
+{% endembed %}
+```
+
+## Source code
+[//]: # (Twig Template source code)
+<Source code={templateSource} />

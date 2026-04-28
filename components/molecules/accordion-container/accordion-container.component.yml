@@ -1,7 +1,6 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: Accordion container
-description: A container for any content, only one of whose accordions may be open
-  at a time.
+description: A container for any content, only one of whose accordions may be open at a time.
 group: Layout
 props:
   type: object
@@ -14,48 +13,44 @@ props:
     flush:
       type: boolean
       title: Flush style
-      description: Bootstrap accordion-flush style.
+      description: Remove the default outer accordion borders and rounding.
       default: false
     always_open:
       type: boolean
-      title: Always open
-      description: Allow multiple accordion items to stay open (no data-bs-parent).
+      title: Keep multiple items open
+      description: Allow multiple accordion items to stay open at the same time.
       default: false
-    extra_classes:
-      type: string
-      title: Extra classes
-      description: Space separated classes (Bootstrap utilities allowed).
-      default: ''
     color:
       type: string
-      title: Header color
-      description: Applies Bootstrap color utilities to accordion headers (buttons).
+      title: Default header color
+      description: Passed to nested accordion buttons when an item does not override it.
       enum:
-        - default
-        - primary
-        - secondary
-        - success
-        - danger
-        - warning
-        - info
-        - light
-        - dark
-      meta:
-        enum:
-          default: Default
-          primary: Primary
-          secondary: Secondary
-          success: Success
-          danger: Danger
-          warning: Warning
-          info: Info
-          light: Light
-          dark: Dark
-      default: default
+        - text-bg-light
+        - text-bg-primary
+        - text-bg-secondary
+        - text-bg-success
+        - text-bg-danger
+        - text-bg-warning
+        - text-bg-info
+        - text-bg-dark
+      meta:enum:
+          text-bg-light: Light (default)
+          text-bg-primary: Primary
+          text-bg-secondary: Secondary
+          text-bg-success: Success
+          text-bg-danger: Danger
+          text-bg-warning: Warning
+          text-bg-info: Info
+          text-bg-dark: Dark
+      default: text-bg-light
+
 slots:
   accordion_content:
     title: Accordion content
-    description: Only one of collapsible sections added can be open at a time.
+    description: Place one or more accordion items inside this slot.
+
 libraryOverrides:
+  js:
+    accordion-container.js: {}
   dependencies:
     - vartheme_bs5/bs-collapse-script

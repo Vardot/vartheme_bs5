@@ -1,48 +1,40 @@
 {#
   Accordion Item (Bootstrap 5)
-
-  Intended use:
-  - Place multiple "Accordion" (accordion-block) components inside an
-    "Accordion container" (accordion-container) slot.
-
-  Parent binding:
-  - If `parent_id` is provided, it will be used for Bootstrap's
-    `data-bs-parent` binding.
-  - Otherwise, the component will try to use `accordion_parent_id` exposed by
-    the surrounding accordion-container.
-
-  Slot:
-  - accordion_content: body content
 #}
 
-{% set parent_from_context = accordion_parent_id|default('') %}
+{# --- Resolve IDs and labels --- #}
 {% set bound_parent = parent_id|default('')|trim %}
 {% if bound_parent is empty %}
-  {% set bound_parent = parent_from_context %}
-{% endif %}
-
-{% set allow_multiple = always_open ? true : (accordion_always_open|default(false) ? true : false) %}
-{% set inherited_color = accordion_color|default('default') %}
-{% set resolved_color = color|default('inherit') %}
-{% if resolved_color == 'inherit' %}
-  {% set resolved_color = inherited_color %}
+  {% set bound_parent = accordion_parent_id|default('') %}
 {% endif %}
 
 {% set uid = item_id|default('')|trim %}
 {% if uid is empty %}
-  {% set uid = (random(1000000) ~ '-' ~ 'now'|date('U')) %}
+  {% set uid = random(1000000) ~ '-' ~ 'now'|date('U') %}
 {% endif %}
 
-{% set heading_id = 'heading-' ~ uid %}
-{% set collapse_id = 'collapse-' ~ uid %}
+{% set heading_level = heading_level|default(3) %}
+{% set heading_id    = 'heading-'  ~ uid %}
+{% set collapse_id   = 'collapse-' ~ uid %}
+{% set title_text    = title|default('Accordion item') %}
 
-{% set route_name = app.request.attributes.get('_route')|default('') %}
+{# --- Resolve color --- #}
+{% set resolved_color = color|default('inherit') %}
+{% if resolved_color == 'inherit' %}
+  {% set resolved_color = accordion_color|default('') %}
+{% endif %}
+
+{# --- Resolve state flags --- #}
+{% set allow_multiple    = always_open ? true : (accordion_always_open|default(false) ? true : false) %}
+{% set route_name        = app.request.attributes.get('_route')|default('') %}
 {% set is_canvas_preview = (route_name matches '/canvas/i') or (route_name matches '/sdc/i') or (route_name matches '/component/i') %}
-{# In Canvas/preview contexts we keep items expanded for easier editing. #}
-{% set expanded = is_canvas_preview ? true : (open_by_default ? true : false) %}
-{% set button_classes = ['accordion-button'] %}
-{% if resolved_color and resolved_color != 'default' %}
-  {% set button_classes = button_classes|merge(['text-bg-' ~ resolved_color]) %}
+{% set expanded          = is_canvas_preview ? true : (open_by_default ? true : false) %}
+{% set has_slot_content  = accordion_content is defined and accordion_content|render|trim is not empty %}
+
+{# --- Build class lists --- #}
+{% set button_classes = ['accordion-button', 'fw-bold'] %}
+{% if resolved_color %}
+  {% set button_classes = button_classes|merge([resolved_color]) %}
 {% endif %}
 {% if not expanded %}
   {% set button_classes = button_classes|merge(['collapsed']) %}
@@ -53,45 +45,61 @@
   {% set collapse_classes = collapse_classes|merge(['show']) %}
 {% endif %}
 
-{% set item_classes = ['accordion-item'] %}
-{% if resolved_color and resolved_color != 'default' %}
-  {% set item_classes = item_classes|merge(['border-' ~ resolved_color]) %}
+{% set body_classes = ['accordion-body'] %}
+{% if is_canvas_preview %}
+  {% set body_classes = body_classes|merge(['accordion-body--canvas']) %}
 {% endif %}
-{% if extra_classes|default('')|trim %}
-  {% set item_classes = item_classes|merge(extra_classes|trim|split(' ')) %}
+{% if is_canvas_preview and not has_slot_content %}
+  {% set body_classes = body_classes|merge(['accordion-body--canvas-empty']) %}
 {% endif %}
 
-<div class="{{ item_classes|join(' ') }}">
-  <h{{ heading_level|default(3) }} class="accordion-header" id="{{ heading_id }}">
-    <button
-      class="{{ button_classes|join(' ') }}"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#{{ collapse_id }}"
-      aria-expanded="{{ expanded ? 'true' : 'false' }}"
-      aria-controls="{{ collapse_id }}"
-    >
-      {{ title|default('Accordion item') }}
-    </button>
-  </h{{ heading_level|default(3) }}>
+{# --- Build attributes --- #}
+{% set item_attributes = create_attribute({
+  'class': ['accordion-item'],
+}) %}
 
-  <div
-    id="{{ collapse_id }}"
-    class="{{ collapse_classes|join(' ') }}"
-    aria-labelledby="{{ heading_id }}"
-    {% if bound_parent and not allow_multiple %}data-bs-parent="#{{ bound_parent }}"{% endif %}
-  >
-    <div class="accordion-body">
-      {% if accordion_content is defined and accordion_content|render|trim is not empty %}
-        {{ accordion_content }}
-      {% else %}
-  {#
-    Canvas-friendly default:
-    If no slot content is provided, render the Text component so users can edit content later.
-  #}
-  {% set default_body = '<p class="mb-0">Accordion body content…</p>' %}
-  {{ include('vartheme_bs5:text', {text: default_body, element: 'div'}, with_context: false) }}
+{% set heading_attributes = create_attribute({
+  'class': ['accordion-header'],
+  'id': heading_id,
+}) %}
+
+{% set button_attributes = create_attribute({
+  'class': button_classes,
+  'type': 'button',
+  'data-bs-toggle': 'collapse',
+  'data-bs-target': '#' ~ collapse_id,
+  'aria-expanded': expanded ? 'true' : 'false',
+  'aria-controls': collapse_id,
+}) %}
+
+{% set collapse_attributes = create_attribute({
+  'id': collapse_id,
+  'class': collapse_classes,
+  'aria-labelledby': heading_id,
+}) %}
+{% if bound_parent and not allow_multiple %}
+  {% set collapse_attributes = collapse_attributes.setAttribute('data-bs-parent', '#' ~ bound_parent) %}
 {% endif %}
+
+{% set body_attributes = create_attribute({
+  'class': body_classes,
+}) %}
+
+{# --- HTML --- #}
+<div{{ item_attributes }}>
+  <h{{ heading_level }}{{ heading_attributes }}>
+    <button{{ button_attributes }}>{{ title_text }}</button>
+  </h{{ heading_level }}>
+
+  <div{{ collapse_attributes }}>
+    <div{{ body_attributes }}>
+      <div class="accordion-body__content">
+        {% if has_slot_content %}
+          {{ accordion_content }}
+        {% else %}
+          {{ include('vartheme_bs5:text', {text: '<p class="mb-0">Accordion body content…</p>', element: 'div'}, with_context: false) }}
+        {% endif %}
+      </div>
     </div>
   </div>
 </div>

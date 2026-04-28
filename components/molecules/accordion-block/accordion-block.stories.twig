@@ -1,0 +1,228 @@
+{% stories AccordionBlock with {
+  title: 'Layout/Accordion/Accordion block',
+  parameters: {
+    componentSubtitle: 'Bootstrap accordion single item',
+    docs: {
+      description: {
+        component: 'A single collapsible accordion item with a configurable header, heading level, default open state, and optional header color.',
+      },
+      story: {
+        inline: true,
+      },
+    },
+  },
+  argTypes: {
+    title: {
+      name: 'Heading',
+      control: 'text',
+      defaultValue: 'Section title',
+    },
+    heading_level: {
+      name: 'Heading level',
+      control: 'select',
+      defaultValue: 3,
+      options: {
+        H2: 2,
+        H3: 3,
+        H4: 4,
+        H5: 5,
+        H6: 6,
+      },
+    },
+    open_by_default: {
+      name: 'Expanded by default',
+      control: 'boolean',
+      defaultValue: true,
+    },
+    always_open: {
+      name: 'Keep this item independent',
+      control: 'boolean',
+      defaultValue: false,
+    },
+    color: {
+      name: 'Header color',
+      control: 'select',
+      defaultValue: 'inherit',
+      options: {
+        "'Inherit from container'": 'inherit',
+        Primary: 'text-bg-primary',
+        Secondary: 'text-bg-secondary',
+        Success: 'text-bg-success',
+        Danger: 'text-bg-danger',
+        Warning: 'text-bg-warning',
+        Info: 'text-bg-info',
+        Light: 'text-bg-light',
+        Dark: 'text-bg-dark',
+      },
+    },
+    item_id: {
+      name: 'Item ID',
+      control: 'text',
+      defaultValue: '',
+    },
+  },
+} %}
+
+{% story Default with {
+  name: 'Default',
+  args: {
+    title: 'What is included?',
+    heading_level: 3,
+    open_by_default: true,
+    always_open: false,
+    color: 'inherit',
+    item_id: '',
+  },
+} %}
+{% set accordion_content %}
+    <p class="mb-0">This section contains the accordion body content. You can place any content here including text, lists, images, buttons, or nested components.</p>
+  {% endset %}
+{{ attach_library('vartheme_bs5/accordion-scripts') }}
+{{ include('vartheme_bs5:accordion-block', {
+  title: title,
+  heading_level: heading_level,
+  open_by_default: open_by_default,
+  always_open: always_open,
+  color: color,
+  item_id: item_id,
+  accordion_content: accordion_content,
+}, with_context: false) }}
+{% endstory %}
+
+{% story OpenByDefault with {
+  name: 'Open by default',
+  args: {
+    title: 'Expanded on load',
+    heading_level: 3,
+    open_by_default: true,
+    always_open: false,
+    color: 'text-bg-light',
+    item_id: 'open-default',
+  },
+} %}
+{% set accordion_content %}
+    <p class="mb-0">This accordion item is expanded when the page first loads. Use <code>open_by_default: true</code> to reveal content immediately.</p>
+  {% endset %}
+{{ attach_library('vartheme_bs5/accordion-scripts') }}
+{{ include('vartheme_bs5:accordion-block', {
+  title: title,
+  heading_level: heading_level,
+  open_by_default: open_by_default,
+  always_open: always_open,
+  color: color,
+  item_id: item_id,
+  accordion_content: accordion_content,
+}, with_context: false) }}
+{% endstory %}
+
+{% story ClosedByDefault with {
+  name: 'Closed by default',
+  args: {
+    title: 'Hidden until clicked',
+    heading_level: 3,
+    open_by_default: false,
+    always_open: false,
+    color: 'text-bg-light',
+    item_id: 'closed-default',
+  },
+} %}
+{% set accordion_content %}
+    <p class="mb-0">This accordion item starts collapsed. The reader must click the header to reveal this content.</p>
+  {% endset %}
+{{ attach_library('vartheme_bs5/accordion-scripts') }}
+{{ include('vartheme_bs5:accordion-block', {
+  title: title,
+  heading_level: heading_level,
+  open_by_default: open_by_default,
+  always_open: always_open,
+  color: color,
+  item_id: item_id,
+  accordion_content: accordion_content,
+}, with_context: false) }}
+{% endstory %}
+
+{% story PrimaryColor with {
+  name: 'Primary header color',
+  args: {
+    title: 'Primary styled header',
+    heading_level: 3,
+    open_by_default: true,
+    always_open: false,
+    color: 'text-bg-primary',
+    item_id: 'primary-item',
+  },
+} %}
+{% set accordion_content %}
+    <p class="mb-0">The header button uses the <strong>Primary</strong> Bootstrap color (<code>text-bg-primary</code>). Any Bootstrap <code>text-bg-*</code> color can be applied directly to the accordion button.</p>
+  {% endset %}
+{{ attach_library('vartheme_bs5/accordion-scripts') }}
+{{ include('vartheme_bs5:accordion-block', {
+  title: title,
+  heading_level: heading_level,
+  open_by_default: open_by_default,
+  always_open: always_open,
+  color: color,
+  item_id: item_id,
+  accordion_content: accordion_content,
+}, with_context: false) }}
+{% endstory %}
+
+{% story RichContent with {
+  name: 'Rich content body',
+  args: {
+    title: 'Shipping & returns',
+    heading_level: 3,
+    open_by_default: true,
+    always_open: false,
+    color: 'text-bg-light',
+    item_id: 'rich-content',
+  },
+} %}
+{% set accordion_content %}
+    <p>Free standard shipping on all orders over $50. Estimated delivery times:</p>
+    <ul class="mb-2">
+      <li>Standard: 5–7 business days</li>
+      <li>Express: 2–3 business days</li>
+      <li>Overnight: next business day</li>
+    </ul>
+    <p class="mb-0">Returns are accepted within 30 days of purchase. <a href="#">View full returns policy.</a></p>
+  {% endset %}
+{{ attach_library('vartheme_bs5/accordion-scripts') }}
+{{ include('vartheme_bs5:accordion-block', {
+  title: title,
+  heading_level: heading_level,
+  open_by_default: open_by_default,
+  always_open: always_open,
+  color: color,
+  item_id: item_id,
+  accordion_content: accordion_content,
+}, with_context: false) }}
+{% endstory %}
+
+{% story IndependentItem with {
+  name: 'Independent (always open)',
+  args: {
+    title: 'Always stays open',
+    heading_level: 3,
+    open_by_default: true,
+    always_open: true,
+    color: 'text-bg-info',
+    item_id: 'always-open-item',
+  },
+} %}
+{% set accordion_content %}
+    <p class="mb-0">This item uses <code>always_open: true</code> so it remains open independently, even when placed inside a grouped accordion container.</p>
+  {% endset %}
+{{ attach_library('vartheme_bs5/accordion-scripts') }}
+{{ include('vartheme_bs5:accordion-block', {
+  title: title,
+  heading_level: heading_level,
+  open_by_default: open_by_default,
+  always_open: always_open,
+  color: color,
+  item_id: item_id,
+  accordion_content: accordion_content,
+}, with_context: false) }}
+{% endstory %}
+
+{% endstories %}

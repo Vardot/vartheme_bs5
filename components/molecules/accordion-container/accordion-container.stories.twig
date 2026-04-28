@@ -1,0 +1,374 @@
+{% stories AccordionContainer with {
+  title: 'Layout/Accordion/Accordion container',
+  parameters: {
+    componentSubtitle: 'Bootstrap accordion wrapper',
+    docs: {
+      description: {
+        component: 'A Bootstrap 5 accordion wrapper that groups multiple accordion items. Controls flush style, multi-open behavior, and the default header color inherited by nested items.',
+      },
+      story: {
+        inline: true,
+      },
+    },
+  },
+  argTypes: {
+    id: {
+      name: 'Accordion ID',
+      control: 'text',
+      defaultValue: '',
+    },
+    flush: {
+      name: 'Flush style',
+      control: 'boolean',
+      defaultValue: false,
+    },
+    always_open: {
+      name: 'Keep multiple items open',
+      control: 'boolean',
+      defaultValue: false,
+    },
+    color: {
+      name: 'Default header color',
+      control: 'select',
+      defaultValue: 'text-bg-light',
+      options: {
+        "'Light (default)'": 'text-bg-light',
+        Primary: 'text-bg-primary',
+        Secondary: 'text-bg-secondary',
+        Success: 'text-bg-success',
+        Danger: 'text-bg-danger',
+        Warning: 'text-bg-warning',
+        Info: 'text-bg-info',
+        Dark: 'text-bg-dark',
+      },
+    },
+  },
+} %}
+
+{% story Default with {
+  name: 'Default',
+  args: {
+    id: '',
+    flush: false,
+    always_open: false,
+    color: 'text-bg-light',
+  },
+} %}
+{% set accordion_content %}
+    {% set accordion_content %}
+        <p class="mb-0">The Accordion container groups multiple accordion items. Only one item can be open at a time in default mode.</p>
+      {% endset %}
+{{ include('vartheme_bs5:accordion-block', {
+      title: 'What is this component?',
+      heading_level: 3,
+      open_by_default: true,
+      color: 'inherit',
+      accordion_content: accordion_content,
+    }, with_context: false) }}
+
+    {% set accordion_content %}
+        <p class="mb-0">Use it for FAQs, grouped detail sections, product specs, and any content that benefits from collapsible organization.</p>
+      {% endset %}
+{{ include('vartheme_bs5:accordion-block', {
+      title: 'When should I use it?',
+      heading_level: 3,
+      open_by_default: false,
+      color: 'inherit',
+      accordion_content: accordion_content,
+    }, with_context: false) }}
+
+    {% set accordion_content %}
+        <p class="mb-0">Wrap one or more Accordion block components inside this container. The container manages shared IDs and Bootstrap parent binding automatically.</p>
+      {% endset %}
+{{ include('vartheme_bs5:accordion-block', {
+      title: 'How does it work?',
+      heading_level: 3,
+      open_by_default: false,
+      color: 'inherit',
+      accordion_content: accordion_content,
+    }, with_context: false) }}
+  {% endset %}
+{{ attach_library('vartheme_bs5/accordion-scripts') }}
+{{ include('vartheme_bs5:accordion-container', {
+  id: id,
+  flush: flush,
+  always_open: always_open,
+  color: color,
+  accordion_content: accordion_content,
+}, with_context: false) }}
+{% endstory %}
+
+{% story FlushStyle with {
+  name: 'Flush style',
+  args: {
+    id: 'flush-demo',
+    flush: true,
+    always_open: false,
+    color: 'text-bg-light',
+  },
+} %}
+{% set accordion_content %}
+    {% set accordion_content %}
+        <p class="mb-0">The <code>flush</code> style removes the default outer accordion border and border-radius, producing an edge-to-edge appearance suited to sidebars and tightly constrained layouts.</p>
+      {% endset %}
+{{ include('vartheme_bs5:accordion-block', {
+      title: 'No outer border or rounding',
+      heading_level: 3,
+      open_by_default: true,
+      color: 'inherit',
+      accordion_content: accordion_content,
+    }, with_context: false) }}
+
+    {% set accordion_content %}
+        <p class="mb-0">Flush mode keeps the horizontal dividers between items while stripping the outer frame.</p>
+      {% endset %}
+{{ include('vartheme_bs5:accordion-block', {
+      title: 'Clean divider lines only',
+      heading_level: 3,
+      open_by_default: false,
+      color: 'inherit',
+      accordion_content: accordion_content,
+    }, with_context: false) }}
+  {% endset %}
+{{ attach_library('vartheme_bs5/accordion-scripts') }}
+{{ include('vartheme_bs5:accordion-container', {
+  id: id,
+  flush: flush,
+  always_open: always_open,
+  color: color,
+  accordion_content: accordion_content,
+}, with_context: false) }}
+{% endstory %}
+
+{% story AlwaysOpen with {
+  name: 'Always open (multiple expanded)',
+  args: {
+    id: 'always-open-demo',
+    flush: false,
+    always_open: true,
+    color: 'text-bg-light',
+  },
+} %}
+{% set accordion_content %}
+    {% set accordion_content %}
+        <p class="mb-0">With <code>always_open: true</code>, this item stays expanded even when another item is opened.</p>
+      {% endset %}
+{{ include('vartheme_bs5:accordion-block', {
+      title: 'First topic',
+      heading_level: 3,
+      open_by_default: true,
+      color: 'inherit',
+      accordion_content: accordion_content,
+    }, with_context: false) }}
+
+    {% set accordion_content %}
+        <p class="mb-0">Multiple items can be open at the same time. This is useful for comparison content or reference sections.</p>
+      {% endset %}
+{{ include('vartheme_bs5:accordion-block', {
+      title: 'Second topic',
+      heading_level: 3,
+      open_by_default: true,
+      color: 'inherit',
+      accordion_content: accordion_content,
+    }, with_context: false) }}
+
+    {% set accordion_content %}
+        <p class="mb-0">This item starts collapsed but can be opened without closing the others.</p>
+      {% endset %}
+{{ include('vartheme_bs5:accordion-block', {
+      title: 'Third topic',
+      heading_level: 3,
+      open_by_default: false,
+      color: 'inherit',
+      accordion_content: accordion_content,
+    }, with_context: false) }}
+  {% endset %}
+{{ attach_library('vartheme_bs5/accordion-scripts') }}
+{{ include('vartheme_bs5:accordion-container', {
+  id: id,
+  flush: flush,
+  always_open: always_open,
+  color: color,
+  accordion_content: accordion_content,
+}, with_context: false) }}
+{% endstory %}
+
+{% story PrimaryColor with {
+  name: 'Primary header color',
+  args: {
+    id: 'primary-color-demo',
+    flush: false,
+    always_open: false,
+    color: 'text-bg-primary',
+  },
+} %}
+{% set accordion_content %}
+    {% set accordion_content %}
+        <ul class="mb-0">
+          <li>Unlimited projects</li>
+          <li>Priority support</li>
+          <li>Advanced analytics</li>
+        </ul>
+      {% endset %}
+{{ include('vartheme_bs5:accordion-block', {
+      title: 'Plan features',
+      heading_level: 3,
+      open_by_default: true,
+      color: 'inherit',
+      accordion_content: accordion_content,
+    }, with_context: false) }}
+
+    {% set accordion_content %}
+        <p class="mb-0">Billed monthly. Cancel any time without a cancellation fee.</p>
+      {% endset %}
+{{ include('vartheme_bs5:accordion-block', {
+      title: 'Billing cycle',
+      heading_level: 3,
+      open_by_default: false,
+      color: 'inherit',
+      accordion_content: accordion_content,
+    }, with_context: false) }}
+
+    {% set accordion_content %}
+        <p class="mb-0">You can change your plan at any time. Changes take effect at the start of your next billing period.</p>
+      {% endset %}
+{{ include('vartheme_bs5:accordion-block', {
+      title: 'Upgrade or downgrade',
+      heading_level: 3,
+      open_by_default: false,
+      color: 'inherit',
+      accordion_content: accordion_content,
+    }, with_context: false) }}
+  {% endset %}
+{{ attach_library('vartheme_bs5/accordion-scripts') }}
+{{ include('vartheme_bs5:accordion-container', {
+  id: id,
+  flush: flush,
+  always_open: always_open,
+  color: color,
+  accordion_content: accordion_content,
+}, with_context: false) }}
+{% endstory %}
+
+{% story MixedColors with {
+  name: 'Mixed item colors',
+  args: {
+    id: 'mixed-colors-demo',
+    flush: false,
+    always_open: false,
+    color: 'text-bg-light',
+  },
+} %}
+{% set accordion_content %}
+    {% set accordion_content %}
+        <p class="mb-0">This item inherits the container's default <code>text-bg-light</code> color.</p>
+      {% endset %}
+{{ include('vartheme_bs5:accordion-block', {
+      title: 'Inherited color (light)',
+      heading_level: 3,
+      open_by_default: true,
+      color: 'inherit',
+      accordion_content: accordion_content,
+    }, with_context: false) }}
+
+    {% set accordion_content %}
+        <p class="mb-0">This item overrides the container color with <code>text-bg-primary</code> directly on the block.</p>
+      {% endset %}
+{{ include('vartheme_bs5:accordion-block', {
+      title: 'Override: Primary',
+      heading_level: 3,
+      open_by_default: false,
+      color: 'text-bg-primary',
+      accordion_content: accordion_content,
+    }, with_context: false) }}
+
+    {% set accordion_content %}
+        <p class="mb-0">This item overrides the container color with <code>text-bg-success</code>.</p>
+      {% endset %}
+{{ include('vartheme_bs5:accordion-block', {
+      title: 'Override: Success',
+      heading_level: 3,
+      open_by_default: false,
+      color: 'text-bg-success',
+      accordion_content: accordion_content,
+    }, with_context: false) }}
+  {% endset %}
+{{ attach_library('vartheme_bs5/accordion-scripts') }}
+{{ include('vartheme_bs5:accordion-container', {
+  id: id,
+  flush: flush,
+  always_open: always_open,
+  color: color,
+  accordion_content: accordion_content,
+}, with_context: false) }}
+{% endstory %}
+
+{% story FAQExample with {
+  name: 'FAQ example',
+  args: {
+    id: 'faq-accordion',
+    flush: false,
+    always_open: false,
+    color: 'text-bg-light',
+  },
+} %}
+{% set accordion_content %}
+    {% set accordion_content %}
+        <p class="mb-0">Go to the login page and click <strong>Forgot password</strong>. Enter your email address and we will send you a reset link within a few minutes.</p>
+      {% endset %}
+{{ include('vartheme_bs5:accordion-block', {
+      title: 'How do I reset my password?',
+      heading_level: 3,
+      open_by_default: true,
+      item_id: 'faq-password',
+      color: 'inherit',
+      accordion_content: accordion_content,
+    }, with_context: false) }}
+
+    {% set accordion_content %}
+        <p class="mb-0">Yes. Navigate to <strong>Account settings &rarr; Profile</strong> and update your email. A confirmation link will be sent to both your old and new address.</p>
+      {% endset %}
+{{ include('vartheme_bs5:accordion-block', {
+      title: 'Can I change my email address?',
+      heading_level: 3,
+      open_by_default: false,
+      item_id: 'faq-email',
+      color: 'inherit',
+      accordion_content: accordion_content,
+    }, with_context: false) }}
+
+    {% set accordion_content %}
+        <p class="mb-0">Open <strong>Account settings &rarr; Billing</strong> and click <strong>Cancel plan</strong>. Your access continues until the end of the current billing period.</p>
+      {% endset %}
+{{ include('vartheme_bs5:accordion-block', {
+      title: 'How do I cancel my subscription?',
+      heading_level: 3,
+      open_by_default: false,
+      item_id: 'faq-cancel',
+      color: 'inherit',
+      accordion_content: accordion_content,
+    }, with_context: false) }}
+
+    {% set accordion_content %}
+        <p class="mb-0">Your data is retained for 30 days after cancellation. You can export it at any time from the account dashboard before it is permanently removed.</p>
+      {% endset %}
+{{ include('vartheme_bs5:accordion-block', {
+      title: 'Is my data deleted after cancellation?',
+      heading_level: 3,
+      open_by_default: false,
+      item_id: 'faq-data',
+      color: 'inherit',
+      accordion_content: accordion_content,
+    }, with_context: false) }}
+  {% endset %}
+{{ attach_library('vartheme_bs5/accordion-scripts') }}
+{{ include('vartheme_bs5:accordion-container', {
+  id: id,
+  flush: flush,
+  always_open: always_open,
+  color: color,
+  accordion_content: accordion_content,
+}, with_context: false) }}
+{% endstory %}
+
+{% endstories %}

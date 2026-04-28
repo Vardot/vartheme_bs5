@@ -1,66 +1,121 @@
 {#
   Accordion Container (Bootstrap 5)
-
-  Props:
-  - id: accordion id (optional)
-  - flush: boolean
-  - always_open: boolean (allow multiple items open)
-  - extra_classes: string
-
-  Slot:
-  - accordion_content: one or more accordion items (e.g. vartheme_bs5:accordion-block)
-
-  Important:
-  - In SDC, slot content is provided as a variable (accordion_content). Using
-    Twig blocks/embeds prevents Drupal from injecting the slot content.
-  - We expose the generated id to children via `accordion_parent_id` so that
-    nested accordion items can bind to the same parent (data-bs-parent).
 #}
 
+{# --- Resolve ID --- #}
 {% set accordion_id = id|default('')|trim %}
 {% if accordion_id is empty %}
   {% set accordion_id = 'accordion-' ~ random(1000000) %}
 {% endif %}
 
-{% set classes = ['accordion'] %}
-{% if flush %}
-  {% set classes = classes|merge(['accordion-flush']) %}
-{% endif %}
-{% if extra_classes|default('')|trim %}
-  {% set classes = classes|merge(extra_classes|trim|split(' ')) %}
-{% endif %}
-
-{# Make parent id available to nested accordion blocks rendered in the slot. #}
-{% set accordion_parent_id = accordion_id %}
+{# These variables are passed down to child accordion-block components via Twig context. #}
+{% set accordion_parent_id   = accordion_id %}
 {% set accordion_always_open = always_open ? true : false %}
-{% set accordion_color = color|default('default') %}
+{% set accordion_color       = color|default('text-bg-light') %}
 
-<div id="{{ accordion_id }}" class="{{ classes|join(' ') }}">
-  {% if accordion_content is defined and accordion_content|render|trim is not empty %}
+{# --- Resolve state flags --- #}
+{% set has_slot_content = accordion_content is defined and accordion_content|render|trim is not empty %}
+
+{# --- Build class lists --- #}
+{% set container_classes = ['accordion'] %}
+{% if flush %}
+  {% set container_classes = container_classes|merge(['accordion-flush']) %}
+{% endif %}
+
+{% set demo_parent         = accordion_always_open ? false : '#' ~ accordion_id %}
+{% set demo_1_btn_classes  = ['accordion-button', 'fw-bold', accordion_color] %}
+{% set demo_2_btn_classes  = ['accordion-button', 'fw-bold', accordion_color, 'collapsed'] %}
+
+{# --- Build attributes --- #}
+{% set container_attributes = create_attribute({
+  'id': accordion_id,
+  'class': container_classes,
+}) %}
+
+{% set demo_1_item_attributes = create_attribute({
+  'class': ['accordion-item'],
+}) %}
+
+{% set demo_1_heading_attributes = create_attribute({
+  'class': ['accordion-header'],
+  'id': 'heading-demo-1',
+}) %}
+
+{% set demo_1_button_attributes = create_attribute({
+  'class': demo_1_btn_classes,
+  'type': 'button',
+  'data-bs-toggle': 'collapse',
+  'data-bs-target': '#collapse-demo-1',
+  'aria-expanded': 'true',
+  'aria-controls': 'collapse-demo-1',
+}) %}
+
+{% set demo_1_collapse_attributes = create_attribute({
+  'id': 'collapse-demo-1',
+  'class': ['accordion-collapse', 'collapse', 'show'],
+  'aria-labelledby': 'heading-demo-1',
+}) %}
+{% if demo_parent %}
+  {% set demo_1_collapse_attributes = demo_1_collapse_attributes.setAttribute('data-bs-parent', demo_parent) %}
+{% endif %}
+
+{% set demo_1_body_attributes = create_attribute({
+  'class': ['accordion-body'],
+}) %}
+
+{% set demo_2_item_attributes = create_attribute({
+  'class': ['accordion-item'],
+}) %}
+
+{% set demo_2_heading_attributes = create_attribute({
+  'class': ['accordion-header'],
+  'id': 'heading-demo-2',
+}) %}
+
+{% set demo_2_button_attributes = create_attribute({
+  'class': demo_2_btn_classes,
+  'type': 'button',
+  'data-bs-toggle': 'collapse',
+  'data-bs-target': '#collapse-demo-2',
+  'aria-expanded': 'false',
+  'aria-controls': 'collapse-demo-2',
+}) %}
+
+{% set demo_2_collapse_attributes = create_attribute({
+  'id': 'collapse-demo-2',
+  'class': ['accordion-collapse', 'collapse'],
+  'aria-labelledby': 'heading-demo-2',
+}) %}
+{% if demo_parent %}
+  {% set demo_2_collapse_attributes = demo_2_collapse_attributes.setAttribute('data-bs-parent', demo_parent) %}
+{% endif %}
+
+{% set demo_2_body_attributes = create_attribute({
+  'class': ['accordion-body'],
+}) %}
+
+{# --- HTML --- #}
+<div{{ container_attributes }}>
+  {% if has_slot_content %}
     {{ accordion_content }}
   {% else %}
-    {# Fallback examples for Canvas preview when the slot is empty. #}
-    <div class="accordion-item">
-      <h3 class="accordion-header" id="heading-demo-1">
-        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-demo-1" aria-expanded="true" aria-controls="collapse-demo-1">
-          Accordion 1
-        </button>
-      </h3>
-      <div id="collapse-demo-1" class="accordion-collapse collapse show" aria-labelledby="heading-demo-1" data-bs-parent="#{{ accordion_id }}">
-        <div class="accordion-body">
+    <div{{ demo_1_item_attributes }}>
+      <h2{{ demo_1_heading_attributes }}>
+        <button{{ demo_1_button_attributes }}>Accordion 1</button>
+      </h2>
+      <div{{ demo_1_collapse_attributes }}>
+        <div{{ demo_1_body_attributes }}>
           <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
         </div>
       </div>
     </div>
 
-    <div class="accordion-item">
-      <h3 class="accordion-header" id="heading-demo-2">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-demo-2" aria-expanded="false" aria-controls="collapse-demo-2">
-          Accordion 2
-        </button>
-      </h3>
-      <div id="collapse-demo-2" class="accordion-collapse collapse" aria-labelledby="heading-demo-2" data-bs-parent="#{{ accordion_id }}">
-        <div class="accordion-body">
+    <div{{ demo_2_item_attributes }}>
+      <h2{{ demo_2_heading_attributes }}>
+        <button{{ demo_2_button_attributes }}>Accordion 2</button>
+      </h2>
+      <div{{ demo_2_collapse_attributes }}>
+        <div{{ demo_2_body_attributes }}>
           <p class="mb-0">Sed ut perspiciatis unde omnis iste natus error sit voluptatem.</p>
         </div>
       </div>

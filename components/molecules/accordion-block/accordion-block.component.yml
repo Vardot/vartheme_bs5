@@ -2,92 +2,85 @@ $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schema
 name: Accordion
 description: A single section of content that can be collapsed and expanded.
 group: Layout
-
 props:
   type: object
   properties:
     title:
       type: string
       title: Heading
+      description: Text shown in the accordion header button.
       examples:
         - Section title
-
     heading_level:
       type: integer
       title: Heading level
+      description: Choose which heading tag to use for the accordion heading.
       enum:
         - 2
         - 3
         - 4
         - 5
         - 6
+      meta:enum:
+          2: H2
+          3: H3
+          4: H4
+          5: H5
+          6: H6
       default: 3
       examples:
         - 3
-
     open_by_default:
       type: boolean
       title: Expanded by default
+      description: Open this accordion item when the page first loads.
       default: true
       examples:
         - true
-
     parent_id:
       type: string
-      title: Parent accordion id
+      title: Parent accordion ID
       description: >-
-        If set, the collapse element will be bound to this container (Bootstrap behavior).
-        When empty, it tries to use a parent id from the surrounding Accordion container.
+        Optional accordion container ID used for Bootstrap data-bs-parent binding.
+        Usually this is provided automatically by the Accordion container.
       default: ''
-
     item_id:
       type: string
-      title: Item id
+      title: Item ID
       description: >-
-        Optional stable id suffix for this item (useful for toggling via links).
+        Optional stable ID suffix for this accordion item. Useful for links,
+        testing, or automation.
       default: ''
-
     always_open:
       type: boolean
-      title: Always open
-      description: Allow multiple items to remain open. Overrides parent binding.
+      title: Keep this item independent
+      description: Allow this item to stay open without being controlled by the parent accordion.
       default: false
-
-    extra_classes:
-      type: string
-      title: Extra classes
-      description: Space separated classes (Bootstrap utilities allowed).
-      default: ''
-
     color:
       type: string
       title: Header color
-      description: Overrides container color for this item.
+      description: Applies a Bootstrap background/text utility class directly to the accordion button.
       enum:
         - inherit
-        - default
-        - primary
-        - secondary
-        - success
-        - danger
-        - warning
-        - info
-        - light
-        - dark
-      meta:
-        enum:
+        - text-bg-primary
+        - text-bg-secondary
+        - text-bg-success
+        - text-bg-danger
+        - text-bg-warning
+        - text-bg-info
+        - text-bg-light
+        - text-bg-dark
+      meta:enum:
           inherit: Inherit from container
-          default: Default
-          primary: Primary
-          secondary: Secondary
-          success: Success
-          danger: Danger
-          warning: Warning
-          info: Info
-          light: Light
-          dark: Dark
+          text-bg-primary: Primary
+          text-bg-secondary: Secondary
+          text-bg-success: Success
+          text-bg-danger: Danger
+          text-bg-warning: Warning
+          text-bg-info: Info
+          text-bg-light: Light
+          text-bg-dark: Dark
       default: inherit
-
 slots:
   accordion_content:
     title: Accordion content

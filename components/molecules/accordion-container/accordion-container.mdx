@@ -1,0 +1,129 @@
+import { Meta, Source, Canvas, Controls, Stories } from '@storybook/addon-docs/blocks';
+import * as AccordionContainerStories from './accordion-container.stories.json';
+import templateSource from './accordion-container.twig?raw';
+
+<Meta of={AccordionContainerStories} name="Docs" />
+
+# Accordion container
+
+A Bootstrap 5 accordion wrapper that manages a group of collapsible **Accordion block** items. The container owns the shared ID, controls whether multiple items can be open simultaneously, applies the `flush` style, and passes a default header color down to nested items.
+
+- `flush: true` removes outer borders and border-radius for edge-to-edge layouts
+- `always_open: true` lets multiple items be expanded at the same time
+- `color` sets the default `text-bg-*` class passed to every nested accordion block that uses `color: inherit`
+- Nested items can override the container color individually
+- Leave `id` empty to have the container generate a unique ID automatically
+
+> ### Bootstrap documentation
+> - [Accordion component](https://getbootstrap.com/docs/5.3/components/accordion/)
+> - [Flush accordion](https://getbootstrap.com/docs/5.3/components/accordion/#flush)
+> - [Always open accordion](https://getbootstrap.com/docs/5.3/components/accordion/#always-open)
+
+## Properties
+
+<Canvas of={AccordionContainerStories.Default} />
+<Controls of={AccordionContainerStories.Default} />
+
+## Stories
+
+<Stories of={AccordionContainerStories} />
+
+## Examples
+
+### Example #1: Grouped FAQ accordion
+
+```twig
+{% embed 'vartheme_bs5:accordion-container' with {
+  id: 'faq-accordion',
+  flush: false,
+  always_open: false,
+  color: 'text-bg-light',
+} %}
+  {% block accordion_content %}
+    {% embed 'vartheme_bs5:accordion-block' with {
+      title: 'How do I reset my password?',
+      heading_level: 3,
+      open_by_default: true,
+      item_id: 'faq-password',
+      color: 'inherit',
+    } %}
+      {% block accordion_content %}
+        <p class="mb-0">Go to the login page and click Forgot password.</p>
+      {% endblock %}
+    {% endembed %}
+
+    {% embed 'vartheme_bs5:accordion-block' with {
+      title: 'Can I change my email address?',
+      heading_level: 3,
+      open_by_default: false,
+      item_id: 'faq-email',
+      color: 'inherit',
+    } %}
+      {% block accordion_content %}
+        <p class="mb-0">Yes. Navigate to Account settings and update your email.</p>
+      {% endblock %}
+    {% endembed %}
+  {% endblock %}
+{% endembed %}
+```
+
+### Example #2: Always-open with Info color
+
+```twig
+{% embed 'vartheme_bs5:accordion-container' with {
+  id: 'support-topics',
+  always_open: true,
+  color: 'text-bg-info',
+} %}
+  {% block accordion_content %}
+    {% embed 'vartheme_bs5:accordion-block' with {
+      title: 'Topic 1',
+      open_by_default: true,
+      color: 'inherit',
+    } %}
+      {% block accordion_content %}
+        <p class="mb-0">This item can stay open with other items.</p>
+      {% endblock %}
+    {% endembed %}
+
+    {% embed 'vartheme_bs5:accordion-block' with {
+      title: 'Topic 2',
+      open_by_default: true,
+      color: 'inherit',
+    } %}
+      {% block accordion_content %}
+        <p class="mb-0">Both items are open simultaneously.</p>
+      {% endblock %}
+    {% endembed %}
+  {% endblock %}
+{% endembed %}
+```
+
+### Example #3: Flush style for sidebars
+
+```twig
+{% embed 'vartheme_bs5:accordion-container' with {
+  flush: true,
+  color: 'text-bg-light',
+} %}
+  {% block accordion_content %}
+    {% embed 'vartheme_bs5:accordion-block' with {
+      title: 'Navigation section',
+      heading_level: 3,
+      open_by_default: true,
+      color: 'inherit',
+    } %}
+      {% block accordion_content %}
+        <ul class="mb-0 list-unstyled">
+          <li><a href="#">Sub-page one</a></li>
+          <li><a href="#">Sub-page two</a></li>
+        </ul>
+      {% endblock %}
+    {% endembed %}
+  {% endblock %}
+{% endembed %}
+```
+
+## Source code
+[//]: # (Twig Template source code)
+<Source code={templateSource} />
