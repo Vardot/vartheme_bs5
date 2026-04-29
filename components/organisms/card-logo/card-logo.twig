@@ -55,9 +55,10 @@
 <div{{ card_attributes }}>
   <div{{ body_attributes }}>
     {% if has_url %}
+      {% set _link_accessible_label = image_media.alt|default('')|trim %}
       {{ include('vartheme_bs5:link', {
         url: url,
-        attributes: create_attribute().addClass(link_classes),
+        attributes: create_attribute().addClass(link_classes).setAttribute('aria-label', _link_accessible_label),
         content: '',
       }, with_context: false) }}
     {% endif %}

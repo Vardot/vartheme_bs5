@@ -101,9 +101,11 @@
   {{ content_markup }}
 
   {% if use_stretched_link %}
+    {% set _link_accessible_label = content_slot|striptags|trim %}
     {{ include('vartheme_bs5:link', {
       url: link_url,
       target: link_target,
+      attributes: create_attribute().setAttribute('aria-label', _link_accessible_label),
       content: '',
       link_utility_classes: ['stretched-link'],
     }) }}
