@@ -96,18 +96,19 @@
     gap: 0.5rem;
 
     [data-bs-target] {
-      inline-size: 10px;
-      block-size: 10px;
+      inline-size: 8px;
+      block-size: 8px;
       border-radius: 999px !important;
-      border: 1px solid var(--hero-controller-color) !important;
-      background-color: transparent !important;
+      border: 0 !important;
+      background-color: rgba(255, 255, 255, 0.45) !important;
       color: var(--hero-controller-color, #fff);
       opacity: 1 !important;
       margin: 0;
+      transition: inline-size 0.3s ease, background-color 0.3s ease;
     }
 
     .active {
-      background: currentColor;
+      inline-size: 1.75rem;
       background-color: var(--hero-controller-color) !important;
       border-color: var(--hero-controller-color) !important;
       opacity: 1;
@@ -118,61 +119,47 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    gap: 0.35rem;
+    gap: 0.5rem;
   }
 
   .hero-slider__control {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    inline-size: auto;
-    block-size: 48px;
-    border: 0;
+    inline-size: 2.75rem;
+    block-size: 2.75rem;
+    border: 1.5px solid rgba(255, 255, 255, 0.85) !important;
+    border-radius: 0.5rem !important;
     padding: 0;
     text-decoration: none;
-    background: transparent;
-    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.92) !important;
     box-shadow: none;
-    color: var(--hero-controller-color) !important;
+    color: var(--bs-primary) !important;
+    transition: background 0.2s ease, border-color 0.2s ease;
 
     &:hover {
-      opacity: 0.92;
+      background: #ffffff !important;
+      border-color: #ffffff !important;
+      opacity: 1;
     }
 
     svg {
-      inline-size: 34px;
-      block-size: 34px;
+      inline-size: 1rem;
+      block-size: 1rem;
 
       path {
-        fill: currentColor;
+        fill: none;
+        stroke: var(--bs-primary);
+        stroke-width: 2.5;
+        stroke-linecap: round;
+        stroke-linejoin: round;
       }
     }
   }
 
+  // Hide pause button — new design omits it
   .hero-slider__control--pause {
-    background: transparent;
-    box-shadow: none;
-
-    svg {
-      inline-size: 24px;
-      block-size: 24px;
-    }
-  }
-
-  [data-hero-toggle='pause'] {
-    .icon-play {
-      display: none;
-    }
-
-    &[data-paused='true'] {
-      .icon-pause {
-        display: none;
-      }
-
-      .icon-play {
-        display: inline;
-      }
-    }
+    display: none !important;
   }
 
   img {

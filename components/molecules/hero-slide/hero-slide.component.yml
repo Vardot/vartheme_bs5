@@ -74,9 +74,11 @@ props:
     title_size:
       type: string
       title: Title size
-      enum: [display-3, display-4, display-5, h1, h2, h3]
+      enum: [display-1, display-2, display-3, display-4, display-5, h1, h2, h3]
       default: display-5
       meta:enum:
+        display-1: Display 1
+        display-2: Display 2
         display-3: Display 3
         display-4: Display 4
         display-5: Display 5

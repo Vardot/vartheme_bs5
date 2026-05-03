@@ -91,18 +91,11 @@
     // Position nav under the correct content column based on the ACTIVE slide layout.
     const navCol = carouselEl.querySelector('[data-hero-nav-col]');
     if (navCol) {
-      // Reset to base.
-      navCol.className = 'col-12';
-      // Split layouts: put nav under the CONTENT column.
-      // - start => image left, content right => offset the nav to the right.
-      // - end   => image right, content left  => no offset.
       if (layout === 'start') {
         navCol.className =
           'col-12 col-lg-6 offset-lg-6 hero-slider__nav-col--offset';
-      } else if (layout === 'end') {
-        navCol.className = 'col-12 col-lg-6';
       } else {
-        navCol.className = 'col-12';
+        navCol.className = 'col-12 col-lg-6';
       }
     }
   }

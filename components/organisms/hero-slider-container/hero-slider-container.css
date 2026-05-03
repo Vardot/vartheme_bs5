@@ -89,27 +89,30 @@
 
 .hero-slider .carousel-indicators [data-bs-target] {
   margin: 0;
+  transition:
+    inline-size 0.3s ease,
+    background-color 0.3s ease;
   opacity: 1 !important;
   color: var(--hero-controller-color, #fff);
-  border: 1px solid var(--hero-controller-color) !important;
+  border: 0 !important;
   border-radius: 999px !important;
-  background-color: transparent !important;
-  inline-size: 10px;
-  block-size: 10px;
+  background-color: rgba(255, 255, 255, 0.45) !important;
+  inline-size: 8px;
+  block-size: 8px;
 }
 
 .hero-slider .carousel-indicators .active {
   opacity: 1;
   border-color: var(--hero-controller-color) !important;
-  background: currentColor;
   background-color: var(--hero-controller-color) !important;
+  inline-size: 1.75rem;
 }
 
 .hero-slider .hero-slider__controls {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 0.35rem;
+  gap: 0.5rem;
 }
 
 .hero-slider .hero-slider__control {
@@ -117,49 +120,40 @@
   align-items: center;
   justify-content: center;
   padding: 0;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
   text-decoration: none;
-  color: var(--hero-controller-color) !important;
-  border: 0;
-  border-radius: 999px;
-  background: transparent;
+  color: var(--bs-primary) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.85) !important;
+  border-radius: 0.5rem !important;
+  background: rgba(255, 255, 255, 0.92) !important;
   box-shadow: none;
-  inline-size: auto;
-  block-size: 48px;
+  inline-size: 2.75rem;
+  block-size: 2.75rem;
 }
 
 .hero-slider .hero-slider__control:hover {
-  opacity: 0.92;
+  opacity: 1;
+  border-color: #fff !important;
+  background: #fff !important;
 }
 
 .hero-slider .hero-slider__control svg {
-  inline-size: 34px;
-  block-size: 34px;
+  inline-size: 1rem;
+  block-size: 1rem;
 }
 
 .hero-slider .hero-slider__control svg path {
-  fill: currentColor;
+  fill: none;
+  stroke: var(--bs-primary);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .hero-slider .hero-slider__control--pause {
-  background: transparent;
-  box-shadow: none;
-}
-
-.hero-slider .hero-slider__control--pause svg {
-  inline-size: 24px;
-  block-size: 24px;
-}
-
-.hero-slider [data-hero-toggle="pause"] .icon-play {
-  display: none;
-}
-
-.hero-slider [data-hero-toggle="pause"][data-paused="true"] .icon-pause {
-  display: none;
-}
-
-.hero-slider [data-hero-toggle="pause"][data-paused="true"] .icon-play {
-  display: inline;
+  display: none !important;
 }
 
 .hero-slider img {
