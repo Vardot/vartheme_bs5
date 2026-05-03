@@ -4,7 +4,7 @@
     componentSubtitle: 'Bootstrap Icon component',
     docs: {
       description: {
-        component: 'An icon component using Bootstrap Icons CSS classes.',
+        component: 'Renders a Bootstrap Icon with configurable name, size, and color utilities.',
       },
       story: {
         inline: true,
@@ -15,7 +15,94 @@
     icon: {
       name: 'Icon',
       control: 'select',
-      options: ['people', 'facebook', 'twitter-x', 'instagram', 'linkedin', 'plus', 'check', 'info', 'search', 'person', 'arrow-right', 'arrow-left'],
+      defaultValue: 'people',
+      options: {
+        Facebook: 'facebook',
+        "'Twitter X'": 'twitter-x',
+        Instagram: 'instagram',
+        LinkedIn: 'linkedin',
+        "'Close (X)'": 'x',
+        Plus: 'plus',
+        Exclamation: 'exclamation',
+        Check: 'check',
+        Dash: 'dash',
+        Question: 'question',
+        Info: 'info',
+        Search: 'search',
+        Person: 'person',
+        People: 'people',
+        "'Person Plus'": 'person-plus',
+        "'Person Check'": 'person-check',
+        "'Chevron Up'": 'chevron-up',
+        "'Chevron Down'": 'chevron-down',
+        "'Chevron Left'": 'chevron-left',
+        "'Chevron Right'": 'chevron-right',
+        "'Chevron Double Up'": 'chevron-double-up',
+        "'Chevron Double Down'": 'chevron-double-down',
+        "'Chevron Double Left'": 'chevron-double-left',
+        "'Chevron Double Right'": 'chevron-double-right',
+        "'Arrow Up'": 'arrow-up',
+        "'Arrow Down'": 'arrow-down',
+        "'Arrow Left'": 'arrow-left',
+        "'Arrow Right'": 'arrow-right',
+        "'Arrow Up Right'": 'arrow-up-right',
+        "'Arrow Up Left'": 'arrow-up-left',
+        "'Arrow Down Right'": 'arrow-down-right',
+        "'Arrow Down Left'": 'arrow-down-left',
+        "'Arrow Repeat'": 'arrow-repeat',
+        Expand: 'arrows-angle-expand',
+        Contract: 'arrows-angle-contract',
+        Play: 'play',
+        Pause: 'pause',
+        "'Skip Backward'": 'skip-backward',
+        "'Skip Forward'": 'skip-forward',
+        Circle: 'circle',
+        "'Circle Filled'": 'circle-fill',
+        "'Record Circle'": 'record-circle',
+        "'House (filled)'": 'house-door-fill',
+        House: 'house-door',
+        "'Sign In'": 'box-arrow-in-right',
+        "'Person (filled)'": 'person-fill',
+      },
+    },
+    icon_size: {
+      name: 'Icon size',
+      control: 'select',
+      defaultValue: 'fs-4',
+      options: {
+        "'Extra large'": 'fs-1',
+        Large: 'fs-2',
+        "'Medium large'": 'fs-3',
+        Medium: 'fs-4',
+        Small: 'fs-5',
+        "'Extra small'": 'fs-6',
+      },
+    },
+    color: {
+      name: 'Color',
+      control: 'select',
+      defaultValue: 'text-body',
+      options: {
+        Body: 'text-body',
+        Primary: 'text-primary',
+        Secondary: 'text-secondary',
+        Success: 'text-success',
+        Danger: 'text-danger',
+        Warning: 'text-warning',
+        Info: 'text-info',
+        Light: 'text-light',
+        Dark: 'text-dark',
+        White: 'text-white',
+        Muted: 'text-muted',
+        "'Body secondary'": 'text-body-secondary',
+        "'Body tertiary'": 'text-body-tertiary',
+        "'Primary emphasis'": 'text-primary-emphasis',
+        "'Secondary emphasis'": 'text-secondary-emphasis',
+        "'Success emphasis'": 'text-success-emphasis',
+        "'Danger emphasis'": 'text-danger-emphasis',
+        "'Warning emphasis'": 'text-warning-emphasis',
+        "'Info emphasis'": 'text-info-emphasis',
+      },
     },
   },
 } %}
@@ -24,27 +111,75 @@
   name: 'Default',
   args: {
     icon: 'people',
+    icon_size: 'fs-4',
+    color: 'text-body',
   },
 } %}
-{{ include('vartheme_bs5:icon') }}
+{% include 'vartheme_bs5:icon' with _context %}
 {% endstory %}
 
-{% story InfoIcon with {
-  name: 'Info icon',
+{% story SizesShowcase with {
+  name: 'Sizes showcase',
   args: {
-    icon: 'info',
+    icon: 'person-fill',
+    icon_size: 'fs-1',
+    color: 'text-primary',
   },
 } %}
-{{ include('vartheme_bs5:icon') }}
+<div class="d-flex flex-row align-items-end gap-3">
+  {% for size in ['fs-1', 'fs-2', 'fs-3', 'fs-4', 'fs-5', 'fs-6'] %}
+    {% include 'vartheme_bs5:icon' with { icon: 'person-fill', icon_size: size, color: 'text-primary' } %}
+  {% endfor %}
+</div>
 {% endstory %}
 
-{% story ArrowRight with {
-  name: 'Arrow right',
+{% story ColorsShowcase with {
+  name: 'Colors showcase',
   args: {
-    icon: 'arrow-right',
+    icon: 'house-door-fill',
+    icon_size: 'fs-3',
+    color: 'text-primary',
   },
 } %}
-{{ include('vartheme_bs5:icon') }}
+<div class="d-flex flex-row flex-wrap gap-3">
+  {% for color in ['text-primary', 'text-secondary', 'text-success', 'text-danger', 'text-warning', 'text-info', 'text-muted'] %}
+    {% include 'vartheme_bs5:icon' with { icon: 'house-door-fill', icon_size: 'fs-3', color: color } %}
+  {% endfor %}
+</div>
+{% endstory %}
+
+{% story SocialIcons with {
+  name: 'Social icons',
+  args: {
+    icon: 'facebook',
+    icon_size: 'fs-3',
+    color: 'text-primary',
+  },
+} %}
+<div class="d-flex flex-row gap-3">
+  {% include 'vartheme_bs5:icon' with { icon: 'facebook', icon_size: 'fs-3', color: 'text-primary' } %}
+  {% include 'vartheme_bs5:icon' with { icon: 'twitter-x', icon_size: 'fs-3', color: 'text-body' } %}
+  {% include 'vartheme_bs5:icon' with { icon: 'instagram', icon_size: 'fs-3', color: 'text-danger' } %}
+  {% include 'vartheme_bs5:icon' with { icon: 'linkedin', icon_size: 'fs-3', color: 'text-primary' } %}
+</div>
+{% endstory %}
+
+{% story NavigationIcons with {
+  name: 'Navigation icons',
+  args: {
+    icon: 'chevron-right',
+    icon_size: 'fs-4',
+    color: 'text-secondary',
+  },
+} %}
+<div class="d-flex flex-row gap-3">
+  {% include 'vartheme_bs5:icon' with { icon: 'chevron-left', icon_size: 'fs-4', color: 'text-secondary' } %}
+  {% include 'vartheme_bs5:icon' with { icon: 'chevron-right', icon_size: 'fs-4', color: 'text-secondary' } %}
+  {% include 'vartheme_bs5:icon' with { icon: 'chevron-up', icon_size: 'fs-4', color: 'text-secondary' } %}
+  {% include 'vartheme_bs5:icon' with { icon: 'chevron-down', icon_size: 'fs-4', color: 'text-secondary' } %}
+  {% include 'vartheme_bs5:icon' with { icon: 'arrow-left', icon_size: 'fs-4', color: 'text-secondary' } %}
+  {% include 'vartheme_bs5:icon' with { icon: 'arrow-right', icon_size: 'fs-4', color: 'text-secondary' } %}
+</div>
 {% endstory %}
 
 {% endstories %}
