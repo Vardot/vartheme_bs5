@@ -317,15 +317,15 @@ props:
       type: string
       title: Horizontal alignment
       description: Text alignment applied to each column.
+      default: text-start
       enum:
         - text-start
         - text-center
         - text-end
-      default: text-start
       meta:enum:
-        text-start: Left
+        text-start: Start
         text-center: Center
-        text-end: Right
+        text-end: End
     section_header:
       type: boolean
       title: Show header region

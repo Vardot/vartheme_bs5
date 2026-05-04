@@ -6,11 +6,11 @@ vartheme_bs5.settings:
     # Containers for regions.
     # ----------------------------
     container_header:
-      type: text
+      type: string
       label: "Container for Header region"
     container_content:
-      type: text
+      type: string
       label: "Container for Content region"
     container_footer:
-      type: text
+      type: string
       label: "Container for Footer region"

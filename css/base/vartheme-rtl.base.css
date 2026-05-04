@@ -6,3 +6,29 @@
   margin-right: inherit;
   margin-left: 0;
 }
+
+[dir="rtl"] [dir="rtl"] .justify-content-center.nav-pills > li + li {
+  margin-right: inherit;
+  margin-left: 0;
+}
+
+[dir="rtl"] [dir="rtl"] [dir="rtl"] .justify-content-center.nav-pills > li + li {
+  margin-right: 0;
+  margin-left: inherit;
+}
+[dir="rtl"] input[type="email"],
+[dir="rtl"] input[type="tel"],
+[dir="rtl"] input[type="url"],
+[dir="rtl"] input[type="number"] {
+  text-align: right;
+  direction: rtl;
+  unicode-bidi: plaintext;
+}
+
+[dir="rtl"] [dir="rtl"] input[type="email"],
+[dir="rtl"] [dir="rtl"] input[type="tel"],
+[dir="rtl"] [dir="rtl"] input[type="url"],
+[dir="rtl"] [dir="rtl"] input[type="number"] {
+  text-align: left;
+  direction: ltr;
+}

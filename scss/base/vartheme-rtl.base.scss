@@ -11,3 +11,25 @@
     }
   }
 }
+
+[dir="rtl"] [dir="rtl"] {
+  .justify-content-center {
+    &.nav-pills > li + li {
+      margin-right: inherit;
+      margin-left: 0;
+    }
+  }
+}
+
+/* Email/tel/url/number inputs default to LTR in browser UA stylesheet. */
+/* Align placeholder with page direction; typed value still flows naturally via unicode-bidi. */
+[dir="rtl"] {
+  input[type="email"],
+  input[type="tel"],
+  input[type="url"],
+  input[type="number"] {
+    direction: rtl;
+    text-align: right;
+    unicode-bidi: plaintext;
+  }
+}

@@ -2,17 +2,35 @@
 
 // Vartheme Edge to Edge layout for content.
 // -----------------------------------------------------------------------------
+//
+// Bumped specificity to override Bootstrap RTL utility classes (.ms-0 / .me-0)
+// that the canvas section component applies as defaults; without this the
+// negative margins are zeroed out under [dir="rtl"] and the element is pushed
+// off-canvas.
 
-.bg-edge2edge {
+%bg-edge2edge-base {
   position: relative;
-  right: 50%;
-  left: 50%;
+  inset-inline-start: 50%;
+  inset-inline-end: auto;
   flex: 0 0 100vw;
   width: 100vw;
   max-width: none;
-  margin-right: -50vw !important;
+  margin-inline-start: -50vw !important;
+  margin-inline-end: -50vw !important;
   margin-left: -50vw !important;
+  margin-right: -50vw !important;
+}
 
+.bg-edge2edge,
+[dir="rtl"] .bg-edge2edge,
+.bg-edge2edge.ms-0,
+.bg-edge2edge.me-0,
+[dir="rtl"] .bg-edge2edge.ms-0,
+[dir="rtl"] .bg-edge2edge.me-0 {
+  @extend %bg-edge2edge-base;
+}
+
+.bg-edge2edge {
   &::before {
     display: table;
     content: " ";

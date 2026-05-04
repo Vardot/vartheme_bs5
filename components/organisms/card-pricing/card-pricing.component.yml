@@ -177,15 +177,17 @@ props:
       type: string
       title: Text alignment
       description: Bootstrap text alignment utility class.
-      enum:
-        - text-start
-        - text-center
       default: text-start
       examples:
         - text-start
-      meta:enum:
-        text-start: Left
+      enum:
+        - text-start
+        - text-center
+        - text-end
+      'meta:enum':
+        text-start: Start
         text-center: Center
+        text-end: End
     button_url:
       type: string
       title: Button link (optional)

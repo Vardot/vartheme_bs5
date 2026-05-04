@@ -56,15 +56,17 @@ props:
     align:
       type: string
       title: Content alignment
-      enum:
-        - text-start
-        - text-center
       default: text-start
       examples:
         - text-start
-      meta:enum:
-        text-start: Left
+      enum:
+        - text-start
+        - text-center
+        - text-end
+      'meta:enum':
+        text-start: Start
         text-center: Center
+        text-end: End
     background_color:
       type: string
       title: Background color

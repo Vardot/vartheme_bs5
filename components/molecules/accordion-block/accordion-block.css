@@ -173,12 +173,18 @@
 }
 
 .accordion .accordion-button {
-  box-shadow: none;
   text-align: start;
+  background-color: var(--bs-body-bg);
+  box-shadow: none;
+  font-weight: 700;
 }
 
 .accordion .accordion-button.collapsed {
   background-color: var(--bs-body-bg);
+}
+
+.accordion .accordion-button::after {
+  margin-inline-start: auto;
 }
 
 .accordion .accordion-button:hover,
@@ -188,15 +194,6 @@
   box-shadow: var(--bs-accordion-btn-focus-box-shadow);
 }
 
-.accordion .accordion-button::after {
-  margin-inline-start: auto;
-}
-
-[dir=rtl] .accordion .accordion-button::after {
-  margin-inline-start: 0;
-}
-
-/* Canvas slot alignment fixes. */
 .accordion-body--canvas {
   display: block;
   inline-size: 100%;

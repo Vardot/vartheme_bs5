@@ -1,12 +1,19 @@
-.bg-edge2edge {
+.bg-edge2edge,
+[dir="rtl"] .bg-edge2edge,
+.bg-edge2edge.ms-0,
+.bg-edge2edge.me-0,
+[dir="rtl"] .bg-edge2edge.ms-0,
+[dir="rtl"] .bg-edge2edge.me-0 {
   position: relative;
-  right: 50%;
-  left: 50%;
   flex: 0 0 100vw;
   width: 100vw;
   max-width: none;
   margin-right: -50vw !important;
   margin-left: -50vw !important;
+  margin-inline-start: -50vw !important;
+  margin-inline-end: -50vw !important;
+  inset-inline-start: 50%;
+  inset-inline-end: auto;
 }
 
 .bg-edge2edge::before {

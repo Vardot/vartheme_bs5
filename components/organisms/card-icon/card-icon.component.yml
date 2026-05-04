@@ -23,13 +23,16 @@ props:
       type: string
       title: Text alignment
       description: Alignment applied to the icon, heading, and description.
-      enum: [text-start, text-center, text-end]
       default: text-center
       examples: [text-center]
-      meta:enum:
-        text-start: Left
+      enum:
+        - text-start
+        - text-center
+        - text-end
+      'meta:enum':
+        text-start: Start
         text-center: Center
-        text-end: Right
+        text-end: End
     icon:
       type: string
       title: Icon (optional)

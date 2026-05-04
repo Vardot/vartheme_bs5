@@ -58,12 +58,16 @@ props:
       type: string
       title: Content alignment
       description: Align quote + author block.
-      enum: [text-center, text-start]
       default: text-center
       examples: [text-center]
-      meta:enum:
+      enum:
+        - text-start
+        - text-center
+        - text-end
+      'meta:enum':
+        text-start: Start
         text-center: Center
-        text-start: Left
+        text-end: End
     show_quote_icon:
       type: boolean
       title: Show quote icon

@@ -83,10 +83,9 @@ props:
         - text-center
         - text-end
       'meta:enum':
-        text-start: Left
+        text-start: Start
         text-center: Center
-        text-end: Right
-
+        text-end: End
     font_weight:
       type: string
       title: Font weight

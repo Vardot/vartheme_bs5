@@ -107,12 +107,15 @@ props:
     text_align:
       type: string
       title: Text alignment
-      enum: [text-start, text-center, text-end]
       default: text-start
+      enum:
+        - text-start
+        - text-center
+        - text-end
       meta:enum:
-        text-start: Left
+        text-start: Start
         text-center: Center
-        text-end: Right
+        text-end: End
 
     text_color:
       type: string
