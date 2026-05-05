@@ -1,66 +1,68 @@
-{/* heading.mdx */}
-
-import { Title, Subtitle, Meta, Description, Primary, Stories, Controls, Source } from '@storybook/addon-docs/blocks';
-import * as comStories from './heading.stories.json';
+import { Meta, Source, Canvas, Controls, Stories } from '@storybook/addon-docs/blocks';
+import * as HeadingStories from './heading.stories.json';
 import templateSource from './heading.twig?raw';
 
-<Meta of={comStories} name="Docs" />
+<Meta of={HeadingStories} name="Docs" />
 
-<Title />
-<Subtitle />
-<Description />
+# Heading
 
-> ### Bootstrap Documentation
-> * [Typography – Headings](https://getbootstrap.com/docs/5.3/content/typography/#headings)
-> * [Typography – Display headings](https://getbootstrap.com/docs/5.3/content/typography/#display-headings)
-> * [Utilities – Text](https://getbootstrap.com/docs/5.3/utilities/text/)
+Renders an HTML heading (`h1`–`h6`) with optional Bootstrap typography utilities and an optional linked heading via the `vartheme_bs5:link` component.
 
-<Primary />
+- `level` controls the semantic HTML tag (`h1`–`h6`)
+- `text_size` overrides the visual size independently of the semantic level using Bootstrap heading or display classes
+- `text_color`, `align`, `font_weight`, and `font_style` apply Bootstrap utility classes to the heading element
+- When `url` is provided the heading text is rendered as a link; set `target` to `_blank` to open in a new tab
+
+> ### Bootstrap documentation
+> - [Typography – Headings](https://getbootstrap.com/docs/5.3/content/typography/#headings)
+> - [Typography – Display headings](https://getbootstrap.com/docs/5.3/content/typography/#display-headings)
+> - [Utilities – Text](https://getbootstrap.com/docs/5.3/utilities/text/)
 
 ## Properties
-<Controls />
 
-<Stories of={comStories} />
+<Canvas of={HeadingStories.Default} />
+<Controls of={HeadingStories.Default} />
 
-## Attributes
-* N/A
+## Stories
 
-## Slots
-* N/A
+<Stories of={HeadingStories} />
 
 ## Examples
 
 ### Example #1: Simple H2
-```
-{% include "vartheme_bs5:heading" with {
+
+```twig
+{% include 'vartheme_bs5:heading' with {
   heading_text: 'Hello world',
-  level: 2
+  level: 2,
 } only %}
 ```
 
 ### Example #2: Display heading, centered, colored
-```
-{% include "vartheme_bs5:heading" with {
+
+```twig
+{% include 'vartheme_bs5:heading' with {
   heading_text: 'Big title',
   level: 2,
   text_size: 'display-3',
   align: 'text-center',
   text_color: 'text-primary',
   font_weight: 'fw-bold',
-  font_style: 'fst-italic'
+  font_style: 'fst-italic',
 } only %}
 ```
 
 ### Example #3: Linked heading (opens in a new tab)
-```
-{% include "vartheme_bs5:heading" with {
+
+```twig
+{% include 'vartheme_bs5:heading' with {
   heading_text: 'Read more',
   level: 3,
   url: 'https://example.com',
-  target: '_blank'
+  target: '_blank',
 } only %}
 ```
 
 ## Source code
-[//]: # (Twig Template source code)
+
 <Source code={templateSource} />
