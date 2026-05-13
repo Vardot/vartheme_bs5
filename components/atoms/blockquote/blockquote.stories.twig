@@ -57,7 +57,9 @@
     cite_text: 'Quotee Name and Position',
   },
 } %}
-{{ include('vartheme_bs5:blockquote') }}
+<div class="bg-dark p-4">
+  {{ include('vartheme_bs5:blockquote') }}
+</div>
 {% endstory %}
 
 {% story WithoutCite with {
