@@ -128,7 +128,7 @@
 }
 
 .alert-info.alert-dismissible .btn-close {
-  background: #0dcaf0;
+  background: #f3f1ef;
 }
 
 .alert-warning.alert-dismissible .btn-close {
@@ -140,9 +140,9 @@
 }
 
 .alert-light.alert-dismissible .btn-close {
-  background: rgb(198.4, 199.2, 200);
+  background: rgb(196, 199.2, 203.2);
 }
 
 .alert-dark.alert-dismissible .btn-close {
-  background: rgb(77.4, 80.6, 83.8);
+  background: rgb(51, 74.2, 95.8);
 }
