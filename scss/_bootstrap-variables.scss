@@ -21,7 +21,7 @@ $aspect-ratios: (
 );
 
 // Override the default primary font family to Inter - Regular, Italic Bold for sans serif.
-$font-family-sans-serif: Inter, sans-serif;
+$font-family-sans-serif: Figtree, sans-serif;
 
 // Override the default font size.
 $font-size-root: null;
@@ -33,12 +33,22 @@ $font-size-lg: 1.125rem;
 $blockquote-font-size: 1rem;
 
 // Override the default headings font sizes.
-$h1-font-size: 3.25rem;
-$h2-font-size: 2.5rem;
-$h3-font-size: 1.875rem;
-$h4-font-size: 1.5rem;
-$h5-font-size: 1.25rem;
+$h1-font-size: 2.5rem;
+$h2-font-size: 1.875rem;
+$h3-font-size: 1.375rem;
+$h4-font-size: 1.25rem;
+$h5-font-size: 1.125rem;
 $h6-font-size: 1rem;
+
+// Override the default display font sizes.
+$display-font-sizes: (
+  1: 4rem,
+  2: 3.375rem,
+  3: 2.375rem,
+  4: 1.875rem,
+  5: 1.5rem,
+  6: 1.125rem
+);
 
 // Override the default headings.
 $headings-font-style: normal;
@@ -56,10 +66,27 @@ $indigo: #6610f2;
 $indigo-600: shade-color($indigo, 20%);
 $secondary: $indigo-600;
 
+// Override the dark color to use navy-600.
+$navy: #001D38;
+$navy-600: shade-color($navy, 0%);
+$dark: $navy-600;
+
+// Override the light color to use sky-600.
+$sky: #F5F9FE;
+$sky-600: shade-color($sky, 0%);
+$light: $sky-600;
+
+// Override the info color to use sand-600.
+$sand: #F3F1EF;
+$sand-600: shade-color($sand, 0%);
+$info: $sand-600;
+
 // Override border radius for all breakpoints.
-$border-radius: .125rem;
-$border-radius-sm: .125rem;
-$border-radius-lg: .125rem;
+$border-radius-sm: 0.25rem;   // rounded-1
+$border-radius: 0.5rem;       // rounded-2
+$border-radius-lg: 0.75rem;   // rounded-3
+$border-radius-xl: 1rem;      // rounded-4
+$border-radius-xxl: 1.5rem;   // rounded-5
 
 // Override default bootstrap breadcrumb variables.
 $breadcrumb-divider: quote("\F285");

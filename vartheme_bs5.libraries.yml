@@ -157,7 +157,7 @@ global-styles:
       css/layout/equal-height.layout.css: {}
       css/layout/print.layout.css: { media: print }
     theme:
-      fonts/inter/css/inter.css: {}
+      fonts/figtree/css/figtree.css: {}
 
 # Vartheme BS5 global scripts library.
 global-scripts:

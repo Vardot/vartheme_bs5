@@ -103,6 +103,21 @@ a {
   text-underline-offset: 0.25em;
 }
 
+// Auto-adapt foreground colors based on parent background context.
+.bg-dark,
+.bg-black,
+[data-bs-theme="dark"] {
+  --bs-emphasis-color: var(--bs-white);
+  --bs-emphasis-color-rgb: #{to-rgb($white)};
+}
+
+.bg-white,
+.bg-light,
+[data-bs-theme="light"] {
+  --bs-emphasis-color: var(--bs-black);
+  --bs-emphasis-color-rgb: #{to-rgb($black)};
+}
+
 // Header menu uses Bootstrap 5.3 navbar + navbar-expand-lg + navbar-toggler
 // (the wrapper lives in templates/menu/menu--main.html.twig). At lg+ the
 // items render inline horizontally; below lg they stack inside the
@@ -239,13 +254,13 @@ footer.footer {
   }
 
   a {
-    color: var(--bs-white);
+    color: var(--bs-emphasis-color);
     text-decoration: none;
 
     &:hover,
     &:focus,
     &:active {
-      color: var(--bs-white);
+      color: var(--bs-emphasis-color);
       text-decoration: underline;
     }
   }
@@ -269,7 +284,6 @@ footer.footer {
   .footer-logo-image {
     width: auto;
     height: 1.875rem;
-    filter: brightness(0) invert(1);
   }
 
   // Sitemap menu: stacked vertical list, right-aligned column (matches
@@ -295,7 +309,7 @@ footer.footer {
   .block-system-menu-blockmain .nav-item a.nav-link {
     position: relative;
     padding: 0;
-    color: var(--bs-white);
+    color: var(--bs-emphasis-color);
     font-weight: 400;
     font-size: 1rem;
     line-height: 1.4;
@@ -312,7 +326,7 @@ footer.footer {
     left: 0;
     width: 1.3rem;
     height: 0.0625rem;
-    background-color: var(--bs-white);
+    background-color: var(--bs-emphasis-color);
   }
 
   .block-system-menu-blockmain .nav-item a.nav-link:hover::after,
@@ -323,7 +337,7 @@ footer.footer {
     left: 0;
     width: 2.4rem;
     height: 0.0625rem;
-    background-color: var(--bs-white);
+    background-color: var(--bs-emphasis-color);
     transition: width 0.3s;
   }
 
@@ -348,7 +362,7 @@ footer.footer {
 
   .block-system-menu-blockfooter .nav-item a.nav-link {
     padding: 0;
-    color: var(--bs-white);
+    color: var(--bs-emphasis-color);
     font-weight: 400;
     font-size: 0.875rem;
     line-height: 1.4;
@@ -375,7 +389,7 @@ footer.footer {
       justify-content: center;
       width: 1.875rem;
       height: 1.875rem;
-      color: var(--bs-white);
+      color: var(--bs-primary);
       font-size: 0 !important;
       line-height: 0 !important;
       letter-spacing: -9999px !important;
@@ -384,7 +398,7 @@ footer.footer {
       &::before {
         display: inline-block;
         margin: 0;
-        color: var(--bs-white);
+        color: var(--bs-primary);
         font-size: 1.125rem;
         letter-spacing: normal;
       }
@@ -403,7 +417,7 @@ footer.footer {
 
   // Copyright line - small body font at bottom right.
   .copyright-text {
-    color: var(--bs-white);
+    color: var(--bs-emphasis-color);
     font-size: 0.875rem;
     line-height: 1.4;
   }
@@ -413,7 +427,8 @@ footer.footer {
   hr {
     margin: 0;
     border: 0;
-    border-top: 0.0625rem solid rgba(255, 255, 255, 0.6);
+    border-top: 0.0625rem solid currentColor;
+    opacity: 0.4;
     opacity: 1;
   }
 }

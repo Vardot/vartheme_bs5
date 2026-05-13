@@ -20,7 +20,6 @@ module.exports = {
     // ################################################
     // Components
     'base/root/root': ['./components/base/root/root.scss'],
-    'atoms/blockquote/blockquote': ['./components/atoms/blockquote/blockquote.scss'],
     'atoms/progress-bar/progress-bar': ['./components/atoms/progress-bar/progress-bar.scss'],
     'atoms/taxonomy/taxonomy': ['./components/atoms/taxonomy/taxonomy.scss'],
     'molecules/accordion-block/accordion-block': ['./components/molecules/accordion-block/accordion-block.scss'],
@@ -37,7 +36,6 @@ module.exports = {
     'pages/page-better-login/page-better-login': ['./components/pages/page-better-login/page-better-login.scss'],
     'organisms/social-auth/social-auth': ['./components/organisms/social-auth/social-auth.scss'],
     'organisms/card-impressed/card-impressed': ['./components/organisms/card-impressed/card-impressed.scss'],
-    'organisms/card-hero/card-hero': ['./components/organisms/card-hero/card-hero.scss'],
     'organisms/card-text/card-text': ['./components/organisms/card-text/card-text.scss'],
     'organisms/heroslider/heroslider': ['./components/organisms/heroslider/heroslider.scss'],
     'organisms/media-hero-slide/media-hero-slide': ['./components/organisms/media-hero-slide/media-hero-slide.scss'],
