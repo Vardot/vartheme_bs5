@@ -69,6 +69,25 @@ props:
       default: false
       examples:
         - false
+    corner_style:
+      type: string
+      title: Border radius
+      description: Bootstrap rounded utility. Applied to the whole card when border is enabled, or to the image only when border is disabled.
+      default: rounded-0
+      enum:
+        - rounded-0
+        - rounded-1
+        - rounded-2
+        - rounded-3
+        - rounded-4
+        - rounded-pill
+      meta:enum:
+        rounded-0: None (square)
+        rounded-1: Small
+        rounded-2: Medium
+        rounded-3: Large
+        rounded-4: Extra Large
+        rounded-pill: Pill
     padded:
       type: boolean
       title: Padded
@@ -109,17 +128,17 @@ props:
         _blank: New tab
     content_vertical_alignment:
       type: string
-      title: Content Vertical alignment
-      description: Vertical alignment of the content.
-      default: justify-content-center
+      title: Content vertical alignment
+      description: Controls the vertical alignment of the card content.
+      default: align-items-center
       enum:
-        - justify-content-start
-        - justify-content-center
-        - justify-content-end
+        - align-items-start
+        - align-items-center
+        - align-items-end
       meta:enum:
-        justify-content-start: Start
-        justify-content-center: Center
-        justify-content-end: End
+        align-items-start: Top
+        align-items-center: Center
+        align-items-end: Bottom
     gutters_between:
       type: string
       title: Gutters Between
