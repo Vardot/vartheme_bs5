@@ -115,6 +115,52 @@
             description: 'Background image object.',
             control: 'object',
         },
+        padding_inline_start: {
+            name: 'Padding start',
+            description: 'Space inside the hero at the start side.',
+            defaultValue: 'none',
+            control: 'select',
+            options: {
+                None: 'none',
+                Remove: 'ps-0',
+                Small: 'ps-1',
+                Medium: 'ps-2',
+                Large: 'ps-3',
+                "'Extra large'": 'ps-4',
+                "'XX-Large'": 'ps-5',
+            },
+        },
+        padding_inline_end: {
+            name: 'Padding end',
+            description: 'Space inside the hero at the end side.',
+            defaultValue: 'none',
+            control: 'select',
+            options: {
+                None: 'none',
+                Remove: 'pe-0',
+                Small: 'pe-1',
+                Medium: 'pe-2',
+                Large: 'pe-3',
+                "'Extra large'": 'pe-4',
+                "'XX-Large'": 'pe-5',
+            },
+        },
+        radius: {
+            name: 'Border radius',
+            description: 'Bootstrap border-radius utility class.',
+            defaultValue: 'none',
+            control: 'select',
+            options: {
+                None: 'none',
+                Default: 'rounded',
+                Square: 'rounded-0',
+                Small: 'rounded-1',
+                Medium: 'rounded-2',
+                Large: 'rounded-3',
+                "'Extra Large'": 'rounded-4',
+                Round: 'rounded-pill',
+            },
+        },
     },
 } %}
 
@@ -135,6 +181,9 @@
             width: 1920,
             height: 1075,
         },
+        padding_inline_start: 'none',
+        padding_inline_end: 'none',
+        radius: 'none',
     },
 } %}
 {% embed 'vartheme_bs5:hero-billboard' with _context %}
@@ -167,6 +216,9 @@
             width: 1920,
             height: 1075,
         },
+        padding_inline_start: 'none',
+        padding_inline_end: 'none',
+        radius: 'none',
     },
 } %}
 {% embed 'vartheme_bs5:hero-billboard' with _context %}
@@ -199,6 +251,9 @@
             width: 1920,
             height: 1075,
         },
+        padding_inline_start: 'none',
+        padding_inline_end: 'none',
+        radius: 'none',
     },
 } %}
 {% embed 'vartheme_bs5:hero-billboard' with _context %}
@@ -232,6 +287,9 @@
             width: 1920,
             height: 1075,
         },
+        padding_inline_start: 'none',
+        padding_inline_end: 'none',
+        radius: 'none',
     },
 } %}
 {% embed 'vartheme_bs5:hero-billboard' with _context %}
@@ -264,6 +322,9 @@
             width: 1920,
             height: 1075,
         },
+        padding_inline_start: 'none',
+        padding_inline_end: 'none',
+        radius: 'none',
     },
 } %}
 {% embed 'vartheme_bs5:hero-billboard' with _context %}
@@ -296,6 +357,9 @@
             width: 1920,
             height: 1075,
         },
+        padding_inline_start: 'none',
+        padding_inline_end: 'none',
+        radius: 'none',
     },
 } %}
 {% embed 'vartheme_bs5:hero-billboard' with _context %}
@@ -328,6 +392,9 @@
             width: 1920,
             height: 1075,
         },
+        padding_inline_start: 'none',
+        padding_inline_end: 'none',
+        radius: 'none',
     },
 } %}
 {% embed 'vartheme_bs5:hero-billboard' with _context %}
@@ -376,6 +443,9 @@
             width: 1920,
             height: 1075,
         },
+        padding_inline_start: 'none',
+        padding_inline_end: 'none',
+        radius: 'none',
     },
 } %}
 {% embed 'vartheme_bs5:hero-billboard' with _context %}

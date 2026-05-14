@@ -139,6 +139,73 @@ props:
         top: Top
         center: Center
         bottom: Bottom
+    padding_inline_start:
+      type: string
+      title: Padding start
+      description: Space inside the hero at the start side.
+      enum:
+        - none
+        - ps-0
+        - ps-1
+        - ps-2
+        - ps-3
+        - ps-4
+        - ps-5
+      default: none
+      meta:enum:
+        none: None
+        ps-0: Remove
+        ps-1: Small
+        ps-2: Medium
+        ps-3: Large
+        ps-4: Extra large
+        ps-5: XX-Large
+    padding_inline_end:
+      type: string
+      title: Padding end
+      description: Space inside the hero at the end side.
+      enum:
+        - none
+        - pe-0
+        - pe-1
+        - pe-2
+        - pe-3
+        - pe-4
+        - pe-5
+      default: none
+      meta:enum:
+        none: None
+        pe-0: Remove
+        pe-1: Small
+        pe-2: Medium
+        pe-3: Large
+        pe-4: Extra large
+        pe-5: XX-Large
+    radius:
+      type: string
+      title: Border radius
+      description: Bootstrap border-radius utility class.
+      enum:
+        - none
+        - rounded
+        - rounded-0
+        - rounded-1
+        - rounded-2
+        - rounded-3
+        - rounded-4
+        - rounded-pill
+      default: none
+      examples:
+        - none
+      meta:enum:
+        none: None
+        rounded: Default
+        rounded-0: Square
+        rounded-1: Small
+        rounded-2: Medium
+        rounded-3: Large
+        rounded-4: Extra Large
+        rounded-pill: Round
     media:
       $ref: json-schema-definitions://canvas.module/image
       title: Background image
