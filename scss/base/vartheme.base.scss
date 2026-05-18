@@ -236,6 +236,12 @@ header[role="banner"] .dropdown-menu {
 // (bg-primary + text-white via page_region YAML). Override --bs-primary-rgb here
 // so the section's `bg-primary` paints in the Vardot dark blue per Figma.
 footer.footer {
+  // Footer outer padding: 80px top, 60px bottom (Figma padding/footer).
+  padding-block: 5rem 3.75rem;
+
+  @include media-breakpoint-down(md) {
+    padding-block: 2.5rem 2rem;
+  }
 
   // The main-menu template wraps in <nav class="navbar navbar-expand-lg">
   // for the header's hamburger behavior. In the footer we never want a
@@ -373,6 +379,90 @@ footer.footer {
   .block-system-menu-blockfooter .nav-item a.nav-link:focus,
   .block-system-menu-blockfooter .nav-item a.nav-link:active {
     text-decoration: underline;
+  }
+
+  // Footer sitemap menu (`secondary`): two grouped columns
+  // (Quicklinks / Support). 2-level menu via `vartheme_bs5:nav` rendered as
+  // always-expanded columns — root link = group heading, children = link list.
+  .block-system-menu-blocksecondary {
+    // Level-1 row holds the group columns side by side.
+    ul.nav.level-1 {
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: 2rem;
+    }
+
+    // Each root item is a column.
+    > .block__content > ul.nav.level-1 > li.nav-item {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    // no dropdown affordance.
+    a.nav-link.dropdown-toggle {
+      margin-bottom: 1.5rem;
+      padding: 0;
+      color: var(--bs-body-color);
+      font-weight: 700;
+      font-size: 1.25rem;
+      line-height: 1.5;
+      pointer-events: none; // heading, not interactive
+
+      &::after {
+        display: none; // drop dropdown chevron
+      }
+    }
+
+    // Child list — always expanded, no dropdown chrome. `!important` +
+    // inset/transform reset defeat Bootstrap dropdown Popper inline styles.
+    ul.dropdown-menu.level-2 {
+      position: static !important;
+      inset: auto !important;
+      transform: none !important;
+      display: flex !important;
+      flex-direction: column;
+      gap: 1rem;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      box-shadow: none;
+    }
+
+    a.dropdown-item {
+      position: relative;
+      width: auto;
+      padding: 0;
+      color: var(--bs-body-color);
+      font-weight: 400;
+      font-size: 1.125rem;
+      line-height: 1.5;
+      white-space: nowrap;
+      text-decoration: none;
+      background: transparent;
+      transition: color 0.15s ease-in-out;
+
+      &:hover,
+      &:focus,
+      &:active {
+        color: var(--bs-primary);
+        text-decoration: none;
+        background: transparent;
+      }
+
+      &:hover::after,
+      &:focus::after {
+        content: "";
+        position: absolute;
+        top: calc(100% + 2px);
+        left: 0;
+        width: 5.4375rem;
+        height: 0.0625rem;
+        background-color: var(--bs-primary);
+      }
+    }
   }
 
   // Social media menu - 30px rounded icon targets.
