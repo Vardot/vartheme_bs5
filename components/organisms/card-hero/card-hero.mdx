@@ -1,77 +1,104 @@
 import { Meta, Source, Canvas, Controls, Stories } from '@storybook/addon-docs/blocks';
-import * as CardHeroStories from './card-hero.stories.json';
+import * as HeroCardStories from './card-hero.stories.json';
 import templateSource from './card-hero.twig?raw';
 
-<Meta of={CardHeroStories} name="Docs" />
+<Meta of={HeroCardStories} name="Docs" />
 
 # Hero Card
 
-A Bootstrap card component that supports five distinct media positions: overlay (media as background), start/end (side-by-side split), top/bottom (stacked), and a padded variant. Content and media are both passed as slots, making it suitable for use with Drupal render arrays.
+A flexible Bootstrap 5 hero card for promotional sections, feature highlights, and call-to-action blocks. Supports seven media positions (overlay, start, end, top, bottom, content, none), optional edge-to-edge background, content alignment controls, configurable card border and padding, and a primary action button.
 
-- `media_position: overlay` places the image behind content using Bootstrap's `card-img-overlay` structure
-- `media_position: start` or `end` creates a horizontal split layout
-- `media_position: top` or `bottom` stacks media and content vertically
-- Extra Bootstrap utility classes can be passed via `card_hero_utility_classes`, `card_hero_media_utility_classes`, and `card_hero_content_utility_classes` arrays
+- `media_position: overlay` uses Bootstrap card overlay structure with a configurable color and opacity layer
+- `media_position: start` or `end` creates a side-by-side split layout; gap is controlled via `split_gap`
+- `bg_edge2edge: true` expands the background treatment to the outer wrapper beyond the container
+- `media_slot` and `actions` slots allow full custom overrides for media (e.g. video) and button output
 
 > ### Bootstrap documentation
 > - [Cards](https://getbootstrap.com/docs/5.3/components/card/)
 > - [Card image overlays](https://getbootstrap.com/docs/5.3/components/card/#image-overlays)
+> - [Buttons](https://getbootstrap.com/docs/5.3/components/buttons/)
+> - [Grid system](https://getbootstrap.com/docs/5.3/layout/grid/)
 
 ## Properties
 
-<Canvas of={CardHeroStories.Default} />
-<Controls of={CardHeroStories.Default} />
+<Canvas of={HeroCardStories.Default} />
+<Controls of={HeroCardStories.Default} />
 
 ## Stories
 
-<Stories of={CardHeroStories} />
+<Stories of={HeroCardStories} />
 
 ## Example
 
-### Example #1 : Overlay card (default)
+### Example #1 : Overlay hero
 
 ```twig
 {% include 'vartheme_bs5:card-hero' with {
-  card_border: false,
-  padded: false,
+  title: 'Build faster with reusable components',
+  heading_tag: 'h2',
+  content_text: '<p>Create polished layouts with a flexible Bootstrap card structure.</p>',
+  media: {
+    src: '/path/to/image.jpg',
+    alt: 'Hero image',
+    width: 1200,
+    height: 800
+  },
   media_position: 'overlay',
-  horizontal_alignment: 'start',
-  vertical_alignment: 'end',
-  card_hero_utility_classes: [],
-  card_hero_media_utility_classes: [],
-  card_hero_content_utility_classes: [],
-  media: media,
-  content: content,
+  overlay_bg: 'bg-dark',
+  overlay_opacity: 'opacity-50',
+  content_color: 'text-white',
+  button_1_label: 'Learn more',
+  button_1_url: '/features',
+  button_1_style: 'btn-primary',
+  button_1_target: 'default'
 } only %}
 ```
 
-### Example #2 : Side-by-side split (media start)
+### Example #2 : Split hero with image on the right
 
 ```twig
 {% include 'vartheme_bs5:card-hero' with {
-  media_position: 'start',
-  horizontal_alignment: 'start',
-  vertical_alignment: 'center',
-  media: media,
-  content: content,
+  title: 'Build faster with reusable components',
+  heading_tag: 'h2',
+  content_text: '<p>Create polished layouts with a flexible Bootstrap card structure.</p>',
+  media: {
+    src: '/path/to/image.jpg',
+    alt: 'Hero image',
+    width: 1200,
+    height: 800
+  },
+  media_position: 'end',
+  split_gap: 'g-4',
+  padding: true,
+  horizontal_alignment: 'text-start',
+  vertical_alignment: 'justify-content-center',
+  background_color: 'bg-white',
+  content_color: 'text-dark',
+  button_1_label: 'Learn more',
+  button_1_url: '/features',
+  button_1_style: 'btn-primary'
 } only %}
 ```
 
-### Example #3 : Padded overlay with utility classes
+### Example #3 : Edge-to-edge promotional block
 
 ```twig
 {% include 'vartheme_bs5:card-hero' with {
-  media_position: 'overlay',
-  padded: true,
-  horizontal_alignment: 'center',
-  vertical_alignment: 'center',
-  card_hero_utility_classes: ['shadow'],
-  card_hero_content_utility_classes: ['w-75'],
-  media: media,
-  content: content,
+  title: 'Promotional block',
+  heading_tag: 'h2',
+  content_text: '<p>Full-width hero with edge-to-edge dark background.</p>',
+  media_position: 'none',
+  bg_edge2edge: true,
+  container_type: 'container',
+  background_color: 'bg-dark',
+  content_color: 'text-white',
+  horizontal_alignment: 'text-center',
+  button_1_label: 'Get started',
+  button_1_url: '/start',
+  button_1_style: 'btn-light'
 } only %}
 ```
 
 ## Source code
-[//]: # (Twig Template source code)
+
 <Source code={templateSource} />
