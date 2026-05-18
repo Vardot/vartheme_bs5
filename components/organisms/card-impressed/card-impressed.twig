@@ -55,12 +55,16 @@
 {% set media_attributes = create_attribute().addClass([
   'card-img',
   'card-img-' ~ media_position,
+  'rounded-2',
+  'overflow-hidden',
 ]|merge(card_impressed_media_utility_classes)|filter(v => v is not empty)) %}
 
 {% set card_body_attributes = create_attribute().addClass([
   'card-body',
-  (padded ? 'p-4' : 'p-0'),
-  ((not has_content_slot) and (not padded) ? 'py-4' : ''),
+  'd-flex',
+  'flex-column',
+  'gap-3',
+  (padded ? 'p-4' : 'py-3 px-0'),
 ]|filter(v => v is not empty)) %}
 
 {% set image_payload = {
