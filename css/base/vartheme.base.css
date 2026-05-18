@@ -468,3 +468,147 @@ footer.footer hr {
   border: 0;
   border-top: 0.0625rem solid currentColor;
 }
+
+#views-exposed-form-blog-all {
+  --vb-filter-gap: 1rem;
+  --vb-filter-col-width: 16.4375rem;
+  --vb-filter-input-bg: var(--bs-body-bg);
+  --vb-filter-input-border: var(--bs-border-color);
+  --vb-filter-input-radius: 0.5rem;
+  --vb-filter-input-focus: var(--bs-primary);
+
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  margin-bottom: 2rem;
+  gap: var(--vb-filter-gap);
+}
+
+#views-exposed-form-blog-all > .form-item,
+#views-exposed-form-blog-all > .js-form-item {
+  margin: 0;
+}
+
+#views-exposed-form-blog-all .form-item-search {
+  flex: 1 0 16rem;
+  min-width: 12rem;
+}
+
+#views-exposed-form-blog-all .form-item-search input[type="text"] {
+  padding-left: 2.25rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2714%27 height=%2714%27 viewBox=%270 0 14 14%27 fill=%27none%27%3E%3Cpath d=%27M6.125 11.375a5.25 5.25 0 1 0 0-10.5 5.25 5.25 0 0 0 0 10.5ZM13.125 13.125 9.84 9.84%27 stroke=%27%23001D38%27 stroke-width=%271.3%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 1rem center;
+  background-size: 0.875rem;
+}
+
+[dir="rtl"] #views-exposed-form-blog-all .form-item-search input[type="text"] {
+  padding-right: 2.25rem;
+  padding-left: 0;
+}
+
+#views-exposed-form-blog-all .form-item-industry,
+#views-exposed-form-blog-all .form-item-type {
+  flex: 0 0 var(--vb-filter-col-width);
+}
+
+@media (max-width: 767.98px) {
+  #views-exposed-form-blog-all .form-item-search,
+  #views-exposed-form-blog-all .form-item-industry,
+  #views-exposed-form-blog-all .form-item-type {
+    flex: 1 1 100%;
+  }
+}
+
+#views-exposed-form-blog-all label {
+  margin-bottom: 0.5rem;
+  color: var(--bs-body-color);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+#views-exposed-form-blog-all .form-text,
+#views-exposed-form-blog-all .form-select,
+#views-exposed-form-blog-all input[type="text"],
+#views-exposed-form-blog-all select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  transition:
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
+  color: var(--bs-body-color);
+  border: var(--bs-border-width) solid var(--vb-filter-input-border);
+  border-radius: var(--vb-filter-input-radius);
+  background-color: var(--vb-filter-input-bg);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+#views-exposed-form-blog-all .form-text::placeholder,
+#views-exposed-form-blog-all .form-select::placeholder,
+#views-exposed-form-blog-all input[type="text"]::placeholder,
+#views-exposed-form-blog-all select::placeholder {
+  color: var(--bs-secondary-color);
+}
+
+#views-exposed-form-blog-all .form-text:focus,
+#views-exposed-form-blog-all .form-select:focus,
+#views-exposed-form-blog-all input[type="text"]:focus,
+#views-exposed-form-blog-all select:focus {
+  border-color: var(--vb-filter-input-focus);
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.15);
+}
+
+#views-exposed-form-blog-all .form-actions {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  gap: 1.5rem;
+}
+
+#views-exposed-form-blog-all .form-submit {
+  padding: 0;
+  transition:
+    opacity 0.15s ease-in-out,
+    color 0.15s ease-in-out;
+  color: var(--bs-link-color);
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+#views-exposed-form-blog-all .form-submit:hover,
+#views-exposed-form-blog-all .form-submit:focus {
+  opacity: 0.85;
+  color: var(--bs-primary-text-emphasis);
+  background: transparent;
+}
+
+#views-exposed-form-blog-all [id*="edit-reset"],
+#views-exposed-form-blog-all input[name="reset"] {
+  opacity: 0.5;
+  color: var(--bs-secondary-color);
+}
+
+#views-exposed-form-blog-all [id*="edit-reset"]:hover,
+#views-exposed-form-blog-all [id*="edit-reset"]:focus,
+#views-exposed-form-blog-all input[name="reset"]:hover,
+#views-exposed-form-blog-all input[name="reset"]:focus {
+  opacity: 1;
+  color: var(--bs-primary);
+}
+
+[dir="rtl"] #views-exposed-form-blog-all .form-item-search input[type="text"] {
+  padding-right: 2.25rem;
+  padding-left: 0;
+}
+
+[dir="rtl"] [dir="rtl"] #views-exposed-form-blog-all .form-item-search input[type="text"] {
+  padding-right: 0;
+  padding-left: 2.25rem;
+}
