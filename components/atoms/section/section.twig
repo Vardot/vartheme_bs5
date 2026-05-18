@@ -22,6 +22,7 @@
 {% set background_color = background_color|default('none') %}
 {% set text_color = text_color|default('auto') %}
 {% set shadow = shadow|default('none') %}
+{% set radius = radius|default('none') %}
 {% set overlay_variant = background_overlay|default('none') %}
 
 {% set mt = margin_block_start|default('mt-0') %}
@@ -46,9 +47,13 @@
 {% set overlay_opacity_class = has_overlay ? overlay_opacity_map[overlay_variant]|default('opacity-25') : '' %}
 
 {# Text / utility classes #}
-{% set auto_text = background_color in ['bg-primary', 'bg-secondary', 'bg-dark'] ? 'text-white' : '' %}
+{% set auto_text = background_color in ['bg-primary', 'bg-secondary', 'bg-success', 'bg-danger', 'bg-dark', 'bg-black'] ? 'text-white' : '' %}
 {% set text_class = text_color == 'auto' ? auto_text : text_color %}
 {% set shadow_class = shadow != 'none' ? shadow : '' %}
+{% set radius_class = radius != 'none' ? radius : '' %}
+{% set border_class = border|default('none') != 'none' ? border : '' %}
+{% set border_color_class = border_class is not empty and border_color|default('none') != 'none' ? border_color : '' %}
+{% set border_width_class = border_class is not empty and border_width|default('none') != 'none' ? border_width : '' %}
 
 {# Section classes #}
 {% set section_classes = [
@@ -63,6 +68,10 @@
   background_color != 'none' ? background_color : '',
   text_class,
   shadow_class,
+  radius_class,
+  border_class,
+  border_color_class,
+  border_width_class,
   bg_edge2edge ? 'bg-edge2edge' : '',
   (has_background_image or has_overlay) ? 'position-relative overflow-hidden' : ''
 ] %}
@@ -152,6 +161,8 @@
         },
         fit: 'object-fit-cover',
         width: 'w-100',
+        height: 'h-100',
+        rounded: 'rounded-0',
       } only %}
     </div>
   {% endif %}

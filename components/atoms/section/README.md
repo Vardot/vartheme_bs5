@@ -38,6 +38,13 @@ Use this component when you need a reusable section wrapper that can:
 - `background_media`: optional background image object
 - `background_overlay`: overlay strength when a background image is used
 - `shadow`: optional Bootstrap shadow class
+- `radius`: Bootstrap border-radius utility
+
+### Border
+
+- `border`: which sides to apply a border to — `none`, `border` (all), `border-top`, `border-bottom`, `border-start`, `border-end`
+- `border_color`: Bootstrap border color utility; only applied when `border` is not `none`
+- `border_width`: Bootstrap border width utility (`border-1` through `border-5`); only applied when `border` is not `none`
 
 ### Spacing
 
@@ -142,7 +149,7 @@ Use this component when you need a reusable section wrapper that can:
 
 - Only the selected number of column slots are rendered for the chosen preset.
 - Empty column slots are skipped.
-- For dark backgrounds or overlays, `text_color: auto` will switch to white text for supported dark background utilities.
+- `text_color: auto` switches to `text-white` for dark backgrounds: `bg-primary`, `bg-secondary`, `bg-success`, `bg-danger`, `bg-dark`, `bg-black`.
 - For 5- and 6-column layouts, the component uses responsive `row-cols-*` classes.
 
 
