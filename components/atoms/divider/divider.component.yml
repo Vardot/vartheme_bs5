@@ -1,5 +1,5 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
-name: Horizontal Ruler
+name: Divider
 description: A Bootstrap 5.3-compatible horizontal divider using the native hr element.
 group: Layout
 props:

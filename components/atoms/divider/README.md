@@ -1,6 +1,6 @@
-# Horizontal Ruler
+# Divider
 
-The Horizontal Ruler component renders a Bootstrap 5.3-compatible divider using the native `<hr>` element.
+The Divider component renders a Bootstrap 5.3-compatible divider using the native `<hr>` element.
 
 ## When to use
 
@@ -107,7 +107,7 @@ Default: `mb-3`
 ## Usage example
 
 ```twig
-{% include 'vartheme_bs5:horizontal-ruler' with {
+{% include 'vartheme_bs5:divider' with {
   border_width: 'border-1',
   border_color: 'border-secondary',
   opacity: 'opacity-25',

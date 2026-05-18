@@ -1,0 +1,23 @@
+{#
+  Divider (Bootstrap 5.3)
+#}
+
+{% set divider_border_width = border_width|default('border-1') %}
+{% set divider_border_color = border_color|default('border-secondary') %}
+{% set divider_opacity = opacity|default('opacity-100') %}
+{% set divider_margin_top = margin_top|default('mt-3') %}
+{% set divider_margin_bottom = margin_bottom|default('mb-3') %}
+
+{% set divider_classes = [
+  divider_border_width,
+  divider_border_color,
+  divider_opacity,
+  divider_margin_top,
+  divider_margin_bottom,
+]|filter(v => v is not empty) %}
+
+{% set divider_attributes = create_attribute({
+  class: divider_classes,
+}) %}
+
+<hr{{ divider_attributes }}>

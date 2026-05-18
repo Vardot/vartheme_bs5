@@ -1,6 +1,6 @@
 import { Title, Subtitle, Meta, Description, Primary, Stories, Controls, Source } from '@storybook/addon-docs/blocks';
-import * as comStories from './horizontal-ruler.stories.json';
-import templateSource from './horizontal-ruler.twig?raw';
+import * as comStories from './divider.stories.json';
+import templateSource from './divider.twig?raw';
 
 <Meta of={comStories} name="Docs"/>
 
@@ -30,7 +30,7 @@ import templateSource from './horizontal-ruler.twig?raw';
 ## Example
 
 ```twig
-{% include 'vartheme_bs5:horizontal-ruler' with {
+{% include 'vartheme_bs5:divider' with {
   border_width: 'border-1',
   border_color: 'border-secondary',
   opacity: 'opacity-25',
