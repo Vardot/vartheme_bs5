@@ -3,11 +3,17 @@
 
   Props:
   - icon (string): icon id from dropdown
+  - icon_size (string): Bootstrap font-size utility class, for example fs-1 through fs-6
+  - color (string): Bootstrap text color utility class, for example text-primary
 #}
+
+{% set icon_size = icon_size|default('fs-4') %}
+{% set color = color|default('text-body') %}
 
 {% if icon %}
   {{ include('vartheme_bs5:bootstrap-icon', {
     icon: icon,
-    icon_size: 'fs-4',
+    icon_size: icon_size,
+    color: color,
   }, with_context: false) }}
 {% endif %}

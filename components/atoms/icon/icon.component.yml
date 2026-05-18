@@ -1,4 +1,4 @@
-"$schema": "https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json"
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
 name: Icon
 group: Base
 props:
@@ -55,6 +55,11 @@ props:
         - house-door
         - box-arrow-in-right
         - person-fill
+        - person-circle
+        - shield-check
+        - chat-dots
+        - laptop
+        - gear
       default: people
       examples:
         - people
@@ -105,3 +110,76 @@ props:
         house-door: House
         box-arrow-in-right: Sign In
         person-fill: Person (filled)
+        person-circle: Person Circle
+        shield-check: Shield Check
+        chat-dots: Chat Dots
+        laptop: Laptop
+        gear: Gear
+    icon_size:
+      type: string
+      title: Icon size
+      description: Bootstrap font-size utility class used to control the icon size.
+      enum:
+      - fs-1
+      - fs-2
+      - fs-3
+      - fs-4
+      - fs-5
+      - fs-6
+      default: fs-4
+      examples:
+      - fs-4
+      meta:enum:
+        fs-1: Extra large
+        fs-2: Large
+        fs-3: Medium large
+        fs-4: Medium
+        fs-5: Small
+        fs-6: Extra small
+    color:
+      type: string
+      title: Color
+      description: Bootstrap text color utility class used to control the color.
+      enum:
+      - text-body
+      - text-primary
+      - text-secondary
+      - text-success
+      - text-danger
+      - text-warning
+      - text-info
+      - text-light
+      - text-dark
+      - text-white
+      - text-muted
+      - text-body-secondary
+      - text-body-tertiary
+      - text-primary-emphasis
+      - text-secondary-emphasis
+      - text-success-emphasis
+      - text-danger-emphasis
+      - text-warning-emphasis
+      - text-info-emphasis
+      default: text-body
+      examples:
+      - text-body
+      meta:enum:
+        text-body: Body
+        text-primary: Primary
+        text-secondary: Secondary
+        text-success: Success
+        text-danger: Danger
+        text-warning: Warning
+        text-info: Info
+        text-light: Light
+        text-dark: Dark
+        text-white: White
+        text-muted: Muted
+        text-body-secondary: Body secondary
+        text-body-tertiary: Body tertiary
+        text-primary-emphasis: Primary emphasis
+        text-secondary-emphasis: Secondary emphasis
+        text-success-emphasis: Success emphasis
+        text-danger-emphasis: Danger emphasis
+        text-warning-emphasis: Warning emphasis
+        text-info-emphasis: Info emphasis

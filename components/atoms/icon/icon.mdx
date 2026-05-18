@@ -1,47 +1,61 @@
-{/* icon.mdx */}
-
-import { Meta, Title, Subtitle, Description, Primary, Controls, Stories, Source } from '@storybook/addon-docs/blocks';
-import * as comStories from './icon.stories.json';
+import { Meta, Source, Canvas, Controls, Stories } from '@storybook/addon-docs/blocks';
+import * as IconStories from './icon.stories.json';
 import templateSource from './icon.twig?raw';
 
-<Meta of={comStories} name="Docs" />
+<Meta of={IconStories} name="Docs" />
 
-<Title />
-<Subtitle />
-<Description />
+# Icon
 
-<Primary />
+Renders a Bootstrap Icon using the `vartheme_bs5:bootstrap-icon` component. Supports selecting from a curated list of Bootstrap Icons, with size and color controlled via Bootstrap utility classes.
+
+- `icon` accepts any icon name from the predefined list — omit the `bi-` prefix
+- `icon_size` uses Bootstrap's `fs-1` through `fs-6` font-size scale (`fs-1` is largest)
+- `color` uses Bootstrap text color utilities such as `text-primary`, `text-danger`, or `text-muted`
+- If `icon` is not provided, the component renders nothing
+
+> ### Bootstrap documentation
+> - [Icons](https://icons.getbootstrap.com/)
+> - [Font size utilities](https://getbootstrap.com/docs/5.3/utilities/text/#font-size)
+> - [Color utilities](https://getbootstrap.com/docs/5.3/utilities/colors/)
 
 ## Properties
-<Controls />
 
-<Stories of={comStories} />
+<Canvas of={IconStories.Default} />
+<Controls of={IconStories.Default} />
 
-## Notes
-This component inherits icon size and color from the parent element or surrounding Bootstrap context.
+## Stories
 
-## Examples
+<Stories of={IconStories} />
 
-### Example #1: Default icon
+## Example
+
+### Example #1 : Default icon
+
 ```twig
 {% include "vartheme_bs5:icon" with {
-  icon: 'people'
+  icon: 'people',
+  icon_size: 'fs-4',
+  color: 'text-body',
 } %}
 ```
 
-### Example #2: Inherit size and color from parent
+### Example #2 : Large primary search icon
+
 ```twig
-<div class="fs-1 text-primary">
-  {% include "vartheme_bs5:icon" with {
-    icon: 'search'
-  } %}
-</div>
+{% include "vartheme_bs5:icon" with {
+  icon: 'search',
+  icon_size: 'fs-1',
+  color: 'text-primary',
+} %}
 ```
 
-### Example #3: Custom icon override
+### Example #3 : Info icon
+
 ```twig
 {% include "vartheme_bs5:icon" with {
   icon: 'info',
+  icon_size: 'fs-3',
+  color: 'text-info',
 } %}
 ```
 

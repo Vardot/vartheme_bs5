@@ -1,17 +1,17 @@
 import { Meta, Source, Canvas, Controls, Stories } from '@storybook/addon-docs/blocks';
-import * as HeroBillboardStories from './hero-billboard.stories.json';
-import templateSource from './hero-billboard.twig?raw';
+import * as MediaBannerStories from './media-banner.stories.json';
+import templateSource from './media-banner.twig?raw';
 
-<Meta of={HeroBillboardStories} name="Docs" />
+<Meta of={MediaBannerStories} name="Docs" />
 
-# Hero Billboard
+# Media Banner
 
-A full-width hero section with a background image, configurable overlay, flexible content positioning, and a rich hero slot. Designed for prominent page-top banners and campaign headers.
+A full-width media banner section with a background image, configurable overlay, flexible content positioning, and a rich media banner slot. Designed for prominent page-top banners and campaign headers.
 
 - Background image is rendered as a full-size cover layer behind an optional color overlay
 - Content position (`flex_position`) controls both vertical alignment and horizontal text alignment simultaneously
 - Overlay color and opacity are controlled independently via `overlay_bg` and `overlay_opacity` Bootstrap utility classes
-- `hero_slot` accepts any markup — headings, paragraphs, buttons, and badges
+- `media_banner_slot` accepts any markup — headings, paragraphs, buttons, and badges
 
 > ### Bootstrap documentation
 > - [Position](https://getbootstrap.com/docs/5.3/utilities/position/)
@@ -20,19 +20,19 @@ A full-width hero section with a background image, configurable overlay, flexibl
 
 ## Properties
 
-<Canvas of={HeroBillboardStories.Default} />
-<Controls of={HeroBillboardStories.Default} />
+<Canvas of={MediaBannerStories.Default} />
+<Controls of={MediaBannerStories.Default} />
 
 ## Stories
 
-<Stories of={HeroBillboardStories} />
+<Stories of={MediaBannerStories} />
 
 ## Example
 
-### Example #1 : Default billboard
+### Example #1 : Default banner
 
 ```twig
-{% embed 'vartheme_bs5:hero-billboard' with {
+{% embed 'vartheme_bs5:media-banner' with {
   container_type: 'container',
   bg_edge2edge: false,
   height: 'ribbon',
@@ -42,28 +42,28 @@ A full-width hero section with a background image, configurable overlay, flexibl
   content_width: 'w-100',
   object_position: 'center',
   media: {
-    src: '/path/to/hero.jpg',
-    alt: 'Hero background',
+    src: '/path/to/banner.jpg',
+    alt: 'Banner background',
     width: 1920,
     height: 1075,
   },
 } %}
-  {% block hero_slot %}
+  {% block media_banner_slot %}
     {% include 'vartheme_bs5:heading' with {
-      heading_text: 'Hero Billboard Title',
+      heading_text: 'Media Banner Title',
       level: 2,
       text_size: 'display-5',
       text_color: 'text-white',
     } only %}
-    <p class="lead mb-0 text-white">Add any rich content inside the hero slot.</p>
+    <p class="lead mb-0 text-white">Add any rich content inside the media banner slot.</p>
   {% endblock %}
 {% endembed %}
 ```
 
-### Example #2 : Centered hero with CTA buttons
+### Example #2 : Centered banner with CTA buttons
 
 ```twig
-{% embed 'vartheme_bs5:hero-billboard' with {
+{% embed 'vartheme_bs5:media-banner' with {
   container_type: 'container',
   height: 'large',
   flex_position: 'hero-center',
@@ -71,21 +71,21 @@ A full-width hero section with a background image, configurable overlay, flexibl
   overlay_opacity: 'opacity-75',
   content_width: 'w-75',
   media: {
-    src: '/path/to/hero.jpg',
-    alt: 'Hero background',
+    src: '/path/to/banner.jpg',
+    alt: 'Banner background',
     width: 1920,
     height: 1075,
   },
 } %}
-  {% block hero_slot %}
+  {% block media_banner_slot %}
     {% include 'vartheme_bs5:heading' with {
-      heading_text: 'Build Bold Hero Experiences',
+      heading_text: 'Build Bold Banner Experiences',
       level: 1,
       text_size: 'display-3',
       text_color: 'text-white',
       align: 'text-center',
     } only %}
-    <p class="lead mb-4 text-white text-center">Compose headings, text, and actions inside the hero slot.</p>
+    <p class="lead mb-4 text-white text-center">Compose headings, text, and actions inside the media banner slot.</p>
     <div class="d-flex flex-wrap gap-2 justify-content-center">
       {% include 'vartheme_bs5:button' with { label: 'Primary action', variant: 'btn-primary' } only %}
       {% include 'vartheme_bs5:button' with { label: 'Learn more', variant: 'btn-light', outline: true } only %}
