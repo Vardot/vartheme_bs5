@@ -15,34 +15,28 @@ props:
     background_color:
       type: string
       title: Background color
-      description: Bootstrap background utility applied to the card.
-      default: bg-transparent
+      description: Brand background color applied to the card.
+      default: none
       enum:
-        - bg-transparent
-        - bg-body
+        - none
         - bg-body-tertiary
-        - bg-white
-        - bg-light
-        - bg-dark
+        - bg-tertiary
+        - bg-accent
         - bg-primary
+        - bg-primary-subtle
         - bg-secondary
-        - bg-success
-        - bg-danger
-        - bg-warning
-        - bg-info
+        - bg-secondary-subtle
+        - bg-dark
       meta:enum:
-        bg-transparent: Transparent
-        bg-body: Body
+        none: None
         bg-body-tertiary: Body tertiary
-        bg-white: White
-        bg-light: Light
-        bg-dark: Dark
+        bg-tertiary: Tertiary
+        bg-accent: Accent
         bg-primary: Primary
+        bg-primary-subtle: Primary subtle
         bg-secondary: Secondary
-        bg-success: Success
-        bg-danger: Danger
-        bg-warning: Warning
-        bg-info: Info
+        bg-secondary-subtle: Secondary subtle
+        bg-dark: Dark
     padded:
       type: boolean
       title: Padded
@@ -65,18 +59,24 @@ props:
         shadow-lg: Large
     corner_style:
       type: string
-      title: Corner style
+      title: Border radius
       description: Bootstrap rounded utility applied to the card.
       default: rounded-0
       enum:
         - rounded-0
         - rounded-1
+        - rounded-2
         - rounded-3
+        - rounded-4
+        - rounded-5
         - rounded-pill
       meta:enum:
         rounded-0: None (square)
         rounded-1: Small
+        rounded-2: Medium
         rounded-3: Large
+        rounded-4: Extra Large
+        rounded-5: Extra Extra Large
         rounded-pill: Pill
     equal_height:
       type: boolean

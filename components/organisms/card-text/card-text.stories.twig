@@ -20,22 +20,19 @@
     },
     background_color: {
       name: 'Background',
-      description: 'Bootstrap background utility.',
-      defaultValue: 'bg-white',
+      description: 'Brand background color applied to the card.',
+      defaultValue: 'none',
       control: 'select',
       options: {
-        Transparent: 'bg-transparent',
-        Body: 'bg-body',
+        None: 'none',
         "'Body tertiary'": 'bg-body-tertiary',
-        White: 'bg-white',
-        Light: 'bg-light',
-        Dark: 'bg-dark',
+        Tertiary: 'bg-tertiary',
+        Accent: 'bg-accent',
         Primary: 'bg-primary',
+        "'Primary subtle'": 'bg-primary-subtle',
         Secondary: 'bg-secondary',
-        Success: 'bg-success',
-        Danger: 'bg-danger',
-        Warning: 'bg-warning',
-        Info: 'bg-info',
+        "'Secondary subtle'": 'bg-secondary-subtle',
+        Dark: 'bg-dark',
       },
     },
     padded: {
@@ -57,7 +54,7 @@
       },
     },
     corner_style: {
-      name: 'Corner style',
+      name: 'Border radius',
       description: 'Rounded utility for the card.',
       defaultValue: 'rounded-3',
       control: 'select',
@@ -104,7 +101,7 @@
   name: 'Default',
   args: {
     card_border: true,
-    background_color: 'bg-white',
+    background_color: 'none',
     padded: true,
     box_shadow: 'shadow-sm',
     corner_style: 'rounded-3',
@@ -149,7 +146,7 @@
   name: 'No padding',
   args: {
     card_border: true,
-    background_color: 'bg-white',
+    background_color: 'none',
     padded: false,
     box_shadow: 'shadow-sm',
     corner_style: 'rounded-0',
@@ -170,7 +167,7 @@
   name: 'Large shadow',
   args: {
     card_border: true,
-    background_color: 'bg-light',
+    background_color: 'bg-body-tertiary',
     padded: true,
     box_shadow: 'shadow-lg',
     corner_style: 'rounded-3',
@@ -182,8 +179,8 @@
 } %}
 {% embed 'vartheme_bs5:card-text' with _context %}
   {% block content %}
-    <h3 class="h5 mb-2">Elevated card</h3>
-    <p class="mb-0">Use larger shadows for emphasis.</p>
+    <h3 class="h5 mb-2 text-white">Elevated card</h3>
+    <p class="mb-0 text-white">Use larger shadows for emphasis.</p>
   {% endblock %}
 {% endembed %}
 {% endstory %}
@@ -192,7 +189,7 @@
   name: 'Linked card',
   args: {
     card_border: true,
-    background_color: 'bg-white',
+    background_color: 'none',
     padded: true,
     box_shadow: 'shadow-sm',
     corner_style: 'rounded-3',
@@ -214,7 +211,7 @@
   name: 'Equal height',
   args: {
     card_border: true,
-    background_color: 'bg-white',
+    background_color: 'none',
     padded: true,
     box_shadow: 'shadow-sm',
     corner_style: 'rounded-3',
@@ -228,6 +225,50 @@
   {% block content %}
     <h3 class="h5 mb-2">Equal height</h3>
     <p class="mb-0">Useful in grid layouts.</p>
+  {% endblock %}
+{% endembed %}
+{% endstory %}
+
+{% story PrimarySubtle with {
+  name: 'Primary subtle',
+  args: {
+    card_border: false,
+    background_color: 'bg-primary-subtle',
+    padded: true,
+    box_shadow: 'shadow-none',
+    corner_style: 'rounded-3',
+    equal_height: false,
+    stretched_link: false,
+    link_url: '',
+    link_target: 'default',
+  },
+} %}
+{% embed 'vartheme_bs5:card-text' with _context %}
+  {% block content %}
+    <h3 class="h5 mb-2">Primary subtle</h3>
+    <p class="mb-0">Soft tinted background for gentle emphasis without full primary weight.</p>
+  {% endblock %}
+{% endembed %}
+{% endstory %}
+
+{% story SecondarySubtle with {
+  name: 'Secondary subtle',
+  args: {
+    card_border: false,
+    background_color: 'bg-secondary-subtle',
+    padded: true,
+    box_shadow: 'shadow-none',
+    corner_style: 'rounded-3',
+    equal_height: false,
+    stretched_link: false,
+    link_url: '',
+    link_target: 'default',
+  },
+} %}
+{% embed 'vartheme_bs5:card-text' with _context %}
+  {% block content %}
+    <h3 class="h5 mb-2">Secondary subtle</h3>
+    <p class="mb-0">Warm neutral background for understated, content-forward cards.</p>
   {% endblock %}
 {% endembed %}
 {% endstory %}

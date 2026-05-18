@@ -6,15 +6,17 @@ import templateSource from './card-text.twig?raw';
 
 # Card Text
 
-A lightweight text-only Bootstrap card with a single drag-and-drop content slot and no media area. Controls border, padding, background, shadow, corner style, equal height, and full-card stretched link.
+A lightweight text-only Bootstrap card with a single drag-and-drop content slot and no media area. Controls border, padding, background, shadow, border radius, equal height, and full-card stretched link.
 
-- No media area — content slot is the only region
+- No media area — the content slot is the only region
 - `stretched_link` requires `link_url` to be set — makes the entire card clickable
-- `padded: true` adds `p-4` to the content wrapper; when false, `p-0` is applied
+- `padded: true` adds `p-4` to the content wrapper; `padded: false` removes all padding
 - `equal_height: true` adds `h-100` for consistent heights in grid row layouts
+- Subtle background variants (`bg-primary-subtle`, `bg-secondary-subtle`, etc.) pair well with `card_border: false` and `box_shadow: shadow-none`
 
 > ### Bootstrap documentation
 > - [Cards](https://getbootstrap.com/docs/5.3/components/card/)
+> - [Background utilities](https://getbootstrap.com/docs/5.3/utilities/background/)
 > - [Stretched link](https://getbootstrap.com/docs/5.3/helpers/stretched-link/)
 > - [Shadows](https://getbootstrap.com/docs/5.3/utilities/shadows/)
 
@@ -27,9 +29,9 @@ A lightweight text-only Bootstrap card with a single drag-and-drop content slot 
 
 <Stories of={CardTextStories} />
 
-## Example
+## Examples
 
-### Example #1 : Default text card
+### Example 1 — Default text card
 
 ```twig
 {% embed 'vartheme_bs5:card-text' with {
@@ -47,7 +49,7 @@ A lightweight text-only Bootstrap card with a single drag-and-drop content slot 
 {% endembed %}
 ```
 
-### Example #2 : Linked card
+### Example 2 — Linked card (entire card clickable)
 
 ```twig
 {% embed 'vartheme_bs5:card-text' with {
@@ -63,6 +65,57 @@ A lightweight text-only Bootstrap card with a single drag-and-drop content slot 
   {% block content %}
     <h3 class="h5 mb-2">Clickable card</h3>
     <p class="mb-0">Entire card acts as a link.</p>
+  {% endblock %}
+{% endembed %}
+```
+
+### Example 3 — Primary subtle background
+
+```twig
+{% embed 'vartheme_bs5:card-text' with {
+  card_border: false,
+  background_color: 'bg-primary-subtle',
+  padded: true,
+  box_shadow: 'shadow-none',
+  corner_style: 'rounded-3',
+} %}
+  {% block content %}
+    <h3 class="h5 mb-2">Highlighted card</h3>
+    <p class="mb-0">Soft tinted background for gentle emphasis without full primary weight.</p>
+  {% endblock %}
+{% endembed %}
+```
+
+### Example 4 — Secondary subtle background
+
+```twig
+{% embed 'vartheme_bs5:card-text' with {
+  card_border: false,
+  background_color: 'bg-secondary-subtle',
+  padded: true,
+  box_shadow: 'shadow-none',
+  corner_style: 'rounded-3',
+} %}
+  {% block content %}
+    <h3 class="h5 mb-2">Warm neutral card</h3>
+    <p class="mb-0">Understated background for content-forward layouts.</p>
+  {% endblock %}
+{% endembed %}
+```
+
+### Example 5 — Dark background
+
+```twig
+{% embed 'vartheme_bs5:card-text' with {
+  card_border: false,
+  background_color: 'bg-dark',
+  padded: true,
+  box_shadow: 'shadow',
+  corner_style: 'rounded-3',
+} %}
+  {% block content %}
+    <h3 class="h5 mb-2 text-white">Dark card</h3>
+    <p class="mb-0 text-white-50">Use text utility classes when working with dark backgrounds.</p>
   {% endblock %}
 {% endembed %}
 ```
