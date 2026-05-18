@@ -1,7 +1,7 @@
 $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
-name: Hero billboard
-group: Hero
-description: Bootstrap hero billboard with background image, overlay, and flexible content positioning.
+name: Media banner
+group: Base
+description: Bootstrap media banner with background image, overlay, and flexible content positioning.
 props:
   type: object
   properties:
@@ -39,8 +39,8 @@ props:
         - false
     height:
       type: string
-      title: Hero height
-      description: Choose the vertical size of the hero.
+      title: Banner height
+      description: Choose the vertical size of the banner.
       enum:
         - ribbon
         - large
@@ -142,7 +142,7 @@ props:
     padding_inline_start:
       type: string
       title: Padding start
-      description: Space inside the hero at the start side.
+      description: Space inside the banner at the start side.
       enum:
         - none
         - ps-0
@@ -163,7 +163,7 @@ props:
     padding_inline_end:
       type: string
       title: Padding end
-      description: Space inside the hero at the end side.
+      description: Space inside the banner at the end side.
       enum:
         - none
         - pe-0
@@ -211,10 +211,10 @@ props:
       title: Background image
       type: object
       examples:
-        - src: assets/hero-bg-placeholder.svg
+        - src: assets/media-banner.webp
           alt: Placeholder image
           width: 1920
           height: 1075
 slots:
-  hero_slot:
-    title: Hero content
+  media_banner_slot:
+    title: Media banner content

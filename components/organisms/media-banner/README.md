@@ -1,6 +1,6 @@
-# Hero billboard
+# Media banner
 
-Hero billboard displays content over a background image with an optional overlay and flexible content positioning.
+Media banner displays content over a background image with an optional overlay and flexible content positioning.
 
 ## Features
 
@@ -30,7 +30,7 @@ Options:
 Adds `bg-edge2edge` to the outer section when enabled.
 
 ### `height`
-Controls the hero height.
+Controls the banner height.
 
 Options:
 - `ribbon`
@@ -83,13 +83,13 @@ Background image object.
 
 ## Slots
 
-### `hero_slot`
-Use this slot for the billboard content.
+### `media_banner_slot`
+Use this slot for the banner content.
 
 ## Example
 
 ```twig
-{% embed 'vartheme_bs5:hero-billboard' with {
+{% embed 'vartheme_bs5:media-banner' with {
   height: 'large',
   flex_position: 'hero-center',
   overlay_bg: 'bg-dark',
@@ -97,14 +97,14 @@ Use this slot for the billboard content.
   content_width: 'w-75',
   bg_edge2edge: true,
   media: {
-    src: 'assets/hero-bg-placeholder.svg',
+    src: 'assets/media-banner.webp',
     alt: 'Background image'
   }
 } %}
-  {% block hero_slot %}
+  {% block media_banner_slot %}
     <div class="text-white">
-      <h2 class="display-5 mb-3">Hero billboard title</h2>
-      <p class="lead mb-0">Add any rich content inside the hero slot.</p>
+      <h2 class="display-5 mb-3">Media banner title</h2>
+      <p class="lead mb-0">Add any rich content inside the media banner slot.</p>
     </div>
   {% endblock %}
 {% endembed %}

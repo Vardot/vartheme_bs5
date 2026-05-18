@@ -1,10 +1,10 @@
-{% stories HeroBillboard with {
-    title: 'Hero/Hero Billboard',
+{% stories MediaBanner with {
+    title: 'Media/Media Banner',
     parameters: {
-        componentSubtitle: 'Bootstrap hero billboard with background image, overlay, and flexible content positioning.',
+        componentSubtitle: 'Bootstrap media banner with background image, overlay, and flexible content positioning.',
         docs: {
             description: {
-                component: 'Hero billboard with configurable container, alignment, overlay, and a rich hero_slot content area.',
+                component: 'Media banner with configurable container, alignment, overlay, and a rich media_banner_slot content area.',
             },
             story: {
                 inline: true,
@@ -35,8 +35,8 @@
             control: 'boolean',
         },
         height: {
-            name: 'Hero height',
-            description: 'Choose the vertical size of the hero.',
+            name: 'Banner height',
+            description: 'Choose the vertical size of the banner.',
             defaultValue: 'ribbon',
             control: 'select',
             options: {
@@ -117,7 +117,7 @@
         },
         padding_inline_start: {
             name: 'Padding start',
-            description: 'Space inside the hero at the start side.',
+            description: 'Space inside the banner at the start side.',
             defaultValue: 'none',
             control: 'select',
             options: {
@@ -132,7 +132,7 @@
         },
         padding_inline_end: {
             name: 'Padding end',
-            description: 'Space inside the hero at the end side.',
+            description: 'Space inside the banner at the end side.',
             defaultValue: 'none',
             control: 'select',
             options: {
@@ -176,8 +176,8 @@
         content_width: 'w-100',
         object_position: 'center',
         media: {
-            src: '/components/organisms/hero-billboard/assets/hero-billboard.webp',
-            alt: 'Varbase hero background',
+            src: '/components/organisms/media-banner/assets/media-banner.webp',
+            alt: 'Varbase media banner background',
             width: 1920,
             height: 1075,
         },
@@ -186,21 +186,21 @@
         radius: 'none',
     },
 } %}
-{% embed 'vartheme_bs5:hero-billboard' with _context %}
-    {% block hero_slot %}
+{% embed 'vartheme_bs5:media-banner' with _context %}
+    {% block media_banner_slot %}
         {% include 'vartheme_bs5:heading' with {
-            heading_text: 'Hero Billboard Title',
+            heading_text: 'Media Banner Title',
             level: 2,
             text_size: 'display-5',
             text_color: 'text-white',
         } only %}
-        <p class="lead mb-0 text-white">Add any rich content inside the hero slot.</p>
+        <p class="lead mb-0 text-white">Add any rich content inside the media banner slot.</p>
     {% endblock %}
 {% endembed %}
 {% endstory %}
 
 {% story LargeHeight with {
-    name: 'Hero height',
+    name: 'Banner height',
     args: {
         container_type: 'container',
         bg_edge2edge: false,
@@ -211,7 +211,7 @@
         content_width: 'w-100',
         object_position: 'center',
         media: {
-            src: '/components/organisms/hero-billboard/assets/hero-bg-placeholder.svg',
+            src: '/components/organisms/media-banner/assets/media-banner.webp',
             alt: 'Background image',
             width: 1920,
             height: 1075,
@@ -221,15 +221,15 @@
         radius: 'none',
     },
 } %}
-{% embed 'vartheme_bs5:hero-billboard' with _context %}
-    {% block hero_slot %}
+{% embed 'vartheme_bs5:media-banner' with _context %}
+    {% block media_banner_slot %}
         {% include 'vartheme_bs5:heading' with {
-            heading_text: 'Large Hero',
+            heading_text: 'Large Banner',
             level: 2,
             text_size: 'display-4',
             text_color: 'text-white',
         } only %}
-        <p class="lead mb-0 text-white">Expanded vertical space for more prominent billboard content.</p>
+        <p class="lead mb-0 text-white">Expanded vertical space for more prominent banner content.</p>
     {% endblock %}
 {% endembed %}
 {% endstory %}
@@ -246,7 +246,7 @@
         content_width: 'w-75',
         object_position: 'center',
         media: {
-            src: '/components/organisms/hero-billboard/assets/hero-bg-placeholder.svg',
+            src: '/components/organisms/media-banner/assets/media-banner.webp',
             alt: 'Background image',
             width: 1920,
             height: 1075,
@@ -256,8 +256,8 @@
         radius: 'none',
     },
 } %}
-{% embed 'vartheme_bs5:hero-billboard' with _context %}
-    {% block hero_slot %}
+{% embed 'vartheme_bs5:media-banner' with _context %}
+    {% block media_banner_slot %}
         {% include 'vartheme_bs5:heading' with {
             heading_text: 'Centered Content',
             level: 2,
@@ -265,7 +265,7 @@
             text_color: 'text-white',
             align: 'text-center',
         } only %}
-        <p class="lead mb-0 text-white text-center">Most commonly used centered hero content layout.</p>
+        <p class="lead mb-0 text-white text-center">Most commonly used centered media banner content layout.</p>
     {% endblock %}
 {% endembed %}
 {% endstory %}
@@ -282,7 +282,7 @@
         content_width: 'w-100',
         object_position: 'center',
         media: {
-            src: '/components/organisms/hero-billboard/assets/hero-bg-placeholder.svg',
+            src: '/components/organisms/media-banner/assets/media-banner.webp',
             alt: 'Background image',
             width: 1920,
             height: 1075,
@@ -292,15 +292,15 @@
         radius: 'none',
     },
 } %}
-{% embed 'vartheme_bs5:hero-billboard' with _context %}
-    {% block hero_slot %}
+{% embed 'vartheme_bs5:media-banner' with _context %}
+    {% block media_banner_slot %}
         {% include 'vartheme_bs5:heading' with {
             heading_text: 'Primary Overlay',
             level: 2,
             text_size: 'display-5',
             text_color: 'text-white',
         } only %}
-        <p class="lead mb-0 text-white">Useful to match branded hero backgrounds.</p>
+        <p class="lead mb-0 text-white">Useful to match branded banner backgrounds.</p>
     {% endblock %}
 {% endembed %}
 {% endstory %}
@@ -317,7 +317,7 @@
         content_width: 'w-100',
         object_position: 'center',
         media: {
-            src: '/components/organisms/hero-billboard/assets/hero-bg-placeholder.svg',
+            src: '/components/organisms/media-banner/assets/media-banner.webp',
             alt: 'Background image',
             width: 1920,
             height: 1075,
@@ -327,15 +327,15 @@
         radius: 'none',
     },
 } %}
-{% embed 'vartheme_bs5:hero-billboard' with _context %}
-    {% block hero_slot %}
+{% embed 'vartheme_bs5:media-banner' with _context %}
+    {% block media_banner_slot %}
         {% include 'vartheme_bs5:heading' with {
             heading_text: 'Stronger Overlay',
             level: 2,
             text_size: 'display-5',
             text_color: 'text-white',
         } only %}
-        <p class="lead mb-0 text-white">Improves readability for text-heavy hero content.</p>
+        <p class="lead mb-0 text-white">Improves readability for text-heavy banner content.</p>
     {% endblock %}
 {% endembed %}
 {% endstory %}
@@ -352,7 +352,7 @@
         content_width: 'w-75',
         object_position: 'bottom',
         media: {
-            src: '/components/organisms/hero-billboard/assets/hero-bg-placeholder.svg',
+            src: '/components/organisms/media-banner/assets/media-banner.webp',
             alt: 'Background image',
             width: 1920,
             height: 1075,
@@ -362,8 +362,8 @@
         radius: 'none',
     },
 } %}
-{% embed 'vartheme_bs5:hero-billboard' with _context %}
-    {% block hero_slot %}
+{% embed 'vartheme_bs5:media-banner' with _context %}
+    {% block media_banner_slot %}
         {% include 'vartheme_bs5:heading' with {
             heading_text: 'Bottom Aligned Image',
             level: 2,
@@ -376,7 +376,7 @@
 {% endstory %}
 
 {% story RichHeroContent with {
-    name: 'Hero content',
+    name: 'Banner content',
     args: {
         container_type: 'container',
         bg_edge2edge: false,
@@ -387,7 +387,7 @@
         content_width: 'w-75',
         object_position: 'center',
         media: {
-            src: '/components/organisms/hero-billboard/assets/hero-bg-placeholder.svg',
+            src: '/components/organisms/media-banner/assets/media-banner.webp',
             alt: 'Background image',
             width: 1920,
             height: 1075,
@@ -397,16 +397,16 @@
         radius: 'none',
     },
 } %}
-{% embed 'vartheme_bs5:hero-billboard' with _context %}
-    {% block hero_slot %}
+{% embed 'vartheme_bs5:media-banner' with _context %}
+    {% block media_banner_slot %}
         <p class="text-uppercase small mb-2 text-white opacity-75">Featured campaign</p>
         {% include 'vartheme_bs5:heading' with {
-            heading_text: 'Build Bold Hero Experiences',
+            heading_text: 'Build Bold Banner Experiences',
             level: 1,
             text_size: 'display-3',
             text_color: 'text-white',
         } only %}
-        <p class="lead mb-4 text-white">Compose headings, descriptive text, and actions directly inside the hero slot.</p>
+        <p class="lead mb-4 text-white">Compose headings, descriptive text, and actions directly inside the media banner slot.</p>
         <div class="d-flex flex-wrap gap-2">
             {% include 'vartheme_bs5:button' with {
                 label: 'Primary action',
@@ -438,8 +438,8 @@
         content_width: 'w-75',
         object_position: 'center',
         media: {
-            src: '/components/organisms/hero-billboard/assets/hero-billboard.webp',
-            alt: 'Hero background photo',
+            src: '/components/organisms/media-banner/assets/media-banner.webp',
+            alt: 'Media banner background photo',
             width: 1920,
             height: 1075,
         },
@@ -448,8 +448,8 @@
         radius: 'none',
     },
 } %}
-{% embed 'vartheme_bs5:hero-billboard' with _context %}
-    {% block hero_slot %}
+{% embed 'vartheme_bs5:media-banner' with _context %}
+    {% block media_banner_slot %}
         <p class="text-uppercase small mb-2 text-white opacity-75">Varbase Design System</p>
         {% include 'vartheme_bs5:heading' with {
             heading_text: 'Build Stunning Drupal Websites',
