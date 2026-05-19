@@ -1,11 +1,12 @@
 # Impressed Card
 
-Stacked card layout with an optional media image (top or bottom) and a single drag & drop content area.
+Stacked card layout with an optional media image (top or bottom), tag overlay slot, and drag & drop content area.
 The markup uses Bootstrap 5 utility classes so it works cleanly with the latest Bootstrap styles.
 
 ## Features
 
 - Media image controlled via the **Media upload** prop (top or bottom).
+- One **tag** slot for an image overlay badge or inline element.
 - One **content** slot for drag & drop text, buttons, or other components.
 - Optional whole-card link using Bootstrap’s `stretched-link` (toggle via **Stretched link**).
 - Bootstrap utilities for background, border, rounded corners, and shadow.
@@ -71,9 +72,10 @@ The markup uses Bootstrap 5 utility classes so it works cleanly with the latest 
 
 ## Slots
 
+- `tag` — Drag & drop overlay area rendered in the top-left corner of the media image.
 - `content` — Drag & drop content area.
 
 ## Notes
 
-- If no media image is provided, a local placeholder is shown.
+- The `tag` slot is rendered inside the media area. When the tag slot is present before an image is selected, the component keeps a placeholder image area so the overlay drop zone remains visible.
 - If no content is provided, a small “Drop content here” hint is rendered.

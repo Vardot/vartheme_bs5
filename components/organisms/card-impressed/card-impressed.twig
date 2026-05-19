@@ -1,7 +1,7 @@
 {#
   Impressed Card
   - Stacked layout (media top/bottom)
-  - One drag & drop slot: content
+  - Two drag & drop slots: overlay (image overlay), content
   - Media uses the "media_image" prop
 #}
 
@@ -23,15 +23,27 @@
 {% set ratio = ratio|default('ratio-16x9') %}
 {% set fit = fit|default('object-fit-cover') %}
 {% set has_media = (media_image.src|default('')|trim) is not empty %}
-{% set render_media = has_media %}
 
 {% set card_impressed_media_utility_classes = card_impressed_media_utility_classes|default([]) %}
+{% set overlay_slot %}{% block overlay %}{% endblock %}{% endset %}
 {% set content_slot %}{% block content %}{% endblock %}{% endset %}
+{% set has_overlay_slot = overlay_slot|render|trim is not empty %}
 {% set has_content_slot = content_slot|render|trim is not empty %}
 
 {% set placeholder_src = (component_metadata.path is defined)
-  ? (component_metadata.path ~ '/assets/impressed-card-image-placeholder.svg')
-  : 'assets/impressed-card-image-placeholder.svg'
+  ? (base_path|default('/') ~ component_metadata.path ~ '/assets/impressed-card-image-placeholder.svg')
+  : (base_path|default('/') ~ 'themes/contrib/vartheme_bs5/components/organisms/card-impressed/assets/impressed-card-image-placeholder.svg')
+%}
+
+{% set render_media = has_media or has_overlay_slot %}
+{% set media_image_render = has_media
+  ? media_image
+  : {
+    src: placeholder_src,
+    alt: '',
+    width: 800,
+    height: 600,
+  }
 %}
 
 {% set use_stretched_link = stretched_link and (link_url is not empty) %}
@@ -39,13 +51,12 @@
 
 {% set card_attributes = create_attribute().addClass([
   'card',
-  'card-impressed',
   'd-flex',
   'flex-column',
   'overflow-hidden',
   'position-relative',
   background_color,
-  corner_style,
+  (card_border ? corner_style : ''),
   (card_border ? 'border' : 'border-0'),
   box_shadow,
   (use_stretched_link ? 'position-relative' : ''),
@@ -55,8 +66,9 @@
 {% set media_attributes = create_attribute().addClass([
   'card-img',
   'card-img-' ~ media_position,
-  'rounded-2',
-  'overflow-hidden',
+  'position-relative',
+  (not card_border ? corner_style : ''),
+  (not card_border ? 'overflow-hidden' : ''),
 ]|merge(card_impressed_media_utility_classes)|filter(v => v is not empty)) %}
 
 {% set card_body_attributes = create_attribute().addClass([
@@ -67,25 +79,42 @@
   (padded ? 'p-4' : 'py-3 px-0'),
 ]|filter(v => v is not empty)) %}
 
+{% set overlay_slot_attributes = create_attribute().addClass([
+  'position-absolute',
+  'top-0',
+  'start-0',
+  'z-3',
+  'm-3',
+  'd-flex',
+  'align-items-center',
+  'w-25',
+  'mw-100',
+]|filter(v => v is not empty)) %}
+
 {% set image_payload = {
   media: {
-    src: media_image.src|default(''),
-    alt: media_image.alt|default(''),
-    width: media_image.width|default(null),
-    height: media_image.height|default(null),
+    src: media_image_render.src|default(''),
+    alt: media_image_render.alt|default(''),
+    width: media_image_render.width|default(null),
+    height: media_image_render.height|default(null),
   },
   ratio: ratio,
   width: 'w-100',
   fit: fit,
   extra_classes: ['d-block', 'img-fluid', 'w-100', ('card-img-' ~ media_position)]|join(' '),
-  loading: media_image.loading|default('lazy'),
-  sizes: media_image.sizes|default(''),
+  loading: media_image_render.loading|default('lazy'),
+  sizes: media_image_render.sizes|default(''),
 } %}
 
 {% set media_markup %}
   {% if render_media %}
     <div{{ media_attributes }}>
       {{ include('vartheme_bs5:image', image_payload, false, true) }}
+      {% if has_overlay_slot %}
+        <div{{ overlay_slot_attributes }}>
+          {{ overlay_slot }}
+        </div>
+      {% endif %}
     </div>
   {% endif %}
 {% endset %}

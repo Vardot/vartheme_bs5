@@ -1,10 +1,10 @@
 {% stories ImpressedCard with {
   title: 'Cards/Impressed Card',
   parameters: {
-    componentSubtitle: 'Stacked card with optional media (top or bottom) and a single content slot.',
+    componentSubtitle: 'Stacked card with optional media (top or bottom), a media overlay slot, and a content slot.',
     docs: {
       description: {
-        component: 'Impressed Card is a stacked Bootstrap 5 card with an optional media area and a single content slot. Use utility-class props to control border, padding, background, rounding, shadows, and full-card link behavior.',
+        component: 'Impressed Card is a stacked Bootstrap 5 card with an optional media area, a media overlay slot, and a content slot. Use utility-class props to control border, padding, background, rounding, shadows, and full-card link behavior.',
       },
       story: {
         inline: true,
@@ -165,7 +165,7 @@
   {% block content %}
     <div class="d-flex flex-column gap-2">
       <h3 class="h5 m-0">Impressed Card</h3>
-      <p class="m-0 text-muted">A stacked card with an optional media area and one content slot.</p>
+      <p class="m-0 text-muted">A stacked card with an optional media area, media overlay slot, and content slot.</p>
       <div class="d-flex gap-2">
         <span class="badge text-bg-primary">Badge</span>
         <span class="badge text-bg-secondary">Tag</span>
@@ -295,6 +295,45 @@
   {% block content %}
     <h3 class="h5 mb-2">Equal height</h3>
     <p class="mb-0">Useful when multiple cards need a consistent height in grid layouts.</p>
+  {% endblock %}
+{% endembed %}
+{% endstory %}
+
+{% story MediaOverlay with {
+  name: 'Media overlay',
+  args: {
+    media_position: 'top',
+    media_image: {
+      src: '/components/organisms/card-impressed/assets/impressed-card-image-placeholder.svg',
+      alt: 'Impressed image',
+      width: 800,
+      height: 600,
+    },
+    ratio: 'ratio-16x9',
+    fit: 'object-fit-cover',
+    card_border: true,
+    background_color: 'bg-white',
+    padded: true,
+    box_shadow: 'shadow-sm',
+    corner_style: 'rounded-3',
+    equal_height: false,
+    stretched_link: false,
+    link_url: '',
+    link_target: 'default',
+  },
+} %}
+{% embed 'vartheme_bs5:card-impressed' with _context %}
+  {% block overlay %}
+    {{ include('vartheme_bs5:badge', {
+      label: 'Feature',
+      variant: 'text-bg-dark',
+      size: 'fs-6 px-2 py-1',
+      radius: 'rounded-1',
+    }, with_context: false) }}
+  {% endblock %}
+  {% block content %}
+    <h3 class="h5 mb-2">Media overlay</h3>
+    <p class="mb-0">Drop any component (e.g. Badge) into the <code>overlay</code> slot to show an overlay in the top-left corner of the image.</p>
   {% endblock %}
 {% endembed %}
 {% endstory %}
