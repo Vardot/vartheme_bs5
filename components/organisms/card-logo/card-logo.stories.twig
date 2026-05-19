@@ -1,7 +1,7 @@
 {% stories CardLogo with {
   title: 'Cards/Card Logo',
   parameters: {
-    componentSubtitle: 'Bootstrap logo card with optional full-card link and shadow variants.',
+    componentSubtitle: 'Bootstrap logo card with optional full-card link, shadow, and alignment options.',
     docs: {
       description: {
         component: 'A simple logo card component for brand, partner, sponsor, and client logos with optional full-card link behavior.',
@@ -33,6 +33,16 @@
         "'Large shadow'": 'shadow-lg',
       },
     },
+    alignment: {
+      name: 'Alignment',
+      description: 'Horizontal alignment of the logo.',
+      control: 'select',
+      options: {
+        Left: 'left',
+        Center: 'center',
+        Right: 'right',
+      },
+    },
   },
 } %}
 
@@ -46,7 +56,42 @@
       height: 240,
     },
     url: '',
-    shadow: 'shadow',
+    shadow: 'shadow-none',
+    alignment: 'left',
+  },
+} %}
+  {{ include('vartheme_bs5:card-logo') }}
+{% endstory %}
+
+{% story Centered with {
+  name: 'Center aligned',
+  args: {
+    media: {
+      src: '/components/organisms/card-logo/assets/logo-placeholder.svg',
+      alt: 'Placeholder brand logo',
+      width: 600,
+      height: 240,
+    },
+    url: '',
+    shadow: 'shadow-none',
+    alignment: 'center',
+  },
+} %}
+  {{ include('vartheme_bs5:card-logo') }}
+{% endstory %}
+
+{% story RightAligned with {
+  name: 'Right aligned',
+  args: {
+    media: {
+      src: '/components/organisms/card-logo/assets/logo-placeholder.svg',
+      alt: 'Placeholder brand logo',
+      width: 600,
+      height: 240,
+    },
+    url: '',
+    shadow: 'shadow-none',
+    alignment: 'right',
   },
 } %}
   {{ include('vartheme_bs5:card-logo') }}
@@ -62,55 +107,8 @@
       height: 240,
     },
     url: 'https://example.com',
-    shadow: 'shadow-sm',
-  },
-} %}
-  {{ include('vartheme_bs5:card-logo') }}
-{% endstory %}
-
-{% story NoShadow with {
-  name: 'No shadow',
-  args: {
-    media: {
-      src: '/components/organisms/card-logo/assets/logo-placeholder.svg',
-      alt: 'Sponsor logo',
-      width: 600,
-      height: 240,
-    },
-    url: '',
     shadow: 'shadow-none',
-  },
-} %}
-  {{ include('vartheme_bs5:card-logo') }}
-{% endstory %}
-
-{% story LargeShadow with {
-  name: 'Large shadow',
-  args: {
-    media: {
-      src: '/components/organisms/card-logo/assets/logo-placeholder.svg',
-      alt: 'Featured brand logo',
-      width: 600,
-      height: 240,
-    },
-    url: '',
-    shadow: 'shadow-lg',
-  },
-} %}
-  {{ include('vartheme_bs5:card-logo') }}
-{% endstory %}
-
-{% story LinkedLargeShadow with {
-  name: 'Linked large shadow',
-  args: {
-    media: {
-      src: '/components/organisms/card-logo/assets/logo-placeholder.svg',
-      alt: 'Client logo',
-      width: 600,
-      height: 240,
-    },
-    url: 'https://example.com',
-    shadow: 'shadow-lg',
+    alignment: 'left',
   },
 } %}
   {{ include('vartheme_bs5:card-logo') }}
