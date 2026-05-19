@@ -1,48 +1,53 @@
-import { Title, Subtitle, Description, Source, Meta, Primary, Stories, Controls } from '@storybook/addon-docs/blocks';
-import * as comStories from './image.stories.json';
+import { Meta, Source, Canvas, Controls, Stories } from '@storybook/addon-docs/blocks';
+import * as ImageStories from './image.stories.json';
 import templateSource from './image.twig?raw';
 
-<Meta of={comStories} />
+<Meta of={ImageStories} name="Docs" />
 
-<Title />
-<Subtitle />
-<Description />
+# Image
+
+A responsive Bootstrap image component with optional aspect-ratio cropping, object-fit control, alignment, sizing, border radius, and an optional link wrapper. Supports both native `<img>` rendering and `drimage_improved` responsive images when available.
+
+- `ratio` wraps the image in a Bootstrap `.ratio-*` box for consistent cropped shapes — set `fit` to `object-fit-cover` or `object-fit-contain` to control how the image fills that box
+- `rounded` accepts the full set of Bootstrap border-radius utilities — use `none` to apply no radius
+- When `drimage_improved` data is available via `media.data`, the component renders a responsive `<picture>` element; otherwise it falls back to a plain `<img>`
 
 > ### Bootstrap documentation
-> * [Images](https://getbootstrap.com/docs/5.3/content/images/)
-> * [Ratio](https://getbootstrap.com/docs/5.3/helpers/ratio/)
-> * [Object fit](https://getbootstrap.com/docs/5.3/helpers/ratio/#object-fit)
-
-<Primary />
+> - [Images](https://getbootstrap.com/docs/5.3/content/images/)
+> - [Ratio](https://getbootstrap.com/docs/5.3/helpers/ratio/)
+> - [Object fit](https://getbootstrap.com/docs/5.3/utilities/object-fit/)
+> - [Spacing](https://getbootstrap.com/docs/5.3/utilities/spacing/)
 
 ## Properties
-<Controls />
 
-<Stories of={comStories} />
+<Canvas of={ImageStories.Default} />
+<Controls of={ImageStories.Default} />
 
-## Notes
-* The component prefers `dynamic-responsive-image` when available, and falls back to `canvas:image` (both included with `ignore missing`).
-* `media.data` can be provided when integrating with `drimage_improved`.
+## Stories
 
-## Examples
+<Stories of={ImageStories} />
 
-### Example #1: Default image
+## Example
+
+### Example #1 : Default image
+
 ```twig
 {% include 'vartheme_bs5:image' with {
   media: {
-    src: '/components/atoms/image/assets/image-placeholder.svg',
-    alt: 'Placeholder image',
+    src: '/path/to/image.jpg',
+    alt: 'Image description',
     width: 1200,
     height: 800,
   },
 } only %}
 ```
 
-### Example #2: 16:9 ratio crop + cover
+### Example #2 : 16:9 ratio with cover crop
+
 ```twig
 {% include 'vartheme_bs5:image' with {
   media: {
-    src: '/components/atoms/image/assets/image-placeholder.svg',
+    src: '/path/to/image.jpg',
     alt: 'Wide image',
     width: 1200,
     height: 800,
@@ -55,19 +60,23 @@ import templateSource from './image.twig?raw';
 } only %}
 ```
 
-### Example #3: Linked image (new tab)
+### Example #3 : Linked image opening in a new tab
+
 ```twig
 {% include 'vartheme_bs5:image' with {
   media: {
-    src: '/components/atoms/image/assets/image-placeholder.svg',
+    src: '/path/to/image.jpg',
     alt: 'Linked image',
     width: 1200,
     height: 800,
   },
   link_url: 'https://example.com',
   target: 'blank',
+  width: 'w-50',
+  align: 'mx-auto',
 } only %}
 ```
 
 ## Source code
+[//]: # (Twig Template source code)
 <Source code={templateSource} />

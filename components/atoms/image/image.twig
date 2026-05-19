@@ -38,7 +38,7 @@
 {% set width_class = width|default('w-auto') %}
 
 {# Rounded: Bootstrap utilities (values are the class names) #}
-{% set rounded_class = rounded|default('rounded-0') %}
+{% set rounded_class = rounded|default('none') != 'none' ? rounded : '' %}
 
 {% set loading_value = loading|default('lazy') %}
 
@@ -46,9 +46,9 @@
 {% set figure_classes = (['d-block', 'm-0', width_class, align_class])|filter(v => v is not empty) %}
 {% set figure_attrs = create_attribute().addClass(figure_classes) %}
 
-{# Image classes #}
+{# Image classes — w-100 always; h-100 only inside a ratio box #}
 {% set img_classes = (['img-fluid', fit_class, rounded_class]|filter(v => v is not empty)) %}
-{% set img_classes_final = (has_ratio ? ['w-100', 'h-100'] : [])|merge(img_classes) %}
+{% set img_classes_final = ['w-100']|merge(has_ratio ? ['h-100'] : [])|merge(img_classes) %}
 {% set img_class_final = img_classes_final|join(' ') %}
 
 {# Pick link attributes based on ratio mode #}
@@ -63,7 +63,7 @@
     {% set ratio_parts = ratio_value|replace({'ratio-': ''})|split('x') %}
     {% set drimage_data = drimage_data|merge({image_handling: 'aspect_ratio', aspect_ratio: {width: ratio_parts[0] * 1, height: ratio_parts[1] * 1}}) %}
   {% endif %}
-  {% set drimage_img_classes = has_ratio ? ['w-100', 'h-100', fit_class, rounded_class] : ['img-fluid', fit_class, rounded_class] %}
+  {% set drimage_img_classes = ['w-100']|merge(has_ratio ? ['h-100'] : ['img-fluid'])|merge([fit_class, rounded_class]) %}
   {% if drimage_data %}
     {# Render via vartheme_bs5:dynamic-responsive-image (drimage_improved). #}
     {% set image_markup %}
