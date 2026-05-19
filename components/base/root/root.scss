@@ -2,3 +2,12 @@
 
 // The Root CSS3 variables for Bootstrap 5.
 @import "../../../node_modules/bootstrap/scss/root";
+
+// Custom accent CSS vars — Bootstrap only generates these for its built-in
+// theme colors; accent is a vartheme custom addition so we define them manually.
+:root,
+[data-bs-theme="light"] {
+  --bs-accent-bg-subtle:     #{$accent-bg-subtle};
+  --bs-accent-text-emphasis: #{$accent-text-emphasis};
+  --bs-accent-border-subtle: #{$accent-border-subtle};
+}
