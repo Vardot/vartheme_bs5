@@ -11,6 +11,7 @@
 {% set aos_once = aos_once is defined ? aos_once : true %}
 
 {% set background_color = background_color|default('none') %}
+{% set radius = radius|default('none') %}
 {% set direction = direction|default('vertical') %}
 {% set gap = gap|default('gap-3') %}
 {% set wrap = wrap|default('wrap') %}
@@ -24,6 +25,11 @@
 {% set margin_block_end = margin_block_end|default('mb-0') %}
 {% set margin_inline_start = margin_inline_start|default('ms-0') %}
 {% set margin_inline_end = margin_inline_end|default('me-0') %}
+{% set border = border|default('none') %}
+{% set border_classes = border != 'none' ? border|split(' ') : [] %}
+{% set has_border = border_classes is not empty %}
+{% set border_color_class = has_border and border_color|default('none') != 'none' ? border_color : '' %}
+{% set border_width_class = has_border and border_width|default('none') != 'none' ? border_width : '' %}
 
 {% set direction_class = (direction == 'horizontal') ? 'flex-row' : 'flex-column' %}
 {% set wrap_class = (direction == 'horizontal')
@@ -47,7 +53,10 @@
   margin_inline_start,
   margin_inline_end,
   background_color != 'none' ? background_color : '',
-] %}
+  radius != 'none' ? radius : '',
+  border_color_class,
+  border_width_class,
+]|merge(border_classes) %}
 
 {% set block_content %}{% block content %}{% endblock %}{% endset %}
 
