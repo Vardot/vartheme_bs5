@@ -158,6 +158,7 @@ global-styles:
       css/layout/print.layout.css: { media: print }
     theme:
       fonts/figtree/css/figtree.css: {}
+      fonts/dm-mono/css/dm-mono.css: {}
 
 # Vartheme BS5 global scripts library.
 global-scripts:

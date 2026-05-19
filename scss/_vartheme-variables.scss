@@ -105,3 +105,13 @@ $vmh-title-font-size-lg: 3.625rem;
 $vmh-breadcrumb-color: $white;
 $vmh-breadcrumb-font-size: 0.75rem;
 $vmh-breadcrumb-font-size-lg: 0.875rem;
+
+// Register custom brand colors in Bootstrap's theme-colors map so that
+// the utilities API generates bg-*, text-*, and border-* classes for them.
+$theme-colors: map-merge(
+  $theme-colors,
+  (
+    "tertiary": $tertiary,
+    "accent":   $accent,
+  )
+);
