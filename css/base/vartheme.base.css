@@ -77,6 +77,10 @@ a {
   text-underline-offset: 0.25em;
 }
 
+.text-subtle-text {
+  color: rgba(0, 29, 56, 0.7);
+}
+
 .bg-dark,
 .bg-black,
 [data-bs-theme="dark"] {
@@ -192,7 +196,7 @@ header[role="banner"] .dropdown-menu .dropdown-item:active {
 }
 
 footer.footer {
-  padding-block: 5rem 3.75rem;
+  padding-block: 3rem 0;
 }
 
 @media (max-width: 767.98px) {
@@ -318,7 +322,6 @@ footer.footer .block-system-menu-blockfooter .navbar-nav,
 footer.footer .block-system-menu-blockfooter ul.nav {
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: flex-end;
   gap: 0.9375rem;
 }
 
@@ -564,6 +567,7 @@ footer.footer hr {
 #views-exposed-form-blog-all .form-actions {
   display: flex;
   align-items: center;
+  height: 3.125rem;
   margin: 0;
   gap: 1.5rem;
 }
