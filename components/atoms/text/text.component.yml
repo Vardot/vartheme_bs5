@@ -48,6 +48,7 @@ props:
         - text-muted
         - text-dark
         - text-white
+        - text-subtle-text
       examples:
         - text-body
       meta:enum:
@@ -61,3 +62,4 @@ props:
         text-muted: Muted
         text-dark: Dark
         text-white: White
+        text-subtle-text: Subtle Text

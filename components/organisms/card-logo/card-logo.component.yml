@@ -29,10 +29,22 @@ props:
       title: Shadow
       description: Adds depth to the card.
       enum: [shadow-none, shadow-sm, shadow, shadow-lg]
-      default: shadow
-      examples: [shadow]
+      default: shadow-none
+      examples: [shadow-none]
       meta:enum:
         shadow-none: No shadow
         shadow-sm: Small shadow
         shadow: Default shadow
         shadow-lg: Large shadow
+
+    alignment:
+      type: string
+      title: Alignment
+      description: Horizontal alignment of the logo inside the card.
+      enum: [left, center, right]
+      default: left
+      examples: [left]
+      meta:enum:
+        left: Left
+        center: Center
+        right: Right

@@ -3,7 +3,10 @@
 #}
 
 {% set has_url = url is defined and url is not empty and url != 'No URL' %}
-{% set shadow_class = shadow|default('shadow') %}
+{% set shadow_class = shadow|default('shadow-none') %}
+
+{% set alignment_map = { left: 'justify-content-start', center: 'justify-content-center', right: 'justify-content-end' } %}
+{% set alignment_class = alignment_map[alignment|default('left')]|default('justify-content-start') %}
 
 {% set src_value = '' %}
 {% if media is defined and media %}
@@ -22,11 +25,11 @@
 {% set image_media = {
   src: src_value,
   alt: media.alt|default(''),
-  width: media.width|default(''),
-  height: media.height|default(''),
+  width: media.width is defined and media.width is not empty ? media.width : null,
+  height: media.height is defined and media.height is not empty ? media.height : null,
 } %}
 
-{% set card_classes = ['card', 'overflow-hidden'] %}
+{% set card_classes = ['card', 'overflow-hidden', 'border-0', 'bg-transparent'] %}
 {% if shadow_class and shadow_class != 'shadow-none' %}
   {% set card_classes = card_classes|merge([shadow_class]) %}
 {% endif %}
@@ -34,23 +37,13 @@
   {% set card_classes = card_classes|merge(['position-relative']) %}
 {% endif %}
 
-{% set body_classes = ['card-body', 'd-flex', 'align-items-center', 'justify-content-center', 'p-3', 'p-md-4'] %}
-{% set image_wrapper_classes = ['d-flex', 'justify-content-center', 'align-items-center'] %}
+{% set body_classes = ['card-body', 'd-flex', 'align-items-center', alignment_class, 'p-0'] %}
+{% set image_wrapper_classes = ['d-flex', alignment_class, 'align-items-center'] %}
 {% set link_classes = ['stretched-link', 'text-decoration-none'] %}
 
 {% set card_attributes = create_attribute().addClass(card_classes) %}
 {% set body_attributes = create_attribute().addClass(body_classes) %}
 {% set image_wrapper_attributes = create_attribute().addClass(image_wrapper_classes) %}
-
-{% set image_markup %}
-  {{ include('vartheme_bs5:image', {
-    media: image_media,
-    ratio: 'ratio-auto',
-    fit: 'object-fit-contain',
-    width: 'w-100',
-    align: 'mx-auto',
-  }, false, true) }}
-{% endset %}
 
 <div{{ card_attributes }}>
   <div{{ body_attributes }}>
@@ -65,7 +58,12 @@
 
     {% if media_ok %}
       <div{{ image_wrapper_attributes }}>
-        {{ image_markup }}
+        {{ include('vartheme_bs5:image', {
+          media: image_media,
+          ratio: 'ratio-auto',
+          fit: 'object-fit-contain',
+          width: 'w-100',
+        }, false, true) }}
       </div>
     {% endif %}
   </div>

@@ -99,21 +99,29 @@ props:
         w-100: 100%
     rounded:
       type: string
-      title: Corner style
-      description: Controls how rounded the image corners are.
+      title: Border radius
+      description: Bootstrap border-radius utility class applied to the image.
       enum:
+        - none
+        - rounded
         - rounded-0
         - rounded-1
+        - rounded-2
         - rounded-3
+        - rounded-4
         - rounded-pill
-      default: rounded-0
+      default: none
       examples:
-        - rounded-0
+        - none
       meta:enum:
-        rounded-0: None
-        rounded-1: Slightly rounded
-        rounded-3: Rounded
-        rounded-pill: Fully rounded (pill)
+        none: None
+        rounded: Default
+        rounded-0: Square
+        rounded-1: Small
+        rounded-2: Medium
+        rounded-3: Large
+        rounded-4: Extra Large
+        rounded-pill: Round
     loading:
       type: string
       title: Loading behavior

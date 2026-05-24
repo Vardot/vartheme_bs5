@@ -18,17 +18,45 @@
       defaultValue: 'none',
       options: {
         None: 'none',
+        Primary: 'bg-primary',
+        "'Primary subtle'": 'bg-primary-subtle',
+        Secondary: 'bg-secondary',
+        "'Secondary subtle'": 'bg-secondary-subtle',
+        Success: 'bg-success',
+        "'Success subtle'": 'bg-success-subtle',
+        Danger: 'bg-danger',
+        "'Danger subtle'": 'bg-danger-subtle',
+        Warning: 'bg-warning',
+        "'Warning subtle'": 'bg-warning-subtle',
+        Info: 'bg-info',
+        "'Info subtle'": 'bg-info-subtle',
         Light: 'bg-light',
+        "'Light subtle'": 'bg-light-subtle',
+        Dark: 'bg-dark',
+        "'Dark subtle'": 'bg-dark-subtle',
         Body: 'bg-body',
         "'Body secondary'": 'bg-body-secondary',
         "'Body tertiary'": 'bg-body-tertiary',
-        Primary: 'bg-primary',
-        Secondary: 'bg-secondary',
-        Success: 'bg-success',
-        Danger: 'bg-danger',
-        Warning: 'bg-warning',
-        Info: 'bg-info',
-        Dark: 'bg-dark',
+        Black: 'bg-black',
+        White: 'bg-white',
+        Transparent: 'bg-transparent',
+        Tertiary: 'bg-tertiary',
+        Accent: 'bg-accent',
+      },
+    },
+    radius: {
+      name: 'Border radius',
+      control: 'select',
+      defaultValue: 'none',
+      options: {
+        None: 'none',
+        Default: 'rounded',
+        Square: 'rounded-0',
+        Small: 'rounded-1',
+        Medium: 'rounded-2',
+        Large: 'rounded-3',
+        "'Extra Large'": 'rounded-4',
+        Round: 'rounded-pill',
       },
     },
     direction: {
@@ -192,6 +220,57 @@
         "'XX-Large'": 'me-5',
       },
     },
+    border: {
+      name: 'Border',
+      control: 'select',
+      defaultValue: 'none',
+      options: {
+        None: 'none',
+        "'All sides'": 'border',
+        Top: 'border-top',
+        Bottom: 'border-bottom',
+        Start: 'border-start',
+        End: 'border-end',
+      },
+    },
+    border_color: {
+      name: 'Border color',
+      control: 'select',
+      defaultValue: 'none',
+      options: {
+        Default: 'none',
+        Primary: 'border-primary',
+        "'Primary subtle'": 'border-primary-subtle',
+        Secondary: 'border-secondary',
+        "'Secondary subtle'": 'border-secondary-subtle',
+        Success: 'border-success',
+        "'Success subtle'": 'border-success-subtle',
+        Danger: 'border-danger',
+        "'Danger subtle'": 'border-danger-subtle',
+        Warning: 'border-warning',
+        "'Warning subtle'": 'border-warning-subtle',
+        Info: 'border-info',
+        "'Info subtle'": 'border-info-subtle',
+        Light: 'border-light',
+        Dark: 'border-dark',
+        "'Dark subtle'": 'border-dark-subtle',
+        Black: 'border-black',
+        White: 'border-white',
+      },
+    },
+    border_width: {
+      name: 'Border width',
+      control: 'select',
+      defaultValue: 'none',
+      options: {
+        Default: 'none',
+        "'Extra small'": 'border-1',
+        Small: 'border-2',
+        Medium: 'border-3',
+        Large: 'border-4',
+        "'Extra large'": 'border-5',
+      },
+    },
   },
 } %}
 
@@ -212,6 +291,10 @@
     margin_block_end: 'mb-0',
     margin_inline_start: 'ms-0',
     margin_inline_end: 'me-0',
+    radius: 'none',
+    border: 'none',
+    border_color: 'none',
+    border_width: 'none',
   },
 } %}
 {% embed 'vartheme_bs5:group' with _context %}
@@ -226,7 +309,7 @@
 {% story HorizontalActions with {
   name: 'Horizontal actions',
   args: {
-    background_color: 'bg-light',
+    background_color: 'bg-body-tertiary',
     direction: 'horizontal',
     gap: 'gap-2',
     wrap: 'wrap',
@@ -240,6 +323,10 @@
     margin_block_end: 'mb-0',
     margin_inline_start: 'ms-0',
     margin_inline_end: 'me-0',
+    radius: 'none',
+    border: 'none',
+    border_color: 'none',
+    border_width: 'none',
   },
 } %}
 {% embed 'vartheme_bs5:group' with _context %}
@@ -268,6 +355,10 @@
     margin_block_end: 'mb-0',
     margin_inline_start: 'ms-0',
     margin_inline_end: 'me-0',
+    radius: 'none',
+    border: 'none',
+    border_color: 'none',
+    border_width: 'none',
   },
 } %}
 {% embed 'vartheme_bs5:group' with _context %}
@@ -299,12 +390,16 @@
     margin_block_end: 'mb-0',
     margin_inline_start: 'ms-0',
     margin_inline_end: 'me-0',
+    radius: 'none',
+    border: 'none',
+    border_color: 'none',
+    border_width: 'none',
   },
 } %}
 {% embed 'vartheme_bs5:group' with _context %}
   {% block content %}
-    <h3 class="h4 mb-0 text-center">Centered callout</h3>
-    <p class="mb-0 text-center">Use Group to align small content clusters without writing custom CSS.</p>
+    <h3 class="h4 mb-0 text-center text-white">Centered callout</h3>
+    <p class="mb-0 text-center text-white">Use Group to align small content clusters without writing custom CSS.</p>
     <a href="#" class="btn btn-primary">Learn more</a>
   {% endblock %}
 {% endembed %}
@@ -313,7 +408,7 @@
 {% story SpacedStack with {
   name: 'Spaced stack',
   args: {
-    background_color: 'bg-light',
+    background_color: 'bg-body-tertiary',
     direction: 'vertical',
     gap: 'gap-4',
     wrap: 'wrap',
@@ -327,6 +422,10 @@
     margin_block_end: 'mb-4',
     margin_inline_start: 'ms-0',
     margin_inline_end: 'me-0',
+    radius: 'none',
+    border: 'none',
+    border_color: 'none',
+    border_width: 'none',
   },
 } %}
 {% embed 'vartheme_bs5:group' with _context %}

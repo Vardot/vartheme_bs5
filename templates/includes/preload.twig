@@ -27,42 +27,20 @@
 <link rel="preload" href="{{ vartheme_bs5_path }}/fonts/bootstrap-icons/font/fonts/bootstrap-icons.woff" as="font" type="font/woff" crossorigin="anonymous">
 <link rel="preload" href="{{ vartheme_bs5_path }}/fonts/bootstrap-icons/font/fonts/bootstrap-icons.woff2" as="font" type="font/woff2" crossorigin="anonymous">
 
-{# Preload Font Awesome free Regular webfonts #}
-{# Uncomment to use the Font Awesome free Regular webfonts.
-<link rel="preload" href="{{ vartheme_bs5_path }}/fonts/fontawesome-free/webfonts/fa-regular-400.eot" as="font" crossorigin="anonymous">
-<link rel="preload" href="{{ vartheme_bs5_path }}/fonts/fontawesome-free/webfonts/fa-regular-400.svg" as="font" crossorigin="anonymous">
-<link rel="preload" href="{{ vartheme_bs5_path }}/fonts/fontawesome-free/webfonts/fa-regular-400.ttf" as="font" type="font/ttf" crossorigin="anonymous">
-<link rel="preload" href="{{ vartheme_bs5_path }}/fonts/fontawesome-free/webfonts/fa-regular-400.woff" as="font" type="font/woff" crossorigin="anonymous">
-<link rel="preload" href="{{ vartheme_bs5_path }}/fonts/fontawesome-free/webfonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
-#}
-
-{# Preload Font Awesome free Solid webfonts #}
-{# Uncomment to use the Font Awesome free Solid webfonts library.
-<link rel="preload" href="{{ vartheme_bs5_path }}/fonts/fontawesome-free/webfonts/fa-solid-900.eot" as="font" crossorigin="anonymous">
-<link rel="preload" href="{{ vartheme_bs5_path }}/fonts/fontawesome-free/webfonts/fa-solid-900.svg" as="font" crossorigin="anonymous">
-<link rel="preload" href="{{ vartheme_bs5_path }}/fonts/fontawesome-free/webfonts/fa-solid-900.ttf" as="font" type="font/ttf" crossorigin="anonymous">
-<link rel="preload" href="{{ vartheme_bs5_path }}/fonts/fontawesome-free/webfonts/fa-solid-900.woff" as="font" type="font/woff" crossorigin="anonymous">
-<link rel="preload" href="{{ vartheme_bs5_path }}/fonts/fontawesome-free/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin="anonymous">
-#}
-
-{# Preload Font Awesome free Brands webfonts #}
-{# Uncomment to use the Font Awesome free Brands webfonts library.
-<link rel="preload" href="{{ vartheme_bs5_path }}/fonts/fontawesome-free/webfonts/fa-brands-400.eot" as="font" crossorigin="anonymous">
-<link rel="preload" href="{{ vartheme_bs5_path }}/fonts/fontawesome-free/webfonts/fa-brands-400.svg" as="font" crossorigin="anonymous">
-<link rel="preload" href="{{ vartheme_bs5_path }}/fonts/fontawesome-free/webfonts/fa-brands-400.ttf" as="font" type="font/ttf" crossorigin="anonymous">
-<link rel="preload" href="{{ vartheme_bs5_path }}/fonts/fontawesome-free/webfonts/fa-brands-400.woff" as="font" type="font/woff" crossorigin="anonymous">
-<link rel="preload" href="{{ vartheme_bs5_path }}/fonts/fontawesome-free/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin="anonymous">
-#}
-
 {# Preload assets only for LTR languages. #}
 {% if html_dir == 'ltr' %}
-  {# Preload Font Inter #}
-  <link rel="preload" href="{{ vartheme_bs5_path }}/fonts/inter/webfonts/inter.eot" as="font" crossorigin="anonymous">
-  <link rel="preload" href="{{ vartheme_bs5_path }}/fonts/inter/webfonts/inter.svg" as="font" crossorigin="anonymous">
-  <link rel="preload" href="{{ vartheme_bs5_path }}/fonts/inter/webfonts/inter.ttf" as="font" type="font/ttf" crossorigin="anonymous">
-  <link rel="preload" href="{{ vartheme_bs5_path }}/fonts/inter/webfonts/inter.woff" as="font" type="font/woff" crossorigin="anonymous">
-  <link rel="preload" href="{{ vartheme_bs5_path }}/fonts/inter/webfonts/inter.woff2" as="font" type="font/woff2" crossorigin="anonymous">
-{%- endif -%}
+
+  {# Preload Figtree — primary sans-serif font (body + headings). Only woff2 is available. #}
+  <link rel="preload" href="{{ vartheme_bs5_path }}/fonts/figtree/webfonts/figtree-latin.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="{{ vartheme_bs5_path }}/fonts/figtree/webfonts/figtree-latin-ext.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
+  {# Preload DM Mono — monospace font. Only woff2 is available. #}
+  <link rel="preload" href="{{ vartheme_bs5_path }}/fonts/dm-mono/webfonts/dm-mono-400-latin.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="{{ vartheme_bs5_path }}/fonts/dm-mono/webfonts/dm-mono-400-latin-ext.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="{{ vartheme_bs5_path }}/fonts/dm-mono/webfonts/dm-mono-500-latin.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  <link rel="preload" href="{{ vartheme_bs5_path }}/fonts/dm-mono/webfonts/dm-mono-500-latin-ext.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
+{% endif %}
 
 
 {# Preload assets only for RTL languages. #}

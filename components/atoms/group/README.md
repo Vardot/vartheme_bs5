@@ -26,7 +26,14 @@ Use this component when you need a reusable layout wrapper that can:
 
 ### Appearance
 
-- `background_color`: Bootstrap background utility or `none`
+- `background_color`: Bootstrap background utility or `none` — full set: `bg-primary`, `bg-primary-subtle`, `bg-secondary`, `bg-secondary-subtle`, `bg-success`, `bg-success-subtle`, `bg-danger`, `bg-danger-subtle`, `bg-warning`, `bg-warning-subtle`, `bg-info`, `bg-info-subtle`, `bg-light`, `bg-light-subtle`, `bg-dark`, `bg-dark-subtle`, `bg-body`, `bg-body-secondary`, `bg-body-tertiary`, `bg-black`, `bg-white`, `bg-transparent`, `bg-tertiary`, `bg-accent`
+- `radius`: Bootstrap border-radius utility
+
+### Border
+
+- `border`: which sides to apply a border to — `none`, `border` (all), `border-top`, `border-bottom`, `border-start`, `border-end`
+- `border_color`: Bootstrap border color utility; only applied when `border` is not `none`
+- `border_width`: Bootstrap border width utility (`border-1` through `border-5`); only applied when `border` is not `none`
 
 ### Layout
 

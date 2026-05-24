@@ -87,15 +87,19 @@
       },
     },
     rounded: {
-      name: 'Corner style',
-      description: 'Bootstrap rounded utilities applied to the image.',
-      defaultValue: 'rounded-0',
+      name: 'Border radius',
+      description: 'Bootstrap border-radius utility class applied to the image.',
+      defaultValue: 'none',
       control: 'select',
       options: {
-        None: 'rounded-0',
-        "'Slightly rounded'": 'rounded-1',
-        Rounded: 'rounded-3',
-        Pill: 'rounded-pill',
+        None: 'none',
+        Default: 'rounded',
+        Square: 'rounded-0',
+        Small: 'rounded-1',
+        Medium: 'rounded-2',
+        Large: 'rounded-3',
+        "'Extra Large'": 'rounded-4',
+        Round: 'rounded-pill',
       },
     },
     loading: {
@@ -126,7 +130,7 @@
     fit: 'object-fit-cover',
     align: 'me-auto',
     width: 'w-auto',
-    rounded: 'rounded-0',
+    rounded: 'none',
     loading: 'lazy'},
 } %}
 {{ include('vartheme_bs5:image') }}
@@ -185,7 +189,7 @@
     fit: 'object-fit-cover',
     align: 'me-auto',
     width: 'w-50',
-    rounded: 'rounded-0',
+    rounded: 'none',
     loading: 'lazy'},
 } %}
 {{ include('vartheme_bs5:image') }}
@@ -204,7 +208,7 @@
     fit: 'object-fit-cover',
     align: 'mx-auto',
     width: 'w-100',
-    rounded: 'rounded-0',
+    rounded: 'none',
     loading: 'eager'},
 } %}
 {{ include('vartheme_bs5:image') }}
