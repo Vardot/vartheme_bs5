@@ -27,6 +27,7 @@ module.exports = {
     'molecules/alert/alert': ['./components/molecules/alert/alert.scss'],
     'molecules/callout/callout': ['./components/molecules/callout/callout.scss'],
     'molecules/pagination/pagination': ['./components/molecules/pagination/pagination.scss'],
+    'molecules/share/share': ['./components/molecules/share/share.scss'],
     'molecules/breadcrumb/breadcrumb': ['./components/molecules/breadcrumb/breadcrumb.scss'],
     'molecules/tabs/tabs': ['./components/molecules/tabs/tabs.scss'],
     'molecules/navbar-brand/navbar-brand': ['./components/molecules/navbar-brand/navbar-brand.scss'],

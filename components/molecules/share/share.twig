@@ -20,6 +20,28 @@
   mobile_visibility == 'hide_mobile' ? 'webshare--hide-mobile',
   mobile_visibility == 'mobile_only' ? 'webshare--mobile-only',
 ] %}
+{# When rendered through Drupal Canvas the SDC receives no `platforms`/`url`
+   (the array-of-objects `platforms` prop is intentionally undeclared so the
+   component is eligible for the Canvas library — see share.component.yml).
+   Fall back to the Webshare service, which resolves the current page's share
+   URL and the enabled platform links. A caller that DOES supply data (props
+   set explicitly) keeps full control and skips the service call. #}
+{% set _share_data = (platforms is not defined or not platforms) or (url is not defined or not url)
+  ? webshare_share_data(url|default(''), {
+      alignment: alignment|default('end'),
+      orientation: orientation|default('vertical'),
+      mobile_visibility: mobile_visibility|default('all'),
+      placement: placement|default('rail-end'),
+      native_share: native_share|default(false),
+    })
+  : null %}
+{% set url = (url is defined and url) ? url : (_share_data ? _share_data.url : '') %}
+{% set platforms = (platforms is defined and platforms) ? platforms : (_share_data ? _share_data.platforms : []) %}
+
+{# `display_title` mirrors the legacy block setting: when false, the heading
+   is suppressed even if `heading` is non-empty (region label still uses it
+   for accessibility). #}
+{% set _show_heading = (display_title is not defined or display_title) and heading %}
 {% set heading_id = webshare_links_id ? webshare_links_id ~ '-heading' : 'webshare-heading-' ~ random() %}
 {% set region_label = heading ?: 'Share this page'|t %}
 
@@ -41,10 +63,10 @@
   .setAttribute('data-webshare-title', share_title)
   .setAttribute('data-webshare-text', share_text)
 }}>
-  {% if heading %}
+  {% if _show_heading %}
     <h3 id="{{ heading_id }}" class="webshare__heading">{{ heading }}</h3>
   {% endif %}
-  <ul id="{{ webshare_links_id }}" class="webshare__list"{% if heading %} aria-labelledby="{{ heading_id }}"{% endif %}>
+  <ul id="{{ webshare_links_id }}" class="webshare__list"{% if _show_heading %} aria-labelledby="{{ heading_id }}"{% endif %}>
     {% if native_share %}
       <li class="webshare__item webshare__item--native" data-webshare-native>
         <button type="button" class="webshare__native-button" aria-label="{{ native_label|default('Share this page'|t) }}">

@@ -1,7 +1,7 @@
 "$schema": "https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json"
 name: Share
 status: stable
-description: "Vartheme BS5 override of the Webshare Share component. Implementation detail of the Sharing block — disabled in the Canvas library."
+description: "Social share buttons with native Web Share API support. Vartheme BS5 override of webshare:share — exposed in Drupal Canvas; the props below mirror the legacy Webshare block settings 1:1."
 replaces: webshare:share
 libraryOverrides:
   dependencies:
@@ -10,58 +10,103 @@ libraryOverrides:
 props:
   type: object
   properties:
-    url:
-      type: string
-      title: 'Share URL'
-    share_title:
-      type: string
-      title: 'Share title'
-    share_text:
-      type: string
-      title: 'Share text'
+    # ── Settings exposed in Drupal Canvas (mirror of WebshareBlock::blockForm) ──
     heading:
       type: string
-      title: 'Heading'
-    webshare_links_id:
-      type: string
-      title: 'Links wrapper id'
+      title: 'Title'
+      description: 'The title displayed above the sharing buttons.'
+      default: 'Share'
+      examples:
+        - 'Share'
+    display_title:
+      type: boolean
+      title: 'Display title'
+      description: 'Show the title above the sharing buttons.'
+      default: true
+      examples:
+        - true
     alignment:
       type: string
       title: 'Alignment'
+      description: 'Choose whether the buttons sit on the start or end side of the content (RTL-aware: start is left in LTR languages, right in RTL languages).'
       enum: [start, end]
+      meta:enum:
+        start: 'Start side'
+        end: 'End side'
       default: end
+      examples:
+        - end
     orientation:
       type: string
       title: 'Orientation'
+      description: 'Lay the share buttons out in a row or a column.'
       enum: [horizontal, vertical]
+      meta:enum:
+        horizontal: 'Horizontal'
+        vertical: 'Vertical'
       default: vertical
+      examples:
+        - vertical
     mobile_visibility:
       type: string
       title: 'Mobile visibility'
+      description: 'Choose whether the block is shown on small screens (max-width 768px).'
       enum: [all, hide_mobile, mobile_only]
+      meta:enum:
+        all: 'Show on all devices'
+        hide_mobile: 'Hide on mobile'
+        mobile_only: 'Show on mobile only'
       default: all
+      examples:
+        - all
+    native_share:
+      type: boolean
+      title: 'Show native share button'
+      description: 'Render a button that opens the device share sheet via the Web Share API when the browser supports it. Falls back to copying the page URL on desktop.'
+      default: false
+      examples:
+        - false
     placement:
       type: string
       title: 'Placement'
+      description: 'Inline keeps the buttons in the content flow; rail-end floats them as a sticky column beside the content (used in the approved article design).'
       enum: [inline, rail-end]
+      meta:enum:
+        inline: 'Inline'
+        rail-end: 'Rail at the end of the content'
       default: rail-end
-    native_share:
-      type: boolean
-      title: 'Native share button'
-      default: false
-    native_label:
+      examples:
+        - rail-end
+
+    # ── Implementation props (auto-populated at render time) ─────────────────
+    # Kept in the schema so callers (e.g. the legacy webshare block) can still
+    # pass them. In Canvas they default to empty; the Twig falls back to
+    # `webshare_share_data()` which fills `url` + `platforms` from the current
+    # request via the Webshare service.
+    url:
       type: string
-      title: 'Native button label'
-      default: Share
-    native_icon:
-      type: string
-      title: 'Native button icon URL'
+      title: 'Share URL'
+      description: 'Explicit URL to share. Leave empty to use the current page URL.'
       default: ''
-    native_icon_html:
+    share_title:
       type: string
-      title: 'Native button icon HTML'
+      title: 'Share title'
+      description: 'Title forwarded to the Web Share API payload.'
       default: ''
-    platforms:
-      type: array
-      title: 'Platforms'
-      default: []
+    share_text:
+      type: string
+      title: 'Share text'
+      description: 'Text forwarded to the Web Share API payload.'
+      default: ''
+    # NOTE: `webshare_links_id`, `native_label`, `native_icon`, and
+    # `native_icon_html` are intentionally NOT declared here — they are
+    # implementation details that the Twig handles via `|default(...)` and
+    # should never be exposed in the Canvas component editor. Callers that
+    # still need to override them can do so by passing extra context to the
+    # render array; the Twig accepts undefined values safely.
+    #
+    # NOTE: The `platforms` prop (array of share-link objects) is intentionally
+    # NOT declared here. Drupal Canvas cannot match an array-of-objects shape to
+    # a field widget, so declaring it makes the whole SDC ineligible for the
+    # Canvas component library. The Twig falls back to `webshare_share_data()`
+    # to fetch enabled platforms from the Webshare service.

@@ -83,7 +83,7 @@
 }
 
 .progress-bar.bg-secondary {
-  color: #fff;
+  color: #000;
 }
 
 .progress-bar.bg-success {
@@ -108,6 +108,14 @@
 
 .progress-bar.bg-dark {
   color: #fff;
+}
+
+.progress-bar.bg-tertiary {
+  color: #000;
+}
+
+.progress-bar.bg-accent {
+  color: #000;
 }
 
 [dir="ltr"] .progress-bar-striped {
