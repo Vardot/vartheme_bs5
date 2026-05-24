@@ -1,0 +1,67 @@
+"$schema": "https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json"
+name: Share
+status: stable
+description: "Vartheme BS5 override of the Webshare Share component. Implementation detail of the Sharing block — disabled in the Canvas library."
+replaces: webshare:share
+libraryOverrides:
+  dependencies:
+    - core/drupal
+    - core/once
+props:
+  type: object
+  properties:
+    url:
+      type: string
+      title: 'Share URL'
+    share_title:
+      type: string
+      title: 'Share title'
+    share_text:
+      type: string
+      title: 'Share text'
+    heading:
+      type: string
+      title: 'Heading'
+    webshare_links_id:
+      type: string
+      title: 'Links wrapper id'
+    alignment:
+      type: string
+      title: 'Alignment'
+      enum: [start, end]
+      default: end
+    orientation:
+      type: string
+      title: 'Orientation'
+      enum: [horizontal, vertical]
+      default: vertical
+    mobile_visibility:
+      type: string
+      title: 'Mobile visibility'
+      enum: [all, hide_mobile, mobile_only]
+      default: all
+    placement:
+      type: string
+      title: 'Placement'
+      enum: [inline, rail-end]
+      default: rail-end
+    native_share:
+      type: boolean
+      title: 'Native share button'
+      default: false
+    native_label:
+      type: string
+      title: 'Native button label'
+      default: Share
+    native_icon:
+      type: string
+      title: 'Native button icon URL'
+      default: ''
+    native_icon_html:
+      type: string
+      title: 'Native button icon HTML'
+      default: ''
+    platforms:
+      type: array
+      title: 'Platforms'
+      default: []

@@ -1,0 +1,43 @@
+icon_map:
+  linkedin:
+    pack: 'vartheme_social'
+    icon: 'linkedin'
+  facebook_share:
+    pack: 'vartheme_social'
+    icon: 'facebook'
+  x:
+    pack: 'vartheme_social'
+    icon: 'x'
+  whatsapp:
+    pack: 'vartheme_social'
+    icon: 'whatsapp'
+  copy:
+    pack: 'vartheme_social'
+    icon: 'clipboard'
+  email:
+    pack: 'vartheme_social'
+    icon: 'email'
+  telegram:
+    pack: 'vartheme_social'
+    icon: 'telegram'
+  reddit:
+    pack: 'vartheme_social'
+    icon: 'reddit'
+  pinterest:
+    pack: 'vartheme_social'
+    icon: 'pinterest'
+  threads:
+    pack: 'vartheme_social'
+    icon: 'threads'
+  bluesky:
+    pack: 'vartheme_social'
+    icon: 'bluesky'
+  tumblr:
+    pack: 'vartheme_social'
+    icon: 'tumblr'
+  mastodon:
+    pack: 'vartheme_social'
+    icon: 'mastodon'
+native_share_icon:
+  pack: 'vartheme_social'
+  icon: 'share-fill'

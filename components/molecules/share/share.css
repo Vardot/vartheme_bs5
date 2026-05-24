@@ -1,0 +1,254 @@
+/**
+ * @file
+ * Vartheme BS5 override of the Webshare Share component.
+ *
+ * This file demonstrates how a theme should re-skin `webshare:share`:
+ * every visual token exposed by the module's component is mapped to a
+ * Bootstrap 5 custom property so the component picks up the active
+ * Vartheme theme (light, dark, brand variants, etc.) automatically.
+ *
+ * Because Drupal SDC `replaces` swaps the entire component (twig + CSS +
+ * JS) the structural rules from the module are repeated here — but every
+ * value goes through a `--webshare-*` token, so a downstream theme can
+ * re-skin Vartheme's variant by re-declaring tokens only.
+ */
+
+.webshare {
+  /* ── Sizing tokens ─────────────────────────────────────────────── */
+  --webshare-button-size: 40px;
+  --webshare-icon-size: 20px;
+  --webshare-gap: 8px;
+  --webshare-heading-gap: 16px;
+
+  /* ── Colour + surface tokens (Figma "Share" design 9740:3590) ──── */
+  --webshare-button-bg: #ebe8e5;        /* --brand/secondary */
+  --webshare-button-bg-hover: #e4dcff;  /* --brand/accent (Figma Type=Hover) */
+  --webshare-button-bg-active: #c8b8ff; /* darker accent shade */
+  --webshare-button-color: #212529;     /* --text/dark-text */
+  --webshare-button-radius: 4px;        /* --border-radius/button */
+  --webshare-button-shadow: none;
+
+  /* ── Heading typography ───────────────────────────────────────── */
+  --webshare-heading-color: #212529;
+  --webshare-heading-font: var(--bs-body-font-family, inherit);
+  --webshare-heading-font-size: 18px;
+  --webshare-heading-font-weight: 700;
+  --webshare-heading-line-height: 1.5;
+
+  /* ── Focus + interaction ──────────────────────────────────────── */
+  --webshare-focus-ring: 2px solid var(--bs-focus-ring-color, currentColor);
+  --webshare-focus-offset: 2px;
+  --webshare-transition-duration: 0.15s;
+
+  /* ── Rail-end placement ───────────────────────────────────────── */
+  --webshare-rail-top: 6rem;
+  --webshare-rail-gap: var(--bs-gutter-x, 1.5rem);
+
+  /* ── Clipboard feedback flash ─────────────────────────────────── */
+  --webshare-copied-bg: var(--bs-success, #198754);
+  --webshare-copied-color: var(--bs-white, #fff);
+
+  /* ── Brand colour tokens (icon glyph colour per platform) ─────── */
+  --webshare-color-linkedin: #0a66c2;
+  --webshare-color-facebook: #1877f2;
+  --webshare-color-x: #000;
+  --webshare-color-whatsapp: #25d366;
+  --webshare-color-copy: var(--webshare-button-color);
+
+  box-sizing: border-box;
+}
+
+.webshare *,
+.webshare *::before,
+.webshare *::after {
+  box-sizing: border-box;
+}
+
+.webshare__heading {
+  margin: 0 0 var(--webshare-heading-gap);
+  padding: 0;
+  color: var(--webshare-heading-color);
+  font-family: var(--webshare-heading-font);
+  font-size: var(--webshare-heading-font-size);
+  font-weight: var(--webshare-heading-font-weight);
+  line-height: var(--webshare-heading-line-height);
+}
+
+.webshare__list {
+  display: flex;
+  gap: var(--webshare-gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.webshare--horizontal .webshare__list {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.webshare--vertical .webshare__list {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.webshare--align-start .webshare__list {
+  justify-content: flex-start;
+}
+
+.webshare--align-end .webshare__list {
+  justify-content: flex-end;
+}
+
+.webshare--align-end.webshare--vertical .webshare__list {
+  align-items: flex-end;
+}
+
+.webshare__item {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  line-height: 0;
+}
+
+.webshare__item::before,
+.webshare__item::marker {
+  content: none;
+}
+
+.webshare__item > a,
+.webshare__item > button,
+.webshare__item > span,
+.webshare__native-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--webshare-button-size);
+  height: var(--webshare-button-size);
+  margin: 0;
+  padding: 0;
+  transition: background-color var(--webshare-transition-duration) ease-in-out;
+  text-decoration: none;
+  color: var(--webshare-button-color);
+  border: 0;
+  border-radius: var(--webshare-button-radius);
+  background: var(--webshare-button-bg);
+  box-shadow: var(--webshare-button-shadow);
+}
+
+.webshare__item > a:hover,
+.webshare__item > a:focus,
+.webshare__item > button:hover,
+.webshare__item > button:focus,
+.webshare__native-button:hover,
+.webshare__native-button:focus {
+  text-decoration: none;
+  background: var(--webshare-button-bg-hover);
+}
+
+.webshare__item > a:active,
+.webshare__item > button:active,
+.webshare__native-button:active {
+  background: var(--webshare-button-bg-active);
+}
+
+.webshare__item > a:focus-visible,
+.webshare__item > button:focus-visible,
+.webshare__native-button:focus-visible {
+  outline: var(--webshare-focus-ring);
+  outline-offset: var(--webshare-focus-offset);
+}
+
+.webshare__item img {
+  display: block;
+  width: var(--webshare-icon-size);
+  max-width: none;
+  height: var(--webshare-icon-size);
+  max-height: none;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+}
+
+/* Bootstrap Icons inside platform + native buttons. */
+.webshare__item .bi,
+.webshare__native-button .bi {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--webshare-icon-size);
+  height: var(--webshare-icon-size);
+  font-size: var(--webshare-icon-size);
+  line-height: 1;
+  color: var(--webshare-button-color);
+}
+
+/* Brand-coloured glyphs — only applied to font-icon (`<i>`) renderings.
+   The `vartheme_social` SVG pack bakes brand colours into the path fills,
+   so leave its SVGs untouched. */
+.webshare__item--linkedin .bi {
+  color: var(--webshare-color-linkedin);
+}
+
+.webshare__item--facebook_share .bi {
+  color: var(--webshare-color-facebook);
+}
+
+.webshare__item--x .bi {
+  color: var(--webshare-color-x);
+}
+
+.webshare__item--whatsapp .bi {
+  color: var(--webshare-color-whatsapp);
+}
+
+.webshare__item--copy .bi {
+  color: var(--webshare-color-copy);
+}
+
+.webshare__item--copy > a,
+.webshare__item--copy > button,
+.webshare__native-button {
+  cursor: pointer;
+}
+
+.webshare__native-icon {
+  display: block;
+  width: var(--webshare-icon-size);
+  height: var(--webshare-icon-size);
+}
+
+.webshare__native-button {
+  font: inherit;
+  line-height: 0;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.webshare__native-button.webshare--copied {
+  background: var(--webshare-copied-bg);
+  color: var(--webshare-copied-color);
+}
+
+@media (min-width: 992px) {
+  .webshare--rail-end {
+    position: sticky;
+    top: var(--webshare-rail-top);
+    float: inline-end;
+    margin-inline-start: var(--webshare-rail-gap);
+    margin-block-end: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .webshare.webshare--hide-mobile {
+    display: none;
+  }
+}
+
+@media (min-width: 769px) {
+  .webshare.webshare--mobile-only {
+    display: none;
+  }
+}

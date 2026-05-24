@@ -44,3 +44,34 @@ bootstrap_icons:
     <svg{{ svg_attributes }}>
       {{ content }}
     </svg>
+
+vartheme_social:
+  enabled: true
+  label: "Vartheme social"
+  description: "Brand-coloured social platform icons that ship with Vartheme BS5."
+  version: 1.0.0
+  license:
+    name: GPL-2.0-or-later
+    gpl-compatible: true
+  extractor: svg
+  config:
+    sources:
+      - images/icons/social/*.svg
+  template: >-
+    {% set svg_attributes = attributes
+      .setAttribute('viewBox', attributes.viewBox|default('0 0 16 16'))
+      .setAttribute('width', size|default('20'))
+      .setAttribute('height', size|default('20'))
+      .setAttribute('role', 'img')
+    %}
+    {% if alt|default('')|trim %}
+      {% set svg_attributes = svg_attributes
+        .setAttribute('aria-label', alt|trim)
+        .setAttribute('aria-hidden', 'false')
+      %}
+    {% else %}
+      {% set svg_attributes = svg_attributes.setAttribute('aria-hidden', 'true') %}
+    {% endif %}
+    <svg{{ svg_attributes }}>
+      {{ content }}
+    </svg>
