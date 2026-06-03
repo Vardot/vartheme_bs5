@@ -25,6 +25,13 @@
 {% set is_link_variant = variant_class == 'btn-link' %}
 {% set padding_class = is_link_variant ? 'p-0' : '' %}
 
+{#
+  Inline buttons (no alignment wrapper) receive me-3 mb-3 so that when
+  multiple buttons appear as siblings they automatically have 16px (gap-3)
+  spacing both horizontally and vertically across rows.
+#}
+{% set is_inline = alignment == 'inline' %}
+
 {% set wrapper_class = alignment == 'left' ? 'd-flex justify-content-start'
   : alignment == 'center' ? 'd-flex justify-content-center'
   : alignment == 'right' ? 'd-flex justify-content-end'
@@ -42,7 +49,9 @@
   'align-items-center',
   'justify-content-center',
   'gap-2',
-  'fw-bold'
+  'fw-bold',
+  is_inline ? 'me-3' : '',
+  is_inline ? 'mb-3' : '',
 ] %}
 
 {% if has_icon and not is_icon_first %}
