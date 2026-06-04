@@ -1,23 +1,17 @@
 # Taxonomy
 
-A small taxonomy label component styled with **Bootstrap utilities**, plus minimal SCSS for details that Bootstrap doesn’t provide (letter-spacing + hover).
-
-## Files
-- `taxonomy.twig` – Component template
-- `taxonomy.component.yml` – SDC metadata (Canvas-friendly props)
-- `taxonomy.scss` / `taxonomy.css` – Minimal styling using CSS Logical Properties
-- `taxonomy.mdx` / `taxonomy.stories.twig` / `taxonomy.stories.json` – Storybook docs & stories
+A small taxonomy badge component that renders as a `<span>` or an `<a>` link. Styled entirely with Bootstrap utilities.
 
 ## Props
 
-| Prop | Type | Required | Default | Notes |
-|---|---|---:|---|---|
-| `label` | string | ✅ | – | Text shown inside the taxonomy badge |
-| `url` | string | ❌ | `""` | If provided, renders as a link (`<a>`) |
-| `target` | string | ❌ | `_self` | Only used when `url` is provided (`_self` / `_blank`) |
-| `size` | string | ❌ | `taxonomy-lg` | Typography size modifier (`taxonomy-lg`, `taxonomy-sm`) |
+| Prop     | Type   | Required | Default       | Description |
+|----------|--------|:--------:|---------------|-------------|
+| `label`  | string | ✅       | —             | Text shown inside the badge |
+| `url`    | string | ❌       | `""`          | When provided, renders as a link (`<a>`) |
+| `target` | string | ❌       | `_self`       | `_self` or `_blank`. Only used when `url` is set. `_blank` automatically adds `rel="noopener noreferrer"` |
+| `size`   | string | ❌       | `taxonomy-lg` | `taxonomy-lg` (large) or `taxonomy-sm` (small) |
 
-## Twig usage
+## Usage
 
 ```twig
 {% include "vartheme_bs5:taxonomy" with {
@@ -28,6 +22,9 @@ A small taxonomy label component styled with **Bootstrap utilities**, plus minim
 } %}
 ```
 
-## Notes
-- HTML ID / extra CSS class props are intentionally **not** included.
-- SCSS uses **CSS Logical Properties** (`padding-block`, `padding-inline`).
+## Files
+
+- [taxonomy.twig](taxonomy.twig) — Component template
+- [taxonomy.component.yml](taxonomy.component.yml) — SDC metadata and prop definitions
+- [taxonomy.stories.twig](taxonomy.stories.twig) — Storybook stories
+- [taxonomy.mdx](taxonomy.mdx) — Storybook documentation

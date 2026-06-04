@@ -21,7 +21,6 @@ module.exports = {
     // Components
     'base/root/root': ['./components/base/root/root.scss'],
     'atoms/progress-bar/progress-bar': ['./components/atoms/progress-bar/progress-bar.scss'],
-    'atoms/taxonomy/taxonomy': ['./components/atoms/taxonomy/taxonomy.scss'],
     'molecules/accordion-block/accordion-block': ['./components/molecules/accordion-block/accordion-block.scss'],
     'organisms/hero-slider-container/hero-slider-container': ['./components/organisms/hero-slider-container/hero-slider-container.scss'],
     'molecules/alert/alert': ['./components/molecules/alert/alert.scss'],

@@ -1,11 +1,11 @@
-{# Taxonomy component (SDC + Canvas, Bootstrap utilities + minimal SCSS) #}
+{# Taxonomy component (SDC + Canvas, Bootstrap utilities only) #}
 
 {% set has_url = url is defined and url is not empty %}
 
-{# Size modifier class (taxonomy-lg / taxonomy-sm) #}
-{% set size_class = size|default('taxonomy-lg') %}
+{# Map size prop to Bootstrap font-size utilities #}
+{% set size_class = size == 'taxonomy-sm' ? '' : 'fs-6' %}
 
-{# Base visual styling #}
+{# Base visual styling — pure Bootstrap utilities, no custom CSS #}
 {% set base_classes = [
   'taxonomy',
   'badge',
@@ -16,8 +16,10 @@
   'fw-bold',
   'text-uppercase',
   'rounded-1',
-  'bg-secondary-subtle',
-  'text-dark',
+  'bg-dark',
+  'text-accent',
+  'border',
+  'border-accent',
   size_class,
 ] %}
 
