@@ -12,6 +12,22 @@
     },
   },
   argTypes: {
+    icon_image: {
+      name: 'Icon image',
+      description: 'Upload an icon image (SVG, PNG, or WebP). Leave empty to show no icon.',
+      control: 'object',
+    },
+    icon_alignment: {
+      name: 'Icon alignment',
+      description: 'Horizontal alignment of the icon within the card.',
+      defaultValue: 'start',
+      control: 'select',
+      options: {
+        Left: 'start',
+        Center: 'center',
+        Right: 'end',
+      },
+    },
     card_border: {
       name: 'Card border',
       description: 'Adds default Bootstrap border.',
@@ -269,6 +285,31 @@
   {% block content %}
     <h3 class="h5 mb-2">Secondary subtle</h3>
     <p class="mb-0">Warm neutral background for understated, content-forward cards.</p>
+  {% endblock %}
+{% endembed %}
+{% endstory %}
+
+{% story WithIcon with {
+  name: 'With icon (left)',
+  args: {
+    icon_image: { src: '/components/organisms/card-text/assets/icon-placeholder.svg', alt: '', width: 64, height: 64 },
+    icon_alignment: 'start',
+    card_border: true,
+    background_color: 'none',
+    padded: true,
+    box_shadow: 'shadow-sm',
+    corner_style: 'rounded-3',
+    equal_height: false,
+    stretched_link: false,
+    link_url: '',
+    link_target: 'default',
+  },
+} %}
+{% embed 'vartheme_bs5:card-text' with _context %}
+  {% block content %}
+    <h3 class="h5 mb-2">Card with icon</h3>
+    <p class="mb-3">Upload an icon image to display it above the content area. Leave the icon field empty to use the card as a plain text card.</p>
+    <a href="#" class="btn btn-primary">Action</a>
   {% endblock %}
 {% endembed %}
 {% endstory %}

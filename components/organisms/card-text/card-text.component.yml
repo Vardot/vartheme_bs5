@@ -2,8 +2,7 @@ $schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schema
 name: 'Text Card'
 group: Card
 status: stable
-description: 'Stacked card layout with no media. One drag & drop content area. Built
-  with Bootstrap 5 utility classes.'
+description: 'Stacked card layout with an optional uploaded icon image and a drag-and-drop content area. Built with Bootstrap 5 utility classes.'
 props:
   type: object
   properties:
@@ -106,6 +105,31 @@ props:
         default: Default (same tab)
         _self: Same tab
         _blank: New tab
+    icon_image:
+      $ref: json-schema-definitions://canvas.module/image
+      type: object
+      title: Icon image
+      description: Upload an icon image (SVG, PNG, or WebP). Leave empty to hide the icon area — the card renders as a plain text card.
+      examples:
+        - src: assets/icon-placeholder.svg
+          alt: ''
+          width: 64
+          height: 64
+    icon_alignment:
+      type: string
+      title: Icon alignment
+      description: Horizontal alignment of the icon within the card.
+      enum:
+        - start
+        - center
+        - end
+      default: start
+      examples:
+        - start
+      meta:enum:
+        start: Left
+        center: Center
+        end: Right
 slots:
   content:
     title: Card content

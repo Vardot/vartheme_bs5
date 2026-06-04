@@ -1,7 +1,26 @@
-@import "../../defaults";   // Global component defaults.
+@import "../../defaults"; // Global component defaults.
 
 .card-text {
   .stretched-link {
     z-index: 99;
+  }
+
+  // --- Optional icon --------------------------------------------------------
+
+  // Icon wrapper: constrains the uploaded image to the chosen size.
+  &__icon {
+    --icon-max-width: 3rem; // 48 px default (icon-md)
+    line-height: 0; // collapse any descendant inline spacing
+
+    figure {
+      max-width: var(--icon-max-width);
+      margin: 0;
+
+      img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+      }
+    }
   }
 }

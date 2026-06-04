@@ -6,9 +6,10 @@ import templateSource from './card-text.twig?raw';
 
 # Card Text
 
-A lightweight text-only Bootstrap card with a single drag-and-drop content slot and no media area. Controls border, padding, background, shadow, border radius, equal height, and full-card stretched link.
+A lightweight Bootstrap card with an optional uploaded icon image, a single drag-and-drop content slot, and no media area. Controls icon size and alignment, border, padding, background, shadow, border radius, equal height, and full-card stretched link.
 
-- No media area — the content slot is the only region
+- **Icon is optional** — upload an image to `icon_image` to show it above the content; leave empty for a plain text card
+- `icon_alignment` positions the icon: `start` (left), `center`, `end` (right)
 - `stretched_link` requires `link_url` to be set — makes the entire card clickable
 - `padded: true` adds `p-4` to the content wrapper; `padded: false` removes all padding
 - `equal_height: true` adds `h-100` for consistent heights in grid row layouts
@@ -116,6 +117,47 @@ A lightweight text-only Bootstrap card with a single drag-and-drop content slot 
   {% block content %}
     <h3 class="h5 mb-2 text-white">Dark card</h3>
     <p class="mb-0 text-white-50">Use text utility classes when working with dark backgrounds.</p>
+  {% endblock %}
+{% endembed %}
+```
+
+### Example 6 — With icon (left-aligned)
+
+Upload an icon image to `icon_image` to display it above the content. The icon only renders when an image is provided — leaving it empty gives a plain text card.
+
+```twig
+{% embed 'vartheme_bs5:card-text' with {
+  icon_image: { src: '/path/to/icon.svg', alt: '', width: 64, height: 64 },
+  icon_alignment: 'start',
+  card_border: true,
+  background_color: 'none',
+  padded: true,
+  box_shadow: 'shadow-sm',
+  corner_style: 'rounded-3',
+} %}
+  {% block content %}
+    <h3 class="h5 mb-2">Card with icon</h3>
+    <p class="mb-3">The icon appears above the content area when an image is uploaded.</p>
+    <a href="#" class="btn btn-primary">Action</a>
+  {% endblock %}
+{% endembed %}
+```
+
+### Example 7 — With icon (centered)
+
+```twig
+{% embed 'vartheme_bs5:card-text' with {
+  icon_image: { src: '/path/to/icon.svg', alt: '', width: 64, height: 64 },
+  icon_alignment: 'center',
+  card_border: true,
+  background_color: 'bg-body-tertiary',
+  padded: true,
+  box_shadow: 'shadow-sm',
+  corner_style: 'rounded-3',
+} %}
+  {% block content %}
+    <h3 class="h5 mb-2 text-center">Centered icon card</h3>
+    <p class="mb-0 text-center">Icon and content aligned to center.</p>
   {% endblock %}
 {% endembed %}
 ```

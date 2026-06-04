@@ -1,6 +1,7 @@
 {#
   Text Card
   - Stacked layout (no media)
+  - Optional uploaded icon image above the content area
   - One drag & drop slot: content
 #}
 
@@ -8,15 +9,27 @@
 {% set padded = padded|default(false) %}
 {% set equal_height = equal_height|default(false) %}
 {% set box_shadow = box_shadow|default('shadow-none') %}
-{% set background_color = background_color|default('bg-transparent') %}
+{% set background_color_raw = background_color|default('none') %}
+{% set background_color_class = (background_color_raw != 'none') ? background_color_raw : '' %}
 {% set corner_style = corner_style|default('rounded-0') %}
-
 {% set stretched_link = stretched_link|default(false) %}
-
 {% set link_url = link_url|default('')|trim %}
 {% set link_target_raw = link_target|default('default') %}
 {% set link_target = (link_target_raw == 'default') ? '_self' : link_target_raw %}
 
+{# Icon image (optional — only rendered when an image is uploaded) ----------- #}
+{% set icon_image = icon_image|default({}) %}
+{% set has_icon = (icon_image.src is defined) and (icon_image.src|trim is not empty) %}
+{% set icon_alignment = icon_alignment|default('start') %}
+{% set icon_align_map = { 'start': 'me-auto', 'center': 'mx-auto', 'end': 'ms-auto' } %}
+{% set icon_align_class = icon_align_map[icon_alignment]|default('me-auto') %}
+
+{# Fix relative assets/ paths injected by component.yml examples #}
+{% if has_icon and icon_image.src starts with 'assets/' and component_metadata.path is defined %}
+  {% set icon_image = icon_image|merge({ src: component_metadata.path ~ '/' ~ icon_image.src }) %}
+{% endif %}
+
+{# Drag & drop content slot -------------------------------------------------- #}
 {% set content_slot %}{% block content %}{% endblock %}{% endset %}
 {% set has_content_slot = content_slot|render|trim is not empty %}
 
@@ -29,11 +42,10 @@
   'flex-column',
   'overflow-hidden',
   'position-relative',
-  background_color,
+  background_color_class,
   corner_style,
   (card_border ? 'border' : 'border-0'),
   box_shadow,
-  (use_stretched_link ? 'position-relative' : ''),
   (equal_height ? 'h-100' : ''),
 ]|filter(v => v is not empty)) %}
 
@@ -45,11 +57,28 @@
 
 <div{{ card_attributes }}>
   <div{{ card_body_attributes }}>
+
+    {# Optional icon image — shown only when icon_image is uploaded #}
+    {% if has_icon %}
+      <div class="card-text__icon mb-3">
+        {{ include('vartheme_bs5:image', {
+          media: icon_image,
+          ratio: 'ratio-auto',
+          fit: 'object-fit-contain',
+          align: icon_align_class,
+          width: 'w-auto',
+          loading: 'eager',
+        }, with_context = false) }}
+      </div>
+    {% endif %}
+
+    {# Drag & drop content slot #}
     {% if has_content_slot %}
       {{ content_slot }}
     {% else %}
       <div class="text-muted small py-3 pe-none">Drop content here</div>
     {% endif %}
+
   </div>
 
   {% if use_stretched_link %}

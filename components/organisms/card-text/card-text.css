@@ -1,3 +1,21 @@
 .card-text .stretched-link {
   z-index: 99;
 }
+
+.card-text__icon {
+  --icon-max-width: 3rem;
+
+  line-height: 0;
+}
+
+.card-text__icon figure {
+  max-width: var(--icon-max-width);
+  margin: 0;
+}
+
+.card-text__icon figure img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
