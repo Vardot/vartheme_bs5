@@ -4,7 +4,7 @@
     componentSubtitle: 'Bootstrap accordion single item',
     docs: {
       description: {
-        component: 'A single collapsible accordion item with a configurable header, heading level, default open state, and optional header color.',
+        component: 'A single collapsible accordion item. Default style: secondary-subtle background, dark text. Hover: secondary background with primary (#0D6EFD) text. An optional color class can override the header button appearance.',
       },
       story: {
         inline: true,
@@ -40,7 +40,7 @@
       defaultValue: false,
     },
     color: {
-      name: 'Header color',
+      name: 'Header color override',
       control: 'select',
       defaultValue: 'inherit',
       options: {
@@ -51,7 +51,6 @@
         Danger: 'text-bg-danger',
         Warning: 'text-bg-warning',
         Info: 'text-bg-info',
-        Light: 'text-bg-light',
         Dark: 'text-bg-dark',
       },
     },
@@ -96,7 +95,7 @@
     heading_level: 3,
     open_by_default: true,
     always_open: false,
-    color: 'text-bg-light',
+    color: 'inherit',
     item_id: 'open-default',
   },
 } %}
@@ -122,7 +121,7 @@
     heading_level: 3,
     open_by_default: false,
     always_open: false,
-    color: 'text-bg-light',
+    color: 'inherit',
     item_id: 'closed-default',
   },
 } %}
@@ -174,7 +173,7 @@
     heading_level: 3,
     open_by_default: true,
     always_open: false,
-    color: 'text-bg-light',
+    color: 'inherit',
     item_id: 'rich-content',
   },
 } %}

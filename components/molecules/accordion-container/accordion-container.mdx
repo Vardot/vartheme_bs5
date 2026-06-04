@@ -37,7 +37,7 @@ A Bootstrap 5 accordion wrapper that manages a group of collapsible **Accordion 
   id: 'faq-accordion',
   flush: false,
   always_open: false,
-  color: 'text-bg-light',
+  color: '',
 } %}
   {% block accordion_content %}
     {% embed 'vartheme_bs5:accordion-block' with {
@@ -104,7 +104,7 @@ A Bootstrap 5 accordion wrapper that manages a group of collapsible **Accordion 
 ```twig
 {% embed 'vartheme_bs5:accordion-container' with {
   flush: true,
-  color: 'text-bg-light',
+  color: '',
 } %}
   {% block accordion_content %}
     {% embed 'vartheme_bs5:accordion-block' with {

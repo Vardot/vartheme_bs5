@@ -58,8 +58,8 @@ props:
       default: false
     color:
       type: string
-      title: Header color
-      description: Applies a Bootstrap background/text utility class directly to the accordion button.
+      title: Header color override
+      description: Optional Bootstrap text-bg-* class applied to the button to override the default design (secondary-subtle bg, dark text). Use inherit to receive the container color.
       enum:
         - inherit
         - text-bg-primary
@@ -68,7 +68,6 @@ props:
         - text-bg-danger
         - text-bg-warning
         - text-bg-info
-        - text-bg-light
         - text-bg-dark
       meta:enum:
           inherit: Inherit from container
@@ -78,7 +77,6 @@ props:
           text-bg-danger: Danger
           text-bg-warning: Warning
           text-bg-info: Info
-          text-bg-light: Light
           text-bg-dark: Dark
       default: inherit
 slots:

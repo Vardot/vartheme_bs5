@@ -5,26 +5,29 @@
 $accordion-padding-y: 0.9375rem;
 $accordion-padding-x: 0.9375rem;
 $accordion-border-width: 1px;
-$accordion-border-color: var(--bs-primary);
+$accordion-border-color: var(--bs-border-color);
 $accordion-border-radius: 0.125rem;
 $accordion-inner-border-radius: subtract($accordion-border-radius, $accordion-border-width) !default;
+
+// Design: $secondary-bg-subtle ($linen) bg, dark text, $secondary ($sand) hover bg, primary hover text.
+$accordion-bg: $secondary-bg-subtle;
 
 $accordion-body-padding-y: $accordion-padding-y;
 $accordion-body-padding-x: $accordion-padding-x;
 
 $accordion-button-padding-y: $accordion-padding-y;
 $accordion-button-padding-x: $accordion-padding-x;
-$accordion-button-active-bg: var(--#{$prefix}primary-bg-subtle) !default;
-$accordion-button-active-color: var(--#{$prefix}primary-text-emphasis) !default;
+$accordion-button-active-bg: $secondary-bg-subtle;
+$accordion-button-active-color: var(--bs-dark);
 
-$accordion-button-focus-border-color: var(--bs-primary);
-$accordion-button-focus-box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25);
+$accordion-button-focus-border-color: var(--bs-border-color);
+$accordion-button-focus-box-shadow: none;
 
 $accordion-icon-width: 0.9375rem;
 
 @import "../../../node_modules/bootstrap/scss/accordion";
 
-// Change default bootstrap accordion style.
+// Design overrides: secondary-subtle background, dark default text, secondary hover bg, primary hover text.
 .accordion {
   .accordion-item {
     margin-block-start: 1.25rem;
@@ -40,12 +43,17 @@ $accordion-icon-width: 0.9375rem;
 
   .accordion-button {
     font-weight: 700;
-    background-color: $accordion-bg;
+    background-color: var(--bs-secondary-bg-subtle);
+    color: var(--bs-dark);
     box-shadow: none;
     text-align: start;
 
-    &.collapsed {
-      background-color: $accordion-bg;
+    &,
+    &.collapsed,
+    &:not(.collapsed) {
+      background-color: var(--bs-secondary-bg-subtle);
+      color: var(--bs-dark);
+      box-shadow: none;
     }
 
     &::after {
@@ -55,8 +63,9 @@ $accordion-icon-width: 0.9375rem;
     &:hover,
     &:focus,
     &:active {
-      background-color: var(--bs-accordion-active-bg);
-      box-shadow: var(--bs-accordion-btn-focus-box-shadow);
+      background-color: var(--bs-secondary);
+      color: #0D6EFD;
+      box-shadow: none;
     }
   }
 }

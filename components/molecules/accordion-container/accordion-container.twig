@@ -11,7 +11,7 @@
 {# These variables are passed down to child accordion-block components via Twig context. #}
 {% set accordion_parent_id   = accordion_id %}
 {% set accordion_always_open = always_open ? true : false %}
-{% set accordion_color       = color|default('text-bg-light') %}
+{% set accordion_color       = color|default('') %}
 
 {# --- Resolve state flags --- #}
 {% set has_slot_content = accordion_content is defined and accordion_content|render|trim is not empty %}

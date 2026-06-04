@@ -2,6 +2,14 @@
 
 The Accordion container component renders the parent Bootstrap accordion wrapper and manages shared behavior for nested accordion items.
 
+## Design
+
+| State         | Background               | Text color         |
+|---------------|--------------------------|--------------------|
+| Default       | `bg-secondary-subtle`    | `text-dark`        |
+| Hover / focus | `bg-secondary`           | `#0D6EFD` (primary)|
+| Active (open) | `bg-secondary-subtle`    | `text-dark`        |
+
 ## When to use
 
 Use this component when you want to group multiple Accordion items under a single accordion system. It is useful for FAQs, pricing details, product specifications, policy summaries, and any content that should be grouped into collapsible sections.
@@ -12,76 +20,26 @@ Use this component when you want to group multiple Accordion items under a singl
 - Optional flush style
 - Optional always-open behavior for multiple expanded items
 - Shared generated or custom accordion ID
-- Passes a default header color to nested accordion items
+- Optional color override passed to nested accordion items
 - Works cleanly with drag-and-drop accordion item content
 
 ## Properties
 
 ### `id`
-Optional ID for the accordion wrapper. This is used for Bootstrap `data-bs-parent` behavior.
-
-Example:
-
-```text
-faq-accordion
-```
-
-Default: empty (auto-generated)
+Optional ID for the accordion wrapper. Used for Bootstrap `data-bs-parent` behavior. Default: empty (auto-generated)
 
 ### `flush`
-Applies Bootstrap `accordion-flush` styling to remove the default outer borders and rounding.
-
-Options:
-
-```text
-true
-false
-```
-
-Default: `false`
+Applies Bootstrap `accordion-flush` styling to remove the default outer borders and rounding. Default: `false`
 
 ### `always_open`
-Allows multiple accordion items to remain open at the same time.
-
-Options:
-
-```text
-true
-false
-```
-
-Default: `false`
+Allows multiple accordion items to remain open at the same time. Default: `false`
 
 ### `color`
-Default header color passed to nested accordion items when an item uses `inherit`.
+Optional Bootstrap `text-bg-*` class passed to nested accordion items when an item uses `inherit`. Leave empty to use the default design (secondary-subtle background, dark text).
 
-Editor options:
+Options: `''` (default) `text-bg-primary` `text-bg-secondary` `text-bg-success` `text-bg-danger` `text-bg-warning` `text-bg-info` `text-bg-dark`
 
-```text
-Primary
-Secondary
-Success
-Danger
-Warning
-Info
-Light
-Dark
-```
-
-Stored values:
-
-```text
-text-bg-primary
-text-bg-secondary
-text-bg-success
-text-bg-danger
-text-bg-warning
-text-bg-info
-text-bg-light
-text-bg-dark
-```
-
-Default: `text-bg-light`
+Default: `''` (empty — CSS controls styling)
 
 ## Slot
 
@@ -97,7 +55,6 @@ Place one or more Accordion items inside this slot.
   id: 'faq-accordion',
   flush: false,
   always_open: false,
-  color: 'text-bg-light'
 } %}
   {% block accordion_content %}
     {% embed 'vartheme_bs5:accordion-block' with {
@@ -115,7 +72,7 @@ Place one or more Accordion items inside this slot.
       title: 'Second item',
       heading_level: 3,
       open_by_default: false,
-      color: 'text-bg-primary'
+      color: 'inherit'
     } %}
       {% block accordion_content %}
         <p class="mb-0">Second accordion content.</p>
@@ -131,7 +88,6 @@ Place one or more Accordion items inside this slot.
 {% embed 'vartheme_bs5:accordion-container' with {
   id: 'support-topics',
   always_open: true,
-  color: 'text-bg-info'
 } %}
   {% block accordion_content %}
     {% embed 'vartheme_bs5:accordion-block' with {
@@ -150,5 +106,5 @@ Place one or more Accordion items inside this slot.
 ## Notes
 
 - Add the container first, then place Accordion items inside it.
-- Nested Accordion items can inherit the container color by using `inherit` on the item.
+- Nested items can inherit the container color by using `inherit` on the block.
 - If no ID is provided, the component generates one automatically.

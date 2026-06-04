@@ -4,7 +4,7 @@
     componentSubtitle: 'Bootstrap accordion wrapper',
     docs: {
       description: {
-        component: 'A Bootstrap 5 accordion wrapper that groups multiple accordion items. Controls flush style, multi-open behavior, and the default header color inherited by nested items.',
+        component: 'A Bootstrap 5 accordion wrapper that groups multiple accordion items. Default style: secondary-subtle background, dark text, secondary hover background, primary (#0D6EFD) hover text. Controls flush style, multi-open behavior, and an optional color override inherited by nested items.',
       },
       story: {
         inline: true,
@@ -28,11 +28,11 @@
       defaultValue: false,
     },
     color: {
-      name: 'Default header color',
+      name: 'Header color override',
       control: 'select',
-      defaultValue: 'text-bg-light',
+      defaultValue: '',
       options: {
-        "'Light (default)'": 'text-bg-light',
+        "'Default (secondary subtle)'": '',
         Primary: 'text-bg-primary',
         Secondary: 'text-bg-secondary',
         Success: 'text-bg-success',
@@ -51,7 +51,7 @@
     id: '',
     flush: false,
     always_open: false,
-    color: 'text-bg-light',
+    color: '',
   },
 } %}
 {% set accordion_content %}
@@ -104,7 +104,7 @@
     id: 'flush-demo',
     flush: true,
     always_open: false,
-    color: 'text-bg-light',
+    color: '',
   },
 } %}
 {% set accordion_content %}
@@ -146,7 +146,7 @@
     id: 'always-open-demo',
     flush: false,
     always_open: true,
-    color: 'text-bg-light',
+    color: '',
   },
 } %}
 {% set accordion_content %}
@@ -256,12 +256,12 @@
     id: 'mixed-colors-demo',
     flush: false,
     always_open: false,
-    color: 'text-bg-light',
+    color: '',
   },
 } %}
 {% set accordion_content %}
     {% set accordion_content %}
-        <p class="mb-0">This item inherits the container's default <code>text-bg-light</code> color.</p>
+        <p class="mb-0">This item inherits the container's default design (secondary-subtle background, dark text).</p>
       {% endset %}
 {{ include('vartheme_bs5:accordion-block', {
       title: 'Inherited color (light)',
@@ -309,7 +309,7 @@
     id: 'faq-accordion',
     flush: false,
     always_open: false,
-    color: 'text-bg-light',
+    color: '',
   },
 } %}
 {% set accordion_content %}

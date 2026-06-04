@@ -22,10 +22,9 @@ props:
       default: false
     color:
       type: string
-      title: Default header color
-      description: Passed to nested accordion buttons when an item does not override it.
+      title: Header color override
+      description: Optional Bootstrap text-bg-* class passed to nested accordion items. Omit to use the default design (secondary-subtle bg, dark text, secondary hover, primary hover text).
       enum:
-        - text-bg-light
         - text-bg-primary
         - text-bg-secondary
         - text-bg-success
@@ -34,7 +33,6 @@ props:
         - text-bg-info
         - text-bg-dark
       meta:enum:
-          text-bg-light: Light (default)
           text-bg-primary: Primary
           text-bg-secondary: Secondary
           text-bg-success: Success
@@ -42,7 +40,6 @@ props:
           text-bg-warning: Warning
           text-bg-info: Info
           text-bg-dark: Dark
-      default: text-bg-light
 
 slots:
   accordion_content:
