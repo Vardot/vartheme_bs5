@@ -318,6 +318,9 @@ props:
         '06_06': '50% - 50%'
         '12_12': '100% - 100%'
 slots:
+  overlay:
+    title: Media overlay
+    description: 'Drag & drop slot rendered as a badge overlay in the top-left corner of the media image. Drop a Badge or any inline element here. Renders even when no image is uploaded (shows placeholder).'
   content:
-    title: Card content (slot)
-    description: Content slot for text/buttons/etc.
+    title: Card content
+    description: Drag & drop content slot for text, buttons, and other elements.

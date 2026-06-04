@@ -371,4 +371,46 @@
 {% endembed %}
 {% endstory %}
 
+{% story MediaOverlay with {
+  name: 'Media overlay',
+  args: {
+    card_border: true,
+    corner_style: 'rounded-3',
+    padded: true,
+    equal_height: false,
+    stretched_link: false,
+    link_url: '',
+    link_target: 'default',
+    media_position: 'start',
+    content_vertical_alignment: 'align-items-center',
+    gutters_between: 'g-2 g-lg-3',
+    columns_xs_size: '06_06',
+    columns_md_size: '08_04',
+    media_image: {
+      src: '/components/organisms/card-featured/assets/featured-card-image-placeholder.svg',
+      alt: 'Featured image',
+      width: 800,
+      height: 600,
+    },
+    ratio: 'ratio-16x9',
+    fit: 'object-fit-cover',
+  },
+} %}
+{% embed 'vartheme_bs5:card-featured' with _context %}
+  {% block overlay %}
+    {{ include('vartheme_bs5:badge', {
+      label: 'Feature',
+      variant: 'text-bg-dark',
+      size: 'fs-6 px-2 py-1',
+      radius: 'rounded-1',
+    }, with_context: false) }}
+  {% endblock %}
+  {% block content %}
+    <h3 class="h5 mb-2">Media overlay</h3>
+    <p class="mb-3">Drop any component (e.g. Badge) into the <code>overlay</code> slot to show a badge or label in the top-left corner of the media image.</p>
+    <a class="btn btn-primary" href="#">Learn more</a>
+  {% endblock %}
+{% endembed %}
+{% endstory %}
+
 {% endstories %}

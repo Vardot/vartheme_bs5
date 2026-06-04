@@ -6,10 +6,11 @@ import templateSource from './card-featured.twig?raw';
 
 # Featured Card
 
-A responsive two-column featured card with an optional media image and a flexible content slot. Supports configurable column ratios per breakpoint, gutter control, content vertical alignment, border, padding, equal height, and optional stretched-link for whole-card click behavior.
+A responsive two-column featured card with an optional media image, a media overlay slot, and a flexible content slot. Supports configurable column ratios per breakpoint, gutter control, content vertical alignment, border, padding, equal height, and optional stretched-link for whole-card click behavior.
 
 - Media column is optional — set `media_position` to `no-media` to expand the content to full width
 - Column ratios are controlled per breakpoint (`columns_xs_size`, `columns_md_size`, etc.) using Bootstrap grid values
+- **`overlay` slot** — drop a Badge or any inline element into the `overlay` slot to render it as an absolute-positioned label in the top-left corner of the media image. The media column appears automatically when the overlay slot has content (even without an uploaded image).
 - `stretched_link` requires a `link_url` to be set; makes the entire card clickable
 - Uses Bootstrap utility classes only — no custom CSS required
 
@@ -106,6 +107,66 @@ A responsive two-column featured card with an optional media image and a flexibl
   {% block content %}
     <h3 class="h5 mb-2">Clickable featured card</h3>
     <p class="mb-0">The whole card becomes clickable when stretched link is enabled.</p>
+  {% endblock %}
+{% endembed %}
+```
+
+### Example #4 : Media overlay (badge on image)
+
+Drop any inline component — typically a Badge — into the `overlay` slot. It renders as a `position-absolute` element in the top-left corner of the media column.
+
+```twig
+{% embed 'vartheme_bs5:card-featured' with {
+  card_border: true,
+  padded: true,
+  media_position: 'start',
+  columns_xs_size: '06_06',
+  columns_md_size: '08_04',
+  ratio: 'ratio-16x9',
+  media_image: {
+    src: '/path/to/image.jpg',
+    alt: 'Featured image',
+    width: 800,
+    height: 600
+  }
+} %}
+  {% block overlay %}
+    {{ include('vartheme_bs5:badge', {
+      label: 'Feature',
+      variant: 'text-bg-dark',
+      size: 'fs-6 px-2 py-1',
+      radius: 'rounded-1',
+    }, with_context: false) }}
+  {% endblock %}
+  {% block content %}
+    <h3 class="h5 mb-2">Featured card with overlay</h3>
+    <p class="mb-3">The badge appears in the top-left corner of the image.</p>
+    <a class="btn btn-primary" href="#">Learn more</a>
+  {% endblock %}
+{% endembed %}
+```
+
+### Example #5 : Overlay without an image (auto-shows placeholder)
+
+When the `overlay` slot has content and no `media_image` is uploaded, the media column renders automatically with the placeholder image so the overlay always has a surface to sit on.
+
+```twig
+{% embed 'vartheme_bs5:card-featured' with {
+  card_border: true,
+  padded: true,
+  media_position: 'start',
+  columns_xs_size: '06_06',
+  columns_md_size: '08_04',
+} %}
+  {% block overlay %}
+    {{ include('vartheme_bs5:badge', {
+      label: 'New',
+      variant: 'text-bg-primary',
+    }, with_context: false) }}
+  {% endblock %}
+  {% block content %}
+    <h3 class="h5 mb-2">Overlay on placeholder</h3>
+    <p class="mb-0">Media column appears automatically when overlay slot is filled.</p>
   {% endblock %}
 {% endembed %}
 ```

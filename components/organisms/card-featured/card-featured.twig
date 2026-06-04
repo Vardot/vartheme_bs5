@@ -2,7 +2,7 @@
   Featured Card
   - Bootstrap utility classes only (no custom classes)
   - Responsive grid ratios per breakpoint
-  - One slot: content (media is a prop)
+  - Two drag & drop slots: overlay (over the media image) and content
 #}
 
 {% set card_border = card_border|default(false) %}
@@ -27,7 +27,10 @@
 {% set link_target_raw = link_target|default('default') %}
 {% set link_target = (link_target_raw == 'default') ? '_self' : link_target_raw %}
 
+{# Capture slots — overlay first so it can influence media column rendering #}
+{% set overlay_slot %}{% block overlay %}{% endblock %}{% endset %}
 {% set content_slot %}{% block content %}{% endblock %}{% endset %}
+{% set has_overlay_slot = overlay_slot|render|trim is not empty %}
 {% set has_content_slot = content_slot|render|trim is not empty %}
 {% set empty_slot_classes = not has_content_slot ? 'd-flex align-items-center justify-content-center text-center' : '' %}
 
@@ -67,6 +70,9 @@
 {% set use_stretched_link = stretched_link and (link_url is not empty) %}
 {% set row_order_class = (media_position == 'end') ? 'flex-row-reverse' : '' %}
 
+{# Whether the media column renders: needs a media position AND an image or overlay #}
+{% set render_media_col = has_media and (has_media_prop or has_overlay_slot) %}
+
 {% set card_class_list = [
   'card',
   'overflow-hidden',
@@ -100,7 +106,7 @@
 )|filter(v => v is not empty) %}
 
 {% set content_col_class_list = (
-  (has_media and has_media_prop)
+  render_media_col
     ? (
       [
         'col-12',
@@ -124,9 +130,22 @@
 {% set media_wrap_class_list = [
   'w-100',
   'h-100',
+  'position-relative',
   (not card_border ? corner_style : ''),
   (not card_border ? 'overflow-hidden' : ''),
 ]|filter(v => v is not empty) %}
+
+{% set overlay_slot_attributes = create_attribute().addClass([
+  'position-absolute',
+  'top-0',
+  'start-0',
+  'z-3',
+  'm-3',
+  'd-flex',
+  'align-items-center',
+  'w-25',
+  'mw-100',
+]) %}
 
 {% set placeholder_wrap_class_list = [
   'w-100',
@@ -194,10 +213,20 @@
 <div{{ card_attributes }}>
   <div{{ row_attributes }}>
 
-    {% if has_media and has_media_prop %}
+    {# Media column — renders when media position is set AND (image OR overlay provided) #}
+    {% if render_media_col %}
       <div{{ media_col_attributes }}>
         <div{{ media_wrap_attributes }}>
-          {% include 'vartheme_bs5:image' ignore missing with image_include_props only %}
+          {% if has_media_prop %}
+            {% include 'vartheme_bs5:image' ignore missing with image_include_props only %}
+          {% else %}
+            {% include 'vartheme_bs5:image' ignore missing with placeholder_include_props only %}
+          {% endif %}
+          {% if has_overlay_slot %}
+            <div{{ overlay_slot_attributes }}>
+              {{ overlay_slot }}
+            </div>
+          {% endif %}
         </div>
       </div>
     {% endif %}
