@@ -57,8 +57,20 @@
 {# Build the inner markup (no logic in <figure>) #}
 {% set figure_content %}{% endset %}
 {% if media_ok %}
+  {# Resolve a plain source URL. SVG must bypass drimage/responsive styles
+     (image-style derivatives + WebP conversion do not apply to SVG → 404). #}
+  {% set plain_src = '' %}
+  {% if media.src is iterable %}
+    {% set plain_src = media.src.url|default(media.src.uri|default(media.src.value|default(''))) %}
+  {% else %}
+    {% set plain_src = media.src %}
+  {% endif %}
+  {% set plain_src = plain_src ?: media.url|default('') %}
+  {% set is_svg = plain_src|lower|split('?')|first|split('#')|first ends with '.svg' %}
+  {# Drop the ?alternateWidths= / itok query so the SVG is served directly (no WebP derivative). #}
+  {% if is_svg %}{% set plain_src = plain_src|split('?')|first %}{% endif %}
   {% set has_canvas_drimage = media.data is defined and media.data and media.data is iterable %}
-  {% set drimage_data = has_canvas_drimage ? media.data : varbase_media_drimage(media.src) %}
+  {% set drimage_data = (is_svg ? false : (has_canvas_drimage ? media.data : varbase_media_drimage(media.src))) %}
   {% if not has_canvas_drimage and has_ratio and drimage_data %}
     {% set ratio_parts = ratio_value|replace({'ratio-': ''})|split('x') %}
     {% set drimage_data = drimage_data|merge({image_handling: 'aspect_ratio', aspect_ratio: {width: ratio_parts[0] * 1, height: ratio_parts[1] * 1}}) %}
@@ -78,14 +90,17 @@
       }, with_context=false) }}
     {% endset %}
   {% else %}
-    {# Native <img> fallback — used while drimage data is not provided. #}
+    {# Native <img> fallback — SVG (drimage bypassed) or while drimage data is not provided.
+       SVG keeps its intrinsic size (no w-100/h-100) so icons render at their natural
+       dimensions instead of stretching to the container width. #}
+    {% set svg_img_class = (['img-fluid', rounded_class]|filter(v => v is not empty))|join(' ') %}
     {% set image_markup %}
       <img
-        src="{{ media.src }}"
+        src="{{ is_svg ? plain_src : media.src }}"
         alt="{{ media.alt|default('')|e }}"
         {% if media.width is not empty %}width="{{ media.width }}"{% endif %}
         {% if media.height is not empty %}height="{{ media.height }}"{% endif %}
-        class="{{ img_class_final }}"
+        class="{{ is_svg ? svg_img_class : img_class_final }}"
         loading="{{ loading_value }}"
       >
     {% endset %}
