@@ -53,6 +53,15 @@ Use this component when you need a reusable section wrapper that can:
 - `margin_block_start`, `margin_block_end`
 - `margin_inline_start`, `margin_inline_end`
 
+### Animation (AOS)
+
+- `aos_animation`: Animate On Scroll effect — `none`, `fade`, `fade-up`, `fade-down`, `fade-left`, `fade-right`, `zoom-in`, `zoom-out`, and more; defaults to `none`
+- `aos_duration`: animation duration in ms — `400`, `600`, `800`, `1000`, `1200`, `1500`, `2000`, or `default`
+- `aos_delay`: animation delay in ms — `0` through `600`; defaults to `0`
+- `aos_once`: animate only once on first scroll-in — `true` or `false`; defaults to `true`
+
+When `aos_animation` is not `none`, the attributes `data-aos`, `data-aos-duration`, `data-aos-delay`, and `data-aos-once` are rendered on the `<section>` element.
+
 ### Regions
 
 - `section_header`: toggles the header region
@@ -145,12 +154,30 @@ Use this component when you need a reusable section wrapper that can:
 {% endembed %}
 ```
 
+## Example: AOS fade-up animation
+
+```twig
+{% embed 'vartheme_bs5:section' with {
+  container_type: 'container',
+  columns: '50-50',
+  background_color: 'bg-primary',
+  aos_animation: 'fade-up',
+  aos_duration: '800',
+  aos_delay: '200',
+  aos_once: true
+} only %}
+  {% block col_1 %}Left{% endblock %}
+  {% block col_2 %}Right{% endblock %}
+{% endembed %}
+```
+
 ## Notes
 
 - Only the selected number of column slots are rendered for the chosen preset.
 - Empty column slots are skipped.
 - `text_color: auto` switches to `text-white` for dark backgrounds: `bg-primary`, `bg-secondary`, `bg-success`, `bg-danger`, `bg-dark`, `bg-black`.
 - For 5- and 6-column layouts, the component uses responsive `row-cols-*` classes.
+- Boolean props (`bg_edge2edge`, `section_header`, `section_footer`, `aos_once`) are normalized in the template so both native booleans and the strings `"true"` / `"false"` delivered by the Canvas editor work correctly.
 
 
 ## Alignment

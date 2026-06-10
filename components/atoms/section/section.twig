@@ -1,40 +1,156 @@
 {#
-  Section-only multi-column (no custom CSS)
-
-  Behavior:
-  - ONLY render the selected number of columns based on the "columns" preset.
-  - Extra slots (col_4..col_6) are skipped when layout is 1/2/3/4.
+/**
+ * @file
+ * Vartheme BS5 implementation for the Section component.
+ *
+ * Bootstrap Section wrapper for building layouts (container, background,
+ * spacing, and responsive grid presets). Renders ONLY the selected number
+ * of columns based on the "columns" preset.
+ *
+ * Available properties:
+ * - bg_edge2edge: (true|false) Enable full-bleed background (adds the
+ *                 `bg-edge2edge` class). Defaults to `false`.
+ * - container_type: How the content is contained.
+ *                   (container | container-fluid | none) Defaults to `none`.
+ * - background_color: Bootstrap background utility class.
+ *                     (none | bg-body | bg-body-secondary | bg-body-tertiary
+ *                      | bg-tertiary | bg-accent | bg-primary | bg-primary-subtle
+ *                      | bg-secondary | bg-secondary-subtle | bg-success
+ *                      | bg-success-subtle | bg-danger | bg-danger-subtle
+ *                      | bg-warning | bg-warning-subtle | bg-info | bg-info-subtle
+ *                      | bg-light | bg-light-subtle | bg-dark | bg-dark-subtle
+ *                      | bg-black | bg-white | bg-transparent) Defaults to `none`.
+ * - text_color: Text color utility. `auto` uses white text on dark backgrounds.
+ *               (auto | text-body | text-dark | text-white | text-muted)
+ *               Defaults to `auto`.
+ * - background_media: Background image object (src, alt, width, height).
+ * - background_overlay: Dark overlay on top of the background image.
+ *                       (none | overlay-10 | overlay-25 | overlay-50 | overlay-75)
+ *                       Defaults to `none`.
+ * - columns: Grid layout preset for tablet/desktop. Shows ONLY the selected
+ *            number of columns.
+ *            (100 | 50-50 | 33-33-33 | 75-25 | 25-75 | 67-33 | 33-67
+ *             | 50-25-25 | 25-25-50 | 25-25-25-25 | 20-20-20-20-20
+ *             | 16-16-16-16-16-16) Defaults to `50-50`.
+ * - gutter: Space between columns (Bootstrap gutters).
+ *           (gx-0 gy-0 | gx-1 gy-1 | gx-2 gy-2 | gx-3 gy-3 | gx-4 gy-4
+ *            | gx-5 gy-5) Defaults to `gx-3 gy-3`.
+ * - padding_block_start: Padding top. (pt-0..pt-5) Defaults to `pt-0`.
+ * - padding_block_end: Padding bottom. (pb-0..pb-5) Defaults to `pb-0`.
+ * - padding_inline_start: Padding start. (ps-0..ps-5) Defaults to `ps-0`.
+ * - padding_inline_end: Padding end. (pe-0..pe-5) Defaults to `pe-0`.
+ * - margin_block_start: Margin top. (mt-0..mt-5) Defaults to `mt-0`.
+ * - margin_block_end: Margin bottom. (mb-0..mb-5) Defaults to `mb-0`.
+ * - margin_inline_start: Margin start. (ms-0..ms-5) Defaults to `ms-0`.
+ * - margin_inline_end: Margin end. (me-0..me-5) Defaults to `me-0`.
+ * - shadow: Optional Bootstrap shadow. (none | shadow-sm | shadow | shadow-lg)
+ *           Defaults to `none`.
+ * - radius: Bootstrap border-radius utility class.
+ *           (none | rounded | rounded-0 | rounded-1 | rounded-2 | rounded-3
+ *            | rounded-4 | rounded-pill) Defaults to `none`.
+ * - border: Bootstrap border utility, preset combination of sides.
+ *           (none | border | border-top | border-bottom | border-start
+ *            | border-end) Defaults to `none`.
+ * - border_color: Bootstrap border color utility. Only applies when border
+ *                 is set. (none | border-primary | border-primary-subtle
+ *                 | border-secondary | border-secondary-subtle | border-success
+ *                 | border-success-subtle | border-danger | border-danger-subtle
+ *                 | border-warning | border-warning-subtle | border-info
+ *                 | border-info-subtle | border-light | border-dark
+ *                 | border-dark-subtle | border-black | border-white)
+ *                 Defaults to `none`.
+ * - border_width: Bootstrap border width utility. Only applies when border
+ *                 is set. (none | border-1 | border-2 | border-3 | border-4
+ *                 | border-5) Defaults to `none`.
+ * - vertical_alignment: Vertical alignment for the row.
+ *                       (align-items-start | align-items-center | align-items-end)
+ *                       Defaults to `align-items-start`.
+ * - horizontal_alignment: Text alignment applied to each column.
+ *                         (text-start | text-center | text-end)
+ *                         Defaults to `text-start`.
+ * - section_header: (true|false) Show the header region. Defaults to `true`.
+ * - section_footer: (true|false) Show the footer region. Defaults to `true`.
+ * - aos_animation: Animate On Scroll effect for the section wrapper.
+ *                  (none | fade | fade-up | fade-down | fade-left | fade-right
+ *                   | fade-up-right | fade-up-left | fade-down-right
+ *                   | fade-down-left | flip-up | flip-down | flip-left
+ *                   | flip-right | slide-up | slide-down | slide-left
+ *                   | slide-right | zoom-in | zoom-in-up | zoom-in-down
+ *                   | zoom-in-left | zoom-in-right | zoom-out | zoom-out-up
+ *                   | zoom-out-down | zoom-out-left | zoom-out-right)
+ *                  Defaults to `none`.
+ * - aos_duration: Animation duration in milliseconds.
+ *                 (default | 400 | 600 | 800 | 1000 | 1200 | 1500 | 2000)
+ *                 Defaults to `default`.
+ * - aos_delay: Animation delay in milliseconds. (0 | 100 | 200 | 300 | 400
+ *              | 500 | 600) Defaults to `0`.
+ * - aos_once: (true|false) Whether the animation should happen only once.
+ *             Defaults to `true`.
+ *
+ * Available attributes:
+ * - attributes: Attributes array.
+ *
+ * Available slots:
+ * - header_slot: The header region content.
+ * - col_1: Column 1 content.
+ * - col_2: Column 2 content.
+ * - col_3: Column 3 content.
+ * - col_4: Column 4 content.
+ * - col_5: Column 5 content.
+ * - col_6: Column 6 content.
+ * - footer_slot: The footer region content.
+ */
 #}
+
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
 
 {% set attributes = attributes|default(create_attribute()) %}
 
+{# Variables: scalar props with schema defaults. #}
+{% set container_type = container_type|default('none') %}
+{% set background_color = background_color|default('none') %}
+{% set text_color = text_color|default('auto') %}
+{% set overlay_variant = background_overlay|default('none') %}
+{% set columns = columns|default('50-50') %}
+{% set gutter = gutter|default('gx-3 gy-3') %}
+{% set padding_block_start = padding_block_start|default('pt-0') %}
+{% set padding_block_end = padding_block_end|default('pb-0') %}
+{% set padding_inline_start = padding_inline_start|default('ps-0') %}
+{% set padding_inline_end = padding_inline_end|default('pe-0') %}
+{% set margin_block_start = margin_block_start|default('mt-0') %}
+{% set margin_block_end = margin_block_end|default('mb-0') %}
+{% set margin_inline_start = margin_inline_start|default('ms-0') %}
+{% set margin_inline_end = margin_inline_end|default('me-0') %}
+{% set shadow = shadow|default('none') %}
+{% set radius = radius|default('none') %}
+{% set border = border|default('none') %}
+{% set border_color = border_color|default('none') %}
+{% set border_width = border_width|default('none') %}
+{% set vertical_alignment = vertical_alignment|default('align-items-start') %}
+{% set horizontal_alignment = horizontal_alignment|default('text-start') %}
 {% set aos_animation = aos_animation|default('none') %}
 {% set aos_duration = aos_duration|default('default') %}
 {% set aos_delay = aos_delay|default('0') %}
-{% set aos_once = aos_once is defined ? aos_once : true %}
 
-{# Base props #}
-{% set bg_edge2edge = bg_edge2edge|default(false) %}
-{% set container_type = container_type|default('none') %}
-{% set gutter_class = gutter|default('gx-3 gy-3') %}
-{% set vertical_alignment = vertical_alignment|default('align-items-start') %}
-{% set horizontal_alignment = horizontal_alignment|default('text-start') %}
-{% set background_color = background_color|default('none') %}
-{% set text_color = text_color|default('auto') %}
-{% set shadow = shadow|default('none') %}
-{% set radius = radius|default('none') %}
-{% set overlay_variant = background_overlay|default('none') %}
+{# Variables: boolean props.
+ # Normalize to strict booleans so string values coming from component
+ # forms ("true"/"false"/"1"/"0") never leak into truthiness checks.
+ # Note: in Twig the string "false" is truthy; without this normalization
+ # a boolean prop delivered as a string flips the rendered state.
+ #}
+{% set bg_edge2edge = ((bg_edge2edge|default(false)) ~ '')|lower|trim in ['1', 'true', 'yes', 'on'] %}
+{% set section_header = ((section_header ?? true) ~ '')|lower|trim not in ['', '0', 'false', 'no', 'off'] %}
+{% set section_footer = ((section_footer ?? true) ~ '')|lower|trim not in ['', '0', 'false', 'no', 'off'] %}
+{% set aos_once = ((aos_once ?? true) ~ '')|lower|trim not in ['', '0', 'false', 'no', 'off'] %}
 
-{% set mt = margin_block_start|default('mt-0') %}
-{% set mb = margin_block_end|default('mb-0') %}
-{% set ms = margin_inline_start|default('ms-0') %}
-{% set me = margin_inline_end|default('me-0') %}
-{% set pt = padding_block_start|default('pt-0') %}
-{% set pb = padding_block_end|default('pb-0') %}
-{% set ps = padding_inline_start|default('ps-0') %}
-{% set pe = padding_inline_end|default('pe-0') %}
-
-{# Background / overlay #}
+{# Logic: background media and overlay. #}
 {% set has_background_image = background_media is not empty and background_media.src is not empty %}
 {% set has_overlay = has_background_image and overlay_variant != 'none' %}
 
@@ -42,50 +158,49 @@
   'overlay-10': 'opacity-10',
   'overlay-25': 'opacity-25',
   'overlay-50': 'opacity-50',
-  'overlay-75': 'opacity-75'
+  'overlay-75': 'opacity-75',
 } %}
-{% set overlay_opacity_class = has_overlay ? overlay_opacity_map[overlay_variant]|default('opacity-25') : '' %}
+{% set overlay_opacity_classes = has_overlay ? [overlay_opacity_map[overlay_variant]|default('opacity-25')] : [] %}
 
-{# Text / utility classes #}
-{% set auto_text = background_color in ['bg-primary', 'bg-secondary', 'bg-success', 'bg-danger', 'bg-dark', 'bg-black'] ? 'text-white' : '' %}
-{% set text_class = text_color == 'auto' ? auto_text : text_color %}
-{% set shadow_class = shadow != 'none' ? shadow : '' %}
-{% set radius_class = radius != 'none' ? radius : '' %}
-{% set border_class = border|default('none') != 'none' ? border : '' %}
-{% set border_color_class = border_class is not empty and border_color|default('none') != 'none' ? border_color : '' %}
-{% set border_width_class = border_class is not empty and border_width|default('none') != 'none' ? border_width : '' %}
+{# Logic: text color. `auto` switches to white text on dark backgrounds. #}
+{% set dark_backgrounds = ['bg-primary', 'bg-secondary', 'bg-success', 'bg-danger', 'bg-dark', 'bg-black'] %}
+{% set auto_text_classes = background_color in dark_backgrounds ? ['text-white'] : [] %}
+{% set text_classes = text_color == 'auto' ? auto_text_classes : (text_color != 'none' and text_color is not empty ? [text_color] : []) %}
 
-{# Section classes #}
-{% set section_classes = [
-  mt,
-  mb,
-  ms,
-  me,
-  pt,
-  pb,
-  ps,
-  pe,
-  background_color != 'none' ? background_color : '',
-  text_class,
-  shadow_class,
-  radius_class,
-  border_class,
-  border_color_class,
-  border_width_class,
-  bg_edge2edge ? 'bg-edge2edge' : '',
-  (has_background_image or has_overlay) ? 'position-relative overflow-hidden' : ''
-] %}
+{# Logic: optional utility classes, only when set. #}
+{% set background_classes = background_color != 'none' ? [background_color] : [] %}
+{% set shadow_classes = shadow != 'none' ? [shadow] : [] %}
+{% set radius_classes = radius != 'none' ? [radius] : [] %}
+{% set border_classes = border != 'none' ? [border] : [] %}
+{% set border_color_classes = border_classes is not empty and border_color != 'none' ? [border_color] : [] %}
+{% set border_width_classes = border_classes is not empty and border_width != 'none' ? [border_width] : [] %}
+{% set edge2edge_classes = bg_edge2edge ? ['bg-edge2edge'] : [] %}
+{% set media_position_classes = (has_background_image or has_overlay) ? ['position-relative', 'overflow-hidden'] : [] %}
 
-{# Structural classes #}
+{# Logic: merge all section-level classes as arrays. #}
+{%
+  set classes = [
+    margin_block_start,
+    margin_block_end,
+    margin_inline_start,
+    margin_inline_end,
+    padding_block_start,
+    padding_block_end,
+    padding_inline_start,
+    padding_inline_end,
+  ]|merge(background_classes)|merge(text_classes)|merge(shadow_classes)|merge(radius_classes)|merge(border_classes)|merge(border_color_classes)|merge(border_width_classes)|merge(edge2edge_classes)|merge(media_position_classes)
+%}
+
+{# Logic: structural wrappers. #}
 {% set container_classes = container_type != 'none' ? [container_type] : [] %}
 {% set inner_classes = ['sdc-section__inner'] %}
 {% set media_wrap_classes = ['position-absolute', 'top-0', 'start-0', 'w-100', 'h-100', 'z-0'] %}
-{% set overlay_classes = ['position-absolute', 'top-0', 'start-0', 'w-100', 'h-100', 'bg-dark', 'z-1', overlay_opacity_class] %}
+{% set overlay_classes = ['position-absolute', 'top-0', 'start-0', 'w-100', 'h-100', 'bg-dark', 'z-1']|merge(overlay_opacity_classes) %}
 {% set content_wrap_classes = ['position-relative', 'z-2'] %}
 {% set header_classes = ['sdc-section__header', 'mb-4'] %}
 {% set footer_classes = ['sdc-section__footer', 'mt-4'] %}
 
-{# Layout presets -> md widths #}
+{# Logic: layout presets mapped to Bootstrap md column widths. #}
 {% set preset_map = {
   '100': [12],
   '50-50': [6, 6],
@@ -96,33 +211,31 @@
   '33-67': [4, 8],
   '50-25-25': [6, 3, 3],
   '25-25-50': [3, 3, 6],
-  '25-25-25-25': [3, 3, 3, 3]
+  '25-25-25-25': [3, 3, 3, 3],
 } %}
 
-{% set cols_key = columns|default('50-50') %}
+{% set cols_key = columns ~ '' %}
 {% set is_five = cols_key == '20-20-20-20-20' %}
 {% set is_six = cols_key == '16-16-16-16-16-16' %}
 {% set md_widths = preset_map[cols_key]|default([12]) %}
 {% set pattern_len = md_widths|length %}
 
-{% set selected_count = 1 %}
+{% set selected_count = pattern_len %}
 {% if is_five %}
   {% set selected_count = 5 %}
 {% elseif is_six %}
   {% set selected_count = 6 %}
-{% else %}
-  {% set selected_count = pattern_len %}
 {% endif %}
 
-{# Row classes #}
-{% set row_classes = ['row', gutter_class, vertical_alignment] %}
+{# Logic: row classes, equal-width presets use row-cols utilities. #}
+{% set row_classes = ['row', gutter, vertical_alignment] %}
 {% if is_five %}
   {% set row_classes = row_classes|merge(['row-cols-1', 'row-cols-md-5']) %}
 {% elseif is_six %}
   {% set row_classes = row_classes|merge(['row-cols-1', 'row-cols-md-6']) %}
 {% endif %}
 
-{# Slot content #}
+{# Slot content. #}
 {% set col1 %}{% block col_1 %}{% endblock %}{% endset %}
 {% set col2 %}{% block col_2 %}{% endblock %}{% endset %}
 {% set col3 %}{% block col_3 %}{% endblock %}{% endset %}
@@ -131,14 +244,16 @@
 {% set col6 %}{% block col_6 %}{% endblock %}{% endset %}
 {% set cols = [col1, col2, col3, col4, col5, col6] %}
 
-{# Header / footer content #}
+{# Header / footer content, only rendered when enabled and not empty. #}
 {% set header_content %}{% block header_slot %}{% endblock %}{% endset %}
 {% set footer_content %}{% block footer_slot %}{% endblock %}{% endset %}
 {% set has_header = section_header and header_content|trim is not empty %}
 {% set has_footer = section_footer and footer_content|trim is not empty %}
 
-{# Build attributes - AOS data attributes and library only added when animation is selected #}
-{% set attributes = attributes.addClass(section_classes) %}
+{# Logic: attributes. AOS data attributes and library are only added when
+ # an animation is selected.
+ #}
+{% set attributes = attributes.addClass(classes) %}
 {% if aos_animation != 'none' %}
   {{ attach_library('varbase_components/aos') }}
   {% set attributes = attributes
@@ -149,6 +264,7 @@
   %}
 {% endif %}
 
+{# Print the HTML. #}
 <section {{ attributes }}>
   {% if has_background_image %}
     <div class="{{ media_wrap_classes|join(' ') }}" aria-hidden="true">
