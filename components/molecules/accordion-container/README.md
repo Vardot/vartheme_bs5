@@ -1,68 +1,83 @@
 # Accordion container
 
-The Accordion container component renders the parent Bootstrap accordion wrapper and manages shared behavior for nested accordion items.
+A container for any content, only one of whose accordions may be open at a time — the parent Bootstrap 5 accordion wrapper that manages shared behavior for nested accordion items. Build vertically collapsing accordions in combination with Bootstrap's Collapse JavaScript plugin.
 
-## Design
+## Bootstrap reference
 
-| State         | Background               | Text color         |
-|---------------|--------------------------|--------------------|
-| Default       | `bg-secondary-subtle`    | `text-dark`        |
-| Hover / focus | `bg-secondary`           | `#0D6EFD` (primary)|
-| Active (open) | `bg-secondary-subtle`    | `text-dark`        |
+> ### [Bootstrap documentation on Accordion](https://getbootstrap.com/docs/5.3/components/accordion/)
+> * [Example](https://getbootstrap.com/docs/5.3/components/accordion/#example)
+> * [Flush](https://getbootstrap.com/docs/5.3/components/accordion/#flush)
+> * [Always open](https://getbootstrap.com/docs/5.3/components/accordion/#always-open)
+> * [Accessibility](https://getbootstrap.com/docs/5.3/components/accordion/#accessibility)
 
-## When to use
+## What it does
 
-Use this component when you want to group multiple Accordion items under a single accordion system. It is useful for FAQs, pricing details, product specifications, policy summaries, and any content that should be grouped into collapsible sections.
+Use this component when you need a reusable accordion wrapper that can:
 
-## Features
+- group one or more accordion items under a single accordion system
+- apply the Bootstrap `accordion-flush` style to remove outer borders and rounding
+- allow multiple items to stay open at the same time, or restrict to one open item
+- generate a stable container ID, or accept a custom one, for `data-bs-parent` binding
+- pass a Bootstrap `text-bg-*` color override down to nested accordion items
+- render a default two-item demo when the slot is empty (for preview)
 
-- Bootstrap 5 accordion wrapper markup
-- Optional flush style
-- Optional always-open behavior for multiple expanded items
-- Shared generated or custom accordion ID
-- Optional color override passed to nested accordion items
-- Works cleanly with drag-and-drop accordion item content
+## Files
 
-## Properties
+- `accordion-container.component.yml` — component schema and props
+- `accordion-container.twig` — component template
+- `README.md` — usage notes and examples
+- `accordion-container.js` — behavior script
+- `accordion-container.mdx` — Storybook docs page
+- `accordion-container.stories.json` — Storybook story configuration
+- `accordion-container.stories.twig` — Storybook story templates
 
-### `id`
-Optional ID for the accordion wrapper. Used for Bootstrap `data-bs-parent` behavior. Default: empty (auto-generated)
+## Props overview
 
-### `flush`
-Applies Bootstrap `accordion-flush` styling to remove the default outer borders and rounding. Default: `false`
+### Layout
 
-### `always_open`
-Allows multiple accordion items to remain open at the same time. Default: `false`
+- `id`: accordion container ID used for `data-bs-parent` binding; leave empty to auto-generate
+- `flush`: remove the default outer borders and rounding — `true` / `false`; defaults to `false`
 
-### `color`
-Optional Bootstrap `text-bg-*` class passed to nested accordion items when an item uses `inherit`. Leave empty to use the default design (secondary-subtle background, dark text).
+### Behavior
 
-Options: `''` (default) `text-bg-primary` `text-bg-secondary` `text-bg-success` `text-bg-danger` `text-bg-warning` `text-bg-info` `text-bg-dark`
+- `always_open`: allow multiple accordion items to stay open at the same time — `true` / `false`; defaults to `false`
 
-Default: `''` (empty — CSS controls styling)
+### Appearance
 
-## Slot
+- `color`: optional Bootstrap `text-bg-*` class passed to nested items — `text-bg-primary`, `text-bg-secondary`, `text-bg-success`, `text-bg-danger`, `text-bg-warning`, `text-bg-info`, `text-bg-dark`; omit to use the default design (secondary-subtle bg, dark text)
 
-### `accordion_content`
-Place one or more Accordion items inside this slot.
+## Slots
 
-## Usage example
+- `accordion_content` — place one or more accordion items inside this slot
 
-### Basic grouped accordion
+## Header color values
+
+| Value | Header style |
+|---|---|
+| (omitted) | Default (secondary-subtle bg, dark text) |
+| `text-bg-primary` | Primary |
+| `text-bg-secondary` | Secondary |
+| `text-bg-success` | Success |
+| `text-bg-danger` | Danger |
+| `text-bg-warning` | Warning |
+| `text-bg-info` | Info |
+| `text-bg-dark` | Dark |
+
+## Example: basic grouped accordion
 
 ```twig
 {% embed 'vartheme_bs5:accordion-container' with {
   id: 'faq-accordion',
   flush: false,
-  always_open: false,
-} %}
+  always_open: false
+} only %}
   {% block accordion_content %}
     {% embed 'vartheme_bs5:accordion-block' with {
       title: 'First item',
       heading_level: 3,
       open_by_default: true,
       color: 'inherit'
-    } %}
+    } only %}
       {% block accordion_content %}
         <p class="mb-0">First accordion content.</p>
       {% endblock %}
@@ -73,7 +88,7 @@ Place one or more Accordion items inside this slot.
       heading_level: 3,
       open_by_default: false,
       color: 'inherit'
-    } %}
+    } only %}
       {% block accordion_content %}
         <p class="mb-0">Second accordion content.</p>
       {% endblock %}
@@ -82,21 +97,23 @@ Place one or more Accordion items inside this slot.
 {% endembed %}
 ```
 
-### Always-open accordion
+## Example: always-open, flush, colored
 
 ```twig
 {% embed 'vartheme_bs5:accordion-container' with {
   id: 'support-topics',
+  flush: true,
   always_open: true,
-} %}
+  color: 'text-bg-primary'
+} only %}
   {% block accordion_content %}
     {% embed 'vartheme_bs5:accordion-block' with {
       title: 'Topic 1',
       open_by_default: true,
       color: 'inherit'
-    } %}
+    } only %}
       {% block accordion_content %}
-        <p class="mb-0">This item can stay open with other items.</p>
+        <p class="mb-0">This item can stay open alongside other items.</p>
       {% endblock %}
     {% endembed %}
   {% endblock %}
@@ -105,6 +122,8 @@ Place one or more Accordion items inside this slot.
 
 ## Notes
 
-- Add the container first, then place Accordion items inside it.
-- Nested items can inherit the container color by using `inherit` on the block.
-- If no ID is provided, the component generates one automatically.
+- The container passes `accordion_parent_id`, `accordion_always_open`, and `accordion_color` to nested accordion items through the Twig context, so child items inherit binding, multi-open behavior, and color automatically when they use `inherit`.
+- If no `id` is provided, an `accordion-*` ID is generated automatically.
+- When `always_open` is enabled, items are not given a `data-bs-parent`, so opening one does not close the others.
+- When the `accordion_content` slot is empty, a built-in two-item demo accordion is rendered for preview purposes.
+- Boolean props (`flush`, `always_open`) are validated by SDC and arrive as real booleans.

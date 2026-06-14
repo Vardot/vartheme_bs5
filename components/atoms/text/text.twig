@@ -1,13 +1,50 @@
-{# Text component #}
+{#
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for the Text component.
+ *
+ * Rich text block rendered with optional Bootstrap font-size and text color
+ * utilities.
+ *
+ * Available properties:
+ * - text: HTML content. Make sure this content is filtered/safe before
+ *         rendering. Defaults to `<p>Lorem ipsum dolor sit amet.</p>`.
+ * - text_size: Bootstrap font-size utility class to apply.
+ *              (none | fs-6 | fs-5 | fs-4 | fs-3) Defaults to `none`.
+ * - text_color: Bootstrap text color utility class to apply.
+ *               (text-body | text-primary | text-secondary | text-success
+ *                | text-danger | text-warning | text-info | text-muted
+ *                | text-dark | text-white | text-subtle-text)
+ *               Defaults to `text-body`.
+ *
+ * Available attributes:
+ * - attributes: Attributes array.
+ */
+#}
 
-{% set classes = [
-  'rich-text',
-  text_size|default('none'),
-  text_color|default('text-body'),
-]|filter(v => v is not empty and v != 'none') %}
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
 
-{% set attrs = create_attribute().addClass(classes) %}
+{# Variables: scalar props with schema defaults. #}
+{% set text = text|default('<p>Lorem ipsum dolor sit amet.</p>') %}
+{% set text_size = text_size|default('none') %}
+{% set text_color = text_color|default('text-body') %}
 
-<div {{ attrs }}>
-  {{ text|default('')|raw }}
+{# Logic: optional utility classes, only when set. #}
+{% set size_classes = text_size != 'none' ? [text_size] : [] %}
+{% set color_classes = text_color != 'none' ? [text_color] : [] %}
+
+{# Logic: merge text classes as arrays. #}
+{% set classes = ['rich-text']|merge(size_classes)|merge(color_classes) %}
+
+{# Print the HTML. #}
+{% set attributes = attributes.addClass(classes) %}
+<div {{ attributes }}>
+  {{ text|raw }}
 </div>

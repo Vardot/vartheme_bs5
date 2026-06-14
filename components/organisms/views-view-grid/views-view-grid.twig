@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Vartheme BS5 Starter Kit implementation for views to display rows in a grid.
+ * Vartheme BS5 Starter Kit implementation for the Views View Grid component.
  *
  * Available variables:
  * - attributes: HTML attributes for the wrapping element.
@@ -24,16 +24,29 @@
  * @see template_preprocess_views_view_grid()
  */
 #}
-{% set col_xs = ((col_xs is defined and col_xs != 'none') ? [col_xs] : []) %}
+
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Variables: optional utility classes. #}
+{% set grid_utility_classes = grid_utility_classes ?? [] %}
+{% set column_utility_classes = column_utility_classes ?? [] %}
+
+{# Logic: responsive column classes, only when set. #}
+{% set col_xs =((col_xs is defined and col_xs != 'none') ? [col_xs] : []) %}
 {% set col_sm = ((col_sm is defined and col_sm != 'none') ? [col_sm] : []) %}
 {% set col_md = ((col_md is defined and col_md != 'none') ? [col_md] : []) %}
 {% set col_lg = ((col_lg is defined and col_lg != 'none') ? [col_lg] : []) %}
 {% set col_xl = ((col_xl is defined and col_xl != 'none') ? [col_xl] : []) %}
 {% set col_xxl = ((col_xxl is defined and col_xxl != 'none') ? [col_xxl] : []) %}
 
-{% set grid_utility_classes = grid_utility_classes ?? [] %}
-{% set column_utility_classes = column_utility_classes ?? [] %}
-
+{# Logic: merge grid-level classes as arrays. #}
 {%
   set classes = [
     'views-view-grid',
@@ -43,10 +56,7 @@
   ]|merge(grid_utility_classes)
 %}
 
-{% if not attributes %}
-  {% set attributes = create_attribute() %}
-{% endif %}
-
+{# Print the HTML. #}
 {% set attributes = attributes.addClass(classes) %}
 
 {% if title %}

@@ -15,32 +15,79 @@
  * - shape: The shape of tabs (tabs | pills).
  * - tabs_block_classes: A list of classes for tab container.
  * - tab_pane_classes: A list of classes for tab body.
+ *
+ * Available attributes:
+ * - attributes: Attributes for the nav (tabs list) element.
+ * - tabs_list_item_attributes: Attributes for each tab list item (<li>).
+ * - tab_button_attributes: Attributes for each tab button.
+ * - nav_attributes: Attributes for the tab-content wrapper.
+ * - tab_content_attributes: Attributes for each tab pane.
  */
 #}
 
-{% set tabs_block_classes = ['nav', 'nav-' ~ shape] %}
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
 
+{# Variables: scalar props with schema defaults. #}
+{% set shape = shape|default('tabs') %}
+
+{# Logic: merge the tab container classes as arrays. #}
+{% set tabs_block_classes = ['nav', 'nav-' ~ shape] %}
+{% set nav_classes = ['tab-content', 'mt-3'] %}
+
+{# Print the HTML. #}
 {% if items %}
-  <ul {{ attributes.addClass(tabs_block_classes) }} id="{{ tabs_id }}" role="tablist">
+  {% set attributes = attributes
+    .addClass(tabs_block_classes)
+    .setAttribute('id', tabs_id)
+    .setAttribute('role', 'tablist')
+  %}
+  <ul{{ attributes }}>
       {% for item in items %}
-        {% set tab_button_classes = [
-          'nav-link',
-          item.is_active ? 'active' : '',
-        ] %}
-        <li class="nav-item" role="presentation">
-          <button class="{{ tab_button_classes|join(' ') }}" id="{{ item.id }}" data-bs-toggle="tab" data-bs-target="{{ '#' ~ item.target }}" type="button" role="tab" aria-controls="{{ item.target }}" aria-selected="true">{{ item.title }}</button>
+        {% set tab_button_classes = ['nav-link']|merge(item.is_active ? ['active'] : []) %}
+        {% set tabs_list_item_attributes = create_attribute()
+          .addClass('nav-item')
+          .setAttribute('role', 'presentation')
+        %}
+        {% set tab_button_attributes = create_attribute()
+          .addClass(tab_button_classes)
+          .setAttribute('id', item.id)
+          .setAttribute('data-bs-toggle', 'tab')
+          .setAttribute('data-bs-target', '#' ~ item.target)
+          .setAttribute('type', 'button')
+          .setAttribute('role', 'tab')
+          .setAttribute('aria-controls', item.target)
+          .setAttribute('aria-selected', 'true')
+        %}
+        <li{{ tabs_list_item_attributes }}>
+          <button{{ tab_button_attributes }}>{{ item.title }}</button>
         </li>
       {% endfor %}
   </ul>
-  <div class="tab-content mt-3" id="nav-tabContent">
+  {% if not nav_attributes %}
+    {% set nav_attributes = create_attribute() %}
+  {% endif %}
+  {% set nav_attributes = nav_attributes
+    .addClass(nav_classes)
+    .setAttribute('id', 'nav-tabContent')
+  %}
+  <div{{ nav_attributes }}>
     {% for item in items %}
-      {% set tab_pane_classes = [
-        'tab-pane',
-        'fade',
-        item.is_active ? 'show' : '',
-        item.is_active ? 'active' : '',
-      ] %}
-      <div class="{{ tab_pane_classes|join(' ') }}" id="{{ item.target }}" role="tabpanel" aria-labelledby="{{ item.id }}" tabindex="{{ loop.index }}">{{ item.body }}</div>
+      {% set tab_pane_classes = ['tab-pane', 'fade']|merge(item.is_active ? ['show', 'active'] : []) %}
+      {% set tab_content_attributes = create_attribute()
+        .addClass(tab_pane_classes)
+        .setAttribute('id', item.target)
+        .setAttribute('role', 'tabpanel')
+        .setAttribute('aria-labelledby', item.id)
+        .setAttribute('tabindex', loop.index)
+      %}
+      <div{{ tab_content_attributes }}>{{ item.body }}</div>
     {% endfor %}
   </div>
 {% endif %}

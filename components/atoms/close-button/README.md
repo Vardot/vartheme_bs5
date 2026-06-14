@@ -2,6 +2,8 @@
 
 A generic close button for dismissing content like modals and alerts.
 
+## Bootstrap reference
+
 > #### [Bootstrap Documentation on Close Button](https://getbootstrap.com/docs/5.3/components/close-button/)
 > * [Close Button](https://getbootstrap.com/docs/5.3/components/close-button/#example)
 > * [Disabled state](https://getbootstrap.com/docs/5.3/components/close-button/#disabled-state)

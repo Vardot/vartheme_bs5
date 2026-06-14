@@ -47,6 +47,17 @@
  *
  */
 #}
+
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Variables: scalar props and feature-toggle class arrays. #}
 {% set responsive = responsive ?? true %}
 {% set variant_classes = ((variant is defined and variant != '') ? ['table-' ~ variant] : []) %}
 
@@ -72,19 +83,19 @@
 
 {% set caption = caption ?? '' %}
 
+{# Logic: merge the table classes as arrays. #}
 {%
   set table_classes = [
     'table',
   ]|merge(variant_classes)|merge(striped_rows_classes)|merge(striped_columns_classes)|merge(hover_classes)|merge(bordered_classes)|merge(border_color_classes)|merge(borderless_classes)|merge(size_classes)|merge(table_utility_classes)
 %}
 
+{# Print the HTML. #}
 {% if responsive %}
 <div class="table-responsive">
 {% endif %}
-{% if not attributes %}
-  {% set attributes = create_attribute() %}
-{% endif %}
-<table{{ attributes.addClass(table_classes) }}>
+{% set attributes = attributes.addClass(table_classes) %}
+<table{{ attributes }}>
   {% if caption %}
     <caption>{{ caption }}</caption>
   {% endif %}

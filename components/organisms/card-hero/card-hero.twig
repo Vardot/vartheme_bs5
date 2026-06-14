@@ -1,22 +1,27 @@
 {#
-  Hero Card
-  - Bootstrap utility classes only in markup
-  - Shared components used for image, heading, and button rendering
-  - Class and attribute logic kept at the top for readability
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for the Card Hero component.
+ *
+ * - Bootstrap utility classes only in markup
+ * - Shared components used for image, heading, and button rendering
+ * - Class and attribute logic kept at the top for readability
+ */
 #}
 
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Variables: scalar props with schema defaults. #}
 {% set title = title|default('Demo title') %}
 {% set heading_tag = heading_tag|default('h2') %}
-{% set heading_level_map = {
-  h2: 2,
-  h3: 3,
-  h4: 4,
-  h5: 5,
-  h6: 6,
-} %}
-{% set heading_level = heading_level_map[heading_tag]|default(1) %}
 {% set content_text = content_text|default('Demo content text goes here. You can edit this in Canvas.') %}
-
 {% set container_type = container_type|default('container') %}
 {% set media_position = media_position|default('end') %}
 {% set split_gap = split_gap|default('g-4') %}
@@ -28,17 +33,34 @@
 {% set overlay_opacity = overlay_opacity|default('opacity-50') %}
 {% set overlay_image_mode = overlay_image_mode|default('object-fit-cover') %}
 {% set object_position = object_position|default('center') %}
-{% set bg_edge2edge = bg_edge2edge|default(false) %}
-{% set card_border = card_border|default(false) %}
-{% set padding = padding|default(false) %}
+
+{# Variables: boolean props.
+ # SDC validates `type: boolean` props and applies their schema defaults,
+ # so the values arrive as real booleans — only a presence fallback is
+ # needed here, never type coercion.
+ #}
+{% set bg_edge2edge = bg_edge2edge ?? false %}
+{% set card_border = card_border ?? false %}
+{% set padding = padding ?? false %}
+
+{# Logic: heading tag to level mapping. #}
+{% set heading_level_map = {
+  h2: 2,
+  h3: 3,
+  h4: 4,
+  h5: 5,
+  h6: 6,
+} %}
+{% set heading_level = heading_level_map[heading_tag]|default(1) %}
 
 {% set section_padding_class = 'py-5' %}
-{% set has_media = media_position != 'none' and ((media is defined and media and media.src is defined and media.src is not empty) or (slots.media_slot is defined and slots.media_slot|render|trim)) %}
 {% set merge_media = true %}
 {% set slots = slots|default({}) %}
 {% set actions_slot = (slots.actions is defined) ? (slots.actions|render|trim) : '' %}
 {% set media_slot_override = (slots.media_slot is defined) ? (slots.media_slot|render|trim) : '' %}
+{% set has_media = media_position != 'none' and ((media is defined and media and media.src is defined and media.src is not empty) or (slots.media_slot is defined and slots.media_slot|render|trim)) %}
 
+{# Logic: content color. Auto-switch to white text on dark backgrounds. #}
 {% set dark_backgrounds = ['bg-dark', 'bg-black', 'bg-primary', 'bg-secondary'] %}
 {% if content_color == 'text-dark' and background_color in dark_backgrounds %}
   {% set content_color = 'text-white' %}
@@ -50,6 +72,7 @@
 {% set media_height = media.height|default('') %}
 {% set media_style = 'object-position: ' ~ object_position ~ ';' %}
 
+{# Logic: outer / inner / card class arrays. #}
 {% set outer_classes = ['position-relative', 'overflow-hidden'] %}
 {% if bg_edge2edge %}
   {% set outer_classes = outer_classes|merge(['bg-edge2edge', background_color]) %}
@@ -182,6 +205,7 @@
 {% set content_media_wrapper_classes = ['mb-3'] %}
 {% set button_wrapper_classes = ['mt-3'] %}
 
+{# Logic: button variant / outline / size / target mapping. #}
 {% set button_variant = button_1_style|default('btn-primary') %}
 {% set button_outline = false %}
 {% if button_variant|slice(0, 12) == 'btn-outline-' %}
@@ -191,7 +215,7 @@
 {% set button_size = button_1_size|default('default') == 'btn-sm' ? 'btn-sm' : (button_1_size|default('default') == 'btn-lg' ? 'btn-lg' : 'btn-md') %}
 {% set button_target = button_1_target|default('default') == '_blank' ? 'blank' : 'self' %}
 
-{% set outer_attributes = create_attribute().addClass(outer_classes) %}
+{% set attributes = attributes.addClass(outer_classes) %}
 {% set inner_attributes = create_attribute().addClass(inner_classes) %}
 {% set card_attributes = create_attribute().addClass(card_classes) %}
 {% set overlay_flex_attributes = create_attribute().addClass(overlay_flex_classes) %}
@@ -361,7 +385,8 @@
   {{ button_markup }}
 {% endset %}
 
-<div {{ outer_attributes }}>
+{# Print the HTML. #}
+<div {{ attributes }}>
   {% if overlay_background_image %}
     {{ overlay_background_media_markup }}
   {% endif %}

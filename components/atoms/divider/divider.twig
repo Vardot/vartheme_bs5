@@ -1,23 +1,60 @@
 {#
-  Divider (Bootstrap 5.3)
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for the Divider component.
+ *
+ * A Bootstrap 5.3-compatible horizontal divider using the native <hr> element.
+ *
+ * Available properties:
+ * - border_width: Bootstrap border width utility class.
+ *                 (border-1 | border-2 | border-3 | border-4 | border-5)
+ *                 Defaults to `border-1`.
+ * - border_color: Bootstrap border color utility class.
+ *                 (border-secondary | border-light | border-dark | border-primary
+ *                  | border-success | border-danger | border-warning | border-info
+ *                  | border-white | border-black) Defaults to `border-secondary`.
+ * - opacity: Bootstrap opacity utility class.
+ *            (opacity-25 | opacity-50 | opacity-75 | opacity-100)
+ *            Defaults to `opacity-100`.
+ * - margin_top: Bootstrap margin-top utility class. (mt-0..mt-5)
+ *               Defaults to `mt-3`.
+ * - margin_bottom: Bootstrap margin-bottom utility class. (mb-0..mb-5)
+ *                  Defaults to `mb-3`.
+ *
+ * Available attributes:
+ * - attributes: Attributes array.
+ *
+ * Available slots:
+ * - N/A
+ */
 #}
 
-{% set divider_border_width = border_width|default('border-1') %}
-{% set divider_border_color = border_color|default('border-secondary') %}
-{% set divider_opacity = opacity|default('opacity-100') %}
-{% set divider_margin_top = margin_top|default('mt-3') %}
-{% set divider_margin_bottom = margin_bottom|default('mb-3') %}
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
 
-{% set divider_classes = [
-  divider_border_width,
-  divider_border_color,
-  divider_opacity,
-  divider_margin_top,
-  divider_margin_bottom,
-]|filter(v => v is not empty) %}
+{# Variables: scalar props with schema defaults. #}
+{% set border_width = border_width|default('border-1') %}
+{% set border_color = border_color|default('border-secondary') %}
+{% set opacity = opacity|default('opacity-100') %}
+{% set margin_top = margin_top|default('mt-3') %}
+{% set margin_bottom = margin_bottom|default('mb-3') %}
 
-{% set divider_attributes = create_attribute({
-  class: divider_classes,
-}) %}
+{# Logic: merge all classes as arrays. #}
+{% set classes = [
+  border_width,
+  border_color,
+  opacity,
+  margin_top,
+  margin_bottom,
+] %}
 
-<hr{{ divider_attributes }}>
+{% set attributes = attributes.addClass(classes) %}
+
+{# Print the HTML. #}
+<hr{{ attributes }}>

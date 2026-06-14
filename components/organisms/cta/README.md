@@ -1,76 +1,81 @@
 # Hero CTA
 
-Hero CTA displays a prominent heading, supporting text, optional background image, and call-to-action buttons.
+A call-to-action section with a heading, supporting text, optional background image with overlay, and call-to-action buttons.
 
-## Features
+## What it does
 
-- Shared `vartheme_bs5:heading` component for the title
-- Optional background image with overlay opacity
-- Optional edge-to-edge background mode
-- Optional primary button
-- Optional `actions` slot for additional buttons or links
-- Bootstrap utility class based alignment and styling
+Use this component when you need a prominent hero/CTA band that can:
 
-## Props
+- render a heading (via the shared `vartheme_bs5:heading` component) with a chosen level and visual size
+- show supporting body text
+- apply a Bootstrap background color and resolve content text color automatically or explicitly
+- display an optional background image with a dark overlay
+- switch on full-bleed edge-to-edge background behavior
+- render an optional primary button and an `actions` slot for additional links or buttons
+
+## Files
+
+- `cta.component.yml` — component schema and props
+- `cta.twig` — component template
+- `README.md` — usage notes and examples
+- `cta.mdx` — Storybook docs page
+- `cta.stories.json` — Storybook story configuration
+- `cta.stories.twig` — Storybook story templates
+
+## Props overview
 
 ### Content
 
-- `heading_text` — Main heading text
-- `level` — Semantic heading level (`2` to `6`)
-- `heading_size` — Visual heading size (`display-4`, `display-5`, `display-6`, `h1`, `h2`, `h3`)
-- `text` — Supporting text below the heading
+- `heading_text`: main heading text
+- `level` (required): semantic heading level — `2`, `3`, `4`, `5`, `6`
+- `heading_size`: visual heading size — `display-4`, `display-5`, `display-6`, `h1`, `h2`, `h3`; defaults to `display-5`
+- `text`: supporting text below the heading
 
-### Layout and style
+### Layout and appearance
 
-- `text_align` — Text alignment using Bootstrap utilities
-  - `text-start`
-  - `text-center`
-  - `text-end`
-- `background_color` — Optional background utility classes
-  - `bg-none`
-  - `bg-primary text-white`
-  - `bg-secondary text-white`
-  - `bg-light`
-  - `bg-dark text-white`
-  - `bg-body-tertiary`
-  - `bg-info text-white`
-- `content_color` — Text color for content
-  - `auto`
-  - `text-body`
-  - `text-white`
-  - `text-dark`
-  - `text-primary`
-  - `text-secondary`
-  - `text-success`
-  - `text-danger`
-  - `text-warning`
-  - `text-info`
-  - `text-muted`
-- `overlay_opacity` — Overlay strength for background image
-  - `0%`
-  - `20%`
-  - `40%`
-  - `60%`
-  - `75%`
-- `bg_edge2edge` — Adds `bg-edge2edge` to the main wrapper when enabled
+- `text_align` (required): `text-center`, `text-start`, `text-end`; defaults to `text-center`
+- `background_color`: `bg-none`, `bg-primary text-white`, `bg-secondary text-white`, `bg-light`, `bg-dark text-white`, `bg-body-tertiary`, `bg-info text-white`; defaults to `bg-none`
+- `content_color`: text color for heading, body, and actions — `auto`, `text-body`, `text-white`, `text-dark`, `text-primary`, `text-secondary`, `text-success`, `text-danger`, `text-warning`, `text-info`, `text-muted`; defaults to `auto`
+- `overlay_opacity`: dark overlay strength over the background image — `0%`, `20%`, `40%`, `60%`, `75%`; defaults to `40%`
+- `bg_edge2edge`: adds `bg-edge2edge` to the section wrapper; defaults to `false`
 
 ### Media
 
-- `background_image` — Background image object
+- `background_image`: background image object (`src`, `alt`, `width`, `height`)
 
 ### Button
 
-- `button_text` — Primary button label
-- `button_url` — Primary button URL
-- `button_variant` — Bootstrap button variant class
+- `button_text`: optional primary button label
+- `button_url`: optional primary button URL (a button renders only when both text and URL are provided)
+- `button_variant`: Bootstrap button variant — `btn-primary`, `btn-secondary`, `btn-success`, `btn-danger`, `btn-warning`, `btn-info`, `btn-light`, `btn-dark`, `btn-outline-primary`, `btn-outline-secondary`, `btn-outline-success`, `btn-outline-danger`, `btn-outline-warning`, `btn-outline-info`, `btn-outline-light`, `btn-outline-dark`, `btn-link`; defaults to `btn-primary`
 
 ## Slots
 
-### `actions`
+- `actions` — optional slot for extra actions (for example a secondary button or text link rendered next to the primary CTA button)
 
-Optional slot for extra actions. This is useful for adding a secondary button or a text link next to the main CTA button.
+## Overlay opacity mapping
 
-## Usage
+| Value | Output |
+|---|---|
+| `0%` | no overlay |
+| `20%` | `bg-dark bg-opacity-25` |
+| `40%` | `bg-dark bg-opacity-50` |
+| `60%` | `bg-dark bg-opacity-75` |
+| `75%` | `bg-dark bg-opacity-75` |
+
+## Available attributes
+
+The template builds these named attribute objects internally:
+
+- `section_attributes` — the outer `<section>` element
+- `background_media_attributes` — the background image wrapper
+- `overlay_attributes` — the overlay layer
+- `container_attributes` — the inner `.container`
+- `content_attributes` — the centered content column
+- `text_attributes` — the supporting text paragraph
+- `actions_attributes` — the actions wrapper
+
+## Example: CTA with background image
 
 ```twig
 {% include 'vartheme_bs5:cta' with {
@@ -93,7 +98,7 @@ Optional slot for extra actions. This is useful for adding a secondary button or
 } only %}
 ```
 
-## Example with actions slot
+## Example: CTA with actions slot
 
 ```twig
 {% embed 'vartheme_bs5:cta' with {
@@ -113,3 +118,11 @@ Optional slot for extra actions. This is useful for adding a secondary button or
   {% endblock %}
 {% endembed %}
 ```
+
+## Notes
+
+- `content_color: auto` resolves to `text-white` when the background color contains `text-white`, otherwise `text-body`.
+- An explicit brand text color (for example `text-primary`) is also passed to the heading component; `auto`, `text-body`, etc. are not.
+- Outline button variants are detected automatically; the variant is converted to the base `btn-*` class and rendered with `outline: true`.
+- The background image is rendered through the shared `vartheme_bs5:image` component with `object-fit-cover` and `w-100`.
+- Boolean props (`bg_edge2edge`) are validated by SDC, so only a presence fallback is applied in the template.

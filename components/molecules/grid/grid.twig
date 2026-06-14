@@ -1,7 +1,9 @@
 {#
 /**
  * @file
- * Vartheme BS5 Starter Kit implementation for views to display items in a grid.
+ * Vartheme BS5 Starter Kit implementation for the Grid component.
+ *
+ * Default theme implementation for views to display items in a grid.
  *
  * Available variables:
  * - attributes: HTML attributes for the wrapping element.
@@ -24,6 +26,16 @@
  */
 #}
 
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Variables: per-breakpoint column and utility class arrays. #}
 {% set col_xs = col_xs ? [col_xs] : [] %}
 {% set col_sm = col_sm ? [col_sm] : [] %}
 {% set col_md = col_md ? [col_md] : [] %}
@@ -34,6 +46,7 @@
 {% set grid_utility_classes = grid_utility_classes ?? [] %}
 {% set column_utility_classes = column_utility_classes ?? [] %}
 
+{# Logic: merge the grid wrapper classes as arrays. #}
 {%
   set classes = [
     'grid',
@@ -41,13 +54,9 @@
     'clearfix',
   ]|merge(grid_utility_classes)
 %}
-
-{% if not attributes %}
-  {% set attributes = create_attribute() %}
-{% endif %}
-
 {% set attributes = attributes.addClass(classes) %}
 
+{# Print the HTML. #}
 {% if items is iterable %}
 <div{{ attributes }}>
   {% for item in items %}

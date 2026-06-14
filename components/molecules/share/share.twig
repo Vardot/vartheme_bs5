@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Vartheme BS5 override of the Webshare Share component.
+ * Vartheme BS5 Starter Kit implementation for the Share component.
  *
  * Renders the platform icons using the Bootstrap Icons font that ships with
  * Vartheme rather than the module's bundled SVG assets. This keeps every
@@ -10,16 +10,63 @@
  *
  * Props are identical to webshare:share — see the module component for
  * the full prop reference.
+ *
+ * Available attributes:
+ * - attributes: HTML attributes for the <nav> wrapper element.
+ * - heading_attributes: HTML attributes for the <h3> heading.
+ * - list_attributes: HTML attributes for the <ul> list element.
+ * - native_item_attributes: HTML attributes for the native share <li>.
+ * - native_button_attributes: HTML attributes for the native share button.
+ * - native_icon_span_attributes: HTML attributes for the native icon <span>.
+ * - native_icon_attributes: HTML attributes for the native icon <i>.
+ * - native_hidden_label_attributes: HTML attributes for the native button hidden label.
+ * - platform_item_attributes: HTML attributes for each platform <li>.
+ * - copy_button_attributes: HTML attributes for each copy button.
+ * - platform_link_attributes: HTML attributes for each platform <a>.
+ * - platform_icon_span_attributes: HTML attributes for a platform custom icon <span>.
+ * - platform_icon_attributes: HTML attributes for a platform <i> icon.
+ * - platform_hidden_label_attributes: HTML attributes for a platform hidden label.
  */
 #}
+
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Variables: scalar props with schema defaults. #}
+{% set heading = heading|default('Share') %}
+{% set alignment = alignment|default('end') %}
+{% set orientation = orientation|default('vertical') %}
+{% set mobile_visibility = mobile_visibility|default('all') %}
+{% set placement = placement|default('rail-end') %}
+
+{# Variables: boolean props.
+ # SDC validates `type: boolean` props and applies their schema defaults,
+ # so the values arrive as real booleans — only a presence fallback is
+ # needed here, never type coercion.
+ #}
+{% set display_title = display_title ?? true %}
+{% set native_share = native_share ?? false %}
+
+{# Logic: merge the webshare--* classes as arrays, mapping enum/boolean
+ # values to their visibility modifier classes. #}
 {% set classes = [
   'webshare',
-  'webshare--' ~ (orientation|default('horizontal')),
-  'webshare--' ~ (placement|default('inline')),
-  'webshare--align-' ~ (alignment|default('start')),
-  mobile_visibility == 'hide_mobile' ? 'webshare--hide-mobile',
-  mobile_visibility == 'mobile_only' ? 'webshare--mobile-only',
+  'webshare--' ~ orientation,
+  'webshare--' ~ placement,
+  'webshare--align-' ~ alignment,
 ] %}
+{% set mobile_visibility_map = {
+  'hide_mobile': 'webshare--hide-mobile',
+  'mobile_only': 'webshare--mobile-only',
+} %}
+{% set classes = classes|merge(mobile_visibility_map[mobile_visibility] is defined ? [mobile_visibility_map[mobile_visibility]] : []) %}
+
 {# When rendered through Drupal Canvas the SDC receives no `platforms`/`url`
    (the array-of-objects `platforms` prop is intentionally undeclared so the
    component is eligible for the Canvas library — see share.component.yml).
@@ -28,11 +75,11 @@
    set explicitly) keeps full control and skips the service call. #}
 {% set _share_data = (platforms is not defined or not platforms) or (url is not defined or not url)
   ? webshare_share_data(url|default(''), {
-      alignment: alignment|default('end'),
-      orientation: orientation|default('vertical'),
-      mobile_visibility: mobile_visibility|default('all'),
-      placement: placement|default('rail-end'),
-      native_share: native_share|default(false),
+      alignment: alignment,
+      orientation: orientation,
+      mobile_visibility: mobile_visibility,
+      placement: placement,
+      native_share: native_share,
     })
   : null %}
 {% set url = (url is defined and url) ? url : (_share_data ? _share_data.url : '') %}
@@ -41,7 +88,7 @@
 {# `display_title` mirrors the legacy block setting: when false, the heading
    is suppressed even if `heading` is non-empty (region label still uses it
    for accessibility). #}
-{% set _show_heading = (display_title is not defined or display_title) and heading %}
+{% set _show_heading = display_title and heading %}
 {% set heading_id = webshare_links_id ? webshare_links_id ~ '-heading' : 'webshare-heading-' ~ random() %}
 {% set region_label = heading ?: 'Share this page'|t %}
 
@@ -56,49 +103,112 @@
   'copy': 'bi-clipboard',
 } %}
 
-<nav{{ attributes
+{# Logic: build the wrapper element attributes. #}
+{% set attributes = attributes
   .addClass(classes)
   .setAttribute('aria-label', region_label)
   .setAttribute('data-webshare-url', url)
   .setAttribute('data-webshare-title', share_title)
   .setAttribute('data-webshare-text', share_text)
-}}>
+%}
+
+{% set heading_attributes = create_attribute()
+  .setAttribute('id', heading_id)
+  .addClass('webshare__heading')
+%}
+
+{% set list_attributes = create_attribute()
+  .setAttribute('id', webshare_links_id)
+  .addClass('webshare__list')
+%}
+{% if _show_heading %}
+  {% set list_attributes = list_attributes.setAttribute('aria-labelledby', heading_id) %}
+{% endif %}
+
+{# Print the HTML. #}
+<nav{{ attributes }}>
   {% if _show_heading %}
-    <h3 id="{{ heading_id }}" class="webshare__heading">{{ heading }}</h3>
+    <h3{{ heading_attributes }}>{{ heading }}</h3>
   {% endif %}
-  <ul id="{{ webshare_links_id }}" class="webshare__list"{% if _show_heading %} aria-labelledby="{{ heading_id }}"{% endif %}>
+  <ul{{ list_attributes }}>
     {% if native_share %}
-      <li class="webshare__item webshare__item--native" data-webshare-native>
-        <button type="button" class="webshare__native-button" aria-label="{{ native_label|default('Share this page'|t) }}">
+      {% set native_item_attributes = create_attribute()
+        .addClass(['webshare__item', 'webshare__item--native'])
+        .setAttribute('data-webshare-native', true)
+      %}
+      {% set native_button_attributes = create_attribute()
+        .setAttribute('type', 'button')
+        .addClass('webshare__native-button')
+        .setAttribute('aria-label', native_label|default('Share this page'|t))
+      %}
+      <li{{ native_item_attributes }}>
+        <button{{ native_button_attributes }}>
           {% if native_icon_html %}
-            <span class="webshare__native-icon" aria-hidden="true">{{ native_icon_html|raw }}</span>
+            {% set native_icon_span_attributes = create_attribute()
+              .addClass('webshare__native-icon')
+              .setAttribute('aria-hidden', 'true')
+            %}
+            <span{{ native_icon_span_attributes }}>{{ native_icon_html|raw }}</span>
           {% else %}
-            <i class="bi bi-share-fill webshare__native-icon" aria-hidden="true"></i>
+            {% set native_icon_attributes = create_attribute()
+              .addClass(['bi', 'bi-share-fill', 'webshare__native-icon'])
+              .setAttribute('aria-hidden', 'true')
+            %}
+            <i{{ native_icon_attributes }}></i>
           {% endif %}
-          <span class="visually-hidden">{{ native_label|default('Share'|t) }}</span>
+          {% set native_hidden_label_attributes = create_attribute().addClass('visually-hidden') %}
+          <span{{ native_hidden_label_attributes }}>{{ native_label|default('Share'|t) }}</span>
         </button>
       </li>
     {% endif %}
     {% for platform in platforms|default([]) %}
       {% set bi_class = bi_icons[platform.key]|default('bi-share') %}
-      <li class="webshare__item webshare__item--{{ platform.key }}">
+      {% set platform_item_attributes = create_attribute()
+        .addClass(['webshare__item', 'webshare__item--' ~ platform.key])
+      %}
+      <li{{ platform_item_attributes }}>
         {% if platform.is_copy %}
-          <button type="button" class="webshare-copy-url" data-url="{{ url }}" data-clipboard="{{ url }}" aria-label="{{ platform.title|default('Copy URL'|t) }}">
+          {% set copy_button_attributes = create_attribute()
+            .setAttribute('type', 'button')
+            .addClass('webshare-copy-url')
+            .setAttribute('data-url', url)
+            .setAttribute('data-clipboard', url)
+            .setAttribute('aria-label', platform.title|default('Copy URL'|t))
+          %}
+          <button{{ copy_button_attributes }}>
             {% if platform.icon_html %}
-              <span aria-hidden="true">{{ platform.icon_html|raw }}</span>
+              {% set platform_icon_span_attributes = create_attribute().setAttribute('aria-hidden', 'true') %}
+              <span{{ platform_icon_span_attributes }}>{{ platform.icon_html|raw }}</span>
             {% else %}
-              <i class="bi {{ bi_class }}" aria-hidden="true"></i>
+              {% set platform_icon_attributes = create_attribute()
+                .addClass(['bi', bi_class])
+                .setAttribute('aria-hidden', 'true')
+              %}
+              <i{{ platform_icon_attributes }}></i>
             {% endif %}
-            <span class="visually-hidden">{{ platform.title|default('Copy URL'|t) }}</span>
+            {% set platform_hidden_label_attributes = create_attribute().addClass('visually-hidden') %}
+            <span{{ platform_hidden_label_attributes }}>{{ platform.title|default('Copy URL'|t) }}</span>
           </button>
         {% else %}
-          <a href="{{ platform.url }}" target="_blank" rel="noopener noreferrer" aria-label="{{ platform.title }} {{ '(opens in a new tab)'|t }}">
+          {% set platform_link_attributes = create_attribute()
+            .setAttribute('href', platform.url)
+            .setAttribute('target', '_blank')
+            .setAttribute('rel', 'noopener noreferrer')
+            .setAttribute('aria-label', platform.title ~ ' ' ~ '(opens in a new tab)'|t)
+          %}
+          <a{{ platform_link_attributes }}>
             {% if platform.icon_html %}
-              <span aria-hidden="true">{{ platform.icon_html|raw }}</span>
+              {% set platform_icon_span_attributes = create_attribute().setAttribute('aria-hidden', 'true') %}
+              <span{{ platform_icon_span_attributes }}>{{ platform.icon_html|raw }}</span>
             {% else %}
-              <i class="bi {{ bi_class }}" aria-hidden="true"></i>
+              {% set platform_icon_attributes = create_attribute()
+                .addClass(['bi', bi_class])
+                .setAttribute('aria-hidden', 'true')
+              %}
+              <i{{ platform_icon_attributes }}></i>
             {% endif %}
-            <span class="visually-hidden">{{ platform.title }} {{ '(opens in a new tab)'|t }}</span>
+            {% set platform_hidden_label_attributes = create_attribute().addClass('visually-hidden') %}
+            <span{{ platform_hidden_label_attributes }}>{{ platform.title }} {{ '(opens in a new tab)'|t }}</span>
           </a>
         {% endif %}
       </li>

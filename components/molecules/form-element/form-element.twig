@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Vartheme BS5 Starter Kit implementation for the form element.
+ * Vartheme BS5 Starter Kit implementation for the Form Element component.
  *
  * Available variables:
  * - attributes: HTML attributes for the containing element.
@@ -46,6 +46,26 @@
  * @ingroup themeable
  */
 #}
+
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Variables: display-state flags. #}
+{% set has_no_label = title_display not in ['after', 'before'] %}
+{% set is_disabled = disabled == 'disabled' %}
+{% set has_errors = errors ? true : false %}
+{% set description_invisible = description_display == 'invisible' %}
+
+{# Logic: merge the form item classes as arrays. #}
+{% set no_label_classes = has_no_label ? ['form-no-label'] : [] %}
+{% set disabled_classes = is_disabled ? ['form-disabled', 'disabled'] : [] %}
+{% set error_classes = has_errors ? ['form-item--error', 'has-error'] : [] %}
 {%
   set classes = [
     'js-form-item',
@@ -53,21 +73,20 @@
     'js-form-type-' ~ type|clean_class,
     'form-item-' ~ name|clean_class,
     'js-form-item-' ~ name|clean_class,
-    title_display not in ['after', 'before'] ? 'form-no-label',
-    disabled == 'disabled' ? 'form-disabled disabled',
-    errors ? 'form-item--error has-error',
-    'form-group',
-  ]
+  ]|merge(no_label_classes)|merge(disabled_classes)|merge(error_classes)|merge(['form-group'])
 %}
+{% set description_invisible_classes = description_invisible ? ['visually-hidden'] : [] %}
 {%
   set description_classes = [
     'description',
     'form-text',
     'text-muted',
-    description_display == 'invisible' ? 'visually-hidden',
-  ]
+  ]|merge(description_invisible_classes)
 %}
-<div{{ attributes.addClass(classes) }}>
+{% set attributes = attributes.addClass(classes) %}
+
+{# Print the HTML. #}
+<div{{ attributes }}>
   {% if label_display in ['before', 'invisible'] %}
     {{ label }}
   {% endif %}

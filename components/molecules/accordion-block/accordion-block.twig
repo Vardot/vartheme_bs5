@@ -1,37 +1,77 @@
 {#
-  Accordion Item (Bootstrap 5)
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for the Accordion Block component.
+ *
+ * Available config:
+ * - title: Text shown in the accordion header button.
+ * - heading_level: Heading tag level (2 | 3 | 4 | 5 | 6). Defaults to `3`.
+ * - open_by_default: (true|false) Open this item on load. Defaults to `true`.
+ * - parent_id: Optional accordion container ID for data-bs-parent binding.
+ * - item_id: Optional stable ID suffix for this accordion item.
+ * - always_open: (true|false) Keep this item independent of the parent.
+ *                Defaults to `false`.
+ * - color: Optional Bootstrap text-bg-* override.
+ *          (inherit | text-bg-primary | text-bg-secondary | text-bg-success
+ *           | text-bg-danger | text-bg-warning | text-bg-info | text-bg-dark)
+ *          Defaults to `inherit`.
+ *
+ * Available attributes:
+ * - body_content_attributes: HTML attributes for the accordion body content
+ *   wrapper.
+ */
 #}
 
-{# --- Resolve IDs and labels --- #}
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Variables: scalar props with schema defaults. #}
+{% set heading_level = heading_level|default(3) %}
+{% set color = color|default('inherit') %}
+
+{# Variables: boolean props.
+ # SDC validates `type: boolean` props and applies their schema defaults,
+ # so the values arrive as real booleans — only a presence fallback is
+ # needed here, never type coercion.
+ #}
+{% set open_by_default = open_by_default ?? true %}
+{% set always_open = always_open ?? false %}
+
+{# Logic: resolve IDs and labels. #}
 {% set bound_parent = parent_id|default('')|trim %}
 {% if bound_parent is empty %}
   {% set bound_parent = accordion_parent_id|default('') %}
 {% endif %}
 
-{% set uid = item_id|default('')|trim %}
-{% if uid is empty %}
-  {% set uid = random(1000000) ~ '-' ~ 'now'|date('U') %}
+{% set unique_id = item_id|default('')|trim %}
+{% if unique_id is empty %}
+  {% set unique_id = random(1000000) ~ '-' ~ 'now'|date('U') %}
 {% endif %}
 
-{% set heading_level = heading_level|default(3) %}
-{% set heading_id    = 'heading-'  ~ uid %}
-{% set collapse_id   = 'collapse-' ~ uid %}
-{% set title_text    = title|default('Accordion item') %}
+{% set heading_id  = 'heading-'  ~ unique_id %}
+{% set collapse_id = 'collapse-' ~ unique_id %}
+{% set title_text  = title|default('Accordion item') %}
 
-{# --- Resolve color --- #}
-{% set resolved_color = color|default('inherit') %}
+{# Logic: resolve color. `inherit` receives the container-provided color. #}
+{% set resolved_color = color %}
 {% if resolved_color == 'inherit' %}
   {% set resolved_color = accordion_color|default('') %}
 {% endif %}
 
-{# --- Resolve state flags --- #}
-{% set allow_multiple    = always_open ? true : (accordion_always_open|default(false) ? true : false) %}
+{# Logic: resolve state flags. #}
+{% set allow_multiple    = always_open or (accordion_always_open|default(false)) %}
 {% set route_name        = app.request.attributes.get('_route')|default('') %}
 {% set is_canvas_preview = (route_name matches '/canvas/i') or (route_name matches '/sdc/i') or (route_name matches '/component/i') %}
-{% set expanded          = is_canvas_preview ? true : (open_by_default ? true : false) %}
+{% set expanded          = is_canvas_preview ? true : open_by_default %}
 {% set has_slot_content  = accordion_content is defined and accordion_content|render|trim is not empty %}
 
-{# --- Build class lists --- #}
+{# Logic: build class lists as arrays. #}
 {% set button_classes = ['accordion-button', 'fw-bold'] %}
 {% if resolved_color %}
   {% set button_classes = button_classes|merge([resolved_color]) %}
@@ -53,10 +93,8 @@
   {% set body_classes = body_classes|merge(['accordion-body--canvas-empty']) %}
 {% endif %}
 
-{# --- Build attributes --- #}
-{% set item_attributes = create_attribute({
-  'class': ['accordion-item'],
-}) %}
+{# Logic: build attributes. #}
+{% set attributes = attributes.addClass(['accordion-item']) %}
 
 {% set heading_attributes = create_attribute({
   'class': ['accordion-header'],
@@ -85,15 +123,19 @@
   'class': body_classes,
 }) %}
 
-{# --- HTML --- #}
-<div{{ item_attributes }}>
+{% set body_content_attributes = create_attribute({
+  'class': ['accordion-body__content'],
+}) %}
+
+{# Print the HTML. #}
+<div{{ attributes }}>
   <h{{ heading_level }}{{ heading_attributes }}>
     <button{{ button_attributes }}>{{ title_text }}</button>
   </h{{ heading_level }}>
 
   <div{{ collapse_attributes }}>
     <div{{ body_attributes }}>
-      <div class="accordion-body__content">
+      <div{{ body_content_attributes }}>
         {% if has_slot_content %}
           {{ accordion_content }}
         {% else %}

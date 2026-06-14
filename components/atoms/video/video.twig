@@ -1,35 +1,69 @@
 {#
-  Video component (Bootstrap 5, SDC, Canvas-friendly)
-  - Uploaded video only (Media Library)
-  - Placeholder renders if no video selected
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for the Video component.
+ *
+ * Uploaded video only (Media Library). Renders the responsive ratio wrapper
+ * and a `<video>` element only when a video has been selected.
+ *
+ * Available properties:
+ * - video_file: Uploaded/selected video object (src, poster).
+ * - ratio: Responsive ratio wrapper for the video.
+ *          (16x9 | 4x3 | 1x1 | 21x9) Defaults to `16x9`.
+ * - loading: Loading behavior. (lazy | eager) Defaults to `lazy`.
+ * - extra_classes: Space-separated Bootstrap utility classes. Defaults to ``.
+ *
+ * Available attributes:
+ * - attributes / figure_attributes: The <figure> wrapper.
+ * - ratio_attributes: The responsive ratio wrapper.
+ */
 #}
 
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Variables: scalar props with schema defaults. #}
+{% set ratio = ratio|default('16x9') %}
+{% set loading = loading|default('lazy') %}
+{% set extra_classes = extra_classes|default('') %}
+
+{# Logic: video source and poster from the selected media. #}
 {% set src = (video_file is defined and video_file and video_file.src is defined) ? (video_file.src|default('')|trim) : '' %}
 {% set poster = (video_file is defined and video_file and video_file.poster is defined) ? (video_file.poster|default('')|trim) : '' %}
 {% set has_video = src != '' %}
 
+{# Logic: map ratio prop to Bootstrap ratio utilities. #}
 {% set ratio_map = {'16x9': 'ratio ratio-16x9', '4x3': 'ratio ratio-4x3', '1x1': 'ratio ratio-1x1', '21x9': 'ratio ratio-21x9'} %}
-{% set ratio_class = ratio_map[ratio|default('16x9')]|default('ratio ratio-16x9') %}
+{% set ratio_class = ratio_map[ratio]|default('ratio ratio-16x9') %}
 
-{# Width is always full (100%). Alignment & Corners settings removed. #}
-{% set block_classes = ['w-100']|join(' ') %}
+{# Logic: figure classes. Width is always full (100%). #}
+{% set extra_class_list = extra_classes|trim is not empty ? extra_classes|trim|split(' ') : [] %}
+{% set fig_classes = ['d-block', 'w-100']|merge(extra_class_list) %}
+{% set frame_classes = ['w-100', 'h-100'] %}
+{% set ratio_classes = ratio_class|split(' ') %}
 
-{% if extra_classes|default('')|trim %}
-  {% set block_classes = block_classes ~ ' ' ~ (extra_classes|trim) %}
+{# Logic: per-region attribute objects. #}
+{% set attributes = attributes.addClass(fig_classes) %}
+
+{% if not ratio_attributes %}
+  {% set ratio_attributes = create_attribute() %}
 {% endif %}
+{% set ratio_attributes = ratio_attributes.addClass(ratio_classes) %}
 
-{% set frame_classes = ['w-100', 'h-100']|filter(v => v)|join(' ') %}
-
-{% set fig_attrs = create_attribute().addClass(['d-block', block_classes]|filter(v=>v)) %}
-
-<figure{{ fig_attrs }}>
-  <div class="{{ ratio_class }}">
+{# Print the HTML. #}
+<figure{{ attributes }}>
+  <div{{ ratio_attributes }}>
     {% if has_video %}
-      <video class="{{ frame_classes }}" controls preload="metadata" {% if poster %}poster="{{ poster|e }}"{% endif %}>
+      <video class="{{ frame_classes|join(' ') }}" controls preload="metadata" {% if poster %}poster="{{ poster|e }}"{% endif %}>
         <source src="{{ src|e }}">
         Your browser does not support the video tag.
       </video>
     {% endif %}
   </div>
-
 </figure>

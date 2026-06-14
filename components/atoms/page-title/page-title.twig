@@ -22,9 +22,21 @@
  *   displayed after the main title tag that appears in the template.
  */
 #}
-{% set page_title_utility_classes = page_title_utility_classes ? page_title_utility_classes : [] %}
+
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Variables: scalar props with schema defaults. #}
 {% set display = display ? display : '' %}
 
+{# Logic: class arrays. #}
+{% set page_title_utility_classes = page_title_utility_classes ? page_title_utility_classes : [] %}
 {%
   set classes = [
     'title',
@@ -32,9 +44,9 @@
   ]|merge(page_title_utility_classes)
 %}
 
-{% set _attributes = (attributes is defined and attributes is iterable) ? attributes : (attributes is defined and attributes is not iterable and attributes is not empty ? create_attribute({class: [attributes]}) : create_attribute()) %}
 {% set _title_attributes = (title_attributes is defined and title_attributes is iterable) ? title_attributes : (title_attributes is defined and title_attributes is not iterable and title_attributes is not empty ? create_attribute({class: [title_attributes]}) : create_attribute()) %}
 
+{# Print the HTML. #}
 {{ title_prefix }}
 {% if title|render|striptags|trim %}
   {{ include('vartheme_bs5:heading', {

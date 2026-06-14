@@ -1,43 +1,43 @@
 {#
-  Featured Card
-  - Bootstrap utility classes only (no custom classes)
-  - Responsive grid ratios per breakpoint
-  - Two drag & drop slots: overlay (over the media image) and content
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for the Card Featured component.
+ *
+ * - Bootstrap utility classes only (no custom classes)
+ * - Responsive grid ratios per breakpoint
+ * - Two drag & drop slots: overlay (over the media image) and content
+ *
+ * Available attributes:
+ * - attributes: Attributes for the card wrapper (root element).
+ * - row_attributes: Attributes for the row.
+ * - media_col_attributes: Attributes for the media column.
+ * - content_col_attributes: Attributes for the content column.
+ * - media_wrap_attributes: Attributes for the media wrapper.
+ * - placeholder_wrap_attributes: Attributes for the placeholder wrapper.
+ * - content_stack_attributes: Attributes for the content stack wrapper.
+ * - content_body_attributes: Attributes for the content body (card-body).
+ * - content_placeholder_attributes: Attributes for the empty-slot placeholder.
+ */
 #}
 
-{% set card_border = card_border|default(false) %}
-{% set corner_style = corner_style|default('rounded-0') %}
-{% set padded = padded|default(false) %}
-{% set content_padding_class = padded ? 'p-4' : 'p-0' %}
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
 
-{% set equal_height = equal_height|default(false) %}
-{% set stretched_link = stretched_link|default(false) %}
+{# Variables: scalar props with schema defaults. #}
 {% set media_position = media_position|default('start') %}
-{% set has_media = media_position != 'no-media' %}
-{% set content_vertical_alignment = content_vertical_alignment|default('align-items-center') %}
-{% set gutters_between = gutters_between|default('g-2 g-lg-3') %}
-
-{% set media_image = media_image|default({}) %}
-{% set has_media_prop = (media_image.src|default('')|trim) is not empty %}
-
 {% set ratio = ratio|default('ratio-16x9') %}
 {% set fit = fit|default('object-fit-cover') %}
-
+{% set corner_style = corner_style|default('rounded-0') %}
+{% set content_vertical_alignment = content_vertical_alignment|default('align-items-center') %}
+{% set gutters_between = gutters_between|default('g-2 g-lg-3') %}
 {% set link_url = link_url|default('')|trim %}
 {% set link_target_raw = link_target|default('default') %}
-{% set link_target = (link_target_raw == 'default') ? '_self' : link_target_raw %}
-
-{# Capture slots — overlay first so it can influence media column rendering #}
-{% set overlay_slot %}{% block overlay %}{% endblock %}{% endset %}
-{% set content_slot %}{% block content %}{% endblock %}{% endset %}
-{% set has_overlay_slot = overlay_slot|render|trim is not empty %}
-{% set has_content_slot = content_slot|render|trim is not empty %}
-{% set empty_slot_classes = not has_content_slot ? 'd-flex align-items-center justify-content-center text-center' : '' %}
-
-{% set placeholder_src = (component_metadata.path is defined)
-  ? (component_metadata.path ~ '/assets/featured-card-image-placeholder.svg')
-  : 'assets/featured-card-image-placeholder.svg'
-%}
 
 {#
   Breakpoint ratios
@@ -51,7 +51,40 @@
 {% set columns_xl_size = columns_xl_size|default(columns_xs_size, true) %}
 {% set columns_xxl_size = columns_xxl_size|default(columns_xs_size, true) %}
 
-{# Mapping for the start (media) column with selected column sizes on each breakpoint #}
+{% set media_image = media_image|default({}) %}
+
+{# Variables: boolean props.
+ # SDC validates `type: boolean` props and applies their schema defaults,
+ # so the values arrive as real booleans — only a presence fallback is
+ # needed here, never type coercion.
+ #}
+{% set card_border = card_border ?? false %}
+{% set padded = padded ?? false %}
+{% set equal_height = equal_height ?? false %}
+{% set stretched_link = stretched_link ?? false %}
+
+{# Logic: link target mapping. #}
+{% set link_target = (link_target_raw == 'default') ? '_self' : link_target_raw %}
+
+{# Logic: media / overlay rendering decisions. #}
+{% set has_media = media_position != 'no-media' %}
+{% set has_media_prop = (media_image.src|default('')|trim) is not empty %}
+
+{# Capture slots — overlay first so it can influence media column rendering #}
+{% set overlay_slot %}{% block overlay %}{% endblock %}{% endset %}
+{% set content_slot %}{% block content %}{% endblock %}{% endset %}
+{% set has_overlay_slot = overlay_slot|render|trim is not empty %}
+{% set has_content_slot = content_slot|render|trim is not empty %}
+{% set empty_slot_classes = not has_content_slot ? 'd-flex align-items-center justify-content-center text-center' : '' %}
+
+{% set content_padding_class = padded ? 'p-4' : 'p-0' %}
+
+{% set placeholder_src = (component_metadata.path is defined)
+  ? (component_metadata.path ~ '/assets/featured-card-image-placeholder.svg')
+  : 'assets/featured-card-image-placeholder.svg'
+%}
+
+{# Logic: column size mapping for the start (media) column per breakpoint. #}
 {% set start_column_xs_size = columns_xs_size ? ['col-' ~ columns_xs_size|split('_')[0]|trim('0', 'left')] : [] %}
 {% set start_column_sm_size = columns_sm_size ? ['col-sm-' ~ columns_sm_size|split('_')[0]|trim('0', 'left')] : [] %}
 {% set start_column_md_size = columns_md_size ? ['col-md-' ~ columns_md_size|split('_')[0]|trim('0', 'left')] : [] %}
@@ -59,7 +92,7 @@
 {% set start_column_xl_size = columns_xl_size ? ['col-xl-' ~ columns_xl_size|split('_')[0]|trim('0', 'left')] : [] %}
 {% set start_column_xxl_size = columns_xxl_size ? ['col-xxl-' ~ columns_xxl_size|split('_')[0]|trim('0', 'left')] : [] %}
 
-{# Mapping for the end (content) column with selected column sizes on each breakpoint #}
+{# Logic: column size mapping for the end (content) column per breakpoint. #}
 {% set end_column_xs_size = columns_xs_size ? ['col-' ~ columns_xs_size|split('_')[1]|trim('0', 'left')] : [] %}
 {% set end_column_sm_size = columns_sm_size ? ['col-sm-' ~ columns_sm_size|split('_')[1]|trim('0', 'left')] : [] %}
 {% set end_column_md_size = columns_md_size ? ['col-md-' ~ columns_md_size|split('_')[1]|trim('0', 'left')] : [] %}
@@ -73,6 +106,7 @@
 {# Whether the media column renders: needs a media position AND an image or overlay #}
 {% set render_media_col = has_media and (has_media_prop or has_overlay_slot) %}
 
+{# Logic: card / row / column / wrapper class arrays. #}
 {% set card_class_list = [
   'card',
   'overflow-hidden',
@@ -203,14 +237,31 @@
   loading: 'lazy'
 } %}
 
-{% set card_attributes = create_attribute().addClass(card_class_list) %}
+{% set attributes = attributes.addClass(card_class_list) %}
 {% set row_attributes = create_attribute().addClass(row_class_list) %}
 {% set media_col_attributes = create_attribute().addClass(media_col_class_list) %}
 {% set content_col_attributes = create_attribute().addClass(content_col_class_list) %}
 {% set media_wrap_attributes = create_attribute().addClass(media_wrap_class_list) %}
 {% set placeholder_wrap_attributes = create_attribute().addClass(placeholder_wrap_class_list) %}
 
-<div{{ card_attributes }}>
+{% if not content_stack_attributes %}
+  {% set content_stack_attributes = create_attribute() %}
+{% endif %}
+{% set content_stack_attributes = content_stack_attributes.addClass(content_stack_class_list) %}
+
+{% if not content_body_attributes %}
+  {% set content_body_attributes = create_attribute() %}
+{% endif %}
+{% set content_body_attributes = content_body_attributes.addClass(content_body_class_list) %}
+
+{% set content_placeholder_attributes = create_attribute().addClass([
+  'text-body-secondary',
+  'fst-italic',
+  'mt-2',
+]) %}
+
+{# Print the HTML. #}
+<div{{ attributes }}>
   <div{{ row_attributes }}>
 
     {# Media column — renders when media position is set AND (image OR overlay provided) #}
@@ -232,11 +283,11 @@
     {% endif %}
 
     <div{{ content_col_attributes }}>
-      <div class="{{ content_stack_class_list|join(' ') }}">
-        <div class="{{ content_body_class_list|join(' ') }}">
+      <div{{ content_stack_attributes }}>
+        <div{{ content_body_attributes }}>
           {{ content_slot }}
           {% if not has_content_slot %}
-            <div class="text-body-secondary fst-italic mt-2">Drop content here</div>
+            <div{{ content_placeholder_attributes }}>Drop content here</div>
           {% endif %}
         </div>
       </div>

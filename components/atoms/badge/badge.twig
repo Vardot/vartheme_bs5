@@ -1,83 +1,79 @@
-{# Badge component (Bootstrap 5 / VarTheme) #}
+{#
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for the Badge component.
+ *
+ * Bootstrap badge that renders as a span, or as a link when a URL is
+ * provided. Supports an optional icon, a notification dot or count
+ * indicator, and contextual color, size and radius utilities.
+ *
+ * Available properties:
+ * - label: Text shown inside the badge.
+ * - url: If provided, badge will render as a link.
+ * - variant: Bootstrap contextual color utility for badges.
+ *            (text-bg-primary | text-bg-secondary | text-bg-success
+ *             | text-bg-danger | text-bg-warning | text-bg-info
+ *             | text-bg-light | text-bg-dark) Defaults to `text-bg-primary`.
+ * - size: Bootstrap utility classes for sizing (font-size + padding).
+ *         (fs-6 px-2 py-1 | fs-6 px-3 py-2 | fs-5 px-3 py-2)
+ *         Defaults to `fs-6 px-3 py-2`.
+ * - icon: Optional Bootstrap Icon name (without the "bi-" prefix).
+ *         Use "none" to disable. Defaults to `none`.
+ * - icon_first: (true|false) If enabled, icon shows before the label.
+ *               If disabled, icon shows after. Defaults to `true`.
+ * - radius: Bootstrap border-radius utility class.
+ *           (rounded-1 | rounded-pill) Defaults to `rounded-1`.
+ * - indicator: Show a dot or a count bubble on the badge.
+ *              (none | dot | count) Defaults to `none`.
+ * - indicator_text: Text shown in count bubble (e.g. 1, 9, 99+). Used only
+ *                   when indicator=count. Defaults to `99+`.
+ */
+#}
 
-{# URL #}
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Variables: scalar props with schema defaults. #}
+{% set variant = variant|default('text-bg-primary') %}
+{% set size = size|default('fs-6 px-3 py-2') %}
+{% set radius = radius|default('rounded-1') %}
+{% set icon = icon|default('none') %}
+{% set indicator = indicator|default('none') %}
+{% set indicator_text = indicator_text|default('99+') %}
+
+{# Variables: boolean props.
+ # SDC validates `type: boolean` props and applies their schema defaults,
+ # so the values arrive as real booleans — only a presence fallback is
+ # needed here, never type coercion.
+ #}
+{% set icon_first = icon_first ?? true %}
+
+{# Logic: URL switches the root tag to a link. #}
 {% set has_url = url is defined and url is not empty and url != 'No URL' %}
 {% set root_tag = has_url ? 'a' : 'span' %}
 
-{# Variant #}
-{% set variant = variant|default('text-bg-primary') %}
-{% set variant_allowed = [
-  'text-bg-primary',
-  'text-bg-secondary',
-  'text-bg-success',
-  'text-bg-danger',
-  'text-bg-warning',
-  'text-bg-info',
-  'text-bg-light',
-  'text-bg-dark',
-] %}
-{% if variant not in variant_allowed %}
-  {% set variant = 'text-bg-primary' %}
-{% endif %}
+{# Logic: internal SCSS size modifier mapped from the size utility. #}
+{% set size_modifier_map = {
+  'fs-6 px-2 py-1': 'badge-small',
+  'fs-6 px-3 py-2': 'badge-medium',
+  'fs-5 px-3 py-2': 'badge-large',
+} %}
+{% set size_modifier = size_modifier_map[size]|default('badge-medium') %}
 
-{# Size #}
-{% set size = size|default('fs-6 px-3 py-2') %}
-{% set size_allowed = [
-  'fs-6 px-2 py-1',
-  'fs-6 px-3 py-2',
-  'fs-5 px-3 py-2',
-] %}
-{% if size not in size_allowed %}
-  {% set size = 'fs-6 px-3 py-2' %}
-{% endif %}
-
-{# Keep component SCSS size modifiers (internal only) #}
-{% set size_modifier = 'badge-medium' %}
-{% if size == 'fs-6 px-2 py-1' %}
-  {% set size_modifier = 'badge-small' %}
-{% elseif size == 'fs-5 px-3 py-2' %}
-  {% set size_modifier = 'badge-large' %}
-{% endif %}
-
-{# Radius #}
-{% set radius = radius|default('rounded-1') %}
-{% set radius_allowed = ['rounded-1', 'rounded-pill'] %}
-{% if radius not in radius_allowed %}
-  {% set radius = 'rounded-1' %}
-{% endif %}
-
-{# Icon #}
-{% set icon_value = icon|default('')|trim %}
+{# Logic: icon and indicator presence. #}
+{% set icon_value = icon|trim %}
 {% set has_icon = icon_value is not empty and icon_value != 'none' %}
-
-{# Normalize icon_first safely #}
-{% set is_icon_first = icon_first|default(true) %}
-{% if icon_first is defined and icon_first is same as(false) %}
-  {% set is_icon_first = false %}
-{% else %}
-  {% set icon_first_value = (is_icon_first ~ '')|lower|trim %}
-  {% if icon_first_value in ['false', '0', 'off', 'no'] %}
-    {% set is_icon_first = false %}
-  {% else %}
-    {% set is_icon_first = true %}
-  {% endif %}
-{% endif %}
-
-{# Indicator #}
-{% set indicator = indicator|default('none') %}
-{% set indicator_allowed = ['none', 'dot', 'count'] %}
-{% if indicator not in indicator_allowed %}
-  {% set indicator = 'none' %}
-{% endif %}
-
-{% set indicator_text = indicator_text|default('99+')|trim %}
-{% if indicator_text is empty %}
-  {% set indicator_text = '99+' %}
-{% endif %}
-
+{% set indicator_text = indicator_text|trim %}
+{% set indicator_text = indicator_text is empty ? '99+' : indicator_text %}
 {% set has_indicator = indicator in ['dot', 'count'] %}
 
-{# Class lists #}
+{# Logic: class lists merged as arrays. #}
 {% set root_classes = [
   'badge',
   variant,
@@ -92,9 +88,7 @@
   'me-3',
   'align-middle',
 ] %}
-{% if has_indicator %}
-  {% set root_classes = root_classes|merge(['position-relative']) %}
-{% endif %}
+{% set root_classes = has_indicator ? root_classes|merge(['position-relative']) : root_classes %}
 
 {% set icon_wrapper_classes = ['d-inline-flex', 'align-items-center', 'flex-shrink-0'] %}
 {% set icon_after_wrapper_classes = icon_wrapper_classes|merge(['ms-1']) %}
@@ -121,12 +115,12 @@
   'badge__dot',
 ] %}
 
-{# Attributes #}
-{% set root_attributes = create_attribute()
+{# Logic: attributes. #}
+{% set attributes = attributes
   .addClass(root_classes)
   .setAttribute('aria-label', label|default('')|e) %}
 {% if has_url %}
-  {% set root_attributes = root_attributes.setAttribute('href', url|e) %}
+  {% set attributes = attributes.setAttribute('href', url|e) %}
 {% endif %}
 
 {% set icon_wrapper_attributes = create_attribute().addClass(icon_wrapper_classes) %}
@@ -135,13 +129,14 @@
 {% set count_indicator_attributes = create_attribute().addClass(count_indicator_classes) %}
 {% set dot_indicator_attributes = create_attribute().addClass(dot_indicator_classes) %}
 
-<{{ root_tag }}{{ root_attributes }}>
-  {% if has_icon and is_icon_first %}
+{# Print the HTML. #}
+<{{ root_tag }}{{ attributes }}>
+  {% if has_icon and icon_first %}
     <span{{ icon_wrapper_attributes }}>
       {{ include('vartheme_bs5:icon', {icon: icon_value}, with_context: false) }}
     </span>
     <span{{ label_after_icon_attributes }}>{{ label }}</span>
-  {% elseif has_icon and not is_icon_first %}
+  {% elseif has_icon and not icon_first %}
     <span>{{ label }}</span>
     <span{{ icon_after_wrapper_attributes }}>
       {{ include('vartheme_bs5:icon', {icon: icon_value}, with_context: false) }}

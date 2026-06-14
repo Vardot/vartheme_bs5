@@ -1,13 +1,33 @@
 {#
-  Bootstrap 5 Logo Card
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for the Card Logo component.
+ *
+ * Bootstrap 5 Logo Card.
+ */
 #}
 
-{% set has_url = url is defined and url is not empty and url != 'No URL' %}
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Variables: scalar props with schema defaults. #}
 {% set shadow_class = shadow|default('shadow-none') %}
+{% set alignment = alignment|default('left') %}
 
+{# Logic: link rendering decision. #}
+{% set has_url = url is defined and url is not empty and url != 'No URL' %}
+
+{# Logic: horizontal alignment mapping. #}
 {% set alignment_map = { left: 'justify-content-start', center: 'justify-content-center', right: 'justify-content-end' } %}
-{% set alignment_class = alignment_map[alignment|default('left')]|default('justify-content-start') %}
+{% set alignment_class = alignment_map[alignment]|default('justify-content-start') %}
 
+{# Logic: normalize the media source which may arrive as a string or object. #}
 {% set src_value = '' %}
 {% if media is defined and media %}
   {% if media.src is defined and media.src %}
@@ -29,6 +49,7 @@
   height: media.height is defined and media.height is not empty ? media.height : null,
 } %}
 
+{# Logic: class arrays merged for each element. #}
 {% set card_classes = ['card', 'overflow-hidden', 'border-0', 'bg-transparent'] %}
 {% if shadow_class and shadow_class != 'shadow-none' %}
   {% set card_classes = card_classes|merge([shadow_class]) %}
@@ -41,11 +62,12 @@
 {% set image_wrapper_classes = ['d-flex', alignment_class, 'align-items-center'] %}
 {% set link_classes = ['stretched-link', 'text-decoration-none'] %}
 
-{% set card_attributes = create_attribute().addClass(card_classes) %}
+{% set attributes = attributes.addClass(card_classes) %}
 {% set body_attributes = create_attribute().addClass(body_classes) %}
 {% set image_wrapper_attributes = create_attribute().addClass(image_wrapper_classes) %}
 
-<div{{ card_attributes }}>
+{# Print the HTML. #}
+<div{{ attributes }}>
   <div{{ body_attributes }}>
     {% if has_url %}
       {% set _link_accessible_label = image_media.alt|default('')|trim %}

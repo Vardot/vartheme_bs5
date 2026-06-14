@@ -1,7 +1,35 @@
-{# HTML Code component (trusted HTML only) #}
+{#
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for the HTML Code component.
+ *
+ * Adds raw HTML markup. Use only with trusted content.
+ *
+ * Available properties:
+ * - code: Raw HTML markup string. Use only with trusted content.
+ *         Defaults to empty.
+ *
+ * Available attributes:
+ * - N/A
+ *
+ * Available slots:
+ * - N/A
+ */
+#}
 
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Variables: scalar props with schema defaults. #}
 {% set code = code|default('') %}
 
+{# Print the HTML. #}
 {% if code|trim is not empty %}
   {{ code|raw }}
 {% endif %}

@@ -1,20 +1,38 @@
 {#
 /**
  * @file
- * Vartheme BS5 Starter Kit implementation for the Node.
+ * Vartheme BS5 Starter Kit implementation for the Node component.
  */
 #}
+
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Variables: computed class fragments. #}
+{% set bundle_class = node.bundle|clean_class %}
+{% set bundle_view_mode_class = bundle_class ~ '--' ~ view_mode|clean_class %}
+
+{# Logic: merge node-level classes as arrays. #}
 {%
   set classes = [
-  'node',
-  node.isPromoted() ? 'node--promoted',
-  node.isSticky() ? 'node--sticky',
-  not node.isPublished() ? 'node--unpublished',
-  node.bundle|clean_class,
-  node.bundle|clean_class ~ '--' ~ view_mode|clean_class,
-]
+    'node',
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    bundle_class,
+    bundle_view_mode_class,
+  ]
 %}
-<article{{ attributes.addClass(classes) }}>
+
+{# Print the HTML. #}
+{% set attributes = attributes.addClass(classes) %}
+<article{{ attributes }}>
   {{ title_prefix }}
   {{ title_suffix }}
 

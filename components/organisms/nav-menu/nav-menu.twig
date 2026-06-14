@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Vartheme BS5 Starter Kit implementation for the Nav component.
+ * Vartheme BS5 Starter Kit implementation for the Nav Menu component.
  *
  * Available config:
  * - alignment: left | right | center | vertical.
@@ -10,10 +10,22 @@
  * - nav_menu_utility_classes: An array of utility classes.
  */
 #}
+
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Variables: utility classes and config props. #}
 {% set nav_menu_utility_classes = nav_menu_utility_classes ? nav_menu_utility_classes : [] %}
 
 {% import _self as menus %}
 
+{# Logic: map config props to Bootstrap classes. #}
 {% if alignment == 'right' %}
   {% set alignment = 'justify-content-end' %}
 {% elseif alignment == 'center' %}
@@ -27,6 +39,7 @@
 {% set style = style ? 'nav-' ~ style : '' %}
 {% set fill = fill ? 'nav-' ~ fill : '' %}
 
+{# Logic: merge root nav classes as an array. #}
 {%
   set nav_menu_classes = [
     'nav',
@@ -37,8 +50,10 @@
   ]|merge(nav_menu_utility_classes)
 %}
 
+{# Print the HTML. #}
 {% if items %}
-  <ul{{ attributes.addClass(nav_menu_classes) }}>
+  {% set attributes = attributes.addClass(nav_menu_classes) %}
+  <ul{{ attributes }}>
     {% for item in items %}
       {% set nav_item_classes = [
         'nav-item',

@@ -2,19 +2,41 @@
 /**
  * @file
  * Vartheme BS5 Starter Kit implementation for the Page Footer component.
- *
+ */
 #}
 
-{% if page.footer_top or page.footer_bottom %}
-  <footer class="footer w-100 mt-auto py-3">
-    {% if page.footer_top %}
-      <div class="w-100 footer-top mt-5">
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Variables: footer regions and their optional container classes. #}
+{% set has_footer_top = page.footer_top %}
+{% set has_footer_bottom = page.footer_bottom %}
+
+{# Logic: static structural class lists as arrays. #}
+{% set footer_classes = ['footer', 'w-100', 'mt-auto', 'py-3'] %}
+{% set footer_top_classes = ['w-100', 'footer-top', 'mt-5'] %}
+{% set footer_bottom_classes = ['w-100', 'footer-bottom', 'mb-5'] %}
+{% set row_classes = ['row'] %}
+{% set col_classes = ['col-12'] %}
+{% set flex_classes = ['d-flex', 'align-content-stretch', 'flex-wrap'] %}
+
+{# Print the HTML. #}
+{% if has_footer_top or has_footer_bottom %}
+  <footer class="{{ footer_classes|join(' ') }}">
+    {% if has_footer_top %}
+      <div class="{{ footer_top_classes|join(' ') }}">
         {% if container_footer_top %}
         <div class="{{ container_footer_top }}">
         {% endif %}
-          <div class="row">
-            <div class="col-12">
-              <div class="d-flex align-content-stretch flex-wrap">
+          <div class="{{ row_classes|join(' ') }}">
+            <div class="{{ col_classes|join(' ') }}">
+              <div class="{{ flex_classes|join(' ') }}">
                  {{ page.footer_top }}
               </div>
             </div>
@@ -25,17 +47,17 @@
       </div>
     {% endif %}
 
-    {% if page.footer_bottom %}
-      <div class="w-100 footer-bottom mb-5">
+    {% if has_footer_bottom %}
+      <div class="{{ footer_bottom_classes|join(' ') }}">
         {% if container_footer_bottom %}
         <div class="{{ container_footer_bottom }}">
         {% endif %}
           {# Horizontal line when footer bottom has content. #}
-          <div class="text-wight"><hr></div>
+          <div class="text-white"><hr></div>
 
-          <div class="row">
-            <div class="col-12">
-              <div class="d-flex align-content-stretch flex-wrap">
+          <div class="{{ row_classes|join(' ') }}">
+            <div class="{{ col_classes|join(' ') }}">
+              <div class="{{ flex_classes|join(' ') }}">
                 {{ page.footer_bottom }}
               </div>
             </div>

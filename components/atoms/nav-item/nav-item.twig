@@ -1,9 +1,32 @@
 {#
 /**
  * @file
- * Vartheme BS5 Starter Kit implementation for the local task link.
+ * Vartheme BS5 Starter Kit implementation for the Nav Item component.
+ *
+ * Renders a local task link as a Bootstrap nav item.
+ *
+ * Available attributes:
+ * - attributes: HTML attributes for the nav item element.
  */
 #}
-<li{{ attributes.addClass('nav-item') }}>
-  <a href="{{ link['#url'] }}" class="nav-link {{ is_active ? 'active' }}">{{ link['#title'] }}</a>
+
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Variables: boolean props. #}
+{% set is_active = is_active ?? false %}
+
+{# Logic: nav link class array. #}
+{% set link_classes = ['nav-link']|merge(is_active ? ['active'] : []) %}
+
+{# Print the HTML. #}
+{% set attributes = attributes.addClass('nav-item') %}
+<li{{ attributes }}>
+  <a href="{{ link['#url'] }}" class="{{ link_classes|join(' ') }}">{{ link['#title'] }}</a>
 </li>

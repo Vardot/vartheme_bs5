@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Vartheme BS5 Starter Kit implementation for Media Hero Slider view template.
+ * Vartheme BS5 Starter Kit implementation for the Media Hero Slider component.
  *
  * Available variables:
  * - attributes: Remaining HTML attributes for the element.
@@ -19,6 +19,17 @@
  * @see template_preprocess_views_view()
  */
 #}
+
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Logic: merge root view classes as an array. #}
 {%
   set classes = [
     'view',
@@ -30,17 +41,23 @@
   ]
 %}
 
-<div{{ attributes.addClass(classes) }}>
+{# Logic: static structural class lists as arrays. #}
+{% set content_classes = ['view-content'] %}
+{% set empty_classes = ['view-empty'] %}
+
+{# Print the HTML. #}
+{% set attributes = attributes.addClass(classes) %}
+<div{{ attributes }}>
   {{ title_prefix }}
   {{ title }}
   {{ title_suffix }}
 
   {% if rows %}
-    <div class="view-content">
+    <div class="{{ content_classes|join(' ') }}">
       {{ rows }}
     </div>
   {% elseif empty %}
-    <div class="view-empty">
+    <div class="{{ empty_classes|join(' ') }}">
       {{ empty }}
     </div>
   {% endif %}

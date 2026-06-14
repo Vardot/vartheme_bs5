@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Varbase Component implementation to display a view of unformatted rows.
+ * Vartheme BS5 Starter Kit implementation for the Views View Unformatted component.
  *
  * This template is used in two contexts:
  *
@@ -23,6 +23,24 @@
  * @see template_preprocess_views_view_unformatted()
  */
 #}
+
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Logic: row classes shared by every row. #}
+{%
+  set row_classes = [
+    default_row_class ? 'views-row',
+  ]
+%}
+
+{# Print the HTML. #}
 {% if title %}
   {{ include('vartheme_bs5:heading', {
       html_tag: 'h3',
@@ -31,19 +49,16 @@
   ) }}
 {% endif %}
 {% for row in rows %}
-  {%
-    set row_classes = [
-      default_row_class ? 'views-row',
-    ]
-  %}
   {% if row.content is defined %}
     {# Theme template context: rows come from template_preprocess_views_view_unformatted(). #}
-    <div{{ row.attributes.addClass(row_classes) }}>
+    {% set row_attributes = row.attributes.addClass(row_classes) %}
+    <div{{ row_attributes }}>
       {{- row.content -}}
     </div>
   {% else %}
     {# SDC component context: rows are render arrays from the views row plugin. #}
-    <div{{ create_attribute().addClass(row_classes) }}>
+    {% set row_attributes = create_attribute().addClass(row_classes) %}
+    <div{{ row_attributes }}>
       {{- row -}}
     </div>
   {% endif %}

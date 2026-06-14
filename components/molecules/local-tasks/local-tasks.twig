@@ -1,15 +1,33 @@
 {#
 /**
  * @file
- * Vartheme BS5 Starter Kit implementation primary and secondary local tasks.
+ * Vartheme BS5 Starter Kit implementation for the Local Tasks component.
+ *
+ * Default theme implementation for primary and secondary local tasks.
  */
 #}
+
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Logic: merge the primary and secondary tab list classes as arrays. #}
+{% set primary_classes = ['nav', 'nav-tabs', 'mb-3'] %}
+{% set secondary_classes = ['nav', 'nav-pills'] %}
+
+{# Print the HTML. #}
 {% if primary %}
   <h2 class="visually-hidden">{{ 'Primary tabs'|t }}</h2>
-  <ul class="nav nav-tabs mb-3">{{ primary }}</ul>
+  {% set attributes = attributes.addClass(primary_classes) %}
+  <ul{{ attributes }}>{{ primary }}</ul>
 {% endif %}
 
 {% if secondary %}
   <h2 class="visually-hidden">{{ 'Secondary tabs'|t }}</h2>
-  <ul class="nav nav-pills">{{ secondary }}</ul>
+  <ul class="{{ secondary_classes|join(' ') }}">{{ secondary }}</ul>
 {% endif %}

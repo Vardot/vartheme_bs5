@@ -1,34 +1,55 @@
-{# Hero CTA #}
+{#
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for the Hero CTA component.
+ */
+#}
 
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Variables: scalar props with schema defaults. #}
 {% set align_class = text_align|default('text-center') %}
+{% set bg_value = background_color|default('bg-none') %}
+{% set content_color_value = content_color|default('auto') %}
+{% set heading_level = level|default(2) %}
+{% set overlay_opacity_value = overlay_opacity|default('40%') %}
+{% set btn_text = button_text|default('')|trim %}
+{% set btn_url = button_url|default('')|trim %}
+{% set btn_variant_value = button_variant|default('btn-primary')|trim %}
+{% set btn_size = button_size|default('default')|trim %}
+
+{# Variables: boolean props.
+ # SDC validates `type: boolean` props and applies their schema defaults,
+ # so the values arrive as real booleans — only a presence fallback is
+ # needed here, never type coercion.
+ #}
+{% set is_bg_edge2edge = bg_edge2edge ?? false %}
+{% set btn_new_tab = button_new_tab ?? false %}
+
+{# Logic: actions horizontal alignment derived from text alignment. #}
 {% set actions_class = {
   'text-start': 'justify-content-start',
   'text-center': 'justify-content-center',
   'text-end': 'justify-content-end',
 }[align_class]|default('justify-content-center') %}
 
-{% set bg_value = background_color|default('bg-none') %}
+{# Logic: background color and resolved content color. #}
 {% set bg_class = bg_value == 'bg-none' ? '' : bg_value %}
-
-{% set content_color_value = content_color|default('auto') %}
 {% set auto_content_color = ('text-white' in bg_class) ? 'text-white' : 'text-body' %}
 {% set resolved_content_color = content_color_value == 'auto' ? auto_content_color : content_color_value %}
-{% set content_text_class = resolved_content_color in [
-  'text-body',
-  'text-white',
-  'text-dark',
-  'text-primary',
-  'text-secondary',
-  'text-success',
-  'text-danger',
-  'text-warning',
-  'text-info',
-  'text-muted',
-] ? resolved_content_color : '' %}
+{% set content_text_class = resolved_content_color %}
 
+{# Logic: heading props. Pass an explicit text color only for brand colors. #}
 {% set heading_props = {
   heading_text: heading_text|default(''),
-  level: level|default(2),
+  level: heading_level,
   align: align_class,
   url: '',
 } %}
@@ -49,19 +70,16 @@
   {% set heading_props = heading_props|merge({text_color: resolved_content_color}) %}
 {% endif %}
 
+{# Logic: overlay opacity mapped to Bootstrap utilities. #}
 {% set overlay_class = {
   '0%': '',
   '20%': 'bg-dark bg-opacity-25',
   '40%': 'bg-dark bg-opacity-50',
   '60%': 'bg-dark bg-opacity-75',
   '75%': 'bg-dark bg-opacity-75',
-}[overlay_opacity|default('40%')]|default('bg-dark bg-opacity-50') %}
+}[overlay_opacity_value]|default('bg-dark bg-opacity-50') %}
 
-{% set btn_text = button_text|default('')|trim %}
-{% set btn_url = button_url|default('')|trim %}
-{% set btn_variant_value = button_variant|default('btn-primary')|trim %}
-{% set btn_size = button_size|default('default')|trim %}
-{% set btn_new_tab = button_new_tab|default(false) %}
+{# Logic: button variant, outline handling, size, and target. #}
 {% set btn_outline = 'btn-outline-' in btn_variant_value %}
 {% set btn_variant = btn_outline ? btn_variant_value|replace({'btn-outline-': 'btn-'}) : btn_variant_value %}
 {% set btn_size_value = {
@@ -75,19 +93,20 @@
 {% set btn_target = btn_new_tab ? 'blank' : 'self' %}
 {% set has_primary_btn = btn_text and btn_url %}
 
+{# Logic: actions slot. #}
 {% set slot_actions = '' %}
 {% if slots is defined and slots.actions is defined %}
   {% set slot_actions = slots.actions|render %}
 {% endif %}
 {% set has_actions = has_primary_btn or slot_actions|trim %}
 
+{# Logic: background image. #}
 {% set bg_image = null %}
 {% if background_image is defined and background_image.src is not empty %}
   {% set bg_image = background_image %}
 {% endif %}
 
-{% set is_bg_edge2edge = bg_edge2edge|default(false) %}
-
+{# Logic: merge section and wrapper classes as arrays. #}
 {% set section_classes = [
   'hero-cta',
   'position-relative',
@@ -96,11 +115,11 @@
   bg_class,
   is_bg_edge2edge ? 'bg-edge2edge' : '',
 ]|filter(v => v is not empty) %}
-{% set section_attributes = create_attribute({class: section_classes}) %}
+{% set attributes = attributes.addClass(section_classes) %}
 
 {% set background_media_attributes = create_attribute({
   class: ['position-absolute', 'top-0', 'start-0', 'w-100', 'h-100'],
-}) %}
+}).setAttribute('aria-hidden', 'true') %}
 {% set overlay_attributes = create_attribute({
   class: ['position-absolute', 'top-0', 'start-0', 'w-100', 'h-100', overlay_class]|filter(v => v is not empty),
 }) %}
@@ -127,9 +146,10 @@
   width: 'w-100',
 } %}
 
-<section{{ section_attributes }}>
+{# Print the HTML. #}
+<section{{ attributes }}>
   {% if bg_image %}
-    <div{{ background_media_attributes }} aria-hidden="true">
+    <div{{ background_media_attributes }}>
       {% if overlay_class %}
         <div{{ overlay_attributes }}></div>
       {% endif %}

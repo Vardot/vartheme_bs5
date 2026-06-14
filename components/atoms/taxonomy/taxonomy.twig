@@ -1,11 +1,42 @@
-{# Taxonomy component (SDC + Canvas, Bootstrap utilities only) #}
+{#
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for the Taxonomy component.
+ *
+ * Taxonomy badge rendered with Bootstrap utilities only. Renders as a link
+ * when a URL is provided, otherwise as a span.
+ *
+ * Available properties:
+ * - label: Text shown inside the taxonomy badge. (required)
+ * - url: If provided, taxonomy will render as a link. Defaults to ``.
+ * - target: Where to open the link (only used when Link is provided).
+ *           (_self | _blank) Defaults to `_self`.
+ * - size: Controls the typography size (taxonomy modifier class).
+ *         (taxonomy-lg | taxonomy-sm) Defaults to `taxonomy-lg`.
+ *
+ * Available attributes:
+ * - attributes: Attributes array.
+ */
+#}
 
-{% set has_url = url is defined and url is not empty %}
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
 
-{# Map size prop to Bootstrap font-size utilities #}
-{% set size_class = size == 'taxonomy-sm' ? '' : 'fs-6' %}
+{# Variables: scalar props with schema defaults. #}
+{% set url = url|default('') %}
+{% set target = target|default('_self') %}
+{% set size = size|default('taxonomy-lg') %}
 
-{# Base visual styling — pure Bootstrap utilities, no custom CSS #}
+{# Logic: map size prop to Bootstrap font-size utilities. #}
+{% set size_classes = size == 'taxonomy-sm' ? [] : ['fs-6'] %}
+
+{# Logic: base visual styling — pure Bootstrap utilities, no custom CSS. #}
 {% set base_classes = [
   'taxonomy',
   'badge',
@@ -20,23 +51,26 @@
   'text-accent',
   'border',
   'border-accent',
-  size_class,
-] %}
+]|merge(size_classes) %}
 
-{% set classes = base_classes|filter(v => v is not empty)|join(' ') %}
+{% set has_url = url is not empty %}
 
+{# Print the HTML. #}
 {% if has_url %}
+  {% set taxonomy_link_classes = base_classes|merge(['text-decoration-none']) %}
+  {% set attributes = attributes.addClass(taxonomy_link_classes) %}
   <a
     href="{{ url|e }}"
-    class="{{ classes }} text-decoration-none"
-    {% if target is defined and target == '_blank' %}
+    {{ attributes }}
+    {% if target == '_blank' %}
       target="_blank" rel="noopener noreferrer"
     {% endif %}
   >
     {{ label|e }}
   </a>
 {% else %}
-  <span class="{{ classes }}">
+  {% set attributes = attributes.addClass(base_classes) %}
+  <span{{ attributes }}>
     {{ label|e }}
   </span>
 {% endif %}

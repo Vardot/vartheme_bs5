@@ -1,15 +1,44 @@
 {#
-  Icon component.
-
-  Props:
-  - icon (string): icon id from dropdown
-  - icon_size (string): Bootstrap font-size utility class, for example fs-1 through fs-6
-  - color (string): Bootstrap text color utility class, for example text-primary
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for the Icon component.
+ *
+ * Renders a Bootstrap Icon via the vartheme_bs5:bootstrap-icon component.
+ *
+ * Available properties:
+ * - icon: Bootstrap Icon name (without the "bi-" prefix). Defaults to `people`.
+ * - icon_size: Bootstrap font-size utility class used to control the icon size.
+ *              (fs-1 | fs-2 | fs-3 | fs-4 | fs-5 | fs-6) Defaults to `fs-4`.
+ * - color: Bootstrap text color utility class used to control the color.
+ *          (text-body | text-primary | text-secondary | text-success
+ *           | text-danger | text-warning | text-info | text-light | text-dark
+ *           | text-white | text-muted | text-body-secondary | text-body-tertiary
+ *           | text-primary-emphasis | text-secondary-emphasis
+ *           | text-success-emphasis | text-danger-emphasis
+ *           | text-warning-emphasis | text-info-emphasis) Defaults to `text-body`.
+ *
+ * Available attributes:
+ * - N/A
+ *
+ * Available slots:
+ * - N/A
+ */
 #}
 
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Variables: scalar props with schema defaults. #}
 {% set icon_size = icon_size|default('fs-4') %}
 {% set color = color|default('text-body') %}
 
+{# Print the HTML. #}
 {% if icon %}
   {{ include('vartheme_bs5:bootstrap-icon', {
     icon: icon,

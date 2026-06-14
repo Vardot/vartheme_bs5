@@ -18,6 +18,7 @@
  */
 #}
 
+{# Variables: scalar props and their class-array conversions. #}
 {% set container = container ?? false %}
 {% set placement = placement ? [placement] : [] %}
 {% set color_mode = color_mode ? ['navbar-' ~ color_mode] : [] %}
@@ -25,6 +26,7 @@
 {% set navbar_expand = navbar_expand ? ['navbar-expand-' ~ navbar_expand] : ['navbar-expand-lg'] %}
 {% set navbar_utility_classes = navbar_utility_classes ? navbar_utility_classes : [] %}
 
+{# Logic: merge root navbar classes as an array. #}
 {%
   set classes = [
     'navbar',
@@ -33,7 +35,15 @@
   ]|merge(placement)|merge(color_mode)|merge(color)|merge(navbar_expand)|merge(navbar_utility_classes)
 %}
 
-<nav{{ attributes.addClass(classes) }}>
+{# Logic: static structural class lists as arrays. #}
+{% set toggler_classes = ['navbar-toggler'] %}
+{% set toggler_icon_classes = ['navbar-toggler-icon'] %}
+{% set collapse_classes = ['collapse', 'navbar-collapse'] %}
+{% set navigation_wrap_classes = ['ms-auto'] %}
+
+{# Print the HTML. #}
+{% set attributes = attributes.addClass(classes) %}
+<nav{{ attributes }}>
   {% if container %}
     {%
       set container_classes = [
@@ -53,12 +63,12 @@
     {{ branding }}
   {% endblock %}
 
-  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+  <button class="{{ toggler_classes|join(' ') }}" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="{{ toggler_icon_classes|join(' ') }}"></span>
   </button>
 
-  <div class="collapse navbar-collapse">
-    <div class="ms-auto">
+  <div class="{{ collapse_classes|join(' ') }}">
+    <div class="{{ navigation_wrap_classes|join(' ') }}">
       {% block navigation %}
         {{ navigation }}
       {% endblock %}

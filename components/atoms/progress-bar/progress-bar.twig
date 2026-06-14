@@ -32,9 +32,23 @@
  */
 #}
 
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Variables: boolean props. #}
+{% set striped = striped ?? false %}
+{% set animated = animated ?? false %}
+
+{# Logic: class arrays. #}
 {% set color = color ? [color] : [] %}
-{% set striped = striped ? ['progress-bar-striped'] : [] %}
-{% set animated = animated ? ['progress-bar-animated'] : [] %}
+{% set striped_classes = striped ? ['progress-bar-striped'] : [] %}
+{% set animated_classes = animated ? ['progress-bar-animated'] : [] %}
 {% set progress_bar_utility_classes = progress_bar_utility_classes ? progress_bar_utility_classes : [] %}
 
 {# Progress Bar wrapper #}
@@ -53,7 +67,7 @@
 {%
   set indicator_classes = [
     'progress-bar',
-  ]|merge(color)|merge(striped)|merge(animated)|merge(progress_bar_utility_classes)
+  ]|merge(color)|merge(striped_classes)|merge(animated_classes)|merge(progress_bar_utility_classes)
 %}
 {% if not indicator_attributes %}
   {% set indicator_attributes = create_attribute() %}
@@ -67,6 +81,7 @@
   .setAttribute('style', 'width: ' ~ percent ~ '%')
 %}
 
+{# Print the HTML. #}
 {% if label %}
   {# Progress Bar label #}
   {%
@@ -74,6 +89,9 @@
       'progress-bar-label',
     ]
   %}
+  {% if not label_attributes %}
+    {% set label_attributes = create_attribute() %}
+  {% endif %}
 
   <label{{ label_attributes.addClass(label_classes) }}>{{ label }}</label>
 {% endif %}
@@ -84,9 +102,9 @@
   {# Progress Bar message #}
   {%
     set message_classes = [
-      'form-textl',
+      'form-text',
       'text-muted',
-      'rogress-bar-message',
+      'progress-bar-message',
     ]
   %}
   {% if not message_attributes %}

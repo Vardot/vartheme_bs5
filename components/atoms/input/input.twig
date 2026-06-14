@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Vartheme BS5 Starter Kit implementation for the 'input' #type form element.
+ * Vartheme BS5 Starter Kit implementation for the Input component.
  *
  * Available properties:
  * - type: Specifies the type `<input>` element to display
@@ -25,11 +25,24 @@
  */
 #}
 
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Variables: scalar props with schema defaults. #}
+{% set input_utility_classes = input_utility_classes ?? [] %}
+
+{# Logic: class arrays. #}
 {% set bs_form_control = bs_form_control ? ['form-control'] : [] %}
 {% set bs_size = bs_size ? [bs_size] : [] %}
-{% set input_utility_classes = input_utility_classes ?? [] %}
 {% set classes = []|merge(bs_form_control)|merge(bs_size|merge(input_utility_classes)) %}
 
+{# Logic: attribute manipulations. #}
 {# Change the type for the HTML <input> element. #}
 {% if type %}
     {% set attributes = attributes.setAttribute('type', type) %}
@@ -45,4 +58,6 @@
     {% set attributes = attributes.setAttribute('placeholder', placeholder) %}
 {% endif %}
 
-<input{{ attributes.addClass(classes) }} />{{ children }}
+{# Print the HTML. #}
+{% set attributes = attributes.addClass(classes) %}
+<input{{ attributes }} />{{ children }}

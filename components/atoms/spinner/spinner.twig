@@ -27,13 +27,25 @@
  */
 #}
 
-{% set html_tag = html_tag ? html_tag : 'div' %}
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Variables: scalar props with schema defaults. #}
+{% set html_tag = html_tag|default('div') %}
 {% set type = type ?? 'border' %}
+{% set hidden_status = hidden_status ?? true %}
+{% set spinner_utility_classes = spinner_utility_classes ? spinner_utility_classes : [] %}
+
+{# Logic: class arrays. #}
 {% set type_classes = type ? ['spinner-' ~ type] : ['spinner-border'] %}
 {% set size_classes = size ? ['spinner-' ~ type ~ '-' ~ size] : [] %}
 {% set color_classes = color ? ['text-' ~ color] : [] %}
-{% set hidden_status = hidden_status ?? true %}
-{% set spinner_utility_classes = spinner_utility_classes ? spinner_utility_classes : [] %}
 
 {% set classes = []|merge(type_classes)|merge(size_classes)|merge(color_classes)|merge(spinner_utility_classes) %}
 
@@ -54,6 +66,7 @@
   {% set spinner_status_attributes = spinner_status_attributes.setAttribute('role', 'status') %}
 {% endif %}
 
+{# Print the HTML. #}
 <{{ html_tag }}{{ attributes }}>{% apply spaceless %}
   {% if content and hidden_status %}
     <span{{ spinner_status_attributes }}>{{ content }}</span>

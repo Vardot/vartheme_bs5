@@ -1,11 +1,33 @@
 {#
-  Column (Bootstrap)
-  - Simple .col wrapper for use inside the Row component
-  - No settings, only a content slot
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for the Column component.
+ *
+ * Simple Bootstrap column wrapper (.col) for use inside the Row component.
+ * No settings, only a content slot.
+ *
+ * Available attributes:
+ * - attributes: Attributes array.
+ *
+ * Available slots:
+ * - content: Content placed inside the column.
+ */
 #}
 
-{% set attributes = attributes|default(create_attribute()) %}
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
 
-<div {{ attributes.addClass(['col']) }}>
+{# Logic: column classes. #}
+{% set classes = ['col'] %}
+
+{# Print the HTML. #}
+{% set attributes = attributes.addClass(classes) %}
+<div {{ attributes }}>
   {% block content %}{% endblock %}
 </div>

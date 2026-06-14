@@ -1,3 +1,25 @@
+{#
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for the Media Banner component.
+ *
+ * Available attributes:
+ * - attributes: the outermost `<section>` banner root element.
+ * - media_layer_attributes / overlay_attributes / container_attributes
+ *   / content_outer_attributes / content_width_attributes: nested elements.
+ */
+#}
+
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Variables: scalar props with schema defaults. #}
 {% set banner_height = height|default('ribbon') %}
 {% set banner_position = flex_position|default('center-left') %}
 {% set banner_object_position = object_position|default('center') %}
@@ -5,12 +27,21 @@
 {% set overlay_bg_class = overlay_bg|default('bg-dark') %}
 {% set overlay_opacity_class = overlay_opacity|default('opacity-50') %}
 {% set content_width_class = content_width|default('w-100') %}
-
-{% set ps = padding_inline_start|default('none') %}
-{% set pe = padding_inline_end|default('none') %}
+{% set padding_start = padding_inline_start|default('none') %}
+{% set padding_end = padding_inline_end|default('none') %}
 {% set radius = radius|default('none') %}
+
+{# Variables: boolean props.
+ # SDC validates `type: boolean` props and applies their schema defaults,
+ # so the values arrive as real booleans — only a presence fallback is
+ # needed here, never type coercion.
+ #}
+{% set is_bg_edge2edge = bg_edge2edge ?? false %}
+
+{# Logic: optional utility classes, only when set. #}
 {% set radius_class = radius != 'none' ? radius : '' %}
 
+{# Logic: content positioning derived from the flex position preset. #}
 {% set vertical_align_class = {
   'top-left': 'justify-content-start',
   'center-left': 'justify-content-center',
@@ -24,7 +55,7 @@
 
 {% set banner_spacing_classes = banner_height == 'large' ? ['py-5', 'py-lg-6'] : ['py-4', 'py-lg-5'] %}
 
-
+{# Logic: normalize the media source from a string or iterable value. #}
 {% set media_src = '' %}
 {% set media_alt = '' %}
 {% set media_width = '' %}
@@ -44,14 +75,15 @@
   {% set media_height = media.height|default('') %}
 {% endif %}
 
-{% set section_attributes = create_attribute().addClass([
+{# Logic: merge section and wrapper classes as arrays. #}
+{% set attributes = attributes.addClass([
   'position-relative',
   'overflow-hidden',
   'px-0',
   'text-bg-dark',
-  bg_edge2edge|default(false) ? 'bg-edge2edge' : '',
-  ps != 'none' ? ps : '',
-  pe != 'none' ? pe : '',
+  is_bg_edge2edge ? 'bg-edge2edge' : '',
+  padding_start != 'none' ? padding_start : '',
+  padding_end != 'none' ? padding_end : '',
   radius_class,
 ]|merge(banner_spacing_classes)) %}
 
@@ -61,7 +93,7 @@
   'start-0',
   'w-100',
   'h-100',
-]) %}
+]).setAttribute('aria-hidden', 'true') %}
 
 {% set overlay_attributes = create_attribute().addClass([
   'position-absolute',
@@ -90,9 +122,10 @@
   content_width_class,
 ]) %}
 
-<section{{ section_attributes }}>
+{# Print the HTML. #}
+<section{{ attributes }}>
   {% if media_src is not empty %}
-    <div{{ media_layer_attributes }} aria-hidden="true">
+    <div{{ media_layer_attributes }}>
       {{ include('vartheme_bs5:image', {
         media: {
           src: media_src,

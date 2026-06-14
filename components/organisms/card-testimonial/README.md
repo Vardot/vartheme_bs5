@@ -1,124 +1,48 @@
 # Testimonial card
 
-The **Testimonial card** component displays a customer quote, speaker details, and an optional avatar in a clean Bootstrap card layout.
+A Bootstrap card for a customer quote, with an optional decorative quote icon, avatar, author name, and role.
 
-It is useful for testimonials, endorsements, student feedback, client reviews, and highlighted quotes across landing pages and content sections.
+## Bootstrap reference
 
-## Features
+> [Bootstrap 5.3 — Card](https://getbootstrap.com/docs/5.3/components/card/)
 
-- Bootstrap card-based layout
-- Light and dark style options
-- Optional quote icon toggle
-- Optional avatar image
-- Optional author name and role
-- Bootstrap utility class values used directly in select props
-- Clean Twig structure with logic prepared at the top
-- Uses the `vartheme_bs5:image` component for the avatar
+## What it does
 
-## Properties
+Use this component when you need a testimonial/quote card that can:
 
-### `style`
-Card theme style.
+- display a quote with an optional decorative quote icon in the corner
+- show an optional avatar image, author name, and author role
+- switch between a light and an inverted dark style
+- align the quote and author block (start, center, or end)
+- apply a Bootstrap shadow
 
-Available values:
+## Files
 
-```text
-bg-body
-bg-dark text-white
-```
+- `card-testimonial.component.yml` — component schema and props
+- `card-testimonial.twig` — component template
+- `README.md` — usage notes and examples
+- `card-testimonial.mdx` — Storybook docs page
+- `card-testimonial.stories.json` — Storybook story configuration
+- `card-testimonial.stories.twig` — Storybook story templates
+- `assets/` — placeholder avatar used by examples
 
-Example:
+## Props overview
 
-```yaml
-style: bg-body
-```
+### Content
 
-### `shadow`
-Bootstrap shadow utility class.
+- `text`: testimonial quote text
+- `cite_name`: optional author name
+- `cite_text`: optional author title / role
+- `media`: optional Canvas avatar image object (`src`, `alt`, `width`, `height`)
 
-Available values:
+### Appearance
 
-```text
-shadow-none
-shadow-sm
-shadow
-shadow-lg
-```
+- `style`: card background style — `bg-body` (light) or `bg-dark text-white` (inverted); defaults to `bg-body` (required prop)
+- `shadow`: `shadow-none`, `shadow-sm`, `shadow`, `shadow-lg`; defaults to `shadow`
+- `align`: content alignment — `text-start`, `text-center`, `text-end`; defaults to `text-center` (required prop)
+- `show_quote_icon`: shows a decorative quote icon in the top-left corner; defaults to `true`
 
-Example:
-
-```yaml
-shadow: shadow
-```
-
-### `align`
-Content alignment for the quote and author area.
-
-Available values:
-
-```text
-text-center
-text-start
-```
-
-Example:
-
-```yaml
-align: text-center
-```
-
-### `show_quote_icon`
-Shows or hides the decorative quote icon.
-
-Example:
-
-```yaml
-show_quote_icon: true
-```
-
-### `text`
-Main testimonial quote text.
-
-Example:
-
-```yaml
-text: "My career guidance was crucial in helping me understand the tech industry landscape and ultimately secure my role."
-```
-
-### `cite_name`
-Author name.
-
-Example:
-
-```yaml
-cite_name: "Isiah Julio"
-```
-
-### `cite_text`
-Author title or role.
-
-Example:
-
-```yaml
-cite_text: "Engineer, Technical Services"
-```
-
-### `media`
-Avatar image object.
-
-Example:
-
-```yaml
-media:
-  src: "assets/avatar-placeholder.svg"
-  alt: "Avatar placeholder"
-  width: 120
-  height: 120
-```
-
-## Usage
-
-### Basic example
+## Example: basic testimonial
 
 ```twig
 {{ include('vartheme_bs5:card-testimonial', {
@@ -138,7 +62,7 @@ media:
 }, with_context: false) }}
 ```
 
-### Left-aligned example without quote icon
+## Example: left-aligned, no quote icon
 
 ```twig
 {{ include('vartheme_bs5:card-testimonial', {
@@ -152,7 +76,7 @@ media:
 }, with_context: false) }}
 ```
 
-### Dark style example
+## Example: dark style
 
 ```twig
 {{ include('vartheme_bs5:card-testimonial', {
@@ -168,6 +92,9 @@ media:
 
 ## Notes
 
-- The avatar uses the `vartheme_bs5:image` component.
-- `shadow-none` intentionally avoids adding a shadow class in Twig.
-- `show_quote_icon` uses proper boolean handling, so `false` will actually hide the icon.
+- The card always uses `h-100`, so testimonials in a row share equal height.
+- `style` and `align` are required props.
+- The footer (avatar + author block) is only rendered when at least one of `cite_name`, `cite_text`, or `media` is present.
+- The avatar is rendered via the `vartheme_bs5:image` component; it falls back to a 60×60 box and uses `cite_name` as the alt text when no `alt` is provided.
+- `shadow-none` intentionally adds no shadow class.
+- `show_quote_icon` is validated and defaulted by SDC, so `false` reliably hides the icon.

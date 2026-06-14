@@ -2,22 +2,58 @@
 /**
  * @file
  * Vartheme BS5 Starter Kit implementation for the Dropdown menu component.
+ *
+ * Renders a (recursive) Bootstrap dropdown menu from a menu items array.
+ *
+ * Available properties:
+ * - items: The menu items to render.
+ * - menu_level: The current nesting level of the menu.
+ *
+ * Available attributes:
+ * - attributes: Attributes array for the menu <ul> root.
+ * - list_item_attributes: Attributes for each menu <li>, created fresh per
+ *   loop iteration (the dropdown-item/active classes go on the <a>, not here).
+ * - toggle_attributes: Attributes for the expandable dropdown toggle (a)
+ *   element, created fresh per loop iteration.
  */
 #}
-<ul class="dropdown-menu level-{{ menu_level }}">
+
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Logic: dropdown menu wrapper classes. #}
+{% set menu_classes = ['dropdown-menu', 'level-' ~ menu_level] %}
+
+{# Print the HTML. #}
+{% set attributes = attributes.addClass(menu_classes) %}
+<ul{{ attributes }}>
   {% for item in items %}
-    {% set nav_link_classes = [
-      'dropdown-item',
-      item.in_active_trail ? 'active' : '',
-    ] %}
+    {% set nav_link_classes = ['dropdown-item'] %}
+    {% if item.in_active_trail %}
+      {% set nav_link_classes = nav_link_classes|merge(['active']) %}
+    {% endif %}
     {% if item.url.options.attributes.class is iterable %}
       {% set nav_link_classes = nav_link_classes|merge(item.url.options.attributes.class) %}
     {% elseif item.url.options.attributes.class %}
       {% set nav_link_classes = nav_link_classes|merge([item.url.options.attributes.class]) %}
     {% endif %}
-    <li class="{{ nav_item_classes|join(' ') }}">
+    {# Per-item <li> attributes — created fresh each iteration. The
+     # dropdown-item / active classes belong on the <a>, never the <li>. #}
+    {% set list_item_attributes = create_attribute() %}
+    <li{{ list_item_attributes }}>
       {% if item.is_expanded and item.below %}
-        <a href="{{ item.url }}" class="{{ nav_link_classes|merge(['dropdown-toggle'])|join(' ') }}" data-bs-toggle="dropdown">{{ item.title }}</a>
+        {% set toggle_attributes = create_attribute()
+          .setAttribute('href', item.url)
+          .addClass(nav_link_classes|merge(['dropdown-toggle']))
+          .setAttribute('data-bs-toggle', 'dropdown')
+        %}
+        <a{{ toggle_attributes }}>{{ item.title }}</a>
         {% if item.below %}
           {{ include('vartheme_bs5:dropdown-menu', {
             items: item.below,

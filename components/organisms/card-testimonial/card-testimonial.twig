@@ -1,19 +1,36 @@
-{# Bootstrap 5 Testimonial Card #}
+{#
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for the Card Testimonial component.
+ */
+#}
 
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Variables: scalar props with schema defaults. #}
 {% set style_value = style|default('bg-body') %}
 {% set shadow_value = shadow|default('shadow') %}
 {% set align_value = align|default('text-center') %}
 
-{# Quote icon toggle (normalize) #}
-{% set raw_icon = show_quote_icon is defined ? show_quote_icon : true %}
-{% set raw_icon_str = (raw_icon ~ '')|lower|trim %}
-{% set show_icon = raw_icon is same as(true)
-  or raw_icon is same as(1)
-  or raw_icon_str in ['1', 'true', 'yes', 'on'] %}
+{# Variables: boolean props.
+ # SDC validates `type: boolean` props and applies their schema defaults,
+ # so the values arrive as real booleans — only a presence fallback is
+ # needed here, never type coercion.
+ #}
+{% set show_icon = show_quote_icon ?? true %}
 
+{# Logic: presence checks for optional content. #}
 {% set has_media = media is defined and media.src is defined and media.src is not empty %}
 {% set has_footer = cite_name is not empty or cite_text is not empty or has_media %}
 
+{# Logic: merge card classes as arrays. #}
 {% set card_classes = ['card', 'h-100', 'position-relative', style_value] %}
 {% if shadow_value and shadow_value != 'shadow-none' %}
   {% set card_classes = card_classes|merge([shadow_value]) %}
@@ -29,7 +46,7 @@
 {% set author_role_classes = ['opacity-75'] %}
 {% set quote_icon_classes = ['position-absolute', 'top-0', 'start-0', 'p-3', 'opacity-25'] %}
 
-{% set card_attributes = create_attribute().addClass(card_classes) %}
+{% set attributes = attributes.addClass(card_classes) %}
 {% set body_attributes = create_attribute().addClass(body_classes) %}
 {% set blockquote_attributes = create_attribute().addClass(blockquote_classes) %}
 {% set quote_text_attributes = create_attribute().addClass(quote_text_classes) %}
@@ -47,7 +64,8 @@
   height: media.height|default(60),
 } %}
 
-<div{{ card_attributes }}>
+{# Print the HTML. #}
+<div{{ attributes }}>
   <div{{ body_attributes }}>
     {% if show_icon %}
       <div{{ quote_icon_attributes }}>

@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Vartheme BS5 Starter Kit implementation for displaying a view as a table.
+ * Vartheme BS5 Starter Kit implementation for the Views View Table component.
  *
  * Available variables:
  * - attributes: Remaining HTML attributes for the element.
@@ -34,7 +34,16 @@
  */
 #}
 
-{# Build header cells from first row if available #}
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Logic: build header cells from first row if available #}
 {% set header_cells = [] %}
 {% set first_row = rows|first %}
 {% if first_row and first_row['#view'] and first_row['#view'].field %}
@@ -75,7 +84,7 @@
   {% endfor %}
 {% endif %}
 
-{# Build table rows #}
+{# Logic: build table rows #}
 {% set table_rows = [] %}
 {% if rows is iterable %}
   {% for row in rows %}
@@ -150,7 +159,7 @@
   {% endfor %}
 {% endif %}
 
-{# Render the table component #}
+{# Print the HTML. #}
 {{
   include('vartheme_bs5:table', {
     header: header_cells,

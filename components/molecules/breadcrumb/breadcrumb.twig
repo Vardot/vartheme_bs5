@@ -17,14 +17,22 @@
  *
  */
 #}
+
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Variables: scalar props and utility class arrays. #}
 {% set divider = divider ?? '' %}
 {% set breadcrumb_utility_classes = breadcrumb_utility_classes ? breadcrumb_utility_classes : [] %}
+
+{# Logic: merge the nav classes as arrays. #}
 {% set classes = []|merge(breadcrumb_utility_classes) %}
-
-{% if not attributes %}
-  {% set attributes = create_attribute() %}
-{% endif %}
-
 {% set attributes = attributes.addClass(classes) %}
 {% set attributes = attributes.setAttribute('role', 'navigation') %}
 {% set attributes = attributes.setAttribute('aria-label', 'breadcrumb') %}
@@ -45,6 +53,7 @@
 {% endif %}
 {% set items_attributes = items_attributes.addClass(items_classes) %}
 
+{# Print the HTML. #}
 {% if breadcrumb %}{% apply spaceless %}
   <nav{{ attributes }}>
     <ol{{ items_attributes }}>

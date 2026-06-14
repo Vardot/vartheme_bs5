@@ -1,23 +1,38 @@
 # HTML Code
 
-Render **trusted HTML markup** inside a lightweight wrapper.
+A minimal wrapper that outputs raw, trusted HTML markup.
 
-This is useful when you need to place a small block of custom HTML in a layout while still using a consistent SDC component include.
+## What it does
 
-## Important
+Use this component when you need to:
 
-This component renders the provided markup **unescaped** using Twig `|raw`.
+- inject a block of raw HTML markup into a page
+- render trusted, author-provided HTML that should not be escaped
 
-Only use it with **trusted** content.
+## Files
 
-## Props
+- `html-code.component.yml` — component schema and props
+- `html-code.twig` — component template
+- `README.md` — usage notes and examples
+- `html-code.mdx` — Storybook docs page
+- `html-code.stories.json` — Storybook story configuration
+- `html-code.stories.twig` — Storybook story templates
 
-- **code** (string): HTML markup to output.
+## Props overview
+
+### Content
+
+- `code`: raw HTML markup string; printed unescaped. Use only with trusted content. Defaults to empty.
 
 ## Example
 
 ```twig
-{{ include('vartheme_bs5:html-code', {
+{% include 'vartheme_bs5:html-code' with {
   code: '<p class="mb-0">Hello <strong>world</strong>.</p>'
-}) }}
+} only %}
 ```
+
+## Notes
+
+- The `code` value is rendered with the Twig `raw` filter — only ever pass trusted content, as no sanitization or escaping is applied.
+- When `code` is empty (or whitespace only), the component renders nothing.

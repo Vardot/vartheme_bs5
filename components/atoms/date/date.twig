@@ -11,7 +11,7 @@
  * - size: Font size class. (fs-1|fs-2|fs-3|fs-4|fs-5|fs-6) Defaults to none (inherits from context).
  * - text_color: Bootstrap text color utility class.
  *              (text-primary|text-secondary|text-success|text-danger|text-warning|
- *               text-info|text-muted|text-dark|text-body) Defaults to text-body.
+ *               text-info|text-muted|text-white|text-dark|text-body) Defaults to text-body.
  *
  * Available attributes:
  * - attributes: HTML attributes for the time element.
@@ -25,23 +25,31 @@
  */
 #}
 
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Variables: scalar props with schema defaults. #}
 {% set date = date|default('now'|date('Y-m-d')) %}
-
-{% set size_allowed = ['fs-1', 'fs-2', 'fs-3', 'fs-4', 'fs-5', 'fs-6'] %}
-{% set size_classes = size in size_allowed ? [size] : [] %}
-
 {% set text_color = text_color|default('text-body') %}
-{% set text_color_classes = text_color ? [text_color] : [] %}
 
+{# Logic: optional utility classes, only when set. #}
+{% set size_classes = size is defined and size is not empty ? [size] : [] %}
+{% set text_color_classes = text_color is not empty ? [text_color] : [] %}
+
+{# Logic: merge all classes as arrays. #}
 {% set classes = [
   'vb-date',
   'gap-2',
 ]|merge(size_classes)|merge(text_color_classes) %}
 
-{% if not attributes %}
-  {% set attributes = create_attribute() %}
-{% endif %}
 {% set attributes = attributes.addClass(classes) %}
 {% set attributes = attributes.setAttribute('datetime', date) %}
 
+{# Print the HTML. #}
 <time{{ attributes }}>{{ date|date('M j, Y') }}</time>

@@ -1,9 +1,9 @@
 {#
 /**
  * @file
- * Template for the Close button component.
+ * Vartheme BS5 Starter Kit implementation for the Close Button component.
  *
- * Vartheme BS5 Starter Kit implementation for the generic close button for dismissing content like modals and alerts.
+ * Generic close button for dismissing content like modals and alerts.
  *
  * Available properties:
  * - size: (btn-sm|btn-lg) Bootstrap button size class.
@@ -16,23 +16,38 @@
  *
  * Available slots:
  * - N/A
- *
  */
 #}
-{% set size = size ? [size] : [] %}
+
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Variables: boolean props. #}
+{% set disabled = disabled ?? false %}
+
+{# Logic: merge close button classes as arrays. #}
+{% set size_classes = size ? [size] : [] %}
 {% set disabled_classes = disabled ? ['disabled'] : [] %}
-{% set close_button_utility_classes = close_button_utility_classes ? close_button_utility_classes : [] %}
+{% set utility_classes = close_button_utility_classes ?? [] %}
 
 {% set classes = [
   'btn',
   'btn-close',
-]|merge(size)|merge(disabled_classes)|merge(close_button_utility_classes) %}
+]|merge(size_classes)|merge(disabled_classes)|merge(utility_classes) %}
 
-{# Include text for screen readers, using aria-label #}
+{# Logic: include text for screen readers, using aria-label, and set the
+ # disabled state when requested. #}
 {% set attributes = attributes.setAttribute('aria-label', 'Close'|t) %}
-
 {% if disabled %}
   {% set attributes = attributes.setAttribute('disabled', true) %}
 {% endif %}
 
-<button type="button" {{ attributes.addClass(classes) }} {{ disabled }}"></button>
+{# Print the HTML. #}
+{% set attributes = attributes.addClass(classes) %}
+<button type="button"{{ attributes }}></button>

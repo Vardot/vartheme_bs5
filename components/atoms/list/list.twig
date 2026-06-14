@@ -1,7 +1,9 @@
 {#
 /**
  * @file
- * Vartheme BS5 Starter Kit implementation for the HTMl list with Bootstrap list helpers and utility classes
+ * Vartheme BS5 Starter Kit implementation for the List component.
+ *
+ * HTML list with Bootstrap list helpers and utility classes.
  *
  * Available properties:
  * - items: An array of items to display in the list.
@@ -16,15 +18,24 @@
  * - N/A
  */
 #}
+
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
 {% apply spaceless %}
 {% if items is iterable %}
+  {# Variables: scalar props with schema defaults. #}
   {% set type = type ?? 'ul' %}
   {% set list_utility_classes = list_utility_classes ? list_utility_classes : [] %}
   {% set list_item_utility_classes = list_item_utility_classes ? list_item_utility_classes : [] %}
 
-  {% if not attributes %}
-    {% set attributes = create_attribute() %}
-  {% endif %}
+  {# Logic: merge list classes as arrays. #}
   {% set attributes = attributes.addClass(list_utility_classes) %}
 
   {% if not list_item_attributes %}
@@ -32,6 +43,7 @@
   {% endif %}
   {% set list_item_attributes = list_item_attributes.addClass(list_item_utility_classes) %}
 
+  {# Print the HTML. #}
   <{{ type }}{{ attributes }}>
     {% for item in items %}
       <li{{ list_item_attributes }}>{{ item }}</li>

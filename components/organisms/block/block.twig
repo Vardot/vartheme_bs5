@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Vartheme BS5 Starter Kit implementation to display a block.
+ * Vartheme BS5 Starter Kit implementation for the Block component.
  *
  * Available variables:
  * - layout: String that will determine the layout of the block.
@@ -31,27 +31,42 @@
  * @ingroup themeable
  */
 #}
-{%
-  set classes = [
-    'block',
-    'block-' ~ configuration.provider|clean_class,
-    'block-' ~ plugin_id|clean_class,
-    layout ? 'layout--' ~ layout|clean_class,
-    bundle ? 'block--' ~ bundle|clean_class : '',
-    id ? 'block--' ~ id|replace({_: '-'})|clean_class : '',
-  ]
-%}
 
-  {# Normalize attributes for SDC/Canvas: allow string/array/null #}
-  {% if attributes is not defined or attributes is empty %}
-    {% set attributes = create_attribute() %}
-  {% elseif attributes is not iterable %}
-    {# If attributes is a non-empty string, treat it as a class list #}
-    {% set attributes = create_attribute({class: [attributes]}) %}
-  {% endif %}
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Normalize attributes for SDC/Canvas: allow string/array/null. #}
+{% if attributes is not defined or attributes is empty %}
+{% elseif attributes is not iterable %}
+  {# If attributes is a non-empty string, treat it as a class list. #}
+  {% set attributes = create_attribute({class: [attributes]}) %}
+{% endif %}
+
+{# Logic: merge all block-level classes as arrays. #}
+{% set classes = [
+  'block',
+  'block-' ~ configuration.provider|clean_class,
+  'block-' ~ plugin_id|clean_class,
+] %}
+{% if layout %}
+  {% set classes = classes|merge(['layout--' ~ layout|clean_class]) %}
+{% endif %}
+{% if bundle %}
+  {% set classes = classes|merge(['block--' ~ bundle|clean_class]) %}
+{% endif %}
+{% if id %}
+  {% set classes = classes|merge(['block--' ~ id|replace({_: '-'})|clean_class]) %}
+{% endif %}
 
 {% if html_tag %}
-  <{{ html_tag }}{{ attributes.addClass(classes) }}>
+  {% set attributes = attributes.addClass(classes) %}
+  <{{ html_tag }}{{ attributes }}>
 {% endif %}
 
   {{ title_prefix }}

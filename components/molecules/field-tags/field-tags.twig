@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Vartheme BS5 Starter Kit implementation for tags field.
+ * Vartheme BS5 Starter Kit implementation for the Field Tags component.
  *
  * Available variables:
  * - attributes: HTML attributes for the containing element.
@@ -20,6 +20,20 @@
  * @see template_preprocess_field()
  */
 #}
+
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Variables: inline-label state. #}
+{% set is_inline_label = label_display == 'inline' %}
+
+{# Logic: merge the field and label classes as arrays. #}
 {%
   set classes = [
     'field',
@@ -30,13 +44,12 @@
     'vb-tags',
   ]
 %}
-{%
-  set title_classes = [
-    'field__label',
-    label_display == 'inline' ? 'inline',
-  ]
-%}
-<div{{ attributes.addClass(classes) }}>
+{% set inline_label_classes = is_inline_label ? ['inline'] : [] %}
+{% set title_classes = ['field__label']|merge(inline_label_classes) %}
+{% set attributes = attributes.addClass(classes) %}
+
+{# Print the HTML. #}
+<div{{ attributes }}>
   {% if not label_hidden %}
     {{ include('vartheme_bs5:heading', {
         html_tag: 'h3',

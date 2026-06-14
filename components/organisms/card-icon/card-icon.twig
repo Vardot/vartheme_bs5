@@ -1,32 +1,55 @@
 {#
-  Bootstrap 5 Icon Card
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for the Card Icon component.
+ *
+ * Bootstrap 5 Icon Card.
+ */
 #}
 
-{% set has_url = url is defined and url is not empty and url != 'No URL' %}
-{% set button_label_value = button_label|default('')|trim %}
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
 
-{# Normalize button variant #}
-{% set button_variant_value = button_variant|default('')|trim %}
-{% set has_button_variant = button_variant_value != '' and button_variant_value != 'NULL' and button_variant_value != 'none' %}
-
-{% set show_button = has_url and button_label_value != '' and has_button_variant %}
-
-{% set background_classes = background_color|default('bg-body')|split(' ') %}
-{% set shadow_class = shadow|default('shadow') %}
+{# Variables: scalar props with schema defaults. #}
 {% set text_align_class = text_align|default('text-center') %}
+{% set icon_name = icon|default('people') %}
+{% set icon_size_value = icon_size|default('fs-4')|trim %}
+{% set background_color = background_color|default('bg-body') %}
+{% set shadow_class = shadow|default('shadow') %}
+{% set button_label_value = button_label|default('')|trim %}
+{% set button_variant_value = button_variant|default('btn-primary')|trim %}
 
+{# Variables: boolean props.
+ # SDC validates `type: boolean` props and applies their schema defaults,
+ # so the values arrive as real booleans — only a presence fallback is
+ # needed here, never type coercion.
+ #}
+{% set has_padding = has_padding ?? true %}
+
+{# Logic: link / button rendering decisions. #}
+{% set has_url = url is defined and url is not empty and url != 'No URL' %}
+{% set show_button = has_url and button_label_value != '' and button_variant_value != '' %}
+
+{# Logic: background color may carry a paired text utility (e.g. "bg-primary text-white"). #}
+{% set background_classes = background_color|split(' ') %}
+
+{# Logic: icon row horizontal alignment follows the text alignment. #}
 {% set icon_justify_map = {
   'text-start': 'justify-content-start',
   'text-center': 'justify-content-center',
   'text-end': 'justify-content-end',
 } %}
-
 {% set icon_justify_class = icon_justify_map[text_align_class]|default('justify-content-center') %}
-{% set icon_name = icon|default('people') %}
-{% set body_padding_class = has_padding is defined ? (has_padding ? 'p-4' : '') : 'p-4' %}
-{% set icon_size_value = icon_size|default('fs-4')|trim %}
 
-{# Card classes #}
+{% set body_padding_class = has_padding ? 'p-4' : '' %}
+
+{# Logic: class arrays merged for each element. #}
 {% set card_classes = ['card', 'overflow-hidden']|merge(background_classes) %}
 {% if shadow_class and shadow_class != 'shadow-none' %}
   {% set card_classes = card_classes|merge([shadow_class]) %}
@@ -42,14 +65,15 @@
 {% set description_classes = ['opacity-75'] %}
 {% set button_wrapper_classes = ['mt-3'] %}
 
-{% set card_attributes = create_attribute().addClass(card_classes) %}
+{% set attributes = attributes.addClass(card_classes) %}
 {% set body_attributes = create_attribute().addClass(body_classes) %}
 {% set icon_row_attributes = create_attribute().addClass(icon_row_classes) %}
 {% set heading_attributes = create_attribute().addClass(heading_classes) %}
 {% set description_attributes = create_attribute().addClass(description_classes) %}
 {% set button_wrapper_attributes = create_attribute().addClass(button_wrapper_classes) %}
 
-<div{{ card_attributes }}>
+{# Print the HTML. #}
+<div{{ attributes }}>
   <div{{ body_attributes }}>
 
     {% if icon_name is not empty and icon_name != 'none' %}

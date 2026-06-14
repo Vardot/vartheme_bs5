@@ -2,6 +2,10 @@
 
 Provides a reusable Varbase Component for rendering HTML lists (`ul` or `ol`) with optional Bootstrap utility classes.
 
+## Bootstrap reference
+
+> [Bootstrap 5.3 — Typography (lists)](https://getbootstrap.com/docs/5.3/content/typography/#lists)
+
 ## Usage
 
 This component renders a list of items using the specified tag (`ul` or `ol`) and allows for applying Bootstrap utility classes on the list and individual list items.

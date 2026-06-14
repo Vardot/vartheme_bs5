@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Vartheme BS5 Starter Kit implementation for Bootstrap carousel component.
+ * Vartheme BS5 Starter Kit implementation for the Carousel component.
  *
  * Available properties:
  * - id: Set a unique id on the carousel for optional controls, especially if you’re using multiple carousels on a single page.
@@ -23,10 +23,22 @@
  *
  */
 #}
+
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Variables: scalar props with defaults. #}
 {% set slide_component = slide_component ?? 'vartheme_bs5:card-hero' %}
 {% set carousel_utility_classes = carousel_utility_classes ?? [] %}
 {% set carousel_indicators_utility_classes = carousel_indicators_utility_classes ?? [] %}
 
+{# Logic: merge root carousel classes as an array. #}
 {%
   set carousel_classes = [
     'carousel',
@@ -34,10 +46,15 @@
   ]|merge(carousel_utility_classes)
 %}
 
-{% if not attributes %}
-  {% set attributes = create_attribute() %}
-{% endif %}
+{# Logic: static structural class lists as arrays. #}
+{% set inner_classes = ['carousel-inner'] %}
+{% set control_prev_classes = ['carousel-control-prev'] %}
+{% set control_prev_icon_classes = ['carousel-control-prev-icon'] %}
+{% set control_next_classes = ['carousel-control-next'] %}
+{% set control_next_icon_classes = ['carousel-control-next-icon'] %}
+{% set visually_hidden_classes = ['visually-hidden'] %}
 
+{# Print the HTML. #}
 {% set attributes = attributes.addClass(carousel_classes) %}
 {% set attributes = attributes.setAttribute('id', id) %}
 {% set attributes = attributes.setAttribute('data-bs-ride', 'true') %}
@@ -61,15 +78,15 @@
 
       <div{{ indicators_attributes }}>
         {% for key, item in items %}
-          <button type="button" data-bs-target="#{{ id }}" data-bs-slide-to="{{ key }}" class="{{ (key == 0) ? 'active' }}" aria-label="{{ item.indicator_label }}" aria-current="{{ (key == 0) ? 'true' }}"></button>
+          <button type="button" data-bs-target="#{{ id }}" data-bs-slide-to="{{ key }}" class="{{ (key == 0) ? 'active' : '' }}" aria-label="{{ item.indicator_label }}" aria-current="{{ (key == 0) ? 'true' : '' }}"></button>
         {% endfor %}
       </div>
     {% endif %}
 
     {# Add carousel items #}
-    <div class="carousel-inner">
+    <div class="{{ inner_classes|join(' ') }}">
       {% for key, item in items %}
-        <div class="carousel-item {{ (key == 0) ? 'active' }}">
+        <div class="carousel-item {{ (key == 0) ? 'active' : '' }}">
           {% if item.media or item.content %}
             {% if item.media %}
               {% set media_slot = [{'#markup': item.media}]|render %}
@@ -95,13 +112,13 @@
 
     {# Add controls for the carousel #}
     {% if controls %}
-      <button class="carousel-control-prev" type="button" data-bs-target="#{{ id }}" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">{{ 'Previous'|t }}</span>
+      <button class="{{ control_prev_classes|join(' ') }}" type="button" data-bs-target="#{{ id }}" data-bs-slide="prev">
+        <span class="{{ control_prev_icon_classes|join(' ') }}" aria-hidden="true"></span>
+        <span class="{{ visually_hidden_classes|join(' ') }}">{{ 'Previous'|t }}</span>
       </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#{{ id }}" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">{{ 'Next'|t }}</span>
+      <button class="{{ control_next_classes|join(' ') }}" type="button" data-bs-target="#{{ id }}" data-bs-slide="next">
+        <span class="{{ control_next_icon_classes|join(' ') }}" aria-hidden="true"></span>
+        <span class="{{ visually_hidden_classes|join(' ') }}">{{ 'Next'|t }}</span>
       </button>
     {% endif %}
   {% endif %}

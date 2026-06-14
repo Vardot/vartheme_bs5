@@ -10,13 +10,29 @@
  * @see template_preprocess_select()
  */
 #}
+
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Variables: scalar props with schema defaults. #}
+
+{# Logic: merge select classes as arrays. #}
 {%
   set classes = [
   'form-control',
 ]
 %}
+
+{# Print the HTML. #}
 {% apply spaceless %}
-  <select{{ attributes.addClass(classes) }}>
+  {% set attributes = attributes.addClass(classes) %}
+  <select{{ attributes }}>
     {% for option in options %}
       {% if option.type == 'optgroup' %}
         <optgroup label="{{ option.label }}">

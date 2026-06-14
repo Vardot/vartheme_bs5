@@ -2,6 +2,10 @@
 
 A slideshow component for cycling through elements images/media or slides of text—like a heroslider.
 
+## Bootstrap reference
+
+> [Bootstrap 5.3 — Carousel](https://getbootstrap.com/docs/5.3/components/carousel/)
+
 ## Available properties:
 * `id`: Set a unique id on the heroslider for optional controls,
  especially if the single page is using multiple hero sliders.

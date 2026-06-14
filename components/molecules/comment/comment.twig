@@ -1,19 +1,34 @@
 {#
 /**
  * @file
- * Vartheme BS5 Starter Kit implementation for the comment.
+ * Vartheme BS5 Starter Kit implementation for the Comment component.
  */
 #}
 
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Variables: comment publication state. #}
+{% set is_unpublished = comment.status.value == 0 %}
+
+{# Logic: merge the article classes as arrays. #}
+{% set unpublished_classes = is_unpublished ? ['comment--unpublished'] : [] %}
 {%
   set classes = [
     'js-comment',
     'mb-4',
-    (comment.status.value == 0 ? 'comment--unpublished'),
-  ]
+  ]|merge(unpublished_classes)
 %}
+{% set attributes = attributes.addClass(classes) %}
 
-<article{{ attributes.addClass(classes) }}>
+{# Print the HTML. #}
+<article{{ attributes }}>
   {#
     Hide the "new" indicator by default, let a piece of JavaScript ask the
     server which comments are new for the user. Rendering the final "new"

@@ -1,210 +1,64 @@
-# Hero Slider Container
+# Hero Slider (Container)
 
-The **Hero Slider Container** component provides the outer Bootstrap carousel wrapper for one or more hero slides. It handles carousel behavior, navigation controls, indicators, autoplay settings, and shared slider-level options, while the individual slide content is supplied through the `slides` slot.
+A Bootstrap 5 carousel wrapper for Hero Slide items, handling transitions, autoplay, indicators, prev/next controls, height, and controller color, while slide content is supplied through a slot.
 
-Use this component when you need a reusable hero banner with multiple slides and editor-friendly slide ordering.
+## What it does
 
----
+Use this component when you need a hero banner that can:
 
-# Features
+- wrap one or more `vartheme_bs5:hero-slide` components as carousel slides
+- accept unlimited slides through the `slides` slot (drag-and-drop reorder in Canvas)
+- toggle autoplay with a configurable interval and pause-on-hover
+- show or hide indicators and previous/next (plus pause/play) controls
+- switch between `slide` and `fade` transitions
+- set a fixed slider height preset and a controller color
+- optionally span the background full width with `bg-edge2edge`
+- render a fallback placeholder slide when no slides are added
 
-- Bootstrap 5 carousel wrapper for hero slides
-- Supports unlimited slides through the `slides` slot
-- Optional autoplay with configurable interval
-- Optional pause on hover
-- Optional indicators and previous/next controls
-- Supports `slide` and `fade` transitions
-- Slider height presets
-- Controller color options that map cleanly to Bootstrap text utility classes
-- Includes a fallback state when no slides are added
+## Files
 
----
+- `hero-slider-container.component.yml` — component schema and props
+- `hero-slider-container.twig` — component template
+- `hero-slider-container.scss` / `hero-slider-container.css` — component styles
+- `hero-slider-container.js` — carousel behavior (pause/play, navigation)
+- `README.md` — usage notes and examples
+- `hero-slider-container.mdx` — Storybook docs page
+- `hero-slider-container.stories.json` — Storybook story configuration
+- `hero-slider-container.stories.twig` — Storybook story templates
 
-# Component Properties
+## Props overview
 
-## Optional Properties
+### Behavior
 
-### `bg_edge2edge`
-Controls whether the slider background spans edge to edge.
+- `transition`: carousel transition — `slide`, `fade`; defaults to `slide`
+- `autoplay`: enable automatic rotation; defaults to `true`
+- `interval_ms`: autoplay interval in milliseconds (1000–60000); defaults to `5000`
+- `pause_on_hover`: pause autoplay on pointer hover; defaults to `true`
 
-Options:
+### Navigation
 
-```yaml
-true
-false
-```
+- `show_indicators`: show the indicator dots; defaults to `true`
+- `show_controls`: show prev/next and pause/play controls; defaults to `true`
+- `controller_color`: controller color — `primary`, `light`, `dark`, `white`; defaults to `primary`
 
-Default:
+### Layout
 
-```yaml
-true
-```
+- `bg_edge2edge`: full-width edge-to-edge background; defaults to `true`
+- `slider_height`: fixed height preset in px — `500`, `700`, `900`; defaults to `700`
 
----
+## Slider height values
 
-### `transition`
-Defines the carousel transition style.
+| Value | Output |
+|---|---|
+| `500` | 500px |
+| `700` | 700px (default) |
+| `900` | 900px |
 
-Options:
+## Slots
 
-```yaml
-slide
-fade
-```
+- `slides`: add one or more `vartheme_bs5:hero-slide` components here (unlimited, drag-and-drop reorder)
 
-Default:
-
-```yaml
-slide
-```
-
----
-
-### `autoplay`
-Enables automatic slide rotation.
-
-Options:
-
-```yaml
-true
-false
-```
-
-Default:
-
-```yaml
-true
-```
-
----
-
-### `interval_ms`
-Autoplay interval in milliseconds.
-
-Example values:
-
-```yaml
-3000
-5000
-8000
-```
-
-Default:
-
-```yaml
-5000
-```
-
----
-
-### `pause_on_hover`
-Pauses autoplay when the pointer is over the slider.
-
-Options:
-
-```yaml
-true
-false
-```
-
-Default:
-
-```yaml
-true
-```
-
----
-
-### `show_indicators`
-Shows or hides the indicator dots below the slider.
-
-Options:
-
-```yaml
-true
-false
-```
-
-Default:
-
-```yaml
-true
-```
-
----
-
-### `show_controls`
-Shows or hides the previous/next controls and pause/play button.
-
-Options:
-
-```yaml
-true
-false
-```
-
-Default:
-
-```yaml
-true
-```
-
----
-
-### `slider_height`
-Sets a predefined slider height.
-
-Options:
-
-```yaml
-'500'
-'700'
-'900'
-```
-
-Default:
-
-```yaml
-'700'
-```
-
----
-
-### `controller_color`
-Sets the controller text color. These values are designed to align with Bootstrap utility naming in the rendered output.
-
-Options:
-
-```yaml
-primary
-light
-dark
-white
-```
-
-Default:
-
-```yaml
-primary
-```
-
----
-
-# Slots
-
-## `slides`
-Use this slot to add one or more hero slide items.
-
-Typical usage:
-- add multiple `Hero Slide` components
-- reorder slides as needed
-- mix overlay, split, or text-only slide layouts
-
----
-
-# Usage
-
-## Example #1: Basic hero slider with two slides
+## Example: basic slider with two slides
 
 ```twig
 {% embed 'vartheme_bs5:hero-slider-container' with {
@@ -230,7 +84,7 @@ Typical usage:
     {{ include('vartheme_bs5:hero-slide', {
       active: false,
       title: 'Keep content clean and scalable',
-      content: '<p>Use separate slide items while the container handles behavior and navigation.</p>',
+      content: '<p>Use separate slide items while the container handles behavior.</p>',
       button_text: 'Explore more',
       button_url: '#',
       media_position: 'overlay'
@@ -239,9 +93,7 @@ Typical usage:
 {% endembed %}
 ```
 
----
-
-## Example #2: Fade transition without autoplay
+## Example: fade transition without autoplay
 
 ```twig
 {% embed 'vartheme_bs5:hero-slider-container' with {
@@ -256,7 +108,7 @@ Typical usage:
     {{ include('vartheme_bs5:hero-slide', {
       active: true,
       title: 'Manual navigation mode',
-      content: '<p>Use this setup when you do not want slides to rotate automatically.</p>',
+      content: '<p>Use this setup when slides should not rotate automatically.</p>',
       media_position: 'none',
       background_color: 'bg-dark',
       text_color: 'text-white'
@@ -265,33 +117,11 @@ Typical usage:
 {% endembed %}
 ```
 
----
+## Notes
 
-## Example #3: Minimal slider with controls only
-
-```twig
-{% embed 'vartheme_bs5:hero-slider-container' with {
-  autoplay: true,
-  show_indicators: false,
-  show_controls: true,
-  slider_height: '900',
-  controller_color: 'light'
-} only %}
-  {% block slides %}
-    {{ include('vartheme_bs5:hero-slide', {
-      active: true,
-      title: 'Large visual presentation',
-      content: '<p>Use a taller layout when the slider is the main hero area.</p>',
-      media_position: 'overlay'
-    }, with_context = false) }}
-  {% endblock %}
-{% endembed %}
-```
-
----
-
-# Notes
-
-- The container is responsible for carousel behavior and navigation.
-- Individual content, imagery, and CTA configuration belong inside each slide.
-- When no slides are added, the component renders a fallback placeholder slide.
+- The container exposes shared context to nested slides, including `hero_slider_media_position` (defaults to `overlay`) and `hero_slider_container_type` (defaults to `container`).
+- When `autoplay` is enabled, the carousel renders `data-bs-ride="carousel"` and `data-bs-interval` from `interval_ms`; when disabled, `data-bs-interval` is set to `false`.
+- `pause_on_hover` sets `data-bs-pause` to `hover` or `false`.
+- The navigation block is only rendered when `show_indicators` or `show_controls` is enabled.
+- Boolean props are validated by SDC and arrive as real booleans; only a presence fallback is applied in the template.
+- When the `slides` slot is empty, a fallback placeholder slide is rendered prompting the editor to add Hero Slide components.

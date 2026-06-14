@@ -1,23 +1,54 @@
 {#
-  * Container component.
-  * Available config:
-  * - attributes: Drupal attributes.
-  * - withContainer: Boolean variable to add container class or not.
-  * - content: The content block that will be inside Container component.
-  * - container_utility_classes: An array of utility classes that can be used to add extra
-  *                    Bootstrap utility classes or custom classes to this component.
-  * - classes: The main array of classes for Container component.
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for the Container component.
+ *
+ * Container divisions with attributes. Optionally adds the Bootstrap
+ * `container` class and any extra utility classes.
+ *
+ * Available properties:
+ * - container_utility_classes: An array of utility classes that can be used
+ *                              to add extra Bootstrap utility classes or
+ *                              custom classes to this component. Defaults
+ *                              to `[]`.
+ * - withContainer: (true|false) Add the Bootstrap `container` class or not.
+ * - children: Children for the container.
+ *
+ * Available attributes:
+ * - attributes: HTML attributes for the containing element.
+ *
+ * Available slots:
+ * - children: The content placed inside the container.
+ */
 #}
 
-{% set container_utility_classes = container_utility_classes ? container_utility_classes : [] %}
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
 
-{% set classes = []|merge(container_utility_classes) %}
+{# Variables: scalar props with schema defaults. #}
+{% set container_utility_classes = container_utility_classes|default([]) %}
 
-{% if withContainer %}
-  {% set classes = classes|merge(['container']) %}
-{% endif %}
+{# Variables: boolean props.
+ # SDC validates `type: boolean` props and applies their schema defaults,
+ # so the values arrive as real booleans — only a presence fallback is
+ # needed here, never type coercion.
+ #}
+{% set withContainer = withContainer ?? false %}
 
-<div {{ attributes.addClass(classes) }}>
+{# Logic: optional container class, only when enabled. #}
+{% set container_classes = withContainer ? ['container'] : [] %}
+
+{% set classes = []|merge(container_utility_classes)|merge(container_classes) %}
+
+{# Print the HTML. #}
+{% set attributes = attributes.addClass(classes) %}
+<div {{ attributes }}>
   {% block children %}
     {{ children }}
   {% endblock %}

@@ -1,253 +1,67 @@
 # Pricing card
 
-The **Pricing card** component displays a pricing plan with an optional badge, description, price details, features list, and call-to-action button.
+A Bootstrap card for a single pricing plan — with an optional badge, heading, description, price block, features list, and call-to-action button.
 
-It is built with Bootstrap utilities and is designed for plan comparisons such as **Basic**, **Pro**, or **Enterprise** offers.
+## Bootstrap reference
 
----
+> [Bootstrap 5.3 — Card](https://getbootstrap.com/docs/5.3/components/card/)
 
-## Features
+## What it does
 
-- Optional badge label
-- Configurable heading level
-- Price with currency symbol before or after the amount
-- Optional price period and price note
-- Rich text features list
-- Optional divider above the features list
-- Bootstrap utility-based styling for:
-  - shadow
-  - border
-  - background
-  - text alignment
-- Optional highlight mode for promoted plans
-- Optional CTA button rendered using the shared button component
+Use this component when you need a pricing/plan card that can:
 
----
+- show an optional badge (e.g. "Most popular") above a configurable heading
+- render a price with a currency symbol before or after the amount, plus an optional period and note
+- display a rich-text features list, optionally separated by a top divider
+- apply Bootstrap shadow, border, background theme, and text alignment
+- visually promote one plan with a stronger border and shadow
+- render an optional CTA button via the shared button component
 
-## Component properties
+## Files
+
+- `card-pricing.component.yml` — component schema and props
+- `card-pricing.twig` — component template
+- `README.md` — usage notes and examples
+- `card-pricing.mdx` — Storybook docs page
+- `card-pricing.stories.json` — Storybook story configuration
+- `card-pricing.stories.twig` — Storybook story templates
+
+## Props overview
 
 ### Content
 
-#### `badge_text`
-Optional badge text.
+- `badge_text`: optional badge label; defaults to empty
+- `heading_text`: card heading
+- `level`: heading level — `2`, `3`, `4`; defaults to `3`
+- `description`: optional short description below the heading
+- `text`: rich HTML used for the features list
 
-Example:
+### Price
 
-```text
-Most popular
-```
+- `price`: price value (string or number)
+- `currency_symbol`: display symbol (e.g. `$`)
+- `currency_code`: used in the `<data>` element (e.g. `USD`)
+- `symbol_position`: `before` or `after` the price; defaults to `before` (required prop)
+- `price_period`: optional short text after the price (e.g. `/month`); defaults to empty
+- `price_note`: optional small note under the price (e.g. `Billed annually`); defaults to empty
+- `show_features_divider`: adds a top border before the features list; defaults to `true`
 
-#### `heading_text`
-Card heading.
+### Appearance
 
-Example:
-
-```text
-Premium
-```
-
-#### `level`
-Heading level for the card title.
-
-Available options:
-
-```text
-2
-3
-4
-```
-
-Default: `3`
-
-#### `description`
-Optional short description shown below the heading.
-
-#### `price`
-Price value.
-
-Example:
-
-```text
-159
-```
-
-#### `currency_symbol`
-Visible currency symbol.
-
-Example:
-
-```text
-$
-```
-
-#### `currency_code`
-Used in the `<data>` element.
-
-Example:
-
-```text
-USD
-```
-
-#### `symbol_position`
-Controls whether the currency symbol appears before or after the amount.
-
-Available options:
-
-```text
-before
-after
-```
-
-Default: `before`
-
-#### `price_period`
-Optional text displayed next to the price.
-
-Example:
-
-```text
-/month
-```
-
-#### `price_note`
-Optional supporting note below the price.
-
-Example:
-
-```text
-Billed annually
-```
-
-#### `text`
-Rich text HTML used for the features list.
-
-Example:
-
-```html
-<ul>
-  <li>Unlimited projects</li>
-  <li>Email support</li>
-  <li>Analytics dashboard</li>
-</ul>
-```
-
----
-
-### Display options
-
-#### `show_features_divider`
-Adds a border above the features section.
-
-Default: `true`
-
-#### `shadow`
-Bootstrap shadow utility class.
-
-Available options:
-
-```text
-shadow-none
-shadow-sm
-shadow
-shadow-lg
-```
-
-Default: `shadow`
-
-#### `border`
-Bootstrap border utility class.
-
-Examples:
-
-```text
-border
-border-primary
-border-dark
-border-0
-```
-
-Default: `border`
-
-#### `background_color`
-Bootstrap background utility class.
-
-Examples:
-
-```text
-bg-body
-bg-light
-bg-primary text-white
-bg-dark text-white
-```
-
-Default: `bg-body`
-
-#### `text_align`
-Bootstrap text alignment utility class.
-
-Available options:
-
-```text
-text-start
-text-center
-```
-
-Default: `text-start`
-
-#### `promote`
-Highlights the card visually.
-
-Default: `false`
-
----
+- `shadow`: `shadow-none`, `shadow-sm`, `shadow`, `shadow-lg`; defaults to `shadow`
+- `border`: `border`, `border-0`, `border-primary`, `border-secondary`, `border-success`, `border-danger`, `border-warning`, `border-info`, `border-light`, `border-dark`; defaults to `border`
+- `background_color`: `bg-body`, `bg-primary text-white`, `bg-secondary text-white`, `bg-success text-white`, `bg-danger text-white`, `bg-warning`, `bg-info`, `bg-light`, `bg-dark text-white`; defaults to `bg-body`
+- `text_align`: `text-start`, `text-center`, `text-end`; defaults to `text-start`
+- `promote`: highlights the card with `border-primary` and `shadow-lg`; defaults to `false`
 
 ### Button
 
-#### `button_url`
-Optional button link.
+- `button_url`: optional button link
+- `button_label`: optional button text
+- `button_variant`: solid (`btn-primary` … `btn-dark`), `btn-link`, or outline (`btn-outline-primary` … `btn-outline-dark`); defaults to `btn-primary`
+- `button_target`: `self` or `blank`; defaults to `self`
 
-#### `button_label`
-Optional button text.
-
-Example:
-
-```text
-Choose plan
-```
-
-#### `button_variant`
-Bootstrap button variant passed to the shared button component.
-
-Examples:
-
-```text
-btn-primary
-btn-secondary
-btn-success
-btn-dark
-btn-link
-```
-
-Default: `btn-primary`
-
-#### `button_target`
-Where the button link opens.
-
-Available options:
-
-```text
-self
-blank
-```
-
-Default: `self`
-
----
-
-## Usage
-
-### Basic example
+## Example: basic plan
 
 ```twig
 {{ include('vartheme_bs5:card-pricing', {
@@ -274,14 +88,13 @@ Default: `self`
 }, with_context: false) }}
 ```
 
-### Promoted plan example
+## Example: promoted plan
 
 ```twig
 {{ include('vartheme_bs5:card-pricing', {
   badge_text: 'Most popular',
   heading_text: 'Pro',
   level: 3,
-  description: 'Best option for growing teams.',
   price: '79',
   currency_symbol: '$',
   currency_code: 'USD',
@@ -289,7 +102,6 @@ Default: `self`
   price_period: '/month',
   price_note: 'Billed annually',
   text: '<ul><li>Unlimited users</li><li>Priority support</li><li>Advanced analytics</li></ul>',
-  show_features_divider: true,
   shadow: 'shadow-lg',
   border: 'border-primary',
   background_color: 'bg-body',
@@ -302,13 +114,12 @@ Default: `self`
 }, with_context: false) }}
 ```
 
-### Dark card example
+## Example: dark plan
 
 ```twig
 {{ include('vartheme_bs5:card-pricing', {
   heading_text: 'Enterprise',
   level: 3,
-  description: 'For larger organizations with custom needs.',
   price: '199',
   currency_symbol: '$',
   currency_code: 'USD',
@@ -327,12 +138,12 @@ Default: `self`
 }, with_context: false) }}
 ```
 
----
+## Notes
 
-## Best practices
-
-- Use semantic heading levels appropriate to the page structure.
-- Keep the `text` field focused on short feature lists.
-- Use `promote: true` for only one primary plan in a pricing group.
-- Prefer Bootstrap utility values already exposed by the component props.
-- Use the button props instead of writing custom button markup inside the card.
+- The card always uses `h-100`, so plans in a row share equal height.
+- `symbol_position` is a required prop and defaults to `before`.
+- The badge variant follows `promote`: `text-bg-primary` when promoted, otherwise `text-bg-secondary`.
+- When `promote` is true, the card gains `border-primary` and `shadow-lg` regardless of the `border`/`shadow` props.
+- The button only renders when both `button_url` and `button_label` are set; the price `<data>` element carries `value` and `data-currency` for machine readability.
+- Some `background_color` values carry a paired text utility (e.g. `bg-primary text-white`); the component splits and applies both.
+- Boolean props (`show_features_divider`, `promote`) are validated and defaulted by SDC, so they arrive as real booleans.

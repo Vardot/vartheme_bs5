@@ -1,218 +1,108 @@
-
 # Button
 
-The **Button component** provides a flexible way to render Bootstrap 5 buttons within the theme. It supports both standard `<button>` elements and link-style buttons (`<a>`), while maintaining full compatibility with Bootstrap utilities and Varbase component patterns.
+A Bootstrap 5 button that renders as a `<button>` by default, or as a link (`<a>`) when a URL is provided, with support for variant, size, outline, radius, an optional icon, alignment wrapper and full-width.
 
-The component allows you to control appearance, size, icon placement, and alignment through simple properties without needing additional custom classes.
+Use Bootstrap's custom button styles for actions in forms, dialogs, and more with support for multiple sizes, states, and more.
 
----
+## Bootstrap reference
 
-# Features
+> #### [Bootstrap Documentation on Buttons](https://getbootstrap.com/docs/5.3/components/buttons)
+> * [Button tags](https://getbootstrap.com/docs/5.3/components/buttons/#button-tags)
+> * [Outline buttons](https://getbootstrap.com/docs/5.3/components/buttons/#outline-buttons)
+> * [Disabled state](https://getbootstrap.com/docs/5.3/components/buttons/#disabled-state)
+> * [Link functionality caveat](https://getbootstrap.com/docs/5.3/components/buttons/#link-functionality-caveat)
+> * [Button plugin](https://getbootstrap.com/docs/5.3/components/buttons/#button-plugin)
+> * [Toggle states](https://getbootstrap.com/docs/5.3/components/buttons/#toggle-states)
 
-- Built on **Bootstrap 5 button utilities**
-- Can render as either:
-  - `<button>` element
-  - `<a>` element (when `href` is provided)
-- Supports **Bootstrap variants**
-- Optional **outline style**
-- Supports **Bootstrap Icons**
-- Configurable **button size**
-- Configurable **border radius**
-- Optional **alignment wrapper**
-- Works seamlessly inside Canvas and Varbase component architecture
+## What it does
 
----
+Use this component when you need a reusable button that can:
 
-# Component Properties
+- render as a `<button>` element, or as a link (`<a>`) when `href` is provided
+- apply any Bootstrap variant, with an optional outline style
+- switch between small, medium, and large sizes
+- show an optional Bootstrap Icon before or after the label
+- choose a border-radius utility from none to pill
+- wrap in an alignment container (left, center, right) or render inline
+- become full width with the `w-100` utility
+- be disabled, with correct semantics for both button and link
 
-## Required
+## Files
 
-### `variant`
-Bootstrap button style.
+- `button.component.yml` — component schema and props
+- `button.twig` — component template
+- `README.md` — usage notes and examples
+- `button.scss` / `button.css` — component styles
+- `button.mdx` — Storybook docs page
+- `button.stories.json` — Storybook story configuration
+- `button.stories.twig` — Storybook story templates
 
-Examples:
+## Props overview
 
-```
-btn-primary
-btn-secondary
-btn-success
-btn-danger
-btn-link
-```
+### Content
 
----
+- `label`: button text; defaults to `Button label`
 
-### `size`
-Bootstrap size utility.
+### Appearance
 
-Available options:
+- `variant` (required): Bootstrap button style — `btn-primary`, `btn-secondary`, `btn-success`, `btn-danger`, `btn-warning`, `btn-info`, `btn-light`, `btn-dark`, `btn-link`; defaults to `btn-primary`
+- `outline`: use the outline variant (`btn-outline-*`); not applied to `btn-link` — `true` / `false`; defaults to `false`
+- `size` (required): button size — `btn-md`, `btn-sm`, `btn-lg`; defaults to `btn`
+- `radius`: border-radius utility — `rounded`, `rounded-0`, `rounded-1`, `rounded-2`, `rounded-3`, `rounded-4`, `rounded-pill`; defaults to `rounded`
+- `full_width`: make the button full width with `w-100` — `true` / `false`; defaults to `false`
 
-```
-btn
-btn-sm
-btn-lg
-```
+### Link
 
-Default: `btn`
+- `href`: if provided, renders as a link (`<a>`) instead of a `<button>`
+- `target`: where to open the link (only when `href` is set) — `self`, `blank`; defaults to `self`
 
----
+### Icon
 
-# Optional Properties
+- `icon`: optional Bootstrap Icon name without the `bi-` prefix; use `none` to disable; defaults to `none`
+- `icon_first`: change the icon position to the left — `true` / `false`; defaults to `false`
 
-### `label`
+### Layout
 
-Text displayed inside the button.
+- `alignment`: alignment wrapper for a single button (use inline for multiple buttons) — `inline`, `left`, `center`, `right`; defaults to `inline`
 
-Example
+### State
 
-```
-Read more
-```
+- `disabled`: disable the button — `true` / `false`; defaults to `false`
 
----
+## Variant values
 
-### `href`
+| Value | Style |
+|---|---|
+| `btn-primary` | Primary |
+| `btn-secondary` | Secondary |
+| `btn-success` | Success |
+| `btn-danger` | Danger |
+| `btn-warning` | Warning |
+| `btn-info` | Info |
+| `btn-light` | Light |
+| `btn-dark` | Dark |
+| `btn-link` | Link |
 
-If provided, the component renders an **anchor element instead of a button**.
+## Radius values
 
-Example
+| Value | Label |
+|---|---|
+| `rounded` | Default |
+| `rounded-0` | None |
+| `rounded-1` | Small |
+| `rounded-2` | Medium |
+| `rounded-3` | Large |
+| `rounded-4` | Extra Large |
+| `rounded-pill` | Round |
 
-```
-https://example.com
-```
+## Available attributes
 
----
+The template exposes named attribute objects you can pass in to add classes or attributes to specific elements:
 
-### `target`
+- `wrapper_attributes` — HTML attributes for the alignment wrapper element (rendered only for non-inline alignments)
+- `button_attributes` — HTML attributes for the button or link element
 
-Used only when `href` is provided.
-
-Options
-
-```
-self
-blank
-```
-
-Example
-
-```
-target: blank
-```
-
----
-
-### `outline`
-
-When enabled, the button becomes an **outline button variant**.
-
-Example
-
-```
-btn-primary → btn-outline-primary
-```
-
-Not applied to `btn-link`.
-
----
-
-### `disabled`
-
-Disables the button.
-
-For `<button>` it adds the `disabled` attribute.  
-For `<a>` it adds `aria-disabled="true"`.
-
----
-
-### `icon`
-
-Displays a **Bootstrap icon** inside the button.
-
-Example
-
-```
-search
-arrow-right
-download
-```
-
----
-
-### `icon_first`
-
-Controls icon placement.
-
-```
-true  → icon before label
-false → icon after label
-```
-
----
-
-### `alignment`
-
-Wraps the button in an alignment container.
-
-Options
-
-```
-inline
-left
-center
-right
-```
-
-Default
-
-```
-inline
-```
-
----
-
-### `full_width`
-
-Makes the button full width using Bootstrap's `w-100` utility class.
-
-```
-true  → full width
-false → normal width
-```
-
-
----
-
-### Link variant behavior
-
-When `variant` is set to `btn-link`, the component now removes all button padding automatically using Bootstrap's `p-0` utility. This keeps the text aligned more naturally with surrounding content without adding extra configuration.
-
-
----
-
-### `radius`
-
-Bootstrap border radius utility.
-
-Options
-
-```
-rounded
-rounded-pill
-rounded-0
-```
-
-Default
-
-```
-rounded
-```
-
----
-
-# Usage
-
-## Basic Button
+## Example: basic button
 
 ```twig
 {% include 'vartheme_bs5:button' with {
@@ -220,12 +110,10 @@ rounded
   variant: 'btn-primary',
   size: 'btn',
   radius: 'rounded'
-} %}
+} only %}
 ```
 
----
-
-## Link Button
+## Example: link button opening in a new tab
 
 ```twig
 {% include 'vartheme_bs5:button' with {
@@ -234,52 +122,29 @@ rounded
   target: 'blank',
   variant: 'btn-primary',
   size: 'btn-lg'
-} %}
+} only %}
 ```
 
----
-
-## Full Width Button
-
-```twig
-{% include 'vartheme_bs5:button' with {
-  label: 'Submit',
-  variant: 'btn-primary',
-  size: 'btn-md',
-  full_width: true
-} %}
-```
-
----
-
-## Button With Icon
+## Example: outline button with icon, centered
 
 ```twig
 {% include 'vartheme_bs5:button' with {
   label: 'Search',
   variant: 'btn-primary',
+  outline: true,
   icon: 'search',
-  icon_first: true
-} %}
+  icon_first: true,
+  alignment: 'center'
+} only %}
 ```
 
----
+## Notes
 
-## Outline Button
-
-```twig
-{% include 'vartheme_bs5:button' with {
-  label: 'Learn more',
-  variant: 'btn-primary',
-  outline: true
-} %}
-```
-
----
-
-# Best Practices
-
-- Use **Bootstrap utilities** for layout spacing instead of modifying the component.
-- Avoid adding custom classes to the button directly.
-- Use the available properties (`variant`, `size`, `radius`, etc.) to control styling.
-- Keep the component consistent with Bootstrap design patterns.
+- When `href` is provided (and the button is not disabled) the root element is an `<a>`; otherwise it is a `<button type="button">`.
+- For links opening in a new tab (`target: blank`), `rel="noopener noreferrer"` is added automatically.
+- Disabling a link removes its `href` and adds `aria-disabled="true"` and `tabindex="-1"`; disabling a button adds the native `disabled` attribute.
+- The `btn-link` variant gets `p-0` automatically; the outline style is never applied to `btn-link`.
+- The `btn-lg` size also adds the `fs-5` text class.
+- Inline buttons receive `me-3 mb-3` so multiple sibling buttons get consistent spacing; non-inline alignments wrap the button in a `d-flex justify-content-*` container instead.
+- The icon is rendered through the `vartheme_bs5:bootstrap-icon` component; `icon_first: false` reverses the flex order so the icon follows the label.
+- Boolean props (`outline`, `disabled`, `full_width`, `icon_first`) are validated by SDC and arrive as real booleans.

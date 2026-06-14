@@ -1,108 +1,81 @@
 # Card
 
-A flexible Bootstrap card component with optional image layouts, background themes, padding control, and link/button support.
+A flexible Bootstrap 5 card with optional image layouts, background themes, padding control, and link or button support.
 
-## Features
+## Bootstrap reference
 
-- Fixed heading output as `h3`
-- Four image layout options:
-  - Image on top
-  - Image on start
-  - Image on end
-  - Image on bottom
-- Optional vertical content alignment for left and right layouts
-- Optional body padding with `p-4`
-- Optional card link or button link
-- Bootstrap utility classes only
-- Uses the `vartheme_bs5:image` component for images
+> [Bootstrap 5.3 — Card](https://getbootstrap.com/docs/5.3/components/card/)
 
-## Available props
+## What it does
 
-### `orientation`
-Controls how the image and content are arranged.
+Use this component when you need a reusable card that can:
 
-Options:
-- `image-top` — Image on top
-- `image-left` — Image on start
-- `image-right` — Image on end
-- `image-bottom` — Image on bottom
+- arrange image and content in top, start, end, or bottom layouts
+- control the vertical alignment of content for start/end (horizontal) layouts
+- show an image at a fixed ratio (16:9, 4:3, 1:1) or auto for top/bottom layouts
+- apply a background theme and a Bootstrap shadow
+- toggle body padding (`p-4`)
+- link the entire card with a stretched link, or show a button instead
+- render images through the `vartheme_bs5:image` component
 
-### `content_vertical`
-Controls vertical alignment of the content when using `image-left` or `image-right`.
+## Files
 
-Options:
-- `justify-content-start` — Top
-- `justify-content-center` — Center
-- `justify-content-end` — Bottom
+- `card.component.yml` — component schema and props
+- `card.twig` — component template
+- `README.md` — usage notes and examples
+- `card.mdx` — Storybook docs page
+- `card.stories.json` — Storybook story configuration
+- `card.stories.twig` — Storybook story templates
+- `assets/` — placeholder image assets
 
-### `heading_text`
-Card heading text.
+## Props overview
 
-### `text`
-Card description text. Supports multiline input.
+### Content
 
-### `media`
-Image object.
+- `heading_text` (required): card heading; always rendered as an `<h3>`; defaults to `This is your card title`
+- `text`: short supporting text under the heading (supports multiline)
 
-Example:
-```yaml
-media:
-  src: assets/card-placeholder.svg
-  alt: Placeholder card image
-  width: 1200
-  height: 900
-```
+### Layout
 
-### `media_ratio`
-Controls the image ratio for top and bottom layouts.
+- `orientation` (required): image/content arrangement — `image-top`, `image-left`, `image-right`, `image-bottom`; defaults to `image-top`
+- `content_vertical`: vertical alignment of content for `image-left`/`image-right` — `justify-content-start`, `justify-content-center`, `justify-content-end`; defaults to `justify-content-center`
 
-Options:
-- `auto`
-- `ratio-16x9`
-- `ratio-4x3`
-- `ratio-1x1`
+### Media
 
-### `background`
-Controls the card background theme.
+- `media`: image object (`src`, `width`, `height`, `alt`)
+- `media_ratio`: image ratio for top/bottom layouts — `auto`, `ratio-16x9`, `ratio-4x3`, `ratio-1x1`; defaults to `ratio-16x9`
 
-Options:
-- `bg-body`
-- `bg-light`
-- `bg-primary text-white`
-- `bg-dark text-white`
+### Appearance
 
-### `shadow`
-Controls the card shadow.
+- `background`: background theme — `bg-body`, `bg-light`, `bg-primary text-white`, `bg-dark text-white`; defaults to `bg-body`
+- `shadow`: card shadow — `shadow-sm`, `shadow`, `shadow-lg`; defaults to `shadow`
+- `has_padding`: apply `p-4` to the card body — `true` / `false`; defaults to `true`
 
-Options:
-- `shadow-sm`
-- `shadow`
-- `shadow-lg`
+### Link
 
-### `has_padding`
-Adds `p-4` to the card body when enabled.
+- `url`: optional link URL for the whole card or the button
+- `button_label`: if set together with `url`, shows a button instead of linking the entire card; defaults to `""`
+- `button_variant`: button style — `btn-primary`, `btn-secondary`, `btn-success`, `btn-danger`, `btn-warning`, `btn-info`, `btn-light`, `btn-dark`, `btn-link`; defaults to `btn-primary`
 
-### `url`
-Optional link URL.
+## Orientation values
 
-### `button_label`
-If set together with `url`, a button is shown inside the card.
+| Value | Layout |
+|---|---|
+| `image-top` | Image on top |
+| `image-left` | Image on start |
+| `image-right` | Image on end |
+| `image-bottom` | Image on bottom |
 
-### `button_variant`
-Controls the button style.
+## Image ratio values
 
-Options:
-- `btn-primary`
-- `btn-secondary`
-- `btn-success`
-- `btn-danger`
-- `btn-warning`
-- `btn-info`
-- `btn-light`
-- `btn-dark`
-- `btn-link`
+| Value | Ratio |
+|---|---|
+| `auto` | Auto |
+| `ratio-16x9` | Wide (16:9) |
+| `ratio-4x3` | Standard (4:3) |
+| `ratio-1x1` | Square (1:1) |
 
-## Example: simple card
+## Example: simple image-top card
 
 ```twig
 {{ include('vartheme_bs5:card', {
@@ -122,7 +95,7 @@ Options:
 }) }}
 ```
 
-## Example: horizontal card with button
+## Example: horizontal card with a button
 
 ```twig
 {{ include('vartheme_bs5:card', {
@@ -147,6 +120,9 @@ Options:
 
 ## Notes
 
-- `content_vertical` is only relevant for `image-left` and `image-right`.
-- For top and bottom layouts, `media_ratio` controls the image crop ratio.
-- If `url` is provided without `button_label`, the full card becomes clickable using a stretched link.
+- The heading is always rendered as an `<h3>`.
+- `content_vertical` only applies to the `image-left` and `image-right` (horizontal) layouts; `media_ratio` only applies to the top/bottom (vertical) layouts and is ignored when set to `auto`.
+- A button is shown only when `url`, `button_label`, and a valid `button_variant` are all provided; the button is rendered through the `vartheme_bs5:button` component at `btn-sm`.
+- If `url` is provided without `button_label`, the whole card becomes clickable via a Bootstrap `stretched-link` and the card gains `position-relative`.
+- Layout-driven column widths and ordering are computed in the template; the card uses Bootstrap utility classes only.
+- The boolean prop `has_padding` is validated by SDC and arrives as a real boolean.

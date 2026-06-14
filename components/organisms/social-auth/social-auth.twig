@@ -1,17 +1,44 @@
+{#
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for the Social Auth component.
+ */
+#}
+
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Variables: module key used to build per-network classes. #}
 {% set module = 'social-auth' %}
 
-<div class="social-auth">
+{# Logic: root classes as an array. #}
+{% set classes = ['social-auth'] %}
+{% set attributes = attributes.addClass(classes) %}
+
+{# Print the HTML. #}
+<div{{ attributes }}>
   {% for id, network in networks %}
     {% set img_path = custom_networks[id].img_path ?? network.getProviderLogoPath %}
 
-    <div class="social-network {{ id }}">
+    {# Logic: per-network class lists as arrays. #}
+    {% set network_classes = ['social-network', id] %}
+    {% set link_classes = [module, 'auth-link'] %}
+    {% set icon_classes = [module, 'auth-icon'] %}
+
+    <div class="{{ network_classes|join(' ') }}">
       {% if destination %}
         {% set options = {query: {destination: destination}} %}
       {% else %}
         {% set options = {} %}
       {% endif %}
-      <a class="{{ module }} auth-link" href="{{ network.getRedirectUrl(options).toString }}">
-        <img class="{{ module }} auth-icon"
+      <a class="{{ link_classes|join(' ') }}" href="{{ network.getRedirectUrl(options).toString }}">
+        <img class="{{ icon_classes|join(' ') }}"
           src="{{ base_path }}{{ img_path }}"
           alt="{{ 'Authenticate through @social_network_name'|t({'@social_network_name': network.getSocialNetwork}) }}">
         <span class="auth-name">{{ '@social_network_name'|t({'@social_network_name': network.getSocialNetwork}) }}</span>

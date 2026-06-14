@@ -1,8 +1,9 @@
 {#
 /**
  * @file
- * list-group.twig
- * Bootstrap 5.3 List Group component implementation
+ * Vartheme BS5 Starter Kit implementation for the List Group component.
+ *
+ * Bootstrap 5.3 List Group component implementation.
  *
  * Available properties:
  * - items: Array of list group items with content, active, disabled, href, badge, and variant properties
@@ -13,44 +14,51 @@
  * - attributes: HTML attributes for the list group
  */
 #}
-{% apply spaceless %}
-{% if items is iterable and items|length > 0 %}
-  {% set utility_classes = utility_classes ? utility_classes : [] %}
 
-  {# Build CSS classes #}
-  {% set list_classes = ['list-group'] %}
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
 
-  {% if flush %}
-    {% set list_classes = list_classes|merge(['list-group-flush']) %}
+{# Variables: utility classes and the optional modifier class arrays. #}
+{% set utility_classes = utility_classes ? utility_classes : [] %}
+{% set flush_classes = flush ? ['list-group-flush'] : [] %}
+{% set numbered_classes = numbered ? ['list-group-numbered'] : [] %}
+{% if horizontal %}
+  {% if horizontal == 'sm' or horizontal == 'md' or horizontal == 'lg' or horizontal == 'xl' or horizontal == 'xxl' %}
+    {% set horizontal_classes = ['list-group-horizontal-' ~ horizontal] %}
+  {% else %}
+    {% set horizontal_classes = ['list-group-horizontal'] %}
   {% endif %}
+{% else %}
+  {% set horizontal_classes = [] %}
+{% endif %}
 
-  {% if numbered %}
-    {% set list_classes = list_classes|merge(['list-group-numbered']) %}
-  {% endif %}
+{# Logic: merge the list-group classes as arrays. #}
+{%
+  set list_classes = [
+    'list-group',
+  ]|merge(flush_classes)|merge(numbered_classes)|merge(horizontal_classes)|merge(utility_classes)
+%}
 
-  {% if horizontal %}
-    {% if horizontal == 'sm' or horizontal == 'md' or horizontal == 'lg' or horizontal == 'xl' or horizontal == 'xxl' %}
-      {% set list_classes = list_classes|merge(['list-group-horizontal-' ~ horizontal]) %}
-    {% else %}
-      {% set list_classes = list_classes|merge(['list-group-horizontal']) %}
-    {% endif %}
-  {% endif %}
-
-  {% set list_classes = list_classes|merge(utility_classes) %}
-
-  {# Set up attributes #}
-  {% if not attributes %}
-    {% set attributes = create_attribute() %}
-  {% endif %}
-  {% set attributes = attributes.addClass(list_classes) %}
-
-  {# Determine if we need div or ul based on whether items have links #}
-  {% set has_links = false %}
+{# Logic: determine if we need div or ul based on whether items have links. #}
+{% set has_links = false %}
+{% if items is iterable %}
   {% for item in items %}
     {% if item.href is defined and item.href %}
       {% set has_links = true %}
     {% endif %}
   {% endfor %}
+{% endif %}
+
+{# Print the HTML. #}
+{% apply spaceless %}
+{% if items is iterable and items|length > 0 %}
+  {% set attributes = attributes.addClass(list_classes) %}
 
   {% if has_links %}
     <div{{ attributes }}>

@@ -1,58 +1,79 @@
 {#
-  Bootstrap 5 Pricing Card
-
-  Notes:
-  - Select props use Bootstrap utility class names directly where possible.
-  - Multi-class values from props are split before addClass().
-  - All logic and class preparation are kept at the top for cleaner markup.
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for the Card Pricing component.
+ *
+ * Notes:
+ * - Select props use Bootstrap utility class names directly where possible.
+ * - Multi-class values from props are split before addClass().
+ * - All logic and class preparation are kept at the top for cleaner markup.
+ */
 #}
 
-{% set is_promoted = promote|default(false) %}
-{% set text_align_class = text_align|default('text-start') %}
-{% set shadow_class = shadow|default('shadow') %}
-{% set border_class = border|default('border') %}
-{% set background_classes = background_color|default('bg-body')|split(' ') %}
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
 
+{# Variables: scalar props with schema defaults. #}
+{% set text_align = text_align|default('text-start') %}
+{% set shadow = shadow|default('shadow') %}
+{% set border = border|default('border') %}
+{% set background_color = background_color|default('bg-body') %}
+{% set symbol_position = symbol_position|default('before') %}
+{% set currency_symbol = currency_symbol|default('$') %}
+{% set currency_code = currency_code|default('USD') %}
+{% set price_period_value = price_period|default('')|trim %}
+{% set price_note_value = price_note|default('')|trim %}
+{% set heading_level = level|default(3) %}
+
+{# Variables: boolean props.
+ # SDC validates `type: boolean` props and applies their schema defaults,
+ # so the values arrive as real booleans — only a presence fallback is
+ # needed here, never type coercion.
+ #}
+{% set is_promoted = promote ?? false %}
+{% set show_divider = show_features_divider ?? true %}
+
+{# Logic: presence checks for optional content. #}
 {% set has_badge = badge_text|default('')|trim is not empty %}
 {% set has_heading = heading_text is not empty %}
 {% set has_description = description is not empty %}
 {% set has_price = price is not empty %}
 {% set has_features = text is not empty %}
 {% set has_button = button_url is not empty and button_url != 'No URL' and button_label is not empty %}
-
-{% set btn_target = button_target|default('self') %}
-{% set btn_target_attr = btn_target == 'blank' ? '_blank' : '_self' %}
-{% set btn_rel_attr = btn_target == 'blank' ? 'noopener noreferrer' : null %}
-
-{% set symbol_pos = symbol_position|default('before') %}
-{% set currency_symbol_value = currency_symbol|default('$') %}
-{% set currency_code_value = currency_code|default('USD') %}
-{% set price_period_value = price_period|default('')|trim %}
-{% set price_note_value = price_note|default('')|trim %}
 {% set has_price_period = price_period_value is not empty %}
 {% set has_price_note = price_note_value is not empty %}
-{% set show_divider = show_features_divider|default(true) %}
 
-{% set heading_level = level|default(3) %}
+{# Logic: button target. #}
+{% set btn_target = button_target|default('self') %}
+
+{# Logic: heading tag and visual variants. #}
 {% set heading_tag = heading_level == 2 ? 'h2' : (heading_level == 4 ? 'h4' : 'h3') %}
 {% set button_variant_class = button_variant|default(is_promoted ? 'btn-secondary' : 'btn-primary') %}
 {% set badge_variant = is_promoted ? 'text-bg-primary' : 'text-bg-secondary' %}
 {% set features_wrapper_class = show_divider ? 'border-top pt-3 mb-4' : 'mb-4' %}
 
+{# Logic: merge card classes as arrays. #}
+{% set background_classes = background_color|split(' ') %}
 {% set card_classes = [
   'card',
   'h-100',
   'position-relative',
-  text_align_class,
-  shadow_class,
-  border_class,
+  text_align,
+  shadow,
+  border,
 ]|merge(background_classes) %}
 
 {% if is_promoted %}
   {% set card_classes = card_classes|merge(['border-primary', 'shadow-lg']) %}
 {% endif %}
 
-{% set article_attributes = create_attribute().addClass(card_classes) %}
+{% set attributes = attributes.addClass(card_classes) %}
 {% set body_attributes = create_attribute().addClass(['card-body', 'd-flex', 'flex-column']) %}
 {% set badge_wrapper_attributes = create_attribute().addClass(['mb-2']) %}
 {% set heading_attributes = create_attribute().addClass(['h5', 'fw-bold', 'mb-1']) %}
@@ -62,7 +83,7 @@
 {% set price_heading_attributes = create_attribute().addClass(['display-6', 'fw-semibold', 'mb-0']) %}
 {% set data_attributes = create_attribute()
   .setAttribute('value', price|default('')|e)
-  .setAttribute('data-currency', currency_code_value|e)
+  .setAttribute('data-currency', currency_code|e)
   .addClass(['d-inline-flex', 'align-items-start', 'gap-1']) %}
 {% set symbol_attributes = create_attribute().addClass(['fs-5']) %}
 {% set period_attributes = create_attribute().addClass(['opacity-75']) %}
@@ -70,11 +91,11 @@
 {% set features_wrapper_attributes = create_attribute().addClass(features_wrapper_class|split(' ')) %}
 {% set features_content_attributes = create_attribute().addClass(['small']) %}
 {% set button_label_value = button_label|default('Get started') %}
-{% set button_variant_value = button_variant_class %}
 {% set button_href_value = button_url|default('') %}
 {% set button_wrapper_attributes = create_attribute().addClass(['mt-auto']) %}
 
-<article{{ article_attributes }}>
+{# Print the HTML. #}
+<article{{ attributes }}>
   <div{{ body_attributes }}>
     {% if has_badge %}
       <div{{ badge_wrapper_attributes }}>
@@ -100,12 +121,12 @@
         <div{{ price_row_attributes }}>
           <h4{{ price_heading_attributes }}>
             <data{{ data_attributes }}>
-              {% if symbol_pos == 'before' %}
-                <span{{ symbol_attributes }}>{{ currency_symbol_value }}</span>
+              {% if symbol_position == 'before' %}
+                <span{{ symbol_attributes }}>{{ currency_symbol }}</span>
                 <span>{{ price }}</span>
               {% else %}
                 <span>{{ price }}</span>
-                <span{{ symbol_attributes }}>{{ currency_symbol_value }}</span>
+                <span{{ symbol_attributes }}>{{ currency_symbol }}</span>
               {% endif %}
             </data>
           </h4>
@@ -134,7 +155,7 @@
         {{ include('vartheme_bs5:button', {
           href: button_href_value,
           label: button_label_value,
-          variant: button_variant_value,
+          variant: button_variant_class,
           size: 'btn-sm',
           target: btn_target,
         }, with_context: false) }}

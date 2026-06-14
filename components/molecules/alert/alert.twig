@@ -14,17 +14,31 @@
  * - content: The content of the alert.
  */
 #}
-{% set variant_classes = variant ? ['alert-' ~ variant] : [] %}
+
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Variables: boolean props. #}
 {% set dismissible = dismissible ?? true %}
+
+{# Logic: merge alert classes as arrays. #}
+{% set variant_classes = variant ? ['alert-' ~ variant] : [] %}
 {% set dismissible_classes = dismissible ? ['alert-dismissible', 'fade', 'show'] : [] %}
 
 {% set classes = [
   'alert',
 ]|merge(variant_classes)|merge(dismissible_classes) %}
 
-{% set attributes = create_attribute() %}
 {% set attributes = attributes.addClass(classes) %}
 {% set attributes = attributes.setAttribute('role', 'alert') %}
+
+{# Print the HTML. #}
 
 <div{{ attributes }}>
   {% if heading|render|striptags|trim is not empty %}

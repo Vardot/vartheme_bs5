@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Vartheme BS5 Starter Kit implementation of a Media Header.
+ * Vartheme BS5 Starter Kit implementation for the Media Header component.
  *
  * Available properties:
  * - media_type: Media entity type. (image, video, remote_video).
@@ -19,14 +19,43 @@
  */
 #}
 
-<header class="vmh-container bg-edge2edge">
-  <div class="vmh-content-wrapper">
-    <div class="container">
-      <div class="row">
-        <div class="vmh-content">
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Variables: utility classes. #}
+{% set media_header_utility_classes = media_header_utility_classes ?? [] %}
+
+{# Logic: merge root classes as arrays. #}
+{% set classes = [
+  'vmh-container',
+  'bg-edge2edge',
+]|merge(media_header_utility_classes) %}
+
+{# Logic: static structural class lists as arrays. #}
+{% set content_wrapper_classes = ['vmh-content-wrapper'] %}
+{% set container_classes = ['container'] %}
+{% set row_classes = ['row'] %}
+{% set content_classes = ['vmh-content'] %}
+{% set breadcrumb_classes = ['vmh-breadcrumb'] %}
+{% set background_classes = ['vmh-background'] %}
+
+{% set attributes = attributes.addClass(classes) %}
+
+{# Print the HTML. #}
+<header{{ attributes }}>
+  <div class="{{ content_wrapper_classes|join(' ') }}">
+    <div class="{{ container_classes|join(' ') }}">
+      <div class="{{ row_classes|join(' ') }}">
+        <div class="{{ content_classes|join(' ') }}">
           {# System Page breadcrumbs #}
           {% if page_breadcrumbs %}
-            <div class="vmh-breadcrumb">{{ page_breadcrumbs }}</div>
+            <div class="{{ breadcrumb_classes|join(' ') }}">{{ page_breadcrumbs }}</div>
           {% endif %}
 
           {# System page title #}
@@ -42,5 +71,5 @@
     </div>
   </div>
   {# Background media #}
-  <div class="vmh-background">{% if background_media %}{{ background_media }}{% endif %}</div>
+  <div class="{{ background_classes|join(' ') }}">{% if background_media %}{{ background_media }}{% endif %}</div>
 </header>

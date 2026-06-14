@@ -1,8 +1,30 @@
 {#
-  Hero Side by Side
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for the Hero Side By Side component.
+ *
+ * Available attributes:
+ * - attributes / section_attributes: The <section> wrapper.
+ * - overlay_attributes: The background overlay wrapper.
+ * - container_attributes: The container wrapper.
+ * - row_attributes: The row wrapper.
+ * - content_attributes: The text column wrapper.
+ * - content_inner_attributes: The text wrap inside the text column.
+ * - body_attributes: The body text wrapper.
+ * - media_attributes: The image column wrapper.
+ */
 #}
 
-{% set bg_edge2edge = bg_edge2edge|default(false) %}
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Variables: scalar props with schema defaults. #}
 {% set heading_level = heading_level|default(2) %}
 {% set image_position = image_position|default('right') %}
 {% set align = align|default('text-start') %}
@@ -11,10 +33,18 @@
 {% set background_overlay_color = background_overlay_color|default('bg-none') %}
 {% set background_overlay_opacity = background_overlay_opacity|default(50) %}
 {% set button_variant = button_variant|default('btn-primary') %}
-{% set button_outline = button_outline|default(false) %}
 {% set button_size = button_size|default('btn-md') %}
 {% set vertical_padding = vertical_padding|default('py-4') %}
 
+{# Variables: boolean props.
+ # SDC validates `type: boolean` props and applies their schema defaults,
+ # so the values arrive as real booleans — only a presence fallback is
+ # needed here, never type coercion.
+ #}
+{% set bg_edge2edge = bg_edge2edge ?? false %}
+{% set button_outline = button_outline ?? false %}
+
+{# Logic: derived flags and mapping. #}
 {% set image_on_left = image_position == 'left' %}
 {% set has_background_image = background_image is defined and background_image is not empty %}
 {% set has_button = button_label is defined and button_label and button_url is defined and button_url %}
@@ -23,59 +53,94 @@
   heading_text: heading|default(''),
   level: heading_level,
   align: align,
+  text_color: content_color,
 } %}
-{% if content_color in ['text-primary', 'text-secondary', 'text-success', 'text-danger', 'text-warning', 'text-info', 'text-muted', 'text-white', 'text-dark'] %}
-  {% set heading_props = heading_props|merge({text_color: content_color}) %}
-{% endif %}
 
 {% set resolved_button_variant = button_variant %}
 {% if button_outline and button_variant != 'btn-link' %}
   {% set resolved_button_variant = button_variant|replace({'btn-': 'btn-outline-'}) %}
 {% endif %}
 
+{# Logic: section class array, optional utilities only when set. #}
+{% set background_classes = background_color != 'bg-none' ? [background_color] : [] %}
+{% set edge2edge_classes = bg_edge2edge ? ['bg-edge2edge'] : [] %}
 {% set section_classes = [
   'hero-side-by-side',
   'position-relative',
   'overflow-hidden',
   vertical_padding,
-  bg_edge2edge ? 'bg-edge2edge',
-  background_color != 'bg-none' ? background_color,
   content_color,
-] %}
-{% set section_attributes = create_attribute().addClass(section_classes) %}
+]|merge(edge2edge_classes)|merge(background_classes) %}
 
-{% set overlay_attributes = create_attribute().addClass([
+{% set overlay_classes = [
   'position-absolute', 'top-0', 'start-0', 'w-100', 'h-100',
-  background_overlay_color != 'bg-none' ? background_overlay_color,
   'opacity-' ~ background_overlay_opacity,
-]) %}
+] %}
+{% if background_overlay_color != 'bg-none' %}
+  {% set overlay_classes = overlay_classes|merge([background_overlay_color]) %}
+{% endif %}
 
-{% set container_attributes = create_attribute().addClass(['container', 'position-relative', 'z-1']) %}
-{% set row_attributes = create_attribute().addClass(['row', 'align-items-center', 'g-4', 'g-lg-5']) %}
-{% set text_col_attributes = create_attribute().addClass([
-  'col-lg-6',
-  image_on_left ? 'order-lg-2',
-  align,
-  'd-flex',
-  'flex-column',
-  'justify-content-center',
-]) %}
-{% set image_col_attributes = create_attribute().addClass([
-  'col-lg-6',
-  image_on_left ? 'order-lg-1',
-]) %}
-{% set text_wrap_attributes = create_attribute().addClass(['w-100']) %}
-{% set body_attributes = create_attribute().addClass(['mb-4', 'lead']) %}
+{% set container_classes = ['container', 'position-relative', 'z-1'] %}
+{% set row_classes = ['row', 'align-items-center', 'g-4', 'g-lg-5'] %}
+{% set text_col_classes = ['col-lg-6', align, 'd-flex', 'flex-column', 'justify-content-center'] %}
+{% if image_on_left %}
+  {% set text_col_classes = text_col_classes|merge(['order-lg-2']) %}
+{% endif %}
+{% set image_col_classes = ['col-lg-6'] %}
+{% if image_on_left %}
+  {% set image_col_classes = image_col_classes|merge(['order-lg-1']) %}
+{% endif %}
+{% set text_wrap_classes = ['w-100'] %}
+{% set body_classes = ['mb-4', 'lead'] %}
 
-<section{{ section_attributes }}>
+{% set attributes = attributes.addClass(section_classes) %}
+
+{# Logic: per-region attribute objects. #}
+{% if not overlay_attributes %}
+  {% set overlay_attributes = create_attribute() %}
+{% endif %}
+{% set overlay_attributes = overlay_attributes.addClass(overlay_classes) %}
+
+{% if not container_attributes %}
+  {% set container_attributes = create_attribute() %}
+{% endif %}
+{% set container_attributes = container_attributes.addClass(container_classes) %}
+
+{% if not row_attributes %}
+  {% set row_attributes = create_attribute() %}
+{% endif %}
+{% set row_attributes = row_attributes.addClass(row_classes) %}
+
+{% if not content_attributes %}
+  {% set content_attributes = create_attribute() %}
+{% endif %}
+{% set content_attributes = content_attributes.addClass(text_col_classes) %}
+
+{% if not content_inner_attributes %}
+  {% set content_inner_attributes = create_attribute() %}
+{% endif %}
+{% set content_inner_attributes = content_inner_attributes.addClass(text_wrap_classes) %}
+
+{% if not body_attributes %}
+  {% set body_attributes = create_attribute() %}
+{% endif %}
+{% set body_attributes = body_attributes.addClass(body_classes) %}
+
+{% if not media_attributes %}
+  {% set media_attributes = create_attribute() %}
+{% endif %}
+{% set media_attributes = media_attributes.addClass(image_col_classes) %}
+
+{# Print the HTML. #}
+<section{{ attributes }}>
   {% if background_overlay_color != 'bg-none' and has_background_image %}
     <div{{ overlay_attributes }}></div>
   {% endif %}
 
   <div{{ container_attributes }}>
     <div{{ row_attributes }}>
-      <div{{ text_col_attributes }}>
-        <div{{ text_wrap_attributes }}>
+      <div{{ content_attributes }}>
+        <div{{ content_inner_attributes }}>
           {% if heading %}
             {{ include('vartheme_bs5:heading', heading_props, false) }}
           {% endif %}
@@ -98,7 +163,7 @@
         </div>
       </div>
 
-      <div{{ image_col_attributes }}>
+      <div{{ media_attributes }}>
         {% if image is defined and image is not empty %}
           {{ include('vartheme_bs5:image', {
             media: image,

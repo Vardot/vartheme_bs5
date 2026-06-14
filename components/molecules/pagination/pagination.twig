@@ -42,6 +42,16 @@
  */
 #}
 
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Variables: size, alignment, and utility class arrays. #}
 {% set size = size ? ['pagination-' ~ size] : [] %}
 {% if alignment == 'end' %}
   {% set alignment = ['justify-content-end'] %}
@@ -52,11 +62,8 @@
 {% endif %}
 {% set pagination_utility_classes = pagination_utility_classes ? pagination_utility_classes : [] %}
 
+{# Logic: merge the nav classes as arrays. #}
 {% set classes = []|merge(pagination_utility_classes) %}
-
-{% if not attributes %}
-  {% set attributes = create_attribute() %}
-{% endif %}
 {% set attributes = attributes.addClass(classes) %}
 {% set attributes = attributes.setAttribute('role', 'navigation') %}
 {% set attributes = attributes.setAttribute('aria-label', 'Pagination'|t) %}
@@ -74,8 +81,9 @@
 {% endif %}
 {% set pagination_attributes = pagination_attributes.addClass(pagination_classes) %}
 
+{# Print the HTML. #}
 {% if items %}
-  <navs{{ attributes }}>
+  <nav{{ attributes }}>
     <ul{{ pagination_attributes }}>
       {# Print first item if we are not on the first page. #}
       {% if items.first %}

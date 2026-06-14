@@ -1,21 +1,53 @@
-{# Rich Text component #}
+{#
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for the Rich Text component.
+ *
+ * Renders rich HTML with optional smart trimming by words or characters.
+ *
+ * Available properties:
+ * - text: The rich HTML content. Defaults to ''.
+ * - trim: (true|false) Enable smart trimming. Defaults to `false`.
+ * - trim_length: Number of characters or words to keep. Defaults to `50`.
+ * - trim_units: Measure trim length in characters or words.
+ *               (characters | words) Defaults to `words`.
+ * - suffix: Text appended when content is trimmed. Defaults to `...`.
+ * - strip_html: (true|false) Strip HTML before trimming. Only works when Trim
+ *               is enabled. Defaults to `false`.
+ */
+#}
 
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Variables: scalar props with schema defaults. #}
 {% set content = text|default('') %}
-{% set trim = trim|default(false) %}
 {% set trim_length = trim_length|default(50) %}
 {% set trim_units = trim_units|default('words') %}
 {% set suffix = suffix is defined ? suffix : '...' %}
-{% set strip_html = strip_html|default(false) %}
 
+{# Variables: boolean props.
+ # SDC validates `type: boolean` props and applies their schema defaults,
+ # so the values arrive as real booleans — only a presence fallback is
+ # needed here, never type coercion.
+ #}
+{% set trim = trim ?? false %}
+{% set strip_html = strip_html ?? false %}
+
+{# Logic: trimming behavior.
+ # - Trim off  => always keep original rich HTML (Strip HTML ignored)
+ # - Trim on + Strip HTML on  => trim plain text
+ # - Trim on + Strip HTML off => trim content without stripping HTML
+ #}
 {% set output = content %}
 {% set render_raw = true %}
 
-{#
-  Behavior:
-  - Trim off  => always keep original rich HTML (Strip HTML ignored)
-  - Trim on + Strip HTML on  => trim plain text
-  - Trim on + Strip HTML off => trim content without stripping HTML
-#}
 {% if trim and trim_length > 0 %}
   {% if strip_html %}
     {% set plain_text = content|striptags|trim %}
@@ -63,6 +95,7 @@
   {% endif %}
 {% endif %}
 
+{# Print the HTML. #}
 <div>
   {% if render_raw %}
     {{ output|raw }}

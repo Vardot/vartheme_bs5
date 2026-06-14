@@ -1,7 +1,9 @@
 {#
 /**
  * @file
- * Vartheme BS5 Starter Kit implementation for the Link with Bootstrap Link helpers and utility classes
+ * Vartheme BS5 Starter Kit implementation for the Link component.
+ *
+ * Link with Bootstrap Link helpers and utility classes.
  *
  * Available properties:
  * - url: URL Link
@@ -31,6 +33,16 @@
  */
 #}
 
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Logic: Bootstrap link modifier class arrays. #}
 {% set link_color = color ? ['link-' ~ color] : [] %}
 {% set link_opacity = opacity ? ['link-opacity-' ~ opacity] : [] %}
 {% set underline_offset = underline_offset ? ['link-offset-' ~ underline_offset] : [] %}
@@ -44,7 +56,9 @@
   {% set attributes = attributes.setAttribute('href', url) %}
 {% endif %}
 
-<a{{ attributes.addClass(link_classes) }}>{% apply spaceless %}
+{# Print the HTML. #}
+{% set attributes = attributes.addClass(link_classes) %}
+<a{{ attributes }}>{% apply spaceless %}
   {% block content %}
     {{ content }}
   {% endblock %}

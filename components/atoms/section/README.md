@@ -2,6 +2,10 @@
 
 A flexible Bootstrap-based layout wrapper for building page sections with optional background media, overlay, spacing, container control, and responsive multi-column presets.
 
+## Bootstrap reference
+
+> [Bootstrap 5.3 — Grid system](https://getbootstrap.com/docs/5.3/layout/grid/)
+
 ## What it does
 
 Use this component when you need a reusable section wrapper that can:
@@ -177,7 +181,7 @@ When `aos_animation` is not `none`, the attributes `data-aos`, `data-aos-duratio
 - Empty column slots are skipped.
 - `text_color: auto` switches to `text-white` for dark backgrounds: `bg-primary`, `bg-secondary`, `bg-success`, `bg-danger`, `bg-dark`, `bg-black`.
 - For 5- and 6-column layouts, the component uses responsive `row-cols-*` classes.
-- Boolean props (`bg_edge2edge`, `section_header`, `section_footer`, `aos_once`) are normalized in the template so both native booleans and the strings `"true"` / `"false"` delivered by the Canvas editor work correctly.
+- Boolean props (`bg_edge2edge`, `section_header`, `section_footer`, `aos_once`) rely on Drupal SDC schema validation, which delivers real booleans; the template only applies a presence fallback to the schema default.
 
 
 ## Alignment

@@ -1,17 +1,37 @@
-
 {#
 /**
  * @file
- * Vartheme BS5 Starter Kit implementation for links within a dropbutton.
+ * Vartheme BS5 Starter Kit implementation for the Links Dropbutton component.
+ *
+ * Default theme implementation for links within a dropbutton.
  */
 #}
-<div {{ attributes.removeClass('dropbutton').addClass(split ? 'btn-group' : 'dropdown') }}>
+
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Variables: split-button state. #}
+{% set is_split = split ? true : false %}
+
+{# Logic: merge the dropdown toggle classes as arrays. #}
+{% set split_toggle_classes = is_split ? ['dropdown-toggle-split'] : [] %}
+{% set toggle_classes = ['btn', 'btn-outline-dark', 'dropdown-toggle']|merge(split_toggle_classes) %}
+{% set attributes = attributes.removeClass('dropbutton').addClass(split ? 'btn-group' : 'dropdown') %}
+
+{# Print the HTML. #}
+<div {{ attributes }}>
   {% if split %}
     {{ button }}
   {% endif %}
 
   {% if links %}
-    <button type="button" class="btn btn-outline-dark dropdown-toggle {{ split ? 'dropdown-toggle-split' }}" data-bs-toggle="dropdown">
+    <button type="button" class="{{ toggle_classes|join(' ') }}" data-bs-toggle="dropdown">
       {% if split %}
         <span class="visually-hidden">{{ 'Toggle Dropdown'|t }}</span>
       {% else %}

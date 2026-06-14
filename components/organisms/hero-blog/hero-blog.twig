@@ -1,51 +1,106 @@
-{# Hero Blog #}
+{#
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for the Hero Blog component.
+ *
+ * Available attributes:
+ * - attributes / section_attributes: The <section> wrapper.
+ * - container_attributes: The container wrapper.
+ * - row_attributes: The inner row wrapper.
+ * - content_attributes: The content column wrapper.
+ * - media_attributes: The blog media wrapper.
+ */
+#}
 
-{% set heading_size_value = heading_size|default('default') %}
-{% set date_value = date|default('') %}
-{% set author_value = author|default('') %}
-{% set author_url_value = author_url|default('')|trim %}
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
 
+{# Variables: scalar props with schema defaults. #}
+{% set heading_text = heading_text|default('Enter the title') %}
+{% set level = level|default(2) %}
+{% set heading_size = heading_size|default('default') %}
+{% set date = date|default('') %}
+{% set author = author|default('') %}
+{% set author_url = author_url|default('')|trim %}
+
+{# Logic: heading props, only set a visual size when overriding the level. #}
 {% set heading_props = {
-  heading_text: heading_text|default(''),
-  level: level|default(2),
+  heading_text: heading_text,
+  level: level,
   url: '',
 } %}
-{% if heading_size_value != 'default' %}
-  {% set heading_props = heading_props|merge({text_size: heading_size_value}) %}
+{% if heading_size != 'default' %}
+  {% set heading_props = heading_props|merge({text_size: heading_size}) %}
 {% endif %}
 
 {% set author_link_props = {
-  url: author_url_value,
-  content: author_value,
+  url: author_url,
+  content: author,
 } %}
 
-{% set section_attributes = create_attribute().addClass(['py-4', 'py-md-5']) %}
-{% set container_attributes = create_attribute().addClass(['container']) %}
-{% set inner_row_attributes = create_attribute().addClass(['row', 'justify-content-center']) %}
-{% set content_col_attributes = create_attribute().addClass(['col-12', 'col-lg-10', 'col-xl-8']) %}
-{% set date_attributes = create_attribute().addClass(['text-muted', 'mb-2']) %}
-{% set author_attributes = create_attribute().addClass(['mt-3', 'mb-0']) %}
-{% set author_prefix_attributes = create_attribute().addClass(['text-muted']) %}
-{% set author_name_attributes = create_attribute().addClass(['fw-semibold']) %}
-{% set media_attributes = create_attribute().addClass(['mt-4']) %}
+{# Logic: section-level and region class arrays. #}
+{% set section_classes = ['py-4', 'py-md-5'] %}
+{% set container_classes = ['container'] %}
+{% set inner_row_classes = ['row', 'justify-content-center'] %}
+{% set content_col_classes = ['col-12', 'col-lg-10', 'col-xl-8'] %}
+{% set date_classes = ['text-muted', 'mb-2'] %}
+{% set author_classes = ['mt-3', 'mb-0'] %}
+{% set author_prefix_classes = ['text-muted'] %}
+{% set author_name_classes = ['fw-semibold'] %}
+{% set media_classes = ['mt-4'] %}
 
-<section{{ section_attributes }}>
+{% set attributes = attributes.addClass(section_classes) %}
+
+{# Logic: per-region attribute objects. #}
+{% if not container_attributes %}
+  {% set container_attributes = create_attribute() %}
+{% endif %}
+{% set container_attributes = container_attributes.addClass(container_classes) %}
+
+{% if not row_attributes %}
+  {% set row_attributes = create_attribute() %}
+{% endif %}
+{% set row_attributes = row_attributes.addClass(inner_row_classes) %}
+
+{% if not content_attributes %}
+  {% set content_attributes = create_attribute() %}
+{% endif %}
+{% set content_attributes = content_attributes.addClass(content_col_classes) %}
+
+{% if not media_attributes %}
+  {% set media_attributes = create_attribute() %}
+{% endif %}
+{% set media_attributes = media_attributes.addClass(media_classes) %}
+
+{% set date_attributes = create_attribute().addClass(date_classes) %}
+{% set author_attributes = create_attribute().addClass(author_classes) %}
+{% set author_prefix_attributes = create_attribute().addClass(author_prefix_classes) %}
+{% set author_name_attributes = create_attribute().addClass(author_name_classes) %}
+
+{# Print the HTML. #}
+<section{{ attributes }}>
   <div{{ container_attributes }}>
-    <div{{ inner_row_attributes }}>
-      <div{{ content_col_attributes }}>
-        {% if date_value %}
-          <p{{ date_attributes }}>{{ include('vartheme_bs5:date', {date: date_value}, with_context: false) }}</p>
+    <div{{ row_attributes }}>
+      <div{{ content_attributes }}>
+        {% if date %}
+          <p{{ date_attributes }}>{{ include('vartheme_bs5:date', {date: date}, with_context: false) }}</p>
         {% endif %}
 
         {{ include('vartheme_bs5:heading', heading_props, with_context: false) }}
 
-        {% if author_value is not empty %}
+        {% if author is not empty %}
           <p{{ author_attributes }}>
             <span{{ author_prefix_attributes }}>By</span>
-            {% if author_url_value is not empty %}
+            {% if author_url is not empty %}
               {{ include('vartheme_bs5:link', author_link_props, with_context: false) }}
             {% else %}
-              <span{{ author_name_attributes }}>{{ author_value }}</span>
+              <span{{ author_name_attributes }}>{{ author }}</span>
             {% endif %}
           </p>
         {% endif %}

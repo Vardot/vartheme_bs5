@@ -1,46 +1,61 @@
 # Card Icon
 
-A Bootstrap card component with an optional icon, heading, description, and link or button action.
+A Bootstrap card with an optional Bootstrap Icon, heading, description, and either a full-card link or an action button.
 
-## Features
+## Bootstrap reference
 
-- Heading always renders as `H3`
-- Optional Bootstrap icon
-- Text alignment applies to the icon, heading, and description
-- Background theme and shadow options
-- Natural card height
-- Optional full-card link or action button
-- Padding checkbox that adds `p-4` when enabled
-- Bootstrap utility classes only
+> [Bootstrap 5.3 — Card](https://getbootstrap.com/docs/5.3/components/card/)
 
-## Available props
+## What it does
+
+Use this component when you need a simple icon-led card that can:
+
+- show an optional Bootstrap Icon above a heading and a rich-text description
+- align the icon, heading, and description together (start, center, or end)
+- apply a background theme, shadow, and optional padding
+- either turn the whole card into a link or render an action button
+
+## Files
+
+- `card-icon.component.yml` — component schema and props
+- `card-icon.twig` — component template
+- `README.md` — usage notes and examples
+- `card-icon.mdx` — Storybook docs page
+- `card-icon.stories.json` — Storybook story configuration
+- `card-icon.stories.twig` — Storybook story templates
+
+## Props overview
 
 ### Content
-- `text`: Card heading text
-- `description`: Supporting content. HTML is allowed.
+
+- `text`: heading text; defaults to `Your heading here` (always rendered as an `h3`)
+- `description`: supporting text, HTML allowed
 
 ### Icon
-- `icon`: Bootstrap icon name without the `bi-` prefix, or `none`
 
-### Layout and style
-- `text_align`: `text-start`, `text-center`, `text-end`
-- `background_color`: Bootstrap background utility class values
-- `shadow`: `shadow-none`, `shadow-sm`, `shadow`, `shadow-lg`
-- `has_padding`: `true` or `false`
+- `icon`: Bootstrap Icon name without the `bi-` prefix, or `none` to disable; defaults to `people`
+- `icon_size`: Bootstrap font-size utility — `fs-6`, `fs-5`, `fs-4`, `fs-3`, `fs-2`, `fs-1`; defaults to `fs-4`
+
+### Layout and appearance
+
+- `text_align`: `text-start`, `text-center`, `text-end`; defaults to `text-center`
+- `background_color`: background theme — `bg-body`, `bg-primary text-white`, `bg-secondary text-white`, `bg-success text-white`, `bg-danger text-white`, `bg-warning`, `bg-info`, `bg-light`, `bg-dark text-white`; defaults to `bg-body`
+- `shadow`: `shadow-none`, `shadow-sm`, `shadow`, `shadow-lg`; defaults to `shadow`
+- `has_padding`: adds `p-4` to the card body; defaults to `true`
 
 ### Link and button
-- `url`: Optional link URL
-- `button_label`: If set with a URL, shows a button instead of a full-card link
-- `button_variant`: Bootstrap button class values such as `btn-primary`
 
-## Behavior notes
+- `url`: optional link URL
+- `button_label`: when set together with `url`, renders a button instead of a full-card link; defaults to empty
+- `button_variant`: button style — `btn-primary`, `btn-secondary`, `btn-success`, `btn-danger`, `btn-warning`, `btn-info`, `btn-light`, `btn-dark`, `btn-link`; defaults to `btn-primary`
 
-- The card heading is always an `h3`.
-- Text alignment controls the icon row, heading, and description together.
-- The card uses natural height only.
-- If `button_label` is empty and `url` is set, the whole card becomes clickable.
-- If `button_label` is set and `url` is set, a button is rendered instead.
-- `has_padding` adds only `p-4` when enabled.
+## Link vs button behavior
+
+| `url` | `button_label` | Result |
+|---|---|---|
+| empty | any | Static card, no link |
+| set | empty | Whole card becomes clickable (stretched link) |
+| set | set | Action button rendered (`btn-sm`), card itself is not clickable |
 
 ## Example: simple card
 
@@ -49,6 +64,7 @@ A Bootstrap card component with an optional icon, heading, description, and link
   text: 'Support services',
   description: '<p>Find information about available services and guidance.</p>',
   icon: 'info',
+  icon_size: 'fs-3',
   text_align: 'text-start',
   background_color: 'bg-light',
   shadow: 'shadow',
@@ -85,3 +101,13 @@ A Bootstrap card component with an optional icon, heading, description, and link
   url: 'https://example.com/updates'
 }, with_context: false) }}
 ```
+
+## Notes
+
+- The card heading is always an `h3`.
+- `text_align` controls the icon row alignment, heading, and description together.
+- The card uses natural height only.
+- Some `background_color` values carry a paired text utility (e.g. `bg-primary text-white`); the component splits and applies both.
+- The icon is rendered via the `vartheme_bs5:bootstrap-icon` component; use `none` to hide it.
+- `has_padding` toggles only `p-4` on the card body.
+- `has_padding` is validated and defaulted by SDC, so it arrives as a real boolean.

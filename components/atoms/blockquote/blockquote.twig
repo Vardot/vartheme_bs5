@@ -1,4 +1,40 @@
+{#
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for the Blockquote component.
+ *
+ * Bootstrap blockquote with an optional citation footer and a dark or
+ * light color style.
+ *
+ * Available properties:
+ * - type: Color style of the blockquote. (dark | light) Defaults to `dark`.
+ * - text: The main content of the blockquote. Make sure this content is
+ *         filtered/safe before rendering.
+ * - cite_text: Name and Role, organization, or source of the quote.
+ *
+ * Available attributes:
+ * - attributes: Attributes array.
+ * - footer_attributes: HTML attributes for the footer element.
+ * - cite_attributes: HTML attributes for the cite element.
+ */
+#}
+
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Variables: scalar props with schema defaults. #}
 {% set type = type|default('dark') %}
+
+{# Logic: color style mapped to text and border utilities. #}
+{% set type_classes = type == 'light'
+  ? ['text-white', 'border-light']
+  : ['text-dark', 'border-secondary'] %}
 
 {% set blockquote_classes = [
   'blockquote',
@@ -10,20 +46,32 @@
   'border-2',
   'ps-4',
   'gap-2',
-  (type == 'light') ? 'text-white' : 'text-dark',
-  (type == 'light') ? 'border-light' : 'border-secondary',
-]|join(' ') %}
+]|merge(type_classes) %}
 
-{% set p_classes = 'mb-0 fst-italic fw-bold fs-4' %}
-{% set footer_classes = 'mb-0' %}
-{% set cite_classes = 'd-block fst-normal fw-normal fs-6 mb-0' %}
+{% set p_classes = ['mb-0', 'fst-italic', 'fw-bold', 'fs-4'] %}
+{% set footer_classes = ['mb-0'] %}
+{% set cite_classes = ['d-block', 'fst-normal', 'fw-normal', 'fs-6', 'mb-0'] %}
 
-<blockquote class="{{ blockquote_classes }}" data-type="{{ type|e }}">
-  <p class="{{ p_classes }}">{{ text }}</p>
+{# Logic: per-region attributes objects for the structural wrappers. #}
+{% set attributes = attributes.addClass(blockquote_classes) %}
+
+{% if not footer_attributes %}
+  {% set footer_attributes = create_attribute() %}
+{% endif %}
+{% set footer_attributes = footer_attributes.addClass(footer_classes) %}
+
+{% if not cite_attributes %}
+  {% set cite_attributes = create_attribute() %}
+{% endif %}
+{% set cite_attributes = cite_attributes.addClass(cite_classes) %}
+
+{# Print the HTML. #}
+<blockquote{{ attributes }} data-type="{{ type|e }}">
+  <p class="{{ p_classes|join(' ') }}">{{ text }}</p>
 
   {% if cite_text is not empty %}
-    <footer class="{{ footer_classes }}">
-      <cite title="{{ cite_text }}" class="{{ cite_classes }}">{{ cite_text }}</cite>
+    <footer{{ footer_attributes }}>
+      <cite title="{{ cite_text }}"{{ cite_attributes }}>{{ cite_text }}</cite>
     </footer>
   {% endif %}
 </blockquote>

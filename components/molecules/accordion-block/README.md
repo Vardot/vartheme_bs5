@@ -1,79 +1,113 @@
 # Accordion
 
-The Accordion component renders a single Bootstrap accordion item with a clickable header and a collapsible content area.
+A single Bootstrap 5 accordion item with a clickable header and a collapsible content area, designed to live inside an Accordion container.
 
-## Design
+## Bootstrap reference
 
-| State         | Background               | Text color         |
-|---------------|--------------------------|--------------------|
-| Default       | `bg-secondary-subtle`    | `text-dark`        |
-| Hover / focus | `bg-secondary`           | `#0D6EFD` (primary)|
-| Active (open) | `bg-secondary-subtle`    | `text-dark`        |
+> ### [Bootstrap documentation on Accordion](https://getbootstrap.com/docs/5.3/components/accordion/)
+> * [Example](https://getbootstrap.com/docs/5.3/components/accordion/#example)
+> * [Flush](https://getbootstrap.com/docs/5.3/components/accordion/#flush)
+> * [Always open](https://getbootstrap.com/docs/5.3/components/accordion/#always-open)
+> * [Accessibility](https://getbootstrap.com/docs/5.3/components/accordion/#accessibility)
 
-## When to use
+## What it does
 
-Use this component for one collapsible section inside an Accordion container. It is best for FAQs, grouped details, feature explanations, content toggles, and structured long-form content where readers should open one section at a time.
+Use this component when you need a reusable accordion item that can:
 
-## Features
+- show a clickable header button with a configurable heading level (`H2`–`H6`)
+- open or stay collapsed on first load
+- bind to a parent accordion container so only one item is open at a time
+- stay independent of the parent so it can remain open alongside its siblings
+- override its header color with a Bootstrap `text-bg-*` utility, or inherit the container color
+- render hidden body content from a slot, with a placeholder when the slot is empty
 
-- Bootstrap 5 accordion item markup
-- Configurable heading level from H2 to H6
-- Optional default open state
-- Optional stable item ID for links and testing
-- Supports inherited or direct header color class overrides
-- Works with any content dropped into the body slot
-- Keeps logic centralized at the top of the Twig template
+## Files
 
-## Properties
+- `accordion-block.component.yml` — component schema and props
+- `accordion-block.twig` — component template
+- `README.md` — usage notes and examples
+- `accordion-block.scss` / `accordion-block.css` — component styles
+- `accordion-block.mdx` — Storybook docs page
+- `accordion-block.stories.json` — Storybook story configuration
+- `accordion-block.stories.twig` — Storybook story templates
 
-### `title`
-Text shown inside the accordion header button.
+## Props overview
 
-### `heading_level`
-Heading tag level used for the accordion header wrapper.
+### Content
 
-Options: `H2` `H3` `H4` `H5` `H6` — Default: `H3`
+- `title`: text shown in the header button; defaults to `Accordion item`
+- `heading_level`: heading tag for the header — `2`, `3`, `4`, `5`, `6`; defaults to `3`
 
-### `open_by_default`
-Controls whether the accordion item starts open. Default: `true`
+### Behavior
 
-### `parent_id`
-Optional accordion container ID used for Bootstrap `data-bs-parent` binding. Normally supplied by the Accordion container automatically.
+- `open_by_default`: open this item when the page first loads — `true` / `false`; defaults to `true`
+- `always_open`: keep this item independent of the parent so it can stay open alongside others — `true` / `false`; defaults to `false`
 
-### `item_id`
-Optional stable suffix for predictable heading and collapse IDs. Default: empty (auto-generated)
+### Binding
 
-### `always_open`
-Allows the item to stay open independently even inside a grouped accordion. Default: `false`
+- `parent_id`: optional accordion container ID for Bootstrap `data-bs-parent` binding; usually provided automatically by the Accordion container
+- `item_id`: optional stable ID suffix for this item, useful for links, testing, or automation
 
-### `color`
-Optional Bootstrap `text-bg-*` class applied directly to the accordion button to override the default design. Use `inherit` to receive the color set by the parent Accordion container.
+### Appearance
 
-Options: `inherit` `text-bg-primary` `text-bg-secondary` `text-bg-success` `text-bg-danger` `text-bg-warning` `text-bg-info` `text-bg-dark`
+- `color`: optional Bootstrap `text-bg-*` class applied to the button — `inherit`, `text-bg-primary`, `text-bg-secondary`, `text-bg-success`, `text-bg-danger`, `text-bg-warning`, `text-bg-info`, `text-bg-dark`; defaults to `inherit`
 
-Default: `inherit`
+## Slots
 
-## Slot
+- `accordion_content` — content hidden when the accordion is collapsed
 
-### `accordion_content`
-Any body content: text, lists, images, buttons, links, media, or nested components.
+## Header color values
 
-## Usage example
+| Value | Header style |
+|---|---|
+| `inherit` | Inherit from container |
+| `text-bg-primary` | Primary |
+| `text-bg-secondary` | Secondary |
+| `text-bg-success` | Success |
+| `text-bg-danger` | Danger |
+| `text-bg-warning` | Warning |
+| `text-bg-info` | Info |
+| `text-bg-dark` | Dark |
+
+## Example: single item bound to a container
 
 ```twig
 {% embed 'vartheme_bs5:accordion-block' with {
-  title: 'What is included?',
+  title: 'What is your refund policy?',
   heading_level: 3,
-  open_by_default: false,
-} %}
+  open_by_default: true,
+  parent_id: 'faq-accordion',
+  item_id: 'refunds',
+  color: 'inherit'
+} only %}
   {% block accordion_content %}
-    <p class="mb-0">This section contains the accordion body content.</p>
+    <p class="mb-0">You can request a refund within 30 days of purchase.</p>
+  {% endblock %}
+{% endembed %}
+```
+
+## Example: independent item with a color override
+
+```twig
+{% embed 'vartheme_bs5:accordion-block' with {
+  title: 'Standalone note',
+  heading_level: 4,
+  open_by_default: false,
+  always_open: true,
+  color: 'text-bg-primary'
+} only %}
+  {% block accordion_content %}
+    <p class="mb-0">This item is not controlled by the parent accordion.</p>
   {% endblock %}
 {% endembed %}
 ```
 
 ## Notes
 
-- Add this component inside the Accordion container for normal grouped accordion behavior.
-- Use `inherit` (default) when the container should control the button color.
-- When the body slot is empty in preview, the component shows fallback content for easier editing.
+- The component reads `accordion_parent_id`, `accordion_always_open`, and `accordion_color` from the Twig context supplied by the Accordion container, so nesting items inside a container wires up parent binding, multi-open behavior, and color automatically.
+- `parent_id`, `item_id`, and `color` set directly on the item override the container-provided values.
+- When `item_id` is empty, a unique ID is generated so the `heading-*` / `collapse-*` IDs stay unique on the page.
+- `data-bs-parent` is only added when a parent ID is resolved and the item is not in always-open mode.
+- In the Canvas / SDC component preview, items are forced open so their body content is visible while editing.
+- When `accordion_content` is empty, a placeholder body is rendered via the `vartheme_bs5:text` component.
+- Boolean props (`open_by_default`, `always_open`) are validated by SDC and arrive as real booleans.

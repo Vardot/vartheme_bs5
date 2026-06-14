@@ -1,15 +1,31 @@
 {#
 /**
  * @file
- * Vartheme BS5 Starter Kit implementation for the user view.
+ * Vartheme BS5 Starter Kit implementation for the User component.
  */
 #}
+
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Variables: computed class fragments. #}
+{% set view_mode_class = 'user--' ~ view_mode|clean_class %}
+
+{# Logic: merge user-level classes as arrays. #}
 {% set classes = [
   'user',
-  'user--' ~ view_mode|clean_class,
+  view_mode_class,
 ] %}
 
-<article{{ attributes.addClass(classes) }}>
+{# Print the HTML. #}
+{% set attributes = attributes.addClass(classes) %}
+<article{{ attributes }}>
   {% if user_label %}
     <h2 class="user__name" style="text-transform:none">{{ user_label }}</h2>
   {% endif %}

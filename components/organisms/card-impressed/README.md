@@ -1,31 +1,74 @@
 # Impressed Card
 
-Stacked card layout with an optional media image (top or bottom), tag overlay slot, and drag & drop content area.
-The markup uses Bootstrap 5 utility classes so it works cleanly with the latest Bootstrap styles.
+A stacked Bootstrap card with an optional media image (top or bottom), a badge overlay slot, and a drag & drop content area.
 
-## Features
+## Bootstrap reference
 
-- Media image controlled via the **Media upload** prop (top or bottom).
-- One **tag** slot for an image overlay badge or inline element.
-- One **content** slot for drag & drop text, buttons, or other components.
-- Optional whole-card link using Bootstrap’s `stretched-link` (toggle via **Stretched link**).
-- Bootstrap utilities for background, border, rounded corners, and shadow.
-- Optional content padding via the **Padded** checkbox (adds `p-4`).
+> [Bootstrap 5.3 — Card](https://getbootstrap.com/docs/5.3/components/card/)
 
-## Usage
+## What it does
 
-### Basic
+Use this component when you need a stacked media card that can:
+
+- place an uploaded image above or below the content
+- crop the image to a fixed ratio and control how it fits
+- drop a badge or inline element over the top-left corner of the image
+- hold arbitrary drag & drop content (text, buttons, other components)
+- apply Bootstrap background, border, rounded corners, shadow, and optional padding
+- optionally turn the whole card into a clickable stretched link
+
+## Files
+
+- `card-impressed.component.yml` — component schema and props
+- `card-impressed.twig` — component template
+- `card-impressed.scss` / `card-impressed.css` — component styles
+- `README.md` — usage notes and examples
+- `card-impressed.mdx` — Storybook docs page
+- `card-impressed.stories.json` — Storybook story configuration
+- `card-impressed.stories.twig` — Storybook story templates
+- `assets/` — placeholder image used by examples
+
+## Props overview
+
+### Media
+
+- `media_position`: `top` or `bottom`; defaults to `top`
+- `media_image`: Canvas image object (`src`, `alt`, `width`, `height`)
+- `ratio`: image crop ratio — `ratio-auto`, `ratio-16x9`, `ratio-4x3`, `ratio-1x1`, `ratio-21x9`; defaults to `ratio-16x9`
+- `fit`: image fit — `object-fit-cover` or `object-fit-contain`; defaults to `object-fit-cover`
+
+### Appearance
+
+- `background_color`: Bootstrap background utility — `bg-transparent`, `bg-body`, `bg-body-tertiary`, `bg-white`, `bg-light`, `bg-dark`, `bg-primary`, `bg-secondary`, `bg-success`, `bg-danger`, `bg-warning`, `bg-info`; defaults to `bg-transparent`
+- `card_border`: adds `border` (otherwise `border-0`); defaults to `false`
+- `corner_style`: Bootstrap rounded utility — `rounded-0`, `rounded-1`, `rounded-2`, `rounded-3`, `rounded-4`, `rounded-pill`; defaults to `rounded-0`
+- `box_shadow`: `shadow-none`, `shadow-sm`, `shadow`, `shadow-lg`; defaults to `shadow-none`
+- `padded`: adds `p-4` to the content area; defaults to `false`
+- `equal_height`: adds `h-100` to the card wrapper; defaults to `false`
+
+### Link
+
+- `stretched_link`: when enabled and `link_url` is set, the whole card becomes clickable; defaults to `false`
+- `link_url`: optional card link URL; defaults to empty
+- `link_target`: `default`, `_self`, `_blank`; defaults to `default`
+
+## Slots
+
+- `overlay` — badge overlay rendered in the top-left corner of the media image; drop a Badge component or any inline element
+- `content` — drag & drop content area for text, buttons, or other components
+
+## Example: basic card
 
 ```twig
-{% include 'vartheme_bs5:card-impressed' with {
+{% embed 'vartheme_bs5:card-impressed' with {
   media_position: 'top',
   media_image: {
     src: 'https://picsum.photos/id/1011/1200/800',
     alt: 'A scenic photo'
   },
-  padded: true,
   ratio: 'ratio-16x9',
   fit: 'object-fit-cover',
+  padded: true,
   card_border: true,
   corner_style: 'rounded-3',
   box_shadow: 'shadow',
@@ -35,13 +78,30 @@ The markup uses Bootstrap 5 utility classes so it works cleanly with the latest 
     <h3 class="h5 mb-2">Card title</h3>
     <p class="mb-0">Card content goes here.</p>
   {% endblock %}
-{% endinclude %}
+{% endembed %}
 ```
 
-### Whole card as a link
+## Example: with a badge overlay
 
 ```twig
-{% include 'vartheme_bs5:card-impressed' with {
+{% embed 'vartheme_bs5:card-impressed' with {
+  media_position: 'top',
+  media_image: { src: '/path/to/photo.jpg', alt: 'Photo' },
+  padded: true
+} only %}
+  {% block overlay %}
+    <span class="badge text-bg-primary">New</span>
+  {% endblock %}
+  {% block content %}
+    <h3 class="h5 mb-0">Featured article</h3>
+  {% endblock %}
+{% endembed %}
+```
+
+## Example: whole card as a link
+
+```twig
+{% embed 'vartheme_bs5:card-impressed' with {
   link_url: '/example',
   link_target: '_self',
   stretched_link: true
@@ -49,33 +109,13 @@ The markup uses Bootstrap 5 utility classes so it works cleanly with the latest 
   {% block content %}
     <h3 class="h5 mb-0">Clickable card</h3>
   {% endblock %}
-{% endinclude %}
+{% endembed %}
 ```
-
-## Props
-
-| Prop | Type | Default | Notes |
-| --- | --- | --- | --- |
-| `media_position` | string | `top` | `top` or `bottom` |
-| `media_image` | object | — | Media image object (Canvas image schema) |
-| `ratio` | string | `ratio-auto` | Image crop ratio passed to `vartheme_bs5:image` |
-| `fit` | string | `object-fit-cover` | Image fit behavior passed to `vartheme_bs5:image` |
-| `card_border` | boolean | `false` | Adds `border` (otherwise `border-0`) |
-| `background_color` | string | `bg-transparent` | Bootstrap `bg-*` utility |
-| `padded` | boolean | `false` | When `true`, adds `p-4` to the content area |
-| `box_shadow` | string | `shadow-none` | Bootstrap shadow utility |
-| `corner_style` | string | `rounded-0` | Bootstrap rounded utility |
-| `equal_height` | boolean | `false` | Adds `h-100` |
-| `stretched_link` | boolean | `false` | When enabled and `link_url` is set, the whole card becomes clickable |
-| `link_url` | string | `''` | Card link URL |
-| `link_target` | string | `default` | `default`, `_self`, `_blank` |
-
-## Slots
-
-- `tag` — Drag & drop overlay area rendered in the top-left corner of the media image.
-- `content` — Drag & drop content area.
 
 ## Notes
 
-- The `tag` slot is rendered inside the media area. When the tag slot is present before an image is selected, the component keeps a placeholder image area so the overlay drop zone remains visible.
-- If no content is provided, a small “Drop content here” hint is rendered.
+- The `overlay` slot is rendered inside the media area. When the overlay slot is filled before an image is selected, the component keeps a placeholder image area so the overlay drop zone stays visible.
+- If no content is provided, a small "Drop content here" hint is rendered.
+- `media_position: bottom` reverses the stack order using `flex-column-reverse`.
+- The stretched link is only rendered when both `stretched_link` is enabled and `link_url` is set; `link_target: default` maps to `_self`.
+- Boolean props (`card_border`, `padded`, `equal_height`, `stretched_link`) are validated and defaulted by SDC, so they arrive as real booleans.

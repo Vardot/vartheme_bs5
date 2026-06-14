@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Vartheme BS5 Starter Kit implementation for Bootstrap heroslider component.
+ * Vartheme BS5 Starter Kit implementation for the Heroslider component.
  *
  * Available properties:
  * - controls_indicators_position: Choose the location of the media from (overlay|start|end|top|bottom).
@@ -34,14 +34,26 @@
  *
  */
 #}
+
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
 {% apply spaceless %}
 
+{# Variables: scalar props with defaults. #}
 {% set heroslider_id = id ? id : 'heroslider-' ~ random(1000) %}
 {% set heroslider_utility_classes = heroslider_utility_classes ?? [] %}
 {% set heroslider_controls_utility_classes = heroslider_controls_utility_classes ?? [] %}
 {% set heroslider_indicators_utility_classes = heroslider_indicators_utility_classes ?? [] %}
 {% set controls_indicators_position = controls_indicators_position ? ['hero-style-' ~ controls_indicators_position] : ['hero-style-overlay'] %}
 
+{# Logic: merge root heroslider classes as an array. #}
 {%
   set heroslider_classes = [
     'varbase-heroslider',
@@ -51,9 +63,17 @@
   ]|merge(heroslider_utility_classes)|merge(controls_indicators_position)
 %}
 
-{% if not attributes %}
-  {% set attributes = create_attribute() %}
-{% endif %}
+{# Logic: static structural class lists as arrays. #}
+{% set inner_classes = ['carousel-inner'] %}
+{% set control_buttons_classes = ['carousel-control-buttons'] %}
+{% set control_prev_classes = ['carousel-control-prev', 'js-carousel-control-prev'] %}
+{% set control_prev_icon_classes = ['carousel-control-prev-icon'] %}
+{% set control_pause_classes = ['carousel-control-pause', 'js-carousel-control-pause'] %}
+{% set control_pause_icon_classes = ['carousel-control-pause-icon'] %}
+{% set control_next_classes = ['carousel-control-next', 'js-carousel-control-next'] %}
+{% set control_next_icon_classes = ['carousel-control-next-icon'] %}
+{% set visually_hidden_classes = ['visually-hidden'] %}
+{% set empty_classes = ['view-empty'] %}
 
 {% set attributes = attributes.addClass(heroslider_classes) %}
 {% set attributes = attributes.setAttribute('id', heroslider_id) %}
@@ -86,13 +106,14 @@
   {% set attributes = attributes.setAttribute('data-bs-wrap', 'true') %}
 {% endif %}
 
+{# Print the HTML. #}
 {% if items and items|length >= 1 -%}
   <div{{ attributes }}>
     {# Add carousel items #}
-    <div class="carousel-inner">
+    <div class="{{ inner_classes|join(' ') }}">
       {% for key, item in items %}
         {% set item_id = heroslider_id ~ '--item-' ~ key %}
-        <div id="{{ item_id }}" class="carousel-item {{ (key == 0) ? 'active' }}">
+        <div id="{{ item_id }}" class="carousel-item {{ (key == 0) ? 'active' : '' }}">
           {{ item }}
         </div>
       {% endfor %}
@@ -131,25 +152,25 @@
           <div{{ indicators_attributes }}>
             {% for key, item in items %}
               {% set item_id = heroslider_id ~ '--item-' ~ key %}
-              <button id="indicator--{{ item_id }}" type="button" data-bs-target="#{{ heroslider_id }}" data-bs-slide-to="{{ key }}" class="{{ (key == 0) ? 'active' }}" aria-label="{{ item.indicator_label }}" aria-current="{{ (key == 0) ? 'true' }}"></button>
+              <button id="indicator--{{ item_id }}" type="button" data-bs-target="#{{ heroslider_id }}" data-bs-slide-to="{{ key }}" class="{{ (key == 0) ? 'active' : '' }}" aria-label="{{ item.indicator_label }}" aria-current="{{ (key == 0) ? 'true' : '' }}"></button>
             {% endfor %}
           </div>
         {% endif %}
 
         {# Add controls for the carousel #}
         {% if controls %}
-          <div class="carousel-control-buttons">
-            <button class="carousel-control-prev js-carousel-control-prev" type="button" data-bs-target="#{{ heroslider_id }}" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">{{ 'Previous'|t }}</span>
+          <div class="{{ control_buttons_classes|join(' ') }}">
+            <button class="{{ control_prev_classes|join(' ') }}" type="button" data-bs-target="#{{ heroslider_id }}" data-bs-slide="prev">
+              <span class="{{ control_prev_icon_classes|join(' ') }}" aria-hidden="true"></span>
+              <span class="{{ visually_hidden_classes|join(' ') }}">{{ 'Previous'|t }}</span>
             </button>
-            <button class="carousel-control-pause js-carousel-control-pause" type="button" data-bs-target="#{{ heroslider_id }}">
-              <span class="carousel-control-pause-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">{{ 'Pause'|t }}</span>
+            <button class="{{ control_pause_classes|join(' ') }}" type="button" data-bs-target="#{{ heroslider_id }}">
+              <span class="{{ control_pause_icon_classes|join(' ') }}" aria-hidden="true"></span>
+              <span class="{{ visually_hidden_classes|join(' ') }}">{{ 'Pause'|t }}</span>
             </button>
-            <button class="carousel-control-next js-carousel-control-next" type="button" data-bs-target="#{{ heroslider_id }}" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">{{ 'Next'|t }}</span>
+            <button class="{{ control_next_classes|join(' ') }}" type="button" data-bs-target="#{{ heroslider_id }}" data-bs-slide="next">
+              <span class="{{ control_next_icon_classes|join(' ') }}" aria-hidden="true"></span>
+              <span class="{{ visually_hidden_classes|join(' ') }}">{{ 'Next'|t }}</span>
             </button>
           </div>
         {% endif %}
@@ -158,7 +179,7 @@
   </div>
 {% elseif empty -%}
   <div{{ attributes }}>
-    <div class="view-empty">
+    <div class="{{ empty_classes|join(' ') }}">
       {{ empty }}
     </div>
   </div>

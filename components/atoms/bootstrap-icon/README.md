@@ -2,6 +2,10 @@
 
 A lightweight Bootstrap icon component that renders icons with Bootstrap Icons classes.
 
+## Bootstrap reference
+
+> [Bootstrap 5.3 — Bootstrap Icons](https://icons.getbootstrap.com/)
+
 ## Features
 
 - Uses Bootstrap Icons classes such as `bi bi-arrow-right`

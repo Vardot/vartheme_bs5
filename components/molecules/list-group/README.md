@@ -2,6 +2,10 @@
 
 A Bootstrap 5.3 List Group component for displaying flexible lists of content with support for links, badges, contextual styling, and various layout options.
 
+## Bootstrap reference
+
+> [Bootstrap 5.3 — List group](https://getbootstrap.com/docs/5.3/components/list-group/)
+
 ## Features
 
 - **Basic List Groups**: Simple unordered lists with Bootstrap styling

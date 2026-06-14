@@ -1,17 +1,58 @@
 {#
-  Image component
-  - Optional ratio crop via Bootstrap .ratio + .ratio-*
-  - Bootstrap utility classes only
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for the Image component.
+ *
+ * Optional ratio crop via Bootstrap .ratio + .ratio-*. Bootstrap utility
+ * classes only.
+ *
+ * Available properties:
+ * - media: Image source object (src, alt, width, height).
+ * - link_url: If provided, the image becomes clickable. Defaults to ''.
+ * - target: Link target. (self | blank) Defaults to `self`.
+ * - ratio: Image ratio crop. (ratio-auto | ratio-16x9 | ratio-4x3 | ratio-1x1
+ *          | ratio-21x9) Defaults to `ratio-auto`.
+ * - fit: How the image behaves inside a fixed ratio.
+ *        (object-fit-cover | object-fit-contain) Defaults to `object-fit-cover`.
+ * - align: Alignment of the whole image block. (me-auto | mx-auto | ms-auto)
+ *          Defaults to `me-auto`.
+ * - width: Visual width of the image container.
+ *          (w-auto | w-25 | w-50 | w-75 | w-100) Defaults to `w-auto`.
+ * - rounded: Bootstrap border-radius utility. (none | rounded | rounded-0
+ *            | rounded-1 | rounded-2 | rounded-3 | rounded-4 | rounded-pill)
+ *            Defaults to `none`.
+ * - loading: Browser loading strategy. (lazy | eager) Defaults to `lazy`.
+ *
+ * Available attributes:
+ * - attributes: The outermost <figure> root element.
+ */
 #}
 
-{% set media_ok = media is defined and media and media.src is defined and media.src is not empty %}
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
 
+{# Variables: scalar props with schema defaults. #}
 {% set link_url = link_url|default('')|trim %}
+{% set target = target|default('self') %}
+{% set ratio_value = ratio|default('ratio-auto') %}
+{% set fit_class = fit|default('object-fit-cover') %}
+{% set align_class = align|default('me-auto') %}
+{% set width_class = width|default('w-auto') %}
+{% set rounded = rounded|default('none') %}
+{% set loading_value = loading|default('lazy') %}
+
+{# Logic: source and link handling. #}
+{% set media_ok = media is defined and media and media.src is defined and media.src is not empty %}
 {% set has_link = link_url is not empty and link_url != 'No URL' %}
 
-{% set target_value = target|default('self') %}
-{% set target_attr = target_value == 'blank' ? '_blank' : '_self' %}
-{% set rel_attr = target_value == 'blank' ? 'noopener noreferrer' : null %}
+{% set target_attr = target == 'blank' ? '_blank' : '_self' %}
+{% set rel_attr = target == 'blank' ? 'noopener noreferrer' : null %}
 
 {# Link attributes for vartheme_bs5:link #}
 {% set link_attrs_ratio = create_attribute().addClass(['d-block', 'w-100', 'h-100']) %}
@@ -25,36 +66,26 @@
   {% set link_attrs_inline = link_attrs_inline.setAttribute('rel', rel_attr) %}
 {% endif %}
 
-{# Ratio: use a special value for "no crop" (ratio-auto) #}
-{% set ratio_value = ratio|default('ratio-auto') %}
+{# Logic: ratio crop. A special value (ratio-auto) means "no crop". #}
 {% set has_ratio = ratio_value != 'ratio-auto' %}
 {% set ratio_wrapper_class = has_ratio ? ('ratio ' ~ ratio_value) : '' %}
 
-{# Fit: Bootstrap object-fit utilities #}
-{% set fit_class = fit|default('object-fit-cover') %}
+{# Logic: rounded utility, only when set. #}
+{% set rounded_class = rounded != 'none' ? rounded : '' %}
 
-{# Alignment + width: Bootstrap utilities (values are the class names) #}
-{% set align_class = align|default('me-auto') %}
-{% set width_class = width|default('w-auto') %}
-
-{# Rounded: Bootstrap utilities (values are the class names) #}
-{% set rounded_class = rounded|default('none') != 'none' ? rounded : '' %}
-
-{% set loading_value = loading|default('lazy') %}
-
-{# Figure wrapper classes #}
+{# Logic: figure wrapper classes. #}
 {% set figure_classes = (['d-block', 'm-0', width_class, align_class])|filter(v => v is not empty) %}
-{% set figure_attrs = create_attribute().addClass(figure_classes) %}
+{% set attributes = attributes.addClass(figure_classes) %}
 
-{# Image classes — w-100 always; h-100 only inside a ratio box #}
+{# Logic: image classes — w-100 always; h-100 only inside a ratio box. #}
 {% set img_classes = (['img-fluid', fit_class, rounded_class]|filter(v => v is not empty)) %}
 {% set img_classes_final = ['w-100']|merge(has_ratio ? ['h-100'] : [])|merge(img_classes) %}
 {% set img_class_final = img_classes_final|join(' ') %}
 
-{# Pick link attributes based on ratio mode #}
+{# Pick link attributes based on ratio mode. #}
 {% set link_attrs = has_ratio ? link_attrs_ratio : link_attrs_inline %}
 
-{# Build the inner markup (no logic in <figure>) #}
+{# Build the inner markup (no logic in <figure>). #}
 {% set figure_content %}{% endset %}
 {% if media_ok %}
   {# Resolve a plain source URL. SVG must bypass drimage/responsive styles
@@ -106,7 +137,7 @@
     {% endset %}
   {% endif %}
 
-  {# Build the optional link wrapper once #}
+  {# Build the optional link wrapper once. #}
   {% set linked_markup %}
     {% if has_link %}
       {{ include('vartheme_bs5:link', {
@@ -130,6 +161,7 @@
   {% endset %}
 {% endif %}
 
-<figure{{ figure_attrs }}>
+{# Print the HTML. #}
+<figure{{ attributes }}>
   {{ figure_content }}
 </figure>

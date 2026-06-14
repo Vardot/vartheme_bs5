@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Vartheme BS5 Starter Kit implementation to display a hero slide node.
+ * Vartheme BS5 Starter Kit implementation for the Media Hero Slide component.
  *
  * Available variables:
  * - node: The node entity with limited access to object properties and methods.
@@ -68,6 +68,17 @@
  * @ingroup themeable
  */
 #}
+
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Variables: derived media type for the slide's single media field. #}
 {# The the node has the media single field for the slide #}
 {% if node.hasField('field_media_single') %}
   {% set media_entity_type = node.field_media_single.entity.bundle() %}
@@ -81,35 +92,45 @@
   {% endif %}
 {% endif %}
 
+{# Logic: merge root node classes as an array. #}
 {# The template default set classes. #}
 {%
 set classes = [
   'node',
   'node--type-' ~ node.bundle|clean_class,
-  view_mode ? 'node--view-mode--' ~ view_mode|clean_class,
+  view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
 ]
 %}
+
+{# Logic: static structural class lists as arrays. #}
+{% set page_extra_classes = [
+  'varbase-heroslider-media',
+  'bg-edge2edge',
+] %}
+{% set content_wrapper_classes = ['hero-slide-content-wrapper'] %}
+{% set container_classes = ['container'] %}
+{% set row_classes = ['row'] %}
+{% set content_classes = ['hero-slide-content'] %}
+{% set title_field_classes = ['field', 'field--name-node-title'] %}
+{% set title_classes = ['node-title'] %}
+
+{# Print the HTML. #}
 {% if page %}
   {% set page_extra_attributes = create_attribute() %}
-  {%
-    set page_extra_classes = [
-     'varbase-heroslider-media',
-     'bg-edge2edge',
-    ]
-  %}
 <div{{ page_extra_attributes.addClass(page_extra_classes) }}>
 {% endif %}
-<div{{ attributes.addClass(classes) }}>
+{% set attributes = attributes.addClass(classes) %}
+<div{{ attributes }}>
   <div{{ content_attributes }}>
     {{ content.field_media_single|render }}
-    <div class="hero-slide-content-wrapper">
-      <div class="container">
-        <div class="row">
-          <div class="hero-slide-content">
+    <div class="{{ content_wrapper_classes|join(' ') }}">
+      <div class="{{ container_classes|join(' ') }}">
+        <div class="{{ row_classes|join(' ') }}">
+          <div class="{{ content_classes|join(' ') }}">
             {# The title of the slide #}
             {% if label %}
-              <div class="field field--name-node-title">
-                <h2 class="node-title">{{ label }}</h2>
+              <div class="{{ title_field_classes|join(' ') }}">
+                <h2 class="{{ title_classes|join(' ') }}">{{ label }}</h2>
               </div>
             {% endif %}
             {# All other content fields without the media single field. #}

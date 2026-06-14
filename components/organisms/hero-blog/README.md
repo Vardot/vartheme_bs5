@@ -1,45 +1,53 @@
 # Hero Blog
 
-Hero Blog is a content header for blog posts, articles, and editorial pages. It renders the published date, title, optional author link, and optional media in a simple centered layout.
+A blog/article content header that renders a published date, title, optional author (plain or linked), and an optional media slot in a centered layout.
 
 ## What it does
 
-- Displays a formatted published date
-- Renders the title through `vartheme_bs5:heading`
-- Supports plain author text or a linked author name
-- Supports an optional `blog_media` slot under the text content
-- Uses Bootstrap utility classes for spacing and layout
+Use this component when you need an editorial hero that can:
 
-## Props
+- display a formatted published date via the `vartheme_bs5:date` component
+- render the title through the `vartheme_bs5:heading` component
+- show the author as plain text or as a linked name via `vartheme_bs5:link`
+- render optional media below the text content through a slot
+- apply Bootstrap utility classes for spacing and a centered column layout
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `heading_text` | string | `Enter the title` | Main title text. |
-| `level` | integer | `2` | Heading level for the title. Allowed values: `2` to `6`. |
-| `heading_size` | string | `default` | Visual heading size. Use `default` to follow the selected heading level, or pass a Bootstrap heading/display class value such as `h3` or `display-4`. |
-| `date` | string | `2026-03-24` | Published date as an ISO 8601 date string in `YYYY-MM-DD` format. |
-| `author` | string | empty | Author name. |
-| `author_url` | string | empty | Optional URL for the author name. |
+## Files
+
+- `hero-blog.component.yml` — component schema and props
+- `hero-blog.twig` — component template
+- `README.md` — usage notes and examples
+- `hero-blog.mdx` — Storybook docs page
+- `hero-blog.stories.json` — Storybook story configuration
+- `hero-blog.stories.twig` — Storybook story templates
+
+## Props overview
+
+### Content
+
+- `heading_text`: main title text; defaults to `Enter the title`
+- `level`: heading level for the title — `2`, `3`, `4`, `5`, or `6`; defaults to `2`
+- `heading_size`: visual heading size — `default` (match the heading level), `h2`–`h6`, `display-1`–`display-6`; defaults to `default`
+
+### Meta
+
+- `date`: ISO 8601 date string (`YYYY-MM-DD`); rendered via `vartheme_bs5:date`
+- `author`: author name; defaults to empty
+- `author_url`: optional URL for the author name; defaults to empty
 
 ## Slots
 
-| Slot | Description |
-|---|---|
-| `blog_media` | Optional media rendered below the text content. |
+- `blog_media`: optional media rendered below the content
 
-## Date format
+## Available attributes
 
-The `date` prop now expects a date string instead of a Unix timestamp.
+- `attributes` / `section_attributes`: the `<section>` wrapper
+- `container_attributes`: the container wrapper
+- `row_attributes`: the inner row wrapper
+- `content_attributes`: the content column wrapper
+- `media_attributes`: the blog media wrapper
 
-Valid example:
-
-```text
-2026-03-24
-```
-
-## Examples
-
-### Basic
+## Example: basic blog hero
 
 ```twig
 {% include 'vartheme_bs5:hero-blog' with {
@@ -47,15 +55,14 @@ Valid example:
   level: 2,
   heading_size: 'default',
   date: '2026-03-24',
-  author: 'John Smith',
-  author_url: ''
+  author: 'John Smith'
 } only %}
 ```
 
-### With linked author
+## Example: linked author with media slot
 
 ```twig
-{% include 'vartheme_bs5:hero-blog' with {
+{% embed 'vartheme_bs5:hero-blog' with {
   heading_text: 'Inside the new publishing workflow',
   level: 2,
   heading_size: 'display-4',
@@ -63,27 +70,15 @@ Valid example:
   author: 'Jane Doe',
   author_url: 'https://example.com/authors/jane-doe'
 } only %}
-```
-
-### With media slot
-
-```twig
-{% embed 'vartheme_bs5:hero-blog' with {
-  heading_text: 'Editorial release notes',
-  level: 3,
-  heading_size: 'h4',
-  date: '2026-03-24',
-  author: 'Editorial team'
-} only %}
   {% block blog_media %}
-    <img src="/path/to/image.jpg" alt="Blog cover" class="img-fluid rounded">
+    <img src="/path/to/cover.jpg" alt="Blog cover" class="img-fluid rounded">
   {% endblock %}
 {% endembed %}
 ```
 
 ## Notes
 
-- `heading_size: default` does not pass a visual size override to the heading component.
-- The component renders heading levels `h2` through `h6`.
-- If `author_url` is empty, the author is rendered as plain text.
-- If `date` is empty, the date row is not rendered.
+- `heading_size: default` does not pass a visual size override; the heading then matches the selected `level`.
+- The date row is only rendered when `date` is provided.
+- The author block is only rendered when `author` is set; it is linked when `author_url` is provided, otherwise it is plain text.
+- The `blog_media` slot is only rendered when it has content.

@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Vartheme BS5 Starter Kit implementation for the fieldset element and its children.
+ * Vartheme BS5 Starter Kit implementation for the Fieldset component.
  *
  * Available variables:
  * - attributes: HTML attributes for the fieldset element.
@@ -20,6 +20,20 @@
  * @see template_preprocess_fieldset()
  */
 #}
+
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Variables: required marker state. #}
+{% set is_required = required ? true : false %}
+
+{# Logic: merge the fieldset and legend classes as arrays. #}
 {%
   set classes = [
     'js-form-item',
@@ -30,16 +44,17 @@
     'mb-3',
   ]
 %}
-<fieldset{{ attributes.addClass(classes) }}>
-  {%
-    set legend_span_classes = [
-      'fieldset-legend',
-      'mb-0',
-      required ? 'js-form-required',
-      required ? 'form-required',
-    ]
-  %}
+{% set required_classes = is_required ? ['js-form-required', 'form-required'] : [] %}
+{%
+  set legend_span_classes = [
+    'fieldset-legend',
+    'mb-0',
+  ]|merge(required_classes)
+%}
+{% set attributes = attributes.addClass(classes) %}
 
+{# Print the HTML. #}
+<fieldset{{ attributes }}>
   {% if title_display != 'none' %}
     <div class="card-header">
       <legend{{ legend.attributes.addClass('m-0') }}>
@@ -53,7 +68,7 @@
 
   <div class="card-body fieldset-wrapper">
     {% if description_display == 'before' and description.content %}
-      <small{{ description.attributes.addClass('description', 'form-text', 'text-muted') }}>{{ description.content }}</small>
+      <small{{ description.attributes.addClass(['description', 'form-text', 'text-muted']) }}>{{ description.content }}</small>
     {% endif %}
     {% if errors %}
       <div>
@@ -68,7 +83,7 @@
       <span class="field-suffix">{{ suffix }}</span>
     {% endif %}
     {% if description_display in ['after', 'invisible'] and description.content %}
-      <small{{ description.attributes.addClass('description', 'form-text', 'text-muted') }}>{{ description.content }}</small>
+      <small{{ description.attributes.addClass(['description', 'form-text', 'text-muted']) }}>{{ description.content }}</small>
     {% endif %}
   </div>
 </fieldset>

@@ -1,30 +1,68 @@
 {#
-  Hero Slider Container (Bootstrap 5)
-
-  Canvas / SDC notes:
-  - Uses slot content for slides so Canvas can manage drag/drop ordering.
-  - Avoids pre-building slide arrays in Twig.
-  - Keeps all logic and attribute preparation at the top so markup stays clean.
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for the Hero Slider Container component.
+ *
+ * Canvas / SDC notes:
+ * - Uses slot content for slides so Canvas can manage drag/drop ordering.
+ * - Avoids pre-building slide arrays in Twig.
+ * - Keeps all logic and attribute preparation at the top so markup stays clean.
+ *
+ * Available attributes (control-icon structural elements routed through the
+ * attribute object):
+ * - attributes: the outermost `<section>` carousel root element.
+ * - prev_hidden_label_attributes / next_hidden_label_attributes: visually-hidden
+ *   control labels.
+ * - prev_icon_attributes / next_icon_attributes: control <svg> elements.
+ * - prev_icon_path_attributes / next_icon_path_attributes: control <svg> <path>.
+ */
 #}
+
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
 {{ attach_library('vartheme_bs5/framework') }}
 
 {% set carousel_id = 'heroSlider-' ~ random(1000000) %}
 
+{# Variables: scalar props with schema defaults. #}
+{% set slider_height = slider_height|default('700') %}
+{% set controller_color = controller_color|default('primary') %}
+{% set transition = transition|default('slide') %}
+{% set interval_ms = interval_ms|default(5000) %}
+
+{# Variables: boolean props.
+ # SDC validates `type: boolean` props and applies their schema defaults,
+ # so the values arrive as real booleans — only a presence fallback is
+ # needed here, never type coercion.
+ #}
+{% set bg_edge2edge = bg_edge2edge ?? true %}
+{% set autoplay = autoplay ?? true %}
+{% set pause_on_hover = pause_on_hover ?? true %}
+{% set show_indicators = show_indicators ?? true %}
+{% set show_controls = show_controls ?? true %}
+
 {# Shared values exposed to nested Hero Slide components. #}
 {% set hero_slider_id = carousel_id %}
 {% set hero_slider_media_position = 'overlay' %}
-{% set hero_slider_bg_edge2edge = bg_edge2edge is defined ? bg_edge2edge : true %}
+{% set hero_slider_bg_edge2edge = bg_edge2edge %}
 {% set hero_slider_container_type = 'container' %}
 {% set hero_slider_section_padding_y = 'py-0' %}
-{% set hero_slider_slider_height = slider_height|default('700') %}
+{% set hero_slider_slider_height = slider_height %}
 {% set hero_slider_controller_shape = 'round' %}
-{% set hero_slider_controller_color = controller_color|default('primary') %}
-{% set hero_slider_transition = transition|default('slide') %}
-{% set hero_slider_autoplay = autoplay is defined ? autoplay : true %}
-{% set hero_slider_interval = interval_ms|default(5000) %}
-{% set hero_slider_pause_on_hover = pause_on_hover is defined ? pause_on_hover : true %}
-{% set hero_slider_show_indicators = show_indicators is defined ? show_indicators : true %}
-{% set hero_slider_show_controls = show_controls is defined ? show_controls : true %}
+{% set hero_slider_controller_color = controller_color %}
+{% set hero_slider_transition = transition %}
+{% set hero_slider_autoplay = autoplay %}
+{% set hero_slider_interval = interval_ms %}
+{% set hero_slider_pause_on_hover = pause_on_hover %}
+{% set hero_slider_show_indicators = show_indicators %}
+{% set hero_slider_show_controls = show_controls %}
 
 {# Width handling stays per-slide to avoid double containers in Canvas. #}
 {% set outer_container_class = '' %}
@@ -104,7 +142,7 @@
 {% set fallback_text_classes = ['hero-slider__text', 'fs-6', 'mb-4'] %}
 
 {# Prepared attributes for cleaner HTML. #}
-{% set section_attributes = create_attribute({class: section_classes}) %}
+{% set attributes = attributes.addClass(section_classes) %}
 {% set outer_container_attributes = outer_container_class ? create_attribute({class: [outer_container_class]}) : null %}
 {% set carousel_attributes = create_attribute({
   id: carousel_id,
@@ -143,7 +181,14 @@
 {% set fallback_title_attributes = create_attribute({class: fallback_title_classes}) %}
 {% set fallback_text_attributes = create_attribute({class: fallback_text_classes}) %}
 
-<section{{ section_attributes }}>
+{% set prev_hidden_label_attributes = create_attribute({class: ['visually-hidden']}) %}
+{% set prev_icon_attributes = create_attribute({class: ['icon-prev'], viewBox: '0 0 24 24', fill: 'none', 'aria-hidden': 'true', focusable: 'false'}) %}
+{% set prev_icon_path_attributes = create_attribute({d: 'M15 18l-6-6 6-6', stroke: 'currentColor', 'stroke-width': '2.5', 'stroke-linecap': 'round', 'stroke-linejoin': 'round'}) %}
+{% set next_hidden_label_attributes = create_attribute({class: ['visually-hidden']}) %}
+{% set next_icon_attributes = create_attribute({class: ['icon-next'], viewBox: '0 0 24 24', fill: 'none', 'aria-hidden': 'true', focusable: 'false'}) %}
+{% set next_icon_path_attributes = create_attribute({d: 'M9 18l6-6-6-6', stroke: 'currentColor', 'stroke-width': '2.5', 'stroke-linecap': 'round', 'stroke-linejoin': 'round'}) %}
+
+<section{{ attributes }}>
   {% if outer_container_attributes %}
     <div{{ outer_container_attributes }}>
   {% endif %}
@@ -188,16 +233,16 @@
                 {% if hero_slider_show_controls %}
                   <div{{ controls_attributes }}>
                     <button{{ prev_button_attributes }}>
-                      <span class="visually-hidden">Previous</span>
-                      <svg class="icon-prev" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
-                        <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <span{{ prev_hidden_label_attributes }}>Previous</span>
+                      <svg{{ prev_icon_attributes }}>
+                        <path{{ prev_icon_path_attributes }}/>
                       </svg>
                     </button>
 
                     <button{{ next_button_attributes }}>
-                      <span class="visually-hidden">Next</span>
-                      <svg class="icon-next" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
-                        <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <span{{ next_hidden_label_attributes }}>Next</span>
+                      <svg{{ next_icon_attributes }}>
+                        <path{{ next_icon_path_attributes }}/>
                       </svg>
                     </button>
                   </div>

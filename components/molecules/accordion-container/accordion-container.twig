@@ -1,8 +1,46 @@
 {#
-  Accordion Container (Bootstrap 5)
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for the Accordion Container component.
+ *
+ * Available config:
+ * - id: Accordion container ID used for data-bs-parent binding. Leave empty
+ *       to auto-generate.
+ * - flush: (true|false) Remove the default outer borders and rounding.
+ *          Defaults to `false`.
+ * - always_open: (true|false) Allow multiple items to stay open at once.
+ *                Defaults to `false`.
+ * - color: Optional Bootstrap text-bg-* class passed to nested items.
+ *          (text-bg-primary | text-bg-secondary | text-bg-success
+ *           | text-bg-danger | text-bg-warning | text-bg-info | text-bg-dark)
+ *
+ * Available attributes:
+ * - demo_1_text_attributes: HTML attributes for the first demo item's text.
+ * - demo_2_text_attributes: HTML attributes for the second demo item's text.
+ */
 #}
 
-{# --- Resolve ID --- #}
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Variables: scalar props with schema defaults. #}
+{% set color = color|default('') %}
+
+{# Variables: boolean props.
+ # SDC validates `type: boolean` props and applies their schema defaults,
+ # so the values arrive as real booleans — only a presence fallback is
+ # needed here, never type coercion.
+ #}
+{% set flush = flush ?? false %}
+{% set always_open = always_open ?? false %}
+
+{# Logic: resolve ID. #}
 {% set accordion_id = id|default('')|trim %}
 {% if accordion_id is empty %}
   {% set accordion_id = 'accordion-' ~ random(1000000) %}
@@ -10,13 +48,13 @@
 
 {# These variables are passed down to child accordion-block components via Twig context. #}
 {% set accordion_parent_id   = accordion_id %}
-{% set accordion_always_open = always_open ? true : false %}
-{% set accordion_color       = color|default('') %}
+{% set accordion_always_open = always_open %}
+{% set accordion_color       = color %}
 
-{# --- Resolve state flags --- #}
+{# Logic: resolve state flags. #}
 {% set has_slot_content = accordion_content is defined and accordion_content|render|trim is not empty %}
 
-{# --- Build class lists --- #}
+{# Logic: build class lists as arrays. #}
 {% set container_classes = ['accordion'] %}
 {% if flush %}
   {% set container_classes = container_classes|merge(['accordion-flush']) %}
@@ -26,11 +64,8 @@
 {% set demo_1_btn_classes  = ['accordion-button', 'fw-bold', accordion_color] %}
 {% set demo_2_btn_classes  = ['accordion-button', 'fw-bold', accordion_color, 'collapsed'] %}
 
-{# --- Build attributes --- #}
-{% set container_attributes = create_attribute({
-  'id': accordion_id,
-  'class': container_classes,
-}) %}
+{# Logic: build attributes. #}
+{% set attributes = attributes.setAttribute('id', accordion_id).addClass(container_classes) %}
 
 {% set demo_1_item_attributes = create_attribute({
   'class': ['accordion-item'],
@@ -94,8 +129,16 @@
   'class': ['accordion-body'],
 }) %}
 
-{# --- HTML --- #}
-<div{{ container_attributes }}>
+{% set demo_1_text_attributes = create_attribute({
+  'class': ['mb-0'],
+}) %}
+
+{% set demo_2_text_attributes = create_attribute({
+  'class': ['mb-0'],
+}) %}
+
+{# Print the HTML. #}
+<div{{ attributes }}>
   {% if has_slot_content %}
     {{ accordion_content }}
   {% else %}
@@ -105,7 +148,7 @@
       </h2>
       <div{{ demo_1_collapse_attributes }}>
         <div{{ demo_1_body_attributes }}>
-          <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+          <p{{ demo_1_text_attributes }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
         </div>
       </div>
     </div>
@@ -116,7 +159,7 @@
       </h2>
       <div{{ demo_2_collapse_attributes }}>
         <div{{ demo_2_body_attributes }}>
-          <p class="mb-0">Sed ut perspiciatis unde omnis iste natus error sit voluptatem.</p>
+          <p{{ demo_2_text_attributes }}>Sed ut perspiciatis unde omnis iste natus error sit voluptatem.</p>
         </div>
       </div>
     </div>

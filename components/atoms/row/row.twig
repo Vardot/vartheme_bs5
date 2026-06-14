@@ -1,13 +1,64 @@
 {#
-  Row (Bootstrap)
-  - Outputs a .row with gutter utilities
-  - Optional container wrapper
-  - Optional responsive row-cols utilities
-  - Optional background color, background image, overlay, and spacing utilities
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for the Row component.
+ *
+ * Outputs a .row with gutter utilities, an optional container wrapper,
+ * optional responsive row-cols utilities, and optional background color,
+ * background image, overlay, and spacing utilities.
+ *
+ * Available properties:
+ * - background_color: Bootstrap background utility for the row wrapper.
+ *                     (none | bg-light | bg-body | bg-body-secondary
+ *                      | bg-body-tertiary | bg-primary | bg-secondary
+ *                      | bg-success | bg-danger | bg-warning | bg-info | bg-dark)
+ *                     Defaults to `none`.
+ * - bg_edge2edge: (true|false) Enable full-bleed background (adds the
+ *                 `bg-edge2edge` class). Defaults to `false`.
+ * - background_image: Optional background image object applied to the wrapper.
+ * - overlay_color: Overlay color on top of the background image.
+ *                  (none | dark | light) Defaults to `dark`.
+ * - overlay_opacity: Overlay opacity. (0 | 25 | 50 | 75 | 100) Defaults to `50`.
+ * - container_type: Optionally wrap the row inside a Bootstrap container.
+ *                   (none | container | container-fluid) Defaults to `container`.
+ * - gutter: Space between columns. (0 | 1 | 2 | 3 | 4 | 5) Defaults to `3`.
+ * - columns_mobile: Columns per row on mobile.
+ *                   (none | 1 | 2 | 3 | 4 | 5 | 6) Defaults to `none`.
+ * - columns_desktop: Columns per row from md breakpoint up.
+ *                    (none | 1 | 2 | 3 | 4 | 5 | 6) Defaults to `none`.
+ * - align_items: Vertical alignment of columns.
+ *                (none | align-items-start | align-items-center
+ *                 | align-items-end | align-items-stretch) Defaults to `none`.
+ * - justify_content: Horizontal distribution of columns.
+ *                    (none | justify-content-start | justify-content-center
+ *                     | justify-content-end | justify-content-between
+ *                     | justify-content-around | justify-content-evenly)
+ *                    Defaults to `none`.
+ * - padding_block_start: Padding top. (pt-0..pt-5) Defaults to `pt-0`.
+ * - padding_block_end: Padding bottom. (pb-0..pb-5) Defaults to `pb-0`.
+ * - margin_block_start: Margin top. (mt-0..mt-5) Defaults to `mt-0`.
+ * - margin_block_end: Margin bottom. (mb-0..mb-5) Defaults to `mb-0`.
+ *
+ * Available slots:
+ * - content: The row columns content.
+ *
+ * Available attributes:
+ * - attributes: The outermost wrapper element (always present, the root).
+ * - row_attributes: The .row element.
+ * - container_attributes: The optional container element.
+ */
 #}
 
-{% set attributes = attributes|default(create_attribute()) %}
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
 
+{# Variables: scalar props with schema defaults. #}
 {% set container_type = container_type|default('container') %}
 {% set gutter = gutter|default('3') %}
 {% set columns_mobile = columns_mobile|default('none') %}
@@ -15,7 +66,6 @@
 {% set align_items = align_items|default('none') %}
 {% set justify_content = justify_content|default('none') %}
 {% set background_color = background_color|default('none') %}
-{% set bg_edge2edge = bg_edge2edge|default(false) %}
 {% set background_image = background_image|default('') %}
 {% set overlay_color = overlay_color|default('dark') %}
 {% set overlay_opacity = overlay_opacity|default(50) %}
@@ -24,38 +74,38 @@
 {% set margin_block_start = margin_block_start|default('mt-0') %}
 {% set margin_block_end = margin_block_end|default('mb-0') %}
 
-{% set row_classes = [
-  'row',
-  'g-' ~ gutter,
-] %}
+{# Variables: boolean props.
+ # SDC validates `type: boolean` props and applies their schema defaults,
+ # so the values arrive as real booleans — only a presence fallback is
+ # needed here, never type coercion.
+ #}
+{% set bg_edge2edge = bg_edge2edge ?? false %}
 
-{% if columns_mobile != 'none' %}
-  {% set row_classes = row_classes|merge(['row-cols-' ~ columns_mobile]) %}
-{% endif %}
-{% if columns_desktop != 'none' %}
-  {% set row_classes = row_classes|merge(['row-cols-md-' ~ columns_desktop]) %}
-{% endif %}
-{% if align_items != 'none' %}
-  {% set row_classes = row_classes|merge([align_items]) %}
-{% endif %}
-{% if justify_content != 'none' %}
-  {% set row_classes = row_classes|merge([justify_content]) %}
-{% endif %}
+{# Logic: row classes, only adding optional utilities when set. #}
+{% set columns_mobile_classes = columns_mobile != 'none' ? ['row-cols-' ~ columns_mobile] : [] %}
+{% set columns_desktop_classes = columns_desktop != 'none' ? ['row-cols-md-' ~ columns_desktop] : [] %}
+{% set align_items_classes = align_items != 'none' ? [align_items] : [] %}
+{% set justify_content_classes = justify_content != 'none' ? [justify_content] : [] %}
+{%
+  set row_classes = [
+    'row',
+    'g-' ~ gutter,
+  ]|merge(columns_mobile_classes)|merge(columns_desktop_classes)|merge(align_items_classes)|merge(justify_content_classes)
+%}
 
-{% set wrapper_classes = [
-  padding_block_start,
-  padding_block_end,
-  margin_block_start,
-  margin_block_end,
-] %}
+{# Logic: wrapper classes, only adding optional utilities when set. #}
+{% set background_classes = background_color != 'none' ? [background_color] : [] %}
+{% set edge2edge_classes = bg_edge2edge ? ['bg-edge2edge'] : [] %}
+{%
+  set wrapper_classes = [
+    padding_block_start,
+    padding_block_end,
+    margin_block_start,
+    margin_block_end,
+  ]|merge(background_classes)|merge(edge2edge_classes)
+%}
 
-{% if background_color != 'none' %}
-  {% set wrapper_classes = wrapper_classes|merge([background_color]) %}
-{% endif %}
-{% if bg_edge2edge %}
-  {% set wrapper_classes = wrapper_classes|merge(['bg-edge2edge']) %}
-{% endif %}
-
+{# Logic: resolve the background image source. #}
 {% set bg_src = '' %}
 {% if background_image is iterable %}
   {% set img = background_image %}
@@ -71,31 +121,47 @@
   {% set bg_src = file_url(bg_src) %}
 {% endif %}
 
+{# Logic: inline background-image style with optional overlay. #}
 {% set wrapper_style = '' %}
 {% if bg_src|trim %}
   {% set base_bg = "url('" ~ bg_src|e('css') ~ "')" %}
   {% set has_overlay = overlay_color != 'none' and (overlay_opacity|default(0) + 0) > 0 %}
   {% if has_overlay %}
     {% set alpha = (overlay_opacity + 0) / 100 %}
-    {% set rgb = overlay_color == 'light' ? '255,255,255' : '0,0,0' %}
-    {% set overlay = 'linear-gradient(rgba(' ~ rgb ~ ',' ~ alpha ~ '), rgba(' ~ rgb ~ ',' ~ alpha ~ '))' %}
+    {% set rgb_value = overlay_color == 'light' ? '255,255,255' : '0,0,0' %}
+    {% set overlay = 'linear-gradient(rgba(' ~ rgb_value ~ ',' ~ alpha ~ '), rgba(' ~ rgb_value ~ ',' ~ alpha ~ '))' %}
     {% set wrapper_style = 'background-image: ' ~ overlay ~ ', ' ~ base_bg ~ '; background-size: cover; background-position: center;' %}
   {% else %}
     {% set wrapper_style = 'background-image: ' ~ base_bg ~ '; background-size: cover; background-position: center;' %}
   {% endif %}
 {% endif %}
 
+{# Slot content. #}
 {% set block_content %}{% block content %}{% endblock %}{% endset %}
 
-<div class="{{ wrapper_classes|join(' ') }}"{% if wrapper_style %} style="{{ wrapper_style|raw }}"{% endif %}>
+{# Logic: per-region attribute objects. #}
+{% set attributes = attributes.addClass(wrapper_classes) %}
+
+{% if not container_attributes %}
+  {% set container_attributes = create_attribute() %}
+{% endif %}
+{% set container_attributes = container_attributes.addClass([container_type]) %}
+
+{% if not row_attributes %}
+  {% set row_attributes = create_attribute() %}
+{% endif %}
+{% set row_attributes = row_attributes.addClass(row_classes) %}
+
+{# Print the HTML. #}
+<div{{ attributes }}{% if wrapper_style %} style="{{ wrapper_style|raw }}"{% endif %}>
   {% if container_type != 'none' %}
-    <div class="{{ container_type }}">
-      <div {{ attributes.addClass(row_classes) }}>
+    <div{{ container_attributes }}>
+      <div{{ row_attributes }}>
         {{ block_content }}
       </div>
     </div>
   {% else %}
-    <div {{ attributes.addClass(row_classes) }}>
+    <div{{ row_attributes }}>
       {{ block_content }}
     </div>
   {% endif %}

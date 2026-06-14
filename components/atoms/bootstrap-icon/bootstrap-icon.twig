@@ -1,30 +1,44 @@
 {#
-  Bootstrap icon component.
-
-  Props:
-  - icon (string): Bootstrap icon name, e.g. "alarm", "link-45deg"
-  - icon_size (string): Bootstrap font-size utility class, e.g. fs-4
-  - color (string): Optional text color utility class, e.g. "text-primary"
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for the Bootstrap Icon component.
+ *
+ * Props:
+ * - icon (string): Bootstrap icon name, e.g. "alarm", "link-45deg"
+ * - icon_size (string): Bootstrap font-size utility class, e.g. fs-4
+ * - color (string): Optional text color utility class, e.g. "text-primary"
+ *
+ * Available attributes:
+ * - attributes: HTML attributes for the icon element.
+ */
 #}
 
-{% set icon_name = icon|default('award')|trim %}
-{% set icon_size_class = icon_size is defined and icon_size ? icon_size|trim : 'fs-4' %}
-{% set color_class = color is defined and color ? color|trim : '' %}
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
 
-{% set icon_classes = [
+{# Variables: scalar props with schema defaults. #}
+{% set icon = icon|default('award')|trim %}
+{% set icon_size = icon_size|default('fs-4')|trim %}
+{% set color = color|default('')|trim %}
+
+{# Logic: merge icon classes as arrays. #}
+{% set color_classes = color ? [color] : [] %}
+{% set classes = [
   'bi',
-  'bi-' ~ icon_name,
+  'bi-' ~ icon,
   'd-inline-block',
   'lh-1',
-  icon_size_class,
-] %}
+  icon_size,
+]|merge(color_classes) %}
 
-{% if color_class %}
-  {% set icon_classes = icon_classes|merge([color_class]) %}
-{% endif %}
-
-{% set icon_attributes = create_attribute().addClass(icon_classes) %}
-
-{% if icon_name %}
-  <i{{ icon_attributes }}></i>
+{# Print the HTML. #}
+{% if icon %}
+  {% set attributes = attributes.addClass(classes) %}
+  <i{{ attributes }}></i>
 {% endif %}

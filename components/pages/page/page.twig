@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Vartheme BS5 Starter Kit implementation to display a single page.
+ * Vartheme BS5 Starter Kit implementation for the Page component.
  *
  * Available variables:
  *
@@ -29,7 +29,30 @@
  * @see html.html.twig
  */
 #}
-<div id="page" class="page d-flex flex-column">
+
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Variables: region container classes passed in from preprocess. #}
+{% set container_header = container_header|default('') %}
+{% set container_content = container_content|default('') %}
+{% set container_footer = container_footer|default('') %}
+
+{# Logic: build class lists as arrays (merge, never concatenation). #}
+{% set page_classes = ['page', 'd-flex', 'flex-column'] %}
+{% set main_classes = ['mb-3'] %}
+{% set page_content_classes = ['page-content'] %}
+{% set inner_content_classes = ['inner-content'] %}
+{% set footer_classes = ['footer'] %}
+
+{# Print the HTML. #}
+<div id="page" class="{{ page_classes|join(' ') }}">
 
   {% if page.header %}
     <header role="banner">
@@ -43,14 +66,14 @@
     </header>
   {% endif %}
 
-  <main class="mb-3">
+  <main class="{{ main_classes|join(' ') }}">
     <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
     {% if page.content %}
       {% if container_content %}
         <div class="{{ container_content }}">
       {% endif %}
-        <div class="page-content">
-          <div class="inner-content">
+        <div class="{{ page_content_classes|join(' ') }}">
+          <div class="{{ inner_content_classes|join(' ') }}">
             {{ page.content }}
           </div>
         </div>
@@ -61,7 +84,7 @@
   </main>
 
   {% if page.footer %}
-    <footer class="footer" role="contentinfo">
+    <footer class="{{ footer_classes|join(' ') }}" role="contentinfo">
       {% if container_footer %}
         <div class="{{ container_footer }}">
       {% endif %}

@@ -1,31 +1,52 @@
 {#
-  Overlay Card
-  - Bootstrap utility classes only
-  - No custom CSS / SCSS / inline styles
-  - Background media from media_image prop
-  - Content is the only Canvas slot
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for the Card Overlay component.
+ *
+ * - Bootstrap utility classes only
+ * - No custom CSS / SCSS / inline styles
+ * - Background media from media_image prop
+ * - Content is the only Canvas slot
+ */
 #}
 
-{% set padded = padded|default(true) %}
-{% set equal_height = equal_height|default(false) %}
-{% set box_shadow = box_shadow|default('shadow-none') %}
-{% set stretched_link = stretched_link|default(false) %}
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
 
+{# Variables: scalar props with schema defaults. #}
+{% set ratio = ratio|default('ratio-16x9') %}
+{% set fit = fit|default('object-fit-cover') %}
+{% set box_shadow = box_shadow|default('shadow-none') %}
 {% set overlay_color = overlay_color|default('bg-transparent') %}
 {% set overlay_opacity = overlay_opacity|default('bg-opacity-50') %}
 {% set h_align = h_align|default('text-start') %}
 {% set v_align = v_align|default('align-items-center') %}
-
 {% set link_url = link_url|default('')|trim %}
 {% set link_target_raw = link_target|default('default') %}
+
+{% set media_image = media_image|default({}) %}
+
+{# Variables: boolean props.
+ # SDC validates `type: boolean` props and applies their schema defaults,
+ # so the values arrive as real booleans — only a presence fallback is
+ # needed here, never type coercion.
+ #}
+{% set padded = padded ?? true %}
+{% set equal_height = equal_height ?? false %}
+{% set stretched_link = stretched_link ?? false %}
+
+{# Logic: link target mapping and rendering decision. #}
 {% set link_target = (link_target_raw == 'default') ? '_self' : link_target_raw %}
 {% set use_stretched_link = stretched_link and (link_url is not empty) %}
 
-{% set media_image = media_image|default({}) %}
-{% set ratio = ratio|default('ratio-16x9') %}
-{% set fit = fit|default('object-fit-cover') %}
+{# Logic: media / content rendering decisions. #}
 {% set has_media = (media_image.src|default('')|trim) is not empty %}
-
 {% set content_slot %}{% block content %}{% endblock %}{% endset %}
 {% set has_content_slot = content_slot|render|trim is not empty %}
 
@@ -34,7 +55,8 @@
   : 'assets/overlay-card-image-placeholder.svg'
 %}
 
-{% set card_attributes = create_attribute().addClass([
+{# Logic: class arrays merged into attributes. #}
+{% set attributes = attributes.addClass([
   'card',
   'overflow-hidden',
   'position-relative',
@@ -86,7 +108,8 @@
   sizes: media_image.sizes|default(''),
 } %}
 
-<div{{ card_attributes }}>
+{# Print the HTML. #}
+<div{{ attributes }}>
   {% if has_media %}
     {{ include('vartheme_bs5:image', image_payload, false, true) }}
   {% endif %}

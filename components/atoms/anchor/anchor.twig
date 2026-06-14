@@ -1,5 +1,46 @@
-<span id="{{ id|clean_id }}" class="anchor" tabindex="-1">
-  <span class="anchor--help-text visually-hidden">
+{#
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for the Anchor component.
+ *
+ * An invisible element with an ID you can link to with a URL fragment
+ * (e.g. #intro).
+ *
+ * Available properties:
+ * - id: String to use in the URL. Should begin with a letter and contain
+ *       only lowercase letters, numerals, and hyphens.
+ *
+ * Available attributes:
+ * - attributes: HTML attributes for the anchor element.
+ * - help_text_attributes: HTML attributes for the visually-hidden help text.
+ */
+#}
+
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Route static markup attributes (id, class, tabindex, data-*, aria-*)
+ #   through the attribute object with `setAttribute`/`addClass`, never
+ #   hard-coded inline, so callers can extend or override them.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{% set help_text_attributes = help_text_attributes|default(create_attribute()) %}
+
+{# Logic: build the element attributes. #}
+{% set attributes = attributes
+  .setAttribute('id', id|clean_id)
+  .setAttribute('tabindex', -1)
+  .addClass('anchor')
+%}
+{% set help_text_attributes = help_text_attributes.addClass(['anchor--help-text', 'visually-hidden']) %}
+
+{# Print the HTML. #}
+<span{{ attributes }}>
+  <span{{ help_text_attributes }}>
     {{
       include('vartheme_bs5:bootstrap-icon', {icon: 'link-45deg', icon_size: 'fs-5'})
     }}

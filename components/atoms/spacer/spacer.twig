@@ -1,8 +1,39 @@
-{% set attributes = attributes|default(create_attribute()) %}
-{% set size = size|default('py-3') %}
-{% set allowed_sizes = ['py-0', 'py-1', 'py-2', 'py-3', 'py-4', 'py-5'] %}
-{% if size not in allowed_sizes %}
-  {% set size = 'py-3' %}
-{% endif %}
+{#
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for the Spacer component.
+ *
+ * Bootstrap spacer for adding vertical space between sections.
+ *
+ * Available properties:
+ * - size: Bootstrap vertical spacing utility class applied directly to the
+ *         spacer. (py-0 | py-1 | py-2 | py-3 | py-4 | py-5) Defaults to `py-3`.
+ *
+ * Available attributes:
+ * - attributes: Attributes array.
+ */
+#}
 
-<div {{ attributes.addClass([size, 'w-100']) }} aria-hidden="true"></div>
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Variables: scalar props with schema defaults. #}
+{% set size = size|default('py-3') %}
+
+{# Logic: merge spacer classes as arrays. #}
+{% set classes = [size, 'w-100'] %}
+
+{# Logic: route static attributes through the attribute object. #}
+{% set attributes = attributes
+  .addClass(classes)
+  .setAttribute('aria-hidden', 'true')
+%}
+
+{# Print the HTML. #}
+<div{{ attributes }}></div>

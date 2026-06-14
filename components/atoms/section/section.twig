@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Vartheme BS5 implementation for the Section component.
+ * Vartheme BS5 Starter Kit implementation for the Section component.
  *
  * Bootstrap Section wrapper for building layouts (container, background,
  * spacing, and responsive grid presets). Renders ONLY the selected number
@@ -88,7 +88,14 @@
  *             Defaults to `true`.
  *
  * Available attributes:
- * - attributes: Attributes array.
+ * - attributes: Attributes array for the section element.
+ * - content_attributes: HTML attributes for the content wrapper element.
+ * - container_attributes: HTML attributes for the container element.
+ * - inner_attributes: HTML attributes for the inner element.
+ * - header_attributes: HTML attributes for the header element.
+ * - row_attributes: HTML attributes for the row element.
+ * - column_attributes: HTML attributes for each column element.
+ * - footer_attributes: HTML attributes for the footer element.
  *
  * Available slots:
  * - header_slot: The header region content.
@@ -110,8 +117,6 @@
  # - Always handle classes as arrays with `merge` (never string
  #   concatenation) to avoid duplicate classes and data type conflicts.
  #}
-
-{% set attributes = attributes|default(create_attribute()) %}
 
 {# Variables: scalar props with schema defaults. #}
 {% set container_type = container_type|default('none') %}
@@ -140,15 +145,14 @@
 {% set aos_delay = aos_delay|default('0') %}
 
 {# Variables: boolean props.
- # Normalize to strict booleans so string values coming from component
- # forms ("true"/"false"/"1"/"0") never leak into truthiness checks.
- # Note: in Twig the string "false" is truthy; without this normalization
- # a boolean prop delivered as a string flips the rendered state.
+ # SDC validates `type: boolean` props and applies their schema defaults,
+ # so the values arrive as real booleans — only a presence fallback is
+ # needed here, never type coercion.
  #}
-{% set bg_edge2edge = ((bg_edge2edge|default(false)) ~ '')|lower|trim in ['1', 'true', 'yes', 'on'] %}
-{% set section_header = ((section_header ?? true) ~ '')|lower|trim not in ['', '0', 'false', 'no', 'off'] %}
-{% set section_footer = ((section_footer ?? true) ~ '')|lower|trim not in ['', '0', 'false', 'no', 'off'] %}
-{% set aos_once = ((aos_once ?? true) ~ '')|lower|trim not in ['', '0', 'false', 'no', 'off'] %}
+{% set bg_edge2edge = bg_edge2edge ?? false %}
+{% set section_header = section_header ?? false %}
+{% set section_footer = section_footer ?? false %}
+{% set aos_once = aos_once ?? true %}
 
 {# Logic: background media and overlay. #}
 {% set has_background_image = background_media is not empty and background_media.src is not empty %}
@@ -264,6 +268,37 @@
   %}
 {% endif %}
 
+{# Logic: per-region attributes objects for the structural wrappers. #}
+{% if not content_attributes %}
+  {% set content_attributes = create_attribute() %}
+{% endif %}
+{% set content_attributes = content_attributes.addClass(content_wrap_classes) %}
+
+{% if not container_attributes %}
+  {% set container_attributes = create_attribute() %}
+{% endif %}
+{% set container_attributes = container_attributes.addClass(container_classes) %}
+
+{% if not inner_attributes %}
+  {% set inner_attributes = create_attribute() %}
+{% endif %}
+{% set inner_attributes = inner_attributes.addClass(inner_classes) %}
+
+{% if not header_attributes %}
+  {% set header_attributes = create_attribute() %}
+{% endif %}
+{% set header_attributes = header_attributes.addClass(header_classes) %}
+
+{% if not row_attributes %}
+  {% set row_attributes = create_attribute() %}
+{% endif %}
+{% set row_attributes = row_attributes.addClass(row_classes) %}
+
+{% if not footer_attributes %}
+  {% set footer_attributes = create_attribute() %}
+{% endif %}
+{% set footer_attributes = footer_attributes.addClass(footer_classes) %}
+
 {# Print the HTML. #}
 <section {{ attributes }}>
   {% if has_background_image %}
@@ -287,16 +322,16 @@
     <div class="{{ overlay_classes|join(' ') }}" aria-hidden="true"></div>
   {% endif %}
 
-  <div class="{{ content_wrap_classes|join(' ') }}">
-    <div class="{{ container_classes|join(' ') }}">
-      <div class="{{ inner_classes|join(' ') }}">
+  <div{{ content_attributes }}>
+    <div{{ container_attributes }}>
+      <div{{ inner_attributes }}>
         {% if has_header %}
-          <header class="{{ header_classes|join(' ') }}">
+          <header{{ header_attributes }}>
             {{ header_content }}
           </header>
         {% endif %}
 
-        <div class="{{ row_classes|join(' ') }}">
+        <div{{ row_attributes }}>
           {% for i in 0..(selected_count - 1) %}
             {% set content = cols[i] %}
 
@@ -304,11 +339,14 @@
               {% if is_five or is_six %}
                 {% set column_classes = ['col', horizontal_alignment] %}
               {% else %}
-                {% set md = md_widths[i % pattern_len] %}
-                {% set column_classes = ['col-12', 'col-md-' ~ md, horizontal_alignment] %}
+                {% set md_width = md_widths[i % pattern_len] %}
+                {% set column_classes = ['col-12', 'col-md-' ~ md_width, horizontal_alignment] %}
               {% endif %}
 
-              <div class="{{ column_classes|join(' ') }}">
+              {% set column_attributes = create_attribute() %}
+              {% set column_attributes = column_attributes.addClass(column_classes) %}
+
+              <div{{ column_attributes }}>
                 {{ content }}
               </div>
             {% endif %}
@@ -316,7 +354,7 @@
         </div>
 
         {% if has_footer %}
-          <footer class="{{ footer_classes|join(' ') }}">
+          <footer{{ footer_attributes }}>
             {{ footer_content }}
           </footer>
         {% endif %}

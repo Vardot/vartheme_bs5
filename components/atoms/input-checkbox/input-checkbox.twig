@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Vartheme BS5 Starter Kit implementation for the 'input' type of checkbox form element.
+ * Vartheme BS5 Starter Kit implementation for the Input Checkbox component.
  *
  * Available variables:
  * - attributes: HTML attributes for the input element.
@@ -11,10 +11,20 @@
  */
 #}
 
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Print the HTML. #}
 {{ include('vartheme_bs5:input', {
   type: 'checkbox',
   bs_form_control: false,
   bs_size: '',
-  input_checkbox_utility_classes: ['form-check-input'],
+  input_utility_classes: ['form-check-input'],
   attributes: attributes,
 }) }}

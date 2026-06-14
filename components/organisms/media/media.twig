@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Vartheme BS5 Starter Kit implementation to display a media item.
+ * Vartheme BS5 Starter Kit implementation for the Media component.
  *
  * Available properties:
  * - media: The media item, with limited access to object properties and methods.
@@ -24,22 +24,34 @@
  */
 #}
 
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
 {% apply spaceless %}
 
+{# Variables: derived class fragments and contextual links. #}
 {% set media_bundle = media ? ['media--type-' ~ media.bundle()|clean_class] : [] %}
 {% set media_published = media and not media.isPublished() ? ['media--unpublished'] : [] %}
 {% set view_mode_class = view_mode ? ['media--view-mode-' ~ view_mode|clean_class] : [] %}
 {% set media_utility_classes = media_utility_classes ? media_utility_classes : [] %}
-{% set media_attributes = attributes ?: create_attribute() %}
 {% set contextual_links = title_suffix and title_suffix.contextual_links ? title_suffix.contextual_links : '' %}
 
+{# Logic: merge root classes as an array. #}
 {%
   set classes = [
     'media',
   ]|merge(media_bundle)|merge(media_published)|merge(view_mode_class)|merge(media_utility_classes)
 %}
 
-<div{{ media_attributes.addClass(classes) }}>
+{# Print the HTML. #}
+{% set attributes = attributes.addClass(classes) %}
+<div{{ attributes }}>
   {{ contextual_links }}
   {% if content %}
     {{ content }}

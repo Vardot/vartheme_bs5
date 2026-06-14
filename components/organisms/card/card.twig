@@ -1,24 +1,77 @@
 {#
-  Bootstrap 5 Card (SDC / Canvas compatible)
-  - Heading is always rendered as H3
-  - Uses Bootstrap utility classes only
-  - Supports image top / left / right / bottom layouts
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for the Card component.
+ *
+ * Bootstrap 5 Card (SDC / Canvas compatible).
+ *
+ * - Heading is always rendered as H3.
+ * - Uses Bootstrap utility classes only.
+ * - Supports image top / left / right / bottom layouts.
+ *
+ * Available config:
+ * - orientation: Image/content arrangement.
+ *                (image-top | image-left | image-right | image-bottom)
+ *                Defaults to `image-top`.
+ * - content_vertical: Vertical alignment for image-left/right layouts.
+ *                     (justify-content-start | justify-content-center
+ *                      | justify-content-end) Defaults to `justify-content-center`.
+ * - heading_text: Card heading.
+ * - text: Short supporting text under the heading.
+ * - media: Image object (src, width, height, alt).
+ * - media_ratio: Image ratio for top/bottom layouts.
+ *                (auto | ratio-16x9 | ratio-4x3 | ratio-1x1)
+ *                Defaults to `ratio-16x9`.
+ * - background: Background color style.
+ *               (bg-body | bg-light | bg-primary text-white | bg-dark text-white)
+ *               Defaults to `bg-body`.
+ * - shadow: Card shadow. (shadow-sm | shadow | shadow-lg) Defaults to `shadow`.
+ * - has_padding: (true|false) Apply Bootstrap p-4 to the card body.
+ *                Defaults to `true`.
+ * - url: Optional link URL for the whole card or the button.
+ * - button_label: Optional button label.
+ * - button_variant: Optional button style.
+ *                   (btn-primary | btn-secondary | btn-success | btn-danger
+ *                    | btn-warning | btn-info | btn-light | btn-dark | btn-link)
+ *                   Defaults to `btn-primary`.
+ */
 #}
 
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Variables: scalar props with schema defaults. #}
 {% set card_layout = orientation|default(layout|default('image-top')) %}
 {% set card_background = background|default('bg-body') %}
 {% set card_shadow = shadow|default('shadow') %}
-{% set body_padding = has_padding is defined ? (has_padding ? 'p-4' : '') : 'p-4' %}
+{% set media_ratio_class = media_ratio|default('ratio-16x9') %}
+
+{# Variables: boolean props.
+ # SDC validates `type: boolean` props and applies their schema defaults,
+ # so the values arrive as real booleans — only a presence fallback is
+ # needed here, never type coercion.
+ #}
+{% set has_padding = has_padding ?? true %}
+
+{# Logic: body padding and media presence. #}
+{% set body_padding = has_padding ? 'p-4' : '' %}
 {% set has_media = media is defined and media and media.src is defined and media.src is not empty %}
 
 {% set has_link = url is defined and url is not empty and url != 'No URL' %}
 {% set button_label_value = button_label|default('')|trim %}
 
-{# Normalize button variant #}
+{# Logic: normalize button variant. #}
 {% set button_variant_value = button_variant|default('')|trim %}
 {% set has_button_variant = button_variant_value != '' and button_variant_value != 'NULL' and button_variant_value != 'none' %}
 {% set show_button = has_link and button_label_value != '' and has_button_variant %}
 
+{# Logic: layout-driven ordering and column widths. #}
 {% set is_horizontal = card_layout in ['image-left', 'image-right'] %}
 {% set is_vertical = not is_horizontal %}
 {% set media_order = card_layout == 'image-bottom' or card_layout == 'image-right' ? 'order-md-2 order-2' : 'order-md-1 order-1' %}
@@ -26,10 +79,10 @@
 
 {% set media_col_class = is_horizontal ? 'col-12 col-md-5' : 'col-12' %}
 {% set body_col_class = is_horizontal ? 'col-12 col-md-7 d-flex' : 'col-12 d-flex' %}
-{% set media_ratio_class = media_ratio|default('ratio-16x9') %}
 {% set use_ratio = is_vertical and media_ratio_class != 'auto' %}
 {% set content_vertical_class = is_horizontal ? content_vertical|default('justify-content-center') : '' %}
 
+{# Logic: merge all card-level classes as arrays. #}
 {% set classes = ['card', 'h-100', 'overflow-hidden'] %}
 {% if card_background|trim %}
   {% set classes = classes|merge(card_background|split(' ')) %}
@@ -58,7 +111,9 @@
 {% set button_wrapper_classes = ['mt-3'] %}
 {% set link_classes = ['stretched-link'] %}
 
-<div{{ create_attribute().addClass(classes) }}>
+{# Print the HTML. #}
+{% set attributes = attributes.addClass(classes) %}
+<div{{ attributes }}>
   <div{{ create_attribute().addClass(row_classes) }}>
     {% if has_media %}
       <div{{ create_attribute().addClass(media_classes) }}>

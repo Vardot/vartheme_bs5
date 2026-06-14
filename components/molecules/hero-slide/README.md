@@ -1,230 +1,81 @@
 # Hero Slide
 
-The **Hero Slide** component renders a single slide item for a hero carousel. It supports overlay, split, and text-only layouts, optional media, rich text content, and a CTA button powered by the shared button component.
+A single slide item for the Hero Slider, supporting overlay, split (image start/end), and text-only layouts with rich content and an optional CTA button.
 
-Use this component when you need one slide entry with consistent typography, spacing, and Bootstrap-friendly utility classes.
+## What it does
 
----
+Use this component inside `vartheme_bs5:hero-slider-container` when you need a slide that can:
 
-# Features
+- render a title, rich-text content, and an optional CTA button (via `vartheme_bs5:button`)
+- show an image as an overlay background, beside the text (split), or be omitted (text-only)
+- inherit its media position from the container or override it per slide
+- control title tag and visual size, content width, vertical and text alignment, and colors
+- apply an overlay color and opacity over an overlay-layout image
+- set a background color and grid gap for split and text-only layouts
 
-- Single slide item for a hero carousel
-- Supports **overlay**, **split**, and **text-only** layouts
-- Optional image with fallback handling
-- CTA button rendered through `vartheme_bs5:button`
-- Per-slide control of title tag, title size, text alignment, colors, and spacing behavior
-- Bootstrap utility class friendly prop values
-- Can inherit layout behavior from the slider container or override it per slide
+## Files
 
----
+- `hero-slide.component.yml` — component schema and props
+- `hero-slide.twig` — component template
+- `README.md` — usage notes and examples
+- `hero-slide.mdx` — Storybook docs page
+- `hero-slide.stories.json` — Storybook story configuration
+- `hero-slide.stories.twig` — Storybook story templates
 
-# Main Properties
+## Props overview
 
-## Content
+### State
 
-### `title`
-Main heading for the slide.
+- `enabled`: render the slide; defaults to `true` (when `false`, the slide outputs nothing)
+- `active`: mark as active by default; defaults to `false` (the container auto-activates the first slide if none is active)
 
-Example:
+### Content
 
-```yaml
-title: "Build faster with Varbase"
-```
+- `title`: slide title; defaults to `Varbase; better than ever`
+- `content`: rich-text body (HTML); defaults to empty
+- `button_text`: CTA button text; defaults to `Learn more`
+- `button_url`: CTA button URL; defaults to `/`
+- `button_variant`: button style — `btn-primary`, `btn-secondary`, `btn-light`, `btn-dark`; defaults to `btn-primary`
 
-### `content`
-Rich text body content.
+### Media
 
-Example:
+- `media`: image object for the slide
+- `media_position`: per-slide media position — `inherit`, `overlay`, `start`, `end`, `none`; defaults to `inherit`
 
-```yaml
-content: "<p>Create flexible landing pages with reusable components and clean Bootstrap markup.</p>"
-```
+### Presentation
 
-### `button_text`
-Text shown on the CTA button.
+- `title_tag`: title element — `h2`, `h3`, `h4`, `h5`, `h6`; defaults to `h2`
+- `title_size`: visual title size — `display-1`–`display-5`, `h1`, `h2`, `h3`; defaults to `display-5`
+- `content_max_width`: text column width — `narrow`, `normal`, `wide`; defaults to `normal`
+- `vertical_alignment`: vertical alignment of content — `start`, `center`, `end`; defaults to `center`
+- `text_align`: text alignment — `text-start`, `text-center`, `text-end`; defaults to `text-start`
+- `text_color`: text color — `text-white`, `text-dark`; defaults to `text-white`
+- `split_gap`: grid gap for split layout — `none`, `sm`, `md`, `lg`; defaults to `md`
+- `background_color`: background color for split/text-only layout — `bg-transparent`, `bg-white`, `bg-light`, `bg-dark`, `bg-black`, `bg-primary`, `bg-secondary`, `bg-success`, `bg-danger`, `bg-warning`, `bg-info`; defaults to `bg-black`
+- `overlay_bg`: overlay color (overlay layout) — `none`, `bg-dark`, `bg-black`, `bg-white`, `bg-primary`, `bg-secondary`, `bg-success`, `bg-danger`, `bg-warning`, `bg-info`; defaults to `bg-dark`
+- `overlay_opacity`: overlay opacity — `opacity-10`, `opacity-25`, `opacity-50`, `opacity-75`, `opacity-100`; defaults to `opacity-50`
 
-```yaml
-button_text: "Learn more"
-```
+## Media position values
 
-### `button_url`
-Link for the CTA button.
+| Value | Output |
+|---|---|
+| `inherit` | Follows the container's media position |
+| `overlay` | Image used as a full-bleed background behind the content |
+| `start` | Image on the left, text on the right (split) |
+| `end` | Image on the right, text on the left (split) |
+| `none` | No media; text-only slide |
 
-```yaml
-button_url: "/about"
-```
-
-### `button_variant`
-Bootstrap button variant passed directly to the shared button component.
-
-Available options:
-
-```yaml
-btn-primary
-btn-secondary
-btn-light
-btn-dark
-btn-outline-light
-btn-outline-dark
-```
-
----
-
-## Media
-
-### `media`
-Image object for the slide.
-
-Example:
-
-```yaml
-media:
-  src: assets/hero-slider-image.webp
-  alt: Hero image
-  width: 1600
-  height: 700
-```
-
-### `media_position`
-Controls how the image is displayed.
-
-Available options:
-
-```yaml
-inherit
-overlay
-start
-end
-none
-```
-
-- `inherit` follows the container setting
-- `overlay` uses the image as the slide background
-- `start` places media on the left in split layout
-- `end` places media on the right in split layout
-- `none` hides media and shows text only
-
----
-
-## Presentation
-
-### `title_tag`
-Available options:
-
-```yaml
-h2
-h3
-h4
-h5
-h6
-```
-
-### `title_size`
-Available options:
-
-```yaml
-display-3
-display-4
-display-5
-h1
-h2
-h3
-```
-
-### `content_max_width`
-Controls text column width.
-
-```yaml
-narrow
-normal
-wide
-```
-
-### `vertical_alignment`
-Controls vertical alignment of slide content.
-
-```yaml
-start
-center
-end
-```
-
-### `text_align`
-Uses Bootstrap text alignment utilities directly.
-
-```yaml
-text-start
-text-center
-text-end
-```
-
-### `text_color`
-
-```yaml
-text-white
-text-dark
-```
-
-### `split_gap`
-Gap between columns in split layout.
-
-```yaml
-none
-sm
-md
-lg
-```
-
-### `background_color`
-Background color used mainly in split and text-only layouts.
-
-Example options:
-
-```yaml
-bg-transparent
-bg-white
-bg-light
-bg-dark
-bg-black
-bg-primary
-bg-secondary
-bg-success
-bg-danger
-bg-warning
-bg-info
-```
-
-### `overlay_bg`
-Overlay background color when using overlay layout.
-
-### `overlay_opacity`
-Overlay opacity utility class.
-
-```yaml
-opacity-10
-opacity-25
-opacity-50
-opacity-75
-opacity-100
-```
-
----
-
-# Usage Examples
-
-## Example 1: Overlay slide
+## Example: overlay slide
 
 ```twig
 {{ include('vartheme_bs5:hero-slide', {
+  active: true,
   title: 'Build faster with Varbase',
-  content: '<p>Create flexible landing pages with reusable components and clean Bootstrap markup.</p>',
+  content: '<p>Create flexible landing pages with reusable components.</p>',
   button_text: 'Get started',
   button_url: '/get-started',
   button_variant: 'btn-primary',
-  media: {
-    src: 'assets/hero-slider-image.webp',
-    alt: 'Hero image'
-  },
+  media: { src: 'assets/hero-slider-image.webp', alt: 'Hero image', width: 1600, height: 700 },
   media_position: 'overlay',
   title_tag: 'h2',
   title_size: 'display-5',
@@ -235,7 +86,7 @@ opacity-100
 }, with_context = false) }}
 ```
 
-## Example 2: Split layout with image at start
+## Example: split layout with image at start
 
 ```twig
 {{ include('vartheme_bs5:hero-slide', {
@@ -244,10 +95,7 @@ opacity-100
   button_text: 'Explore components',
   button_url: '/components',
   button_variant: 'btn-dark',
-  media: {
-    src: 'assets/hero-slider-image.webp',
-    alt: 'Slide image'
-  },
+  media: { src: 'assets/hero-slider-image.webp', alt: 'Slide image' },
   media_position: 'start',
   background_color: 'bg-light',
   text_color: 'text-dark',
@@ -256,7 +104,7 @@ opacity-100
 }, with_context = false) }}
 ```
 
-## Example 3: Text-only slide
+## Example: text-only slide
 
 ```twig
 {{ include('vartheme_bs5:hero-slide', {
@@ -271,10 +119,11 @@ opacity-100
 }, with_context = false) }}
 ```
 
----
+## Notes
 
-# Notes
-
-- `active` should usually be handled by the slider container, but it can be set on a slide if needed.
-- `media_position: inherit` is useful when the container controls the layout for all slides.
-- CTA rendering depends on both `button_text` and `button_url` being available.
+- This component is meant to live inside `vartheme_bs5:hero-slider-container`; it reads the container context variables `hero_slider_media_position` (default media position) and `hero_slider_container_type` (content width for overlay slides).
+- `media_position: inherit` follows the container; any other value overrides it for that slide only.
+- The overlay layer is only rendered when the layout is `overlay` and `overlay_bg` is not `none`.
+- The CTA is only rendered when both `button_text` and `button_url` resolve to non-empty values; empty values fall back to their schema defaults.
+- Boolean props (`enabled`, `active`) are validated by SDC and arrive as real booleans; only a presence fallback is applied in the template.
+- Images render through `vartheme_bs5:image`; a black fallback box is shown when an overlay/split slide has no media.

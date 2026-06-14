@@ -1,9 +1,23 @@
 {#
 /**
  * @file
- * Vartheme BS5 Starter Kit implementation for the details element.
+ * Vartheme BS5 Starter Kit implementation for the Details component.
  */
 #}
+
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Variables: required marker state. #}
+{% set is_required = required ? true : false %}
+
+{# Logic: merge the wrapper classes as arrays. #}
 {% set classes = [
   'details',
   'mb-3',
@@ -14,14 +28,13 @@
     'details-wrapper',
   ]
 %}
-<details{{ attributes.addClass(classes) }}>
+{% set required_classes = is_required ? ['js-form-required', 'form-required'] : [] %}
+{% set summary_classes = []|merge(required_classes) %}
+{% set attributes = attributes.addClass(classes) %}
+
+{# Print the HTML. #}
+<details{{ attributes }}>
   {%- if title -%}
-    {%
-      set summary_classes = [
-        required ? 'js-form-required',
-        required ? 'form-required',
-      ]
-    %}
     <summary{{ summary_attributes.addClass(summary_classes) }}>
       {{ title }}
     </summary>

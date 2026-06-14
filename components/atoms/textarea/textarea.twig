@@ -27,10 +27,22 @@
  * @see template_preprocess_textarea()
  */
 #}
+
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Variables: scalar props with schema defaults. #}
 {% set resizable_classes = resizable ? ['resize-' ~ resizable] : [] %}
 {% set wrapper_utility_classes = wrapper_utility_classes ? wrapper_utility_classes : [] %}
 {% set textarea_utility_classes = textarea_utility_classes ? textarea_utility_classes : [] %}
 
+{# Logic: variable manipulations and attribute setup. #}
 {% if required is not empty and required == true %}
   {% set attributes = attributes.setAttribute('aria-required', 'true') %}
   {% set attributes = attributes.setAttribute('required', true) %}
@@ -52,7 +64,7 @@
   {% set attributes = attributes.setAttribute('placeholder', placeholder) %}
 {% endif %}
 
-{% if readony is not empty and readonly == true %}
+{% if readonly is not empty and readonly == true %}
   {% set attributes = attributes.setAttribute('readonly', true) %}
 {% endif %}
 
@@ -84,6 +96,7 @@
   {% set wrapper_attributes = wrapper_attributes.addClass(wrapper_classes) %}
 {% endif %}
 
+{# Print the HTML. #}
 {% if wrapper_html_tag != '' %}<{{ wrapper_html_tag }}{{ wrapper_attributes }}>{% endif %}
 <textarea{{ attributes }}>{{ value }}</textarea>
 {% if wrapper_html_tag != '' %}</{{ wrapper_html_tag }}>{% endif %}

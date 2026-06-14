@@ -8,6 +8,10 @@ This is an implementation for single directory component for the [Dynamic Respon
 
 Created by [Wesley Sandra (weseze)](https://www.drupal.org/u/weseze)
 
+## Bootstrap reference
+
+> [Bootstrap 5.3 — Images](https://getbootstrap.com/docs/5.3/content/images/)
+
 ### Properties:
 * `url`: An optional URL the image can be linked to.
 * `width`: The original width of the image.

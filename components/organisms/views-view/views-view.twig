@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Vartheme BS5 Starter Kit implementation for main view template.
+ * Vartheme BS5 Starter Kit implementation for the Views View component.
  *
  * Available variables:
  * - attributes: Remaining HTML attributes for the element.
@@ -30,18 +30,38 @@
  * @see template_preprocess_views_view()
  */
 #}
+
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Variables: computed class fragments. #}
+{% set id_class = 'view-' ~ id|clean_class %}
+{% set id_named_class = 'view-id-' ~ id %}
+{% set display_id_class = 'view-display-id-' ~ display_id %}
+
+{# Logic: optional class fragments, only when set. #}
+{% set dom_id_classes = dom_id ? ['js-view-dom-id-' ~ dom_id] : [] %}
+{% set css_name_classes = css_name ? ['view-' ~ css_name] : [] %}
+
+{# Logic: merge view-level classes as arrays. #}
 {%
   set classes = [
     'view',
-    'view-' ~ id|clean_class,
-    'view-id-' ~ id,
-    'view-display-id-' ~ display_id,
-    dom_id ? 'js-view-dom-id-' ~ dom_id,
-    css_name ? 'view-' ~ css_name,
-  ]
+    id_class,
+    id_named_class,
+    display_id_class,
+  ]|merge(dom_id_classes)|merge(css_name_classes)
 %}
 
-<div{{ attributes.addClass(classes) }}>
+{# Print the HTML. #}
+{% set attributes = attributes.addClass(classes) %}
+<div{{ attributes }}>
   {{ title_prefix }}
   {{ title }}
   {{ title_suffix }}

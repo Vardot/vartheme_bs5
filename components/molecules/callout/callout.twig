@@ -15,19 +15,28 @@
  * - content: The content of the callout.
  */
 #}
+
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Variables: type and utility class arrays. #}
 {% set type_classes = type ? [type] : [] %}
 {% set callout_utility_classes = callout_utility_classes ? callout_utility_classes : [] %}
 
+{# Logic: merge the callout classes as arrays. #}
 {% set classes = [
   'bs-callout',
 ]|merge(type_classes)|merge(callout_utility_classes) %}
-
-{% if not attributes %}
-  {% set attributes = create_attribute() %}
-{% endif %}
 {% set attributes = attributes.addClass(classes) %}
 {% set attributes = attributes.setAttribute('role', 'note') %}
 
+{# Print the HTML. #}
 <div{{ attributes }}>
   {% block content %}
     {{ content }}

@@ -1,57 +1,59 @@
 # Spacer
 
-The Spacer component adds consistent vertical space between sections using Bootstrap spacing utility classes.
+A simple full-width Bootstrap spacer for adding vertical space between sections.
 
-## When to use
+## Bootstrap reference
 
-Use this component when you need clean separation between blocks, cards, text areas, banners, or layout sections without adding custom CSS.
+> [Bootstrap 5.3 — Spacing utilities](https://getbootstrap.com/docs/5.3/utilities/spacing/)
 
-## Props
+## What it does
 
-### `size`
-Controls the vertical spacing height by applying a Bootstrap `py-*` utility class directly to the spacer.
+Use this component when you need to:
 
-Available values:
+- insert consistent vertical spacing between page sections
+- pick the amount of space from Bootstrap's vertical padding scale
+- render a decorative, full-width element that is hidden from assistive technology
 
-- `py-0`
-- `py-1`
-- `py-2`
-- `py-3`
-- `py-4`
-- `py-5`
+## Files
 
-Default:
+- `spacer.component.yml` — component schema and props
+- `spacer.twig` — component template
+- `README.md` — usage notes and examples
+- `spacer.mdx` — Storybook docs page
+- `spacer.stories.json` — Storybook story configuration
+- `spacer.stories.twig` — Storybook story templates
 
-- `py-3`
+## Props overview
 
-## Output
+### Spacing
 
-The component renders an empty full-width element:
+- `size`: Bootstrap vertical spacing utility class applied directly to the spacer; one of `py-0`, `py-1`, `py-2`, `py-3`, `py-4`, `py-5`; defaults to `py-3`
 
-```html
-<div class="py-3 w-100" aria-hidden="true"></div>
-```
+## Size values
 
-## Example usage
+| Value | Label |
+|---|---|
+| `py-0` | None |
+| `py-1` | Extra small |
+| `py-2` | Small |
+| `py-3` | Medium |
+| `py-4` | Large |
+| `py-5` | Extra large |
 
-### Small spacing
+## Available attributes
+
+- `attributes`: attributes object merged onto the spacer `<div>`
+
+## Example
 
 ```twig
-{% include 'your-theme:spacer' with {
-  size: 'py-2'
-} %}
-```
-
-### Large spacing
-
-```twig
-{% include 'your-theme:spacer' with {
+{% include 'vartheme_bs5:spacer' with {
   size: 'py-5'
-} %}
+} only %}
 ```
 
 ## Notes
 
-- Uses Bootstrap utility classes only.
-- No custom CSS, SCSS, or inline styles are required.
-- The spacer is decorative, so it is marked with `aria-hidden="true"`.
+- The spacer always renders a full-width `<div>` with the `w-100` class plus the chosen `size` class.
+- It carries `aria-hidden="true"`, so it is purely visual and ignored by assistive technology.
+- The `size` value is applied directly as a class, so it is expected to be one of the enum values above.

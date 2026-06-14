@@ -3,20 +3,45 @@
  * @file
  * Vartheme BS5 Starter Kit implementation for the Figure component.
  *
- * Available config:
+ * Renders a figure with an image and an optional caption.
+ *
+ * Available properties:
  * - figure_utility_classes: An array of utility classes.
- * - align: left|right|center
- * - responsive: true|false
+ * - align: Figure alignment. (left | right | center)
+ * - responsive: Whether the figure is responsive. (true | false)
+ *
+ * Available attributes:
+ * - attributes: Attributes array.
+ * - caption_attributes: HTML attributes for the figcaption element.
+ *
+ * Available slots:
+ * - image: The image content.
+ * - caption: The figure caption content.
  */
 #}
-{% set classes = [
-  'figure',
-]|merge(figure_utility_classes ? figure_utility_classes : []) %}
 
-<figure{{ attributes.addClass(classes) }}>
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Logic: merge figure classes as arrays. #}
+{% set classes = ['figure']|merge(figure_utility_classes ? figure_utility_classes : []) %}
+
+{# Logic: per-region attributes object for the caption. #}
+{% set caption_attributes = caption_attributes|default(create_attribute()) %}
+{% set caption_attributes = caption_attributes.addClass('figure-caption') %}
+
+{# Print the HTML. #}
+{% set attributes = attributes.addClass(classes) %}
+<figure{{ attributes }}>
   {{ image }}
 
   {% if caption %}
-    <figcaption class="figure-caption">{{ caption }}</figcaption>
+    <figcaption{{ caption_attributes }}>{{ caption }}</figcaption>
   {% endif %}
 </figure>

@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Theme override to display a list of summary lines.
+ * Vartheme BS5 Starter Kit implementation for the Views View Summary component.
  *
  * Available variables:
  * - rows: The rows contained in this view.
@@ -19,6 +19,16 @@
  */
 #}
 
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Logic: build the rendered summary rows. #}
 {% set list_group_rows = [] %}
 
 {% for row in rows %}
@@ -39,6 +49,7 @@
   {% set list_group_rows = list_group_rows|merge([list_group_row]) %}
 {% endfor %}
 
+{# Print the HTML. #}
 <div class="item-list">
   {{
     include('vartheme_bs5:list-group', {
