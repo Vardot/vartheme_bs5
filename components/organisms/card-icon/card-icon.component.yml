@@ -140,6 +140,8 @@ props:
         - fs-2
         - fs-1
       default: fs-4
+      examples:
+        - fs-4
       meta:enum:
         fs-6: Extra small
         fs-5: Small

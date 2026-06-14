@@ -45,6 +45,8 @@ props:
         - display-5
         - display-6
       default: default
+      examples:
+        - default
       'meta:enum':
         default: "Default (match heading level)"
         h2: "Heading size: H2"

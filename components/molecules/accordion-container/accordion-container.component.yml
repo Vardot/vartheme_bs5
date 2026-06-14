@@ -15,11 +15,15 @@ props:
       title: Flush style
       description: Remove the default outer accordion borders and rounding.
       default: false
+      examples:
+        - false
     always_open:
       type: boolean
       title: Keep multiple items open
       description: Allow multiple accordion items to stay open at the same time.
       default: false
+      examples:
+        - false
     color:
       type: string
       title: Header color override

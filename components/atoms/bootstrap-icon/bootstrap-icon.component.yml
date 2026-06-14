@@ -9,6 +9,8 @@ props:
       title: Icon name
       description: "Select a Bootstrap icon name."
       default: "award"
+      examples:
+        - "award"
       enum:
         - 0-circle
         - 0-circle-fill

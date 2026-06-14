@@ -10,6 +10,8 @@ props:
       title: HTML Input Type
       description: Specifies the type `<input>` element to display
       default: text
+      examples:
+        - text
       enum:
         - button
         - checkbox

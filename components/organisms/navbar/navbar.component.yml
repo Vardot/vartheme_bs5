@@ -26,6 +26,8 @@ props:
       type: string
       title: Color mode
       default: light
+      examples:
+        - light
       enum:
         - light
         - dark
@@ -33,6 +35,8 @@ props:
       type: string
       title: Background color
       default: white
+      examples:
+        - white
       enum:
         - transparent
         - light
@@ -58,6 +62,8 @@ props:
       type: string
       title: Navbar expand breakpoint
       default: lg
+      examples:
+        - lg
       enum:
         - sm
         - md

@@ -515,13 +515,13 @@ props:
     section_header:
       type: boolean
       title: Show header region
-      default: true
-      examples: [true]
+      default: false
+      examples: [false]
     section_footer:
       type: boolean
       title: Show footer region
-      default: true
-      examples: [true]
+      default: false
+      examples: [false]
     aos_animation:
       type: string
       title: Animation

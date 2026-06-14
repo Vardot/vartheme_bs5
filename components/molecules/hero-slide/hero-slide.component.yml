@@ -20,11 +20,15 @@ props:
       title: Active by default
       description: If no slide is active, the container will auto-activate the first slide.
       default: false
+      examples:
+        - false
 
     title:
       type: string
       title: Title
       default: "Varbase; better than ever"
+      examples:
+        - "Varbase; better than ever"
 
     content:
       type: string
@@ -51,6 +55,8 @@ props:
       description: "Override the container media position for this slide only. Use 'Inherit' to follow the container setting."
       enum: [inherit, overlay, start, end, none]
       default: inherit
+      examples:
+        - inherit
       meta:enum:
         inherit: Inherit from container
         overlay: Overlay background
@@ -64,6 +70,8 @@ props:
       title: Title tag
       enum: [h2, h3, h4, h5, h6]
       default: h2
+      examples:
+        - h2
       meta:enum:
         h2: H2
         h3: H3
@@ -76,6 +84,8 @@ props:
       title: Title size
       enum: [display-1, display-2, display-3, display-4, display-5, h1, h2, h3]
       default: display-5
+      examples:
+        - display-5
       meta:enum:
         display-1: Display 1
         display-2: Display 2
@@ -91,6 +101,8 @@ props:
       title: Content max width
       enum: [narrow, normal, wide]
       default: normal
+      examples:
+        - normal
       meta:enum:
         narrow: Narrow
         normal: Normal
@@ -101,6 +113,8 @@ props:
       title: Vertical alignment
       enum: [start, center, end]
       default: center
+      examples:
+        - center
       meta:enum:
         start: Top
         center: Center
@@ -110,6 +124,8 @@ props:
       type: string
       title: Text alignment
       default: text-start
+      examples:
+        - text-start
       enum:
         - text-start
         - text-center
@@ -124,6 +140,8 @@ props:
       title: Text color
       enum: [text-white, text-dark]
       default: text-white
+      examples:
+        - text-white
       meta:enum:
         text-white: White
         text-dark: Dark
@@ -133,6 +151,8 @@ props:
       title: Grid gap (split layout)
       enum: [none, sm, md, lg]
       default: md
+      examples:
+        - md
       meta:enum:
         none: No gap
         sm: Small
@@ -144,34 +164,46 @@ props:
       title: Background color (split layout)
       enum: [bg-transparent, bg-white, bg-light, bg-dark, bg-black, bg-primary, bg-secondary, bg-success, bg-danger, bg-warning, bg-info]
       default: bg-black
+      examples:
+        - bg-black
 
     overlay_bg:
       type: string
       title: Overlay color
       enum: [none, bg-dark, bg-black, bg-white, bg-primary, bg-secondary, bg-success, bg-danger, bg-warning, bg-info]
       default: bg-dark
+      examples:
+        - bg-dark
 
     overlay_opacity:
       type: string
       title: Overlay opacity
       enum: [opacity-10, opacity-25, opacity-50, opacity-75, opacity-100]
       default: opacity-50
+      examples:
+        - opacity-50
     
     button_text:
       type: string
       title: Button text
       default: "Learn more"
+      examples:
+        - "Learn more"
 
     button_url:
       type: string
       title: Button URL
       default: "/"
+      examples:
+        - "/"
 
     button_variant:
       type: string
       title: Button style
       enum: [btn-primary, btn-secondary, btn-light, btn-dark]
       default: btn-primary
+      examples:
+        - btn-primary
       meta:enum:
         btn-primary: Primary
         btn-secondary: Secondary

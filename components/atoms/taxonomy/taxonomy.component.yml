@@ -27,6 +27,8 @@ props:
         - _self
         - _blank
       default: _self
+      examples:
+        - _self
       meta:enum:
         _self: Same tab
         _blank: New tab
@@ -38,6 +40,8 @@ props:
         - taxonomy-lg
         - taxonomy-sm
       default: taxonomy-lg
+      examples:
+        - taxonomy-lg
       meta:enum:
         taxonomy-lg: Large
         taxonomy-sm: Small

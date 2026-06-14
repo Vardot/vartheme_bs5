@@ -11,11 +11,15 @@ props:
       title: Card border
       description: Add a default border for the card.
       default: false
+      examples:
+        - false
     background_color:
       type: string
       title: Background color
       description: Brand background color applied to the card.
       default: none
+      examples:
+        - none
       enum:
         - none
         - bg-body-tertiary
@@ -41,11 +45,15 @@ props:
       title: Padded
       description: Adds Bootstrap padding (p-4) to the content area.
       default: false
+      examples:
+        - false
     box_shadow:
       type: string
       title: Shadow
       description: Bootstrap shadow utility applied to the card.
       default: shadow-none
+      examples:
+        - shadow-none
       enum:
         - shadow-none
         - shadow-sm
@@ -61,6 +69,8 @@ props:
       title: Border radius
       description: Bootstrap rounded utility applied to the card.
       default: rounded-0
+      examples:
+        - rounded-0
       enum:
         - rounded-0
         - rounded-1
@@ -82,11 +92,15 @@ props:
       title: Equal height
       description: Apply h-100 to the card wrapper.
       default: false
+      examples:
+        - false
     stretched_link:
       type: boolean
       title: Stretched link
       description: When enabled and a Card link URL is provided, the entire card becomes clickable using Bootstrap's stretched-link.
       default: false
+      examples:
+        - false
     link_url:
       type: string
       title: Card link URL
@@ -101,6 +115,8 @@ props:
         - _self
         - _blank
       default: default
+      examples:
+        - default
       meta:enum:
         default: Default (same tab)
         _self: Same tab

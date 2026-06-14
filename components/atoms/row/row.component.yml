@@ -22,6 +22,8 @@ props:
         - "bg-info"
         - "bg-dark"
       default: "none"
+      examples:
+        - "none"
       'meta:enum':
         none: "None"
         bg-light: "Light"
@@ -40,6 +42,8 @@ props:
       title: "Background edge-to-edge"
       description: "Enable full-bleed background (adds bg-edge2edge class)."
       default: false
+      examples:
+        - false
     background_image:
       $ref: json-schema-definitions://canvas.module/image
       type: object
@@ -54,6 +58,8 @@ props:
         - "dark"
         - "light"
       default: "dark"
+      examples:
+        - "dark"
       'meta:enum':
         none: "None"
         dark: "Dark"
@@ -69,6 +75,8 @@ props:
         - 75
         - 100
       default: 50
+      examples:
+        - 50
       'meta:enum':
         0: "0%"
         25: "25%"
@@ -84,6 +92,8 @@ props:
         - "container"
         - "container-fluid"
       default: "container"
+      examples:
+        - "container"
       'meta:enum':
         none: "No container"
         container: "Container"
@@ -100,6 +110,8 @@ props:
         - "4"
         - "5"
       default: "3"
+      examples:
+        - "3"
       'meta:enum':
         "0": "None"
         "1": "Small"
@@ -120,6 +132,8 @@ props:
         - "5"
         - "6"
       default: "none"
+      examples:
+        - "none"
       'meta:enum':
         none: "Use child widths"
         "1": "1 per row"
@@ -141,6 +155,8 @@ props:
         - "5"
         - "6"
       default: "none"
+      examples:
+        - "none"
       'meta:enum':
         none: "No desktop override"
         "1": "MD: 1 per row"
@@ -160,6 +176,8 @@ props:
         - "align-items-end"
         - "align-items-stretch"
       default: "none"
+      examples:
+        - "none"
       'meta:enum':
         none: "Default"
         align-items-start: "Top"
@@ -179,6 +197,8 @@ props:
         - "justify-content-around"
         - "justify-content-evenly"
       default: "none"
+      examples:
+        - "none"
       'meta:enum':
         none: "Default"
         justify-content-start: "Start"
@@ -199,6 +219,8 @@ props:
         - "pt-4"
         - "pt-5"
       default: "pt-0"
+      examples:
+        - "pt-0"
       'meta:enum':
         pt-0: "None"
         pt-1: "Small"
@@ -218,6 +240,8 @@ props:
         - "pb-4"
         - "pb-5"
       default: "pb-0"
+      examples:
+        - "pb-0"
       'meta:enum':
         pb-0: "None"
         pb-1: "Small"
@@ -237,6 +261,8 @@ props:
         - "mt-4"
         - "mt-5"
       default: "mt-0"
+      examples:
+        - "mt-0"
       'meta:enum':
         mt-0: "None"
         mt-1: "Small"
@@ -256,6 +282,8 @@ props:
         - "mb-4"
         - "mb-5"
       default: "mb-0"
+      examples:
+        - "mb-0"
       'meta:enum':
         mb-0: "None"
         mb-1: "Small"

@@ -9,6 +9,8 @@ props:
       title: Edge-to-edge background
       description: When enabled, adds the class bg-edge2edge so the background spans the full width.
       default: false
+      examples:
+        - false
     heading:
       type: string
       title: Heading
@@ -83,6 +85,8 @@ props:
         - bg-light
         - bg-dark
       default: bg-white
+      examples:
+        - bg-white
       meta:enum:
         bg-none: None (transparent)
         bg-white: White
@@ -102,6 +106,8 @@ props:
         - text-white
         - text-dark
       default: text-dark
+      examples:
+        - text-dark
       meta:enum:
         text-dark: Dark text
         text-white: Light text
@@ -121,6 +127,8 @@ props:
         - bg-primary
         - bg-secondary
       default: bg-none
+      examples:
+        - bg-none
       meta:enum:
         bg-none: No overlay
         bg-dark: Dark
@@ -133,6 +141,8 @@ props:
       description: Bootstrap opacity utility applied to the overlay.
       enum: [0, 25, 50, 75, 100]
       default: 50
+      examples:
+        - 50
       meta:enum:
         0: 0% (transparent)
         25: 25%
@@ -149,6 +159,8 @@ props:
         - py-4
         - py-5
       default: py-4
+      examples:
+        - py-4
       meta:enum:
         py-0: None
         py-3: Small
@@ -177,6 +189,8 @@ props:
         - btn-dark
         - btn-link
       default: btn-primary
+      examples:
+        - btn-primary
       meta:enum:
         btn-primary: Primary
         btn-secondary: Secondary
@@ -192,6 +206,8 @@ props:
       title: Outline button style
       description: When enabled, uses the Bootstrap outline style for the selected button variant, except for link buttons.
       default: false
+      examples:
+        - false
     button_size:
       type: string
       title: Button size
@@ -201,6 +217,8 @@ props:
         - btn-sm
         - btn-lg
       default: btn-md
+      examples:
+        - btn-md
       meta:enum:
         btn-md: Medium (default)
         btn-sm: Small

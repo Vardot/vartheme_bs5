@@ -21,6 +21,8 @@ props:
       title: Required
       description: An indicator for whether the text area is required.
       default: false
+      examples:
+        - false
     value:
       type: string
       title: Value
@@ -46,16 +48,22 @@ props:
       title: Read Only
       description: Specifies whether the control may be modified by the user.
       default: false
+      examples:
+        - false
     disabled:
       type: boolean
       title: Disabled
       description: Disables the control for user input.
       default: false 
+      examples:
+        - false
     wrapper_html_tag:
       type: string
       title: Wrapper HTML tag
       description: The HTML tag for the wrapper.
       default: div
+      examples:
+        - div
       enum:
         - ''
         - 'div'

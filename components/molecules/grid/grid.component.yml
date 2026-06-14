@@ -31,6 +31,8 @@ props:
         - "col-11"
         - "col-12"
       default: "none"
+      examples:
+        - "none"
     col_sm:
       type: string
       title: Column width of items at sm breakpoint
@@ -52,6 +54,8 @@ props:
         - "col-sm-11"
         - "col-sm-12"
       default: "none"
+      examples:
+        - "none"
     col_md:
       type: string
       title: Column width of items at md breakpoint
@@ -73,6 +77,8 @@ props:
         - "col-md-11"
         - "col-md-12"
       default: "none"
+      examples:
+        - "none"
     col_lg:
       type: string
       title: Column width of items at lg breakpoint
@@ -94,6 +100,8 @@ props:
         - "col-lg-11"
         - "col-lg-12"
       default: "none"
+      examples:
+        - "none"
     col_xl:
       type: string
       title: Column width of items at xl breakpoint
@@ -115,6 +123,8 @@ props:
         - "col-xl-11"
         - "col-xl-12"
       default: "none"
+      examples:
+        - "none"
     col_xxl:
       type: string
       title: Column width of items at xxl breakpoint
@@ -136,6 +146,8 @@ props:
         - "col-xxl-11"
         - "col-xxl-12"
       default: "none"
+      examples:
+        - "none"
     grid_utility_classes:
       type: array
       title: 'Grid Row Utility Classes'

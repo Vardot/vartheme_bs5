@@ -24,6 +24,8 @@ props:
         ol: "Ordered list"
       x-translation-context: List type
       default: ul
+      examples:
+        - ul
     list_utility_classes:
       type: array
       title: List Utility Classes

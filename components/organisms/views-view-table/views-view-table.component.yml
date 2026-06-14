@@ -26,26 +26,36 @@ props:
       title: Responsive
       description: Responsive tables allow tables to be scrolled horizontally with ease. Make any table responsive across all viewports.
       default: true
+      examples:
+        - true
     striped_rows:
       type: boolean
       title: Striped rows
       description: Use to add zebra-striping to any table row within the tbody.
       default: false
+      examples:
+        - false
     striped_columns:
       type: boolean
       title: Striped columns
       description: Use to add zebra-striping to any table column.
       default: false
+      examples:
+        - false
     hover:
       type: boolean
       title: Hover
       description: Enable a hover state on table rows within a tbody for hoverable rows.
       default: false
+      examples:
+        - false
     bordered:
       type: boolean
       title: Bordered
       description: Add borders on all sides of the table and cells.
       default: false
+      examples:
+        - false
     border_color:
       type: string
       title: Border Color

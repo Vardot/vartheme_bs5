@@ -184,6 +184,8 @@ props:
         - "dot"
         - "count"
       default: "none"
+      examples:
+        - "none"
       'meta:enum':
         "none": "None"
         "dot": "Dot"

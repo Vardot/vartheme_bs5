@@ -22,6 +22,8 @@ props:
         border-4: Extra thick
         border-5: Maximum
       default: border-1
+      examples:
+        - border-1
 
     border_color:
       type: string
@@ -50,6 +52,8 @@ props:
         border-white: White
         border-black: Black
       default: border-secondary
+      examples:
+        - border-secondary
 
     opacity:
       type: string
@@ -66,6 +70,8 @@ props:
         opacity-75: Strong
         opacity-100: Solid
       default: opacity-100
+      examples:
+        - opacity-100
 
     margin_top:
       type: string
@@ -86,6 +92,8 @@ props:
         mt-4: Large
         mt-5: Extra large
       default: mt-3
+      examples:
+        - mt-3
 
     margin_bottom:
       type: string
@@ -106,3 +114,5 @@ props:
         mb-4: Large
         mb-5: Extra large
       default: mb-3
+      examples:
+        - mb-3

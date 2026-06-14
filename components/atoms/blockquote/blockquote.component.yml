@@ -14,6 +14,8 @@ props:
         - dark
         - light
       default: dark
+      examples:
+        - dark
       meta:enum:
         dark: Dark
         light: Light

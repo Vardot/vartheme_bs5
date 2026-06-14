@@ -17,6 +17,8 @@ props:
       title: 'Default Row Class'
       description: 'Add a default "views-row" CSS class to each row wrapper.'
       default: false
+      examples:
+        - false
     attributes:
       type: Drupal\Core\Template\Attribute
       title: Attributes

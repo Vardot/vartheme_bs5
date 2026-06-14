@@ -29,17 +29,6 @@
         <source src="{{ src|e }}">
         Your browser does not support the video tag.
       </video>
-    {% else %}
-      {# Placeholder (no asset dependency) #}
-      <div class="{{ frame_classes }} d-flex align-items-center justify-content-center text-center p-4 border border-2 border-secondary">
-        <div class="text-body-secondary">
-          <div class="fs-2 lh-1 mb-2" aria-hidden="true">
-            <i class="bi bi-cloud-arrow-up"></i>
-          </div>
-          <div class="fw-semibold">Add a video</div>
-          <div class="small">Use the media picker to upload and select a video.</div>
-        </div>
-      </div>
     {% endif %}
   </div>
 

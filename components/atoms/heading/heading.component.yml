@@ -16,6 +16,8 @@ props:
       title: Heading level
       description: "HTML heading tag"
       default: 3
+      examples:
+        - 3
       enum: [1, 2, 3, 4, 5, 6]
     text_size:
       type: string
@@ -123,6 +125,8 @@ props:
       title: Link target
       description: "Optional. Controls where the linked heading opens."
       default: "_self"
+      examples:
+        - "_self"
       enum:
         - _self
         - _blank

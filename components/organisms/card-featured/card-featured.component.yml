@@ -12,6 +12,8 @@ props:
       title: Media position
       description: Choose the location of the media from (start|end|no-media).
       default: start
+      examples:
+        - start
       enum:
         - start
         - end
@@ -74,6 +76,8 @@ props:
       title: Border radius
       description: Bootstrap rounded utility. Applied to the whole card when border is enabled, or to the image only when border is disabled.
       default: rounded-0
+      examples:
+        - rounded-0
       enum:
         - rounded-0
         - rounded-1
@@ -122,6 +126,8 @@ props:
         - _self
         - _blank
       default: default
+      examples:
+        - default
       meta:enum:
         default: Same tab (default)
         _self: Same tab
@@ -131,6 +137,8 @@ props:
       title: Content vertical alignment
       description: Controls the vertical alignment of the card content.
       default: align-items-center
+      examples:
+        - align-items-center
       enum:
         - align-items-start
         - align-items-center
@@ -144,6 +152,8 @@ props:
       title: Gutters Between
       description: Bootstrap gutter utility classes applied to the inner row.
       default: g-2 g-lg-3
+      examples:
+        - g-2 g-lg-3
       enum:
         - g-0
         - g-2 g-lg-3
@@ -159,6 +169,8 @@ props:
       title: All Breakpoints
       description: Size of two columns for all devices. Starting from (Extra small and up).
       default: '06_06'
+      examples:
+        - '06_06'
       enum:
         - '02_10'
         - '10_02'
@@ -186,6 +198,8 @@ props:
       title: Small Breakpoint size (sm)
       description: Size of two columns for Small devices (landscape phones, 576px and up).
       default: '06_06'
+      examples:
+        - '06_06'
       enum:
         - '02_10'
         - '10_02'
@@ -214,6 +228,8 @@ props:
       title: Medium Breakpoint size (md)
       description: Size of two columns for Medium devices (tablets, 768px and up).
       default: '06_06'
+      examples:
+        - '06_06'
       enum:
         - '02_10'
         - '10_02'
@@ -241,6 +257,8 @@ props:
       title: Large Breakpoint size (lg)
       description: Size of two columns for Large devices (desktops, 992px and up).
       default: '06_06'
+      examples:
+        - '06_06'
       enum:
         - '02_10'
         - '10_02'
@@ -268,6 +286,8 @@ props:
       title: Extra Large Breakpoint size (xl)
       description: Size of two columns for X-Large devices (large desktops, 1200px and up).
       default: '06_06'
+      examples:
+        - '06_06'
       enum:
         - '02_10'
         - '10_02'
@@ -295,6 +315,8 @@ props:
       title: Extra Extra Large Breakpoint size (xxl)
       description: Size of two columns for XX-Large devices (larger desktops, 1400px and up).
       default: '06_06'
+      examples:
+        - '06_06'
       enum:
         - '02_10'
         - '10_02'

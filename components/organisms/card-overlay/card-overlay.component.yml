@@ -27,6 +27,8 @@ props:
         - ratio-1x1
         - ratio-21x9
       default: ratio-16x9
+      examples:
+        - ratio-16x9
       meta:enum:
         ratio-auto: Auto (no crop)
         ratio-16x9: Wide (16:9)
@@ -41,6 +43,8 @@ props:
         - object-fit-cover
         - object-fit-contain
       default: object-fit-cover
+      examples:
+        - object-fit-cover
       meta:enum:
         object-fit-cover: Fill (crop)
         object-fit-contain: Fit (no crop)
@@ -55,6 +59,8 @@ props:
       title: Shadow
       description: Bootstrap shadow utility applied to the card.
       default: shadow-none
+      examples:
+        - shadow-none
       enum:
         - shadow-none
         - shadow-sm
@@ -70,6 +76,8 @@ props:
       title: Overlay color
       description: Bootstrap background utility applied to the overlay layer.
       default: bg-transparent
+      examples:
+        - bg-transparent
       enum:
         - bg-transparent
         - bg-dark
@@ -101,6 +109,8 @@ props:
       title: Overlay opacity
       description: Bootstrap background opacity utility applied to the overlay layer.
       default: bg-opacity-50
+      examples:
+        - bg-opacity-50
       enum:
         - bg-opacity-10
         - bg-opacity-25
@@ -118,10 +128,14 @@ props:
       title: Equal height
       description: Apply h-100 to the card wrapper.
       default: false
+      examples:
+        - false
     h_align:
       type: string
       title: Horizontal alignment
       default: text-start
+      examples:
+        - text-start
       enum:
         - text-start
         - text-center
@@ -134,6 +148,8 @@ props:
       type: string
       title: Vertical alignment
       default: align-items-center
+      examples:
+        - align-items-center
       enum:
         - align-items-start
         - align-items-center
@@ -147,6 +163,8 @@ props:
       title: Stretched link
       description: When enabled and a Card link URL is provided, the entire card becomes clickable using Bootstrap’s stretched-link.
       default: false
+      examples:
+        - false
     link_url:
       type: string
       title: Card link URL
@@ -161,6 +179,8 @@ props:
         - _self
         - _blank
       default: default
+      examples:
+        - default
       meta:enum:
         default: Default (same tab)
         _self: Same tab

@@ -14,6 +14,8 @@ props:
       title: Slider component
       description: A component name to render a slide
       default: 'vartheme_bs5:card-hero'
+      examples:
+        - 'vartheme_bs5:card-hero'
     items:
       type: array
       title: Items
@@ -24,11 +26,15 @@ props:
       title: Controls
       description: Add the previous/next controls.
       default: false
+      examples:
+        - false
     indicators:
       type: boolean
       title: Indicators
       description: Add indicators to the carousel, alongside the previous/next controls.
       default: false
+      examples:
+        - false
     carousel_utility_classes:
       type: array
       title: Utility Classes

@@ -10,6 +10,8 @@ props:
       title: HTML tag
       description: Having the spinner as div or span
       default: div
+      examples:
+        - div
       enum:
         - div
         - span
@@ -18,6 +20,8 @@ props:
       title: Type
       description: Use the border spinners for a lightweight loading indicator. If you do not fancy a border spinner, switch to the grow spinner. While it does not technically spin, it does repeatedly grow!
       default: border
+      examples:
+        - border
       enum:
         - ''
         - border
@@ -50,6 +54,8 @@ props:
       title: Hidden status
       description: Hidden spinner status message.
       default: true
+      examples:
+        - true
     spinner_utility_classes:
       type: array
       title: Utility Classes

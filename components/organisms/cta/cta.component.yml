@@ -13,6 +13,8 @@ props:
       title: Background edge to edge
       description: Adds the "bg-edge2edge" class to make the background image span edge to edge.
       default: false
+      examples:
+        - false
     heading_text:
       type: string
       title: Heading
@@ -104,6 +106,8 @@ props:
         bg-body-tertiary: Muted
         bg-info text-white: Accent
       default: bg-none
+      examples:
+        - bg-none
     content_color:
       type: string
       title: Content color
@@ -121,6 +125,8 @@ props:
         - text-info
         - text-muted
       default: auto
+      examples:
+        - auto
       meta:enum:
         auto: Auto (based on background)
         text-body: Body
@@ -185,6 +191,8 @@ props:
         - btn-outline-dark
         - btn-link
       default: btn-primary
+      examples:
+        - btn-primary
       meta:enum:
         btn-primary: Primary
         btn-secondary: Secondary

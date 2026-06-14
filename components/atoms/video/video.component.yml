@@ -16,6 +16,8 @@ props:
       description: Responsive ratio wrapper for the video.
       enum: ["16x9", "4x3", "1x1", "21x9"]
       default: "16x9"
+      examples:
+        - "16x9"
       meta:enum:
         "16x9": 16:9 (Wide)
         "4x3": 4:3 (Standard)
@@ -27,6 +29,8 @@ props:
       title: Loading
       enum: [lazy, eager]
       default: lazy
+      examples:
+        - lazy
       meta:enum:
         lazy: Lazy
         eager: Eager

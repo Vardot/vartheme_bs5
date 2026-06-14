@@ -9,6 +9,8 @@ props:
       title: Label display
       description: Display the label of the field as (above, inline, hidden, or visually_hidden).
       default: inline
+      examples:
+        - inline
       enum:
         - ''
         - above
@@ -20,6 +22,8 @@ props:
       title: Label hidden
       description: Whether to show the field label or not.
       default: true
+      examples:
+        - true
     label:
       type: string
       title: Label

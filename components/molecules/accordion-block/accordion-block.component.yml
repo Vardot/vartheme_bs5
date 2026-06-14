@@ -56,6 +56,8 @@ props:
       title: Keep this item independent
       description: Allow this item to stay open without being controlled by the parent accordion.
       default: false
+      examples:
+        - false
     color:
       type: string
       title: Header color override
@@ -79,6 +81,8 @@ props:
           text-bg-info: Info
           text-bg-dark: Dark
       default: inherit
+      examples:
+        - inherit
 slots:
   accordion_content:
     title: Accordion content

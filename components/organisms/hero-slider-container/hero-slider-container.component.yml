@@ -20,6 +20,8 @@ props:
       title: Transition
       enum: [slide, fade]
       default: slide
+      examples:
+        - slide
       meta:enum:
         slide: Slide
         fade: Fade
@@ -34,6 +36,8 @@ props:
       type: integer
       title: Autoplay interval (ms)
       default: 5000
+      examples:
+        - 5000
       minimum: 1000
       maximum: 60000
 
@@ -61,6 +65,8 @@ props:
       description: Fixed height presets (px).
       enum: ['500', '700', '900']
       default: '700'
+      examples:
+        - '700'
       meta:enum:
         '500': 500px
         '700': 700px
@@ -71,6 +77,8 @@ props:
       title: Controller color
       enum: [primary, light, dark, white]
       default: primary
+      examples:
+        - primary
       meta:enum:
         primary: Primary
         light: Light

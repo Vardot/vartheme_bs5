@@ -36,6 +36,8 @@ props:
       title: Dismissible
       description: "Show close button to dismiss the alert."
       default: true
+      examples:
+        - true
 
 slots:
   heading:

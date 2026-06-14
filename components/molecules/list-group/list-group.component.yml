@@ -72,11 +72,15 @@ props:
       title: Flush
       description: Remove borders and rounded corners for edge-to-edge rendering.
       default: false
+      examples:
+        - false
     numbered:
       type: boolean
       title: Numbered
       description: Add numbers to list group items.
       default: false
+      examples:
+        - false
     horizontal:
       type: string
       title: Horizontal

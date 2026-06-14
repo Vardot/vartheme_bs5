@@ -18,6 +18,8 @@ props:
       title: Disabled
       description: Disabled button
       default: false
+      examples:
+        - false
     close_button_utility_classes:
       type: array
       title: Utility Classes

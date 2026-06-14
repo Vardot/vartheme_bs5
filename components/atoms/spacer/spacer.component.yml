@@ -18,6 +18,8 @@ props:
         - "py-4"
         - "py-5"
       default: "py-3"
+      examples:
+        - "py-3"
       'meta:enum':
         py-0: "None"
         py-1: "Extra small"
