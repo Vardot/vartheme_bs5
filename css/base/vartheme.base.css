@@ -460,6 +460,11 @@ footer.footer .copyright-text {
   line-height: 1.4;
 }
 
+footer.footer .copyright-text .powered-by-vardot-logo {
+  width: auto;
+  height: 0.875em;
+}
+
 footer.footer hr {
   margin: 0;
   opacity: 1;

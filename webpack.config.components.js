@@ -37,6 +37,7 @@ module.exports = {
     'organisms/social-auth/social-auth': ['./components/organisms/social-auth/social-auth.scss'],
     'organisms/card-impressed/card-impressed': ['./components/organisms/card-impressed/card-impressed.scss'],
     'organisms/card-text/card-text': ['./components/organisms/card-text/card-text.scss'],
+    'organisms/media-banner/media-banner': ['./components/organisms/media-banner/media-banner.scss'],
     'organisms/heroslider/heroslider': ['./components/organisms/heroslider/heroslider.scss'],
     'organisms/media-hero-slide/media-hero-slide': ['./components/organisms/media-hero-slide/media-hero-slide.scss'],
     'organisms/media-hero-slider/media-hero-slider': ['./components/organisms/media-hero-slider/media-hero-slider.scss'],

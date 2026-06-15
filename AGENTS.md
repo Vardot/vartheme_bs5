@@ -211,6 +211,22 @@ correct (valid page **and** `#fragment`).
   arrays and print `class="{{ x_classes|join(' ') }}"`; do not invent
   `attributes` there. Entity/views/field/comment/form templates **do** receive
   `attributes` — use it.
+- **Cover / fill images must not pixelate (drimage).** An image that fills a
+  fixed-height box with `object-fit: cover` will upscale a width-only derivative
+  and blur. Let drimage size the derivative to the container's **width AND
+  height**: render through `atoms/image` with `cover_fill: true` (it sets
+  drimage `image_handling: 'container_size'`), which serves a derivative matched
+  to the rendered box and **re-fetches on resize** (so large↔small swaps a
+  landscape↔portrait derivative). Never stretch a width-only derivative with
+  CSS. The first request for a new size 404s once while drimage generates that
+  derivative, then serves 200 — that one-time miss is expected.
+- **Equal-height columns.** The `atoms/section` row defaults to
+  `align-items-start` (columns top-align, *not* equal height). For equal-height
+  cards across a row, set the section's `vertical_alignment:
+  align-items-stretch` **and** each `molecules`/`organisms` card's
+  `equal_height: true` (adds `h-100`). Do **not** add an `equal_height`/`h-100`
+  prop to `atoms/group`; if a boxed group must match its siblings' height, use
+  `card-text` instead of `group`.
 
 ---
 
@@ -228,6 +244,14 @@ correct (valid page **and** `#fragment`).
   them with the official command:
   `drush varbase-components:fix-versions <theme>` (corrects stored hashes that
   reference old snapshots).
+- **Test responsive at real breakpoints**, not one width. Use a real browser
+  (Playwright MCP) at the §21 sizes — ~375/390 (mobile), 768 (tablet),
+  1280/1440 (desktop) — and confirm the layout adapts, the image stays sharp
+  (drimage serves a derivative ≥ the displayed size at each width), and there is
+  **no horizontal overflow** (`document.documentElement.scrollWidth` ≤ viewport).
+- **Test logged-OUT (anonymous) as well as logged-in.** The admin/Gin toolbar
+  offsets the viewport, so full-width / breakout layouts that look centred for an
+  editor can be off-centre or overflow for real visitors. Verify both.
 - Tests: `tests/features/09-drupal-canvas/components/*.feature` (self-seeding
   via `tests/step-definitions/drupal-canvas.steps.js`). Run
   `npx cucumber-js --dry-run` (no undefined/ambiguous) then the suite.
@@ -244,9 +268,21 @@ correct (valid page **and** `#fragment`).
 - Root → provided `attributes`; nested → named `*_attributes`.
 - `set` the attribute object in Logic, print it **bare** `<tag{{ attributes }}>`.
 - Classes as `|merge` arrays; booleans `?? default`; scalars `|default`.
+- Keep a component's CSS in its own `<name>.scss` (scoped to the block) and
+  register a brand-new `.scss` in `webpack.config.components.js`.
+- Size in `rem`/`em`; make components responsive with the breakpoint mixins;
+  test at every breakpoint **and** logged-out.
+- For a cover image filling a box, use drimage `container_size` via
+  `atoms/image` `cover_fill: true`.
 - Add a Bootstrap-referenced README; mirror to products; run tests.
 
 **Don't**
+- Don't reference Figma node IDs / file keys anywhere in code or comments.
+- Don't put component styles in the global theme stylesheets, use `px` literals,
+  or write inline `style="…"`.
+- Don't break a box out of its container with `width: 100vw` (toolbar/scrollbar
+  skew) — use symmetric negative `margin-inline`.
+- Don't add an `equal_height`/`h-100` prop to `atoms/group` (use `card-text`).
 - Don't add `attributes|default(create_attribute())` for the root.
 - Don't use inline `{{ attributes.addClass(...) }}` at the print, an anonymous
   `create_attribute()` root, or a custom-named root object.
@@ -287,6 +323,13 @@ SDC **auto-attaches** `<name>.css` and `<name>.js` to the component — you do n
 register them in `*.libraries.yml`. Add only library *dependencies* (e.g.
 `core/drupal`, `core/once`) via `libraryOverrides.dependencies` in the
 `*.component.yml`.
+
+> **A new `<name>.scss` only compiles if it is listed in
+> `webpack.config.components.js` `entry`** (an explicit map, not a glob). Add an
+> entry (e.g. `'organisms/media-banner/media-banner':
+> ['./components/organisms/media-banner/media-banner.scss']`), then
+> `yarn components:build`. Without it the `.scss` is silently ignored and no
+> `.css` is produced.
 
 ## 11. SCSS / CSS conventions
 
@@ -342,8 +385,33 @@ Bootstrap already defines, you're doing it wrong — use the Bootstrap one.
   (→ read §0 "Vartheme BS5 architecture" for the CVA/SCSS structure.)
 - Keep specificity low (single class), use `&` nesting for states
   (`&:hover, &:focus`), factor repeated patterns into `@mixin`s.
-- Reference the source of a value where useful (Bootstrap var name, or the
-  Figma node) in a comment.
+- **No Figma references in code.** Never write Figma node IDs, file keys, or
+  `(Figma 1234-5678)` notes in any `.scss`, `.twig`, `.css`, `.yml`, `.js`, or
+  comment. Describe *what* a rule does and name the **Bootstrap token** it
+  derives from — not where the value came from in a design tool.
+- **Component styles live in the component, not the theme.** Put every rule in
+  the component's own `<name>.scss`, scoped to its block (`.media-banner { … }`),
+  so SDC auto-attaches it only on pages that use the component. Do **not** add
+  component CSS to the global stylesheets (`scss/base/*`, `scss/layout/*`,
+  `scss/theme/*`) — those load site-wide on every page. A **brand-new**
+  component `.scss` must be registered in `webpack.config.components.js`'s
+  `entry` map (the components build uses an explicit list, not a glob) or it
+  will never compile to `.css`.
+- **Units: rem / em, never px.** Size everything in `rem`/`em` derived from
+  `$spacer` and Bootstrap tokens so it scales with the root/element font size.
+  No `px` literals — not even in a comment as the "real" value. `%`, `vw`/`vh`,
+  `min()`/`clamp()` are fine for relative/viewport sizing.
+- **No inline `style="…"`.** Style through classes only (Bootstrap utilities
+  first, then the component `.scss`). Never hand-write inline styles in `.twig`,
+  content, or markup strings.
+- **Responsive:** use the Bootstrap breakpoint mixins
+  (`@include media-breakpoint-up(md) { … }`) at the §21 breakpoints, not custom
+  media queries. For a box that must break **out** of its container into a wider
+  band, use **symmetric negative inline margins** (`margin-inline: -#{$spacer *
+  n}`), never `width: 100vw` — `100vw` ignores the admin/Gin toolbar offset
+  (off-centre for editors) and the scrollbar (horizontal overflow). Cap
+  responsive heights with `min()`/`clamp()` + a viewport unit so they never
+  exceed the screen.
 
 ## 12. JavaScript conventions
 

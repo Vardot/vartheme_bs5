@@ -22,6 +22,9 @@
  *            | rounded-1 | rounded-2 | rounded-3 | rounded-4 | rounded-pill)
  *            Defaults to `none`.
  * - loading: Browser loading strategy. (lazy | eager) Defaults to `lazy`.
+ * - cover_fill: When true, drimage sizes the derivative to the container's width
+ *   AND height (image_handling: container_size) and re-fetches on resize, so a
+ *   cover image filling a fixed-height box stays sharp. Defaults to false.
  *
  * Available attributes:
  * - attributes: The outermost <figure> root element.
@@ -105,6 +108,12 @@
   {% if not has_canvas_drimage and has_ratio and drimage_data %}
     {% set ratio_parts = ratio_value|replace({'ratio-': ''})|split('x') %}
     {% set drimage_data = drimage_data|merge({image_handling: 'aspect_ratio', aspect_ratio: {width: ratio_parts[0] * 1, height: ratio_parts[1] * 1}}) %}
+  {% endif %}
+  {# Cover-fill: let drimage size the derivative to the container's width AND
+   # height (and re-fetch on resize) so a cover image in a fixed-height box
+   # stays sharp instead of upscaling a width-only derivative. #}
+  {% if (cover_fill is defined and cover_fill) and drimage_data %}
+    {% set drimage_data = drimage_data|merge({image_handling: 'container_size'}) %}
   {% endif %}
   {% set drimage_img_classes = ['w-100']|merge(has_ratio ? ['h-100'] : ['img-fluid'])|merge([fit_class, rounded_class]) %}
   {% if drimage_data %}

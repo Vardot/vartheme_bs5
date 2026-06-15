@@ -513,6 +513,13 @@ footer.footer {
     color: var(--bs-emphasis-color);
     font-size: 0.875rem;
     line-height: 1.4;
+
+    // Powered-by Vardot wordmark sits inline with the text; height is set in
+    // em so it scales with the copyright font-size and stays on the same line.
+    .powered-by-vardot-logo {
+      width: auto;
+      height: 0.875em;
+    }
   }
 
   // Separator between top and bottom footer rows is rendered by a dedicated

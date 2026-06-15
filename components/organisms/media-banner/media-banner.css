@@ -1,0 +1,66 @@
+.media-banner {
+  min-height: min(37.5rem, 78vh);
+}
+
+@media (min-width: 768px) {
+  .media-banner {
+    min-height: 25rem;
+  }
+}
+
+.media-banner figure,
+.media-banner figure > div,
+.media-banner figure picture {
+  height: 100%;
+}
+
+.media-banner figure picture {
+  display: block;
+}
+
+.media-banner figure img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+@media (min-width: 1200px) {
+  .media-banner {
+    margin-inline: -2.5rem;
+  }
+}
+
+.media-banner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.media-banner > .container {
+  width: 100%;
+}
+
+@media (max-width: 767.98px) {
+  .media-banner {
+    justify-content: flex-end;
+  }
+}
+
+.media-banner .breadcrumb .breadcrumb-item,
+.media-banner .breadcrumb .breadcrumb-item.active {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.media-banner .breadcrumb .breadcrumb-item a {
+  color: var(--bs-white);
+}
+
+.media-banner .breadcrumb .breadcrumb-item a:hover,
+.media-banner .breadcrumb .breadcrumb-item a:focus {
+  color: var(--bs-white);
+}
+
+.media-banner .breadcrumb .breadcrumb-item + .breadcrumb-item::before {
+  color: rgba(255, 255, 255, 0.6);
+}

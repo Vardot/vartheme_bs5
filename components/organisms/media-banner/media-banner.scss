@@ -1,0 +1,87 @@
+// @file
+// Vartheme BS5 — Media banner component styles.
+//
+// Responsive layout for the media banner: a wider-than-content band on desktop,
+// a tall portrait band on phones, a cover image that fills the banner at any
+// aspect ratio, and light breadcrumb colors on the dark overlay. Scoped to the
+// `.media-banner` block so nothing leaks to the rest of the theme.
+
+@import "../../defaults"; // Global component defaults.
+
+.media-banner {
+  // Responsive height so the cover image always has a good area to fill at every
+  // screen size. Mobile gets a tall portrait band (capped to the viewport so it
+  // never overflows the screen); md+ uses a 25rem landing-banner height.
+  min-height: min(37.5rem, 78vh);
+
+  @include media-breakpoint-up(md) {
+    min-height: 25rem;
+  }
+
+  // The banner image is a drimage figure (figure → picture → img) sized to the
+  // image's own aspect ratio, which leaves the lower part of the tall banner
+  // empty. Force every wrapper to fill the banner height and cover it, so the
+  // image looks good at any screen size / aspect ratio (focal area centered).
+  figure,
+  figure > div,
+  figure picture {
+    height: 100%;
+  }
+
+  figure picture {
+    display: block;
+  }
+
+  figure img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  // Break out symmetrically beyond the content container so the banner reads as
+  // a wider band. Negative inline margins (not 100vw) keep it centered under the
+  // admin toolbar and avoid horizontal overflow; the inner container is
+  // unchanged, so the heading/breadcrumb still line up with the page content.
+  @include media-breakpoint-up(xl) {
+    margin-inline: -#{$spacer * 2.5};
+  }
+
+  // Lay the banner out as a column so the content can be positioned within the
+  // fixed-height band (the image/overlay layers are absolute, so only the
+  // content container participates in flow).
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  > .container {
+    width: 100%;
+  }
+
+  // Phones: content drops to the bottom over the gradient overlay.
+  @include media-breakpoint-down(md) {
+    justify-content: flex-end;
+  }
+
+  // Breadcrumb sits on the dark banner overlay, so use light, legible colors.
+  // The extra `.breadcrumb` qualifier outranks the breadcrumb component's
+  // default `--bs-dark` item/divider color. Breadcrumbs rendered outside the
+  // media banner keep their default styling.
+  .breadcrumb .breadcrumb-item,
+  .breadcrumb .breadcrumb-item.active {
+    color: rgba($white, 0.8);
+  }
+
+  .breadcrumb .breadcrumb-item a {
+    color: var(--bs-white);
+
+    &:hover,
+    &:focus {
+      color: var(--bs-white);
+    }
+  }
+
+  .breadcrumb .breadcrumb-item + .breadcrumb-item::before {
+    color: rgba($white, 0.6);
+  }
+}
