@@ -10,15 +10,10 @@ em.placeholder {
 }
 
 .form-required::after {
-  display: inline-block;
-  width: calc(calc(1.5em + 0.75rem + calc(var(--bs-border-width) * 2)) * 0.1666666667);
-  height: calc(calc(1.5em + 0.75rem + calc(var(--bs-border-width) * 2)) * 0.1666666667);
-  margin: 0 0.3em;
-  content: "";
-  vertical-align: super;
-  background-image: url("..//[object%20Module]");
-  background-repeat: no-repeat;
-  background-size: calc(calc(1.5em + 0.75rem + calc(var(--bs-border-width) * 2)) * 0.1666666667) calc(calc(1.5em + 0.75rem + calc(var(--bs-border-width) * 2)) * 0.1666666667);
+  content: "*";
+  color: var(--bs-danger);
+  line-height: 1;
+  margin-inline: 0.25em;
 }
 
 .ajax-progress {

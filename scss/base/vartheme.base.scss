@@ -22,19 +22,18 @@
   @include margin-bottom(1rem);
 }
 
-// Have a style form required fieldset, HTML input elements for fields.
+// Required-field marker. Use a plain text asterisk coloured with the ready
+// Bootstrap 5.3 `--bs-danger` custom property instead of a background-image
+// SVG: it needs no asset (the previous file url() compiled to a broken
+// `url([object Module])` that 404'd and triggered Drupal.AjaxError on forms),
+// inherits the active (sub-)theme's danger colour, and stays crisp at any size.
 .form-required {
 
   &::after {
-    content: '';
-    vertical-align: super;
-    display: inline-block;
-    background-image: url(../../images/required.svg);
-    background-repeat: no-repeat;
-    background-size: calc(#{$input-height} * .16666666666) calc(#{$input-height} * .16666666666);
-    width: calc(#{$input-height} * .16666666666);
-    height: calc(#{$input-height} * .16666666666);
-    margin: 0 0.3em;
+    content: '*';
+    margin-inline: 0.25em;
+    color: var(--bs-danger);
+    line-height: 1;
   }
 }
 
