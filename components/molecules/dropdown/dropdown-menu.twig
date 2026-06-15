@@ -58,6 +58,7 @@
           {{ include('vartheme_bs5:dropdown-menu', {
             items: item.below,
             menu_level: (item.below|first).menu_link_level,
+            attributes: create_attribute(),
           }) }}
         {% endif %}
       {% else %}

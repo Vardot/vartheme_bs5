@@ -15,7 +15,7 @@
  *            style (btn-outline-*) for the selected variant (not applied to
  *            btn-link). Defaults to `false`.
  * - size: Bootstrap button size class. (btn-md | btn-sm | btn-lg)
- *         Defaults to `btn`.
+ *         Defaults to `btn-md`.
  * - label: Button text. Defaults to `Button label`.
  * - href: If provided, renders as a link (<a>) instead of a <button>.
  * - target: Where to open the link (used only when Link URL is provided).
@@ -31,7 +31,7 @@
  *               w-100 utility class. Defaults to `false`.
  * - radius: Bootstrap border-radius utility class. (rounded | rounded-0
  *           | rounded-1 | rounded-2 | rounded-3 | rounded-4 | rounded-pill)
- *           Defaults to `rounded`.
+ *           Defaults to `rounded-1`.
  *
  * Available attributes:
  * - attributes: Attributes array.
@@ -52,11 +52,11 @@
 {# Variables: scalar props with schema defaults. #}
 {% set label = label|default('Button label') %}
 {% set variant = variant|default('btn-primary') %}
-{% set size = size|default('btn') %}
+{% set size = size|default('btn-md') %}
 {% set target = target|default('self') %}
 {% set icon = icon|default('none') %}
 {% set alignment = alignment|default('inline') %}
-{% set radius = radius|default('rounded') %}
+{% set radius = radius|default('rounded-1') %}
 
 {# Variables: boolean props.
  # SDC validates `type: boolean` props and applies their schema defaults,

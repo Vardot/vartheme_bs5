@@ -17,8 +17,13 @@
 
 {% for type, messages in message_list %}
 	<div role="region" aria-label="{{ status_headings[type] }}" {{ attributes|without('role', 'aria-label') }}>
+		{# Give each embedded alert its OWN fresh attributes object so it never
+		 # mutates the loop-level `attributes` used by the wrapper above. Without
+		 # this, the alert's addClass()/setAttribute() pollute the shared object
+		 # and the next message type's wrapper renders as a nested .alert. #}
 		{% embed 'vartheme_bs5:alert' with {
       variant: types[type]|default(''),
+      attributes: create_attribute(),
     } %}
 			{% block content %}
 				{% if status_headings[type] %}

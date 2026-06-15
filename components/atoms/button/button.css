@@ -1,7 +1,9 @@
+@charset "UTF-8";
+
 .btn.btn-md {
-  --bs-btn-padding-y: 0.9375rem;
-  --bs-btn-padding-x: 1.5625rem;
-  --bs-btn-font-size: 1.125rem;
+  --bs-btn-padding-y: 1rem;
+  --bs-btn-padding-x: 2rem;
+  --bs-btn-font-size: 1rem;
 }
 
 .btn.btn-lg {
@@ -14,4 +16,9 @@
   --bs-btn-padding-y: 0.625rem;
   --bs-btn-padding-x: 0.9375rem;
   --bs-btn-font-size: 0.875rem;
+}
+@media (max-width: 767.98px) {
+  .btn.btn-md {
+    --bs-btn-font-size: 0.875rem;
+  }
 }

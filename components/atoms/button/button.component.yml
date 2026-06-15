@@ -50,7 +50,7 @@ props:
         - btn-md
         - btn-sm
         - btn-lg
-      default: btn
+      default: btn-md
       examples:
         - btn-md
       meta:enum:
@@ -241,9 +241,9 @@ props:
         - rounded-3
         - rounded-4
         - rounded-pill
-      default: rounded
+      default: rounded-1
       examples:
-        - rounded
+        - rounded-1
       meta:enum:
         rounded: Default
         rounded-0: None

@@ -490,6 +490,7 @@ props:
         - align-items-start
         - align-items-center
         - align-items-end
+        - align-items-stretch
       default: align-items-start
       examples:
         - align-items-start
@@ -497,6 +498,7 @@ props:
         align-items-start: Top
         align-items-center: Center
         align-items-end: Bottom
+        align-items-stretch: Stretch (equal height)
     horizontal_alignment:
       type: string
       title: Horizontal alignment
