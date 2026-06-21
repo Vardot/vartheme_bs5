@@ -8,17 +8,28 @@
 // negative margins are zeroed out under [dir="rtl"] and the element is pushed
 // off-canvas.
 
+// Break out to the full width of the *available* content band, not the raw
+// viewport. Subtracting Drupal's displace offsets keeps edge-to-edge sections
+// (and the header) aligned with the page when the Gin/Navigation admin sidebar
+// or toolbar shifts the content — otherwise 100vw reaches under the sidebar and
+// the logo/content overlap it. Anonymous visitors have 0 offsets, so this is
+// identical to the previous 100vw behavior.
 %bg-edge2edge-base {
+  --e2e-band: calc(
+    100vw - var(--drupal-displace-offset-left, 0px) -
+      var(--drupal-displace-offset-right, 0px)
+  );
+
   position: relative;
   inset-inline-start: 50%;
   inset-inline-end: auto;
-  flex: 0 0 100vw;
-  width: 100vw;
+  flex: 0 0 var(--e2e-band);
+  width: var(--e2e-band);
   max-width: none;
-  margin-inline-start: -50vw !important;
-  margin-inline-end: -50vw !important;
-  margin-left: -50vw !important;
-  margin-right: -50vw !important;
+  margin-inline-start: calc(-0.5 * var(--e2e-band)) !important;
+  margin-inline-end: calc(-0.5 * var(--e2e-band)) !important;
+  margin-left: calc(-0.5 * var(--e2e-band)) !important;
+  margin-right: calc(-0.5 * var(--e2e-band)) !important;
 }
 
 .bg-edge2edge,

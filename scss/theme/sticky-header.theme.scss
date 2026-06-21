@@ -1,0 +1,48 @@
+@import "../defaults";   // Global defaults.
+
+// Vartheme BS5 Sticky header.
+// -----------------------------------------------------------------------------
+//
+// Loaded by the `vartheme_bs5/sticky-header` library, which is attached only
+// when the "Sticky header" theme setting is enabled
+// (see vartheme_bs5.theme). So these rules exist on the page solely when the
+// feature is on — no body-class gate is needed.
+
+// Sticky header — Bootstrap 5.3 `.sticky-top` ($zindex-sticky), flush to the
+// viewport top. Anonymous and narrow Gin layouts have nothing fixed above it.
+.page > header[role="banner"] {
+  position: sticky;
+  top: 0;
+  z-index: $zindex-sticky;
+
+  &.scrolled {
+    box-shadow: 0 0.3125rem 0.625rem 0 rgba(var(--bs-body-color-rgb), 0.1);
+  }
+}
+
+// Admin Navigation integration. Bootstrap's $zindex-sticky (1020) sits above the
+// Drupal admin Navigation toolbar (top bar 490, control bar 499, sidebar 501),
+// so a logged-in editor would see the sticky site header cover the admin nav —
+// and, when the sidebar is open as an overlay, render on top of it. When the
+// admin Navigation is present, drop the header just below the admin toolbar so
+// the admin chrome always stacks on top (the open sidebar behaves as a proper
+// overlay drawer). Anonymous visitors keep the standard Bootstrap sticky layer.
+.gin--core-navigation .page > header[role="banner"] {
+  z-index: 489; // one below Gin's lowest admin-toolbar layer (top bar, 490).
+}
+
+// From Gin's Navigation breakpoint (64em) up, the admin top bar is fixed, so
+// offset the header by Drupal's displace height to clear it. Below 64em Gin's
+// control bar scrolls away with the page, so the header stays flush (no gap).
+@media (min-width: 64em) {
+  .page > header[role="banner"] {
+    top: var(--drupal-displace-offset-top, 0);
+  }
+}
+
+// Inside the Drupal Canvas editor preview (sticky-header.js adds the class) drop
+// the sticky so the header scrolls with the content instead of overlapping
+// chrome.
+.is-canvas-preview .page > header[role="banner"] {
+  position: static;
+}

@@ -171,6 +171,18 @@ global-scripts:
     - core/jquery
     - core/once
 
+# Sticky header styles + behavior. Attached from vartheme_bs5.theme only when
+# the "Sticky header" theme setting is enabled, so it never loads otherwise.
+sticky-header:
+  css:
+    theme:
+      css/theme/sticky-header.theme.css: {}
+  js:
+    js/sticky-header.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
+
 framework-rtl:
   dependencies:
     - vartheme_bs5/bootstrap-styles-rtl

@@ -51,6 +51,7 @@
     "webpack",
     "autoprefixer",
     "stylelint",
+    "zindex",
     "eslint",
     "browserslist",
     "fontawesome",

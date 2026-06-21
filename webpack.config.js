@@ -30,6 +30,7 @@ module.exports = {
     // Components are in the webpack.config.components.js file.
     // Theme
     "theme/content-moderation.theme": ["./scss/theme/content-moderation.theme.scss"],
+    "theme/sticky-header.theme": ["./scss/theme/sticky-header.theme.scss"],
   },
   output: {
     path: path.resolve(__dirname, 'css'),

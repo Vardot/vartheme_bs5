@@ -156,6 +156,13 @@ function vartheme_bs5_preprocess_html(&$variables) {
   // The path for Vartheme BS5 theme in variables.
   $variables['vartheme_bs5_path'] = \Drupal::request()->getSchemeAndHttpHost() . \Drupal::request()->getBaseUrl() . '/' . \Drupal::service('extension.list.theme')->getPath('vartheme_bs5');
 
+  // Sticky header toggle (theme setting, defaults to enabled). Attach the
+  // sticky-header library (its own styles + behavior) only when enabled, so
+  // nothing loads when the feature is off.
+  if (theme_get_setting('sticky_header') ?? TRUE) {
+    $variables['#attached']['library'][] = 'vartheme_bs5/sticky-header';
+  }
+
 }
 
 /**

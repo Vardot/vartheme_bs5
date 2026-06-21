@@ -4,14 +4,16 @@
 .bg-edge2edge.me-0,
 [dir="rtl"] .bg-edge2edge.ms-0,
 [dir="rtl"] .bg-edge2edge.me-0 {
+  --e2e-band: calc(100vw - var(--drupal-displace-offset-left, 0px) - var(--drupal-displace-offset-right, 0px));
+
   position: relative;
-  flex: 0 0 100vw;
-  width: 100vw;
+  flex: 0 0 var(--e2e-band);
+  width: var(--e2e-band);
   max-width: none;
-  margin-right: -50vw !important;
-  margin-left: -50vw !important;
-  margin-inline-start: -50vw !important;
-  margin-inline-end: -50vw !important;
+  margin-right: calc(-0.5 * var(--e2e-band)) !important;
+  margin-left: calc(-0.5 * var(--e2e-band)) !important;
+  margin-inline-start: calc(-0.5 * var(--e2e-band)) !important;
+  margin-inline-end: calc(-0.5 * var(--e2e-band)) !important;
   inset-inline-start: 50%;
   inset-inline-end: auto;
 }

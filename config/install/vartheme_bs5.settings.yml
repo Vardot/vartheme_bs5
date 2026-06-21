@@ -10,3 +10,4 @@ logo:
 container_header: no-container
 container_content: container
 container_footer: no-container
+sticky_header: true

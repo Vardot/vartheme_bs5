@@ -64,4 +64,19 @@ function vartheme_bs5_form_system_theme_settings_alter(&$form, FormStateInterfac
     ];
   }
 
+  // Header configurations.
+  $form['header'] = [
+    '#type' => 'details',
+    '#title' => t('Header'),
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+  ];
+
+  $form['header']['sticky_header'] = [
+    '#type' => 'checkbox',
+    '#title' => t('Sticky header'),
+    '#description' => t('Keep the header pinned to the top of the viewport as the page scrolls. When enabled, the header clears the Drupal admin toolbar and picks up a drop shadow once the page is scrolled.'),
+    '#default_value' => theme_get_setting('sticky_header') ?? TRUE,
+  ];
+
 }

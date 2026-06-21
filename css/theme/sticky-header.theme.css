@@ -1,0 +1,23 @@
+.page > header[role="banner"] {
+  position: sticky;
+  z-index: 1020;
+  top: 0;
+}
+
+.page > header[role="banner"].scrolled {
+  box-shadow: 0 0.3125rem 0.625rem 0 rgba(var(--bs-body-color-rgb), 0.1);
+}
+
+.gin--core-navigation .page > header[role="banner"] {
+  z-index: 489;
+}
+
+@media (min-width: 64em) {
+  .page > header[role="banner"] {
+    top: var(--drupal-displace-offset-top, 0);
+  }
+}
+
+.is-canvas-preview .page > header[role="banner"] {
+  position: static;
+}
