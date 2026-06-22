@@ -50,15 +50,20 @@
 .media-banner .breadcrumb .breadcrumb-item,
 .media-banner .breadcrumb .breadcrumb-item.active {
   color: rgba(255, 255, 255, 0.8);
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.35;
 }
 
 .media-banner .breadcrumb .breadcrumb-item a {
   color: var(--bs-white);
+  text-decoration: none;
 }
 
 .media-banner .breadcrumb .breadcrumb-item a:hover,
 .media-banner .breadcrumb .breadcrumb-item a:focus {
   color: var(--bs-white);
+  text-decoration: none;
 }
 
 .media-banner .breadcrumb .breadcrumb-item + .breadcrumb-item::before {

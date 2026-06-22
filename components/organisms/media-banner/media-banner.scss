@@ -67,17 +67,25 @@
   // The extra `.breadcrumb` qualifier outranks the breadcrumb component's
   // default `--bs-dark` item/divider color. Breadcrumbs rendered outside the
   // media banner keep their default styling.
+  //
+  // Size/weight follow the approved design (Desktop/Components/Breadcrumb):
+  // 12px, bold, line-height 1.35.
   .breadcrumb .breadcrumb-item,
   .breadcrumb .breadcrumb-item.active {
     color: rgba($white, 0.8);
+    font-size: 0.75rem;
+    font-weight: 700;
+    line-height: 1.35;
   }
 
   .breadcrumb .breadcrumb-item a {
     color: var(--bs-white);
+    text-decoration: none;
 
     &:hover,
     &:focus {
       color: var(--bs-white);
+      text-decoration: none;
     }
   }
 
