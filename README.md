@@ -1,6 +1,9 @@
 [![Varbase](https://raw.githubusercontent.com/Vardot/varbase/11.0.x/images/varbase-logo.png)](https://www.drupal.org/project/varbase)
 
 # Vartheme BS5
+[![pipeline status](https://git.drupalcode.org/project/vartheme_bs5/badges/5.0.x/pipeline.svg)](https://git.drupalcode.org/project/vartheme_bs5/-/pipelines)
+[![Vartheme BS5](https://img.shields.io/badge/Vartheme%20BS5-5.0.0--alpha3-0d6efc?labelColor=001d38&style=flat-square)](https://git.drupalcode.org/project/vartheme_bs5/-/pipelines?ref=5.0.0-alpha3)
+[![Automated Functional Testing](https://git.drupalcode.org/project/varbase_project/badges/11.0.x/pipeline.svg)](https://git.drupalcode.org/project/varbase_project/-/pipelines)
 
 A Starterkit theme for Varbase websites.
 
