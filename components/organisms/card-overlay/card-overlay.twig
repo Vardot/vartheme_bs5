@@ -50,10 +50,7 @@
 {% set content_slot %}{% block content %}{% endblock %}{% endset %}
 {% set has_content_slot = content_slot|render|trim is not empty %}
 
-{% set placeholder_src = (component_metadata.path is defined)
-  ? (base_path ~ component_metadata.path ~ '/assets/overlay-card-image-placeholder.svg')
-  : 'assets/overlay-card-image-placeholder.svg'
-%}
+{% set placeholder_src = base_path|default('/') ~ 'themes/contrib/vartheme_bs5/components/foundation/images/assets/banner-1.jpg' %}
 
 {# Logic: class arrays merged into attributes. #}
 {% set attributes = attributes.addClass([

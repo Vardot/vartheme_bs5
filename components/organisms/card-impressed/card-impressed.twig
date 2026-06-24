@@ -54,10 +54,7 @@
 {% set has_overlay_slot = overlay_slot|render|trim is not empty %}
 {% set has_content_slot = content_slot|render|trim is not empty %}
 
-{% set placeholder_src = (component_metadata.path is defined)
-  ? (base_path|default('/') ~ component_metadata.path ~ '/assets/impressed-card-image-placeholder.svg')
-  : (base_path|default('/') ~ 'themes/contrib/vartheme_bs5/components/organisms/card-impressed/assets/impressed-card-image-placeholder.svg')
-%}
+{% set placeholder_src = base_path|default('/') ~ 'themes/contrib/vartheme_bs5/components/foundation/images/assets/teaser-2.jpg' %}
 
 {% set render_media = has_media or has_overlay_slot %}
 {% set media_image_render = has_media

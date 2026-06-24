@@ -70,7 +70,7 @@ Use this component when you need a reusable image that can:
 ```twig
 {% include 'vartheme_bs5:image' with {
   media: {
-    src: 'assets/image-placeholder.svg',
+    src: '/components/foundation/images/assets/placeholder.jpg',
     alt: 'Placeholder image',
     width: 1200,
     height: 800

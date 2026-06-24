@@ -79,10 +79,7 @@
 
 {% set content_padding_class = padded ? 'p-4' : 'p-0' %}
 
-{% set placeholder_src = (component_metadata.path is defined)
-  ? (component_metadata.path ~ '/assets/featured-card-image-placeholder.svg')
-  : 'assets/featured-card-image-placeholder.svg'
-%}
+{% set placeholder_src = base_path|default('/') ~ 'themes/contrib/vartheme_bs5/components/foundation/images/assets/teaser-3.jpg' %}
 
 {# Logic: column size mapping for the start (media) column per breakpoint. #}
 {% set start_column_xs_size = columns_xs_size ? ['col-' ~ columns_xs_size|split('_')[0]|trim('0', 'left')] : [] %}

@@ -83,7 +83,7 @@ Use this component when you need a reusable card that can:
   text: 'A short description goes here.',
   orientation: 'image-top',
   media: {
-    src: 'assets/card-placeholder.svg',
+    src: '/components/foundation/images/assets/teaser-1.png',
     alt: 'Placeholder card image',
     width: 1200,
     height: 900
@@ -104,7 +104,7 @@ Use this component when you need a reusable card that can:
   orientation: 'image-right',
   content_vertical: 'justify-content-center',
   media: {
-    src: 'assets/card-placeholder.svg',
+    src: '/components/foundation/images/assets/teaser-1.png',
     alt: 'Placeholder card image',
     width: 1200,
     height: 900

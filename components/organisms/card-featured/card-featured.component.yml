@@ -28,7 +28,7 @@ props:
       $ref: json-schema-definitions://canvas.module/image
       type: object
       examples:
-        - src: assets/featured-card-image-placeholder.svg
+        - src: /themes/contrib/vartheme_bs5/components/foundation/images/assets/teaser-3.jpg
           alt: Featured image
           width: 800
           height: 600

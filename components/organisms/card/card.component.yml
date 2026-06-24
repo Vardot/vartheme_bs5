@@ -49,7 +49,7 @@ props:
       title: Image
       type: object
       examples:
-        - src: "assets/card-placeholder.svg"
+        - src: "/themes/contrib/vartheme_bs5/components/foundation/images/assets/teaser-1.png"
           width: 1200
           height: 900
           alt: "Placeholder card image"

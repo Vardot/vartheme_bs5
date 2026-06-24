@@ -45,7 +45,7 @@ Use this component when you need a lightweight logo card that can:
 ```twig
 {{ include('vartheme_bs5:card-logo', {
   media: {
-    src: 'assets/logo-placeholder.svg',
+    src: '/components/foundation/images/assets/full-logo-dark.svg',
     alt: 'Partner logo',
     width: '600',
     height: '240'
@@ -60,7 +60,7 @@ Use this component when you need a lightweight logo card that can:
 ```twig
 {{ include('vartheme_bs5:card-logo', {
   media: {
-    src: 'assets/logo-placeholder.svg',
+    src: '/components/foundation/images/assets/full-logo-dark.svg',
     alt: 'Partner logo',
     width: '600',
     height: '240'

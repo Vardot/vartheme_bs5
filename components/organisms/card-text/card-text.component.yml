@@ -127,7 +127,7 @@ props:
       title: Icon image
       description: Upload an icon image (SVG, PNG, or WebP). Leave empty to hide the icon area — the card renders as a plain text card.
       examples:
-        - src: assets/icon-placeholder.svg
+        - src: /themes/contrib/vartheme_bs5/components/foundation/images/assets/lightbulb.svg
           alt: ''
           width: 64
           height: 64

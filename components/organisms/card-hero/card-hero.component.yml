@@ -42,7 +42,7 @@ props:
       type: object
       title: Media image
       examples:
-        - src: assets/card-hero-image-placeholder.svg
+        - src: /themes/contrib/vartheme_bs5/components/foundation/images/assets/hero-1.png
           alt: Placeholder image
           width: 1200
           height: 800

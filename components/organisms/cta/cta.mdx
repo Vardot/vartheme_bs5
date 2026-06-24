@@ -1,6 +1,32 @@
-import { Meta } from '@storybook/addon-docs/blocks';
-import Readme from './README.md';
+import { Meta, Source, Canvas, Controls, Stories } from '@storybook/addon-docs/blocks';
+import * as CtaStories from './cta.stories.json';
+import templateSource from './cta.twig?raw';
 
-<Meta title="Organisms/CTA" />
+<Meta of={CtaStories} name="Docs" />
 
-<Readme />
+# CTA
+
+A call-to-action section with a heading, supporting text, an optional background image with a dark overlay, and call-to-action buttons.
+
+- Renders a heading (via the shared `vartheme_bs5:heading` component) with a chosen level and visual size
+- Applies a Bootstrap background color and resolves the content text color automatically or explicitly
+- Optional background image with a dark overlay, and full-bleed edge-to-edge background behavior
+- Optional primary button plus an `actions` slot for additional links or buttons
+
+> ### Bootstrap documentation
+> - [Background color](https://getbootstrap.com/docs/5.3/utilities/background/)
+> - [Buttons](https://getbootstrap.com/docs/5.3/components/buttons/)
+> - [Opacity](https://getbootstrap.com/docs/5.3/utilities/opacity/)
+
+## Properties
+
+<Canvas of={CtaStories.Default} />
+<Controls of={CtaStories.Default} />
+
+## Stories
+
+<Stories of={CtaStories} />
+
+## Source code
+[//]: # (Twig Template source code)
+<Source code={templateSource} />

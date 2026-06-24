@@ -13,7 +13,7 @@ props:
       title: Logo image
       description: Logo image shown inside the card.
       examples:
-        - src: "assets/logo-placeholder.svg"
+        - src: "/themes/contrib/vartheme_bs5/components/foundation/images/assets/full-logo-dark.svg"
           alt: "Placeholder brand logo"
           width: 600
           height: 240

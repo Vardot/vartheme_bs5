@@ -10,7 +10,7 @@ props:
       title: Image
       description: Main image source.
       examples:
-        - src: assets/image-placeholder.svg
+        - src: /themes/contrib/vartheme_bs5/components/foundation/images/assets/placeholder.jpg
           alt: Placeholder image
           width: 1200
           height: 800

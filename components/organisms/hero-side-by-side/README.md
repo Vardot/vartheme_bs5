@@ -75,7 +75,7 @@ Use this component when you need a side-by-side hero that can:
   heading_level: 2,
   text: '<p>Create flexible, scalable Drupal experiences using modern components.</p>',
   image: {
-    src: 'assets/image-placeholder.svg',
+    src: '/components/foundation/images/assets/hero-2.png',
     alt: 'Hero image',
     width: 1200,
     height: 900

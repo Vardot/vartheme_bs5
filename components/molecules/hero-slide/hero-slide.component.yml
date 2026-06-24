@@ -44,7 +44,7 @@ props:
       type: object
       title: Image
       examples:
-        - src: assets/hero-slider-image.webp
+        - src: /themes/contrib/vartheme_bs5/components/foundation/images/assets/hero-1.png
           alt: Placeholder image
           width: 1600
           height: 700

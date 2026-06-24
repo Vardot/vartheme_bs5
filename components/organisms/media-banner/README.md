@@ -72,7 +72,7 @@ Use this component when you need a banner that can:
   object_position: 'center',
   radius: 'rounded-3',
   media: {
-    src: 'assets/media-banner.webp',
+    src: '/components/foundation/images/assets/banner-2.jpg',
     alt: 'Placeholder image',
     width: 1920,
     height: 1075

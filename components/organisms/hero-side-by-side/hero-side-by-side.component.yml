@@ -41,7 +41,7 @@ props:
       title: Image
       type: object
       examples:
-        - src: assets/image-placeholder.svg
+        - src: /themes/contrib/vartheme_bs5/components/foundation/images/assets/hero-2.png
           alt: Hero image
           width: 1200
           height: 900

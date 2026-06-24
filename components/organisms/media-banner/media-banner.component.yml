@@ -221,7 +221,7 @@ props:
       title: Background image
       type: object
       examples:
-        - src: assets/media-banner.webp
+        - src: /themes/contrib/vartheme_bs5/components/foundation/images/assets/banner-2.jpg
           alt: Placeholder image
           width: 1920
           height: 1075

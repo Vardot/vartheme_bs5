@@ -14,92 +14,49 @@
 } %}
 
 <div class="px-5 py-5">
-  <h1 class="fw-bold mb-5">Logo &amp; Share Image</h1>
+  <h1 class="fw-bold display-5 mb-5">Logo &amp; Share Image</h1>
 
   {# Logo section #}
   <div class="border-top pt-4 mb-5">
     <h2 class="fw-bold mb-4">Logo</h2>
-    <div class="row g-0 mb-3">
-      <div class="col">
-        <div class="bg-light d-flex align-items-center justify-content-center py-5">
-          <img style="width: 200px;"
-              src="/components/foundation/logos/assets/full-logo-dark.svg"
-              alt="Colored Varbase Logo emblem"
-              title="Colored Varbase Logo emblem" />
-        </div>
-      </div>
-      <div class="col">
-        <div class="bg-accent d-flex align-items-center justify-content-center py-5">
-          <img style="width: 200px;" 
-              src="/components/foundation/logos/assets/full-logo-light.svg"
-              alt="White Varbase Logo emblem"
-              title="White Varbase Logo emblem" />
-        </div>
-      </div>
-    </div>
-    <h3 class="fw-bold mb-3">Original Size</h3>
-    <div class="ms-3">
-      <img src="/components/foundation/logos/assets/full-logo-dark.svg"
-           alt="Original Varbase Logo Size" />
-    </div>
-  </div>
-
-  {# Usage section #}
-  <div class="border-top pt-4 mb-5">
-    <h2 class="fw-bold mb-2">Usage</h2>
-    <p class="mb-4">Varbase's Logo should always be use lowercase <strong>v</strong>. No capital <strong>V</strong>.</p>
-    <div class="row g-0">
-      <div class="col">
-        <div class="border border-success d-flex flex-column align-items-center justify-content-center py-5 gap-3">
-          <img src="/components/foundation/logos/assets/full-logo-dark.svg"
-               style="width: 118px;"
-               alt="Correct Varbase logo" />
-          <span class="text-success small">Correct</span>
-        </div>
-      </div>
-      <div class="col">
-        <div class="border border-danger d-flex flex-column align-items-center justify-content-center py-5 gap-3">
-          <img src="/components/foundation/logos/assets/full-logo-dark.svg"
-               style="width: 118px; text-transform: capitalize;"
-               alt="Incorrect Varbase logo" />
-          <span class="text-danger small">Incorrect</span>
-        </div>
-      </div>
+    <div class="d-inline-flex align-items-center gap-4 rounded-3 px-4 py-3"
+         style="background-color: #e9e3f8;">
+      <img style="height: 24px;"
+           src="/components/foundation/images/assets/full-logo-dark.svg"
+           alt="Varbase logo (dark)"
+           title="Varbase logo (dark)" />
+      <img style="height: 24px;"
+           src="/components/foundation/images/assets/full-logo-light.svg"
+           alt="Varbase logo (light)"
+           title="Varbase logo (light)" />
     </div>
   </div>
 
   {# Favicon section #}
   <div class="border-top pt-4 mb-5">
     <h2 class="fw-bold mb-4">Favicon</h2>
-    <div class="d-flex align-items-end gap-3">
-      <img src="/components/foundation/logos/assets/favicon.svg"
-           alt="Varbase Favicon 152x152" title="152x152"
-           style="width: 100px;" />
-      <img src="/components/foundation/logos/assets/favicon.svg"
-           alt="Varbase Favicon 120x120" title="120x120" 
-           style="width: 80px;" />
-      <img src="/components/foundation/logos/assets/favicon.svg"
-           alt="Varbase Favicon 76x76" title="76x76"
-           style="width: 50px;" />
-      <img src="/components/foundation/logos/assets/favicon.svg"
-           alt="Varbase Favicon 60x60" title="60x60"
-           style="width: 40px;" />
-      <img src="/components/foundation/logos/assets/favicon.svg"
-           alt="Varbase Favicon 16x16" title="16x16"
-           style="width: 16px;" />
+    <div class="d-inline-flex align-items-center gap-5 rounded-3 px-5 py-4"
+         style="border: 1px dashed #b9a9e6;">
+      <img src="/components/foundation/images/assets/favicon.svg"
+           alt="Varbase favicon 152x152" title="152 × 152" style="width: 80px;" />
+      <img src="/components/foundation/images/assets/favicon.svg"
+           alt="Varbase favicon 120x120" title="120 × 120" style="width: 63px;" />
+      <img src="/components/foundation/images/assets/favicon.svg"
+           alt="Varbase favicon 76x76" title="76 × 76" style="width: 39px;" />
+      <img src="/components/foundation/images/assets/favicon.svg"
+           alt="Varbase favicon 60x60" title="60 × 60" style="width: 32px;" />
+      <img src="/components/foundation/images/assets/favicon.svg"
+           alt="Varbase favicon 16x16" title="16 × 16" style="width: 16px;" />
     </div>
   </div>
 
   {# Share Image section #}
   <div class="border-top pt-4 mb-5">
     <h2 class="fw-bold mb-4">Share Image</h2>
-    <div class="bg-light d-flex align-items-center justify-content-center py-5">
-      <img src="/components/foundation/logos/assets/full-logo-dark.svg"
-           class="img-fluid"
-           alt="Varbase Social share image"
-           title="Varbase Social share image"
-           style="width: 200px;" />
-    </div>
+    <img src="/components/foundation/images/assets/share-image.png"
+         class="img-fluid rounded-3"
+         alt="Varbase social share image"
+         title="Varbase social share image" />
   </div>
 </div>
 
