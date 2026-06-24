@@ -23,7 +23,6 @@ props:
       type: string
       title: Text size
       description: "Optional Bootstrap typography utility. Leave empty to match the selected heading level."
-      default: ""
       enum:
         - h1
         - h2
@@ -54,7 +53,6 @@ props:
       type: string
       title: Text color
       description: "Bootstrap text color utility. Leave empty for theme default."
-      default: ""
       enum:
         - text-primary
         - text-secondary
@@ -79,7 +77,6 @@ props:
       type: string
       title: Alignment
       description: "Bootstrap text alignment utility. Leave empty for default alignment."
-      default: ""
       enum:
         - text-start
         - text-center
@@ -92,7 +89,6 @@ props:
       type: string
       title: Font weight
       description: "Bootstrap font weight utility. Leave empty for default weight."
-      default: ""
       enum:
         - fw-light
         - fw-normal
@@ -109,7 +105,6 @@ props:
       type: string
       title: Font style
       description: "Bootstrap font style utility. Leave empty for default style."
-      default: ""
       enum:
         - fst-italic
       'meta:enum':

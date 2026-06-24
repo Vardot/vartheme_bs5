@@ -18,7 +18,7 @@ props:
         "ul" : "Unordered list"
         "ol" : "Ordered list"
       x-translation-context: Type
-      default: ''
+      default: 'ul'
     summary_utility_classes:
       type: array
       title: Utility Classes
