@@ -1,0 +1,11 @@
+name: 'Vartheme BS5 Test'
+description: 'Prepares a Standard site for the Vartheme BS5 browser tests. Vartheme BS5 is a starterkit theme with no module dependency - it renders entirely on its own core Single Directory Components and shipped Bootstrap assets - so nothing extra needs installing. The recipe only turns off CSS/JS aggregation so the individual theme library files load with their real paths, which the browser suite can assert. The CI job then enables the Vartheme BS5 theme, sets it as the default front-end theme and seeds a little content, so the browser scenarios verify that the theme renders (its OOP hook implementations run) on a live site.'
+type: 'Testing'
+config:
+  actions:
+    # Load every library file individually (real href/src) so the browser suite
+    # can assert the Vartheme BS5 stylesheet is present on the page.
+    system.performance:
+      simpleConfigUpdate:
+        css.preprocess: false
+        js.preprocess: false

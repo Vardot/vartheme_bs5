@@ -20,7 +20,7 @@ module.exports = merge(webpackConfig, {
           },
         },
         extractComments: false,
-      })
+      }),
     ],
-  }
+  },
 });

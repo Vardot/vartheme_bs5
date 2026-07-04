@@ -1,0 +1,19 @@
+parameters:
+  level: 0
+  fileExtensions:
+    - php
+    - module
+    - inc
+    - install
+    - theme
+    - profile
+  reportUnmatchedIgnoredErrors: false
+  ignoreErrors:
+    # new static() is a best practice in Drupal, so we cannot fix that.
+    - '#^Unsafe usage of new static#'
+    # theme_get_setting() is deprecated in drupal:11.3.0 and removed only in
+    # drupal:13.0.0. It is the supported way for a theme to read its own
+    # settings (used by theme-settings.php and VarthemeBs5Hooks::preprocessPage).
+    # The 4.0.x branch targets the ~11.4.0 range where the function is fully
+    # available, so the deprecation notice is expected and accepted here.
+    - '#Call to deprecated function theme_get_setting\(\)#'

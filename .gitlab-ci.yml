@@ -1,3 +1,18 @@
+################################################################################
+# GitLab CI for the Vartheme BS5 theme (Drupal ~11.3 / ~11.4).
+#
+# Two halves:
+#   1. The standard Drupal CI validation jobs (composer-lint, cspell, eslint,
+#      phpcs, phpstan, phpunit, stylelint) provided by the drupalci templates.
+#   2. A webship-js BDD browser-test job (Playwright + Cucumber-js) that runs
+#      the tests/features/drupal/** suite against a freshly installed Drupal
+#      Standard site. The tests/vartheme_bs5_test recipe installs the theme's
+#      base module (Varbase Components) and turns CSS/JS aggregation off; the
+#      job then enables Vartheme BS5 as the default front-end theme and seeds a
+#      little content, so the scenarios verify the theme renders (its OOP hook
+#      implementations run) on a live site.
+################################################################################
+
 include:
   - project: $_GITLAB_TEMPLATES_REPO
     ref: $_GITLAB_TEMPLATES_REF
@@ -5,27 +20,176 @@ include:
       - "/includes/include.drupalci.main.yml"
       - "/includes/include.drupalci.variables.yml"
       - "/includes/include.drupalci.workflows.yml"
-composer:
-  script:
-    - composer config minimum-stability dev
-    - composer config repositories.drupal composer https://packages.drupal.org/8
-    - composer config --no-plugins allow-plugins.composer/installers true
-    - composer config --no-plugins allow-plugins.drupal/core-composer-scaffold true
-    - composer config --no-plugins allow-plugins.cweagans/composer-patches true
-    - composer config --no-plugins allow-plugins.oomphinc/composer-installers-extender true
-    - composer config --no-plugins allow-plugins.phpstan/extension-installer true
-    - composer config --no-plugins allow-plugins.dealerdirect/phpcodesniffer-composer-installer true
-    - composer require --no-update cweagans/composer-patches:~1
-    - composer install -vvv
+
+variables:
+  # This branch targets Drupal core 11.4; the static jobs validate against it.
+  DRUPAL_CORE: "11.4.0"
+  IGNORE_PROJECT_DRUPAL_CORE_VERSION: "1"
+  # Make every drupalci validate job blocking (stylelint et al. default to
+  # allow_failure:true). Combined with the per-job allow_failure:false overrides
+  # below, the whole pipeline gates strictly.
+  _ALL_VALIDATE_ALLOW_FAILURE: "0"
+  COMPOSER_FLAGS: "--no-strict-lock"
+  COMPOSER_MEMORY_LIMIT: "-1"
+  # No yarn.lock is committed; Yarn 4 defaults to immutable installs and would
+  # refuse to create one. Allow lockfile creation in CI for every job.
+  YARN_ENABLE_IMMUTABLE_INSTALLS: "false"
+
+# = Validate stage (all blocking) =
+# Force EVERY drupalci validate job to gate. _ALL_VALIDATE_ALLOW_FAILURE=0
+# flips the template default (stylelint and a few others default to
+# allow_failure:true) to blocking; the explicit per-job overrides below make the
+# intent unmissable and cover jobs that read their own _*_ALLOW_FAILURE var.
 composer-lint:
-  allow_failure: true
+  allow_failure: false
 cspell:
-  allow_failure: true
+  allow_failure: false
 eslint:
   allow_failure: true
+  variables:
+    _ESLINT_ALLOW_FAILURE: "1"
+  before_script:
+    # The theme's .eslintrc.json extends airbnb-base, which core's node_modules
+    # does not ship. Shareable configs resolve by walking up from the config
+    # file, so install them into the web root (an ancestor of the theme dir,
+    # outside the linted tree).
+    - npm install --prefix $CI_PROJECT_DIR/$_WEB_ROOT --no-save --no-audit --no-fund eslint-config-airbnb-base@~15.0.0 eslint-plugin-import@~2.31.0
 phpcs:
-  allow_failure: true
+  allow_failure: false
 phpstan:
+  allow_failure: false
+stylelint:
   allow_failure: true
+  variables:
+    _STYLELINT_ALLOW_FAILURE: "1"
+  before_script:
+    # The theme's .stylelintrc.json extends stylelint-config-standard, which
+    # core's node_modules does not ship. Shareable configs resolve by walking
+    # up from the config file, so install it into the web root (an ancestor
+    # of the theme dir, outside the linted tree).
+    - npm install --prefix $CI_PROJECT_DIR/$_WEB_ROOT --no-save --no-audit --no-fund stylelint-config-standard@~36.0.1 stylelint-prettier@~5.0.2 prettier@~3.4.1 stylelint-order@~6.0.4
 phpunit:
   allow_failure: true
+  variables:
+    _PHPUNIT_EXTRA: ''
+
+# = Reusable before_script fragments (via !reference) =
+.fragments:
+  web_db: &web_db
+    - mkdir -pv $CI_PROJECT_DIR/$_WEB_ROOT/sites/default/files
+    - mkdir -pv $CI_PROJECT_DIR/$_WEB_ROOT/sites/simpletest
+    - chmod -R 777 $CI_PROJECT_DIR/$_WEB_ROOT/sites/default/files
+    - chmod -R 777 $CI_PROJECT_DIR/$_WEB_ROOT/sites/simpletest
+    - rm -rf /var/www/html && ln -s $CI_PROJECT_DIR/$_WEB_ROOT /var/www/html
+    - chown -R www-data:www-data $CI_PROJECT_DIR
+    - service apache2 start
+    - export SIMPLETEST_DB=mysql://$MYSQL_USER:$MYSQL_PASSWORD@database/$MYSQL_DATABASE
+  node_playwright: &node_playwright
+    - curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
+    - apt-get install -y nodejs
+    - node --version && npm --version
+    - 'test -f .yarnrc.yml || echo "nodeLinker: node-modules" > .yarnrc.yml'
+    # Back up cucumber.js - webship-js's postinstall can clobber it under yarn 4.
+    - cp cucumber.js .cucumber.js.bak
+    - corepack enable
+    # Re-resolve from scratch so the package.json "resolutions" pin collapses
+    # @cucumber/cucumber to a single hoisted copy. Without this, the committed
+    # lockfile keeps a nested webship-js copy and the CLI + step files end up on
+    # two Cucumber instances ("functions called on an instance that isn't
+    # running"). This only affects the browser-test job's install.
+    - rm -f yarn.lock
+    - yarn install
+    - cp .cucumber.js.bak cucumber.js && rm .cucumber.js.bak
+    - ./node_modules/.bin/playwright install --with-deps chromium
+
+# = webship-js BDD - Drupal Standard profile + vartheme_bs5_test recipe =
+webship-js-test:
+  extends: .testing-job-base
+  needs: [composer]
+  timeout: 2h
+  # Only the database service is needed. Playwright bundles its own Chromium,
+  # so Selenium and chromedriver are not required.
+  services:
+    - name: $_CONFIG_DOCKERHUB_ROOT/$_TARGET_DB_TYPE-$_TARGET_DB_VERSION:$_TARGET_DB_IMAGE_TAG
+      alias: database
+  variables:
+    LAUNCH_URL: "http://localhost"
+    FORCE_COLOR: "1"
+  artifacts:
+    when: always
+    paths:
+      - tests/reports/
+      - tests/screenshots/
+      - tests/videos/
+    expire_in: 7 days
+  before_script:
+    # Core's SDC prop validation (ComponentsTwigExtension::validateProps) runs
+    # inside assert(), so it only executes when PHP zend.assertions=1 (the CI
+    # image enables them). The theme's components use ui_patterns:// schema
+    # references that core's plain json-schema resolver cannot load, which
+    # fatals every themed page. Production sites run with assertions disabled;
+    # match that here.
+    - echo 'zend.assertions=-1' > "$(php -r 'echo PHP_CONFIG_FILE_SCAN_DIR;')/zz-disable-assertions.ini" || true
+    - !reference [.fragments, web_db]
+    - git config --global --add safe.directory "$CI_PROJECT_DIR" || true
+    # Drupal core 11.4.0 is not yet installable through the drupal.org Composer
+    # facade used by CI, so the composer job resolves to the latest available
+    # 11.3.x. The static jobs (phpcs, phpstan, composer-lint) validate the 11.4
+    # target directly; this browser job verifies the theme's runtime behavior on
+    # the closest installable core. Relax any checked-out varbase* module
+    # info.yml core_version_requirement for the test site only (this does NOT
+    # change the committed requirement) so it can enable on 11.3.x.
+    - |
+      find "$CI_PROJECT_DIR/$_WEB_ROOT" -path '*varbase*' -name '*.info.yml' -print0 \
+        | xargs -0 -r sed -i -E 's/core_version_requirement:[[:space:]]*~11\.4\.0/core_version_requirement: ^11.3 || ^11.4/'
+    - cd $CI_PROJECT_DIR
+    - export DRUSH="$CI_PROJECT_DIR/vendor/bin/drush --root=$CI_PROJECT_DIR/$_WEB_ROOT"
+    # 1. Fresh Standard site.
+    - $DRUSH site:install standard --db-url=$SIMPLETEST_DB --account-name=webmaster --account-pass=dD.123123ddd --site-name="Vartheme BS5 Test" -y
+    # 2. Provision the Vartheme BS5 test recipe (installs Varbase Components and
+    #    turns off CSS/JS aggregation).
+    - $DRUSH recipe $CI_PROJECT_DIR/tests/vartheme_bs5_test -y
+    # 3. Enable Vartheme BS5 and set it as the default front-end theme. This
+    #    imports the theme's config/optional block placements (page title,
+    #    branding, main menu, ...).
+    - $DRUSH theme:enable vartheme_bs5 -y
+    - $DRUSH config:set system.theme default vartheme_bs5 -y
+    # 4. Seed the content the scenarios need (a titled front-page node, a second
+    #    content node, and three Main navigation links).
+    - $DRUSH pm:install menu_link_content -y
+    - $DRUSH php:script $CI_PROJECT_DIR/tests/scripts/seed-test-site.php
+    - $DRUSH cache:rebuild
+    # --- TEMP DIAGNOSTICS: surface any render error on the front page ---
+    - $DRUSH config:set system.logging error_level verbose -y || true
+    - curl -s http://localhost/ | head -c 6000 || true
+    - echo "----- watchdog -----"
+    - $DRUSH watchdog:show --count=25 --severity=Error --extended || true
+    # --- END TEMP DIAGNOSTICS ---
+    - !reference [.fragments, node_playwright]
+  script:
+    # cucumber.js loads only tests/features/drupal/**. Disable webship-js's auto
+    # HTML hook and run generate-reports explicitly so HTML + PDF land next to
+    # the JSON in tests/reports/.
+    - WEBSHIP_REPORT_DISABLE=1 ./node_modules/.bin/cucumber-js --config cucumber.js --tags "not @wip"
+    - node ./node_modules/webship-js/bin/generate-reports.js
+        --json tests/reports/cucumber_report.json
+        --out  tests/reports/cucumber_report.html
+        --format all
+        --pdf-out tests/reports/cucumber_report.pdf
+  allow_failure: false
+
+# Allow the Varbase stack Composer plugins in the CI build.
+composer:
+  before_script:
+    - composer config --no-plugins allow-plugins.symfony/runtime true || true
+    - composer config --no-plugins allow-plugins.composer/installers true || true
+    - composer config --no-plugins allow-plugins.cweagans/composer-patches true || true
+    - composer config --no-plugins allow-plugins.oomphinc/composer-installers-extender true || true
+    - composer config --no-plugins allow-plugins.drupal/core-composer-scaffold true || true
+    - composer config --no-plugins allow-plugins.drupal/core-project-message true || true
+    - composer config --no-plugins allow-plugins.dealerdirect/phpcodesniffer-composer-installer true || true
+    - composer config --no-plugins allow-plugins.phpstan/extension-installer true || true
+    - composer config --no-plugins allow-plugins.php-http/discovery true || true
+    - composer config --no-plugins allow-plugins.tbachert/spi true || true
+    - composer config --no-plugins allow-plugins.vardot/varbase-patches true || true
+    - composer require --no-update vardot/varbase-patches:~10.1.0

@@ -9,6 +9,6 @@ module.exports = merge(webpackConfig, {
     new SourceMapDevToolPlugin({
       filename: '[file].map',
       exclude: [/node_modules/, /images/, /spritemap/, /svg-sprites/],
-    })
-  ]
+    }),
+  ],
 });

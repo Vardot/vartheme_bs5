@@ -1,23 +1,34 @@
 {
-  "name": "drupal/vartheme_bs5",
-  "description": "Starterkit theme for Varbase standard websites. Based on Bootstrap 5 framework using SASS.",
-  "type": "drupal-theme",
-  "homepage": "https://www.drupal.org/project/vartheme_bs5",
-  "license": "GPL-2.0-or-later",
-  "authors": [
-    {
-      "name": "Vardot",
-      "homepage": "https://www.drupal.org/vardot",
-      "role": "Maintainer"
-    }
-  ],
-  "support": {
-    "issues": "http://drupal.org/project/issues/vartheme_bs5",
-    "source": "http://cgit.drupalcode.org/vartheme_bs5"
-  },
-  "require": {
-    "drupal/core": "~11.3.0",
-    "vardot/varbase-patches": "~10.1.0",
-    "drupal/varbase_components": "~3.0.0"
-  }
+    "name": "drupal/vartheme_bs5",
+    "description": "Starterkit theme for Varbase standard websites. Based on Bootstrap 5 framework using SASS.",
+    "type": "drupal-theme",
+    "homepage": "https://www.drupal.org/project/vartheme_bs5",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "Vardot",
+            "homepage": "https://www.drupal.org/vardot",
+            "role": "Maintainer"
+        }
+    ],
+    "support": {
+        "issues": "http://drupal.org/project/issues/vartheme_bs5",
+        "source": "http://cgit.drupalcode.org/vartheme_bs5"
+    },
+    "require": {
+        "drupal/core": "~11.3.0",
+        "vardot/varbase-patches": "~10.1.0",
+        "drupal/varbase_components": "~3.0.0"
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true,
+            "drupal/core-composer-scaffold": true,
+            "cweagans/composer-patches": true,
+            "oomphinc/composer-installers-extender": true,
+            "vardot/varbase-patches": true
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

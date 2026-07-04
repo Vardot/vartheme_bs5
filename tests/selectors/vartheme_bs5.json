@@ -1,0 +1,18 @@
+{
+  "css": {
+    "vartheme body": "body",
+    "vartheme framework stylesheet": "link[href*=\"vartheme_bs5\"]",
+    "vartheme navbar": ".navbar",
+    "vartheme navbar toggler": ".navbar-toggler",
+    "vartheme navbar collapse": ".navbar-collapse",
+    "vartheme main menu": ".navbar-nav",
+    "vartheme menu item": ".navbar-nav .nav-item",
+    "vartheme menu link": ".navbar-nav .nav-link",
+    "drupal page heading": "h1.page-title",
+    "drupal status messages": ".messages--status",
+    "drupal error messages": ".messages--error",
+    "login form": "#user-login-form",
+    "save button": "#edit-submit"
+  },
+  "xpath": {}
+}
