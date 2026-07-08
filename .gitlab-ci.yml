@@ -146,25 +146,18 @@ webship-js-test:
     - export DRUSH="$CI_PROJECT_DIR/vendor/bin/drush --root=$CI_PROJECT_DIR/$_WEB_ROOT"
     # 1. Fresh Standard site.
     - $DRUSH site:install standard --db-url=$SIMPLETEST_DB --account-name=webmaster --account-pass=dD.123123ddd --site-name="Vartheme BS5 Test" -y
-    # 2. Provision the Vartheme BS5 test recipe (installs Varbase Components and
-    #    turns off CSS/JS aggregation).
-    - $DRUSH recipe $CI_PROJECT_DIR/tests/vartheme_bs5_test -y
+    # 2. Provision the Vartheme BS5 test recipe: installs Varbase Components,
+    #    turns off CSS/JS aggregation, ensures the Basic page type, and seeds a
+    #    titled front-page node + the Main navigation links (all via the recipe).
+    - $DRUSH recipe $CI_PROJECT_DIR/tests/recipes/vartheme_bs5_test -y
     # 3. Enable Vartheme BS5 and set it as the default front-end theme. This
     #    imports the theme's config/optional block placements (page title,
     #    branding, main menu, ...).
     - $DRUSH theme:enable vartheme_bs5 -y
     - $DRUSH config:set system.theme default vartheme_bs5 -y
-    # 4. Seed the content the scenarios need (a titled front-page node, a second
-    #    content node, and three Main navigation links).
-    - $DRUSH pm:install menu_link_content -y
-    - $DRUSH php:script $CI_PROJECT_DIR/tests/scripts/seed-test-site.php
     - $DRUSH cache:rebuild
-    # --- TEMP DIAGNOSTICS: surface any render error on the front page ---
-    - $DRUSH config:set system.logging error_level verbose -y || true
     - curl -s http://localhost/ | head -c 6000 || true
     - echo "----- watchdog -----"
-    - $DRUSH watchdog:show --count=25 --severity=Error --extended || true
-    # --- END TEMP DIAGNOSTICS ---
     - !reference [.fragments, node_playwright]
   script:
     # cucumber.js loads only tests/features/drupal/**. Disable webship-js's auto
@@ -180,6 +173,9 @@ webship-js-test:
 
 # Allow the Varbase stack Composer plugins in the CI build.
 composer:
+  variables:
+    DRUPAL_CORE: "11.4.0"
+    IGNORE_PROJECT_DRUPAL_CORE_VERSION: "1"
   before_script:
     - composer config --no-plugins allow-plugins.symfony/runtime true || true
     - composer config --no-plugins allow-plugins.composer/installers true || true

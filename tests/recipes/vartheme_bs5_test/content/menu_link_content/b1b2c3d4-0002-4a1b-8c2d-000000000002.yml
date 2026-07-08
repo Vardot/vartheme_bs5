@@ -1,0 +1,18 @@
+_meta:
+  version: '1.0'
+  entity_type: menu_link_content
+  uuid: b1b2c3d4-0002-4a1b-8c2d-000000000002
+  default_langcode: en
+default:
+  title:
+    - value: 'Log in'
+  link:
+    - uri: 'internal:/user/login'
+  menu_name:
+    - value: main
+  weight:
+    - value: 1
+  expanded:
+    - value: true
+  enabled:
+    - value: true

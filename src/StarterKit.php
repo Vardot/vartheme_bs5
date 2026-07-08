@@ -162,6 +162,12 @@ final class StarterKit implements StarterKitInterface {
       self::findAndReplace($working_dir, $old_class, $new_class);
     }
 
+    // Rename the PascalCase machine-name class token (e.g. the object-oriented
+    // hook class Drupal\vartheme_bs5\Hook\VarthemeBs5Hooks) to the new
+    // theme's PascalCase name before the generic 'Vartheme' replacement below
+    // would otherwise mangle it into an invalid class/file name.
+    self::findAndReplace($working_dir, 'VarthemeBs5', $new_pattern);
+
     self::findAndReplace($working_dir, 'vartheme_bs5', $machine_name);
     self::findAndReplace($working_dir, 'Vartheme BS5 Starter Kit', $theme_name);
     self::findAndReplace($working_dir, 'Vartheme BS5', $theme_name);

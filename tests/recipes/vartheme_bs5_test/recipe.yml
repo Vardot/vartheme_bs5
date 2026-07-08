@@ -1,0 +1,36 @@
+name: 'Vartheme BS5 Test'
+description: 'Prepares a Standard site for the Vartheme BS5 browser tests entirely through the recipe system (no PHP seed script). It installs Varbase Components so the theme''s Single Directory Components resolve their ui_patterns schema references, turns off CSS/JS aggregation so the browser suite can assert real library paths, ensures the Basic page content type exists (the patched Drupal 11.4 Standard test build can ship without it), seeds a titled front-page node and three Main navigation links, and points the site front page at the seeded node.'
+type: 'Testing'
+install:
+  - node
+  - menu_link_content
+  - path_alias
+  - varbase_components
+config:
+  actions:
+    # Create the Basic page node type if the test build did not ship it, so the
+    # seeded front-page node has a valid bundle and core's node preprocess does
+    # not fatal on a null node type.
+    node.type.page:
+      createIfNotExists:
+        langcode: en
+        status: true
+        dependencies: {  }
+        name: 'Basic page'
+        type: page
+        description: 'Use <em>basic pages</em> for your static content, such as an ''About us'' page.'
+        help: 'Basic page content for the Vartheme BS5 test site.'
+        new_revision: true
+        preview_mode: 1
+        display_submitted: false
+    # Load every library file individually (real href/src) so the browser suite
+    # can assert the Vartheme BS5 stylesheet is present on the page.
+    system.performance:
+      simpleConfigUpdate:
+        css.preprocess: false
+        js.preprocess: false
+    # Point the front page at the seeded node (a stable path alias, no entity id).
+    system.site:
+      simpleConfigUpdate:
+        page.front: '/vartheme-bs5-front'
+content: {  }

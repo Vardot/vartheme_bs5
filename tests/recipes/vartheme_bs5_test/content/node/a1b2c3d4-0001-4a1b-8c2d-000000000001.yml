@@ -1,0 +1,24 @@
+_meta:
+  version: '1.0'
+  entity_type: node
+  uuid: a1b2c3d4-0001-4a1b-8c2d-000000000001
+  bundle: page
+  default_langcode: en
+default:
+  revision_uid:
+    - target_id: 1
+  status:
+    - value: true
+  uid:
+    - target_id: 1
+  title:
+    - value: 'Welcome to Vartheme BS5'
+  created:
+    - value: 1751000000
+  promote:
+    - value: true
+  sticky:
+    - value: false
+  path:
+    - alias: /vartheme-bs5-front
+      langcode: en
