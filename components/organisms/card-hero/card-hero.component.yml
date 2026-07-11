@@ -237,7 +237,7 @@ props:
       format: uri-reference
       default: "#"
       examples:
-        - "#"
+        - "https://example.com"
     button_1_style:
       type: string
       title: Button style
