@@ -1,0 +1,41 @@
+.views-exposed-filters {
+  --views-exposed-filters-gap: 1rem;
+  --views-exposed-filters-margin-block-end: 2rem;
+  --views-exposed-filters-search-basis: 16rem;
+  --views-exposed-filters-search-min-width: 12rem;
+  --views-exposed-filters-select-basis: 16.4375rem;
+}
+
+.views-exposed-filters .views-exposed-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  margin-bottom: var(--views-exposed-filters-margin-block-end);
+  gap: var(--views-exposed-filters-gap);
+}
+
+.views-exposed-filters .views-exposed-form > .form-item,
+.views-exposed-filters .views-exposed-form > .js-form-item {
+  margin: 0;
+}
+
+.views-exposed-filters .views-exposed-form > [class*="form-item-search"] {
+  flex: 1 0 var(--views-exposed-filters-search-basis);
+  min-width: var(--views-exposed-filters-search-min-width);
+}
+
+.views-exposed-filters .views-exposed-form > .js-form-type-select {
+  flex: 0 0 var(--views-exposed-filters-select-basis);
+}
+
+.views-exposed-filters--stacked .views-exposed-form {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+@media (max-width: 767.98px) {
+  .views-exposed-filters .views-exposed-form > .form-item,
+  .views-exposed-filters .views-exposed-form > .js-form-item {
+    flex: 1 1 100%;
+  }
+}

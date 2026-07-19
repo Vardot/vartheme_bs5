@@ -1,0 +1,23 @@
+{#
+/**
+ * @file
+ * Views exposed filters.
+ *
+ * The exposed form of a view, wrapped so a theme can lay the filters out
+ * without reaching for the form ID Views happens to generate.
+ *
+ * Available:
+ * - layout: inline | stacked.
+ * - utility_classes: extra Bootstrap utility classes.
+ * - filters: the exposed form.
+ */
+#}
+{% set classes = [
+  'views-exposed-filters',
+  'views-exposed-filters--' ~ (layout|default('inline')),
+]|merge(utility_classes|default([])) %}
+<div{{ attributes.addClass(classes) }}>
+  {% block filters %}
+    {{ filters }}
+  {% endblock %}
+</div>

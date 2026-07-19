@@ -1,0 +1,28 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Views exposed filters
+description: Component implementation for the exposed filters of a view listing.
+group: Views
+noUi: true
+use_in_views: true
+props:
+  type: object
+  properties:
+    layout:
+      type: string
+      title: Layout
+      description: How the filters sit next to each other.
+      enum:
+        - inline
+        - stacked
+      default: inline
+    utility_classes:
+      type: array
+      title: Utility classes
+      description: Extra Bootstrap utility classes for the filter row.
+      default: []
+      items:
+        type: string
+slots:
+  filters:
+    title: Filters
+    description: The exposed filter form of the view.

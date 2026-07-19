@@ -1,0 +1,70 @@
+// @file
+// Vartheme BS5 — Views exposed filters component styles.
+//
+// Lays the exposed filter controls of a view out as one wrapping row whose
+// controls bottom-align with each other: the keyword filter absorbs the free
+// space while select filters keep a steady column. The `--stacked` modifier
+// turns the row into a column, and below the `md` breakpoint every control
+// takes the full row width. All spacing flows through Bootstrap's `$spacer`
+// and is exposed as component-local custom properties, so a sub-theme can
+// retune the layout without forking the component.
+
+@import "../../defaults"; // Global component defaults.
+
+.views-exposed-filters {
+  // ── Layout tokens (all derived from Bootstrap's $spacer = 1rem) ──
+  //
+  // The gap and the select-column width match the exposed-filter custom
+  // properties the theme already defines for its blog exposed-form block in
+  // scss/base/vartheme.base.scss — `--vb-filter-gap: 1rem` and
+  // `--vb-filter-col-width: 16.4375rem`. Those are scoped to the
+  // `#views-exposed-form-blog-all` block rather than to `:root`, so the
+  // values are restated here instead of referenced, to keep the component
+  // standalone wherever that block's CSS is not in scope.
+  --views-exposed-filters-gap: #{$spacer};
+  --views-exposed-filters-margin-block-end: #{$spacer * 2};
+  --views-exposed-filters-search-basis: #{$spacer * 16};
+  --views-exposed-filters-search-min-width: #{$spacer * 12};
+  --views-exposed-filters-select-basis: #{$spacer * 16.4375};
+
+  .views-exposed-form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: var(--views-exposed-filters-gap);
+    margin-bottom: var(--views-exposed-filters-margin-block-end);
+
+    > .form-item,
+    > .js-form-item {
+      margin: 0;
+    }
+
+    // The keyword filter takes the free space; the rest keep a steady column.
+    > [class*="form-item-search"] {
+      flex: 1 0 var(--views-exposed-filters-search-basis);
+      min-width: var(--views-exposed-filters-search-min-width);
+    }
+
+    > .js-form-type-select {
+      flex: 0 0 var(--views-exposed-filters-select-basis);
+    }
+  }
+}
+
+// Stacked layout: one control per row, each stretched to the full width.
+.views-exposed-filters--stacked {
+  .views-exposed-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+// Phones and small tablets: every control takes the whole row.
+@include media-breakpoint-down(md) {
+  .views-exposed-filters .views-exposed-form {
+    > .form-item,
+    > .js-form-item {
+      flex: 1 1 100%;
+    }
+  }
+}
