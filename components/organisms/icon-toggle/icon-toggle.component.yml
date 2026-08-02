@@ -1,0 +1,156 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Icon Toggle
+status: stable
+description: "A single icon button for the header/navbar (or anywhere else). Clicking it overlays a popover panel holding whatever is dropped into its 'content' slot — e.g. the 'Exposed form: search-page' block for a search toggle — without hiding the surrounding navigation; clicking again (or Escape / outside click) closes it."
+group: Navigation
+props:
+  type: object
+  properties:
+    icon:
+      type: string
+      title: Icon
+      description: Bootstrap Icon name shown in the closed state (without the "bi-" prefix). Swaps to a close (X) icon while the panel is open.
+      enum:
+        - search
+        - facebook
+        - twitter-x
+        - instagram
+        - linkedin
+        - x
+        - plus
+        - exclamation
+        - check
+        - dash
+        - question
+        - info
+        - person
+        - people
+        - person-plus
+        - person-check
+        - chevron-up
+        - chevron-down
+        - chevron-left
+        - chevron-right
+        - chevron-double-up
+        - chevron-double-down
+        - chevron-double-left
+        - chevron-double-right
+        - arrow-up
+        - arrow-down
+        - arrow-left
+        - arrow-right
+        - arrow-up-right
+        - arrow-up-left
+        - arrow-down-right
+        - arrow-down-left
+        - arrow-repeat
+        - arrows-angle-expand
+        - arrows-angle-contract
+        - play
+        - pause
+        - skip-backward
+        - skip-forward
+        - circle
+        - circle-fill
+        - record-circle
+        - arrow-right-circle-fill
+        - arrow-left-circle-fill
+        - arrow-up-circle-fill
+        - arrow-down-circle-fill
+        - caret-right-fill
+        - caret-left-fill
+        - caret-up-fill
+        - caret-down-fill
+      default: search
+      examples:
+        - search
+      meta:enum:
+        search: Search
+        facebook: Facebook
+        twitter-x: Twitter X
+        instagram: Instagram
+        linkedin: LinkedIn
+        x: Close (X)
+        plus: Plus
+        exclamation: Exclamation
+        check: Check
+        dash: Dash
+        question: Question
+        info: Info
+        person: Person
+        people: People
+        person-plus: Person Plus
+        person-check: Person Check
+        chevron-up: Chevron Up
+        chevron-down: Chevron Down
+        chevron-left: Chevron Left
+        chevron-right: Chevron Right
+        chevron-double-up: Chevron Double Up
+        chevron-double-down: Chevron Double Down
+        chevron-double-left: Chevron Double Left
+        chevron-double-right: Chevron Double Right
+        arrow-up: Arrow Up
+        arrow-down: Arrow Down
+        arrow-left: Arrow Left
+        arrow-right: Arrow Right
+        arrow-up-right: Arrow Up Right
+        arrow-up-left: Arrow Up Left
+        arrow-down-right: Arrow Down Right
+        arrow-down-left: Arrow Down Left
+        arrow-repeat: Arrow Repeat
+        arrows-angle-expand: Expand
+        arrows-angle-contract: Contract
+        play: Play
+        pause: Pause
+        skip-backward: Skip Backward
+        skip-forward: Skip Forward
+        circle: Circle
+        circle-fill: Circle Filled
+        record-circle: Record Circle
+        arrow-right-circle-fill: Arrow Right Circle Filled
+        arrow-left-circle-fill: Arrow Left Circle Filled
+        arrow-up-circle-fill: Arrow Up Circle Filled
+        arrow-down-circle-fill: Arrow Down Circle Filled
+        caret-right-fill: Caret Right Filled
+        caret-left-fill: Caret Left Filled
+        caret-up-fill: Caret Up Filled
+        caret-down-fill: Caret Down Filled
+    label:
+      type: string
+      title: Label
+      description: Accessible label for the button in its closed state (visually hidden).
+      default: Search
+      examples:
+        - Search
+    open_label:
+      type: string
+      title: Open state label
+      description: Accessible label announced on the button while the panel is open.
+      default: Close search
+      examples:
+        - Close search
+    placement:
+      type: string
+      title: Panel alignment
+      description: Which side of the button the popover panel aligns to (logical, RTL-aware).
+      enum:
+        - end
+        - start
+      meta:enum:
+        end: End side
+        start: Start side
+      default: end
+      examples:
+        - end
+    attributes:
+      type: Drupal\Core\Template\Attribute
+      title: Attributes
+      description: HTML attributes for the root element.
+slots:
+  content:
+    title: Content
+    description: "The content revealed in the popover, e.g. the 'Exposed form: search-page' block for a search toggle."
+libraryOverrides:
+  dependencies:
+    - core/drupal
+    - core/once

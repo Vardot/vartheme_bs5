@@ -1,0 +1,82 @@
+.icon-toggle {
+  --icon-toggle-button-size: 2.5rem;
+  --icon-toggle-button-color: var(--bs-body-color);
+  --icon-toggle-button-bg: transparent;
+  --icon-toggle-button-bg-hover: var(--bs-secondary-bg);
+  --icon-toggle-button-radius: 50rem;
+  --icon-toggle-focus-ring: 0.25rem solid var(--bs-focus-ring-color);
+  --icon-toggle-transition: all 0.2s ease-in-out;
+  --icon-toggle-panel-bg: var(--bs-body-bg);
+  --icon-toggle-panel-border: var(--bs-border-color);
+  --icon-toggle-panel-radius: 0.5rem;
+  --icon-toggle-panel-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  --icon-toggle-panel-padding: 1rem;
+  --icon-toggle-panel-gap: 0.5rem;
+  --icon-toggle-panel-width: min(24rem, calc(100vw - 2rem));
+  --icon-toggle-panel-top-gap: 0.5rem;
+
+  position: relative;
+  display: inline-flex;
+}
+
+.icon-toggle__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--icon-toggle-button-size);
+  height: var(--icon-toggle-button-size);
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  transition: var(--icon-toggle-transition);
+  color: var(--icon-toggle-button-color);
+  border: 0;
+  border-radius: var(--icon-toggle-button-radius);
+  background: var(--icon-toggle-button-bg);
+  appearance: none;
+}
+
+.icon-toggle__button:hover,
+.icon-toggle__button:focus {
+  background: var(--icon-toggle-button-bg-hover);
+}
+
+.icon-toggle__button:focus-visible {
+  outline: var(--icon-toggle-focus-ring);
+  outline-offset: 0.125rem;
+}
+
+.icon-toggle__icon {
+  display: inline-flex;
+  line-height: 1;
+}
+
+.icon-toggle__panel {
+  position: absolute;
+  z-index: 1000;
+  top: calc(100% + var(--icon-toggle-panel-top-gap));
+  width: var(--icon-toggle-panel-width);
+  padding: var(--icon-toggle-panel-padding);
+  border: 1px solid var(--icon-toggle-panel-border);
+  border-radius: var(--icon-toggle-panel-radius);
+  background: var(--icon-toggle-panel-bg);
+  box-shadow: var(--icon-toggle-panel-shadow);
+}
+
+.icon-toggle__panel[hidden] {
+  display: none;
+}
+
+.icon-toggle--end .icon-toggle__panel {
+  inset-inline-end: 0;
+}
+
+.icon-toggle--start .icon-toggle__panel {
+  inset-inline-start: 0;
+}
+
+.icon-toggle__panel-inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--icon-toggle-panel-gap);
+}

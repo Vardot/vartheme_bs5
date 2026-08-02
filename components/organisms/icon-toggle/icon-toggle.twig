@@ -1,0 +1,80 @@
+{#
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for the Icon Toggle component.
+ *
+ * A single icon button, meant to sit at the end of the header/navbar (or
+ * anywhere else). Clicking it reveals a popover panel holding whatever is
+ * dropped into the "content" slot, overlaid over the page so sibling
+ * elements (e.g. the main menu) stay visible the whole time; clicking it
+ * again (now showing a close icon), pressing Escape, or clicking outside
+ * closes the panel.
+ *
+ * Available properties:
+ * - icon: Bootstrap Icon name shown in the closed state. Swaps to a close
+ *         (X) icon while the panel is open. Defaults to `search`.
+ * - label: Accessible label for the closed state (visually hidden).
+ *          Defaults to `Search`.
+ * - open_label: Accessible label announced while the panel is open.
+ *               Defaults to `Close search`.
+ * - placement: Which side the popover panel aligns to. (end | start)
+ *              Defaults to `end`.
+ *
+ * Available attributes:
+ * - attributes: HTML attributes for the root element.
+ *
+ * Available slots:
+ * - content: The content revealed in the popover.
+ */
+#}
+
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Variables: scalar props with schema defaults. #}
+{% set icon = icon|default('search') %}
+{% set label = label|default('Search'|t) %}
+{% set open_label = open_label|default('Close search'|t) %}
+{% set placement = placement|default('end') %}
+
+{# Logic: merge root classes as an array. #}
+{% set classes = ['icon-toggle', 'icon-toggle--' ~ placement] %}
+
+{# Logic: static structural class lists and a unique panel id. #}
+{% set button_classes = ['icon-toggle__button'] %}
+{% set panel_classes = ['icon-toggle__panel'] %}
+{% set panel_id = 'icon-toggle-panel-' ~ random(99999) %}
+
+{# Slot content. Checked for emptiness (not just block-default) because
+ # Canvas passes an empty string for an unfilled slot, which would otherwise
+ # silently win over a default placeholder written inside the block. #}
+{% set panel_content %}{% block content %}{% endblock %}{% endset %}
+{% set has_content = panel_content|trim is not empty %}
+
+{# Print the HTML. #}
+{% set attributes = attributes.addClass(classes) %}
+<div{{ attributes }}>
+  <button type="button" class="{{ button_classes|join(' ') }}" aria-expanded="false" aria-controls="{{ panel_id }}" data-icon-toggle-open-label="{{ open_label }}" aria-label="{{ label }}">
+    {{ include('vartheme_bs5:bootstrap-icon', {
+      icon: icon,
+      icon_size: 'fs-5',
+      attributes: create_attribute().addClass('icon-toggle__icon'),
+    }, with_context = false) }}
+  </button>
+
+  <div class="{{ panel_classes|join(' ') }}" id="{{ panel_id }}" hidden>
+    <div class="icon-toggle__panel-inner">
+      {% if has_content %}
+        {{ panel_content }}
+      {% else %}
+        <p class="icon-toggle__placeholder text-muted mb-0">{{ 'Drop content here.'|t }}</p>
+      {% endif %}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,96 @@
+// @file
+// Vartheme BS5 — Icon Toggle component.
+//
+// Single icon button that reveals a popover panel. All visual values
+// flow through `--icon-toggle-*` tokens resolved from Bootstrap 5 SCSS
+// variables ($spacer, $border-radius-sm, …) or Bootstrap CSS custom
+// properties (--bs-*), so the component inherits the active theme.
+//
+// Sibling elements (e.g. the main menu) stay visible while the panel is
+// open — the panel is positioned absolute so it overlays in place instead
+// of displacing them.
+
+@import "../../defaults";
+
+.icon-toggle {
+  --icon-toggle-button-size: #{$spacer * 2.5};
+  --icon-toggle-button-color: var(--bs-body-color);
+  --icon-toggle-button-bg: transparent;
+  --icon-toggle-button-bg-hover: var(--bs-secondary-bg);
+  --icon-toggle-button-radius: #{$border-radius-pill};
+  --icon-toggle-focus-ring: #{$focus-ring-width} solid var(--bs-focus-ring-color);
+  --icon-toggle-transition: #{$transition-base};
+  --icon-toggle-panel-bg: var(--bs-body-bg);
+  --icon-toggle-panel-border: var(--bs-border-color);
+  --icon-toggle-panel-radius: #{$border-radius};
+  --icon-toggle-panel-shadow: #{$box-shadow};
+  --icon-toggle-panel-padding: #{$spacer};
+  --icon-toggle-panel-gap: #{$spacer * 0.5};
+  --icon-toggle-panel-width: min(24rem, calc(100vw - #{$spacer * 2}));
+  --icon-toggle-panel-top-gap: #{$spacer * 0.5};
+
+  position: relative;
+  display: inline-flex;
+
+  &__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--icon-toggle-button-size);
+    height: var(--icon-toggle-button-size);
+    margin: 0;
+    padding: 0;
+    color: var(--icon-toggle-button-color);
+    border: 0;
+    border-radius: var(--icon-toggle-button-radius);
+    background: var(--icon-toggle-button-bg);
+    transition: var(--icon-toggle-transition);
+    cursor: pointer;
+    appearance: none;
+
+    &:hover,
+    &:focus {
+      background: var(--icon-toggle-button-bg-hover);
+    }
+
+    &:focus-visible {
+      outline: var(--icon-toggle-focus-ring);
+      outline-offset: #{$spacer * 0.125};
+    }
+  }
+
+  &__icon {
+    display: inline-flex;
+    line-height: 1;
+  }
+
+  &__panel {
+    position: absolute;
+    top: calc(100% + var(--icon-toggle-panel-top-gap));
+    z-index: $zindex-dropdown;
+    width: var(--icon-toggle-panel-width);
+    padding: var(--icon-toggle-panel-padding);
+    border: $border-width solid var(--icon-toggle-panel-border);
+    border-radius: var(--icon-toggle-panel-radius);
+    background: var(--icon-toggle-panel-bg);
+    box-shadow: var(--icon-toggle-panel-shadow);
+
+    &[hidden] {
+      display: none;
+    }
+  }
+
+  &--end &__panel {
+    inset-inline-end: 0;
+  }
+
+  &--start &__panel {
+    inset-inline-start: 0;
+  }
+
+  &__panel-inner {
+    display: flex;
+    flex-direction: column;
+    gap: var(--icon-toggle-panel-gap);
+  }
+}

@@ -1,0 +1,62 @@
+{/* icon-toggle.mdx */}
+
+import { Title, Subtitle, Meta, Description, Primary, Stories, Controls, Source } from '@storybook/addon-docs/blocks';
+import * as comStories from './icon-toggle.stories.json';
+import templateSource from './icon-toggle.twig?raw';
+
+<Meta of={comStories} name="Docs"/>
+
+<Title />
+<Subtitle />
+<Description />
+
+> ### [Bootstrap Documentation on Icons](https://getbootstrap.com/docs/5.3/extend/icons/)
+> This is a custom disclosure widget rather than Bootstrap's own Collapse/Offcanvas/Popover plugin, so the same markup/behavior works regardless of which icon is chosen or where the component is dropped.
+
+<Primary />
+
+## Properties
+<Controls />
+
+<Stories of={comStories} />
+
+## Attributes
+* `attributes`: HTML attributes for the root element.
+
+## Slots
+* `content`: the content revealed in the popover, e.g. the "Exposed form: search-page" block for a search toggle. When left empty, a builder-friendly placeholder is shown instead.
+
+## Examples
+
+### Example #1: Search toggle (default)
+```
+{% embed "vartheme_bs5:icon-toggle" with {
+  icon: 'search',
+  label: 'Search',
+  open_label: 'Close search',
+  placement: 'end'
+} %}
+  {% block content %}
+    {{ drupal_block('views_exposed_filter_block:search-page') }}
+  {% endblock %}
+{% endembed %}
+```
+
+### Example #2: Account toggle (custom icon)
+```
+{% embed "vartheme_bs5:icon-toggle" with {
+  icon: 'person',
+  label: 'Account',
+  open_label: 'Close account menu',
+  placement: 'end'
+} %}
+  {% block content %}
+    <a href="/user">My account</a>
+    <a href="/user/logout">Log out</a>
+  {% endblock %}
+{% endembed %}
+```
+
+## Source code
+[//]: # (Twig Template source code)
+<Source code={templateSource} />
