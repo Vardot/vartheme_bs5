@@ -25,6 +25,14 @@ props:
       default: true
       examples:
         - true
+    heading_level:
+      type: integer
+      title: 'Heading level'
+      description: 'Semantic heading tag for the title, so it fits the surrounding document outline. Visual size stays fixed via the webshare__heading class.'
+      enum: [2, 3, 4, 5, 6]
+      default: 2
+      examples:
+        - 2
     alignment:
       type: string
       title: 'Alignment'
