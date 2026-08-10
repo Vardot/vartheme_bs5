@@ -4,7 +4,7 @@
 # Two halves:
 #   1. The standard Drupal CI validation jobs (composer-lint, cspell, eslint,
 #      phpcs, phpstan, phpunit, stylelint) provided by the drupalci templates.
-#   2. A webship-js BDD browser-test job (Playwright + Cucumber-js) that runs
+#   2. A varbase-e2e BDD browser-test job (Playwright + Cucumber-js) that runs
 #      the tests/features/drupal/** suite against a freshly installed Drupal
 #      Standard site. The tests/vartheme_bs5_test recipe installs the theme's
 #      base module (Varbase Components) and turns CSS/JS aggregation off; the
@@ -89,12 +89,12 @@ phpunit:
     - apt-get install -y nodejs
     - node --version && npm --version
     - 'test -f .yarnrc.yml || echo "nodeLinker: node-modules" > .yarnrc.yml'
-    # Back up cucumber.js - webship-js's postinstall can clobber it under yarn 4.
+    # Back up cucumber.js - varbase-e2e's postinstall can clobber it under yarn 4.
     - cp cucumber.js .cucumber.js.bak
     - corepack enable
     # Re-resolve from scratch so the package.json "resolutions" pin collapses
     # @cucumber/cucumber to a single hoisted copy. Without this, the committed
-    # lockfile keeps a nested webship-js copy and the CLI + step files end up on
+    # lockfile keeps a nested varbase-e2e copy and the CLI + step files end up on
     # two Cucumber instances ("functions called on an instance that isn't
     # running"). This only affects the browser-test job's install.
     - rm -f yarn.lock
@@ -102,8 +102,8 @@ phpunit:
     - cp .cucumber.js.bak cucumber.js && rm .cucumber.js.bak
     - ./node_modules/.bin/playwright install --with-deps chromium
 
-# = webship-js BDD - Drupal Standard profile + vartheme_bs5_test recipe =
-webship-js-test:
+# = varbase-e2e BDD - Drupal Standard profile + vartheme_bs5_test recipe =
+varbase-e2e-test:
   extends: .testing-job-base
   needs: [composer]
   timeout: 2h
@@ -160,11 +160,11 @@ webship-js-test:
     - echo "----- watchdog -----"
     - !reference [.fragments, node_playwright]
   script:
-    # cucumber.js loads only tests/features/drupal/**. Disable webship-js's auto
+    # cucumber.js loads only tests/features/drupal/**. Disable varbase-e2e's auto
     # HTML hook and run generate-reports explicitly so HTML + PDF land next to
     # the JSON in tests/reports/.
-    - WEBSHIP_REPORT_DISABLE=1 ./node_modules/.bin/cucumber-js --config cucumber.js --tags "not @wip"
-    - node ./node_modules/webship-js/bin/generate-reports.js
+    - VARBASE_E2E_REPORT_DISABLE=1 ./node_modules/.bin/cucumber-js --config cucumber.js --tags "not @wip"
+    - node ./node_modules/@vardot/varbase-e2e/bin/generate-reports.js
         --json tests/reports/cucumber_report.json
         --out  tests/reports/cucumber_report.html
         --format all
