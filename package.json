@@ -114,7 +114,7 @@
     "webpack-merge": "^6.0.1",
     "webpack-notifier": "^1.15.0",
     "webpack-remove-empty-scripts": "^1.0.4",
-    "webship-js": "~2.0.0"
+    "@vardot/varbase-e2e": "~2.0.1"
   },
   "resolutions": {
     "@cucumber/cucumber": "^12.0.0",
