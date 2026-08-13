@@ -75,6 +75,16 @@
   inset-inline-start: 0;
 }
 
+.icon-toggle--end.icon-toggle--flip .icon-toggle__panel {
+  inset-inline-end: auto;
+  inset-inline-start: 0;
+}
+
+.icon-toggle--start.icon-toggle--flip .icon-toggle__panel {
+  inset-inline-start: auto;
+  inset-inline-end: 0;
+}
+
 .icon-toggle__panel-inner {
   display: flex;
   flex-direction: column;

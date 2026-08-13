@@ -88,6 +88,23 @@
     inset-inline-start: 0;
   }
 
+  // Collision fallback: icon-toggle.js measures the panel against the
+  // viewport on open and adds this modifier when the configured side
+  // (`--end`/`--start`) would overflow — e.g. an `--end` panel opening
+  // leftward off-screen because the button sits near the viewport's start
+  // edge in a content area rather than a header. Swaps to the other
+  // logical side so the panel stays on-screen regardless of where the
+  // component is dropped.
+  &--end.icon-toggle--flip &__panel {
+    inset-inline-end: auto;
+    inset-inline-start: 0;
+  }
+
+  &--start.icon-toggle--flip &__panel {
+    inset-inline-start: auto;
+    inset-inline-end: 0;
+  }
+
   &__panel-inner {
     display: flex;
     flex-direction: column;

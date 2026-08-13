@@ -142,6 +142,13 @@ props:
       default: end
       examples:
         - end
+    expand_in_editor:
+      type: boolean
+      title: Expand in Canvas editor
+      description: Force the popover open while previewed inside the Drupal Canvas editor, so its "content" slot stays reachable for dropping components in. Turn off once content is placed, if the always-open panel clutters the editor view — the front-end click/close behavior is unaffected either way.
+      default: true
+      examples:
+        - true
     attributes:
       type: Drupal\Core\Template\Attribute
       title: Attributes

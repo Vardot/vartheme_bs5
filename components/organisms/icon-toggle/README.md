@@ -33,6 +33,7 @@ Use this component when you need a header/navbar icon trigger that can:
 - `label`: accessible label for the closed state (visually hidden text via `aria-label`); defaults to `Search`
 - `open_label`: accessible label announced on the button while the panel is open; defaults to `Close search`
 - `placement`: which side the popover panel aligns to — `end` or `start` (RTL-aware); defaults to `end`
+- `expand_in_editor`: force the popover open while previewed inside the Drupal Canvas editor, so its `content` slot stays reachable for dropping components in; turn off once content is placed if the always-open panel clutters the editor view; defaults to `true`
 
 ## Slots
 
@@ -60,3 +61,4 @@ Use this component when you need a header/navbar icon trigger that can:
 - The toggle button's icon swaps between the configured `icon` and `bi-x-lg` in JS to signal state; `aria-expanded` and `aria-label` (via `open_label`) are kept in sync for assistive tech.
 - On open, focus moves to the first text/search input found inside the `content` slot, if any.
 - Without JavaScript the button is inert (progressive enhancement isn't meaningful for a popover trigger); this matches the theme's other JS-driven overlays (e.g. Bootstrap's own collapse/offcanvas, already loaded site-wide).
+- Inside the Drupal Canvas editor preview, the panel starts open by default (`expand_in_editor: true`) so its `content` slot is reachable for drag-and-drop; set `expand_in_editor: false` on an instance once content is placed if the always-open panel is cluttering the editor view. This only affects the editor preview — front-end visitors always get the normal click-to-open behavior.

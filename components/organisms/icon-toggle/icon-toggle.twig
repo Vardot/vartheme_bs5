@@ -19,6 +19,10 @@
  *               Defaults to `Close search`.
  * - placement: Which side the popover panel aligns to. (end | start)
  *              Defaults to `end`.
+ * - expand_in_editor: Force the popover open while previewed inside the
+ *                      Drupal Canvas editor, so its "content" slot stays
+ *                      reachable for dropping components in. Defaults to
+ *                      `true`.
  *
  * Available attributes:
  * - attributes: HTML attributes for the root element.
@@ -43,8 +47,15 @@
 {% set open_label = open_label|default('Close search'|t) %}
 {% set placement = placement|default('end') %}
 
+{# Variables: boolean props.
+ # SDC validates `type: boolean` props and applies their schema defaults,
+ # so the values arrive as real booleans — only a presence fallback is
+ # needed here, never type coercion.
+ #}
+{% set expand_in_editor = expand_in_editor ?? true %}
+
 {# Logic: merge root classes as an array. #}
-{% set classes = ['icon-toggle', 'icon-toggle--' ~ placement] %}
+{% set classes = ['icon-toggle', 'icon-toggle--' ~ placement]|merge(expand_in_editor ? [] : ['icon-toggle--collapsed-in-editor']) %}
 
 {# Logic: static structural class lists and a unique panel id. #}
 {% set button_classes = ['icon-toggle__button'] %}

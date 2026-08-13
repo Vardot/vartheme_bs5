@@ -6,11 +6,22 @@
  * (e.g. the main menu) are left untouched and stay visible the whole time;
  * the panel overlays them instead of displacing them.
  *
+ * The panel's configured side (`placement` prop → `--end`/`--start`
+ * modifier) is a default, not a guarantee: a button placed near the
+ * viewport's start edge in a content area (rather than the end of a
+ * header/navbar) can still overflow off-screen on that side. On every
+ * open, `positionPanel()` measures the panel against the viewport and adds
+ * `icon-toggle--flip` (see icon-toggle.scss) to swap to the other logical
+ * side when the default one would overflow.
+ *
  * Inside the Drupal Canvas editor preview iframe the panel starts open (and
  * stays open) instead of waiting for a click: the panel is the only way to
  * see the "content" slot and drop content into it, so it can't stay hidden
  * behind a click a builder has no reason to make. Same `is-canvas-preview`
- * detection as sticky-header.js.
+ * detection as sticky-header.js. Opt out per-instance once content is placed
+ * via the `expand_in_editor` prop (→ `icon-toggle--collapsed-in-editor`
+ * modifier) if the always-open panel clutters the editor view — the
+ * front-end click/close behavior is unaffected either way.
  */
 ((Drupal, once) => {
   // The preview document runs inside an iframe whose host element carries
@@ -52,6 +63,20 @@
 
           const isOpen = () => root.classList.contains('icon-toggle--open');
 
+          // Measures the panel against the viewport and flips it to the
+          // other logical side if the configured side overflows. Runs
+          // synchronously right after the panel becomes visible (still
+          // within the same task as the `hidden` removal), so the browser
+          // paints the corrected position on the first frame — no flicker.
+          const positionPanel = () => {
+            root.classList.remove('icon-toggle--flip');
+            const rect = panel.getBoundingClientRect();
+            const viewportWidth = document.documentElement.clientWidth;
+            if (rect.left < 0 || rect.right > viewportWidth) {
+              root.classList.add('icon-toggle--flip');
+            }
+          };
+
           const close = () => {
             root.classList.remove('icon-toggle--open');
             button.setAttribute('aria-expanded', 'false');
@@ -67,6 +92,7 @@
             button.setAttribute('aria-expanded', 'true');
             button.setAttribute('aria-label', openLabel);
             panel.removeAttribute('hidden');
+            positionPanel();
             if (icon && closedIconClass) {
               icon.classList.replace(closedIconClass, 'bi-x-lg');
             }
@@ -80,7 +106,10 @@
             }
           };
 
-          if (inCanvasPreview()) {
+          if (
+            inCanvasPreview() &&
+            !root.classList.contains('icon-toggle--collapsed-in-editor')
+          ) {
             // Stay open regardless of clicks elsewhere in the builder canvas
             // (e.g. selecting other components) — closing would hide the
             // "content" slot a builder needs to drop content into.
