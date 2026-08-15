@@ -19,10 +19,10 @@
  *               Defaults to `Close search`.
  * - placement: Which side the popover panel aligns to. (end | start)
  *              Defaults to `end`.
- * - expand_in_editor: Force the popover open while previewed inside the
- *                      Drupal Canvas editor, so its "content" slot stays
- *                      reachable for dropping components in. Defaults to
- *                      `true`.
+ * - panel: How the revealed panel looks — a boxed popover below the button, or
+ *          an inline bar on one hairline-underlined line carrying the icon, the
+ *          field and its own close button. (popover | bar) Defaults to
+ *          `popover`.
  *
  * Available attributes:
  * - attributes: HTML attributes for the root element.
@@ -46,20 +46,34 @@
 {% set label = label|default('Search'|t) %}
 {% set open_label = open_label|default('Close search'|t) %}
 {% set placement = placement|default('end') %}
+{% set panel = panel|default('popover') %}
+{% set expand_in_editor = expand_in_editor is defined ? expand_in_editor : true %}
 
-{# Variables: boolean props.
- # SDC validates `type: boolean` props and applies their schema defaults,
- # so the values arrive as real booleans — only a presence fallback is
- # needed here, never type coercion.
- #}
-{% set expand_in_editor = expand_in_editor ?? true %}
+{# Logic: merge root classes as an array. Bootstrap's `dropdown` carries the
+ # positioning context its Dropdown plugin expects. #}
+{% set classes = [
+  'icon-toggle',
+  'dropdown',
+  'icon-toggle--' ~ placement,
+  'icon-toggle--panel-' ~ panel,
+] %}
 
-{# Logic: merge root classes as an array. #}
-{% set classes = ['icon-toggle', 'icon-toggle--' ~ placement]|merge(expand_in_editor ? [] : ['icon-toggle--collapsed-in-editor']) %}
-
-{# Logic: static structural class lists and a unique panel id. #}
+{# Logic: static structural class lists and a unique panel id. The panel is a
+ # Bootstrap `dropdown-menu`, so Bootstrap owns showing and hiding it, the
+ # `aria-expanded` state, Escape, outside clicks and returning focus to the
+ # trigger. `dropdown-menu-end` is Bootstrap's own end-side alignment. #}
 {% set button_classes = ['icon-toggle__button'] %}
-{% set panel_classes = ['icon-toggle__panel'] %}
+{% set panel_classes = ['icon-toggle__panel', 'dropdown-menu'] %}
+{% if placement == 'end' %}
+  {% set panel_classes = panel_classes|merge(['dropdown-menu-end']) %}
+{% endif %}
+{# Logic: `expand_in_editor: false` opts this instance out of the Canvas
+ # editor's always-open preview once its slot has content — icon-toggle.js
+ # reads the modifier. Front-end behavior is unaffected. #}
+{% if not expand_in_editor %}
+  {% set classes = classes|merge(['icon-toggle--collapsed-in-editor']) %}
+{% endif %}
+
 {% set panel_id = 'icon-toggle-panel-' ~ random(99999) %}
 
 {# Slot content. Checked for emptiness (not just block-default) because
@@ -71,7 +85,7 @@
 {# Print the HTML. #}
 {% set attributes = attributes.addClass(classes) %}
 <div{{ attributes }}>
-  <button type="button" class="{{ button_classes|join(' ') }}" aria-expanded="false" aria-controls="{{ panel_id }}" data-icon-toggle-open-label="{{ open_label }}" aria-label="{{ label }}">
+  <button type="button" class="{{ button_classes|join(' ') }}" data-bs-toggle="dropdown"{% if panel == 'bar' %} data-bs-display="static"{% endif %} aria-expanded="false" aria-controls="{{ panel_id }}" data-icon-toggle-open-label="{{ open_label }}" aria-label="{{ label }}">
     {{ include('vartheme_bs5:bootstrap-icon', {
       icon: icon,
       icon_size: 'fs-5',
@@ -79,12 +93,28 @@
     }, with_context = false) }}
   </button>
 
-  <div class="{{ panel_classes|join(' ') }}" id="{{ panel_id }}" hidden>
+  <div class="{{ panel_classes|join(' ') }}" id="{{ panel_id }}">
     <div class="icon-toggle__panel-inner">
+      {% if panel == 'bar' %}
+        {{ include('vartheme_bs5:bootstrap-icon', {
+          icon: icon,
+          icon_size: 'fs-6',
+          attributes: create_attribute().addClass('icon-toggle__panel-icon'),
+        }, with_context = false) }}
+      {% endif %}
       {% if has_content %}
         {{ panel_content }}
       {% else %}
         <p class="icon-toggle__placeholder text-muted mb-0">{{ 'Drop content here.'|t }}</p>
+      {% endif %}
+      {% if panel == 'bar' %}
+        <button type="button" class="icon-toggle__close" aria-controls="{{ panel_id }}" aria-label="{{ open_label }}">
+          {{ include('vartheme_bs5:bootstrap-icon', {
+            icon: 'x-lg',
+            icon_size: 'fs-6',
+            attributes: create_attribute().addClass('icon-toggle__close-icon'),
+          }, with_context = false) }}
+        </button>
       {% endif %}
     </div>
   </div>

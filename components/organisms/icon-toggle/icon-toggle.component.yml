@@ -135,6 +135,13 @@ props:
       description: Which side of the button the popover panel aligns to (logical, RTL-aware).
       enum:
         - end
+    expand_in_editor:
+      type: boolean
+      title: Expand in Canvas editor
+      description: Force the panel open while previewed inside the Drupal Canvas editor, so its "content" slot stays reachable for dropping components in. Turn off once content is placed, if the always-open panel clutters the editor view — the front-end open/close behavior is unaffected either way.
+      default: true
+      examples:
+        - true
         - start
       meta:enum:
         end: End side
@@ -142,13 +149,19 @@ props:
       default: end
       examples:
         - end
-    expand_in_editor:
-      type: boolean
-      title: Expand in Canvas editor
-      description: Force the popover open while previewed inside the Drupal Canvas editor, so its "content" slot stays reachable for dropping components in. Turn off once content is placed, if the always-open panel clutters the editor view — the front-end click/close behavior is unaffected either way.
-      default: true
+    panel:
+      type: string
+      title: Panel style
+      description: "How the revealed panel looks. A boxed popover drops below the button; an inline bar stretches across the header row (desktop) or a full-width row below it (mobile), showing the icon, the field and a close button on one hairline-underlined line."
+      enum:
+        - popover
+        - bar
+      meta:enum:
+        popover: Boxed popover
+        bar: Inline bar
+      default: popover
       examples:
-        - true
+        - popover
     attributes:
       type: Drupal\Core\Template\Attribute
       title: Attributes
@@ -161,3 +174,8 @@ libraryOverrides:
   dependencies:
     - core/drupal
     - core/once
+    # Bootstrap 5.3's Dropdown plugin drives the disclosure (show/hide,
+    # aria-expanded, Escape, outside click, focus return, and Popper's
+    # flip/shift). It is not in the theme's global bootstrap-scripts bundle, so
+    # the component asks for it and SDC attaches it only where it is used.
+    - vartheme_bs5/bs-dropdown-script

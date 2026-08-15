@@ -14,6 +14,18 @@
   --icon-toggle-panel-gap: 0.5rem;
   --icon-toggle-panel-width: min(24rem, calc(100vw - 2rem));
   --icon-toggle-panel-top-gap: 0.5rem;
+  --icon-toggle-bar-height: 2.625rem;
+  --icon-toggle-bar-max-width: 45rem;
+  --icon-toggle-bar-brand-gap: 2rem;
+  --icon-toggle-bar-unmeasured-available: 47rem;
+  --icon-toggle-bar-padding-inline: 1rem;
+  --icon-toggle-bar-gap: 0.5rem;
+  --icon-toggle-bar-page-padding: 1rem;
+  --icon-toggle-bar-font-size: 0.875rem;
+  --icon-toggle-bar-subtle-color: var(--bs-secondary-color);
+  --icon-toggle-header-toggler-size: 1.6875rem;
+  --icon-toggle-header-icon-gap: 1.5rem;
+  --icon-toggle-header-icon-offset: 0.40625rem;
 
   position: relative;
   display: inline-flex;
@@ -29,6 +41,7 @@
   padding: 0;
   cursor: pointer;
   transition: var(--icon-toggle-transition);
+  transition-property: background-color, color;
   color: var(--icon-toggle-button-color);
   border: 0;
   border-radius: var(--icon-toggle-button-radius);
@@ -55,24 +68,17 @@
   position: absolute;
   z-index: 1000;
   top: calc(100% + var(--icon-toggle-panel-top-gap));
-  width: var(--icon-toggle-panel-width);
-  padding: var(--icon-toggle-panel-padding);
-  border: 1px solid var(--icon-toggle-panel-border);
-  border-radius: var(--icon-toggle-panel-radius);
-  background: var(--icon-toggle-panel-bg);
-  box-shadow: var(--icon-toggle-panel-shadow);
-}
-
-.icon-toggle__panel[hidden] {
   display: none;
+  width: var(--icon-toggle-panel-width);
 }
 
-.icon-toggle--end .icon-toggle__panel {
-  inset-inline-end: 0;
+.icon-toggle__panel.show {
+  display: block;
 }
 
-.icon-toggle--start .icon-toggle__panel {
+.icon-toggle.is-panel-start .icon-toggle__panel {
   inset-inline-start: 0;
+  inset-inline-end: auto;
 }
 
 .icon-toggle--end.icon-toggle--flip .icon-toggle__panel {
@@ -89,4 +95,160 @@
   display: flex;
   flex-direction: column;
   gap: var(--icon-toggle-panel-gap);
+}
+
+.icon-toggle--panel-bar.icon-toggle--open .icon-toggle__button {
+  visibility: hidden;
+}
+
+.icon-toggle--panel-bar .icon-toggle__panel {
+  top: calc(100% + var(--icon-toggle-panel-top-gap));
+  width: var(--icon-toggle-bar-max-width);
+  max-width: calc(var(--icon-toggle-bar-available, var(--icon-toggle-bar-unmeasured-available)) - var(--icon-toggle-bar-brand-gap));
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: var(--icon-toggle-panel-bg);
+  box-shadow: none;
+}
+
+.icon-toggle--panel-bar.is-bar-inline .icon-toggle__panel {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.icon-toggle--panel-bar:not(.is-measured) .icon-toggle__panel {
+  max-width: var(--icon-toggle-bar-canvas-width, var(--icon-toggle-bar-unmeasured-available));
+  inset-inline-start: 0;
+  inset-inline-end: auto;
+}
+
+.icon-toggle--panel-bar .icon-toggle__panel-inner {
+  overflow: hidden;
+  flex-direction: row;
+  align-items: center;
+  height: var(--icon-toggle-bar-height);
+  padding-inline-start: var(--icon-toggle-bar-padding-inline);
+  border-block-end: 1px solid var(--icon-toggle-panel-border);
+  gap: var(--icon-toggle-bar-gap);
+}
+
+.icon-toggle--panel-bar .icon-toggle__panel-icon {
+  flex: 0 0 auto;
+  color: var(--icon-toggle-button-color);
+  line-height: 1;
+}
+
+.icon-toggle--panel-bar .icon-toggle__close {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: var(--icon-toggle-button-size);
+  height: var(--icon-toggle-button-size);
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  transition: var(--icon-toggle-transition);
+  transition-property: background-color, color;
+  color: var(--icon-toggle-button-color);
+  border: 0;
+  border-radius: var(--icon-toggle-button-radius);
+  background: var(--icon-toggle-button-bg);
+  appearance: none;
+}
+
+.icon-toggle--panel-bar .icon-toggle__close:hover,
+.icon-toggle--panel-bar .icon-toggle__close:focus {
+  background: var(--icon-toggle-button-bg-hover);
+}
+
+.icon-toggle--panel-bar .icon-toggle__close:focus-visible {
+  outline: var(--icon-toggle-focus-ring);
+  outline-offset: 0.125rem;
+}
+
+.icon-toggle--panel-bar .icon-toggle__panel-inner .block,
+.icon-toggle--panel-bar .icon-toggle__panel-inner .block__content,
+.icon-toggle--panel-bar .icon-toggle__panel-inner form,
+.icon-toggle--panel-bar .icon-toggle__panel-inner .form-item,
+.icon-toggle--panel-bar .icon-toggle__panel-inner .js-form-item {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+}
+
+.icon-toggle--panel-bar .icon-toggle__panel-inner form {
+  display: flex;
+  align-items: center;
+  gap: var(--icon-toggle-bar-gap);
+}
+
+.icon-toggle--panel-bar .icon-toggle__panel-inner .form-control {
+  height: auto;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  font-size: var(--icon-toggle-bar-font-size);
+  line-height: 1.5;
+}
+
+.icon-toggle--panel-bar .icon-toggle__panel-inner .form-control::placeholder {
+  opacity: 1;
+  color: var(--icon-toggle-bar-subtle-color);
+}
+
+.icon-toggle--panel-bar .icon-toggle__panel-inner .form-control:focus {
+  outline: 0;
+  box-shadow: none;
+}
+
+.icon-toggle--panel-bar .icon-toggle__panel-inner .form-actions {
+  position: absolute;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+@media (max-width: 991.98px) {
+  .icon-toggle--panel-bar.is-bar-inline .icon-toggle__panel {
+    position: fixed;
+    top: var(--icon-toggle-bar-top);
+    left: var(--icon-toggle-bar-left);
+    width: var(--icon-toggle-bar-width);
+    max-width: none;
+    padding: var(--icon-toggle-bar-page-padding);
+    transform: none;
+    background: var(--icon-toggle-panel-bg);
+  }
+
+  .page > header[role="banner"] .icon-toggle .icon-toggle__panel {
+    position: absolute;
+    display: none;
+    margin: 0;
+  }
+
+  .page > header[role="banner"] .icon-toggle .icon-toggle__panel.show {
+    display: block;
+  }
+
+  .page > header[role="banner"] .icon-toggle--panel-popover .icon-toggle__panel {
+    padding: var(--bs-dropdown-padding-y, 0.5rem) 0;
+    border: 1px solid var(--icon-toggle-panel-border);
+    border-radius: var(--icon-toggle-panel-radius);
+    background: var(--icon-toggle-panel-bg);
+    box-shadow: var(--icon-toggle-panel-shadow);
+  }
+
+  .page > header[role="banner"] .icon-toggle {
+    position: absolute;
+    z-index: 2;
+    inset-block-start: calc(var(--bs-gutter-y, 0) - var(--icon-toggle-header-icon-offset));
+    inset-inline-end: calc(var(--bs-gutter-x, 1.5rem) * 0.5 + var(--icon-toggle-header-toggler-size) + var(--icon-toggle-header-icon-gap) - var(--icon-toggle-header-icon-offset));
+  }
 }

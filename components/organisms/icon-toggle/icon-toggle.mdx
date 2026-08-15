@@ -42,7 +42,22 @@ import templateSource from './icon-toggle.twig?raw';
 {% endembed %}
 ```
 
-### Example #2: Account toggle (custom icon)
+### Example #2: Header search bar (inline bar panel)
+```
+{% embed "vartheme_bs5:icon-toggle" with {
+  icon: 'search',
+  label: 'Search',
+  open_label: 'Close search',
+  placement: 'end',
+  panel: 'bar'
+} %}
+  {% block content %}
+    {{ drupal_block('views_exposed_filter_block:search-page') }}
+  {% endblock %}
+{% endembed %}
+```
+
+### Example #3: Account toggle (custom icon)
 ```
 {% embed "vartheme_bs5:icon-toggle" with {
   icon: 'person',
