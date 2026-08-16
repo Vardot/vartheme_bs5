@@ -245,6 +245,11 @@
     box-shadow: var(--icon-toggle-panel-shadow);
   }
 
+  .page > header[role="banner"] .icon-toggle--panel-bar.is-bar-inline .icon-toggle__panel {
+    position: fixed;
+    background: var(--icon-toggle-panel-bg);
+  }
+
   .page > header[role="banner"] .icon-toggle {
     position: absolute;
     z-index: 2;

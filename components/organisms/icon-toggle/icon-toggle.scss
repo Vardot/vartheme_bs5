@@ -314,6 +314,16 @@
     box-shadow: var(--icon-toggle-panel-shadow);
   }
 
+  // The bar spans the header band using viewport coordinates, so it needs the
+  // `fixed` positioning set above — which the `position: absolute` reset a few
+  // rules up outweighs on specificity. The theme also flattens header dropdown
+  // panels to `background-color: transparent` below lg, which outweighs the
+  // bar's own opaque background. Restate both here, above either.
+  .page > header[role="banner"] .icon-toggle--panel-bar.is-bar-inline .icon-toggle__panel {
+    position: fixed;
+    background: var(--icon-toggle-panel-bg);
+  }
+
   // Below lg the header stacks its columns and pins the hamburger to the
   // brand's line. Join it there instead of taking a row below the logo.
   .page > header[role="banner"] .icon-toggle {
