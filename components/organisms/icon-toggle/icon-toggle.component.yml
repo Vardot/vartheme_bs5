@@ -135,13 +135,6 @@ props:
       description: Which side of the button the popover panel aligns to (logical, RTL-aware).
       enum:
         - end
-    expand_in_editor:
-      type: boolean
-      title: Expand in Canvas editor
-      description: Force the panel open while previewed inside the Drupal Canvas editor, so its "content" slot stays reachable for dropping components in. Turn off once content is placed, if the always-open panel clutters the editor view — the front-end open/close behavior is unaffected either way.
-      default: true
-      examples:
-        - true
         - start
       meta:enum:
         end: End side
@@ -149,6 +142,13 @@ props:
       default: end
       examples:
         - end
+    expand_in_editor:
+      type: boolean
+      title: Expand in Canvas editor
+      description: Force the panel open while previewed inside the Drupal Canvas editor, so its "content" slot stays reachable for dropping components in. Turn off once content is placed, if the always-open panel clutters the editor view — the front-end open/close behavior is unaffected either way.
+      default: true
+      examples:
+        - true
     panel:
       type: string
       title: Panel style
