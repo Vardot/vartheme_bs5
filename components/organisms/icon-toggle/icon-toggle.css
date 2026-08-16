@@ -215,6 +215,14 @@
   clip-path: inset(50%);
 }
 
+@media (min-width: 992px) {
+  .page > header[role="banner"] .icon-toggle--panel-bar.is-bar-inline .icon-toggle__panel {
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
+
 @media (max-width: 991.98px) {
   .icon-toggle--panel-bar.is-bar-inline .icon-toggle__panel {
     position: fixed;

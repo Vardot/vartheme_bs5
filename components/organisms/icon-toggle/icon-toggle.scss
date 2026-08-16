@@ -276,6 +276,23 @@
   }
 }
 
+// From lg up the theme dresses every header dropdown panel as a floating card
+// (`border-radius`, `box-shadow`, vertical padding). The bar is not a card: it
+// is a flat band across the header row, so it clears that chrome again. The
+// component's own `.icon-toggle--panel-bar .icon-toggle__panel` already asks
+// for this, but at (0,2,0) it is outweighed by the theme's
+// `.page > header[role="banner"] .dropdown-menu` at (0,3,1). Restate it here,
+// above both. Scoped to `up(lg)` on purpose: below lg the theme already flattens
+// the panel itself, and the bar's own padding is measured band geometry that
+// must not be zeroed.
+@include media-breakpoint-up(lg) {
+  .page > header[role="banner"] .icon-toggle--panel-bar.is-bar-inline .icon-toggle__panel {
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
+
 // Below lg the bar leaves the header row and becomes a full-width band directly
 // under it. `position: fixed` + the measured band geometry keeps it aligned to
 // the header without a `100vw` breakout (which would ignore the admin toolbar
