@@ -599,8 +599,10 @@ footer.footer {
   }
 }
 
-// Blog exposed filter row — horizontal Search / Industry / Type with ghost
-// Apply Filter + Reset actions.
+// Exposed filter bar: horizontal controls with ghost submit and reset actions.
+// Carried by `.vb-filter-bar` so any exposed form can opt in. The blog filter
+// row keeps its ID selector so it renders unchanged without any config edit.
+.vb-filter-bar .views-exposed-form,
 #views-exposed-form-blog-all {
   --vb-filter-gap: 1rem;
   --vb-filter-col-width: 16.4375rem;
@@ -620,7 +622,8 @@ footer.footer {
     margin: 0;
   }
 
-  .form-item-search {
+  .form-item-search,
+  .js-form-type-textfield {
     flex: 1 0 16rem;
     min-width: 12rem;
   }
@@ -641,8 +644,10 @@ footer.footer {
 
   @include media-breakpoint-down(md) {
     .form-item-search,
+    .js-form-type-textfield,
     .form-item-industry,
-    .form-item-type {
+    .form-item-type,
+    .form-actions {
       flex: 1 1 100%;
     }
   }
@@ -690,7 +695,8 @@ footer.footer {
     height: 3.125rem;
   }
 
-  .form-submit {
+  .form-submit,
+  .form-submit.btn {
     padding: 0;
     transition:
       opacity 0.15s ease-in-out,
@@ -712,7 +718,9 @@ footer.footer {
   }
 
   [id*="edit-reset"],
-  input[name="reset"] {
+  [id*="edit-reset"].btn,
+  input[name="reset"],
+  input[name="reset"].btn {
     opacity: 0.5;
     color: var(--bs-secondary-color);
 
@@ -724,7 +732,19 @@ footer.footer {
   }
 }
 
+[dir="rtl"] .vb-filter-bar .views-exposed-form .form-item-search input[type="text"],
 [dir="rtl"] #views-exposed-form-blog-all .form-item-search input[type="text"] {
   padding-right: 2.25rem;
   padding-left: 0;
+}
+
+// Search results empty state: a quiet notice rather than bare text.
+// `--bs-tertiary-bg` is a dark token in this theme, so the light neutral
+// `--bs-secondary-bg` is what keeps the body colour readable here.
+.view-empty--notice {
+  padding: 1.5rem;
+  color: var(--bs-body-color);
+  border: var(--bs-border-width) solid var(--bs-border-color);
+  border-radius: 0.5rem;
+  background-color: var(--bs-secondary-bg);
 }

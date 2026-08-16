@@ -538,6 +538,7 @@ footer.footer hr {
   border-top: 0.0625rem solid currentColor;
 }
 
+.vb-filter-bar .views-exposed-form,
 #views-exposed-form-blog-all {
   --vb-filter-gap: 1rem;
   --vb-filter-col-width: 16.4375rem;
@@ -553,16 +554,22 @@ footer.footer hr {
   gap: var(--vb-filter-gap);
 }
 
+.vb-filter-bar .views-exposed-form > .form-item,
+.vb-filter-bar .views-exposed-form > .js-form-item,
 #views-exposed-form-blog-all > .form-item,
 #views-exposed-form-blog-all > .js-form-item {
   margin: 0;
 }
 
-#views-exposed-form-blog-all .form-item-search {
+.vb-filter-bar .views-exposed-form .form-item-search,
+.vb-filter-bar .views-exposed-form .js-form-type-textfield,
+#views-exposed-form-blog-all .form-item-search,
+#views-exposed-form-blog-all .js-form-type-textfield {
   flex: 1 0 16rem;
   min-width: 12rem;
 }
 
+.vb-filter-bar .views-exposed-form .form-item-search input[type="text"],
 #views-exposed-form-blog-all .form-item-search input[type="text"] {
   padding-left: 2.25rem;
   background-image: url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2714%27 height=%2714%27 viewBox=%270 0 14 14%27 fill=%27none%27%3E%3Cpath d=%27M6.125 11.375a5.25 5.25 0 1 0 0-10.5 5.25 5.25 0 0 0 0 10.5ZM13.125 13.125 9.84 9.84%27 stroke=%27%23001D38%27 stroke-width=%271.3%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3C/svg%3E");
@@ -571,24 +578,35 @@ footer.footer hr {
   background-size: 0.875rem;
 }
 
+[dir="rtl"] .vb-filter-bar .views-exposed-form .form-item-search input[type="text"],
 [dir="rtl"] #views-exposed-form-blog-all .form-item-search input[type="text"] {
   padding-right: 2.25rem;
   padding-left: 0;
 }
 
+.vb-filter-bar .views-exposed-form .form-item-industry,
+.vb-filter-bar .views-exposed-form .form-item-type,
 #views-exposed-form-blog-all .form-item-industry,
 #views-exposed-form-blog-all .form-item-type {
   flex: 0 0 var(--vb-filter-col-width);
 }
 
 @media (max-width: 767.98px) {
+  .vb-filter-bar .views-exposed-form .form-item-search,
+  .vb-filter-bar .views-exposed-form .js-form-type-textfield,
+  .vb-filter-bar .views-exposed-form .form-item-industry,
+  .vb-filter-bar .views-exposed-form .form-item-type,
+  .vb-filter-bar .views-exposed-form .form-actions,
   #views-exposed-form-blog-all .form-item-search,
+  #views-exposed-form-blog-all .js-form-type-textfield,
   #views-exposed-form-blog-all .form-item-industry,
-  #views-exposed-form-blog-all .form-item-type {
+  #views-exposed-form-blog-all .form-item-type,
+  #views-exposed-form-blog-all .form-actions {
     flex: 1 1 100%;
   }
 }
 
+.vb-filter-bar .views-exposed-form label,
 #views-exposed-form-blog-all label {
   margin-bottom: 0.5rem;
   color: var(--bs-body-color);
@@ -597,6 +615,10 @@ footer.footer hr {
   line-height: 1.5;
 }
 
+.vb-filter-bar .views-exposed-form .form-text,
+.vb-filter-bar .views-exposed-form .form-select,
+.vb-filter-bar .views-exposed-form input[type="text"],
+.vb-filter-bar .views-exposed-form select,
 #views-exposed-form-blog-all .form-text,
 #views-exposed-form-blog-all .form-select,
 #views-exposed-form-blog-all input[type="text"],
@@ -614,6 +636,10 @@ footer.footer hr {
   line-height: 1.5;
 }
 
+.vb-filter-bar .views-exposed-form .form-text::placeholder,
+.vb-filter-bar .views-exposed-form .form-select::placeholder,
+.vb-filter-bar .views-exposed-form input[type="text"]::placeholder,
+.vb-filter-bar .views-exposed-form select::placeholder,
 #views-exposed-form-blog-all .form-text::placeholder,
 #views-exposed-form-blog-all .form-select::placeholder,
 #views-exposed-form-blog-all input[type="text"]::placeholder,
@@ -621,6 +647,10 @@ footer.footer hr {
   color: var(--bs-secondary-color);
 }
 
+.vb-filter-bar .views-exposed-form .form-text:focus,
+.vb-filter-bar .views-exposed-form .form-select:focus,
+.vb-filter-bar .views-exposed-form input[type="text"]:focus,
+.vb-filter-bar .views-exposed-form select:focus,
 #views-exposed-form-blog-all .form-text:focus,
 #views-exposed-form-blog-all .form-select:focus,
 #views-exposed-form-blog-all input[type="text"]:focus,
@@ -630,6 +660,7 @@ footer.footer hr {
   box-shadow: 0 0 0 0.2rem rgba(var(--bs-primary-rgb), 0.15);
 }
 
+.vb-filter-bar .views-exposed-form .form-actions,
 #views-exposed-form-blog-all .form-actions {
   display: flex;
   align-items: center;
@@ -638,7 +669,10 @@ footer.footer hr {
   gap: 1.5rem;
 }
 
-#views-exposed-form-blog-all .form-submit {
+.vb-filter-bar .views-exposed-form .form-submit,
+.vb-filter-bar .views-exposed-form .form-submit.btn,
+#views-exposed-form-blog-all .form-submit,
+#views-exposed-form-blog-all .form-submit.btn {
   padding: 0;
   transition:
     opacity 0.15s ease-in-out,
@@ -652,33 +686,67 @@ footer.footer hr {
   line-height: 1.35;
 }
 
+.vb-filter-bar .views-exposed-form .form-submit:hover,
+.vb-filter-bar .views-exposed-form .form-submit:focus,
+.vb-filter-bar .views-exposed-form .form-submit.btn:hover,
+.vb-filter-bar .views-exposed-form .form-submit.btn:focus,
 #views-exposed-form-blog-all .form-submit:hover,
-#views-exposed-form-blog-all .form-submit:focus {
+#views-exposed-form-blog-all .form-submit:focus,
+#views-exposed-form-blog-all .form-submit.btn:hover,
+#views-exposed-form-blog-all .form-submit.btn:focus {
   opacity: 0.85;
   color: var(--bs-primary-text-emphasis);
   background: transparent;
 }
 
+.vb-filter-bar .views-exposed-form [id*="edit-reset"],
+.vb-filter-bar .views-exposed-form [id*="edit-reset"].btn,
+.vb-filter-bar .views-exposed-form input[name="reset"],
+.vb-filter-bar .views-exposed-form input[name="reset"].btn,
 #views-exposed-form-blog-all [id*="edit-reset"],
-#views-exposed-form-blog-all input[name="reset"] {
+#views-exposed-form-blog-all [id*="edit-reset"].btn,
+#views-exposed-form-blog-all input[name="reset"],
+#views-exposed-form-blog-all input[name="reset"].btn {
   opacity: 0.5;
   color: var(--bs-secondary-color);
 }
 
+.vb-filter-bar .views-exposed-form [id*="edit-reset"]:hover,
+.vb-filter-bar .views-exposed-form [id*="edit-reset"]:focus,
+.vb-filter-bar .views-exposed-form [id*="edit-reset"].btn:hover,
+.vb-filter-bar .views-exposed-form [id*="edit-reset"].btn:focus,
+.vb-filter-bar .views-exposed-form input[name="reset"]:hover,
+.vb-filter-bar .views-exposed-form input[name="reset"]:focus,
+.vb-filter-bar .views-exposed-form input[name="reset"].btn:hover,
+.vb-filter-bar .views-exposed-form input[name="reset"].btn:focus,
 #views-exposed-form-blog-all [id*="edit-reset"]:hover,
 #views-exposed-form-blog-all [id*="edit-reset"]:focus,
+#views-exposed-form-blog-all [id*="edit-reset"].btn:hover,
+#views-exposed-form-blog-all [id*="edit-reset"].btn:focus,
 #views-exposed-form-blog-all input[name="reset"]:hover,
-#views-exposed-form-blog-all input[name="reset"]:focus {
+#views-exposed-form-blog-all input[name="reset"]:focus,
+#views-exposed-form-blog-all input[name="reset"].btn:hover,
+#views-exposed-form-blog-all input[name="reset"].btn:focus {
   opacity: 1;
   color: var(--bs-primary);
 }
 
+[dir="rtl"] .vb-filter-bar .views-exposed-form .form-item-search input[type="text"],
 [dir="rtl"] #views-exposed-form-blog-all .form-item-search input[type="text"] {
   padding-right: 2.25rem;
   padding-left: 0;
 }
 
+[dir="rtl"] [dir="rtl"] .vb-filter-bar .views-exposed-form .form-item-search input[type="text"],
 [dir="rtl"] [dir="rtl"] #views-exposed-form-blog-all .form-item-search input[type="text"] {
   padding-right: 0;
   padding-left: 2.25rem;
+}
+
+.view-empty--notice {
+  padding: 1.5rem;
+  color: var(--bs-body-color);
+  border: var(--bs-border-width) solid var(--bs-border-color);
+  border-radius: 0.5rem;
+  background-color: var(--bs-secondary-bg);
 }

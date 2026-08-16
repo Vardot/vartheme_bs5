@@ -1,0 +1,92 @@
+{#
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for the Views view search component.
+ *
+ * Same variables as the Views view component, in the order a search results
+ * page reads best: the view title, then the exposed filter bar, then the
+ * summary the header carries, and then the rows.
+ *
+ * @see template_preprocess_views_view()
+ * @see vartheme_bs5:views-view
+ */
+#}
+
+{# Logic: container classes, mirroring the Views view component. #}
+{% set id_class = 'view-id-' ~ id %}
+{% set id_named_class = 'view-' ~ id|clean_class %}
+{% set display_id_class = 'view-display-id-' ~ display_id %}
+{% set dom_id_classes = dom_id ? ['js-view-dom-id-' ~ dom_id] : [] %}
+{% set css_name_classes = css_name ? ['view-' ~ css_name] : [] %}
+{%
+  set classes = [
+    'view',
+    id_class,
+    id_named_class,
+    display_id_class,
+  ]|merge(dom_id_classes)|merge(css_name_classes)
+%}
+{% set view_title = title ?: view.getTitle() %}
+
+{# Print the HTML. #}
+{% set attributes = attributes.addClass(classes) %}
+<div{{ attributes }}>
+  {{ title_prefix }}
+  {% if view_title %}
+    {{ include('vartheme_bs5:heading', {
+        heading_text: view_title,
+        level: 1,
+      },
+      with_context = false,
+    ) }}
+  {% endif %}
+  {{ title_suffix }}
+
+  {% if exposed %}
+    <div class="view-filters vb-filter-bar">
+      {{ exposed }}
+    </div>
+  {% endif %}
+  {% if header %}
+    <div class="view-header">
+      {{ header }}
+    </div>
+  {% endif %}
+  {% if attachment_before %}
+    <div class="attachment attachment-before">
+      {{ attachment_before }}
+    </div>
+  {% endif %}
+
+  {% if rows %}
+    <div class="view-content">
+      {{ rows }}
+    </div>
+  {% elseif empty %}
+    <div class="view-empty view-empty--notice">
+      {{ empty }}
+    </div>
+  {% endif %}
+
+  {% if pager %}
+    {{ pager }}
+  {% endif %}
+  {% if attachment_after %}
+    <div class="attachment attachment-after">
+      {{ attachment_after }}
+    </div>
+  {% endif %}
+  {% if more %}
+    {{ more }}
+  {% endif %}
+  {% if footer %}
+    <div class="view-footer">
+      {{ footer }}
+    </div>
+  {% endif %}
+  {% if feed_icons %}
+    <div class="feed-icons">
+      {{ feed_icons }}
+    </div>
+  {% endif %}
+</div>
