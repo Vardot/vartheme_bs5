@@ -199,6 +199,7 @@ props:
         caret-left-fill: Caret Left Filled
         caret-up-fill: Caret Up Filled
         caret-down-fill: Caret Down Filled
+      x-canvas-icon: ['bootstrap_icons']
     icon_first:
       type: boolean
       title: Change icon position to left

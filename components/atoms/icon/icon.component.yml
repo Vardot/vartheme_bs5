@@ -115,6 +115,7 @@ props:
         chat-dots: Chat Dots
         laptop: Laptop
         gear: Gear
+      x-canvas-icon: ['bootstrap_icons']
     icon_size:
       type: string
       title: Icon size

@@ -128,6 +128,7 @@ props:
         "circle": "Circle"
         "circle-fill": "Circle Filled"
         "record-circle": "Record Circle"
+      x-canvas-icon: ['bootstrap_icons']
     icon_size:
       type: string
       title: Icon size
