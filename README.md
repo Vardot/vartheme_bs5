@@ -2,7 +2,7 @@
 
 # Vartheme BS5
 [![pipeline status](https://git.drupalcode.org/project/vartheme_bs5/badges/5.0.x/pipeline.svg)](https://git.drupalcode.org/project/vartheme_bs5/-/pipelines)
-[![Vartheme BS5](https://img.shields.io/badge/Vartheme%20BS5-5.0.0--rc5-0d6efc?labelColor=001d38&style=flat-square)](https://git.drupalcode.org/project/vartheme_bs5/-/pipelines?ref=5.0.0-rc5)
+[![Vartheme BS5](https://img.shields.io/badge/Vartheme%20BS5-5.0.0-0d6efc?labelColor=001d38&style=flat-square)](https://git.drupalcode.org/project/vartheme_bs5/-/pipelines?ref=5.0.0)
 [![Automated Functional Testing](https://git.drupalcode.org/project/varbase_project/badges/11.0.x/pipeline.svg)](https://git.drupalcode.org/project/varbase_project/-/pipelines)
 
 A Starterkit theme for Varbase websites.
@@ -13,7 +13,7 @@ A new generation of theming based on **Bootstrap 5**, **Single Directory Compone
 # Installation
 Require the theme in a Drupal
 ```
-composer require 'drupal/vartheme_bs5:~4.0.0'
+composer require 'drupal/vartheme_bs5:~5.0.0'
 ```
 
 ## Compile custom styling
