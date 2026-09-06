@@ -739,6 +739,16 @@ footer.footer {
   padding-left: 0;
 }
 
+// Front page `h1`: kept for the document outline and screen readers, hidden
+// from sight. Mirrors what `vartheme_bs5_preprocess_page_title()` already does
+// with `.visually-hidden`, and reaches a Canvas landing page, where the
+// page-title block is disabled. Scoped to `main` so a heading in the header,
+// the admin toolbar or an off-canvas dialog is untouched. Bootstrap's own
+// mixin, so the clip technique keeps the element in the accessibility tree.
+.path-frontpage main h1 {
+  @include visually-hidden();
+}
+
 // Search results empty state: a quiet notice rather than bare text.
 // `--bs-tertiary-bg` is a dark token in this theme, so the light neutral
 // `--bs-secondary-bg` is what keeps the body colour readable here.
