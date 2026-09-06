@@ -548,7 +548,8 @@ footer.footer {
       justify-content: center;
       width: 1.875rem;
       height: 1.875rem;
-      color: var(--bs-primary);
+      // Darkened primary ($blue-600) for WCAG 2.1 AA on light footer sections.
+      color: shade-color($primary, 20%);
       font-size: 0 !important;
       line-height: 0 !important;
       letter-spacing: -9999px !important;
@@ -557,7 +558,7 @@ footer.footer {
       &::before {
         display: inline-block;
         margin: 0;
-        color: var(--bs-primary);
+        color: shade-color($primary, 20%);
         font-size: 1.125rem;
         letter-spacing: normal;
       }
