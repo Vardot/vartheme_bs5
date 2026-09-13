@@ -68,7 +68,8 @@
 {% if not noscript_img_attributes %}
   {% set noscript_img_attributes = create_attribute() %}
 {% endif %}
-{% set noscript_img_attributes = noscript_img_attributes.setAttribute('src', data.original_source) %}
+{% set noscript_img_attributes = noscript_img_attributes.setAttribute('src', '/' ~ data.subdir ~ '/' ~ data.original_source) %}
+{% set noscript_img_attributes = noscript_img_attributes.setAttribute('loading', 'lazy') %}
 {% set noscript_img_attributes = noscript_img_attributes.setAttribute('alt', alt) %}
 {% set noscript_img_attributes = noscript_img_attributes.setAttribute('width', data.original_width) %}
 {% set noscript_img_attributes = noscript_img_attributes.setAttribute('height', data.original_height) %}
