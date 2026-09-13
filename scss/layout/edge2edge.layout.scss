@@ -52,6 +52,28 @@
   }
 }
 
+// Clip the horizontal overflow the edge-to-edge band produces: `100vw` includes
+// the classic scrollbar, the content box does not, so every `.bg-edge2edge`
+// section is a scrollbar-width wider than the page.
+//
+// This MUST be `clip`, never `hidden`. Per CSS Overflow 3, an `overflow-x` of
+// `hidden` forces an `overflow-y` of `visible` to compute to `auto`, which
+// turns the element into a scroll container. On `body` that is what freezes the
+// page: while the body-to-viewport overflow propagation holds the page still
+// scrolls, but the moment anything stops that propagation (an `html` overflow
+// set by an admin toolbar, a scroll-lock, a modal or offcanvas backdrop) the
+// viewport can no longer scroll and `body` cannot either, because its height is
+// its content height. The page is then frozen with a stray inner scrollbar and
+// neither the wheel nor the keyboard moves it.
+//
+// `clip` clips without creating a scroll container and leaves `overflow-y` as
+// `visible`, so vertical scrolling always stays on the viewport. Declaring it on
+// `html` as well makes the viewport authoritative, which both removes the last
+// pixels of horizontal scroll and keeps a third party setting `html { overflow }`
+// from resurrecting the lockup.
+// @see https://drafts.csswg.org/css-overflow-3/#overflow-properties
+html,
 body {
-  overflow-x: hidden !important;
+  overflow-x: hidden !important; // Fallback for browsers without `clip`.
+  overflow-x: clip !important;
 }
