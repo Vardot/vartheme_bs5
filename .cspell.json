@@ -5,6 +5,7 @@
   "globRoot": ".",
   "ignorePaths": [
     "node_modules/**",
+    "**/node_modules/**",
     "vendor/**",
     "*.min.js",
     "*.min.css",
@@ -22,7 +23,11 @@
     "**/*.component.yml",
     "fonts/fontawesome-free/**",
     "js/popperjs/**",
-    "js/bootstrap/**"
+    "js/bootstrap/**",
+    "tests/reports/**",
+    "tests/screenshots/**",
+    "tests/videos/**",
+    "tests/package-lock.json"
   ],
   "words": [
     "varbase",
@@ -551,6 +556,19 @@
     "Yacute",
     "ydieresis",
     "Ydieresis",
-    "contentinfo"
+    "contentinfo",
+    "ddev",
+    "infobars",
+    "listitem",
+    "runserver",
+    "wcag",
+    "drush",
+    "fwrite",
+    "getenv",
+    "libmagickcore",
+    "mbstring",
+    "noninteractive",
+    "ondrej",
+    "testsite"
   ]
 }

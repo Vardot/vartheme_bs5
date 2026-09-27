@@ -1,58 +1,275 @@
 ################################################################################
-# Basic GitLab CI for Vartheme BS5.
+# GitLab CI for Vartheme BS5.
 #
-# A self-contained build + validate pipeline modeled on the Varbase project CI:
-# build the theme + component assets, then run the JS / CSS / YAML / spelling
-# linters for visibility. The lints run but do not fail the stage (`|| true`),
-# so the basic pipeline stays green. Drop the `|| true` from a job to make that
-# individual check blocking.
+# Self-contained: this pipeline does not include drupal/gitlab_templates, so it
+# runs end to end under gitlab-ci-local as well as on git.drupalcode.org.
+#
+# pre-test - resolve every step phrasing in the Varbase functional testing
+#            suite without a browser, and build the host the suite runs
+#            against: a Varbase 11 project with the Varbase Starter site
+#            template, rendering through THIS checkout of the theme rather
+#            than a published copy. The database is dumped and the built tree,
+#            node_modules and the Playwright browser are cached.
+# test     - pull the cache, restore the dump in seconds, serve the site and
+#            drive it through the browser.
+#
+# Every job is a gate: no allow_failure, and no command whose failure is
+# swallowed. A red job here means a real finding.
+#
+# = Automated Functional Acceptance Testing (varbase-e2e) =
 ################################################################################
 
 stages:
-  - build
-  - validate
+  - pre-test
+  - test
 
 variables:
-  # Drupal 11.4.0 released 2026-07-01; pinned templates ref $CORE_STABLE is still 11.3.
-  DRUPAL_CORE: "11.4.0"
-  IGNORE_PROJECT_DRUPAL_CORE_VERSION: "1"
-  # Yarn 4 defaults to immutable installs in CI and would refuse to touch the
-  # lockfile; allow it so `yarn install` works on every job.
-  YARN_ENABLE_IMMUTABLE_INSTALLS: "false"
+  COMPOSER_ALLOW_SUPERUSER: "1"
+  COMPOSER_MEMORY_LIMIT: "-1"
+  COMPOSER_NO_INTERACTION: "1"
+  VARBASE_PROJECT: "drupal/varbase_project:11.0.x-dev"
+  DRUPAL_ADMIN_USERNAME: "webmaster"
+  DRUPAL_ADMIN_PASSWORD: "dD.123123ddd"
+  # This repo is a theme, not a docroot; the host site is built under testsite/
+  # and the theme checkout is staged outside it.
+  SITE_DIR: "$CI_PROJECT_DIR/testsite"
+  WEB_ROOT: "$CI_PROJECT_DIR/testsite/web"
+  THEME_SRC: "/tmp/vartheme_bs5-src"
+  DB_URL: "mysql://drupal:drupal@database/drupal"
+  LAUNCH_URL: "http://127.0.0.1:8888"
+  FORCE_COLOR: "1"
+  # The suite keeps its reports under tests/reports/; varbase-e2e's exit hook
+  # looks for tests/reports/ relative to the working directory, which from
+  # inside tests/ is the wrong path. The test job builds the report itself.
+  VARBASE_E2E_REPORT_DISABLE: "1"
+  COMPOSER_CACHE_DIR: "${CI_PROJECT_DIR}/.cache/composer"
+  PLAYWRIGHT_BROWSERS_PATH: "${CI_PROJECT_DIR}/.cache/ms-playwright"
 
-default:
+# Build cache populated by the Install job: the built host site (testsite/), the
+# suite's node_modules and the composer + Playwright download caches. The test
+# job pulls it and only restores the database dump.
+.host_cache: &host_cache
+  key: "vartheme-bs5-host-v1-$CI_COMMIT_REF_SLUG"
+  paths:
+    - .cache/composer
+    - .cache/ms-playwright
+    - testsite
+    - tests/node_modules
+
+.host_cache_pull: &host_cache_pull
+  key: "vartheme-bs5-host-v1-$CI_COMMIT_REF_SLUG"
+  policy: pull
+  paths:
+    - .cache/composer
+    - .cache/ms-playwright
+    - testsite
+    - tests/node_modules
+
+.fragments:
+  # The Playwright image is Ubuntu noble (PHP 8.3 default); add ondrej/php for
+  # PHP 8.4, then PHP + Composer + ImageMagick/WebP + a MySQL client. Needed by
+  # the Install job (build + drush) and by the test job (restore + serve).
+  host_php_setup:
+    - export DEBIAN_FRONTEND=noninteractive
+    - apt-get update -y
+    - apt-get install -y --no-install-recommends software-properties-common ca-certificates curl gnupg lsb-release
+    - add-apt-repository -y ppa:ondrej/php
+    - apt-get update -y
+    - apt-get install -y --no-install-recommends php8.4-cli php8.4-mysql php8.4-gd php8.4-curl php8.4-xml php8.4-mbstring php8.4-zip php8.4-intl unzip git default-mysql-client webp imagemagick libmagickcore-6.q16-6-extra
+    - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+    - composer --version && php --version
+    - |
+      for f in /etc/ImageMagick-*/policy.xml; do
+        if [ -f "$f" ]; then
+          sed -i 's/rights="none"\s*pattern="WEBP"/rights="read|write" pattern="WEBP"/I' "$f"
+        fi
+      done
+
+  # Stage this checkout outside $CI_PROJECT_DIR and register it as a canonical
+  # composer path repository, so the host site renders through this commit
+  # instead of a published copy of the theme.
+  #
+  # Staged rather than pointed at in place: a path repo copies whatever it is
+  # given, and by the time composer copies, $CI_PROJECT_DIR also carries the
+  # host site under testsite/ and the download caches under .cache/. The
+  # excludes below are exactly the directories this pipeline creates.
+  #
+  # drupal/varbase_starter requires drupal/vartheme_bs5 as 5.0.x-dev, and this
+  # theme's composer.json carries no version key, so the advertised version is
+  # derived from the branch the commit is FOR. No release has to edit this file.
+  stage_theme_source:
+    # The branch the commit is FOR, which is the MR target, or the default
+    # branch on a branch pipeline. Anything that is not a Drupal version branch
+    # falls back: a runner that cannot resolve the default branch hands us a
+    # name like "main", and "main-dev" is not a version composer can parse.
+    - |
+      THEME_BRANCH="${CI_MERGE_REQUEST_TARGET_BRANCH_NAME:-${CI_DEFAULT_BRANCH:-}}"
+      case "$THEME_BRANCH" in
+        [0-9]*.[0-9]*.x) ;;
+        *) THEME_BRANCH="5.0.x" ;;
+      esac
+      export THEME_DEV_VERSION="${THEME_BRANCH}-dev"
+    - rm -rf "$THEME_SRC" && mkdir -p "$THEME_SRC"
+    - tar -c -C "$CI_PROJECT_DIR"
+        --exclude=./.git --exclude=./.cache --exclude=./testsite
+        --exclude=./node_modules --exclude=./tests/node_modules
+        --exclude=./tests/reports --exclude=./tests/screenshots --exclude=./tests/videos
+        . | tar -x -C "$THEME_SRC"
+    - test -f "$THEME_SRC/vartheme_bs5.info.yml"
+    - test ! -e "$THEME_SRC/testsite"
+    - echo "Path repo advertises drupal/vartheme_bs5 as $THEME_DEV_VERSION from $THEME_SRC"
+
+# = pre-test = every step phrasing in the suite resolves. No browser, no site.
+"🧩 Cucumber dry-run":
+  stage: pre-test
   image: node:20
+  needs: []
   before_script:
-    - corepack enable
-    - 'test -f .yarnrc.yml || echo "nodeLinker: node-modules" > .yarnrc.yml'
-    - yarn install
-
-# = Build stage =
-
-# Compile the theme assets (SCSS -> CSS) and the SDC component styles.
-build:
-  stage: build
+    - cd tests
+    - npm ci --no-audit --no-fund --ignore-scripts
   script:
     - node --version
-    - yarn theme:full-build
+    - ./node_modules/.bin/cucumber-js --config cucumber.js --dry-run
 
-# = Validate stage =
-
-eslint:
-  stage: validate
+# = pre-test = build the host the suite drives: a Varbase 11 project carrying
+# the Varbase Starter site template, rendering through this checkout of the
+# theme. Dump the database and cache the built tree for the test job.
+"📦 Install the Varbase Starter host":
+  stage: pre-test
+  image: mcr.microsoft.com/playwright:v1.63.0-noble
+  needs: []
+  timeout: 2h
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
+  cache: *host_cache
+  services:
+    - name: mariadb:10.11
+      alias: database
+      variables:
+        MARIADB_DATABASE: drupal
+        MARIADB_USER: drupal
+        MARIADB_PASSWORD: drupal
+        MARIADB_ROOT_PASSWORD: root
+  artifacts:
+    when: on_success
+    expire_in: 1 day
+    paths:
+      - vartheme-bs5-host-db.sql.gz
+  before_script:
+    - !reference [.fragments, host_php_setup]
+    - !reference [.fragments, stage_theme_source]
   script:
-    - yarn lint:js || true
-    - yarn lint:yaml || true
-  allow_failure: false
+    # The cache may restore a stale testsite/; composer create-project refuses a
+    # non-empty target, so start clean on every run.
+    - rm -rf "$SITE_DIR"
+    - composer create-project $VARBASE_PROJECT "$SITE_DIR" --no-interaction --no-install --no-scripts
+    - cd "$SITE_DIR"
+    - composer config minimum-stability dev
+    # Disable recipe unpacking BEFORE the first require, or requiring the site
+    # template unpacks its recipe dependencies into the root composer.json and
+    # removes the packages, so recipes/varbase_starter never exists.
+    - composer config extra.drupal-recipe-unpack.on-require --json false
+    # symlink:false - the theme must be COPIED into web/themes/contrib. A
+    # symlink back to the staging dir survives the job but not the cache.
+    - composer config repositories.vartheme_bs5
+        '{"type":"path","url":"'"$THEME_SRC"'","options":{"symlink":false,"versions":{"drupal/vartheme_bs5":"'"$THEME_DEV_VERSION"'"}}}'
+        --json
+    - composer require drupal/varbase_starter:1.0.x-dev --no-interaction --no-progress --prefer-dist --with-all-dependencies
+    # Prove the theme under test came from the path repo. A silent fall back to
+    # a published copy would stop testing this branch, and every gate below
+    # would then pass or fail for the wrong reason.
+    - |
+      php -r '
+        $l = json_decode(file_get_contents("composer.lock"), TRUE);
+        foreach ($l["packages"] as $p) {
+          if ($p["name"] !== "drupal/vartheme_bs5") { continue; }
+          $src = $p["dist"]["url"] ?? "";
+          printf("drupal/vartheme_bs5 %s from %s\n", $p["version"], $src);
+          if (($p["dist"]["type"] ?? "") !== "path" || $src !== getenv("THEME_SRC")) {
+            fwrite(STDERR, "not installed from the branch checkout\n");
+            exit(1);
+          }
+          print "installed from the branch checkout\n";
+          exit(0);
+        }
+        fwrite(STDERR, "drupal/vartheme_bs5 is not in the lock file\n");
+        exit(1);
+      '
+    - test -d web/themes/contrib/vartheme_bs5
+    - diff -q "$THEME_SRC/vartheme_bs5.info.yml" web/themes/contrib/vartheme_bs5/vartheme_bs5.info.yml
+    - ./bin/drush site:install recipes/varbase_starter --db-url=$DB_URL
+        --account-name=$DRUPAL_ADMIN_USERNAME --account-pass=$DRUPAL_ADMIN_PASSWORD
+        --account-mail=webmaster@vardot.com --site-name="Vartheme BS5" --locale=en -y
+    # The suite runs anonymously against the theme's own output; a page cached
+    # mid-install would hide a template change behind a stale render.
+    - ./bin/drush cache:rebuild
+    - ./bin/drush config:set system.logging error_level all -y
+    - |
+      THEME=$(./bin/drush config:get system.theme default --format=string)
+      echo "default theme: $THEME"
+      test "$THEME" = "vartheme_bs5"
+    # Install the suite and the matching Chromium (both cached for the test job).
+    - cd "$CI_PROJECT_DIR/tests"
+    - npm ci --no-audit --no-fund --ignore-scripts
+    - ./node_modules/.bin/playwright install chromium
+    - $SITE_DIR/bin/drush --root=$WEB_ROOT sql:dump --gzip --result-file=$CI_PROJECT_DIR/vartheme-bs5-host-db.sql
 
-stylelint:
-  stage: validate
+# = test = the Varbase functional testing suite (accessibility).
+"🧪 varbase-e2e (accessibility)":
+  stage: test
+  image: mcr.microsoft.com/playwright:v1.63.0-noble
+  needs: ["📦 Install the Varbase Starter host"]
+  timeout: 1h
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
+  cache: *host_cache_pull
+  services:
+    - name: mariadb:10.11
+      alias: database
+      variables:
+        MARIADB_DATABASE: drupal
+        MARIADB_USER: drupal
+        MARIADB_PASSWORD: drupal
+        MARIADB_ROOT_PASSWORD: root
+  artifacts:
+    when: always
+    expire_in: 30 days
+    paths:
+      - tests/reports/
+      - tests/screenshots/
+      - tests/videos/
+  before_script:
+    # testsite/, tests/node_modules and the browser arrive from the pull-only
+    # cache; only PHP is added, then the dumped database is restored.
+    - !reference [.fragments, host_php_setup]
+    - gunzip -c $CI_PROJECT_DIR/vartheme-bs5-host-db.sql.gz | $SITE_DIR/bin/drush --root=$WEB_ROOT sql:cli
+    - $SITE_DIR/bin/drush --root=$WEB_ROOT cache:rebuild
   script:
-    - yarn lint:css || true
-  allow_failure: false
-
-cspell:
-  stage: validate
-  script:
-    - yarn spellcheck || true
-  allow_failure: false
+    - PHP_CLI_SERVER_WORKERS=8 $SITE_DIR/bin/drush --root=$WEB_ROOT runserver 127.0.0.1:8888 > $CI_PROJECT_DIR/runserver.log 2>&1 &
+    # Fail here rather than inside the suite if the host never came up: a
+    # connection refused reported as 50 red scenarios hides the real cause.
+    - |
+      for i in $(seq 1 30); do
+        if curl -fsS -o /dev/null "$LAUNCH_URL/user/login"; then echo "host is up"; break; fi
+        if [ "$i" = "30" ]; then echo "host never answered at $LAUNCH_URL"; cat $CI_PROJECT_DIR/runserver.log; exit 1; fi
+        sleep 2
+      done
+    - cd "$CI_PROJECT_DIR/tests"
+    - ./node_modules/.bin/cucumber-js --config cucumber.js --tags "@a11y"
+  after_script:
+    - cd "$CI_PROJECT_DIR/tests"
+    - export REPORT="vartheme-bs5--${CI_COMMIT_REF_SLUG:-local}--automated-functional-testing-report--$(date +%Y-%m-%d)--$(date +%H-%M)"
+    - node ./node_modules/@vardot/varbase-e2e/bin/generate-reports.js
+        --json reports/cucumber_report.json
+        --out "reports/${REPORT}.html"
+        --format all
+        --pdf-out "reports/${REPORT}.pdf"
+        --env "${CI_COMMIT_REF_SLUG:-local}"
+        --browser Chromium
+        --platform linux

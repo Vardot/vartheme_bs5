@@ -1,0 +1,25 @@
+{
+  "name": "vartheme_bs5-tests",
+  "description": "Varbase functional testing suite (accessibility) for the Vartheme BS5 theme.",
+  "license": "GPL-2.0-or-later",
+  "private": true,
+  "scripts": {
+    "test": "VARBASE_E2E_REPORT_DISABLE=1 cucumber-js --config cucumber.js",
+    "test:chromium": "BROWSER=chromium npm test",
+    "test:headed": "HEADLESS=false npm test",
+    "test:fast": "SLOW_MO=0 npm test",
+    "test:dry-run": "VARBASE_E2E_REPORT_DISABLE=1 cucumber-js --config cucumber.js --dry-run",
+    "generate-reports": "node ./node_modules/@vardot/varbase-e2e/bin/generate-reports.js"
+  },
+  "devDependencies": {
+    "@vardot/varbase-e2e": "^2.0.7"
+  },
+  "overrides": {
+    "@cucumber/cucumber": "12.9.0",
+    "@cucumber/pretty-formatter": "1.0.1"
+  },
+  "resolutions": {
+    "@cucumber/cucumber": "12.9.0",
+    "@cucumber/pretty-formatter": "1.0.1"
+  }
+}
