@@ -23,7 +23,9 @@ include:
 
 variables:
   # This branch targets Drupal core 11.4; the static jobs validate against it.
-  DRUPAL_CORE: "11.4.0"
+  # 11.4.9 rather than 11.4.0: Twig 3.30 makes every page a fatal TypeError on
+  # core below 11.4.8 (fixed in core #3625969).
+  DRUPAL_CORE: "11.4.9"
   IGNORE_PROJECT_DRUPAL_CORE_VERSION: "1"
   # Make every drupalci validate job blocking (stylelint et al. default to
   # allow_failure:true). Combined with the per-job allow_failure:false overrides
@@ -174,7 +176,7 @@ varbase-e2e-test:
 # Allow the Varbase stack Composer plugins in the CI build.
 composer:
   variables:
-    DRUPAL_CORE: "11.4.0"
+    DRUPAL_CORE: "11.4.9"
     IGNORE_PROJECT_DRUPAL_CORE_VERSION: "1"
   before_script:
     - composer config --no-plugins allow-plugins.symfony/runtime true || true

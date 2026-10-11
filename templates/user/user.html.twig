@@ -1,1 +1,15 @@
-{% include 'vartheme_bs5:user' %}
+{#
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for the user view.
+ *
+ * On the owner's own profile, the Profile details card (the
+ * varbase_user_profile_details ECA model) carries the picture and the member
+ * for time, so they are not printed twice.
+ */
+#}
+{% set profile_details = elements.eca_render__varbase_user_profile_details|default([]) %}
+{% set has_profile_details = profile_details|keys|filter(key => (key ~ '')|first != '#') is not empty %}
+{% include 'vartheme_bs5:user' with {
+  content: has_profile_details ? content|without('user_picture', 'member_for') : content,
+} %}

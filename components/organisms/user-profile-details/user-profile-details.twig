@@ -1,0 +1,108 @@
+{#
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for the User Profile Details component.
+ *
+ * A Bootstrap card that shows a user their own account: the picture, the
+ * account details as a description list, and quick action buttons.
+ *
+ * Available properties:
+ * - heading: The card heading. Defaults to `Profile details`.
+ * - username: The account name.
+ * - full_name: The person's full name, when the site has a field for it.
+ * - email: The account email address.
+ * - timezone: The account time zone.
+ * - status: (true|false) Whether the account is active. Defaults to `true`.
+ * - created: The formatted date the account was created.
+ * - member_for: How long the account has existed.
+ * - last_login: The formatted date of the last login.
+ * - picture_url: The user picture. Empty shows a person icon instead.
+ * - picture_alt: The alternative text of the user picture.
+ * - actions: Quick action links, each with title, url and variant.
+ *   (primary | outline-primary | outline-dark) Defaults to `[]`.
+ *
+ * Available attributes:
+ * - attributes: HTML attributes for the root element.
+ */
+#}
+
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Variables: scalar props with schema defaults. #}
+{% set heading = heading|default('Profile details'|t) %}
+{% set actions = actions|default([]) %}
+{% set picture_alt = picture_alt|default(username) %}
+
+{# Variables: boolean props. #}
+{% set status = status ?? true %}
+
+{# Logic: the rows of the description list, empty values left out. #}
+{% set details = [
+  { label: 'Username'|t, value: username },
+  { label: 'Full name'|t, value: full_name },
+  { label: 'Email'|t, value: email },
+  { label: 'Time zone'|t, value: timezone },
+  { label: 'Account status'|t, value: status ? 'Active'|t : 'Blocked'|t },
+  { label: 'Account created'|t, value: created },
+  { label: 'Member for'|t, value: member_for },
+  { label: 'Last login'|t, value: last_login ?: 'Never'|t },
+]|filter(row => row.value is not empty) %}
+
+{# Logic: the picture, or a person icon when the account has none. #}
+{% if picture_url %}
+  {% set picture_attributes = create_attribute() %}
+  {% set picture_attributes = picture_attributes
+    .setAttribute('src', picture_url)
+    .setAttribute('alt', picture_alt)
+    .setAttribute('width', 96)
+    .setAttribute('height', 96)
+    .setAttribute('loading', 'lazy')
+    .addClass(['rounded-circle', 'object-fit-cover']) %}
+{% endif %}
+
+{# Logic: merge classes as arrays. #}
+{% set classes = ['user-profile-details', 'card', 'mb-4'] %}
+{% set attributes = attributes.addClass(classes) %}
+
+{# Print the HTML. #}
+<section{{ attributes }}>
+  <div class="card-body">
+    <div class="d-flex flex-column flex-sm-row gap-4">
+      <div class="user-profile-details__picture flex-shrink-0">
+        {% if picture_url %}
+          <img{{ picture_attributes }}>
+        {% else %}
+          {{ include('vartheme_bs5:icon', {
+            name: 'bi-person-circle',
+            icon_utility_classes: ['fs-1', 'text-primary'],
+          }, with_context = false) }}
+        {% endif %}
+      </div>
+      <div class="flex-grow-1">
+        <h2 class="card-title h5 mb-3">{{ heading }}</h2>
+        <dl class="row mb-0">
+          {% for row in details %}
+            <dt class="col-sm-4">{{ row.label }}</dt>
+            <dd class="col-sm-8 text-break">{{ row.value }}</dd>
+          {% endfor %}
+        </dl>
+        {% if actions is not empty %}
+          <div class="user-profile-details__actions d-flex flex-wrap gap-2 mt-3">
+            {% for action in actions %}
+              {% set action_attributes = create_attribute() %}
+              {% set action_attributes = action_attributes.setAttribute('href', action.url).addClass(['btn', 'btn-sm', 'btn-' ~ action.variant|default('outline-primary')]) %}
+              <a{{ action_attributes }}>{{ action.title }}</a>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
