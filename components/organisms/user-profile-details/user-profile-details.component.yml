@@ -1,0 +1,97 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata-full.schema.json
+name: User Profile Details
+description: Bootstrap 5.3 card that shows a user their own account details and quick actions on their profile page.
+status: stable
+noUi: true
+props:
+  type: object
+  properties:
+    heading:
+      type: string
+      title: Heading
+      description: The card heading.
+      default: 'Profile details'
+    username:
+      type: string
+      title: Username
+      description: The account name.
+    full_name:
+      type: string
+      title: Full name
+      description: The person's full name, when the site has a field for it.
+    email:
+      type: string
+      title: Email
+      description: The account email address.
+    timezone:
+      type: string
+      title: Time zone
+      description: The account time zone.
+    status:
+      type: boolean
+      title: Active
+      description: Whether the account is active.
+      default: true
+    created:
+      type: string
+      title: Account created
+      description: The formatted date the account was created.
+    member_for:
+      type: string
+      title: Member for
+      description: How long the account has existed, for example "1 hour 4 minutes".
+    last_login:
+      type: string
+      title: Last login
+      description: The formatted date of the last login. Empty when the user never logged in.
+    picture_url:
+      type: string
+      title: Picture URL
+      format: uri-reference
+      description: The user picture. Empty shows a person icon instead.
+    picture_alt:
+      type: string
+      title: Picture alternative text
+      description: The alternative text of the user picture.
+    actions:
+      type: array
+      title: Quick actions
+      description: Links shown as buttons under the details.
+      default: []
+      items:
+        type: object
+        properties:
+          title:
+            type: string
+            title: Title
+          url:
+            type: string
+            title: URL
+            format: uri-reference
+          variant:
+            type: string
+            title: Button variant
+            enum:
+              - primary
+              - outline-primary
+              - outline-dark
+            default: outline-primary
+examples:
+  - heading: 'Profile details'
+    username: 'Normal user'
+    full_name: ''
+    email: 'user@example.com'
+    timezone: 'Asia/Amman'
+    status: true
+    created: 'Sun, 11 Oct 2026 - 15:46'
+    member_for: '1 hour 4 minutes'
+    picture_url: ''
+    picture_alt: ''
+    last_login: 'Sun, 11 Oct 2026 - 16:28'
+    actions:
+      - title: 'Edit profile'
+        url: '/user/2/edit'
+        variant: primary
+      - title: 'Log out'
+        url: '/user/logout'
+        variant: outline-dark

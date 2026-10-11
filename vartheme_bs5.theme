@@ -207,6 +207,14 @@ function vartheme_bs5_preprocess_user(&$variables) {
   if (!$user->access('update')) {
     return;
   }
+  // On the owner's own profile, the Profile details card (the
+  // varbase_user_profile_details ECA model) carries the picture, the member
+  // for time and these actions, so do not print them twice. The card's field
+  // varies by user, which keeps this cached per user.
+  if (isset($variables['elements']['eca_render__varbase_user_profile_details']) && $user->id() == \Drupal::currentUser()->id()) {
+    unset($variables['content']['user_picture'], $variables['content']['member_for']);
+    return;
+  }
   $variables['user_actions'] = [
     'edit' => [
       '#type' => 'link',
