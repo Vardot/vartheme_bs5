@@ -10,11 +10,10 @@
 //   `height` is `auto`, so the height is never set to a percentage.
 // - `min-height: max(..., 100%)` handles the far more common Drupal Canvas
 //   case: dropped into its own Column, the divider's immediate parent is the
-//   plain (non-flex) `.col-*` div Canvas always wraps a component in. That
-//   column only has real height to give once the Section/Row's "Vertical
-//   alignment" is set to Stretch (equal height) - see atoms/section's
-//   `vertical_alignment` prop - so the column matches its tallest siblings
-//   and the 100% minimum fills it.
+//   plain (non-flex) `.col-*` div Canvas always wraps a component in. The
+//   rule at the end of this file stretches that column to its Row's height
+//   whatever the Section's "Vertical alignment", so the 100% minimum fills
+//   it.
 // `--divider-vertical-min-height` keeps the line visible as a graceful
 // fallback outside any flex/grid context and before Stretch is enabled (e.g.
 // inline usage with no wrapper), where 100% resolves to nothing.
@@ -29,4 +28,18 @@
   width: 0;
   height: auto;
   min-height: max(var(--divider-vertical-min-height), 100%);
+
+  // Every side starts in the theme border colour, like `.border-start`'s own
+  // side, so a divider without a colour class always draws in it. Border
+  // colour utilities are !important and still win.
+  border-color: var(--bs-border-color);
+}
+
+// A Column only grows to its Row's height when the Section's "Vertical
+// alignment" is Stretch; with Start or Center it is as tall as its own
+// content, which for a divider is nothing. Stretching just the column that
+// holds a divider makes the divider follow the tallest column whatever the
+// alignment, and leaves the other columns where the editor put them.
+.row > :has(> .divider-vertical) {
+  align-self: stretch;
 }
