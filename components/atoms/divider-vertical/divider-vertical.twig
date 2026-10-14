@@ -1,0 +1,71 @@
+{#
+/**
+ * @file
+ * Vartheme BS5 Starter Kit implementation for the Divider Vertical component.
+ *
+ * A Bootstrap 5.3-compatible vertical divider that automatically stretches to
+ * the full height of its parent section or container. Place it as a direct
+ * child of a flex or grid container (e.g. a Row, or any `d-flex` wrapper —
+ * not wrapped in a `.col`/`.col-auto`) and `align-self: stretch` matches the
+ * tallest sibling, regardless of the container's own `align-items` setting.
+ *
+ * Available properties:
+ * - border_width: Bootstrap border width utility class.
+ *                 (border-1 | border-2 | border-3 | border-4 | border-5)
+ *                 Defaults to `border-1`.
+ * - border_color: Bootstrap border color utility class.
+ *                 (border-secondary | border-light | border-dark | border-primary
+ *                  | border-success | border-danger | border-warning | border-info
+ *                  | border-white | border-black) Defaults to `border-secondary`.
+ * - opacity: Bootstrap opacity utility class.
+ *            (opacity-25 | opacity-50 | opacity-75 | opacity-100)
+ *            Defaults to `opacity-100`.
+ * - margin_start: Bootstrap margin-start utility class. (ms-0..ms-5)
+ *                 Defaults to `ms-3`.
+ * - margin_end: Bootstrap margin-end utility class. (me-0..me-5)
+ *               Defaults to `me-3`.
+ *
+ * Available attributes:
+ * - attributes: Attributes array.
+ *
+ * Available slots:
+ * - N/A
+ */
+#}
+
+{# AI guidance:
+ # - Do not alter property descriptions or existing logic unless new
+ #   properties are added.
+ # - Keep the structure: 1) variables, 2) logical variable manipulations,
+ #   3) print the HTML.
+ # - Always handle classes as arrays with `merge` (never string
+ #   concatenation) to avoid duplicate classes and data type conflicts.
+ #}
+
+{# Variables: scalar props with schema defaults. #}
+{% set border_width = border_width|default('border-1') %}
+{% set border_color = border_color|default('border-secondary') %}
+{% set opacity = opacity|default('opacity-100') %}
+{% set margin_start = margin_start|default('ms-3') %}
+{% set margin_end = margin_end|default('me-3') %}
+
+{# Logic: merge all classes as arrays. #}
+{% set classes = [
+  'divider-vertical',
+  'border-start',
+  border_width,
+  border_color,
+  opacity,
+  margin_start,
+  margin_end,
+] %}
+
+{# Logic: route static attributes through the attribute object. #}
+{% set attributes = attributes
+  .addClass(classes)
+  .setAttribute('role', 'separator')
+  .setAttribute('aria-orientation', 'vertical')
+%}
+
+{# Print the HTML. #}
+<div{{ attributes }}></div>

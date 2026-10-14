@@ -47,6 +47,7 @@ module.exports = {
     'pages/page/page': ['./components/pages/page/page.scss'],
     'atoms/button/button': ['./components/atoms/button/button.scss'],
     'atoms/badge/badge': ['./components/atoms/badge/badge.scss'],
+    'atoms/divider-vertical/divider-vertical': ['./components/atoms/divider-vertical/divider-vertical.scss'],
   },
   output: {
     path: path.resolve(__dirname, 'components'),

@@ -1,0 +1,118 @@
+$schema: https://git.drupalcode.org/project/drupal/-/raw/HEAD/core/assets/schemas/v1/metadata.schema.json
+name: Divider Vertical
+description: A Bootstrap 5.3-compatible vertical divider that automatically stretches to the full height of its parent section or container.
+group: Layout
+props:
+  type: object
+  properties:
+    border_width:
+      type: string
+      title: Thickness
+      description: Bootstrap border width utility class.
+      enum:
+        - border-1
+        - border-2
+        - border-3
+        - border-4
+        - border-5
+      meta:enum:
+        border-1: Thin
+        border-2: Medium
+        border-3: Thick
+        border-4: Extra thick
+        border-5: Maximum
+      default: border-1
+      examples:
+        - border-1
+
+    border_color:
+      type: string
+      title: Border color
+      description: Bootstrap border color utility class.
+      enum:
+        - border-secondary
+        - border-light
+        - border-dark
+        - border-primary
+        - border-success
+        - border-danger
+        - border-warning
+        - border-info
+        - border-white
+        - border-black
+      meta:enum:
+        border-secondary: Secondary
+        border-light: Light
+        border-dark: Dark
+        border-primary: Primary
+        border-success: Success
+        border-danger: Danger
+        border-warning: Warning
+        border-info: Info
+        border-white: White
+        border-black: Black
+      default: border-secondary
+      examples:
+        - border-secondary
+
+    opacity:
+      type: string
+      title: Opacity
+      description: Bootstrap opacity utility class.
+      enum:
+        - opacity-25
+        - opacity-50
+        - opacity-75
+        - opacity-100
+      meta:enum:
+        opacity-25: Subtle
+        opacity-50: Soft
+        opacity-75: Strong
+        opacity-100: Solid
+      default: opacity-100
+      examples:
+        - opacity-100
+
+    margin_start:
+      type: string
+      title: Start spacing
+      description: Bootstrap margin-start utility class.
+      enum:
+        - ms-0
+        - ms-1
+        - ms-2
+        - ms-3
+        - ms-4
+        - ms-5
+      meta:enum:
+        ms-0: None
+        ms-1: Small
+        ms-2: Medium
+        ms-3: Default
+        ms-4: Large
+        ms-5: Extra large
+      default: ms-3
+      examples:
+        - ms-3
+
+    margin_end:
+      type: string
+      title: End spacing
+      description: Bootstrap margin-end utility class.
+      enum:
+        - me-0
+        - me-1
+        - me-2
+        - me-3
+        - me-4
+        - me-5
+      meta:enum:
+        me-0: None
+        me-1: Small
+        me-2: Medium
+        me-3: Default
+        me-4: Large
+        me-5: Extra large
+      default: me-3
+      examples:
+        - me-3

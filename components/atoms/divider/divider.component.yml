@@ -7,7 +7,7 @@ props:
   properties:
     border_width:
       type: string
-      title: Border width
+      title: Thickness
       description: Bootstrap border width utility class.
       enum:
         - border-1

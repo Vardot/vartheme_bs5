@@ -1,0 +1,43 @@
+import { Title, Subtitle, Meta, Description, Primary, Stories, Controls, Source } from '@storybook/addon-docs/blocks';
+import * as comStories from './divider-vertical.stories.json';
+import templateSource from './divider-vertical.twig?raw';
+
+<Meta of={comStories} name="Docs"/>
+
+<Title />
+<Subtitle />
+<Description />
+
+> ### Bootstrap Documentation
+> * [Borders](https://getbootstrap.com/docs/5.3/utilities/borders/)
+> * [Opacity](https://getbootstrap.com/docs/5.3/utilities/opacity/)
+> * [Spacing](https://getbootstrap.com/docs/5.3/utilities/spacing/)
+> * [Flex / Align self](https://getbootstrap.com/docs/5.3/utilities/flex/#align-self)
+
+<Primary />
+
+## Properties
+<Controls />
+
+<Stories of={comStories} />
+
+## Attributes
+* N/A
+
+## Slots
+* N/A
+
+## Example
+
+```twig
+{% include 'vartheme_bs5:divider-vertical' with {
+  border_width: 'border-1',
+  border_color: 'border-secondary',
+  opacity: 'opacity-100',
+  margin_start: 'ms-3',
+  margin_end: 'me-3'
+} %}
+```
+
+## Source code
+<Source code={templateSource} />

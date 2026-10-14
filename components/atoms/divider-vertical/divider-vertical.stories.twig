@@ -1,0 +1,183 @@
+{% stories DividerVertical with {
+  title: 'Layout/Divider Vertical',
+  parameters: {
+    componentSubtitle: 'Bootstrap 5.3 vertical divider component',
+    docs: {
+      description: {
+        component: 'A Bootstrap 5.3-compatible vertical divider that automatically stretches to the full height of its parent section or container.',
+      },
+      story: {
+        inline: true,
+      },
+    },
+  },
+  argTypes: {
+    border_width: {
+      name: 'Thickness',
+      description: 'Bootstrap border width utility class.',
+      defaultValue: 'border-1',
+      control: 'select',
+      options: {
+        Thin: 'border-1',
+        Medium: 'border-2',
+        Thick: 'border-3',
+        "'Extra thick'": 'border-4',
+        Maximum: 'border-5',
+      },
+    },
+    border_color: {
+      name: 'Border color',
+      description: 'Bootstrap border color utility class.',
+      defaultValue: 'border-secondary',
+      control: 'select',
+      options: {
+        Secondary: 'border-secondary',
+        Light: 'border-light',
+        Dark: 'border-dark',
+        Primary: 'border-primary',
+        Success: 'border-success',
+        Danger: 'border-danger',
+        Warning: 'border-warning',
+        Info: 'border-info',
+        White: 'border-white',
+        Black: 'border-black',
+      },
+    },
+    opacity: {
+      name: 'Opacity',
+      description: 'Bootstrap opacity utility class.',
+      defaultValue: 'opacity-100',
+      control: 'select',
+      options: {
+        Subtle: 'opacity-25',
+        Soft: 'opacity-50',
+        Strong: 'opacity-75',
+        Solid: 'opacity-100',
+      },
+    },
+    margin_start: {
+      name: 'Start spacing',
+      description: 'Bootstrap margin-start utility class.',
+      defaultValue: 'ms-3',
+      control: 'select',
+      options: {
+        None: 'ms-0',
+        Small: 'ms-1',
+        Medium: 'ms-2',
+        Default: 'ms-3',
+        Large: 'ms-4',
+        "'Extra large'": 'ms-5',
+      },
+    },
+    margin_end: {
+      name: 'End spacing',
+      description: 'Bootstrap margin-end utility class.',
+      defaultValue: 'me-3',
+      control: 'select',
+      options: {
+        None: 'me-0',
+        Small: 'me-1',
+        Medium: 'me-2',
+        Default: 'me-3',
+        Large: 'me-4',
+        "'Extra large'": 'me-5',
+      },
+    },
+  },
+} %}
+
+{% story Default with {
+  name: 'Default',
+  args: {
+    border_width: 'border-1',
+    border_color: 'border-secondary',
+    opacity: 'opacity-100',
+    margin_start: 'ms-3',
+    margin_end: 'me-3',
+  },
+} %}
+<div class="d-flex align-items-stretch" style="height: 4rem;">
+  <div>Left content</div>
+  {% include 'vartheme_bs5:divider-vertical' with {
+    border_width: border_width,
+    border_color: border_color,
+    opacity: opacity,
+    margin_start: margin_start,
+    margin_end: margin_end
+  } %}
+  <div>Right content</div>
+</div>
+{% endstory %}
+
+{% story PrimaryStrong with {
+  name: 'Primary Strong',
+  args: {
+    border_width: 'border-2',
+    border_color: 'border-primary',
+    opacity: 'opacity-75',
+    margin_start: 'ms-4',
+    margin_end: 'me-4',
+  },
+} %}
+<div class="d-flex align-items-stretch" style="height: 4rem;">
+  <div>Left content</div>
+  {% include 'vartheme_bs5:divider-vertical' with {
+    border_width: border_width,
+    border_color: border_color,
+    opacity: opacity,
+    margin_start: margin_start,
+    margin_end: margin_end
+  } %}
+  <div>Right content</div>
+</div>
+{% endstory %}
+
+{% story MutedDivider with {
+  name: 'Muted Divider',
+  args: {
+    border_width: 'border-1',
+    border_color: 'border-dark',
+    opacity: 'opacity-50',
+    margin_start: 'ms-2',
+    margin_end: 'me-2',
+  },
+} %}
+<div class="d-flex align-items-stretch" style="height: 4rem;">
+  <div>Left content</div>
+  {% include 'vartheme_bs5:divider-vertical' with {
+    border_width: border_width,
+    border_color: border_color,
+    opacity: opacity,
+    margin_start: margin_start,
+    margin_end: margin_end
+  } %}
+  <div>Right content</div>
+</div>
+{% endstory %}
+{% story AutoHeight with {
+  name: 'Auto Height',
+  args: {
+    border_width: 'border-1',
+    border_color: 'border-secondary',
+    opacity: 'opacity-100',
+    margin_start: 'ms-3',
+    margin_end: 'me-3',
+  },
+} %}
+<div class="d-flex align-items-center">
+  <div>
+    <p>A taller block of content.</p>
+    <p>No fixed height is set on the wrapper:</p>
+    <p>the divider stretches to the tallest sibling.</p>
+  </div>
+  {% include 'vartheme_bs5:divider-vertical' with {
+    border_width: border_width,
+    border_color: border_color,
+    opacity: opacity,
+    margin_start: margin_start,
+    margin_end: margin_end
+  } %}
+  <div>Short content</div>
+</div>
+{% endstory %}
+{% endstories %}
