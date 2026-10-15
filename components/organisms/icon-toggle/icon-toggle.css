@@ -206,6 +206,12 @@
   box-shadow: none;
 }
 
+.icon-toggle--panel-bar .icon-toggle__panel-inner .form-control:autofill,
+.icon-toggle--panel-bar .icon-toggle__panel-inner .form-control:-webkit-autofill {
+  box-shadow: inset 0 0 0 100rem var(--icon-toggle-panel-bg);
+  -webkit-text-fill-color: var(--bs-body-color);
+}
+
 .icon-toggle--panel-bar .icon-toggle__panel-inner .form-actions {
   position: absolute;
   overflow: hidden;

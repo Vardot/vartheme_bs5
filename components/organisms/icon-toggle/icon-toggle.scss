@@ -262,6 +262,13 @@
         outline: 0;
         box-shadow: none;
       }
+
+      // Keep the bar's background when the browser fills the field from its saved entries.
+      &:autofill,
+      &:-webkit-autofill {
+        box-shadow: inset 0 0 0 ($spacer * 100) var(--icon-toggle-panel-bg);
+        -webkit-text-fill-color: var(--bs-body-color);
+      }
     }
 
     // Enter submits; the button is only removed visually.

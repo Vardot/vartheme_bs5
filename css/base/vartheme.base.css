@@ -769,3 +769,59 @@ footer.footer hr {
   border-radius: 0.5rem;
   background-color: var(--bs-secondary-bg);
 }
+
+#views-exposed-form-search-results-block .form-actions .btn {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  #views-exposed-form-search-results-block {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.5rem;
+  }
+
+  #views-exposed-form-search-results-block > .js-form-item {
+    flex: 1 1 auto;
+    margin-bottom: 0;
+  }
+
+  #views-exposed-form-search-results-block .form-actions {
+    display: flex;
+    flex: 0 0 auto;
+  }
+
+  #views-exposed-form-search-results-block .form-actions .btn {
+    width: auto;
+  }
+}
+
+.block-views[class*="search-date-block"] .fieldgroup.card {
+  margin-bottom: 0;
+  border: 0;
+  background-color: transparent;
+}
+
+.block-views[class*="search-date-block"] .fieldgroup.card > .card-header {
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+}
+
+.block-views[class*="search-date-block"] .fieldgroup.card > .card-body {
+  padding: 0;
+}
+
+.block-views[class*="search-date-block"] .js-form-type-radio {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 0.125rem;
+  gap: 0.5em;
+}
+
+.block-views[class*="search-date-block"] .js-form-type-radio label {
+  margin-bottom: 0;
+  color: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}

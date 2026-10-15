@@ -759,3 +759,63 @@ footer.footer {
   border-radius: 0.5rem;
   background-color: var(--bs-secondary-bg);
 }
+
+// Search page keyword panel: field and button on one row from md, stacked below.
+#views-exposed-form-search-results-block {
+  .form-actions .btn {
+    width: 100%;
+  }
+
+  @include media-breakpoint-up(md) {
+    display: flex;
+    align-items: flex-end;
+    gap: $spacer * 0.5;
+
+    > .js-form-item {
+      flex: 1 1 auto;
+      margin-bottom: 0;
+    }
+
+    .form-actions {
+      display: flex;
+      flex: 0 0 auto;
+    }
+
+    .form-actions .btn {
+      width: auto;
+    }
+  }
+}
+
+// Search rail Date Published: radios as a plain option list, like the facet lists.
+.block-views[class*="search-date-block"] {
+  .fieldgroup.card {
+    margin-bottom: 0;
+    border: 0;
+    background-color: transparent;
+  }
+
+  .fieldgroup.card > .card-header {
+    padding: 0;
+    border: 0;
+    background-color: transparent;
+  }
+
+  .fieldgroup.card > .card-body {
+    padding: 0;
+  }
+
+  .js-form-type-radio {
+    display: flex;
+    gap: 0.5em;
+    align-items: flex-start;
+    margin-bottom: $spacer * 0.125;
+  }
+
+  .js-form-type-radio label {
+    margin-bottom: 0;
+    color: inherit;
+    font-size: inherit;
+    line-height: inherit;
+  }
+}
