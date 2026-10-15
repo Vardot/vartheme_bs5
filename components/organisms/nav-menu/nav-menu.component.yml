@@ -29,6 +29,10 @@ props:
             type: string
             title: Rel
             description: HTML rel attribute
+          link_attributes:
+            type: object
+            title: Link attributes
+            description: Extra HTML attributes merged into the link of this item.
       description: Navigation items.
     alignment:
       type: string

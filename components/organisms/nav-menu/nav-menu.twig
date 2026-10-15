@@ -8,6 +8,7 @@
  * - style: tabs | pills
  * - fill: fill | justify
  * - nav_menu_utility_classes: An array of utility classes.
+ * - items[].link_attributes: Optional extra attributes for an item's link.
  */
 #}
 
@@ -83,7 +84,7 @@
           </div>
         {% else %}
           {% if item.url %}
-          {{ link(item.title, item.url, {class: nav_link_classes}) }}
+          {{ link(item.title, item.url, {class: nav_link_classes}|merge(item.link_attributes ?? {})) }}
           {% endif %}
         {% endif %}
       </li>

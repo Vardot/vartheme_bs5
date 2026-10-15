@@ -16,6 +16,10 @@ Require the theme in a Drupal
 composer require 'drupal/vartheme_bs5:~5.0.0'
 ```
 
+## Content Security Policy
+The footer Copy link runs through htmx `hx-on`, which uses eval. A site that enables a strict
+Content Security Policy needs `'unsafe-eval'` in `script-src` for it to work.
+
 ## Compile custom styling
 Uses [Webpack](https://webpack.js.org) to compile and
 bundle SASS and JS.

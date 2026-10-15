@@ -30,6 +30,7 @@
     "tests/package-lock.json"
   ],
   "words": [
+    "htmx",
     "varbase",
     "Varbase",
     "Vardot",
