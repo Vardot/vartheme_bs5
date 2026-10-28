@@ -44,6 +44,7 @@ variables:
   VARBASE_E2E_REPORT_DISABLE: "1"
   COMPOSER_CACHE_DIR: "${CI_PROJECT_DIR}/.cache/composer"
   PLAYWRIGHT_BROWSERS_PATH: "${CI_PROJECT_DIR}/.cache/ms-playwright"
+  DRUPAL_CMS_TELEMETRY: "0"
 
 # Build cache populated by the Install job: the built host site (testsite/), the
 # suite's node_modules and the composer + Playwright download caches. The test
