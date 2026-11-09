@@ -64,6 +64,9 @@ phpstan:
 stylelint:
   allow_failure: true
   variables:
+    # Drupal core's own Yarn 4.9.1 would read the project .yarnrc.yml (Yarn >= 4.14 keys) too.
+    YARN_RC_FILENAME: .yarnrc.core.yml
+    YARN_NODE_LINKER: node-modules
     _STYLELINT_ALLOW_FAILURE: "1"
   before_script:
     # The theme's .stylelintrc.json extends stylelint-config-standard, which
@@ -88,19 +91,13 @@ phpunit:
     - service apache2 start
     - export SIMPLETEST_DB=mysql://$MYSQL_USER:$MYSQL_PASSWORD@database/$MYSQL_DATABASE
   node_playwright: &node_playwright
-    - curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
+    - curl -fsSL https://deb.nodesource.com/setup_24.x | bash -
     - apt-get install -y nodejs
     - node --version && npm --version
     - 'test -f .yarnrc.yml || echo "nodeLinker: node-modules" > .yarnrc.yml'
     # Back up cucumber.js - varbase-e2e's postinstall can clobber it under yarn 4.
     - cp cucumber.js .cucumber.js.bak
     - corepack enable
-    # Re-resolve from scratch so the package.json "resolutions" pin collapses
-    # @cucumber/cucumber to a single hoisted copy. Without this, the committed
-    # lockfile keeps a nested varbase-e2e copy and the CLI + step files end up on
-    # two Cucumber instances ("functions called on an instance that isn't
-    # running"). This only affects the browser-test job's install.
-    - rm -f yarn.lock
     - yarn install
     - cp .cucumber.js.bak cucumber.js && rm .cucumber.js.bak
     - ./node_modules/.bin/playwright install --with-deps chromium
@@ -173,6 +170,13 @@ varbase-e2e-test:
         --format all
         --pdf-out tests/reports/cucumber_report.pdf
   allow_failure: false
+
+.composer-base:
+  variables:
+    # Every composer job, variants included: Drupal core's own Yarn 4.9.1 would
+    # read the project .yarnrc.yml (Yarn >= 4.14 keys) too.
+    YARN_RC_FILENAME: .yarnrc.core.yml
+    YARN_NODE_LINKER: node-modules
 
 # Allow the Varbase stack Composer plugins in the CI build.
 composer:
