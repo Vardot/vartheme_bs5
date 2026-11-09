@@ -123,11 +123,11 @@ variables:
 # = pre-test = every step phrasing in the suite resolves. No browser, no site.
 "🧩 Cucumber dry-run":
   stage: pre-test
-  image: node:20
+  image: node:24
   needs: []
   before_script:
     - cd tests
-    - npm ci --no-audit --no-fund --ignore-scripts
+    - npm install --no-audit --no-fund --ignore-scripts
   script:
     - node --version
     - ./node_modules/.bin/cucumber-js --config cucumber.js --dry-run
@@ -214,7 +214,7 @@ variables:
       test "$THEME" = "vartheme_bs5"
     # Install the suite and the matching Chromium (both cached for the test job).
     - cd "$CI_PROJECT_DIR/tests"
-    - npm ci --no-audit --no-fund --ignore-scripts
+    - npm install --no-audit --no-fund --ignore-scripts
     - ./node_modules/.bin/playwright install chromium
     - $SITE_DIR/bin/drush --root=$WEB_ROOT sql:dump --gzip --result-file=$CI_PROJECT_DIR/vartheme-bs5-host-db.sql
 

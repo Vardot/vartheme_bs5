@@ -489,7 +489,7 @@ Live design system / Storybook: <https://storybook.demo.varbase.vardot.com/>.
 
 ## 16. Tooling
 
-- **Node.js 20.x**, **Yarn** (use Yarn — *not* npm; npm causes install issues).
+- **Node.js 24.x**, **Yarn** (use Yarn — *not* npm; npm causes install issues).
   Also `sed` + `gawk` (used by the generate-theme rename step).
 - `node_modules/` is git-ignored — after any clone, reinstall before building.
 
