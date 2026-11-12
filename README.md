@@ -20,6 +20,12 @@ composer require 'drupal/vartheme_bs5:~5.0.0'
 The footer Copy link runs through htmx `hx-on`, which uses eval. A site that enables a strict
 Content Security Policy needs `'unsafe-eval'` in `script-src` for it to work.
 
+## Email logo
+`logo-email.png` is `logo.svg` as a 150×30 PNG, for HTML emails. Many email clients (Gmail,
+Outlook) do not show SVG images, so a PNG is needed there. It keeps the site logo's displayed size
+because the email template sets no width on the logo. Varbase Starter points the Easy Email Theme
+logo at it.
+
 ## Compile custom styling
 Uses [Webpack](https://webpack.js.org) to compile and
 bundle SASS and JS.
