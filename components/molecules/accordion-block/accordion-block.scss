@@ -10,14 +10,14 @@ $accordion-border-radius: 0.125rem;
 $accordion-inner-border-radius: subtract($accordion-border-radius, $accordion-border-width) !default;
 
 // Design: $secondary-bg-subtle ($linen) bg, dark text, $secondary ($sand) hover bg, primary hover text.
-$accordion-bg: $secondary-bg-subtle;
+$accordion-bg: var(--bs-secondary-bg-subtle);
 
 $accordion-body-padding-y: $accordion-padding-y;
 $accordion-body-padding-x: $accordion-padding-x;
 
 $accordion-button-padding-y: $accordion-padding-y;
 $accordion-button-padding-x: $accordion-padding-x;
-$accordion-button-active-bg: $secondary-bg-subtle;
+$accordion-button-active-bg: var(--bs-secondary-bg-subtle);
 $accordion-button-active-color: var(--bs-dark);
 
 $accordion-button-focus-border-color: var(--bs-border-color);
@@ -64,7 +64,7 @@ $accordion-icon-width: 0.9375rem;
     &:focus,
     &:active {
       background-color: var(--bs-secondary);
-      color: #0D6EFD;
+      color: var(--bs-primary);
       box-shadow: none;
     }
   }

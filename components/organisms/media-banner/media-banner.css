@@ -56,14 +56,14 @@
 }
 
 .media-banner .breadcrumb .breadcrumb-item a {
-  color: var(--bs-white);
   text-decoration: none;
+  color: var(--bs-white);
 }
 
 .media-banner .breadcrumb .breadcrumb-item a:hover,
 .media-banner .breadcrumb .breadcrumb-item a:focus {
-  color: var(--bs-white);
   text-decoration: none;
+  color: var(--bs-white);
 }
 
 .media-banner .breadcrumb .breadcrumb-item + .breadcrumb-item::before {

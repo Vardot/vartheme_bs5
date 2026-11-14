@@ -495,7 +495,7 @@ footer.footer .block-system-menu-blocksocial-media-menu li.nav-item > a {
   height: 1.875rem;
   text-decoration: none;
   letter-spacing: -9999px !important;
-  color: rgb(10.4, 88, 202.4);
+  color: rgb(4.0784313725%, 34.5098039216%, 79.3725490196%);
   font-size: 0 !important;
   line-height: 0 !important;
 }
@@ -504,7 +504,7 @@ footer.footer .block-system-menu-blocksocial-media-menu li.nav-item > a::before 
   display: inline-block;
   margin: 0;
   letter-spacing: normal;
-  color: rgb(10.4, 88, 202.4);
+  color: rgb(4.0784313725%, 34.5098039216%, 79.3725490196%);
   font-size: 1.125rem;
 }
 

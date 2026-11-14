@@ -146,19 +146,19 @@
 }
 
 .alert-warning.alert-dismissible .btn-close {
-  background: rgb(255, 205.4, 56.6);
+  background: rgb(100%, 80.5490196078%, 22.1960784314%);
 }
 
 .alert-danger.alert-dismissible .btn-close {
-  background: rgb(176, 42.4, 55.2);
+  background: rgb(69.0196078431%, 16.6274509804%, 21.6470588235%);
 }
 
 .alert-light.alert-dismissible .btn-close {
-  background: rgb(198.4, 199.2, 200);
+  background: rgb(77.8039215686%, 78.1176470588%, 78.431372549%);
 }
 
 .alert-dark.alert-dismissible .btn-close {
-  background: rgb(51, 74.2, 95.8);
+  background: rgb(20%, 29.0980392157%, 37.568627451%);
 }
 
 .alert-tertiary.alert-dismissible .btn-close {
