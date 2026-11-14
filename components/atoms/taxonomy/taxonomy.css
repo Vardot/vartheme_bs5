@@ -48,7 +48,7 @@
 .vb-tags li > a:focus,
 .vb-tags li > a:active {
   text-decoration: none;
-  background-color: rgb(81.6, 12.8, 193.6);
+  background-color: rgb(32%, 5.0196078431%, 75.9215686275%);
 }
 
 [dir="rtl"] .vb-tags {
@@ -84,5 +84,5 @@
 .vb-tag > a:focus,
 .vb-tag > a:active {
   text-decoration: none;
-  background-color: rgb(81.6, 12.8, 193.6);
+  background-color: rgb(32%, 5.0196078431%, 75.9215686275%);
 }

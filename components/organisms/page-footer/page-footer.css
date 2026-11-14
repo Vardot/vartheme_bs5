@@ -1,6 +1,6 @@
 footer.footer {
   color: var(--bs-white);
-  background-color: rgb(7.8, 66, 151.8);
+  background-color: rgb(3.0588235294%, 25.8823529412%, 59.5294117647%);
 }
 
 footer.footer a {
@@ -113,7 +113,7 @@ footer.footer .footer-logo-image {
 .social-media-menu-icons li.nav-item > a:hover::before,
 .social-media-menu-icons li.nav-item > a:focus::before,
 .social-media-menu-icons li.nav-item > a:active::before {
-  color: rgb(206.6, 226, 254.6);
+  color: rgb(81.0196078431%, 88.6274509804%, 99.8431372549%);
 }
 
 .social-media-menu-icons li.nav-item > a:hover:after,
