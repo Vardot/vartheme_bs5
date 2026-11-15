@@ -265,5 +265,5 @@ accordion-scripts:
   dependencies:
     - vartheme_bs5/bs-collapse-script
   js:
-    js/components/accordion-init.js: {}
+    components/molecules/accordion-container/accordion-container.js: {}
 
